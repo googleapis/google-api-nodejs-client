@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace displayvideo_v2 {
+export namespace displayvideo_v3 {
   export interface Options extends GlobalOptions {
-    version: 'v2';
+    version: 'v3';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace displayvideo_v2 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const displayvideo = google.displayvideo('v2');
+   * const displayvideo = google.displayvideo('v3');
    * ```
    */
   export class Displayvideo {
@@ -158,10 +158,6 @@ export namespace displayvideo_v2 {
   }
 
   /**
-   * Request message for ManualTriggerService.ActivateManualTrigger.
-   */
-  export interface Schema$ActivateManualTriggerRequest {}
-  /**
    * Configuration for custom Active View video viewability metrics.
    */
   export interface Schema$ActiveViewVideoViewabilityMetricConfig {
@@ -185,6 +181,129 @@ export namespace displayvideo_v2 {
      * Required. The minimum percentage of the video ad's volume required in order for an impression to be recorded.
      */
     minimumVolume?: string | null;
+  }
+  /**
+   * A single ad group associated with a line item.
+   */
+  export interface Schema$AdGroup {
+    /**
+     * The format of the ads in the ad group.
+     */
+    adGroupFormat?: string | null;
+    /**
+     * The unique ID of the ad group. Assigned by the system.
+     */
+    adGroupId?: string | null;
+    /**
+     * The unique ID of the advertiser the ad group belongs to.
+     */
+    advertiserId?: string | null;
+    /**
+     * The bidding strategy used by the ad group. Only the youtubeAndPartnersBid field can be used in the bidding strategy.
+     */
+    bidStrategy?: Schema$BiddingStrategy;
+    /**
+     * The display name of the ad group. Must be UTF-8 encoded with a maximum size of 255 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Controls whether or not the ad group can spend its budget and bid on inventory. If the ad group's parent line item is not active, the ad group can't spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.
+     */
+    entityStatus?: string | null;
+    /**
+     * The unique ID of the line item that the ad group belongs to.
+     */
+    lineItemId?: string | null;
+    /**
+     * The resource name of the ad group.
+     */
+    name?: string | null;
+    /**
+     * The settings of the product feed in this ad group.
+     */
+    productFeedData?: Schema$ProductFeedData;
+    /**
+     * The [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the ad group.
+     */
+    targetingExpansion?: Schema$TargetingExpansionConfig;
+  }
+  /**
+   * A single ad associated with an ad group.
+   */
+  export interface Schema$AdGroupAd {
+    /**
+     * The unique ID of the ad. Assigned by the system.
+     */
+    adGroupAdId?: string | null;
+    /**
+     * The unique ID of the ad group that the ad belongs to.
+     */
+    adGroupId?: string | null;
+    /**
+     * List of URLs used by the ad.
+     */
+    adUrls?: Schema$AdUrl[];
+    /**
+     * The unique ID of the advertiser the ad belongs to.
+     */
+    advertiserId?: string | null;
+    /**
+     * Details of an [audio ad](//support.google.com/displayvideo/answer/6274216) used for reach marketing objectives.
+     */
+    audioAd?: Schema$AudioAd;
+    /**
+     * Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach.
+     */
+    bumperAd?: Schema$BumperAd;
+    /**
+     * The display name of the ad. Must be UTF-8 encoded with a maximum size of 255 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Details of an ad sourced from a Display & Video 360 creative.
+     */
+    displayVideoSourceAd?: Schema$DisplayVideoSourceAd;
+    /**
+     * The entity status of the ad.
+     */
+    entityStatus?: string | null;
+    /**
+     * Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives.
+     */
+    inStreamAd?: Schema$InStreamAd;
+    /**
+     * Details of an [ad served on the YouTube Home feed](//support.google.com/google-ads/answer/9709826).
+     */
+    mastheadAd?: Schema$MastheadAd;
+    /**
+     * The resource name of the ad.
+     */
+    name?: string | null;
+    /**
+     * Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives.
+     */
+    nonSkippableAd?: Schema$NonSkippableAd;
+    /**
+     * Details of an [ad promoting a video](//support.google.com/displayvideo/answer/6274216) that shows in places of discovery.
+     */
+    videoDiscoverAd?: Schema$VideoDiscoveryAd;
+    /**
+     * Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.
+     */
+    videoPerformanceAd?: Schema$VideoPerformanceAd;
+  }
+  /**
+   * Wrapper object associating an AssignedTargetingOption resource and the ad group it is assigned to.
+   */
+  export interface Schema$AdGroupAssignedTargetingOption {
+    /**
+     * The ID of the ad group the assigned targeting option is assigned to.
+     */
+    adGroupId?: string | null;
+    /**
+     * The assigned targeting option resource.
+     */
+    assignedTargetingOption?: Schema$AssignedTargetingOption;
   }
   /**
    * Details of Adloox settings.
@@ -377,6 +496,138 @@ export namespace displayvideo_v2 {
      * Output only. The age range of an audience.
      */
     ageRange?: string | null;
+  }
+  /**
+   * Rule-based algorithm.
+   */
+  export interface Schema$AlgorithmRules {
+    /**
+     * Rules for the impression signals.
+     */
+    impressionSignalRuleset?: Schema$AlgorithmRulesRuleset;
+  }
+  /**
+   * A value to compare the signal to.
+   */
+  export interface Schema$AlgorithmRulesComparisonValue {
+    /**
+     * Boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Creative dimension value.
+     */
+    creativeDimensionValue?: Schema$Dimensions;
+    /**
+     * Day and time value. Only `TIME_ZONE_RESOLUTION_END_USER` is supported.
+     */
+    dayAndTimeValue?: Schema$DayAndTime;
+    /**
+     * Device type value.
+     */
+    deviceTypeValue?: string | null;
+    /**
+     * Double value.
+     */
+    doubleValue?: number | null;
+    /**
+     * Environment value.
+     */
+    environmentValue?: string | null;
+    /**
+     * Exchange value.
+     */
+    exchangeValue?: string | null;
+    /**
+     * Integer value.
+     */
+    int64Value?: string | null;
+    /**
+     * Ad position value.
+     */
+    onScreenPositionValue?: string | null;
+    /**
+     * String value.
+     */
+    stringValue?: string | null;
+  }
+  /**
+   * Set of conditions. The return value of the rule is either: * The return value for single met condition or * The defined default return value if no conditions are met.
+   */
+  export interface Schema$AlgorithmRulesRule {
+    /**
+     * List of conditions in this rule. The criteria among conditions should be mutually exclusive.
+     */
+    conditions?: Schema$AlgorithmRulesRuleCondition[];
+    /**
+     * The default return value applied when none of the conditions are met.
+     */
+    defaultReturnValue?: Schema$AlgorithmRulesSignalValue;
+  }
+  /**
+   * Set of signal comparisons. Equivalent of an `if` statement.
+   */
+  export interface Schema$AlgorithmRulesRuleCondition {
+    /**
+     * The value returned if the `signalComparisons` condition evaluates to `TRUE`.
+     */
+    returnValue?: Schema$AlgorithmRulesSignalValue;
+    /**
+     * List of comparisons that build `if` statement condition. The comparisons are combined into a single condition with `AND` logical operators.
+     */
+    signalComparisons?: Schema$AlgorithmRulesSignalComparison[];
+  }
+  /**
+   * A ruleset consisting of a list of rules and how to aggregate the resulting values.
+   */
+  export interface Schema$AlgorithmRulesRuleset {
+    /**
+     * How to aggregate values of evaluated rules.
+     */
+    aggregationType?: string | null;
+    /**
+     * Maximum value the ruleset can evaluate to.
+     */
+    maxValue?: number | null;
+    /**
+     * List of rules to generate the impression value.
+     */
+    rules?: Schema$AlgorithmRulesRule[];
+  }
+  /**
+   * Signal used to evaluate rules.
+   */
+  export interface Schema$AlgorithmRulesSignal {
+    /**
+     * Signal based on impressions.
+     */
+    impressionSignal?: string | null;
+  }
+  /**
+   * A single comparison. The comparison compares the `signal` to the `comparisonValue`. The comparison of `siteId==123` is represented with the following field values: * `signal` has an `impressionSignal` of `SITE_ID`. * `comparisonOperator` is set to `EQUAL`. * `comparisonValue` is set to 123.
+   */
+  export interface Schema$AlgorithmRulesSignalComparison {
+    /**
+     * Operator used to compare the two values. In the resulting experession, the `signal` will be the first value and the `comparisonValue will be the second.
+     */
+    comparisonOperator?: string | null;
+    /**
+     * Value to compare signal to.
+     */
+    comparisonValue?: Schema$AlgorithmRulesComparisonValue;
+    /**
+     * Signal to compare.
+     */
+    signal?: Schema$AlgorithmRulesSignal;
+  }
+  /**
+   * Adjusted value of the signal used for rule evaluation.
+   */
+  export interface Schema$AlgorithmRulesSignalValue {
+    /**
+     * Value to use as result.
+     */
+    number?: number | null;
   }
   /**
    * Details for assigned app targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_APP`.
@@ -879,6 +1130,10 @@ export namespace displayvideo_v2 {
      * A strategy that automatically adjusts the bid to meet or beat a specified performance goal. It is to be used only for a line item entity.
      */
     performanceGoalAutoBid?: Schema$PerformanceGoalBidStrategy;
+    /**
+     * A bid strategy used by YouTube and Partners resources. It can only be used for a YouTube and Partners line item or ad group entity.
+     */
+    youtubeAndPartnersBid?: Schema$YoutubeAndPartnersBiddingStrategy;
   }
   /**
    * Details for assigned browser targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_BROWSER`.
@@ -1122,13 +1377,13 @@ export namespace displayvideo_v2 {
   }
   export interface Schema$BulkListAdGroupAssignedTargetingOptionsResponse {
     /**
+     * The list of wrapper objects, each providing an assigned targeting option and the ad group it is assigned to. This list will be absent if empty.
+     */
+    adGroupAssignedTargetingOptions?: Schema$AdGroupAssignedTargetingOption[];
+    /**
      * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent call to `BulkListAdGroupAssignedTargetingOptions` to fetch the next page of results. This token will be absent if there are no more AdGroupAssignedTargetingOption resources to return.
      */
     nextPageToken?: string | null;
-    /**
-     * The list of wrapper objects, each providing an assigned targeting option and the youtube ad group it is assigned to. This list will be absent if empty.
-     */
-    youtubeAdGroupAssignedTargetingOptions?: Schema$YoutubeAdGroupAssignedTargetingOption[];
   }
   export interface Schema$BulkListAdvertiserAssignedTargetingOptionsResponse {
     /**
@@ -2086,6 +2341,61 @@ export namespace displayvideo_v2 {
     sharedAdvertiserIds?: string[] | null;
   }
   /**
+   * A single custom bidding algorithm rules.
+   */
+  export interface Schema$CustomBiddingAlgorithmRules {
+    /**
+     * Output only. Whether the rules resource is currently being used for scoring by the parent algorithm.
+     */
+    active?: boolean | null;
+    /**
+     * Output only. The time when the rules resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The unique ID of the custom bidding algorithm that the rules resource belongs to.
+     */
+    customBiddingAlgorithmId?: string | null;
+    /**
+     * Output only. The unique ID of the rules resource.
+     */
+    customBiddingAlgorithmRulesId?: string | null;
+    /**
+     * Output only. Error code of the rejected rules resource. This field will only be populated when the state is `REJECTED`.
+     */
+    error?: Schema$CustomBiddingAlgorithmRulesError;
+    /**
+     * Output only. The resource name of the rules resource.
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. The reference to the uploaded AlgorithmRules file.
+     */
+    rules?: Schema$CustomBiddingAlgorithmRulesRef;
+    /**
+     * Output only. The state of the rules resource.
+     */
+    state?: string | null;
+  }
+  /**
+   * An error message for a CustomBiddingAlgorithmRules resource.
+   */
+  export interface Schema$CustomBiddingAlgorithmRulesError {
+    /**
+     * The type of error.
+     */
+    errorCode?: string | null;
+  }
+  /**
+   * The reference to the uploaded AlgorithmRules file. Retrieve the location to upload new AlgorithmRules file to using customBiddingAlgorithms.uploadRules.
+   */
+  export interface Schema$CustomBiddingAlgorithmRulesRef {
+    /**
+     * A resource name to be used in media.download to download the rules files. Or media.upload to upload the rules files. Resource names have the format `customBiddingAlgorithms/{custom_bidding_algorithm_id\}/rulesRef/{ref_id\}`.
+     */
+    resourceName?: string | null;
+  }
+  /**
    * The details of a custom bidding algorithm model for a single shared advertiser.
    */
   export interface Schema$CustomBiddingModelDetails {
@@ -2227,6 +2537,23 @@ export namespace displayvideo_v2 {
     startDate?: Schema$Date;
   }
   /**
+   * Representation of time defined by day of the week and hour of the day.
+   */
+  export interface Schema$DayAndTime {
+    /**
+     * Required. Day of the week.
+     */
+    dayOfWeek?: string | null;
+    /**
+     * Required. Hour of the day.
+     */
+    hourOfDay?: number | null;
+    /**
+     * Required. The mechanism used to determine the relevant timezone.
+     */
+    timeZoneResolution?: string | null;
+  }
+  /**
    * Representation of a segment of time defined on a specific day of the week and with a start and end time. The time represented by `start_hour` must be before the time represented by `end_hour`.
    */
   export interface Schema$DayAndTimeAssignedTargetingOptionDetails {
@@ -2247,10 +2574,6 @@ export namespace displayvideo_v2 {
      */
     timeZoneResolution?: string | null;
   }
-  /**
-   * Request message for ManualTriggerService.DeactivateManualTrigger.
-   */
-  export interface Schema$DeactivateManualTriggerRequest {}
   /**
    * A request listing which assigned targeting options of a given targeting type should be deleted.
    */
@@ -3115,10 +3438,6 @@ export namespace displayvideo_v2 {
      */
     bidStrategy?: Schema$BiddingStrategy;
     /**
-     * Immutable. The billable outcome of the insertion order. Outcome based buying is deprecated. `BILLABLE_OUTCOME_PAY_PER_IMPRESSION` is the only valid value.
-     */
-    billableOutcome?: string | null;
-    /**
      * Required. The budget allocation settings of the insertion order.
      */
     budget?: Schema$InsertionOrderBudget;
@@ -3151,6 +3470,10 @@ export namespace displayvideo_v2 {
      */
     integrationDetails?: Schema$IntegrationDetails;
     /**
+     * Required. The key performance indicator (KPI) of the insertion order. This is represented as referred to as the "Goal" in the Display & Video 360 interface.
+     */
+    kpi?: Schema$Kpi;
+    /**
      * Output only. The resource name of the insertion order.
      */
     name?: string | null;
@@ -3162,10 +3485,6 @@ export namespace displayvideo_v2 {
      * The partner costs associated with the insertion order. If absent or empty in CreateInsertionOrder method, the newly created insertion order will inherit partner costs from the partner settings.
      */
     partnerCosts?: Schema$PartnerCost[];
-    /**
-     * Required. Performance goal of the insertion order.
-     */
-    performanceGoal?: Schema$PerformanceGoal;
     /**
      * Output only. The reservation type of the insertion order.
      */
@@ -3598,6 +3917,27 @@ export namespace displayvideo_v2 {
     negative?: boolean | null;
   }
   /**
+   * Settings that control the key performance indicator, or KPI, of an insertion order.
+   */
+  export interface Schema$Kpi {
+    /**
+     * The goal amount, in micros of the advertiser's currency. Applicable when kpi_type is one of: * `KPI_TYPE_CPM` * `KPI_TYPE_CPC` * `KPI_TYPE_CPA` * `KPI_TYPE_CPIAVC` * `KPI_TYPE_VCPM` For example: 1500000 represents 1.5 standard units of the currency.
+     */
+    kpiAmountMicros?: string | null;
+    /**
+     * The decimal representation of the goal percentage in micros. Applicable when kpi_type is one of: * `KPI_TYPE_CTR` * `KPI_TYPE_VIEWABILITY` * `KPI_TYPE_CLICK_CVR` * `KPI_TYPE_IMPRESSION_CVR` * `KPI_TYPE_VTR` * `KPI_TYPE_AUDIO_COMPLETION_RATE` * `KPI_TYPE_VIDEO_COMPLETION_RATE` For example: 70000 represents 7% (decimal 0.07).
+     */
+    kpiPercentageMicros?: string | null;
+    /**
+     * A KPI string, which can be empty. Must be UTF-8 encoded with a length of no more than 100 characters. Applicable when kpi_type is `KPI_TYPE_OTHER`.
+     */
+    kpiString?: string | null;
+    /**
+     * Required. The type of KPI.
+     */
+    kpiType?: string | null;
+  }
+  /**
    * Details for assigned language targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_LANGUAGE`.
    */
   export interface Schema$LanguageAssignedTargetingOptionDetails {
@@ -3771,6 +4111,39 @@ export namespace displayvideo_v2 {
      */
     flightDateType?: string | null;
   }
+  export interface Schema$ListAdGroupAdsResponse {
+    /**
+     * The list of ad group ads. This list will be absent if empty.
+     */
+    adGroupAds?: Schema$AdGroupAd[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListAdGroupAds` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListAdGroupAssignedTargetingOptions.
+   */
+  export interface Schema$ListAdGroupAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options. This list will be absent if empty.
+     */
+    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent ListAdGroupAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more AssignedTargetingOption resources to return.
+     */
+    nextPageToken?: string | null;
+  }
+  export interface Schema$ListAdGroupsResponse {
+    /**
+     * The list of ad groups. This list will be absent if empty.
+     */
+    adGroups?: Schema$AdGroup[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListAdGroups` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
   /**
    * Response message for ListAdvertiserAssignedTargetingOptions.
    */
@@ -3870,6 +4243,16 @@ export namespace displayvideo_v2 {
     creatives?: Schema$Creative[];
     /**
      * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListCreativesRequest` method to retrieve the next page of results. If this field is null, it means this is the last page.
+     */
+    nextPageToken?: string | null;
+  }
+  export interface Schema$ListCustomBiddingAlgorithmRulesResponse {
+    /**
+     * The list of CustomBiddingAlgorithmRules resources. This list will be absent if empty.
+     */
+    customBiddingRules?: Schema$CustomBiddingAlgorithmRules[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListCustomBiddingAlgorithmRulesRequest` method to retrieve the next page of results. If this field is null, it means this is the last page.
      */
     nextPageToken?: string | null;
   }
@@ -4019,16 +4402,6 @@ export namespace displayvideo_v2 {
      */
     nextPageToken?: string | null;
   }
-  export interface Schema$ListManualTriggersResponse {
-    /**
-     * The list of manual triggers. This list will be absent if empty.
-     */
-    manualTriggers?: Schema$ManualTrigger[];
-    /**
-     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListManualTriggers` method to retrieve the next page of results.
-     */
-    nextPageToken?: string | null;
-  }
   /**
    * Response message for NegativeKeywordListService.ListNegativeKeywordLists.
    */
@@ -4111,39 +4484,6 @@ export namespace displayvideo_v2 {
      */
     users?: Schema$User[];
   }
-  export interface Schema$ListYoutubeAdGroupAdsResponse {
-    /**
-     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListYoutubeAdGroupAds` method to retrieve the next page of results.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The list of ad group ads. This list will be absent if empty.
-     */
-    youtubeAdGroupAds?: Schema$YoutubeAdGroupAd[];
-  }
-  /**
-   * Response message for ListYoutubeAdGroupAssignedTargetingOptions.
-   */
-  export interface Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse {
-    /**
-     * The list of assigned targeting options. This list will be absent if empty.
-     */
-    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
-    /**
-     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent ListYoutubeAdGroupAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
-     */
-    nextPageToken?: string | null;
-  }
-  export interface Schema$ListYoutubeAdGroupsResponse {
-    /**
-     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListYoutubeAdGroups` method to retrieve the next page of results.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The list of ad groups. This list will be absent if empty.
-     */
-    youtubeAdGroups?: Schema$YoutubeAdGroup[];
-  }
   /**
    * A list of locations used for targeting.
    */
@@ -4187,39 +4527,6 @@ export namespace displayvideo_v2 {
      * Currency used by the advertiser in ISO 4217 format.
      */
     currencyCode?: string | null;
-  }
-  /**
-   * A single manual trigger in Display & Video 360. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This resource will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
-   */
-  export interface Schema$ManualTrigger {
-    /**
-     * Required. The maximum duration of each activation in minutes. Must be between 1 and 360 inclusive. After this duration, the trigger will be automatically deactivated.
-     */
-    activationDurationMinutes?: string | null;
-    /**
-     * Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
-     */
-    advertiserId?: string | null;
-    /**
-     * Required. The display name of the manual trigger. Must be UTF-8 encoded with a maximum size of 240 bytes.
-     */
-    displayName?: string | null;
-    /**
-     * Output only. The timestamp of the trigger's latest activation.
-     */
-    latestActivationTime?: string | null;
-    /**
-     * Output only. The resource name of the manual trigger.
-     */
-    name?: string | null;
-    /**
-     * Output only. The state of the manual trigger. Will be set to the `INACTIVE` state upon creation.
-     */
-    state?: string | null;
-    /**
-     * Output only. The unique ID of the manual trigger.
-     */
-    triggerId?: string | null;
   }
   /**
    * Details for a Masthead Ad.
@@ -4626,6 +4933,10 @@ export namespace displayvideo_v2 {
      */
     adServerConfig?: Schema$PartnerAdServerConfig;
     /**
+     * Billing related settings of the partner.
+     */
+    billingConfig?: Schema$PartnerBillingConfig;
+    /**
      * Settings that control how partner data may be accessed.
      */
     dataAccessConfig?: Schema$PartnerDataAccessConfig;
@@ -4666,6 +4977,15 @@ export namespace displayvideo_v2 {
      * Measurement settings of a partner.
      */
     measurementConfig?: Schema$MeasurementConfig;
+  }
+  /**
+   * Billing related settings of a partner.
+   */
+  export interface Schema$PartnerBillingConfig {
+    /**
+     * The ID of a partner default billing profile.
+     */
+    billingProfileId?: string | null;
   }
   /**
    * Settings that control a partner cost. A partner cost is any type of expense involved in running a campaign, other than the costs of purchasing impressions (which is called the media cost) and using third-party audience segment data (data fee). Some examples of partner costs include the fees for using DV360, a third-party ad server, or a third-party ad serving verification service.
@@ -5220,13 +5540,17 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$TargetingExpansionConfig {
     /**
-     * Whether to exclude first-party audiences from use in targeting expansion. This field was deprecated with the launch of [optimized targeting](//support.google.com/displayvideo/answer/12060859). This field will be set to `false`. If this field is set to `true` when deprecated, all positive first-party audience targeting assigned to this line item will be replaced with negative targeting of the same first-party audiences to ensure the continued exclusion of those audiences.
+     * Output only. Magnitude of expansion for eligible first-party user lists under this ad group. This field only applies to YouTube and Partners line item and ad group resources.
      */
-    excludeFirstPartyAudience?: boolean | null;
+    audienceExpansionLevel?: string | null;
     /**
-     * Required. Whether optimized targeting is turned on. This field supports the following values: * `NO_EXPANSION`: optimized targeting is turned off * `LEAST_EXPANSION`: optimized targeting is turned on If this field is set to any other value, it will automatically be set to `LEAST_EXPANSION`. `NO_EXPANSION` will be the default value for the field and will be automatically assigned if you do not set the field.
+     * Output only. Whether to exclude seed list for audience expansion. This field only applies to YouTube and Partners line item and ad group resources.
      */
-    targetingExpansionLevel?: string | null;
+    audienceExpansionSeedListExcluded?: boolean | null;
+    /**
+     * Required. Whether to enable Optimized Targeting for the line item.
+     */
+    enableOptimizedTargeting?: boolean | null;
   }
   /**
    * Represents a single targeting option, which is a targetable concept in DV360.
@@ -5376,6 +5700,27 @@ export namespace displayvideo_v2 {
      * Viewability resource details.
      */
     viewabilityDetails?: Schema$ViewabilityTargetingOptionDetails;
+  }
+  /**
+   * Settings that control what third-party vendors are measuring specific line item metrics.
+   */
+  export interface Schema$ThirdPartyMeasurementConfigs {
+    /**
+     * Optional. The third-party vendors measuring brand lift. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_DYNATA` * `THIRD_PARTY_VENDOR_KANTAR`
+     */
+    brandLiftVendorConfigs?: Schema$ThirdPartyVendorConfig[];
+    /**
+     * Optional. The third-party vendors measuring brand safety. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_ZERF` * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE`
+     */
+    brandSafetyVendorConfigs?: Schema$ThirdPartyVendorConfig[];
+    /**
+     * Optional. The third-party vendors measuring reach. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_NIELSEN` * `THIRD_PARTY_VENDOR_COMSCORE` * `THIRD_PARTY_VENDOR_KANTAR`
+     */
+    reachVendorConfigs?: Schema$ThirdPartyVendorConfig[];
+    /**
+     * Optional. The third-party vendors measuring viewability. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_MOAT` * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE` * `THIRD_PARTY_VENDOR_COMSCORE` * `THIRD_PARTY_VENDOR_TELEMETRY` * `THIRD_PARTY_VENDOR_MEETRICS`
+     */
+    viewabilityVendorConfigs?: Schema$ThirdPartyVendorConfig[];
   }
   /**
    * Settings for advertisers that use third-party ad servers only.
@@ -5735,133 +6080,6 @@ export namespace displayvideo_v2 {
     viewability?: string | null;
   }
   /**
-   * A single YouTube ad group associated with a YouTube and Partners line item.
-   */
-  export interface Schema$YoutubeAdGroup {
-    /**
-     * The format of the ads in the ad group.
-     */
-    adGroupFormat?: string | null;
-    /**
-     * The unique ID of the ad group. Assigned by the system.
-     */
-    adGroupId?: string | null;
-    /**
-     * The unique ID of the advertiser the ad group belongs to.
-     */
-    advertiserId?: string | null;
-    /**
-     * The bidding strategy used by the ad group.
-     */
-    biddingStrategy?: Schema$YoutubeAndPartnersBiddingStrategy;
-    /**
-     * The display name of the ad group. Must be UTF-8 encoded with a maximum size of 255 bytes.
-     */
-    displayName?: string | null;
-    /**
-     * Controls whether or not the ad group can spend its budget and bid on inventory. If the ad group's parent line item is not active, the ad group can't spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.
-     */
-    entityStatus?: string | null;
-    /**
-     * The unique ID of the line item that the ad group belongs to.
-     */
-    lineItemId?: string | null;
-    /**
-     * The resource name of the ad group.
-     */
-    name?: string | null;
-    /**
-     * The settings of the product feed in this ad group.
-     */
-    productFeedData?: Schema$ProductFeedData;
-    /**
-     * The [targeting expansion](https://support.google.com/displayvideo/answer/10191558) settings of the ad group. This config is only applicable when eligible audience list targeting is assigned to the ad group.
-     */
-    targetingExpansion?: Schema$TargetingExpansionConfig;
-    /**
-     * The IDs of the youtube_ad_group_ad resources associated with the ad group.
-     */
-    youtubeAdIds?: string[] | null;
-  }
-  /**
-   * A single ad associated with a YouTube ad group.
-   */
-  export interface Schema$YoutubeAdGroupAd {
-    /**
-     * The unique ID of the ad. Assigned by the system.
-     */
-    adGroupAdId?: string | null;
-    /**
-     * The unique ID of the ad group that the ad belongs to.
-     */
-    adGroupId?: string | null;
-    /**
-     * List of URLs used by the ad.
-     */
-    adUrls?: Schema$AdUrl[];
-    /**
-     * The unique ID of the advertiser the ad belongs to.
-     */
-    advertiserId?: string | null;
-    /**
-     * Details of an [audio ad](//support.google.com/displayvideo/answer/6274216) used for reach marketing objectives.
-     */
-    audioAd?: Schema$AudioAd;
-    /**
-     * Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach.
-     */
-    bumperAd?: Schema$BumperAd;
-    /**
-     * The display name of the ad. Must be UTF-8 encoded with a maximum size of 255 bytes.
-     */
-    displayName?: string | null;
-    /**
-     * Details of an ad sourced from a Display & Video 360 creative.
-     */
-    displayVideoSourceAd?: Schema$DisplayVideoSourceAd;
-    /**
-     * The entity status of the ad.
-     */
-    entityStatus?: string | null;
-    /**
-     * Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives.
-     */
-    inStreamAd?: Schema$InStreamAd;
-    /**
-     * Details of an [ad served on the YouTube Home feed](//support.google.com/google-ads/answer/9709826).
-     */
-    mastheadAd?: Schema$MastheadAd;
-    /**
-     * The resource name of the ad.
-     */
-    name?: string | null;
-    /**
-     * Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives.
-     */
-    nonSkippableAd?: Schema$NonSkippableAd;
-    /**
-     * Details of an [ad promoting a video](//support.google.com/displayvideo/answer/6274216) that shows in places of discovery.
-     */
-    videoDiscoverAd?: Schema$VideoDiscoveryAd;
-    /**
-     * Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.
-     */
-    videoPerformanceAd?: Schema$VideoPerformanceAd;
-  }
-  /**
-   * Wrapper object associating an AssignedTargetingOption resource and the youtube ad group it is assigned to.
-   */
-  export interface Schema$YoutubeAdGroupAssignedTargetingOption {
-    /**
-     * The assigned targeting option resource.
-     */
-    assignedTargetingOption?: Schema$AssignedTargetingOption;
-    /**
-     * The ID of the youtube ad group the assigned targeting option is assigned to.
-     */
-    youtubeAdGroupId?: string | null;
-  }
-  /**
    * Settings that control the bid strategy for YouTube and Partners resources.
    */
   export interface Schema$YoutubeAndPartnersBiddingStrategy {
@@ -5887,26 +6105,18 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$YoutubeAndPartnersInventorySourceConfig {
     /**
-     * Whether to target inventory on the YouTube search results page.
+     * Whether to target inventory on YouTube. This includes both search, channels and videos.
      */
-    includeYoutubeSearch?: boolean | null;
+    includeYoutube?: boolean | null;
     /**
      * Whether to target inventory on a collection of partner sites and apps that follow the same brand safety standards as YouTube.
      */
     includeYoutubeVideoPartners?: boolean | null;
-    /**
-     * Whether to target inventory of channels and videos on YouTube and YouTube videos embedded on other sites.
-     */
-    includeYoutubeVideos?: boolean | null;
   }
   /**
    * Settings for YouTube and Partners line items.
    */
   export interface Schema$YoutubeAndPartnersSettings {
-    /**
-     * Required. The bidding strategy of the YouTube and Partners line item.
-     */
-    biddingStrategy?: Schema$YoutubeAndPartnersBiddingStrategy;
     /**
      * The kind of content on which the YouTube and Partners ads will be shown.
      */
@@ -5936,9 +6146,9 @@ export namespace displayvideo_v2 {
      */
     targetFrequency?: Schema$TargetFrequency;
     /**
-     * Optional. The third-party measurement settings of the line item.
+     * Optional. The third-party measurement configs of the line item.
      */
-    thirdPartyMeasurementSettings?: Schema$YoutubeAndPartnersThirdPartyMeasurementSettings;
+    thirdPartyMeasurementConfigs?: Schema$ThirdPartyMeasurementConfigs;
     /**
      * The settings related to VideoAdSequence.
      */
@@ -5947,27 +6157,6 @@ export namespace displayvideo_v2 {
      * The view frequency cap settings of the line item. The max_views field in this settings object must be used if assigning a limited cap.
      */
     viewFrequencyCap?: Schema$FrequencyCap;
-  }
-  /**
-   * Settings that control what third-party vendors are measuring specific line item metrics.
-   */
-  export interface Schema$YoutubeAndPartnersThirdPartyMeasurementSettings {
-    /**
-     * The third-party vendors measuring brand lift. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_DYNATA` * `THIRD_PARTY_VENDOR_KANTAR`
-     */
-    brandLiftVendorConfigs?: Schema$ThirdPartyVendorConfig[];
-    /**
-     * The third-party vendors measuring brand safety. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_ZERF` * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE`
-     */
-    brandSafetyVendorConfigs?: Schema$ThirdPartyVendorConfig[];
-    /**
-     * The third-party vendors measuring reach. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_NIELSEN` * `THIRD_PARTY_VENDOR_COMSCORE` * `THIRD_PARTY_VENDOR_KANTAR`
-     */
-    reachVendorConfigs?: Schema$ThirdPartyVendorConfig[];
-    /**
-     * The third-party vendors measuring viewability. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_MOAT` * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE` * `THIRD_PARTY_VENDOR_COMSCORE` * `THIRD_PARTY_VENDOR_TELEMETRY` * `THIRD_PARTY_VENDOR_MEETRICS`
-     */
-    viewabilityVendorConfigs?: Schema$ThirdPartyVendorConfig[];
   }
   /**
    * Details for YouTube channel assigned targeting option. This will be populated in the youtube_channel_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL`.
@@ -6011,6 +6200,8 @@ export namespace displayvideo_v2 {
 
   export class Resource$Advertisers {
     context: APIRequestContext;
+    adGroupAds: Resource$Advertisers$Adgroupads;
+    adGroups: Resource$Advertisers$Adgroups;
     assets: Resource$Advertisers$Assets;
     campaigns: Resource$Advertisers$Campaigns;
     channels: Resource$Advertisers$Channels;
@@ -6019,13 +6210,12 @@ export namespace displayvideo_v2 {
     invoices: Resource$Advertisers$Invoices;
     lineItems: Resource$Advertisers$Lineitems;
     locationLists: Resource$Advertisers$Locationlists;
-    manualTriggers: Resource$Advertisers$Manualtriggers;
     negativeKeywordLists: Resource$Advertisers$Negativekeywordlists;
     targetingTypes: Resource$Advertisers$Targetingtypes;
-    youtubeAdGroupAds: Resource$Advertisers$Youtubeadgroupads;
-    youtubeAdGroups: Resource$Advertisers$Youtubeadgroups;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.adGroupAds = new Resource$Advertisers$Adgroupads(this.context);
+      this.adGroups = new Resource$Advertisers$Adgroups(this.context);
       this.assets = new Resource$Advertisers$Assets(this.context);
       this.campaigns = new Resource$Advertisers$Campaigns(this.context);
       this.channels = new Resource$Advertisers$Channels(this.context);
@@ -6036,19 +6226,10 @@ export namespace displayvideo_v2 {
       this.invoices = new Resource$Advertisers$Invoices(this.context);
       this.lineItems = new Resource$Advertisers$Lineitems(this.context);
       this.locationLists = new Resource$Advertisers$Locationlists(this.context);
-      this.manualTriggers = new Resource$Advertisers$Manualtriggers(
-        this.context
-      );
       this.negativeKeywordLists = new Resource$Advertisers$Negativekeywordlists(
         this.context
       );
       this.targetingTypes = new Resource$Advertisers$Targetingtypes(
-        this.context
-      );
-      this.youtubeAdGroupAds = new Resource$Advertisers$Youtubeadgroupads(
-        this.context
-      );
-      this.youtubeAdGroups = new Resource$Advertisers$Youtubeadgroups(
         this.context
       );
     }
@@ -6122,7 +6303,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers/{+advertiserId}:audit').replace(
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}:audit').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6209,7 +6390,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -6293,7 +6474,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers/{+advertiserId}').replace(
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6389,7 +6570,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}:editAssignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}:editAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -6475,7 +6656,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers/{+advertiserId}').replace(
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6566,7 +6747,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/advertisers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -6659,7 +6840,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}:listAssignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}:listAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -6746,7 +6927,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers/{+advertiserId}').replace(
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6875,6 +7056,844 @@ export namespace displayvideo_v2 {
     requestBody?: Schema$Advertiser;
   }
 
+  export class Resource$Advertisers$Adgroupads {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets an ad group ad.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Adgroupads$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Adgroupads$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdGroupAd>;
+    get(
+      params: Params$Resource$Advertisers$Adgroupads$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Adgroupads$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdGroupAd>,
+      callback: BodyResponseCallback<Schema$AdGroupAd>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Adgroupads$Get,
+      callback: BodyResponseCallback<Schema$AdGroupAd>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AdGroupAd>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroupads$Get
+        | BodyResponseCallback<Schema$AdGroupAd>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdGroupAd>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdGroupAd>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdGroupAd> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroupads$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Adgroupads$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v3/advertisers/{+advertiserId}/adGroupAds/{+adGroupAdId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'adGroupAdId'],
+        pathParams: ['adGroupAdId', 'advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdGroupAd>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdGroupAd>(parameters);
+      }
+    }
+
+    /**
+     * Lists ad group ads.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Adgroupads$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Adgroupads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdGroupAdsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Adgroupads$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adgroupads$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdGroupAdsResponse>,
+      callback: BodyResponseCallback<Schema$ListAdGroupAdsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adgroupads$List,
+      callback: BodyResponseCallback<Schema$ListAdGroupAdsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAdGroupAdsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroupads$List
+        | BodyResponseCallback<Schema$ListAdGroupAdsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdGroupAdsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdGroupAdsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdGroupAdsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroupads$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Adgroupads$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v3/advertisers/{+advertiserId}/adGroupAds'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdGroupAdsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdGroupAdsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Adgroupads$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the ad group ad to fetch.
+     */
+    adGroupAdId?: string;
+    /**
+     * Required. The ID of the advertiser this ad group ad belongs to.
+     */
+    advertiserId?: string;
+  }
+  export interface Params$Resource$Advertisers$Adgroupads$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the ad groups belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Optional. Allows filtering by custom ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdGroupAds` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Advertisers$Adgroups {
+    context: APIRequestContext;
+    targetingTypes: Resource$Advertisers$Adgroups$Targetingtypes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.targetingTypes = new Resource$Advertisers$Adgroups$Targetingtypes(
+        this.context
+      );
+    }
+
+    /**
+     * Lists assigned targeting options for multiple ad groups across targeting types. Inherited assigned targeting options are not included.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkListAdGroupAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkListAdGroupAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>;
+    bulkListAdGroupAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkListAdGroupAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListAdGroupAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListAdGroupAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListAdGroupAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v3/advertisers/{+advertiserId}/adGroups:bulkListAdGroupAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets an ad group.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Adgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Adgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdGroup>;
+    get(
+      params: Params$Resource$Advertisers$Adgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Adgroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdGroup>,
+      callback: BodyResponseCallback<Schema$AdGroup>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Adgroups$Get,
+      callback: BodyResponseCallback<Schema$AdGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AdGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroups$Get
+        | BodyResponseCallback<Schema$AdGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdGroup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Adgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'adGroupId'],
+        pathParams: ['adGroupId', 'advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdGroup>(parameters);
+      }
+    }
+
+    /**
+     * Lists ad groups.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Adgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Adgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdGroupsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Adgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListAdGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adgroups$List,
+      callback: BodyResponseCallback<Schema$ListAdGroupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAdGroupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroups$List
+        | BodyResponseCallback<Schema$ListAdGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Adgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/adGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdGroupsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Adgroups$Bulklistadgroupassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Required. The IDs of the ad groups to list assigned targeting options for.
+     */
+    adGroupIds?: string[];
+    /**
+     * Required. The ID of the advertiser the line items belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Optional. Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `targetingType` Examples: * `AssignedTargetingOption` resources of targeting type `TARGETING_TYPE_YOUTUBE_VIDEO` or `TARGETING_TYPE_YOUTUBE_CHANNEL`: `targetingType="TARGETING_TYPE_YOUTUBE_VIDEO" OR targetingType="TARGETING_TYPE_YOUTUBE_CHANNEL"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the list. Acceptable values are: * `adGroupId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to the `BulkListAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Advertisers$Adgroups$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the ad group to fetch.
+     */
+    adGroupId?: string;
+    /**
+     * Required. The ID of the advertiser this ad group belongs to.
+     */
+    advertiserId?: string;
+  }
+  export interface Params$Resource$Advertisers$Adgroups$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the ad groups belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Optional. Allows filtering by custom ad group fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported properties: * `adGroupId` * `displayName` * `entityStatus` * `lineItemId` * `adGroupFormat` Examples: * All ad groups under an line item: `lineItemId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` `AD_GROUP_FORMAT_IN_STREAM` ad groups under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupFormat="AD_GROUP_FORMAT_IN_STREAM"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdGroups` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Advertisers$Adgroups$Targetingtypes {
+    context: APIRequestContext;
+    assignedTargetingOptions: Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.assignedTargetingOptions =
+        new Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a single targeting option assigned to an ad group. Inherited assigned targeting options are not included.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    get(
+      params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AssignedTargetingOption>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'adGroupId',
+          'targetingType',
+          'assignedTargetingOptionId',
+        ],
+        pathParams: [
+          'adGroupId',
+          'advertiserId',
+          'assignedTargetingOptionId',
+          'targetingType',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
+      }
+    }
+
+    /**
+     * Lists the targeting options assigned to an ad group. Inherited assigned targeting options are not included.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdGroupAssignedTargetingOptionsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdGroupAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$ListAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List,
+      callback: BodyResponseCallback<Schema$ListAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List
+        | BodyResponseCallback<Schema$ListAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdGroupAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'adGroupId', 'targetingType'],
+        pathParams: ['adGroupId', 'advertiserId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdGroupAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdGroupAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the ad group the assigned targeting option belongs to.
+     */
+    adGroupId?: string;
+    /**
+     * Required. The ID of the advertiser the ad group belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
+     */
+    assignedTargetingOptionId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
+     */
+    targetingType?: string;
+  }
+  export interface Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the ad group to list assigned targeting options for.
+     */
+    adGroupId?: string;
+    /**
+     * Required. The ID of the advertiser the ad group belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Optional. Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` resources with ID 1 or 2: `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
+     */
+    targetingType?: string;
+  }
+
   export class Resource$Advertisers$Assets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -6948,7 +7967,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers/{+advertiserId}/assets').replace(
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/assets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6958,7 +7977,7 @@ export namespace displayvideo_v2 {
         ),
         params,
         mediaUrl: (
-          rootUrl + '/upload/v2/advertisers/{+advertiserId}/assets'
+          rootUrl + '/upload/v3/advertisers/{+advertiserId}/assets'
         ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['advertiserId'],
         pathParams: ['advertiserId'],
@@ -7078,7 +8097,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/campaigns'
+              rootUrl + '/v3/advertisers/{+advertiserId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -7165,7 +8184,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}'
+              '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -7252,7 +8271,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}'
+              '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7343,7 +8362,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/campaigns'
+              rootUrl + '/v3/advertisers/{+advertiserId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7438,7 +8457,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}:listAssignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}:listAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7527,7 +8546,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}'
+              '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -7744,7 +8763,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7849,7 +8868,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7996,7 +9015,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers/{+advertiserId}/channels').replace(
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/channels').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8084,7 +9103,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/channels/{+channelId}'
+              rootUrl + '/v3/advertisers/{+advertiserId}/channels/{+channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8174,7 +9193,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers/{+advertiserId}/channels').replace(
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/channels').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8262,7 +9281,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/channels/{channelId}'
+              rootUrl + '/v3/advertisers/{+advertiserId}/channels/{channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -8446,7 +9465,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit'
+              '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -8533,7 +9552,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/channels/{+channelId}/sites'
+              '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -8620,7 +9639,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}'
+              '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -8710,7 +9729,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/channels/{+channelId}/sites'
+              '/v3/advertisers/{+advertiserId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8802,7 +9821,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/channels/{+channelId}/sites:replace'
+              '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites:replace'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -8998,7 +10017,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/creatives'
+              rootUrl + '/v3/advertisers/{+advertiserId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9085,7 +10104,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/creatives/{+creativeId}'
+              '/v3/advertisers/{+advertiserId}/creatives/{+creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -9172,7 +10191,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/creatives/{+creativeId}'
+              '/v3/advertisers/{+advertiserId}/creatives/{+creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9263,7 +10282,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/creatives'
+              rootUrl + '/v3/advertisers/{+advertiserId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9350,7 +10369,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/creatives/{+creativeId}'
+              '/v3/advertisers/{+advertiserId}/creatives/{+creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -9524,7 +10543,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/insertionOrders'
+              rootUrl + '/v3/advertisers/{+advertiserId}/insertionOrders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9611,7 +10630,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
+              '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -9698,7 +10717,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
+              '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9791,7 +10810,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/insertionOrders'
+              rootUrl + '/v3/advertisers/{+advertiserId}/insertionOrders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9886,7 +10905,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}:listAssignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}:listAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9975,7 +10994,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
+              '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -10194,7 +11213,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -10282,7 +11301,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -10385,7 +11404,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10490,7 +11509,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10679,7 +11698,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/advertisers/{+advertiserId}/invoices').replace(
+            url: (rootUrl + '/v3/advertisers/{+advertiserId}/invoices').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -10776,7 +11795,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency'
+              '/v3/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10919,7 +11938,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems:bulkEditAssignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/lineItems:bulkEditAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -11016,7 +12035,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems:bulkListAssignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/lineItems:bulkListAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11111,7 +12130,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/lineItems:bulkUpdate'
+              rootUrl + '/v3/advertisers/{+advertiserId}/lineItems:bulkUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -11197,7 +12216,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/lineItems'
+              rootUrl + '/v3/advertisers/{+advertiserId}/lineItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -11284,7 +12303,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
+              '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -11378,7 +12397,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}:duplicate'
+              '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}:duplicate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -11465,7 +12484,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems:generateDefault'
+              '/v3/advertisers/{+advertiserId}/lineItems:generateDefault'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -11552,7 +12571,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
+              '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11643,7 +12662,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/lineItems'
+              rootUrl + '/v3/advertisers/{+advertiserId}/lineItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11730,7 +12749,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
+              '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -12001,7 +13020,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -12089,7 +13108,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -12192,7 +13211,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12297,7 +13316,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12485,7 +13504,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/locationLists'
+              rootUrl + '/v3/advertisers/{+advertiserId}/locationLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -12572,7 +13591,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/locationLists/{+locationListId}'
+              '/v3/advertisers/{+advertiserId}/locationLists/{+locationListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12665,7 +13684,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/locationLists'
+              rootUrl + '/v3/advertisers/{+advertiserId}/locationLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12752,7 +13771,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/locationLists/{locationListId}'
+              '/v3/advertisers/{+advertiserId}/locationLists/{locationListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -12921,7 +13940,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit'
+              '/v3/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -13011,7 +14030,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
+              '/v3/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -13099,7 +14118,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}'
+              '/v3/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -13198,7 +14217,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
+              '/v3/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13297,639 +14316,6 @@ export namespace displayvideo_v2 {
     pageToken?: string;
   }
 
-  export class Resource$Advertisers$Manualtriggers {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Activates a manual trigger. Each activation of the manual trigger must be at least 5 minutes apart, otherwise an error will be returned. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    activate(
-      params: Params$Resource$Advertisers$Manualtriggers$Activate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    activate(
-      params?: Params$Resource$Advertisers$Manualtriggers$Activate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
-    activate(
-      params: Params$Resource$Advertisers$Manualtriggers$Activate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    activate(
-      params: Params$Resource$Advertisers$Manualtriggers$Activate,
-      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    activate(
-      params: Params$Resource$Advertisers$Manualtriggers$Activate,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    activate(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
-    activate(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Manualtriggers$Activate
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Manualtriggers$Activate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Manualtriggers$Activate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:activate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId', 'triggerId'],
-        pathParams: ['advertiserId', 'triggerId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ManualTrigger>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ManualTrigger>(parameters);
-      }
-    }
-
-    /**
-     * Creates a new manual trigger. Returns the newly created manual trigger if successful. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Advertisers$Manualtriggers$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Advertisers$Manualtriggers$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
-    create(
-      params: Params$Resource$Advertisers$Manualtriggers$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Advertisers$Manualtriggers$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    create(
-      params: Params$Resource$Advertisers$Manualtriggers$Create,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Manualtriggers$Create
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Manualtriggers$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Manualtriggers$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/manualTriggers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId'],
-        pathParams: ['advertiserId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ManualTrigger>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ManualTrigger>(parameters);
-      }
-    }
-
-    /**
-     * Deactivates a manual trigger. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    deactivate(
-      params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    deactivate(
-      params?: Params$Resource$Advertisers$Manualtriggers$Deactivate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
-    deactivate(
-      params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    deactivate(
-      params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
-      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    deactivate(
-      params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    deactivate(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
-    deactivate(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Manualtriggers$Deactivate
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Manualtriggers$Deactivate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Manualtriggers$Deactivate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:deactivate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId', 'triggerId'],
-        pathParams: ['advertiserId', 'triggerId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ManualTrigger>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ManualTrigger>(parameters);
-      }
-    }
-
-    /**
-     * Gets a manual trigger. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Advertisers$Manualtriggers$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Advertisers$Manualtriggers$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
-    get(
-      params: Params$Resource$Advertisers$Manualtriggers$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Advertisers$Manualtriggers$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    get(
-      params: Params$Resource$Advertisers$Manualtriggers$Get,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Manualtriggers$Get
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Manualtriggers$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Manualtriggers$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId', 'triggerId'],
-        pathParams: ['advertiserId', 'triggerId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ManualTrigger>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ManualTrigger>(parameters);
-      }
-    }
-
-    /**
-     * Lists manual triggers that are accessible to the current user for a given advertiser ID. The order is defined by the order_by parameter. A single advertiser_id is required. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Advertisers$Manualtriggers$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Advertisers$Manualtriggers$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListManualTriggersResponse>;
-    list(
-      params: Params$Resource$Advertisers$Manualtriggers$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Advertisers$Manualtriggers$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListManualTriggersResponse>,
-      callback: BodyResponseCallback<Schema$ListManualTriggersResponse>
-    ): void;
-    list(
-      params: Params$Resource$Advertisers$Manualtriggers$List,
-      callback: BodyResponseCallback<Schema$ListManualTriggersResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListManualTriggersResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Manualtriggers$List
-        | BodyResponseCallback<Schema$ListManualTriggersResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListManualTriggersResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListManualTriggersResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListManualTriggersResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Manualtriggers$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Manualtriggers$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/manualTriggers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId'],
-        pathParams: ['advertiserId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListManualTriggersResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListManualTriggersResponse>(parameters);
-      }
-    }
-
-    /**
-     * Updates a manual trigger. Returns the updated manual trigger if successful. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Advertisers$Manualtriggers$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Advertisers$Manualtriggers$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
-    patch(
-      params: Params$Resource$Advertisers$Manualtriggers$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Advertisers$Manualtriggers$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    patch(
-      params: Params$Resource$Advertisers$Manualtriggers$Patch,
-      callback: BodyResponseCallback<Schema$ManualTrigger>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Manualtriggers$Patch
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ManualTrigger>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Manualtriggers$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Manualtriggers$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId', 'triggerId'],
-        pathParams: ['advertiserId', 'triggerId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ManualTrigger>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ManualTrigger>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Advertisers$Manualtriggers$Activate
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser that the manual trigger belongs.
-     */
-    advertiserId?: string;
-    /**
-     * Required. The ID of the manual trigger to activate.
-     */
-    triggerId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ActivateManualTriggerRequest;
-  }
-  export interface Params$Resource$Advertisers$Manualtriggers$Create
-    extends StandardParameters {
-    /**
-     * Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
-     */
-    advertiserId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ManualTrigger;
-  }
-  export interface Params$Resource$Advertisers$Manualtriggers$Deactivate
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser that the manual trigger belongs.
-     */
-    advertiserId?: string;
-    /**
-     * Required. The ID of the manual trigger to deactivate.
-     */
-    triggerId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$DeactivateManualTriggerRequest;
-  }
-  export interface Params$Resource$Advertisers$Manualtriggers$Get
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser this manual trigger belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Required. The ID of the manual trigger to fetch.
-     */
-    triggerId?: string;
-  }
-  export interface Params$Resource$Advertisers$Manualtriggers$List
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser that the fetched manual triggers belong to.
-     */
-    advertiserId?: string;
-    /**
-     * Allows filtering by manual trigger fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `displayName` * `state` Examples: * All active manual triggers under an advertiser: `state="ACTIVE"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
-     */
-    filter?: string;
-    /**
-     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `state` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     */
-    orderBy?: string;
-    /**
-     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
-     */
-    pageSize?: number;
-    /**
-     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListManualTriggers` method. If not specified, the first page of results will be returned.
-     */
-    pageToken?: string;
-  }
-  export interface Params$Resource$Advertisers$Manualtriggers$Patch
-    extends StandardParameters {
-    /**
-     * Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Output only. The unique ID of the manual trigger.
-     */
-    triggerId?: string;
-    /**
-     * Required. The mask to control which fields to update.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ManualTrigger;
-  }
-
   export class Resource$Advertisers$Negativekeywordlists {
     context: APIRequestContext;
     negativeKeywords: Resource$Advertisers$Negativekeywordlists$Negativekeywords;
@@ -14009,7 +14395,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/negativeKeywordLists'
+              rootUrl + '/v3/advertisers/{+advertiserId}/negativeKeywordLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -14096,7 +14482,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
+              '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -14186,7 +14572,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
+              '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14279,7 +14665,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/negativeKeywordLists'
+              rootUrl + '/v3/advertisers/{+advertiserId}/negativeKeywordLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14371,7 +14757,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}'
+              '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -14543,7 +14929,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit'
+              '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -14633,7 +15019,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
+              '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -14721,7 +15107,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}'
+              '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -14820,7 +15206,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
+              '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14917,7 +15303,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:replace'
+              '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:replace'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15124,7 +15510,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15212,7 +15598,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -15313,7 +15699,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15416,7 +15802,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15514,849 +15900,6 @@ export namespace displayvideo_v2 {
     targetingType?: string;
   }
 
-  export class Resource$Advertisers$Youtubeadgroupads {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets a YouTube ad group ad.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Advertisers$Youtubeadgroupads$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$YoutubeAdGroupAd>;
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$YoutubeAdGroupAd>,
-      callback: BodyResponseCallback<Schema$YoutubeAdGroupAd>
-    ): void;
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
-      callback: BodyResponseCallback<Schema$YoutubeAdGroupAd>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$YoutubeAdGroupAd>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Youtubeadgroupads$Get
-        | BodyResponseCallback<Schema$YoutubeAdGroupAd>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$YoutubeAdGroupAd>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$YoutubeAdGroupAd>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$YoutubeAdGroupAd> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Youtubeadgroupads$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Youtubeadgroupads$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v2/advertisers/{+advertiserId}/youtubeAdGroupAds/{+youtubeAdGroupAdId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId', 'youtubeAdGroupAdId'],
-        pathParams: ['advertiserId', 'youtubeAdGroupAdId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$YoutubeAdGroupAd>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$YoutubeAdGroupAd>(parameters);
-      }
-    }
-
-    /**
-     * Lists YouTube ad group ads.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroupads$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Advertisers$Youtubeadgroupads$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListYoutubeAdGroupAdsResponse>;
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroupads$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroupads$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>,
-      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroupads$List,
-      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Youtubeadgroupads$List
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListYoutubeAdGroupAdsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Youtubeadgroupads$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Youtubeadgroupads$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/youtubeAdGroupAds'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId'],
-        pathParams: ['advertiserId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListYoutubeAdGroupAdsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListYoutubeAdGroupAdsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Advertisers$Youtubeadgroupads$Get
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser this ad group ad belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Required. The ID of the ad group ad to fetch.
-     */
-    youtubeAdGroupAdId?: string;
-  }
-  export interface Params$Resource$Advertisers$Youtubeadgroupads$List
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser the ad groups belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Allows filtering by custom YouTube ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
-     */
-    filter?: string;
-    /**
-     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     */
-    orderBy?: string;
-    /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     */
-    pageSize?: number;
-    /**
-     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroupAds` method. If not specified, the first page of results will be returned.
-     */
-    pageToken?: string;
-  }
-
-  export class Resource$Advertisers$Youtubeadgroups {
-    context: APIRequestContext;
-    targetingTypes: Resource$Advertisers$Youtubeadgroups$Targetingtypes;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.targetingTypes =
-        new Resource$Advertisers$Youtubeadgroups$Targetingtypes(this.context);
-    }
-
-    /**
-     * Lists assigned targeting options for multiple YouTube ad groups across targeting types. Inherited assigned targeting options are not included.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    bulkListAdGroupAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    bulkListAdGroupAssignedTargetingOptions(
-      params?: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>;
-    bulkListAdGroupAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    bulkListAdGroupAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListAdGroupAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListAdGroupAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListAdGroupAssignedTargetingOptions(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v2/advertisers/{+advertiserId}/youtubeAdGroups:bulkListAdGroupAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId'],
-        pathParams: ['advertiserId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Gets a YouTube ad group.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Advertisers$Youtubeadgroups$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$YoutubeAdGroup>;
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$YoutubeAdGroup>,
-      callback: BodyResponseCallback<Schema$YoutubeAdGroup>
-    ): void;
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Get,
-      callback: BodyResponseCallback<Schema$YoutubeAdGroup>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$YoutubeAdGroup>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Youtubeadgroups$Get
-        | BodyResponseCallback<Schema$YoutubeAdGroup>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$YoutubeAdGroup>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$YoutubeAdGroup>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$YoutubeAdGroup> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Youtubeadgroups$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Youtubeadgroups$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId', 'youtubeAdGroupId'],
-        pathParams: ['advertiserId', 'youtubeAdGroupId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$YoutubeAdGroup>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$YoutubeAdGroup>(parameters);
-      }
-    }
-
-    /**
-     * Lists YouTube ad groups.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroups$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Advertisers$Youtubeadgroups$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListYoutubeAdGroupsResponse>;
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroups$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroups$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>,
-      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroups$List,
-      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Youtubeadgroups$List
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListYoutubeAdGroupsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Youtubeadgroups$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Youtubeadgroups$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v2/advertisers/{+advertiserId}/youtubeAdGroups'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId'],
-        pathParams: ['advertiserId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListYoutubeAdGroupsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListYoutubeAdGroupsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser the line items belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Optional. Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `targetingType` Examples: * `AssignedTargetingOption` resources of targeting type `TARGETING_TYPE_YOUTUBE_VIDEO` or `TARGETING_TYPE_YOUTUBE_CHANNEL`: `targetingType="TARGETING_TYPE_YOUTUBE_VIDEO" OR targetingType="TARGETING_TYPE_YOUTUBE_CHANNEL"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
-     */
-    filter?: string;
-    /**
-     * Optional. Field by which to sort the list. Acceptable values are: * `adGroupId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     */
-    orderBy?: string;
-    /**
-     * Optional. Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to the `BulkListAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     */
-    pageToken?: string;
-    /**
-     * Required. The IDs of the youtube ad groups to list assigned targeting options for.
-     */
-    youtubeAdGroupIds?: string[];
-  }
-  export interface Params$Resource$Advertisers$Youtubeadgroups$Get
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser this ad group belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Required. The ID of the ad group to fetch.
-     */
-    youtubeAdGroupId?: string;
-  }
-  export interface Params$Resource$Advertisers$Youtubeadgroups$List
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser the ad groups belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Allows filtering by custom YouTube ad group fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported properties: * `adGroupId` * `displayName` * `entityStatus` * `lineItemId` * `adGroupFormat` Examples: * All ad groups under an line item: `lineItemId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` `YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM` ad groups under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupFormat="YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
-     */
-    filter?: string;
-    /**
-     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     */
-    orderBy?: string;
-    /**
-     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     */
-    pageSize?: number;
-    /**
-     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroups` method. If not specified, the first page of results will be returned.
-     */
-    pageToken?: string;
-  }
-
-  export class Resource$Advertisers$Youtubeadgroups$Targetingtypes {
-    context: APIRequestContext;
-    assignedTargetingOptions: Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.assignedTargetingOptions =
-        new Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets a single targeting option assigned to a YouTube ad group. Inherited assigned targeting options are not included.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedTargetingOption>;
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
-      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
-    ): void;
-    get(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
-      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$AssignedTargetingOption>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get
-        | BodyResponseCallback<Schema$AssignedTargetingOption>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AssignedTargetingOption>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$AssignedTargetingOption>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [
-          'advertiserId',
-          'youtubeAdGroupId',
-          'targetingType',
-          'assignedTargetingOptionId',
-        ],
-        pathParams: [
-          'advertiserId',
-          'assignedTargetingOptionId',
-          'targetingType',
-          'youtubeAdGroupId',
-        ],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AssignedTargetingOption>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
-      }
-    }
-
-    /**
-     * Lists the targeting options assigned to a YouTube ad group. Inherited assigned targeting options are not included.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>;
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
-      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId', 'youtubeAdGroupId', 'targetingType'],
-        pathParams: ['advertiserId', 'targetingType', 'youtubeAdGroupId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser the ad group belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
-     */
-    assignedTargetingOptionId?: string;
-    /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
-     */
-    targetingType?: string;
-    /**
-     * Required. The ID of the ad group the assigned targeting option belongs to.
-     */
-    youtubeAdGroupId?: string;
-  }
-  export interface Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser the ad group belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` resources with ID 1 or 2: `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
-     */
-    filter?: string;
-    /**
-     * Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     */
-    orderBy?: string;
-    /**
-     * Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     */
-    pageSize?: number;
-    /**
-     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     */
-    pageToken?: string;
-    /**
-     * Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
-     */
-    targetingType?: string;
-    /**
-     * Required. The ID of the ad group to list assigned targeting options for.
-     */
-    youtubeAdGroupId?: string;
-  }
-
   export class Resource$Combinedaudiences {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -16428,7 +15971,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/combinedAudiences/{+combinedAudienceId}'
+              rootUrl + '/v3/combinedAudiences/{+combinedAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16520,7 +16063,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/combinedAudiences').replace(
+            url: (rootUrl + '/v3/combinedAudiences').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -16591,9 +16134,11 @@ export namespace displayvideo_v2 {
 
   export class Resource$Custombiddingalgorithms {
     context: APIRequestContext;
+    rules: Resource$Custombiddingalgorithms$Rules;
     scripts: Resource$Custombiddingalgorithms$Scripts;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.rules = new Resource$Custombiddingalgorithms$Rules(this.context);
       this.scripts = new Resource$Custombiddingalgorithms$Scripts(this.context);
     }
 
@@ -16666,7 +16211,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/customBiddingAlgorithms').replace(
+            url: (rootUrl + '/v3/customBiddingAlgorithms').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -16760,7 +16305,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16852,7 +16397,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/customBiddingAlgorithms').replace(
+            url: (rootUrl + '/v3/customBiddingAlgorithms').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -16948,7 +16493,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -16966,6 +16511,102 @@ export namespace displayvideo_v2 {
         );
       } else {
         return createAPIRequest<Schema$CustomBiddingAlgorithm>(parameters);
+      }
+    }
+
+    /**
+     * Creates a rules reference object for an AlgorithmRules file. The resulting reference object provides a resource path where the AlgorithmRules file should be uploaded. This reference object should be included when creating a new CustomBiddingAlgorithmRules resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    uploadRules(
+      params: Params$Resource$Custombiddingalgorithms$Uploadrules,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    uploadRules(
+      params?: Params$Resource$Custombiddingalgorithms$Uploadrules,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomBiddingAlgorithmRulesRef>;
+    uploadRules(
+      params: Params$Resource$Custombiddingalgorithms$Uploadrules,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    uploadRules(
+      params: Params$Resource$Custombiddingalgorithms$Uploadrules,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRulesRef>,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithmRulesRef>
+    ): void;
+    uploadRules(
+      params: Params$Resource$Custombiddingalgorithms$Uploadrules,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithmRulesRef>
+    ): void;
+    uploadRules(
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithmRulesRef>
+    ): void;
+    uploadRules(
+      paramsOrCallback?:
+        | Params$Resource$Custombiddingalgorithms$Uploadrules
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRulesRef>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRulesRef>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRulesRef>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomBiddingAlgorithmRulesRef>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Custombiddingalgorithms$Uploadrules;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Custombiddingalgorithms$Uploadrules;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadRules'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customBiddingAlgorithmId'],
+        pathParams: ['customBiddingAlgorithmId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomBiddingAlgorithmRulesRef>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomBiddingAlgorithmRulesRef>(
+          parameters
+        );
       }
     }
 
@@ -17042,7 +16683,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadScript'
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadScript'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17129,6 +16770,21 @@ export namespace displayvideo_v2 {
      */
     requestBody?: Schema$CustomBiddingAlgorithm;
   }
+  export interface Params$Resource$Custombiddingalgorithms$Uploadrules
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent custom bidding algorithm.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the custom bidding algorithm that owns the rules resource.
+     */
+    customBiddingAlgorithmId?: string;
+    /**
+     * The ID of the partner that owns the parent custom bidding algorithm.
+     */
+    partnerId?: string;
+  }
   export interface Params$Resource$Custombiddingalgorithms$Uploadscript
     extends StandardParameters {
     /**
@@ -17141,6 +16797,370 @@ export namespace displayvideo_v2 {
     customBiddingAlgorithmId?: string;
     /**
      * The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.
+     */
+    partnerId?: string;
+  }
+
+  export class Resource$Custombiddingalgorithms$Rules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new rules resource. Returns the newly created rules resource if successful.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Custombiddingalgorithms$Rules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Custombiddingalgorithms$Rules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomBiddingAlgorithmRules>;
+    create(
+      params: Params$Resource$Custombiddingalgorithms$Rules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Custombiddingalgorithms$Rules$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+    ): void;
+    create(
+      params: Params$Resource$Custombiddingalgorithms$Rules$Create,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Custombiddingalgorithms$Rules$Create
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomBiddingAlgorithmRules>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Custombiddingalgorithms$Rules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Custombiddingalgorithms$Rules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/rules'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customBiddingAlgorithmId'],
+        pathParams: ['customBiddingAlgorithmId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomBiddingAlgorithmRules>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomBiddingAlgorithmRules>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a rules resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Custombiddingalgorithms$Rules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Custombiddingalgorithms$Rules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomBiddingAlgorithmRules>;
+    get(
+      params: Params$Resource$Custombiddingalgorithms$Rules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Custombiddingalgorithms$Rules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+    ): void;
+    get(
+      params: Params$Resource$Custombiddingalgorithms$Rules$Get,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Custombiddingalgorithms$Rules$Get
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithmRules>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomBiddingAlgorithmRules>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Custombiddingalgorithms$Rules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Custombiddingalgorithms$Rules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/rules/{+customBiddingAlgorithmRulesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'customBiddingAlgorithmId',
+          'customBiddingAlgorithmRulesId',
+        ],
+        pathParams: [
+          'customBiddingAlgorithmId',
+          'customBiddingAlgorithmRulesId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomBiddingAlgorithmRules>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomBiddingAlgorithmRules>(parameters);
+      }
+    }
+
+    /**
+     * Lists rules resources that belong to the given algorithm. The order is defined by the order_by parameter.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Custombiddingalgorithms$Rules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Custombiddingalgorithms$Rules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCustomBiddingAlgorithmRulesResponse>;
+    list(
+      params: Params$Resource$Custombiddingalgorithms$Rules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Custombiddingalgorithms$Rules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCustomBiddingAlgorithmRulesResponse>,
+      callback: BodyResponseCallback<Schema$ListCustomBiddingAlgorithmRulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Custombiddingalgorithms$Rules$List,
+      callback: BodyResponseCallback<Schema$ListCustomBiddingAlgorithmRulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCustomBiddingAlgorithmRulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Custombiddingalgorithms$Rules$List
+        | BodyResponseCallback<Schema$ListCustomBiddingAlgorithmRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCustomBiddingAlgorithmRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCustomBiddingAlgorithmRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCustomBiddingAlgorithmRulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Custombiddingalgorithms$Rules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Custombiddingalgorithms$Rules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/rules'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customBiddingAlgorithmId'],
+        pathParams: ['customBiddingAlgorithmId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCustomBiddingAlgorithmRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCustomBiddingAlgorithmRulesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Custombiddingalgorithms$Rules$Create
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent custom bidding algorithm.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the custom bidding algorithm that owns the rules resource.
+     */
+    customBiddingAlgorithmId?: string;
+    /**
+     * The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this rules resource.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomBiddingAlgorithmRules;
+  }
+  export interface Params$Resource$Custombiddingalgorithms$Rules$Get
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent custom bidding algorithm.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the custom bidding algorithm that owns the rules resource.
+     */
+    customBiddingAlgorithmId?: string;
+    /**
+     * Required. The ID of the rules resource to fetch.
+     */
+    customBiddingAlgorithmRulesId?: string;
+    /**
+     * The ID of the partner that owns the parent custom bidding algorithm.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Custombiddingalgorithms$Rules$List
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent custom bidding algorithm.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the custom bidding algorithm that owns the rules resource.
+     */
+    customBiddingAlgorithmId?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `createTime desc` (default) The default sorting order is descending. To specify ascending order for a field, the suffix "desc" should be removed. Example: `createTime`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithmRules` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * The ID of the partner that owns the parent custom bidding algorithm.
      */
     partnerId?: string;
   }
@@ -17220,7 +17240,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -17310,7 +17330,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts/{+customBiddingScriptId}'
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts/{+customBiddingScriptId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17404,7 +17424,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
+              '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17564,7 +17584,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/customLists/{+customListId}').replace(
+            url: (rootUrl + '/v3/customLists/{+customListId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -17655,7 +17675,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/customLists').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/customLists').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -17786,7 +17806,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/firstAndThirdPartyAudiences').replace(
+            url: (rootUrl + '/v3/firstAndThirdPartyAudiences').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -17883,7 +17903,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}:editCustomerMatchMembers'
+              '/v3/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}:editCustomerMatchMembers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -17979,7 +17999,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
+              '/v3/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18071,7 +18091,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/firstAndThirdPartyAudiences').replace(
+            url: (rootUrl + '/v3/firstAndThirdPartyAudiences').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -18169,7 +18189,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
+              '/v3/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -18349,7 +18369,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/floodlightGroups/{+floodlightGroupId}'
+              rootUrl + '/v3/floodlightGroups/{+floodlightGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18434,7 +18454,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/floodlightGroups/{floodlightGroupId}').replace(
+            url: (rootUrl + '/v3/floodlightGroups/{floodlightGroupId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -18560,7 +18580,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/googleAudiences/{+googleAudienceId}').replace(
+            url: (rootUrl + '/v3/googleAudiences/{+googleAudienceId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -18654,7 +18674,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/googleAudiences').replace(
+            url: (rootUrl + '/v3/googleAudiences').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -18791,7 +18811,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/guaranteedOrders').replace(
+            url: (rootUrl + '/v3/guaranteedOrders').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -18888,7 +18908,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/guaranteedOrders/{+guaranteedOrderId}:editGuaranteedOrderReadAccessors'
+              '/v3/guaranteedOrders/{+guaranteedOrderId}:editGuaranteedOrderReadAccessors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -18976,7 +18996,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/guaranteedOrders/{+guaranteedOrderId}'
+              rootUrl + '/v3/guaranteedOrders/{+guaranteedOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19068,7 +19088,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/guaranteedOrders').replace(
+            url: (rootUrl + '/v3/guaranteedOrders').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -19158,7 +19178,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/guaranteedOrders/{+guaranteedOrderId}'
+              rootUrl + '/v3/guaranteedOrders/{+guaranteedOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -19355,7 +19375,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/inventorySourceGroups').replace(
+            url: (rootUrl + '/v3/inventorySourceGroups').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -19443,7 +19463,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/inventorySourceGroups/{+inventorySourceGroupId}'
+              rootUrl + '/v3/inventorySourceGroups/{+inventorySourceGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -19534,7 +19554,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/inventorySourceGroups/{+inventorySourceGroupId}'
+              rootUrl + '/v3/inventorySourceGroups/{+inventorySourceGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19626,7 +19646,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/inventorySourceGroups').replace(
+            url: (rootUrl + '/v3/inventorySourceGroups').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -19721,7 +19741,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/inventorySourceGroups/{inventorySourceGroupId}'
+              rootUrl + '/v3/inventorySourceGroups/{inventorySourceGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -19921,7 +19941,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit'
+              '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -20018,7 +20038,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
+              '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -20106,7 +20126,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}'
+              '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -20201,7 +20221,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
+              '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20378,7 +20398,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/inventorySources').replace(
+            url: (rootUrl + '/v3/inventorySources').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -20475,7 +20495,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/inventorySources/{+inventorySourceId}:editInventorySourceReadWriteAccessors'
+              '/v3/inventorySources/{+inventorySourceId}:editInventorySourceReadWriteAccessors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -20561,7 +20581,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/inventorySources/{+inventorySourceId}'
+              rootUrl + '/v3/inventorySources/{+inventorySourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20653,7 +20673,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/inventorySources').replace(
+            url: (rootUrl + '/v3/inventorySources').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -20743,7 +20763,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/inventorySources/{+inventorySourceId}'
+              rootUrl + '/v3/inventorySources/{+inventorySourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -20795,6 +20815,10 @@ export namespace displayvideo_v2 {
   }
   export interface Params$Resource$Inventorysources$Get
     extends StandardParameters {
+    /**
+     * Optional. The ID of the DV360 advertiser to which the fetched inventory source is permissioned. If the user only has access to the advertiser and not the parent partner, use this field to specify the relevant advertiser.
+     */
+    advertiserId?: string;
     /**
      * Required. The ID of the inventory source to fetch.
      */
@@ -21166,7 +21190,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/partners/{+partnerId}:editAssignedTargetingOptions'
+              rootUrl + '/v3/partners/{+partnerId}:editAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -21252,7 +21276,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/partners/{+partnerId}').replace(
+            url: (rootUrl + '/v3/partners/{+partnerId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -21343,7 +21367,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/partners').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/partners').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -21473,7 +21497,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/partners/{+partnerId}/channels').replace(
+            url: (rootUrl + '/v3/partners/{+partnerId}/channels').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -21561,7 +21585,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/partners/{+partnerId}/channels/{+channelId}'
+              rootUrl + '/v3/partners/{+partnerId}/channels/{+channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21651,7 +21675,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/partners/{+partnerId}/channels').replace(
+            url: (rootUrl + '/v3/partners/{+partnerId}/channels').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -21739,7 +21763,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/partners/{+partnerId}/channels/{channelId}'
+              rootUrl + '/v3/partners/{+partnerId}/channels/{channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -21923,7 +21947,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit'
+              '/v3/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -22009,7 +22033,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/partners/{partnerId}/channels/{+channelId}/sites'
+              rootUrl + '/v3/partners/{partnerId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -22096,7 +22120,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}'
+              '/v3/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -22185,7 +22209,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/partners/{+partnerId}/channels/{+channelId}/sites'
+              rootUrl + '/v3/partners/{+partnerId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22277,7 +22301,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/partners/{partnerId}/channels/{+channelId}/sites:replace'
+              '/v3/partners/{partnerId}/channels/{+channelId}/sites:replace'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -22494,7 +22518,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -22582,7 +22606,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -22679,7 +22703,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22778,7 +22802,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22948,7 +22972,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/sdfdownloadtasks').replace(
+            url: (rootUrl + '/v3/sdfdownloadtasks').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -23050,7 +23074,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -23162,7 +23186,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/targetingTypes/{+targetingType}/targetingOptions/{+targetingOptionId}'
+              '/v3/targetingTypes/{+targetingType}/targetingOptions/{+targetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23255,7 +23279,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/targetingTypes/{+targetingType}/targetingOptions'
+              rootUrl + '/v3/targetingTypes/{+targetingType}/targetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23351,7 +23375,7 @@ export namespace displayvideo_v2 {
           {
             url: (
               rootUrl +
-              '/v2/targetingTypes/{+targetingType}/targetingOptions:search'
+              '/v3/targetingTypes/{+targetingType}/targetingOptions:search'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -23508,7 +23532,7 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/users/{+userId}:bulkEditAssignedUserRoles'
+              rootUrl + '/v3/users/{+userId}:bulkEditAssignedUserRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -23594,7 +23618,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/users').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/users').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -23677,7 +23701,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/users/{+userId}').replace(
+            url: (rootUrl + '/v3/users/{+userId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -23763,7 +23787,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/users/{+userId}').replace(
+            url: (rootUrl + '/v3/users/{+userId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -23852,7 +23876,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/users').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/users').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -23935,7 +23959,7 @@ export namespace displayvideo_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/users/{+userId}').replace(
+            url: (rootUrl + '/v3/users/{+userId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
