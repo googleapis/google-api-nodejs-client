@@ -828,6 +828,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "listDocuments": {
+                      "description": "Returns a list of documents present in the dataset.",
+                      "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/dataset:listDocuments",
+                      "httpMethod": "POST",
+                      "id": "documentai.projects.locations.processors.dataset.listDocuments",
+                      "parameterOrder": [
+                        "dataset"
+                      ],
+                      "parameters": {
+                        "dataset": {
+                          "description": "Required. The resource name of the dataset to be listed. Format: projects/{project}/locations/{location}/processors/{processor}/dataset",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+/dataset$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta3/{+dataset}:listDocuments",
+                      "request": {
+                        "$ref": "GoogleCloudDocumentaiV1beta3ListDocumentsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDocumentaiV1beta3ListDocumentsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "updateDatasetSchema": {
                       "description": "Updates a `DatasetSchema`.",
                       "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/dataset/datasetSchema",
@@ -1256,7 +1284,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231006",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -5662,7 +5690,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3Dataset": {
-      "description": "A singleton resource under a Processor which configures a collection of documents. Next Id: 8.",
+      "description": "A singleton resource under a Processor which configures a collection of documents.",
       "id": "GoogleCloudDocumentaiV1beta3Dataset",
       "properties": {
         "documentWarehouseConfig": {
@@ -6059,6 +6087,58 @@
         "docId": {
           "description": "Required. The id of the document.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentMetadata": {
+      "description": "Metadata about a document.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentMetadata",
+      "properties": {
+        "datasetType": {
+          "description": "Type of the dataset split to which the document belongs.",
+          "enum": [
+            "DATASET_SPLIT_TYPE_UNSPECIFIED",
+            "DATASET_SPLIT_TRAIN",
+            "DATASET_SPLIT_TEST",
+            "DATASET_SPLIT_UNASSIGNED"
+          ],
+          "enumDescriptions": [
+            "Default value if the enum is not set.",
+            "Identifies the train documents.",
+            "Identifies the test documents.",
+            "Identifies the unassigned documents."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the document.",
+          "type": "string"
+        },
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentId",
+          "description": "Document identifier."
+        },
+        "labelingState": {
+          "description": "Labelling state of the document.",
+          "enum": [
+            "DOCUMENT_LABELING_STATE_UNSPECIFIED",
+            "DOCUMENT_LABELED",
+            "DOCUMENT_UNLABELED",
+            "DOCUMENT_AUTO_LABELED"
+          ],
+          "enumDescriptions": [
+            "Default value if the enum is not set.",
+            "Document has been labelled.",
+            "Document has not been labelled.",
+            "Document has been auto-labelled."
+          ],
+          "type": "string"
+        },
+        "pageCount": {
+          "description": "Number of pages in the document.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -7807,6 +7887,56 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3ListDocumentsRequest": {
+      "id": "GoogleCloudDocumentaiV1beta3ListDocumentsRequest",
+      "properties": {
+        "filter": {
+          "description": "Optional. Query to filter the documents based on https://google.aip.dev/160. ## Currently support query strings are: `SplitType=DATASET_SPLIT_TEST|DATASET_SPLIT_TRAIN|DATASET_SPLIT_UNASSIGNED` - `LabelingState=DOCUMENT_LABELED|DOCUMENT_UNLABELED|DOCUMENT_AUTO_LABELED` - `DisplayName=\\\"file_name.pdf\\\"` - `EntityType=abc/def` - `TagName=\\\"auto-labeling-running\\\"|\\\"sampled\\\"` Note: - Only `AND`, `=` and `!=` are supported. e.g. `DisplayName=file_name AND EntityType!=abc` IS supported. - Wildcard `*` is supported only in `DisplayName` filter - No duplicate filter keys are allowed, e.g. `EntityType=a AND EntityType=b` is NOT supported. - String match is case sensitive (for filter `DisplayName` & `EntityType`).",
+          "type": "string"
+        },
+        "pageSize": {
+          "description": "The maximum number of documents to return. The service may return fewer than this value. If unspecified, at most 20 documents will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "A page token, received from a previous `ListDocuments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDocuments` must match the call that provided the page token.",
+          "type": "string"
+        },
+        "returnTotalSize": {
+          "description": "Optional. Controls if the ListDocuments request requires a total size of matched documents. See ListDocumentsResponse.total_size. Enabling this flag may adversely impact performance. Defaults to false.",
+          "type": "boolean"
+        },
+        "skip": {
+          "description": "Optional. Number of results to skip beginning from the `page_token` if provided. https://google.aip.dev/158#skipping-results. It must be a non-negative integer. Negative values wil be rejected. Note that this is not the number of pages to skip. If this value causes the cursor to move past the end of results, `ListDocumentsResponse.document_metadata` and `ListDocumentsResponse.next_page_token` will be empty.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ListDocumentsResponse": {
+      "id": "GoogleCloudDocumentaiV1beta3ListDocumentsResponse",
+      "properties": {
+        "documentMetadata": {
+          "description": "Document metadata corresponding to the listed documents.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentMetadata"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "Total count of documents queried.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3ListEvaluationsResponse": {
       "description": "The response from `ListEvaluations`.",
       "id": "GoogleCloudDocumentaiV1beta3ListEvaluationsResponse",
@@ -7913,7 +8043,7 @@
           "type": "boolean"
         },
         "disableCharacterBoxesDetection": {
-          "description": "Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0+ processors.",
+          "description": "Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0 (and later) processors.",
           "type": "boolean"
         },
         "enableImageQualityScores": {
@@ -7966,7 +8096,7 @@
           "type": "boolean"
         },
         "enableSelectionMarkDetection": {
-          "description": "Turn on selection mark detector in OCR engine. Only available in OCR 2.0+ processors.",
+          "description": "Turn on selection mark detector in OCR engine. Only available in OCR 2.0 (and later) processors.",
           "type": "boolean"
         }
       },
@@ -7982,7 +8112,7 @@
           "type": "integer"
         },
         "fromStart": {
-          "description": "Only process certain pages from the start, process all if the document has less pages.",
+          "description": "Only process certain pages from the start. Process all if the document has fewer pages.",
           "format": "int32",
           "type": "integer"
         },

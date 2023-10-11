@@ -2998,7 +2998,7 @@ export namespace documentai_v1 {
     updateTime?: string | null;
   }
   /**
-   * A singleton resource under a Processor which configures a collection of documents. Next Id: 8.
+   * A singleton resource under a Processor which configures a collection of documents.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**
@@ -4847,7 +4847,7 @@ export namespace documentai_v1 {
      */
     computeStyleInfo?: boolean | null;
     /**
-     * Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0+ processors.
+     * Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0 (and later) processors.
      */
     disableCharacterBoxesDetection?: boolean | null;
     /**
@@ -4893,7 +4893,7 @@ export namespace documentai_v1 {
      */
     enableMathOcr?: boolean | null;
     /**
-     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0+ processors.
+     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0 (and later) processors.
      */
     enableSelectionMarkDetection?: boolean | null;
   }
@@ -4906,7 +4906,7 @@ export namespace documentai_v1 {
      */
     fromEnd?: number | null;
     /**
-     * Only process certain pages from the start, process all if the document has less pages.
+     * Only process certain pages from the start. Process all if the document has fewer pages.
      */
     fromStart?: number | null;
     /**
