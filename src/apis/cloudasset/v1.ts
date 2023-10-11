@@ -512,6 +512,19 @@ export namespace cloudasset_v1 {
     policies?: Schema$PolicyInfo[];
   }
   /**
+   * The effective tags and the ancestor resources from which they were inherited.
+   */
+  export interface Schema$EffectiveTagDetails {
+    /**
+     * The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the ancestor from which an effective_tag is inherited, according to [tag inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
+     */
+    attachedResource?: string | null;
+    /**
+     * The effective tags inherited from the attached_resource. Note that tags with the same key but different values may attach to resources at a different hierarchy levels. The lower hierarchy tag value will overwrite the higher hierarchy tag value of the same tag key. In this case, the tag value at the higher hierarchy level will be removed. For more information, see [tag inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
+     */
+    effectiveTags?: Schema$Tag[];
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -2255,6 +2268,10 @@ export namespace cloudasset_v1 {
      */
     displayName?: string | null;
     /**
+     * The effective tags on this resource. All of the tags that are both attached to and inherited by a resource are collectively called the effective tags. For more information, see [tag inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance). To search against the `effective_tags`: * Use a field query. Example: - `effectiveTagKeys:"123456789/env*"` - `effectiveTagKeys="123456789/env"` - `effectiveTagKeys:"env"` - `effectiveTagValues:"env"` - `effectiveTagValues:"env/prod"` - `effectiveTagValues:"123456789/env/prod*"` - `effectiveTagValues="123456789/env/prod"` - `effectiveTagValueIds="tagValues/456"`
+     */
+    effectiveTags?: Schema$EffectiveTagDetails[];
+    /**
      * The folder(s) that this resource belongs to, in the form of folders/{FOLDER_NUMBER\}. This field is available when the resource belongs to one or more folders. To search against `folders`: * Use a field query. Example: `folders:(123 OR 456)` * Use a free text query. Example: `123` * Specify the `scope` field as this folder in your search request.
      */
     folders?: string[] | null;
@@ -2311,15 +2328,19 @@ export namespace cloudasset_v1 {
      */
     state?: string | null;
     /**
-     * TagKey namespaced names, in the format of {ORG_ID\}/{TAG_KEY_SHORT_NAME\}. To search against the `tagKeys`: * Use a field query. Example: - `tagKeys:"123456789/env*"` - `tagKeys="123456789/env"` - `tagKeys:"env"` * Use a free text query. Example: - `env`
+     * This field is only present for the purpose of backward compatibility. Please use the `tags` field instead. TagKey namespaced names, in the format of {ORG_ID\}/{TAG_KEY_SHORT_NAME\}. To search against the `tagKeys`: * Use a field query. Example: - `tagKeys:"123456789/env*"` - `tagKeys="123456789/env"` - `tagKeys:"env"` * Use a free text query. Example: - `env`
      */
     tagKeys?: string[] | null;
     /**
-     * TagValue IDs, in the format of tagValues/{TAG_VALUE_ID\}. To search against the `tagValueIds`: * Use a field query. Example: - `tagValueIds="tagValues/456"`
+     * The tags directly attached to this resource. To search against the `tags`: * Use a field query. Example: - `tagKeys:"123456789/env*"` - `tagKeys="123456789/env"` - `tagKeys:"env"` - `tagValues:"env"` - `tagValues:"env/prod"` - `tagValues:"123456789/env/prod*"` - `tagValues="123456789/env/prod"` - `tagValueIds="tagValues/456"` * Use a free text query. Example: - `env/prod`
+     */
+    tags?: Schema$Tag[];
+    /**
+     * This field is only present for the purpose of backward compatibility. Please use the `tags` field instead. TagValue IDs, in the format of tagValues/{TAG_VALUE_ID\}. To search against the `tagValueIds`: * Use a field query. Example: - `tagValueIds="tagValues/456"` * Use a free text query. Example: - `456`
      */
     tagValueIds?: string[] | null;
     /**
-     * TagValue namespaced names, in the format of {ORG_ID\}/{TAG_KEY_SHORT_NAME\}/{TAG_VALUE_SHORT_NAME\}. To search against the `tagValues`: * Use a field query. Example: - `tagValues:"env"` - `tagValues:"env/prod"` - `tagValues:"123456789/env/prod*"` - `tagValues="123456789/env/prod"` * Use a free text query. Example: - `prod`
+     * This field is only present for the purpose of backward compatibility. Please use the `tags` field instead. TagValue namespaced names, in the format of {ORG_ID\}/{TAG_KEY_SHORT_NAME\}/{TAG_VALUE_SHORT_NAME\}. To search against the `tagValues`: * Use a field query. Example: - `tagValues:"env"` - `tagValues:"env/prod"` - `tagValues:"123456789/env/prod*"` - `tagValues="123456789/env/prod"` * Use a free text query. Example: - `prod`
      */
     tagValues?: string[] | null;
     /**
@@ -2490,6 +2511,23 @@ export namespace cloudasset_v1 {
      * Describes the fields in a table.
      */
     fields?: Schema$TableFieldSchema[];
+  }
+  /**
+   * The key and value for a [tag](https://cloud.google.com/resource-manager/docs/tags/tags-overview),
+   */
+  export interface Schema$Tag {
+    /**
+     * TagKey namespaced name, in the format of {ORG_ID\}/{TAG_KEY_SHORT_NAME\}.
+     */
+    tagKey?: string | null;
+    /**
+     * TagValue namespaced name, in the format of {ORG_ID\}/{TAG_KEY_SHORT_NAME\}/{TAG_VALUE_SHORT_NAME\}.
+     */
+    tagValue?: string | null;
+    /**
+     * TagValue ID, in the format of tagValues/{TAG_VALUE_ID\}.
+     */
+    tagValueId?: string | null;
   }
   /**
    * An asset in Google Cloud and its temporal metadata, including the time window when it was observed and its status during that window.
@@ -5271,7 +5309,7 @@ export namespace cloudasset_v1 {
      */
     assetTypes?: string[];
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". Only singular primitive fields in the response are sortable: * name * assetType * project * displayName * description * location * createTime * updateTime * state * parentFullResourceName * parentAssetType All the other fields such as repeated fields (e.g., `networkTags`, `kmsKeys`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.
+     * Optional. A comma-separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". Only the following fields in the response are sortable: * name * assetType * project * displayName * description * location * createTime * updateTime * state * parentFullResourceName * parentAssetType
      */
     orderBy?: string;
     /**
@@ -5283,11 +5321,11 @@ export namespace cloudasset_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more information. If not specified or empty, it will search all the resources within the specified `scope`. Examples: * `name:Important` to find Google Cloud resources whose name contains "Important" as a word. * `name=Important` to find the Google Cloud resource whose name is exactly "Important". * `displayName:Impor*` to find Google Cloud resources whose display name contains "Impor" as a prefix of any word in the field. * `location:us-west*` to find Google Cloud resources whose location contains both "us" and "west" as prefixes. * `labels:prod` to find Google Cloud resources whose labels contain "prod" as a key or value. * `labels.env:prod` to find Google Cloud resources that have a label "env" and its value is "prod". * `labels.env:*` to find Google Cloud resources that have a label "env". * `kmsKey:key` to find Google Cloud resources encrypted with a customer-managed encryption key whose name contains "key" as a word. This field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS key information. * `kmsKeys:key` to find Google Cloud resources encrypted with customer-managed encryption keys whose name contains the word "key". * `relationships:instance-group-1` to find Google Cloud resources that have relationships with "instance-group-1" in the related resource name. * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine instances that have relationships of type "INSTANCE_TO_INSTANCEGROUP". * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find Compute Engine instances that have relationships with "instance-group-1" in the Compute Engine instance group resource name, for relationship type "INSTANCE_TO_INSTANCEGROUP". * `state:ACTIVE` to find Google Cloud resources whose state contains "ACTIVE" as a word. * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't contain "ACTIVE" as a word. * `createTime<1609459200` to find Google Cloud resources that were created before "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of "2021-01-01 00:00:00 UTC" in seconds. * `updateTime\>1609459200` to find Google Cloud resources that were updated after "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of "2021-01-01 00:00:00 UTC" in seconds. * `Important` to find Google Cloud resources that contain "Important" as a word in any of the searchable fields. * `Impor*` to find Google Cloud resources that contain "Impor" as a prefix of any word in any of the searchable fields. * `Important location:(us-west1 OR global)` to find Google Cloud resources that contain "Important" as a word in any of the searchable fields and are also located in the "us-west1" region or the "global" location.
+     * Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more information. If not specified or empty, it will search all the resources within the specified `scope`. Examples: * `name:Important` to find Google Cloud resources whose name contains `Important` as a word. * `name=Important` to find the Google Cloud resource whose name is exactly `Important`. * `displayName:Impor*` to find Google Cloud resources whose display name contains `Impor` as a prefix of any word in the field. * `location:us-west*` to find Google Cloud resources whose location contains both `us` and `west` as prefixes. * `labels:prod` to find Google Cloud resources whose labels contain `prod` as a key or value. * `labels.env:prod` to find Google Cloud resources that have a label `env` and its value is `prod`. * `labels.env:*` to find Google Cloud resources that have a label `env`. * `tagKeys:env` to find Google Cloud resources that have directly attached tags where the [`TagKey`](https://cloud.google.com/resource-manager/reference/rest/v3/tagKeys#resource:-tagkey) .`namespacedName` contains `env`. * `tagValues:prod*` to find Google Cloud resources that have directly attached tags where the [`TagValue`](https://cloud.google.com/resource-manager/reference/rest/v3/tagValues#resource:-tagvalue) .`namespacedName` contains a word prefixed by `prod`. * `tagValueIds=tagValues/123` to find Google Cloud resources that have directly attached tags where the [`TagValue`](https://cloud.google.com/resource-manager/reference/rest/v3/tagValues#resource:-tagvalue) .`name` is exactly `tagValues/123`. * `effectiveTagKeys:env` to find Google Cloud resources that have directly attached or inherited tags where the [`TagKey`](https://cloud.google.com/resource-manager/reference/rest/v3/tagKeys#resource:-tagkey) .`namespacedName` contains `env`. * `effectiveTagValues:prod*` to find Google Cloud resources that have directly attached or inherited tags where the [`TagValue`](https://cloud.google.com/resource-manager/reference/rest/v3/tagValues#resource:-tagvalue) .`namespacedName` contains a word prefixed by `prod`. * `effectiveTagValueIds=tagValues/123` to find Google Cloud resources that have directly attached or inherited tags where the [`TagValue`](https://cloud.google.com/resource-manager/reference/rest/v3/tagValues#resource:-tagvalue) .`name` is exactly `tagValues/123`. * `kmsKey:key` to find Google Cloud resources encrypted with a customer-managed encryption key whose name contains `key` as a word. This field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS key information. * `kmsKeys:key` to find Google Cloud resources encrypted with customer-managed encryption keys whose name contains the word `key`. * `relationships:instance-group-1` to find Google Cloud resources that have relationships with `instance-group-1` in the related resource name. * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine instances that have relationships of type `INSTANCE_TO_INSTANCEGROUP`. * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find Compute Engine instances that have relationships with `instance-group-1` in the Compute Engine instance group resource name, for relationship type `INSTANCE_TO_INSTANCEGROUP`. * `sccSecurityMarks.key=value` to find Cloud resources that are attached with security marks whose key is `key` and value is `value'. * `sccSecurityMarks.key:*` to find Cloud resources that are attached with security marks whose key is `key`. * `state:ACTIVE` to find Google Cloud resources whose state contains `ACTIVE` as a word. * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't contain `ACTIVE` as a word. * `createTime<1609459200` to find Google Cloud resources that were created before `2021-01-01 00:00:00 UTC`. `1609459200` is the epoch timestamp of `2021-01-01 00:00:00 UTC` in seconds. * `updateTime\>1609459200` to find Google Cloud resources that were updated after `2021-01-01 00:00:00 UTC`. `1609459200` is the epoch timestamp of `2021-01-01 00:00:00 UTC` in seconds. * `Important` to find Google Cloud resources that contain `Important` as a word in any of the searchable fields. * `Impor*` to find Google Cloud resources that contain `Impor` as a prefix of any word in any of the searchable fields. * `Important location:(us-west1 OR global)` to find Google Cloud resources that contain `Important` as a word in any of the searchable fields and are also located in the `us-west1` region or the `global` location.
      */
     query?: string;
     /**
-     * Optional. A comma-separated list of fields that you want returned in the results. The following fields are returned by default if not specified: * `name` * `assetType` * `project` * `folders` * `organization` * `displayName` * `description` * `location` * `labels` * `networkTags` * `kmsKeys` * `createTime` * `updateTime` * `state` * `additionalAttributes` * `parentFullResourceName` * `parentAssetType` Some fields of large size, such as `versionedResources` and `attachedResources`, are not returned by default, but you can specify them in the `read_mask` parameter if you want to include them. If `"*"` is specified, all [available fields](https://cloud.google.com/asset-inventory/docs/reference/rest/v1/TopLevel/searchAllResources#resourcesearchresult) are returned. Examples: `"name,location"`, `"name,versionedResources"`, `"*"`. Any invalid field path will trigger INVALID_ARGUMENT error.
+     * Optional. A comma-separated list of fields that you want returned in the results. The following fields are returned by default if not specified: * `name` * `assetType` * `project` * `folders` * `organization` * `displayName` * `description` * `location` * `labels` * `tags` * `effectiveTags` * `networkTags` * `kmsKeys` * `createTime` * `updateTime` * `state` * `additionalAttributes` * `parentFullResourceName` * `parentAssetType` Some fields of large size, such as `versionedResources`, `attachedResources`, `effectiveTags` etc., are not returned by default, but you can specify them in the `read_mask` parameter if you want to include them. If `"*"` is specified, all [available fields](https://cloud.google.com/asset-inventory/docs/reference/rest/v1/TopLevel/searchAllResources#resourcesearchresult) are returned. Examples: `"name,location"`, `"name,versionedResources"`, `"*"`. Any invalid field path will trigger INVALID_ARGUMENT error.
      */
     readMask?: string;
     /**
