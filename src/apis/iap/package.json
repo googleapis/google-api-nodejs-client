@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/iap",
-  "version": "4.0.3",
+  "version": "5.0.0",
   "description": "iap",
   "main": "build/index.js",
   "types": "build/index.d.ts",

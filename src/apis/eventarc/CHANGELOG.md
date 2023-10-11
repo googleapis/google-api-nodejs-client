@@ -1,5 +1,26 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v5.3.0...eventarc-v6.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **eventarc:** update the API ([72fc700](https://github.com/googleapis/google-api-nodejs-client/commit/72fc70043e383f6b1bd4af77aa6350a8d62dbee6))
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **eventarc:** update the API ([b7a0e5a](https://github.com/googleapis/google-api-nodejs-client/commit/b7a0e5a26eabdd757468ae12c6b1ba444f3a10dd))
+* **eventarc:** update the API ([2a475fa](https://github.com/googleapis/google-api-nodejs-client/commit/2a475faaef31b3ee3024c89c338179a23b9c42c6))
+* **eventarc:** update the API ([d615c48](https://github.com/googleapis/google-api-nodejs-client/commit/d615c488127e634d8da848b5e398b89e8a9c0714))
+
 ## [5.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v5.2.0...eventarc-v5.3.0) (2023-08-25)
 
 

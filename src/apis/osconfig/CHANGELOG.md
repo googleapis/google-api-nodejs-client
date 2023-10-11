@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v1.1.1...osconfig-v2.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **osconfig:** This release has breaking changes.
+
+### Features
+
+* **osconfig:** update the API ([839a3fc](https://github.com/googleapis/google-api-nodejs-client/commit/839a3fc0ce527a899c522f02081765ba82b4eff0))
+* **osconfig:** update the API ([e1ca8d0](https://github.com/googleapis/google-api-nodejs-client/commit/e1ca8d031ee061a9dba7505a47d3572ec7211843))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **osconfig:** update the API ([926f83d](https://github.com/googleapis/google-api-nodejs-client/commit/926f83d5711be9b30b4dfe9a70530e761a075e76))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v1.1.0...osconfig-v1.1.1) (2023-08-25)
 
 
