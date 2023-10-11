@@ -129,7 +129,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$AcceptHubSpokeRequest {
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
@@ -151,7 +151,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$AcceptSpokeRequest {
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
   }
@@ -298,19 +298,19 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$Filter {
     /**
-     * Optional. The destination IP range of outgoing packets that this policy based route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
+     * Optional. The destination IP range of outgoing packets that this policy-based route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
      */
     destRange?: string | null;
     /**
-     * Optional. The IP protocol that this policy based route applies to. Valid values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.
+     * Optional. The IP protocol that this policy-based route applies to. Valid values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.
      */
     ipProtocol?: string | null;
     /**
-     * Required. Internet protocol versions this policy based route applies to. For this version, only IPV4 is supported.
+     * Required. Internet protocol versions this policy-based route applies to. For this version, only IPV4 is supported.
      */
     protocolVersion?: string | null;
     /**
-     * Optional. The source IP range of outgoing packets that this policy based route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
+     * Optional. The source IP range of outgoing packets that this policy-based route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
      */
     srcRange?: string | null;
   }
@@ -469,11 +469,11 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
-   * InterconnectAttachment to which this route applies to.
+   * InterconnectAttachment that this route applies to.
    */
   export interface Schema$InterconnectAttachment {
     /**
-     * Optional. Cloud region to install this policy based route on interconnect attachment. Use `all` to install it on all interconnect attachments.
+     * Optional. Cloud region to install this policy-based route on interconnect attachment. Use `all` to install it on all interconnect attachments.
      */
     region?: string | null;
   }
@@ -688,7 +688,7 @@ export namespace networkconnectivity_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Policy based routes to be returned.
+     * Policy-based routes to be returned.
      */
     policyBasedRoutes?: Schema$PolicyBasedRoute[];
     /**
@@ -910,11 +910,11 @@ export namespace networkconnectivity_v1 {
     version?: number | null;
   }
   /**
-   * Policy Based Routes (PBR) are more powerful routes that allows GCP customers to route their L4 network traffic based on not just destination IP, but also source IP, protocol and more. A PBR always take precedence when it conflicts with other types of routes. Next id: 22
+   * Policy-based routes route L4 network traffic based on not just destination IP address, but also source IP address, protocol, and more. If a policy-based route conflicts with other types of routes, the policy-based route always take precedence.
    */
   export interface Schema$PolicyBasedRoute {
     /**
-     * Output only. Time when the PolicyBasedRoute was created.
+     * Output only. Time when the policy-based route was created.
      */
     createTime?: string | null;
     /**
@@ -926,11 +926,11 @@ export namespace networkconnectivity_v1 {
      */
     filter?: Schema$Filter;
     /**
-     * Optional. The interconnect attachments to which this route applies to.
+     * Optional. The interconnect attachments that this policy-based route applies to.
      */
     interconnectAttachment?: Schema$InterconnectAttachment;
     /**
-     * Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for Policy Based Route resources.
+     * Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for policy-based Route resources.
      */
     kind?: string | null;
     /**
@@ -942,11 +942,11 @@ export namespace networkconnectivity_v1 {
      */
     name?: string | null;
     /**
-     * Required. Fully-qualified URL of the network that this route applies to. e.g. projects/my-project/global/networks/my-network.
+     * Required. Fully-qualified URL of the network that this route applies to, for example: projects/my-project/global/networks/my-network.
      */
     network?: string | null;
     /**
-     * Optional. The IP of a global access enabled L4 ILB that should be the next hop to handle matching packets. For this version, only next_hop_ilb_ip is supported.
+     * Optional. The IP address of a global-access-enabled L4 ILB that is the next hop for matching packets. For this version, only nextHopIlbIp is supported.
      */
     nextHopIlbIp?: string | null;
     /**
@@ -954,7 +954,7 @@ export namespace networkconnectivity_v1 {
      */
     nextHopOtherRoutes?: string | null;
     /**
-     * Optional. The priority of this policy based route. Priority is used to break ties in cases where there are more than one matching policy based routes found. In cases where multiple policy based routes are matched, the one with the lowest-numbered priority value wins. The default value is 1000. The priority value must be from 1 to 65535, inclusive.
+     * Optional. The priority of this policy-based route. Priority is used to break ties in cases where there are more than one matching policy-based routes found. In cases where multiple policy-based routes are matched, the one with the lowest-numbered priority value wins. The default value is 1000. The priority value must be from 1 to 65535, inclusive.
      */
     priority?: number | null;
     /**
@@ -962,11 +962,11 @@ export namespace networkconnectivity_v1 {
      */
     selfLink?: string | null;
     /**
-     * Output only. Time when the PolicyBasedRoute was updated.
+     * Output only. Time when the policy-based route was updated.
      */
     updateTime?: string | null;
     /**
-     * Optional. VM instances to which this policy based route applies to.
+     * Optional. VM instances to which this policy-based route applies to.
      */
     virtualMachine?: Schema$VirtualMachine;
     /**
@@ -1046,7 +1046,7 @@ export namespace networkconnectivity_v1 {
      */
     details?: string | null;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
@@ -1072,7 +1072,7 @@ export namespace networkconnectivity_v1 {
      */
     details?: string | null;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
   }
@@ -1535,11 +1535,11 @@ export namespace networkconnectivity_v1 {
     permissions?: string[] | null;
   }
   /**
-   * VM instances to which this policy based route applies to.
+   * VM instances to which this policy-based route applies to.
    */
   export interface Schema$VirtualMachine {
     /**
-     * Optional. A list of VM instance tags to which this policy based route applies to. VM instances that have ANY of tags specified here will install this PBR.
+     * Optional. A list of VM instance tags the this policy-based route applies to. VM instances that have ANY of tags specified here will install this PBR.
      */
     tags?: string[] | null;
   }
@@ -1833,7 +1833,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Accepts a proposal to attach a Network Connectivity Center spoke to the hub.
+     * Accepts a proposal to attach a Network Connectivity Center spoke to a hub.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2560,7 +2560,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Rejects a Network Connectivity Center spoke from being attached to the hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.
+     * Rejects a Network Connectivity Center spoke from being attached to a hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2844,7 +2844,7 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke
     extends StandardParameters {
     /**
-     * Required. The name of the hub.
+     * Required. The name of the hub into which to accept the spoke.
      */
     name?: string;
 
@@ -2864,7 +2864,7 @@ export namespace networkconnectivity_v1 {
      */
     parent?: string;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
 
@@ -2880,7 +2880,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
@@ -2963,7 +2963,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -2979,7 +2979,7 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke
     extends StandardParameters {
     /**
-     * Required. The name of the hub.
+     * Required. The name of the hub from which to reject the spoke.
      */
     name?: string;
 
@@ -3984,7 +3984,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Creates a new PolicyBasedRoute in a given project and location.
+     * Creates a new policy-based route in a given project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4080,7 +4080,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Deletes a single PolicyBasedRoute.
+     * Deletes a single policy-based route.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4173,7 +4173,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Gets details of a single PolicyBasedRoute.
+     * Gets details of a single policy-based route.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4348,7 +4348,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Lists PolicyBasedRoutes in a given project and location.
+     * Lists policy-based routes in a given project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4638,7 +4638,7 @@ export namespace networkconnectivity_v1 {
      */
     parent?: string;
     /**
-     * Required. Unique id for the Policy Based Route to create.
+     * Required. Unique id for the policy-based route to create.
      */
     policyBasedRouteId?: string;
     /**
@@ -4654,7 +4654,7 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the PolicyBasedRoute resource to delete.
+     * Required. Name of the policy-based route resource to delete.
      */
     name?: string;
     /**
@@ -9568,7 +9568,7 @@ export namespace networkconnectivity_v1 {
      */
     parent?: string;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -9588,7 +9588,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
@@ -9640,7 +9640,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
