@@ -173,6 +173,10 @@ export namespace gmail_v1 {
      * If a key pair is associated, the ID of the key pair, CseKeyPair.
      */
     primaryKeyPairId?: string | null;
+    /**
+     * The configuration of a CSE identity that uses different key pairs for signing and encryption.
+     */
+    signAndEncryptKeyPairs?: Schema$SignAndEncryptKeyPairs;
   }
   /**
    * A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages.
@@ -211,10 +215,6 @@ export namespace gmail_v1 {
    * Metadata for a private key instance.
    */
   export interface Schema$CsePrivateKeyMetadata {
-    /**
-     * Metadata for hardware keys.
-     */
-    hardwareKeyMetadata?: Schema$HardwareKeyMetadata;
     /**
      * Metadata for a private key instance managed by an external key access control list service.
      */
@@ -345,15 +345,6 @@ export namespace gmail_v1 {
      * Indicates whether this address has been verified and is usable for forwarding. Read-only.
      */
     verificationStatus?: string | null;
-  }
-  /**
-   * Metadata for hardware keys.
-   */
-  export interface Schema$HardwareKeyMetadata {
-    /**
-     * Description about the hardware key.
-     */
-    description?: string | null;
   }
   /**
    * A record of a change to the user's mailbox. Each history change may affect multiple messages in multiple ways.
@@ -821,6 +812,19 @@ export namespace gmail_v1 {
      * Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom "from" aliases.
      */
     verificationStatus?: string | null;
+  }
+  /**
+   * The configuration of a CSE identity that uses different key pairs for signing and encryption.
+   */
+  export interface Schema$SignAndEncryptKeyPairs {
+    /**
+     * The ID of the CseKeyPair that encrypts signed outgoing mail.
+     */
+    encryptionKeyPairId?: string | null;
+    /**
+     * The ID of the CseKeyPair that signs outgoing mail.
+     */
+    signingKeyPairId?: string | null;
   }
   /**
    * An S/MIME email config.
