@@ -2996,7 +2996,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20230925",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -5258,10 +5258,6 @@
       "properties": {
         "currentVersion": {
           "description": "Current version of the dependency e.g. 1.15.0.",
-          "type": "string"
-        },
-        "localName": {
-          "description": "Local name of the dependency.",
           "type": "string"
         },
         "membership": {
