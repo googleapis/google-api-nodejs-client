@@ -20,9 +20,9 @@
   "documentationLink": "https://cloud.google.com/pubsub/docs",
   "endpoints": [
     {
-      "description": "Regional Endpoint",
       "location": "me-central2",
-      "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/"
+      "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/",
+      "description": "Regional Endpoint"
     }
   ],
   "icons": {
