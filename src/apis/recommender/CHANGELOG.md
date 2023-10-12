@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v1.1.1...recommender-v1.1.2) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **recommender:** update the API ([3e76efd](https://github.com/googleapis/google-api-nodejs-client/commit/3e76efde7d92203a555870908a10da54f5021df6))
+* **recommender:** update the API ([b7e0460](https://github.com/googleapis/google-api-nodejs-client/commit/b7e04605e76dee6162fcb9b6ff412c7449b166d5))
+* **recommender:** update the API ([bf6eed9](https://github.com/googleapis/google-api-nodejs-client/commit/bf6eed974547dada6cf8240eacc77fc657f18cd2))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v1.1.0...recommender-v1.1.1) (2023-08-25)
 
 

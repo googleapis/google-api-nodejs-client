@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/versionhistory-v1.0.2...versionhistory-v1.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **versionhistory:** update the API ([bb2ceec](https://github.com/googleapis/google-api-nodejs-client/commit/bb2ceec5dd62d77d3f98a31123a15fc3e00965b5))
+
 ## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/versionhistory-v1.0.1...versionhistory-v1.0.2) (2023-08-25)
 
 

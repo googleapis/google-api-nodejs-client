@@ -752,7 +752,7 @@ export namespace gkebackup_v1 {
      */
     jsonPath?: string | null;
     /**
-     * Optional. (Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation). To mix cluster-scoped and namespaced resources in the same rule, use an empty string ("") as one of the target namespaces.
+     * Optional. (Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation).
      */
     namespaces?: string[] | null;
   }
@@ -1194,93 +1194,6 @@ export namespace gkebackup_v1 {
     }
 
     /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    deleteOperations(
-      params: Params$Resource$Projects$Locations$Deleteoperations,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    deleteOperations(
-      params?: Params$Resource$Projects$Locations$Deleteoperations,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    deleteOperations(
-      params: Params$Resource$Projects$Locations$Deleteoperations,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    deleteOperations(
-      params: Params$Resource$Projects$Locations$Deleteoperations,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    deleteOperations(
-      params: Params$Resource$Projects$Locations$Deleteoperations,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    deleteOperations(callback: BodyResponseCallback<Schema$Empty>): void;
-    deleteOperations(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Deleteoperations
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Deleteoperations;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Deleteoperations;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
      * Gets information about a location.
      *
      * @param params - Parameters for request
@@ -1457,13 +1370,6 @@ export namespace gkebackup_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deleteoperations
-    extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
@@ -3800,6 +3706,90 @@ export namespace gkebackup_v1 {
     }
 
     /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      *
      * @param params - Parameters for request
@@ -3998,6 +3988,13 @@ export namespace gkebackup_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {

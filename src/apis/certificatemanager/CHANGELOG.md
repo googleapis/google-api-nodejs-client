@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v1.0.2...certificatemanager-v1.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **certificatemanager:** update the API ([dcb4fd8](https://github.com/googleapis/google-api-nodejs-client/commit/dcb4fd82a2c9279295c98348dbfb2099fc6efc6c))
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v1.0.1...certificatemanager-v1.0.2) (2023-08-25)
 
 

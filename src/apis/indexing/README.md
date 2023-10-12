@@ -2,7 +2,7 @@
 
 # indexing
 
-> Notifies Google when your web pages change.
+> Notifies Google Web Search when your web pages change.
 
 ## Installation
 

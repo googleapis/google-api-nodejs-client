@@ -1339,7 +1339,7 @@
       }
     }
   },
-  "revision": "20230905",
+  "revision": "20230926",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -2023,6 +2023,10 @@
       "description": "Metadata about the service in a location.",
       "id": "LocationMetadata",
       "properties": {
+        "multiRegionMetadata": {
+          "$ref": "MultiRegionMetadata",
+          "description": "The multi-region metadata if the current region is a multi-region."
+        },
         "supportedHiveMetastoreVersions": {
           "description": "The versions of Hive Metastore that can be used when creating a new metastore service in this location. The server guarantees that exactly one HiveMetastoreVersion in the list will set is_default.",
           "items": {
@@ -2229,6 +2233,20 @@
       "description": "Response message for DataprocMetastore.MoveTableToDatabase.",
       "id": "MoveTableToDatabaseResponse",
       "properties": {},
+      "type": "object"
+    },
+    "MultiRegionMetadata": {
+      "description": "The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region, it will be empty.",
+      "id": "MultiRegionMetadata",
+      "properties": {
+        "constituentRegions": {
+          "description": "The regions constituting the multi-region.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "NetworkConfig": {

@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v1.0.2...places-v2.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **places:** This release has breaking changes.
+
+### Features
+
+* **places:** update the API ([096c4a7](https://github.com/googleapis/google-api-nodejs-client/commit/096c4a7d4f4dbef796b5d980492c7f7271a360bf))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **places:** update the API ([1582524](https://github.com/googleapis/google-api-nodejs-client/commit/1582524f2331f1c9375131721e768e220354a800))
+
 ## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/places-v1.0.1...places-v1.0.2) (2023-08-25)
 
 

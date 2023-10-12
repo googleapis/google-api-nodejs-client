@@ -1,5 +1,24 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v9.0.3...sasportal-v10.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+* **sasportal:** update the API ([706a9c6](https://github.com/googleapis/google-api-nodejs-client/commit/706a9c6d36cdde65fe63b19f9ccf305c975d59b5))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **sasportal:** update the API ([cd8a38c](https://github.com/googleapis/google-api-nodejs-client/commit/cd8a38c7507d2ef109ee98fbe555081d48cd1505))
+* **sasportal:** update the API ([ca33e9c](https://github.com/googleapis/google-api-nodejs-client/commit/ca33e9c71f80e1b9f6e0dee395a120c33df5a134))
+
 ## [9.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v9.0.2...sasportal-v9.0.3) (2023-08-25)
 
 

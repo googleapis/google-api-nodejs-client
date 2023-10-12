@@ -166,6 +166,15 @@ export namespace gkehub_v1beta {
     networkingInstallSucceeded?: Schema$Status;
   }
   /**
+   * ApplianceCluster contains information specific to GDC Edge Appliance Clusters.
+   */
+  export interface Schema$ApplianceCluster {
+    /**
+     * Immutable. Self-link of the Google Cloud resource for the Appliance Cluster. For example: //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
+     */
+    resourceLink?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -190,6 +199,27 @@ export namespace gkehub_v1beta {
      * The log type that this config enables.
      */
     logType?: string | null;
+  }
+  /**
+   * Authority encodes how Google will recognize identities from this Membership. See the workload identity documentation for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
+   */
+  export interface Schema$Authority {
+    /**
+     * Output only. An identity provider that reflects the `issuer` in the workload identity pool.
+     */
+    identityProvider?: string | null;
+    /**
+     * Optional. A JSON Web Token (JWT) issuer URI. `issuer` must start with `https://` and be a valid URL with length <2000 characters, it must use `location` rather than `zone` for GKE clusters. If set, then Google will allow valid OIDC tokens from this issuer to authenticate within the workload_identity_pool. OIDC discovery will be performed on this URI to validate tokens from the issuer. Clearing `issuer` disables Workload Identity. `issuer` cannot be directly modified; it must be cleared (and Workload Identity disabled) before using a new issuer (and re-enabling Workload Identity).
+     */
+    issuer?: string | null;
+    /**
+     * Optional. OIDC verification keys for this Membership in JWKS format (RFC 7517). When this field is set, OIDC discovery will NOT be performed on `issuer`, and instead OIDC tokens will be validated using this field.
+     */
+    oidcJwks?: string | null;
+    /**
+     * Output only. The name of the workload identity pool in which `issuer` will be recognized. There is a single Workload Identity Pool per Hub that is shared between all Memberships that belong to that Hub. For a Hub hosted in {PROJECT_ID\}, the workload pool format is `{PROJECT_ID\}.hub.id.goog`, although this is subject to change in newer versions of this API.
+     */
+    workloadIdentityPool?: string | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -832,6 +862,28 @@ export namespace gkehub_v1beta {
     syncToken?: string | null;
   }
   /**
+   * ConnectAgentResource represents a Kubernetes resource manifest for Connect Agent deployment.
+   */
+  export interface Schema$ConnectAgentResource {
+    /**
+     * YAML manifest of the resource.
+     */
+    manifest?: string | null;
+    /**
+     * Kubernetes type of the resource.
+     */
+    type?: Schema$TypeMeta;
+  }
+  /**
+   * EdgeCluster contains information specific to Google Edge Clusters.
+   */
+  export interface Schema$EdgeCluster {
+    /**
+     * Immutable. Self-link of the Google Cloud resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     */
+    resourceLink?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -1086,6 +1138,15 @@ export namespace gkehub_v1beta {
     mode?: string | null;
   }
   /**
+   * GenerateConnectManifestResponse contains manifest information for installing/upgrading a Connect agent.
+   */
+  export interface Schema$GenerateConnectManifestResponse {
+    /**
+     * The ordered list of Kubernetes resources that need to be applied to the cluster for GKE Connect agent installation/upgrade.
+     */
+    manifest?: Schema$ConnectAgentResource[];
+  }
+  /**
    * Response for GenerateRBACRoleBindingYAML.
    */
   export interface Schema$GenerateMembershipRBACRoleBindingYAMLResponse {
@@ -1093,6 +1154,19 @@ export namespace gkehub_v1beta {
      * a yaml text blob including the RBAC policies.
      */
     roleBindingsYaml?: string | null;
+  }
+  /**
+   * GkeCluster contains information specific to GKE clusters.
+   */
+  export interface Schema$GkeCluster {
+    /**
+     * Output only. If cluster_missing is set then it denotes that the GKE cluster no longer exists in the GKE Control Plane.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. Self-link of the Google Cloud resource for the GKE cluster. For example: //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster Zonal clusters are also supported.
+     */
+    resourceLink?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1262,6 +1336,56 @@ export namespace gkehub_v1beta {
     userPrefix?: string | null;
   }
   /**
+   * KubernetesMetadata provides informational metadata for Memberships representing Kubernetes clusters.
+   */
+  export interface Schema$KubernetesMetadata {
+    /**
+     * Output only. Kubernetes API server version string as reported by `/version`.
+     */
+    kubernetesApiServerVersion?: string | null;
+    /**
+     * Output only. The total memory capacity as reported by the sum of all Kubernetes nodes resources, defined in MB.
+     */
+    memoryMb?: number | null;
+    /**
+     * Output only. Node count as reported by Kubernetes nodes resources.
+     */
+    nodeCount?: number | null;
+    /**
+     * Output only. Node providerID as reported by the first node in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-GCP), the node_count will be zero and the node_provider_id will be empty.
+     */
+    nodeProviderId?: string | null;
+    /**
+     * Output only. The time at which these details were last updated. This update_time is different from the Membership-level update_time since EndpointDetails are updated internally for API consumers.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. vCPU count as reported by Kubernetes nodes resources.
+     */
+    vcpuCount?: number | null;
+  }
+  /**
+   * KubernetesResource contains the YAML manifests and configuration for Membership Kubernetes resources in the cluster. After CreateMembership or UpdateMembership, these resources should be re-applied in the cluster.
+   */
+  export interface Schema$KubernetesResource {
+    /**
+     * Output only. The Kubernetes resources for installing the GKE Connect agent This field is only populated in the Membership returned from a successful long-running operation from CreateMembership or UpdateMembership. It is not populated during normal GetMembership or ListMemberships requests. To get the resource manifest after the initial registration, the caller should make a UpdateMembership call with an empty field mask.
+     */
+    connectResources?: Schema$ResourceManifest[];
+    /**
+     * Input only. The YAML representation of the Membership CR. This field is ignored for GKE clusters where Hub can read the CR directly. Callers should provide the CR that is currently present in the cluster during CreateMembership or UpdateMembership, or leave this field empty if none exists. The CR manifest is used to validate the cluster has not been registered with another Membership.
+     */
+    membershipCrManifest?: string | null;
+    /**
+     * Output only. Additional Kubernetes resources that need to be applied to the cluster after Membership creation, and after every update. This field is only populated in the Membership returned from a successful long-running operation from CreateMembership or UpdateMembership. It is not populated during normal GetMembership or ListMemberships requests. To get the resource manifest after the initial registration, the caller should make a UpdateMembership call with an empty field mask.
+     */
+    membershipResources?: Schema$ResourceManifest[];
+    /**
+     * Optional. Options for Kubernetes resource generation.
+     */
+    resourceOptions?: Schema$ResourceOptions;
+  }
+  /**
    * Response message for the `GkeHub.ListFeatures` method.
    */
   export interface Schema$ListFeaturesResponse {
@@ -1325,6 +1449,23 @@ export namespace gkehub_v1beta {
      * The list of Membership RBACRoleBindings.
      */
     rbacrolebindings?: Schema$RBACRoleBinding[];
+  }
+  /**
+   * Response message for the `GkeHub.ListMemberships` method.
+   */
+  export interface Schema$ListMembershipsResponse {
+    /**
+     * A token to request the next page of resources from the `ListMemberships` method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of matching Memberships.
+     */
+    resources?: Schema$Membership[];
+    /**
+     * List of locations that could not be reached while fetching this list.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * List of fleet namespaces.
@@ -1430,6 +1571,63 @@ export namespace gkehub_v1beta {
     name?: string | null;
   }
   /**
+   * Membership contains information about a member cluster.
+   */
+  export interface Schema$Membership {
+    /**
+     * Optional. How to identify workloads from this Membership. See the documentation on Workload Identity for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
+     */
+    authority?: Schema$Authority;
+    /**
+     * Output only. When the Membership was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. When the Membership was deleted.
+     */
+    deleteTime?: string | null;
+    /**
+     * Output only. Description of this membership, limited to 63 characters. Must match the regex: `a-zA-Z0-9*` This field is present for legacy purposes.
+     */
+    description?: string | null;
+    /**
+     * Optional. Endpoint information to reach this member.
+     */
+    endpoint?: Schema$MembershipEndpoint;
+    /**
+     * Optional. An externally-generated and managed ID for this Membership. This ID may be modified after creation, but this is not recommended. The ID must match the regex: `a-zA-Z0-9*` If this Membership represents a Kubernetes cluster, this value should be set to the UID of the `kube-system` namespace object.
+     */
+    externalId?: string | null;
+    /**
+     * Optional. Labels for this membership.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. For clusters using Connect, the timestamp of the most recent connection established with Google Cloud. This time is updated every several minutes, not continuously. For clusters that do not use GKE Connect, or that have never connected successfully, this field will be unset.
+     */
+    lastConnectionTime?: string | null;
+    /**
+     * Optional. The monitoring config information for this membership.
+     */
+    monitoringConfig?: Schema$MonitoringConfig;
+    /**
+     * Output only. The full, unique name of this Membership resource in the format `projects/x/locations/x/memberships/{membership_id\}`, set during creation. `membership_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
+     */
+    name?: string | null;
+    /**
+     * Output only. State of the Membership resource.
+     */
+    state?: Schema$MembershipState;
+    /**
+     * Output only. Google-generated UUID for this resource. This is unique across all Membership resources. If a Membership resource is deleted and another resource with the same name is created, it gets a different unique_id.
+     */
+    uniqueId?: string | null;
+    /**
+     * Output only. When the Membership was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * MembershipBinding is a subresource of a Membership, representing what Fleet Scopes (or other, future Fleet resources) a Membership is bound to.
    */
   export interface Schema$MembershipBinding {
@@ -1474,6 +1672,43 @@ export namespace gkehub_v1beta {
      * Output only. The current state of the MembershipBinding resource.
      */
     code?: string | null;
+  }
+  /**
+   * MembershipEndpoint contains information needed to contact a Kubernetes API, endpoint and any additional Kubernetes metadata.
+   */
+  export interface Schema$MembershipEndpoint {
+    /**
+     * Optional. Specific information for a GDC Edge Appliance cluster.
+     */
+    applianceCluster?: Schema$ApplianceCluster;
+    /**
+     * Optional. Specific information for a Google Edge cluster.
+     */
+    edgeCluster?: Schema$EdgeCluster;
+    /**
+     * Optional. Specific information for a GKE-on-GCP cluster.
+     */
+    gkeCluster?: Schema$GkeCluster;
+    /**
+     * Output only. Whether the lifecycle of this membership is managed by a google cluster platform service.
+     */
+    googleManaged?: boolean | null;
+    /**
+     * Output only. Useful Kubernetes-specific metadata.
+     */
+    kubernetesMetadata?: Schema$KubernetesMetadata;
+    /**
+     * Optional. The in-cluster Kubernetes Resources that should be applied for a correctly registered cluster, in the steady state. These resources: * Ensure that the cluster is exclusively registered to one and only one Hub Membership. * Propagate Workload Pool Information available in the Membership Authority field. * Ensure proper initial configuration of default Hub Features.
+     */
+    kubernetesResource?: Schema$KubernetesResource;
+    /**
+     * Optional. Specific information for a GKE Multi-Cloud cluster.
+     */
+    multiCloudCluster?: Schema$MultiCloudCluster;
+    /**
+     * Optional. Specific information for a GKE On-Prem cluster. An onprem user-cluster who has no resourceLink is not allowed to use this field, it should have a nil "type" instead.
+     */
+    onPremCluster?: Schema$OnPremCluster;
   }
   /**
    * MembershipFeatureSpec contains configuration information for a single Membership. NOTE: Please use snake case in your feature name.
@@ -1563,6 +1798,15 @@ export namespace gkehub_v1beta {
     version?: string | null;
   }
   /**
+   * MembershipState describes the state of a Membership resource.
+   */
+  export interface Schema$MembershipState {
+    /**
+     * Output only. The current state of the Membership resource.
+     */
+    code?: string | null;
+  }
+  /**
    * **Metering**: Per-Membership Feature State.
    */
   export interface Schema$MeteringMembershipState {
@@ -1574,6 +1818,44 @@ export namespace gkehub_v1beta {
      * The vCPUs capacity in the cluster according to the most recent measurement (1/1000 precision).
      */
     preciseLastMeasuredClusterVcpuCapacity?: number | null;
+  }
+  /**
+   * This field informs Fleet-based applications/services/UIs with the necessary information for where each underlying Cluster reports its metrics.
+   */
+  export interface Schema$MonitoringConfig {
+    /**
+     * Immutable. Cluster name used to report metrics. For Anthos on VMWare/Baremetal, it would be in format `memberClusters/cluster_name`; And for Anthos on MultiCloud, it would be in format `{azureClusters, awsClusters\}/cluster_name`.
+     */
+    cluster?: string | null;
+    /**
+     * Immutable. Cluster hash, this is a unique string generated by google code, which does not contain any PII, which we can use to reference the cluster. This is expected to be created by the monitoring stack and persisted into the Cluster object as well as to GKE-Hub.
+     */
+    clusterHash?: string | null;
+    /**
+     * Kubernetes system metrics, if available, are written to this prefix. This defaults to kubernetes.io for GKE, and kubernetes.io/anthos for Anthos eventually. Noted: Anthos MultiCloud will have kubernetes.io prefix today but will migration to be under kubernetes.io/anthos
+     */
+    kubernetesMetricsPrefix?: string | null;
+    /**
+     * Immutable. Location used to report Metrics
+     */
+    location?: string | null;
+    /**
+     * Immutable. Project used to report Metrics
+     */
+    projectId?: string | null;
+  }
+  /**
+   * MultiCloudCluster contains information specific to GKE Multi-Cloud clusters.
+   */
+  export interface Schema$MultiCloudCluster {
+    /**
+     * Output only. If cluster_missing is set then it denotes that API(gkemulticloud.googleapis.com) resource for this GKE Multi-Cloud cluster no longer exists.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. Self-link of the Google Cloud resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
+     */
+    resourceLink?: string | null;
   }
   /**
    * **Multi-cluster Ingress**: The configuration for the MultiClusterIngress feature.
@@ -1637,6 +1919,27 @@ export namespace gkehub_v1beta {
      * Output only. The current state of the Namespace resource.
      */
     code?: string | null;
+  }
+  /**
+   * OnPremCluster contains information specific to GKE On-Prem clusters.
+   */
+  export interface Schema$OnPremCluster {
+    /**
+     * Immutable. Whether the cluster is an admin cluster.
+     */
+    adminCluster?: boolean | null;
+    /**
+     * Output only. If cluster_missing is set then it denotes that API(gkeonprem.googleapis.com) resource for this GKE On-Prem cluster no longer exists.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. The on prem cluster's type.
+     */
+    clusterType?: string | null;
+    /**
+     * Immutable. Self-link of the Google Cloud resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
+     */
+    resourceLink?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2004,6 +2307,36 @@ export namespace gkehub_v1beta {
     code?: string | null;
   }
   /**
+   * ResourceManifest represents a single Kubernetes resource to be applied to the cluster.
+   */
+  export interface Schema$ResourceManifest {
+    /**
+     * Whether the resource provided in the manifest is `cluster_scoped`. If unset, the manifest is assumed to be namespace scoped. This field is used for REST mapping when applying the resource in a cluster.
+     */
+    clusterScoped?: boolean | null;
+    /**
+     * YAML manifest of the resource.
+     */
+    manifest?: string | null;
+  }
+  /**
+   * ResourceOptions represent options for Kubernetes resource generation.
+   */
+  export interface Schema$ResourceOptions {
+    /**
+     * Optional. The Connect agent version to use for connect_resources. Defaults to the latest GKE Connect version. The version must be a currently supported version, obsolete versions will be rejected.
+     */
+    connectVersion?: string | null;
+    /**
+     * Optional. Major version of the Kubernetes cluster. This is only used to determine which version to use for the CustomResourceDefinition resources, `apiextensions/v1beta1` or`apiextensions/v1`.
+     */
+    k8sVersion?: string | null;
+    /**
+     * Optional. Use `apiextensions/v1beta1` instead of `apiextensions/v1` for CustomResourceDefinition resources. This option should be set for clusters with Kubernetes apiserver versions <1.16.
+     */
+    v1beta1Crd?: boolean | null;
+  }
+  /**
    * Role is the type for Kubernetes roles
    */
   export interface Schema$Role {
@@ -2016,10 +2349,6 @@ export namespace gkehub_v1beta {
    * Scope represents a Scope in a Fleet.
    */
   export interface Schema$Scope {
-    /**
-     * If true, all Memberships in the Fleet bind to this Scope.
-     */
-    allMemberships?: boolean | null;
     /**
      * Output only. When the scope was created.
      */
@@ -2183,6 +2512,19 @@ export namespace gkehub_v1beta {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * TypeMeta is the type information needed for content unmarshalling of Kubernetes resources in the manifest.
+   */
+  export interface Schema$TypeMeta {
+    /**
+     * APIVersion of the resource (e.g. v1).
+     */
+    apiVersion?: string | null;
+    /**
+     * Kind of the resource (e.g. Deployment).
+     */
+    kind?: string | null;
   }
 
   export class Resource$Organizations {
@@ -3891,6 +4233,358 @@ export namespace gkehub_v1beta {
     }
 
     /**
+     * Creates a new Membership. **This is currently only supported for GKE clusters on Google Cloud**. To register other clusters, follow the instructions at https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Memberships$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Memberships$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Memberships$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Memberships$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Memberships$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Memberships$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/memberships').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Removes a Membership. **This is currently only supported for GKE clusters on Google Cloud**. To unregister other clusters, follow the instructions at https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Memberships$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Memberships$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Memberships$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Memberships$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Memberships$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Memberships$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Generates the manifest for deployment of the GKE connect agent. **This method is used internally by Google-provided libraries.** Most clients should not need to call this method directly.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateConnectManifest(
+      params: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateConnectManifest(
+      params?: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateConnectManifestResponse>;
+    generateConnectManifest(
+      params: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateConnectManifest(
+      params: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateConnectManifestResponse>,
+      callback: BodyResponseCallback<Schema$GenerateConnectManifestResponse>
+    ): void;
+    generateConnectManifest(
+      params: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
+      callback: BodyResponseCallback<Schema$GenerateConnectManifestResponse>
+    ): void;
+    generateConnectManifest(
+      callback: BodyResponseCallback<Schema$GenerateConnectManifestResponse>
+    ): void;
+    generateConnectManifest(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest
+        | BodyResponseCallback<Schema$GenerateConnectManifestResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateConnectManifestResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateConnectManifestResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateConnectManifestResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:generateConnectManifest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateConnectManifestResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateConnectManifestResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets the details of a Membership.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Memberships$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Memberships$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Membership>;
+    get(
+      params: Params$Resource$Projects$Locations$Memberships$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Memberships$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Membership>,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Memberships$Get,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Membership>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Get
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Membership> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Memberships$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Membership>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Membership>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      *
      * @param params - Parameters for request
@@ -3975,6 +4669,182 @@ export namespace gkehub_v1beta {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists Memberships in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Memberships$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Memberships$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMembershipsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Memberships$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Memberships$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$ListMembershipsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Memberships$List,
+      callback: BodyResponseCallback<Schema$ListMembershipsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$List
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMembershipsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Memberships$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/memberships').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing Membership.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Memberships$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Memberships$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Memberships$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Memberships$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Memberships$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Memberships$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -4162,6 +5032,79 @@ export namespace gkehub_v1beta {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Memberships$Create
+    extends StandardParameters {
+    /**
+     * Required. Client chosen ID for the membership. `membership_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
+     */
+    membershipId?: string;
+    /**
+     * Required. The parent (project and location) where the Memberships will be created. Specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Membership;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, any subresource from this Membership will also be deleted. Otherwise, the request will only work if the Membership has no subresource.
+     */
+    force?: boolean;
+    /**
+     * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest
+    extends StandardParameters {
+    /**
+     * Optional. The image pull secret content for the registry, if not public.
+     */
+    imagePullSecretContent?: string;
+    /**
+     * Optional. If true, generate the resources for upgrade only. Some resources generated only for installation (e.g. secrets) will be excluded.
+     */
+    isUpgrade?: boolean;
+    /**
+     * Required. The Membership resource name the Agent will associate with, in the format `projects/x/locations/x/memberships/x`.
+     */
+    name?: string;
+    /**
+     * Optional. Namespace for GKE Connect agent resources. Defaults to `gke-connect`. The Connect Agent is authorized automatically when run in the default namespace. Otherwise, explicit authorization must be granted with an additional IAM binding.
+     */
+    namespace?: string;
+    /**
+     * Optional. URI of a proxy if connectivity from the agent to gkeconnect.googleapis.com requires the use of a proxy. Format must be in the form `http(s)://{proxy_address\}`, depending on the HTTP/HTTPS protocol supported by the proxy. This will direct the connect agent's outbound traffic through a HTTP(S) proxy.
+     */
+    proxy?: string;
+    /**
+     * Optional. The registry to fetch the connect agent image from. Defaults to gcr.io/gkeconnect.
+     */
+    registry?: string;
+    /**
+     * Optional. The Connect agent version to use. Defaults to the most current version.
+     */
+    version?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Get
+    extends StandardParameters {
+    /**
+     * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Memberships$Getiampolicy
     extends StandardParameters {
     /**
@@ -4172,6 +5115,49 @@ export namespace gkehub_v1beta {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$List
+    extends StandardParameters {
+    /**
+     * Optional. Lists Memberships that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Examples: - Name is `bar` in project `foo-proj` and location `global`: name = "projects/foo-proj/locations/global/membership/bar" - Memberships that have a label called `foo`: labels.foo:* - Memberships that have a label called `foo` whose value is `bar`: labels.foo = bar - Memberships in the CREATING state: state = CREATING
+     */
+    filter?: string;
+    /**
+     * Optional. One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
+     */
+    orderBy?: string;
+    /**
+     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token returned by previous call to `ListMemberships` which specifies the position in the list from where to continue listing the resources.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent (project and location) where the Memberships will be listed. Specified in the format `projects/x/locations/x`. `projects/x/locations/-` list memberships in all the regions.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Patch
+    extends StandardParameters {
+    /**
+     * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Mask of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Membership;
   }
   export interface Params$Resource$Projects$Locations$Memberships$Setiampolicy
     extends StandardParameters {

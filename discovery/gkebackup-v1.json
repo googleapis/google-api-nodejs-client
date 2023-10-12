@@ -109,31 +109,6 @@
       "resources": {
         "locations": {
           "methods": {
-            "deleteOperations": {
-              "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
-              "httpMethod": "DELETE",
-              "id": "gkebackup.projects.locations.deleteOperations",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "The name of the operation resource to be deleted.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/locations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+name}/operations",
-              "response": {
-                "$ref": "Empty"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
             "get": {
               "description": "Gets information about a location.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
@@ -921,6 +896,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "gkebackup.projects.locations.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
@@ -1688,7 +1688,7 @@
       }
     }
   },
-  "revision": "20230816",
+  "revision": "20230927",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2580,7 +2580,7 @@
           "type": "string"
         },
         "namespaces": {
-          "description": "Optional. (Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation). To mix cluster-scoped and namespaced resources in the same rule, use an empty string (\"\") as one of the target namespaces.",
+          "description": "Optional. (Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation).",
           "items": {
             "type": "string"
           },

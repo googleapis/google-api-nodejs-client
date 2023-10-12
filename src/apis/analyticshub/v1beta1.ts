@@ -411,17 +411,13 @@ export namespace analyticshub_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
-   * Represents the metadata of the long-running operation.
+   * Represents the metadata of a long-running operation in Analytics Hub.
    */
   export interface Schema$OperationMetadata {
     /**
      * Output only. API version used to start the operation.
      */
     apiVersion?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    cancelRequested?: boolean | null;
     /**
      * Output only. The time the operation was created.
      */
@@ -431,9 +427,13 @@ export namespace analyticshub_v1beta1 {
      */
     endTime?: string | null;
     /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
      * Output only. Human-readable status of the operation, if any.
      */
-    statusDetail?: string | null;
+    statusMessage?: string | null;
     /**
      * Output only. Server-defined resource path for the target of the operation.
      */

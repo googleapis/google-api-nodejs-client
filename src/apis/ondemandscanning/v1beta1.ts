@@ -1639,6 +1639,10 @@ export namespace ondemandscanning_v1beta1 {
      */
     effectiveSeverity?: string | null;
     /**
+     * Occurrence-specific extra details about the vulnerability.
+     */
+    extraDetails?: string | null;
+    /**
      * Output only. Whether at least one of the affected packages has a fix available.
      */
     fixAvailable?: boolean | null;

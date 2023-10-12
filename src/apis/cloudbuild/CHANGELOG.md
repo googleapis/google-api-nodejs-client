@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v1.2.0...cloudbuild-v2.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **cloudbuild:** update the API ([2413746](https://github.com/googleapis/google-api-nodejs-client/commit/2413746386f9f709dd330804f9b2ac5521e59696))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **cloudbuild:** update the API ([8d999f5](https://github.com/googleapis/google-api-nodejs-client/commit/8d999f52ba7b0892be953d7ffa41d0ea43f4fdbc))
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v1.1.0...cloudbuild-v1.2.0) (2023-08-25)
 
 

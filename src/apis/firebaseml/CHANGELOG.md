@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v1.0.5...firebaseml-v1.0.6) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **firebaseml:** update the API ([048c48e](https://github.com/googleapis/google-api-nodejs-client/commit/048c48e88b7f9a8c0a36c488d37f55d233b420a4))
+
 ## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v1.0.4...firebaseml-v1.0.5) (2023-08-25)
 
 

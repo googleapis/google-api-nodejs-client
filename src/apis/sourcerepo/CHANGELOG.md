@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v1.0.4...sourcerepo-v1.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **sourcerepo:** update the API ([f803061](https://github.com/googleapis/google-api-nodejs-client/commit/f803061d7932d9df9db91cf02c909e6b5a5c4db2))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v1.0.3...sourcerepo-v1.0.4) (2023-08-25)
 
 

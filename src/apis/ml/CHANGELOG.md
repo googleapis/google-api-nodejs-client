@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.0.8](https://github.com/googleapis/google-api-nodejs-client/compare/ml-v3.0.7...ml-v3.0.8) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **ml:** update the API ([1253597](https://github.com/googleapis/google-api-nodejs-client/commit/12535979be7d7992b885d7eca39e9d74f6febd82))
+* **ml:** update the API ([9e1be4a](https://github.com/googleapis/google-api-nodejs-client/commit/9e1be4aed41436dbff651e7b85d0a8bf85ae62ee))
+
 ## [3.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/ml-v3.0.6...ml-v3.0.7) (2023-08-25)
 
 

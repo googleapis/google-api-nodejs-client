@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v4.0.2...reseller-v4.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **reseller:** update the API ([e7ec5d3](https://github.com/googleapis/google-api-nodejs-client/commit/e7ec5d33b9533c85a41df347603dec628bfe99ae))
+
 ## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v4.0.1...reseller-v4.0.2) (2023-08-25)
 
 

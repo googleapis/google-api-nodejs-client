@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v1.1.1...clouddeploy-v1.2.0) (2023-10-11)
+
+
+### Features
+
+* **clouddeploy:** update the API ([a732b2c](https://github.com/googleapis/google-api-nodejs-client/commit/a732b2ca548103c2d0a137dc66998e8ba9f46293))
+* **clouddeploy:** update the API ([60775aa](https://github.com/googleapis/google-api-nodejs-client/commit/60775aa992b1ebecc5767d872b611ba85b0627b2))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v1.1.0...clouddeploy-v1.1.1) (2023-08-25)
 
 

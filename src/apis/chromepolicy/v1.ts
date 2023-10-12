@@ -126,24 +126,6 @@ export namespace chromepolicy_v1 {
     }
   }
 
-  export interface Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle {
-    /**
-     * In the event that this policy was deprecated in favor of another policy, the fully qualified namespace(s) of the new policies as they will show in PolicyAPI.
-     */
-    deprecatedInFavorOf?: string[] | null;
-    /**
-     * Description about current life cycle.
-     */
-    description?: string | null;
-    /**
-     * End supporting date for current policy.
-     */
-    endSupport?: Schema$GoogleTypeDate;
-    /**
-     * Indicate current life cycle stage of the policy API.
-     */
-    policyApiLifecycleStage?: string | null;
-  }
   /**
    * Additional key names that will be used to identify the target of the policy value.
    */
@@ -425,6 +407,31 @@ export namespace chromepolicy_v1 {
     minimum?: string | null;
   }
   /**
+   * Lifecycle information.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1PolicyApiLifecycle {
+    /**
+     * In the event that this policy was deprecated in favor of another policy, the fully qualified namespace(s) of the new policies as they will show in PolicyAPI. Could only be set if policy_api_lifecycle_stage is API_DEPRECATED.
+     */
+    deprecatedInFavorOf?: string[] | null;
+    /**
+     * Description about current life cycle.
+     */
+    description?: string | null;
+    /**
+     * End supporting date for current policy. Attempting to modify a policy after its end support date will result in a Bad Request (400 error). Could only be set if policy_api_lifecycle_stage is API_DEPRECATED.
+     */
+    endSupport?: Schema$GoogleTypeDate;
+    /**
+     * Indicates current life cycle stage of the policy API.
+     */
+    policyApiLifecycleStage?: string | null;
+    /**
+     * Corresponding to deprecated_in_favor_of, the fully qualified namespace(s) of the old policies that will be deprecated because of introduction of this policy. This field should not be manually set but will be set and exposed through PolicyAPI automatically.
+     */
+    scheduledToDeprecatePolicies?: string[] | null;
+  }
+  /**
    * Error information for a modification request of a specific policy on a specific target.
    */
   export interface Schema$GoogleChromePolicyVersionsV1PolicyModificationError {
@@ -502,7 +509,7 @@ export namespace chromepolicy_v1 {
     /**
      * Output only. Current lifecycle information.
      */
-    policyApiLifecycle?: Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle;
+    policyApiLifecycle?: Schema$GoogleChromePolicyVersionsV1PolicyApiLifecycle;
     /**
      * Output only. Description about the policy schema for user consumption.
      */
@@ -878,9 +885,9 @@ export namespace chromepolicy_v1 {
    */
   export interface Schema$Proto2FileDescriptorProto {
     /**
-     * The edition of the proto file.
+     * BEGIN GOOGLE-INTERNAL TODO(b/297898292) Deprecate and remove this field in favor of enums. END GOOGLE-INTERNAL
      */
-    editionEnum?: string | null;
+    editionDeprecated?: string | null;
     enumType?: Schema$Proto2EnumDescriptorProto[];
     /**
      * All top-level definitions in this file.

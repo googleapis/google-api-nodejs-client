@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20230227",
+  "revision": "20230929",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -911,6 +911,10 @@
           "description": "The ID of the header used only for the first page. If not set then a unique header for the first page does not exist. The value of use_first_page_header_footer determines whether to use the default_header_id or this value for the header on the first page. If not set, there's no first page header. This property is read-only.",
           "type": "string"
         },
+        "flipPageOrientation": {
+          "description": "Optional. Indicates whether to flip the dimensions of the page_size, which allows changing the page orientation between portrait and landscape.",
+          "type": "boolean"
+        },
         "marginBottom": {
           "$ref": "Dimension",
           "description": "The bottom page margin. Updating the bottom page margin on the document style clears the bottom page margin on all section styles."
@@ -989,6 +993,10 @@
         },
         "firstPageHeaderIdSuggested": {
           "description": "Indicates if there was a suggested change to first_page_header_id.",
+          "type": "boolean"
+        },
+        "flipPageOrientationSuggested": {
+          "description": "Optional. Indicates if there was a suggested change to flip_page_orientation.",
           "type": "boolean"
         },
         "marginBottomSuggested": {
@@ -3191,6 +3199,10 @@
         "firstPageHeaderId": {
           "description": "The ID of the header used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the header on the first page of the section. If it's false, the header on the first page of the section uses the default_header_id. If unset, the value inherits from the previous SectionBreak's SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle's first_page_header_id. This property is read-only.",
           "type": "string"
+        },
+        "flipPageOrientation": {
+          "description": "Optional. Indicates whether to flip the dimensions of DocumentStyle's page_size for this section, which allows changing the page orientation between portrait and landscape. If unset, the value inherits from DocumentStyle's flip_page_orientation. When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.",
+          "type": "boolean"
         },
         "marginBottom": {
           "$ref": "Dimension",

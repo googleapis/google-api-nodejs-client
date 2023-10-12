@@ -3067,7 +3067,7 @@ export namespace documentai_v1beta3 {
     updateTime?: string | null;
   }
   /**
-   * A singleton resource under a Processor which configures a collection of documents. Next Id: 8.
+   * A singleton resource under a Processor which configures a collection of documents.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**
@@ -3384,6 +3384,31 @@ export namespace documentai_v1beta3 {
      * Required. The id of the document.
      */
     docId?: string | null;
+  }
+  /**
+   * Metadata about a document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentMetadata {
+    /**
+     * Type of the dataset split to which the document belongs.
+     */
+    datasetType?: string | null;
+    /**
+     * The display name of the document.
+     */
+    displayName?: string | null;
+    /**
+     * Document identifier.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiV1beta3DocumentId;
+    /**
+     * Labelling state of the document.
+     */
+    labelingState?: string | null;
+    /**
+     * Number of pages in the document.
+     */
+    pageCount?: number | null;
   }
   /**
    * Config that controls the output of documents. All documents will be written as a JSON file.
@@ -4657,6 +4682,42 @@ export namespace documentai_v1beta3 {
      */
     processorVersion?: string | null;
   }
+  export interface Schema$GoogleCloudDocumentaiV1beta3ListDocumentsRequest {
+    /**
+     * Optional. Query to filter the documents based on https://google.aip.dev/160. ## Currently support query strings are: `SplitType=DATASET_SPLIT_TEST|DATASET_SPLIT_TRAIN|DATASET_SPLIT_UNASSIGNED` - `LabelingState=DOCUMENT_LABELED|DOCUMENT_UNLABELED|DOCUMENT_AUTO_LABELED` - `DisplayName=\"file_name.pdf\"` - `EntityType=abc/def` - `TagName=\"auto-labeling-running\"|\"sampled\"` Note: - Only `AND`, `=` and `!=` are supported. e.g. `DisplayName=file_name AND EntityType!=abc` IS supported. - Wildcard `*` is supported only in `DisplayName` filter - No duplicate filter keys are allowed, e.g. `EntityType=a AND EntityType=b` is NOT supported. - String match is case sensitive (for filter `DisplayName` & `EntityType`).
+     */
+    filter?: string | null;
+    /**
+     * The maximum number of documents to return. The service may return fewer than this value. If unspecified, at most 20 documents will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number | null;
+    /**
+     * A page token, received from a previous `ListDocuments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDocuments` must match the call that provided the page token.
+     */
+    pageToken?: string | null;
+    /**
+     * Optional. Controls if the ListDocuments request requires a total size of matched documents. See ListDocumentsResponse.total_size. Enabling this flag may adversely impact performance. Defaults to false.
+     */
+    returnTotalSize?: boolean | null;
+    /**
+     * Optional. Number of results to skip beginning from the `page_token` if provided. https://google.aip.dev/158#skipping-results. It must be a non-negative integer. Negative values wil be rejected. Note that this is not the number of pages to skip. If this value causes the cursor to move past the end of results, `ListDocumentsResponse.document_metadata` and `ListDocumentsResponse.next_page_token` will be empty.
+     */
+    skip?: number | null;
+  }
+  export interface Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse {
+    /**
+     * Document metadata corresponding to the listed documents.
+     */
+    documentMetadata?: Schema$GoogleCloudDocumentaiV1beta3DocumentMetadata[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Total count of documents queried.
+     */
+    totalSize?: number | null;
+  }
   /**
    * The response from `ListEvaluations`.
    */
@@ -4735,7 +4796,7 @@ export namespace documentai_v1beta3 {
      */
     computeStyleInfo?: boolean | null;
     /**
-     * Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0+ processors.
+     * Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0 (and later) processors.
      */
     disableCharacterBoxesDetection?: boolean | null;
     /**
@@ -4781,7 +4842,7 @@ export namespace documentai_v1beta3 {
      */
     enableMathOcr?: boolean | null;
     /**
-     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0+ processors.
+     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0 (and later) processors.
      */
     enableSelectionMarkDetection?: boolean | null;
   }
@@ -4794,7 +4855,7 @@ export namespace documentai_v1beta3 {
      */
     fromEnd?: number | null;
     /**
-     * Only process certain pages from the start, process all if the document has less pages.
+     * Only process certain pages from the start. Process all if the document has fewer pages.
      */
     fromStart?: number | null;
     /**
@@ -7910,6 +7971,103 @@ export namespace documentai_v1beta3 {
     }
 
     /**
+     * Returns a list of documents present in the dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDocuments(
+      params?: Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>;
+    listDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>
+    ): void;
+    listDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>
+    ): void;
+    listDocuments(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>
+    ): void;
+    listDocuments(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+dataset}:listDocuments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataset'],
+        pathParams: ['dataset'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates a `DatasetSchema`.
      *
      * @param params - Parameters for request
@@ -8081,6 +8239,18 @@ export namespace documentai_v1beta3 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the dataset to be listed. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
+     */
+    dataset?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3ListDocumentsRequest;
   }
   export interface Params$Resource$Projects$Locations$Processors$Dataset$Updatedatasetschema
     extends StandardParameters {

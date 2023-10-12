@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/games",
-  "version": "5.4.1",
+  "version": "5.5.0",
   "description": "games",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -3750,7 +3750,7 @@
             "assignedLocations": {
               "methods": {
                 "bulkEdit": {
-                  "description": "Bulk edits multiple assignments between locations and a single location list. The operation will delete the assigned locations provided in BulkEditAssignedLocationsRequest.deleted_assigned_locations and then create the assigned locations provided in BulkEditAssignedLocationsRequest.created_assigned_locations.",
+                  "description": "Bulk edits multiple assignments between locations and a single location list. The operation will delete the assigned locations provided in deletedAssignedLocations and then create the assigned locations provided in createdAssignedLocations.",
                   "flatPath": "v2/advertisers/{advertiserId}/locationLists/{locationListsId}/assignedLocations:bulkEdit",
                   "httpMethod": "POST",
                   "id": "displayvideo.advertisers.locationLists.assignedLocations.bulkEdit",
@@ -5236,7 +5236,7 @@
         "youtubeAdGroups": {
           "methods": {
             "bulkListAdGroupAssignedTargetingOptions": {
-              "description": "Lists assigned targeting options for multiple YouTube ad groups across targeting types. Inherieted assigned targeting options are not included.",
+              "description": "Lists assigned targeting options for multiple YouTube ad groups across targeting types. Inherited assigned targeting options are not included.",
               "flatPath": "v2/advertisers/{advertisersId}/youtubeAdGroups:bulkListAdGroupAssignedTargetingOptions",
               "httpMethod": "GET",
               "id": "displayvideo.advertisers.youtubeAdGroups.bulkListAdGroupAssignedTargetingOptions",
@@ -5258,7 +5258,7 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Optional. Field by which to sort the list. Acceptable values are: * `youtubeAdGroupId` (acceptable in v2) * `adGroupId` (acceptable in v3) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `targetingType desc`.",
+                  "description": "Optional. Field by which to sort the list. Acceptable values are: * `adGroupId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `targetingType desc`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -9172,7 +9172,7 @@
       }
     }
   },
-  "revision": "20230921",
+  "revision": "20231009",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -9377,7 +9377,7 @@
         },
         "billingConfig": {
           "$ref": "AdvertiserBillingConfig",
-          "description": "Billing related settings of the advertiser."
+          "description": "Required. Billing related settings of the advertiser."
         },
         "creativeConfig": {
           "$ref": "AdvertiserCreativeConfig",
@@ -9466,7 +9466,7 @@
       "id": "AdvertiserBillingConfig",
       "properties": {
         "billingProfileId": {
-          "description": "The ID of a billing profile assigned to the advertiser. This field will default to the default billing profile ID of the advertiser's parent partner if a value is not provided.",
+          "description": "The ID of a billing profile assigned to the advertiser.",
           "format": "int64",
           "type": "string"
         }
@@ -9559,7 +9559,7 @@
       "id": "AgeRangeAssignedTargetingOptionDetails",
       "properties": {
         "ageRange": {
-          "description": "The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1. Required in v2.",
+          "description": "Required. The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age.",
           "enum": [
             "AGE_RANGE_UNSPECIFIED",
             "AGE_RANGE_18_24",
@@ -9831,7 +9831,7 @@
       "type": "object"
     },
     "AssignedLocation": {
-      "description": "An assignment between a location list and a relevant targeting option. Currently, geo region targeting options are the only supported option for assignment.",
+      "description": "An assignment between a location list and a relevant targeting option.",
       "id": "AssignedLocation",
       "properties": {
         "assignedLocationId": {
@@ -9846,7 +9846,7 @@
           "type": "string"
         },
         "targetingOptionId": {
-          "description": "Required. The ID of the targeting option assigned to the location list. Assigned locations can only be modified in TARGETING_LOCATION_TYPE_REGIONAL location lists. When creating or deleting assigned locations, this value must be of type TARGETING_TYPE_GEO_REGION.",
+          "description": "Required. The ID of the targeting option assigned to the location list.",
           "type": "string"
         }
       },
@@ -10306,7 +10306,7 @@
       "id": "AudioContentTypeAssignedTargetingOptionDetails",
       "properties": {
         "audioContentType": {
-          "description": "The audio content type. Output only in v1. Required in v2.",
+          "description": "Required. The audio content type.",
           "enum": [
             "AUDIO_CONTENT_TYPE_UNSPECIFIED",
             "AUDIO_CONTENT_TYPE_UNKNOWN",
@@ -10630,14 +10630,14 @@
       "id": "BulkEditAssignedLocationsRequest",
       "properties": {
         "createdAssignedLocations": {
-          "description": "The assigned locations to create in bulk, specified as a list of AssignedLocations.",
+          "description": "The assigned locations to create in bulk, specified as a list of AssignedLocation resources.",
           "items": {
             "$ref": "AssignedLocation"
           },
           "type": "array"
         },
         "deletedAssignedLocations": {
-          "description": "The IDs of the assigned locations to delete in bulk, specified as a list of assigned_location_ids.",
+          "description": "The IDs of the assigned locations to delete in bulk, specified as a list of assignedLocationId values.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -10648,7 +10648,6 @@
       "type": "object"
     },
     "BulkEditAssignedLocationsResponse": {
-      "description": "Response message for AssignedLocationService.BulkEditAssignedLocations.",
       "id": "BulkEditAssignedLocationsResponse",
       "properties": {
         "assignedLocations": {
@@ -10873,7 +10872,7 @@
       "id": "BulkListAdGroupAssignedTargetingOptionsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token identifying the next page of results. This value should be specified as the pageToken in a subsequent call to `BulkListAdGroupAssignedTargetingOptions` to fetch the next page of results. This token will be absent if there are no more youtube_ad_group_assigned_targeting_options or ad_group_assigned_targeting_options to return.",
+          "description": "A token identifying the next page of results. This value should be specified as the pageToken in a subsequent call to `BulkListAdGroupAssignedTargetingOptions` to fetch the next page of results. This token will be absent if there are no more AdGroupAssignedTargetingOption resources to return.",
           "type": "string"
         },
         "youtubeAdGroupAssignedTargetingOptions": {
@@ -11802,7 +11801,7 @@
           "type": "string"
         },
         "contentInstreamPosition": {
-          "description": "The content instream position for video or audio ads. Output only in v1. Required in v2.",
+          "description": "Required. The content instream position for video or audio ads.",
           "enum": [
             "CONTENT_INSTREAM_POSITION_UNSPECIFIED",
             "CONTENT_INSTREAM_POSITION_PRE_ROLL",
@@ -11870,7 +11869,7 @@
           "type": "string"
         },
         "contentOutstreamPosition": {
-          "description": "The content outstream position. Output only in v1. Required in v2.",
+          "description": "Required. The content outstream position.",
           "enum": [
             "CONTENT_OUTSTREAM_POSITION_UNSPECIFIED",
             "CONTENT_OUTSTREAM_POSITION_UNKNOWN",
@@ -12789,7 +12788,7 @@
           "type": "string"
         },
         "errors": {
-          "description": "Output only. Error details of a rejected custom bidding script. This field will only be populated when Script.state is REJECTED.",
+          "description": "Output only. Error details of a rejected custom bidding script. This field will only be populated when state is REJECTED.",
           "items": {
             "$ref": "ScriptError"
           },
@@ -13171,7 +13170,7 @@
       "id": "DeviceTypeAssignedTargetingOptionDetails",
       "properties": {
         "deviceType": {
-          "description": "The display name of the device type. Output only in v1. Required in v2.",
+          "description": "Required. The display name of the device type.",
           "enum": [
             "DEVICE_TYPE_UNSPECIFIED",
             "DEVICE_TYPE_COMPUTER",
@@ -13181,10 +13180,10 @@
           ],
           "enumDescriptions": [
             "Default value when device type is not specified in this version. This enum is a placeholder for default value and does not represent a real device type option.",
-            "The device type is computer.",
-            "The device type is connected TV.",
-            "The device type is smart phone..",
-            "The device type is tablet."
+            "Computer.",
+            "Connected TV.",
+            "Smart phone.",
+            "Tablet."
           ],
           "type": "string"
         },
@@ -13212,10 +13211,10 @@
           ],
           "enumDescriptions": [
             "Default value when device type is not specified in this version. This enum is a placeholder for default value and does not represent a real device type option.",
-            "The device type is computer.",
-            "The device type is connected TV.",
-            "The device type is smart phone..",
-            "The device type is tablet."
+            "Computer.",
+            "Connected TV.",
+            "Smart phone.",
+            "Tablet."
           ],
           "readOnly": true,
           "type": "string"
@@ -13815,7 +13814,7 @@
       "id": "EnvironmentAssignedTargetingOptionDetails",
       "properties": {
         "environment": {
-          "description": "The serving environment. Output only in v1. Required in v2.",
+          "description": "Required. The serving environment.",
           "enum": [
             "ENVIRONMENT_UNSPECIFIED",
             "ENVIRONMENT_WEB_OPTIMIZED",
@@ -14968,7 +14967,7 @@
       "id": "GenderAssignedTargetingOptionDetails",
       "properties": {
         "gender": {
-          "description": "The gender of the audience. Output only in v1. Required in v2.",
+          "description": "Required. The gender of the audience.",
           "enum": [
             "GENDER_UNSPECIFIED",
             "GENDER_MALE",
@@ -15070,8 +15069,8 @@
             "Connected TV default YouTube video ads. Only include in-stream ad-format. Line items of this type and their targeting cannot be created or updated using the API.",
             "The goal of this line item type is to show the YouTube ads target number of times to the same person in a certain period of time. Line items of this type and their targeting cannot be created or updated using the API.",
             "YouTube video ads that aim to get more views with a variety of ad formats. Line items of this type and their targeting cannot be created or updated using the API.",
-            "Digital display out of home. Line items of this type and their targeting cannot be created or updated using the API.",
-            "Digital video out of home. Line items of this type and their targeting cannot be created or updated using the API."
+            "Display ads served on digital-out-of-home inventory. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Video ads served on digital-out-of-home inventory. Line items of this type and their targeting cannot be created or updated using the API."
           ],
           "type": "string"
         },
@@ -15633,7 +15632,7 @@
       "id": "HouseholdIncomeAssignedTargetingOptionDetails",
       "properties": {
         "householdIncome": {
-          "description": "The household income of the audience. Output only in v1. Required in v2.",
+          "description": "Required. The household income of the audience.",
           "enum": [
             "HOUSEHOLD_INCOME_UNSPECIFIED",
             "HOUSEHOLD_INCOME_UNKNOWN",
@@ -15945,9 +15944,9 @@
           ],
           "enumDescriptions": [
             "Insertion order automation option is not specified or is unknown in this version.",
-            "Automatic budget allocation. Allow the system to automatically shift budget to owning line items to optimize performance defined by performance_goal. No automation on bid settings.",
+            "Automatic budget allocation. Allow the system to automatically shift budget to owning line items to optimize performance defined by kpi. No automation on bid settings.",
             "No automation of bid or budget on insertion order level. Bid and budget must be manually configured at the line item level.",
-            "Allow the system to automatically adjust bids and shift budget to owning line items to optimize performance defined by performance_goal."
+            "Allow the system to automatically adjust bids and shift budget to owning line items to optimize performance defined by kpi."
           ],
           "type": "string"
         },
@@ -17016,8 +17015,8 @@
             "Connected TV default YouTube video ads. Only include in-stream ad-format. Line items of this type and their targeting cannot be created or updated using the API.",
             "The goal of this line item type is to show the YouTube ads target number of times to the same person in a certain period of time. Line items of this type and their targeting cannot be created or updated using the API.",
             "YouTube video ads that aim to get more views with a variety of ad formats. Line items of this type and their targeting cannot be created or updated using the API.",
-            "Digital display out of home. Line items of this type and their targeting cannot be created or updated using the API.",
-            "Digital video out of home. Line items of this type and their targeting cannot be created or updated using the API."
+            "Display ads served on digital-out-of-home inventory. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Video ads served on digital-out-of-home inventory. Line items of this type and their targeting cannot be created or updated using the API."
           ],
           "type": "string"
         },
@@ -18116,7 +18115,7 @@
       "id": "NativeContentPositionAssignedTargetingOptionDetails",
       "properties": {
         "contentPosition": {
-          "description": "The content position. Output only in v1. Required in v2.",
+          "description": "Required. The content position.",
           "enum": [
             "NATIVE_CONTENT_POSITION_UNSPECIFIED",
             "NATIVE_CONTENT_POSITION_UNKNOWN",
@@ -18304,7 +18303,7 @@
       "id": "OmidAssignedTargetingOptionDetails",
       "properties": {
         "omid": {
-          "description": "The type of Open Measurement enabled inventory. Output only in v1. Required in v2.",
+          "description": "Required. The type of Open Measurement enabled inventory.",
           "enum": [
             "OMID_UNSPECIFIED",
             "OMID_FOR_MOBILE_DISPLAY_ADS"
@@ -18489,7 +18488,7 @@
           "type": "string"
         },
         "pacingPeriod": {
-          "description": "Required. The time period in which the pacing budget will be spent. When automatic budget allocation is enabled at the insertion order via auto_budget_allocation, this field is output only and defaults to `PACING_PERIOD_FLIGHT`.",
+          "description": "Required. The time period in which the pacing budget will be spent. When automatic budget allocation is enabled at the insertion order via automationType, this field is output only and defaults to `PACING_PERIOD_FLIGHT`.",
           "enum": [
             "PACING_PERIOD_UNSPECIFIED",
             "PACING_PERIOD_DAILY",
@@ -18588,7 +18587,7 @@
       "id": "ParentalStatusAssignedTargetingOptionDetails",
       "properties": {
         "parentalStatus": {
-          "description": "The parental status of the audience. Output only in v1. Required in v2.",
+          "description": "Required. The parental status of the audience.",
           "enum": [
             "PARENTAL_STATUS_UNSPECIFIED",
             "PARENTAL_STATUS_PARENT",
@@ -18882,7 +18881,7 @@
       "type": "object"
     },
     "PerformanceGoal": {
-      "description": "Settings that control the performance goal of a campaign or insertion order.",
+      "description": "Settings that control the performance goal of a campaign.",
       "id": "PerformanceGoal",
       "properties": {
         "performanceGoalAmountMicros": {
@@ -20717,7 +20716,7 @@
       "id": "VideoPlayerSizeAssignedTargetingOptionDetails",
       "properties": {
         "videoPlayerSize": {
-          "description": "The video player size. Output only in v1. Required in v2.",
+          "description": "Required. The video player size.",
           "enum": [
             "VIDEO_PLAYER_SIZE_UNSPECIFIED",
             "VIDEO_PLAYER_SIZE_SMALL",
@@ -20768,7 +20767,7 @@
       "id": "ViewabilityAssignedTargetingOptionDetails",
       "properties": {
         "viewability": {
-          "description": "The predicted viewability percentage. Output only in v1. Required in v2.",
+          "description": "Required. The predicted viewability percentage.",
           "enum": [
             "VIEWABILITY_UNSPECIFIED",
             "VIEWABILITY_10_PERCENT_OR_MORE",
@@ -21020,7 +21019,7 @@
       "type": "object"
     },
     "YoutubeAdGroupAssignedTargetingOption": {
-      "description": "Wrapper object associating an assigned_targeting_option resource and the youtube ad group it is assigned to.",
+      "description": "Wrapper object associating an AssignedTargetingOption resource and the youtube ad group it is assigned to.",
       "id": "YoutubeAdGroupAssignedTargetingOption",
       "properties": {
         "assignedTargetingOption": {
@@ -21040,7 +21039,7 @@
       "id": "YoutubeAndPartnersBiddingStrategy",
       "properties": {
         "adGroupEffectiveTargetCpaSource": {
-          "description": "Output only. Source of the effective targetCpa value for AdGroup.",
+          "description": "Output only. Source of the effective target CPA value for ad group.",
           "enum": [
             "BIDDING_SOURCE_UNSPECIFIED",
             "BIDDING_SOURCE_LINE_ITEM",
@@ -21049,13 +21048,13 @@
           "enumDescriptions": [
             "Bidding source is not specified or unknown.",
             "Bidding value is inherited from the line item.",
-            "Bidding value is defined on the ad group."
+            "Bidding value is defined in the ad group."
           ],
           "readOnly": true,
           "type": "string"
         },
         "adGroupEffectiveTargetCpaValue": {
-          "description": "Output only. The effective targetCpa for AdGroup, in micros of advertiser's currency.",
+          "description": "Output only. The effective target CPA for ad group, in micros of advertiser's currency.",
           "format": "int64",
           "readOnly": true,
           "type": "string"

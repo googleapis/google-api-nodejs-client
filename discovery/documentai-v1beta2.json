@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231006",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -4722,7 +4722,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3Dataset": {
-      "description": "A singleton resource under a Processor which configures a collection of documents. Next Id: 8.",
+      "description": "A singleton resource under a Processor which configures a collection of documents.",
       "id": "GoogleCloudDocumentaiV1beta3Dataset",
       "properties": {
         "documentWarehouseConfig": {

@@ -134,6 +134,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getCmekConfig": {
+              "description": "Gets the CMEK config. Gets the Customer Managed Encryption Key configured with the Cloud Tasks lcoation. By default there is no kms_key configured.",
+              "flatPath": "v2beta3/projects/{projectsId}/locations/{locationsId}/cmekConfig",
+              "httpMethod": "GET",
+              "id": "cloudtasks.projects.locations.getCmekConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The config resource name. For example: projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta3/{+name}",
+              "response": {
+                "$ref": "CmekConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v2beta3/projects/{projectsId}/locations",
@@ -170,6 +195,44 @@
               "path": "v2beta3/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateCmekConfig": {
+              "description": "Creates or Updates a CMEK config. Updates the Customer Managed Encryption Key assotiated with the Cloud Tasks location (Creates if the key does not already exist). All new tasks created in the location will be encrypted at-rest with the KMS-key provided in the config.",
+              "flatPath": "v2beta3/projects/{projectsId}/locations/{locationsId}/cmekConfig",
+              "httpMethod": "PATCH",
+              "id": "cloudtasks.projects.locations.updateCmekConfig",
+              "parameterOrder": [
+                "projectsId",
+                "locationsId"
+              ],
+              "parameters": {
+                "locationsId": {
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "projectsId": {
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "List of fields to be updated in this request.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2beta3/projects/{projectsId}/locations/{locationsId}/cmekConfig",
+              "request": {
+                "$ref": "CmekConfig"
+              },
+              "response": {
+                "$ref": "CmekConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -732,7 +795,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20230927",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpQueue": {
@@ -886,6 +949,22 @@
         "task": {
           "$ref": "Task",
           "description": "The created task."
+        }
+      },
+      "type": "object"
+    },
+    "CmekConfig": {
+      "description": "CMEK, or Customer Managed Encryption Keys, enables GCP products to put control over encryption and key management in their customer’s hands.",
+      "id": "CmekConfig",
+      "properties": {
+        "kmsKey": {
+          "description": "Resource name of the Cloud KMS key, of the form `projects/PROJECT_ID/locations/LOCATION_ID/keyRings/KEY_RING_ID/cryptoKeys/KEY_ID`, that will be used to encrypt the Queues & Tasks in the region. Setting this as blank will turn off CMEK encryption.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

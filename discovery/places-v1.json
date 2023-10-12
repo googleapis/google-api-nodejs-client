@@ -136,7 +136,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20231009",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -196,6 +196,11 @@
       "description": "All the information representing a Place.",
       "id": "GoogleMapsPlacesV1Place",
       "properties": {
+        "accessibilityOptions": {
+          "$ref": "GoogleMapsPlacesV1PlaceAccessibilityOptions",
+          "description": "Output only. Information about the accessibility options a place offers.",
+          "readOnly": true
+        },
         "addressComponents": {
           "description": "Output only. Repeated components for each locality level.",
           "items": {
@@ -317,11 +322,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "openingHours": {
-          "$ref": "GoogleMapsPlacesV1PlaceOpeningHours",
-          "description": "Output only. The regular hours of operation.",
-          "readOnly": true
-        },
         "plusCode": {
           "$ref": "GoogleMapsPlacesV1PlacePlusCode",
           "description": "Output only. Plus code of the place location lat/long.",
@@ -354,6 +354,19 @@
           "readOnly": true,
           "type": "number"
         },
+        "regularOpeningHours": {
+          "$ref": "GoogleMapsPlacesV1PlaceOpeningHours",
+          "description": "Output only. The regular hours of operation.",
+          "readOnly": true
+        },
+        "regularSecondaryOpeningHours": {
+          "description": "Output only. Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1PlaceOpeningHours"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "reservable": {
           "description": "Output only. Specifies if the place supports reservations.",
           "readOnly": true,
@@ -363,14 +376,6 @@
           "description": "Output only. List of reviews about this place.",
           "items": {
             "$ref": "GoogleMapsPlacesV1Review"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "secondaryOpeningHours": {
-          "description": "Output only. Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.",
-          "items": {
-            "$ref": "GoogleMapsPlacesV1PlaceOpeningHours"
           },
           "readOnly": true,
           "type": "array"
@@ -444,11 +449,16 @@
           "description": "Output only. The authoritative website for this place, e.g. a business' homepage. Note that for places that are part of a chain (e.g. an IKEA store), this will usually be the website for the individual store, not the overall chain.",
           "readOnly": true,
           "type": "string"
-        },
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1PlaceAccessibilityOptions": {
+      "description": "Information about the accessibility options a place offers.",
+      "id": "GoogleMapsPlacesV1PlaceAccessibilityOptions",
+      "properties": {
         "wheelchairAccessibleEntrance": {
-          "deprecated": true,
-          "description": "Output only. [Deprecated!] Specifies if the place has an entrance that is wheelchair-accessible.",
-          "readOnly": true,
+          "description": "Places has wheelchair accessible entrance.",
           "type": "boolean"
         }
       },

@@ -1672,7 +1672,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20231002",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2627,7 +2627,7 @@
           "type": "string"
         },
         "snapshotTime": {
-          "description": "The timestamp that corresponds to the version of the database to be exported. The timestamp must be rounded to the minute, in the past, and not older than 1 hour. If specified, then the exported documents will represent a consistent view of the database at the provided time. Otherwise, there are no guarantees about the consistency of the exported documents.",
+          "description": "The timestamp that corresponds to the version of the database to be exported. The timestamp must be rounded to the minute, in the past, and not older than 5 days. Please choose a reasonable timestamp based on prior knowledge on how long exports take as data at provided snapshot timestamp can expire during export. If specified, then the exported documents will represent a consistent view of the database at the provided time. Otherwise, there are no guarantees about the consistency of the exported documents.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -2726,6 +2726,12 @@
           "description": "Describes the deltas of TTL configuration."
         }
       },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1FlatIndex": {
+      "description": "An index that stores vectors in a flat data structure, and supports exhaustive search.",
+      "id": "GoogleFirestoreAdminV1FlatIndex",
+      "properties": {},
       "type": "object"
     },
     "GoogleFirestoreAdminV1ImportDocumentsMetadata": {
@@ -2966,6 +2972,10 @@
             "The field is ordered by descending field value."
           ],
           "type": "string"
+        },
+        "vectorConfig": {
+          "$ref": "GoogleFirestoreAdminV1VectorConfig",
+          "description": "Indicates that this field supports nearest neighbors and distance operations on vector."
         }
       },
       "type": "object"
@@ -3189,7 +3199,7 @@
       "id": "GoogleFirestoreAdminV1RestoreDatabaseRequest",
       "properties": {
         "backup": {
-          "description": "Required. Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id}/locations/{location}/backups/{backup}`",
+          "description": "Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id}/locations/{location}/backups/{backup}`",
           "type": "string"
         },
         "databaseId": {
@@ -3273,6 +3283,22 @@
       "description": "Metadata related to the update database operation.",
       "id": "GoogleFirestoreAdminV1UpdateDatabaseMetadata",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1VectorConfig": {
+      "description": "The index configuration to support vector search operations",
+      "id": "GoogleFirestoreAdminV1VectorConfig",
+      "properties": {
+        "dimension": {
+          "description": "Required. The vector dimension this configuration applies to. The resulting index will only include vectors of this dimension, and can be used for vector search with the same dimension.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "flat": {
+          "$ref": "GoogleFirestoreAdminV1FlatIndex",
+          "description": "Indicates the vector index is a flat index."
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1WeeklyRecurrence": {
@@ -3619,7 +3645,7 @@
           "type": "string"
         },
         "partitions": {
-          "description": "Partition results. Each partition is a split point that can be used by RunQuery as a starting or end point for the query results. The RunQuery requests must be made with the same query supplied to this PartitionQuery request. The partition cursors will be ordered according to same ordering as the results of the query supplied to PartitionQuery. For example, if a PartitionQuery request returns partition cursors A and B, running the following three queries will return the entire result set of the original query: * query, end_at A * query, start_at A, end_at B * query, start_at B An empty result may indicate that the query has too few results to be partitioned.",
+          "description": "Partition results. Each partition is a split point that can be used by RunQuery as a starting or end point for the query results. The RunQuery requests must be made with the same query supplied to this PartitionQuery request. The partition cursors will be ordered according to same ordering as the results of the query supplied to PartitionQuery. For example, if a PartitionQuery request returns partition cursors A and B, running the following three queries will return the entire result set of the original query: * query, end_at A * query, start_at A, end_at B * query, start_at B An empty result may indicate that the query has too few results to be partitioned, or that the query is not yet supported for partitioning.",
           "items": {
             "$ref": "Cursor"
           },

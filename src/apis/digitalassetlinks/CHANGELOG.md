@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v1.0.4...digitalassetlinks-v1.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **digitalassetlinks:** update the API ([ef3f085](https://github.com/googleapis/google-api-nodejs-client/commit/ef3f0859be1f5266ca85069a43f49bbd96a9d065))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v1.0.3...digitalassetlinks-v1.0.4) (2023-08-25)
 
 

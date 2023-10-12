@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessqanda-v1.0.4...mybusinessqanda-v1.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **mybusinessqanda:** update the API ([0ca91b1](https://github.com/googleapis/google-api-nodejs-client/commit/0ca91b1e049958a17ab9a4fd7e707e03e81a52b0))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessqanda-v1.0.3...mybusinessqanda-v1.0.4) (2023-08-25)
 
 

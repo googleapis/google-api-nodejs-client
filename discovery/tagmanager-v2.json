@@ -3890,7 +3890,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20231009",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4887,6 +4887,10 @@
       "description": "A workspace entity that may represent a tag, trigger, variable, or folder in addition to its status in the workspace.",
       "id": "Entity",
       "properties": {
+        "builtInVariable": {
+          "$ref": "BuiltInVariable",
+          "description": "The built in variable being represented by the entity."
+        },
         "changeStatus": {
           "description": "Represents how the entity has been changed in the workspace.",
           "enum": [
@@ -4909,9 +4913,17 @@
           "$ref": "Client",
           "description": "The client being represented by the entity."
         },
+        "customTemplate": {
+          "$ref": "CustomTemplate",
+          "description": "The custom template being represented by the entity."
+        },
         "folder": {
           "$ref": "Folder",
           "description": "The folder being represented by the entity."
+        },
+        "gtagConfig": {
+          "$ref": "GtagConfig",
+          "description": "The gtag config being represented by the entity."
         },
         "tag": {
           "$ref": "Tag",
@@ -4928,6 +4940,10 @@
         "variable": {
           "$ref": "Variable",
           "description": "The variable being represented by the entity."
+        },
+        "zone": {
+          "$ref": "Zone",
+          "description": "The zone being represented by the entity."
         }
       },
       "type": "object"

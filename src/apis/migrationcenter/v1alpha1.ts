@@ -917,11 +917,11 @@ export namespace migrationcenter_v1alpha1 {
     path?: string | null;
   }
   /**
-   * An insight about an asset (experimental insight)
+   * A generic insight about an asset.
    */
   export interface Schema$GenericInsight {
     /**
-     * Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links
+     * Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links.
      */
     additionalInformation?: string[] | null;
     /**
@@ -1115,7 +1115,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     createTime?: string | null;
     /**
-     * User-friendly display name. Maximum length is 63 characters.
+     * Optional. User-friendly display name. Maximum length is 256 characters.
      */
     displayName?: string | null;
     /**
@@ -2756,7 +2756,7 @@ export namespace migrationcenter_v1alpha1 {
     publicIpAddress?: string | null;
   }
   /**
-   * VirtualMachinePreferences enables you to create sets of assumptions, for example, a geographical location and pricing track, for your migrated virtual machines. The set of preferences influence recommendations for migrating virtual machine assets.
+   * VirtualMachinePreferences enables you to create sets of preferences, for example, a geographical location and pricing track, for your migrated virtual machines. The set of preferences influence recommendations for migrating virtual machine assets.
    */
   export interface Schema$VirtualMachinePreferences {
     /**
@@ -2768,9 +2768,17 @@ export namespace migrationcenter_v1alpha1 {
      */
     computeEnginePreferences?: Schema$ComputeEnginePreferences;
     /**
+     * Optional. Parameters that affect network cost estimations. If not set, default values will be used for the parameters.
+     */
+    networkCostParameters?: Schema$VirtualMachinePreferencesNetworkCostParameters;
+    /**
      * Region preferences for assets using this preference set. If you are unsure which value to set, the migration service API region is often a good value to start with.
      */
     regionPreferences?: Schema$RegionPreferences;
+    /**
+     * Optional. Custom data to use for sizing optimizations. Relevant when SizingOptimizationStrategy is set to "custom".
+     */
+    sizingOptimizationCustomParameters?: Schema$VirtualMachinePreferencesSizingOptimizationCustomParameters;
     /**
      * Sizing optimization strategy specifies the preferred strategy used when extrapolating usage data to calculate insights and recommendations for a virtual machine. If you are unsure which value to set, a moderate sizing optimization strategy is often a good value to start with.
      */
@@ -2787,6 +2795,36 @@ export namespace migrationcenter_v1alpha1 {
      * Preferences concerning insights and recommendations for Google Cloud VMware Engine.
      */
     vmwareEnginePreferences?: Schema$VmwareEnginePreferences;
+  }
+  /**
+   * Parameters that affect network cost estimations.
+   */
+  export interface Schema$VirtualMachinePreferencesNetworkCostParameters {
+    /**
+     * Optional. An estimated percentage of priced outbound traffic (egress traffic) from the measured outbound traffic. Must be in the interval [0, 100].
+     */
+    estimatedEgressTrafficPercentage?: number | null;
+  }
+  /**
+   * Custom data to use for sizing optimizations.
+   */
+  export interface Schema$VirtualMachinePreferencesSizingOptimizationCustomParameters {
+    /**
+     * Optional. Type of statistical aggregation of a resource utilization data, on which to base the sizing metrics.
+     */
+    aggregationMethod?: string | null;
+    /**
+     * Optional. Desired percentage of CPU usage. Must be in the interval [1, 100] (or 0 for default value).
+     */
+    cpuUsagePercentage?: number | null;
+    /**
+     * Optional. Desired percentage of memory usage. Must be in the interval [1, 100] (or 0 for default value).
+     */
+    memoryUsagePercentage?: number | null;
+    /**
+     * Optional. Desired increase factor of storage, relative to currently used storage. Must be in the interval [1.0, 2.0] (or 0 for default value).
+     */
+    storageMultiplier?: number | null;
   }
   /**
    * VMware disk config details.

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/mybusinessverifications",
-  "version": "1.2.4",
+  "version": "2.0.0",
   "description": "mybusinessverifications",
   "main": "build/index.js",
   "types": "build/index.d.ts",

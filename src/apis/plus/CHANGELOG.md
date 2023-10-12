@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/plus-v1.0.2...plus-v1.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **plus:** update the API ([ecac7a8](https://github.com/googleapis/google-api-nodejs-client/commit/ecac7a88cdd17e2274446ae78ac048cf1a0760e7))
+
 ## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/plus-v1.0.1...plus-v1.0.2) (2023-08-25)
 
 

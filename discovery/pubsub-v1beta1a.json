@@ -21,8 +21,8 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/",
-      "location": "me-central2"
+      "location": "me-central2",
+      "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/"
     }
   ],
   "icons": {
@@ -464,7 +464,7 @@
       }
     }
   },
-  "revision": "20230921",
+  "revision": "20230928",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {

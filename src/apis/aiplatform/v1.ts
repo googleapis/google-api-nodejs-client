@@ -1159,7 +1159,7 @@ export namespace aiplatform_v1 {
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
   /**
-   * Request message for FeaturestoreService.CreateFeature.
+   * Request message for FeaturestoreService.CreateFeature. Request message for FeatureRegistryService.CreateFeature.
    */
   export interface Schema$GoogleCloudAiplatformV1CreateFeatureRequest {
     /**
@@ -1167,12 +1167,9 @@ export namespace aiplatform_v1 {
      */
     feature?: Schema$GoogleCloudAiplatformV1Feature;
     /**
-     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .
+     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.
      */
     featureId?: string | null;
-    /**
-     * Required. The resource name of the EntityType to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
-     */
     parent?: string | null;
   }
   /**
@@ -1590,6 +1587,31 @@ export namespace aiplatform_v1 {
     savedQueries?: Schema$GoogleCloudAiplatformV1SavedQuery[];
     /**
      * Output only. Timestamp when this Dataset was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Describes the dataset version.
+   */
+  export interface Schema$GoogleCloudAiplatformV1DatasetVersion {
+    /**
+     * Output only. Name of the associated BigQuery dataset.
+     */
+    bigQueryDatasetName?: string | null;
+    /**
+     * Output only. Timestamp when this DatasetVersion was created.
+     */
+    createTime?: string | null;
+    /**
+     * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name of the DatasetVersion.
+     */
+    name?: string | null;
+    /**
+     * Output only. Timestamp when this DatasetVersion was last updated.
      */
     updateTime?: string | null;
   }
@@ -3943,6 +3965,19 @@ export namespace aiplatform_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for DatasetService.ListDatasetVersions.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse {
+    /**
+     * A list of DatasetVersions that matches the specified filter in the request.
+     */
+    datasetVersions?: Schema$GoogleCloudAiplatformV1DatasetVersion[];
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for EndpointService.ListEndpoints.
    */
   export interface Schema$GoogleCloudAiplatformV1ListEndpointsResponse {
@@ -3982,7 +4017,7 @@ export namespace aiplatform_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for FeaturestoreService.ListFeatures.
+   * Response message for FeaturestoreService.ListFeatures. Response message for FeatureRegistryService.ListFeatures.
    */
   export interface Schema$GoogleCloudAiplatformV1ListFeaturesResponse {
     /**
@@ -4370,6 +4405,10 @@ export namespace aiplatform_v1 {
      * Immutable. The type of the machine. See the [list of machine types supported for prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types) See the [list of machine types supported for custom training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types). For DeployedModel this field is optional, and the default value is `n1-standard-2`. For BatchPredictionJob or as part of WorkerPoolSpec this field is required.
      */
     machineType?: string | null;
+    /**
+     * Immutable. The topology of the TPUs. Corresponds to the TPU topologies available from GKE. (Example: tpu_topology: "2x2x1").
+     */
+    tpuTopology?: string | null;
   }
   /**
    * Manual batch tuning parameters.
@@ -5190,6 +5229,10 @@ export namespace aiplatform_v1 {
      * Dump the anomalies to Cloud Logging. The anomalies will be put to json payload encoded from proto google.cloud.aiplatform.logging.ModelMonitoringAnomaliesLogEntry. This can be further sinked to Pub/Sub or any other services supported by Cloud Logging.
      */
     enableLogging?: boolean | null;
+    /**
+     * Resource names of the NotificationChannels to send alert. Must be of the format `projects//notificationChannels/`
+     */
+    notificationChannels?: string[] | null;
   }
   /**
    * The config for email alert.
@@ -5804,7 +5847,7 @@ export namespace aiplatform_v1 {
      */
     healthState?: string | null;
     /**
-     * The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one Dataset (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable. Following system labels exist for NotebookRuntime: * "aiplatform.googleapis.com/notebook_runtime_gce_instance_id": output only, its value is the Compute Engine instance id. * "aiplatform.googleapis.com/colab_enterprise_entry_service": its value is either "BigQuery" or "Vertex"; if absent, it should be "Vertex". This is to describe the entry service, either BigQuery or Vertex.
+     * The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one NotebookRuntime (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable. Following system labels exist for NotebookRuntime: * "aiplatform.googleapis.com/notebook_runtime_gce_instance_id": output only, its value is the Compute Engine instance id. * "aiplatform.googleapis.com/colab_enterprise_entry_service": its value is either "bigquery" or "vertex"; if absent, it should be "vertex". This is to describe the entry service, either BigQuery or Vertex.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -5815,6 +5858,10 @@ export namespace aiplatform_v1 {
      * Output only. The pointer to NotebookRuntimeTemplate this NotebookRuntime is created from.
      */
     notebookRuntimeTemplateRef?: Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplateRef;
+    /**
+     * Output only. The type of the notebook runtime.
+     */
+    notebookRuntimeType?: string | null;
     /**
      * Output only. The proxy endpoint used to access the NotebookRuntime.
      */
@@ -5892,6 +5939,10 @@ export namespace aiplatform_v1 {
      * Optional. Network spec.
      */
     networkSpec?: Schema$GoogleCloudAiplatformV1NetworkSpec;
+    /**
+     * Optional. Immutable. The type of the notebook runtime template.
+     */
+    notebookRuntimeType?: string | null;
     /**
      * The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
      */
@@ -6004,7 +6055,7 @@ export namespace aiplatform_v1 {
      */
     templateMetadata?: Schema$GoogleCloudAiplatformV1PipelineTemplateMetadata;
     /**
-     * A template uri from where the PipelineJob.pipeline_spec, if empty, will be downloaded.
+     * A template uri from where the PipelineJob.pipeline_spec, if empty, will be downloaded. Currently, only uri from Vertex Template Registry & Gallery is supported. Reference to https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.
      */
     templateUri?: string | null;
     /**
@@ -7931,6 +7982,28 @@ export namespace aiplatform_v1 {
     status?: string | null;
   }
   /**
+   * The configuration for grounding checking.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfig {
+    /**
+     * The sources for the grounding checking.
+     */
+    sources?: Schema$GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfigSourceEntry[];
+  }
+  /**
+   * Single source entry for the grounding checking.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfigSourceEntry {
+    /**
+     * The uri of the Enterprise Search data source.
+     */
+    enterpriseDatastore?: string | null;
+    /**
+     * The type of the grounding checking source.
+     */
+    type?: string | null;
+  }
+  /**
    * Prediction model parameters for Image Classification.
    */
   export interface Schema$GoogleCloudAiplatformV1SchemaPredictParamsImageClassificationPredictionParams {
@@ -8365,9 +8438,17 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1SchemaTextPromptDatasetMetadata {
     /**
+     * Number of candidates.
+     */
+    candidateCount?: string | null;
+    /**
      * The Google Cloud Storage URI that stores the prompt data.
      */
     gcsUri?: string | null;
+    /**
+     * Grounding checking configuration.
+     */
+    groundingConfig?: Schema$GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfig;
     /**
      * Value of the maximum number of tokens generated set when the dataset was saved.
      */
@@ -8376,6 +8457,10 @@ export namespace aiplatform_v1 {
      * Type of the prompt dataset.
      */
     promptType?: string | null;
+    /**
+     * Customized stop sequences.
+     */
+    stopSequences?: string[] | null;
     /**
      * Temperature value used for sampling set when the dataset was saved. This value is used to tune the degree of randomness.
      */
@@ -14197,6 +14282,7 @@ export namespace aiplatform_v1 {
     context: APIRequestContext;
     annotationSpecs: Resource$Projects$Locations$Datasets$Annotationspecs;
     dataItems: Resource$Projects$Locations$Datasets$Dataitems;
+    datasetVersions: Resource$Projects$Locations$Datasets$Datasetversions;
     operations: Resource$Projects$Locations$Datasets$Operations;
     savedQueries: Resource$Projects$Locations$Datasets$Savedqueries;
     constructor(context: APIRequestContext) {
@@ -14206,6 +14292,8 @@ export namespace aiplatform_v1 {
       this.dataItems = new Resource$Projects$Locations$Datasets$Dataitems(
         this.context
       );
+      this.datasetVersions =
+        new Resource$Projects$Locations$Datasets$Datasetversions(this.context);
       this.operations = new Resource$Projects$Locations$Datasets$Operations(
         this.context
       );
@@ -17061,6 +17149,551 @@ export namespace aiplatform_v1 {
      * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
      */
     timeout?: string;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Datasetversions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a version from a Dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Datasetversions$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Datasetversions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Datasetversions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/datasetVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Dataset version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Dataset version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Datasetversions$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Datasetversions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Datasetversions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1DatasetVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1DatasetVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists DatasetVersions in a Dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Datasetversions$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Datasetversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Datasetversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/datasetVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Restores a dataset version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    restore(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    restore(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Datasetversions$Create
+    extends StandardParameters {
+    /**
+     * Required. The name of the Dataset resource. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1DatasetVersion;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Dataset version to delete. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}/datasetVersions/{dataset_version\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Datasetversions$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Dataset version to delete. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}/datasetVersions/{dataset_version\}`
+     */
+    name?: string;
+    /**
+     * Mask specifying which fields to read.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Datasetversions$List
+    extends StandardParameters {
+    /**
+     * Optional. The standard list filter.
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard list page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Dataset to list DatasetVersions from. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
+     */
+    parent?: string;
+    /**
+     * Optional. Mask specifying which fields to read.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore
+    extends StandardParameters {
+    /**
+     * Required. The name of the DatasetVersion resource. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}/datasetVersions/{dataset_version\}`
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Datasets$Operations {
@@ -23893,11 +24526,11 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .
+     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.
      */
     featureId?: string;
     /**
-     * Required. The resource name of the EntityType to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
+     *
      */
     parent?: string;
 
@@ -23909,14 +24542,14 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the Features to be deleted. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}`
+     * Required. The name of the Features to be deleted. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/features/{feature\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Get
     extends StandardParameters {
     /**
-     * Required. The name of the Feature resource. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
+     * Required. The name of the Feature resource. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
      */
     name?: string;
   }
@@ -23943,7 +24576,7 @@ export namespace aiplatform_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Location to list Features. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
+     * Required. The resource name of the Location to list Features. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
      */
     parent?: string;
     /**
@@ -39281,7 +39914,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Notebookruntimes$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. Some examples: * `notebookRuntime="notebookRuntime123"` * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"` * `notebookRuntimeTemplate="notebookRuntimeTemplate321"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser="test@google.com"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
+     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntime="notebookRuntime123"` * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"` * `notebookRuntimeTemplate="notebookRuntimeTemplate321"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser="test@google.com"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED` * `notebookRuntimeType=USER_DEFINED`
      */
     filter?: string;
     /**
@@ -40030,7 +40663,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName="myDisplayName"` * `labels.myKey="myValue"`
+     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName="myDisplayName"` * `labels.myKey="myValue"` * `notebookRuntimeType=USER_DEFINED`
      */
     filter?: string;
     /**

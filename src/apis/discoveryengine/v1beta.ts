@@ -465,6 +465,78 @@ export namespace discoveryengine_v1beta {
     purgeCount?: string | null;
   }
   /**
+   * Metadata related to the progress of the SiteSearchEngineService.RecrawlUris operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRecrawlUrisMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Unique URIs in the request that don't match any TargetSite in the DataStore, only match TargetSites that haven't been fully indexed, or match a TargetSite with type EXCLUDE.
+     */
+    invalidUris?: string[] | null;
+    /**
+     * Total number of URIs that have yet to be crawled.
+     */
+    pendingCount?: number | null;
+    /**
+     * Total number of URIs that were rejected due to insufficient indexing resources.
+     */
+    quotaExceededCount?: number | null;
+    /**
+     * Total number of URIs that have been crawled so far.
+     */
+    successCount?: number | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+    /**
+     * Total number of unique URIs in the request that are not in invalid_uris.
+     */
+    validUrisCount?: number | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.RecrawlUris method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRecrawlUrisResponse {
+    /**
+     * URIs that were not crawled before the LRO terminated.
+     */
+    failedUris?: string[] | null;
+    /**
+     * Details for a sample of up to 10 `failed_uris`.
+     */
+    failureSamples?: Schema$GoogleCloudDiscoveryengineV1alphaRecrawlUrisResponseFailureInfo[];
+  }
+  /**
+   * Details about why a particular URI failed to be crawled. Each FailureInfo contains one FailureReason per CorpusType.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRecrawlUrisResponseFailureInfo {
+    /**
+     * List of failure reasons by corpus type (e.g. desktop, mobile).
+     */
+    failureReasons?: Schema$GoogleCloudDiscoveryengineV1alphaRecrawlUrisResponseFailureInfoFailureReason[];
+    /**
+     * URI that failed to be crawled.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Details about why crawling failed for a particular CorpusType, e.g. DESKTOP and MOBILE crawling may fail for different reasons.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRecrawlUrisResponseFailureInfoFailureReason {
+    /**
+     * DESKTOP, MOBILE, or CORPUS_TYPE_UNSPECIFIED.
+     */
+    corpusType?: string | null;
+    /**
+     * Reason why the URI was not crawled.
+     */
+    errorMessage?: string | null;
+  }
+  /**
    * Defines the structure and layout of a type of document data.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSchema {
@@ -1651,6 +1723,7 @@ export namespace discoveryengine_v1beta {
      * Results of facets requested by user.
      */
     facets?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseFacet[];
+    geoSearchDebugInfo?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseGeoSearchDebugInfo[];
     /**
      * Guided search result.
      */
@@ -1713,6 +1786,19 @@ export namespace discoveryengine_v1beta {
      * Text value of a facet, such as "Black" for facet "colors".
      */
     value?: string | null;
+  }
+  /**
+   * Debug information specifically related to forward geocoding issues arising from Geolocation Search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseGeoSearchDebugInfo {
+    /**
+     * The error produced.
+     */
+    errorMessage?: string | null;
+    /**
+     * The address from which forward geocoding ingestion produced issues.
+     */
+    originalAddressQuery?: string | null;
   }
   /**
    * Guided search result. The guided search helps user to refine the search results and narrow down to the real needs from a broaded search results.
@@ -2410,7 +2496,7 @@ export namespace discoveryengine_v1beta {
      */
     query?: string;
     /**
-     * Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for IndustryVertical.SITE_SEARCH dataStores.
+     * Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
      */
     queryModel?: string;
     /**
@@ -6362,10 +6448,15 @@ export namespace discoveryengine_v1beta {
   export class Resource$Projects$Locations$Collections$Engines {
     context: APIRequestContext;
     operations: Resource$Projects$Locations$Collections$Engines$Operations;
+    servingConfigs: Resource$Projects$Locations$Collections$Engines$Servingconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations =
         new Resource$Projects$Locations$Collections$Engines$Operations(
+          this.context
+        );
+      this.servingConfigs =
+        new Resource$Projects$Locations$Collections$Engines$Servingconfigs(
           this.context
         );
     }
@@ -6594,6 +6685,234 @@ export namespace discoveryengine_v1beta {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Servingconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Makes a recommendation, which requires a contextual user event.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    recommend(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    recommend(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>;
+    recommend(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    recommend(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>
+    ): void;
+    recommend(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>
+    ): void;
+    recommend(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>
+    ): void;
+    recommend(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+servingConfig}:recommend').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['servingConfig'],
+        pathParams: ['servingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaRecommendResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Performs a search.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>;
+    search(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+servingConfig}:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['servingConfig'],
+        pathParams: ['servingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaSearchResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of the format: `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` Before you can request recommendations from your model, you must create at least one serving config for it.
+     */
+    servingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaRecommendRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Search
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     */
+    servingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Operations {
@@ -6967,7 +7286,7 @@ export namespace discoveryengine_v1beta {
      */
     query?: string;
     /**
-     * Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for IndustryVertical.SITE_SEARCH dataStores.
+     * Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
      */
     queryModel?: string;
     /**

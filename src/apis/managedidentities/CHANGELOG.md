@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v1.1.1...managedidentities-v1.1.2) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **managedidentities:** update the API ([1814dfa](https://github.com/googleapis/google-api-nodejs-client/commit/1814dfa9e34320faf8d8049fc73ef82e9b854155))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v1.1.0...managedidentities-v1.1.1) (2023-08-25)
 
 

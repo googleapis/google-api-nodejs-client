@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20230911",
+  "revision": "20231002",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2256,7 +2256,7 @@
           "description": "List of apps which are excluded from the ShowWorkContactsInPersonalProfile setting. For this to be set, ShowWorkContactsInPersonalProfile must be set to one of the following values: * SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED. In this case, these exemptions act as a blocklist. * SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED. In this case, these exemptions act as an allowlist. * SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM. In this case, these exemptions act as an allowlist, in addition to the already allowlisted system apps. Supported on Android 14 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 14."
         },
         "showWorkContactsInPersonalProfile": {
-          "description": "Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.",
+          "description": "Whether personal apps can access contacts stored in the work profile.See also exemptions_to_show_work_contacts_in_personal_profile.",
           "enum": [
             "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_UNSPECIFIED",
             "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED",
@@ -2264,9 +2264,9 @@
             "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM"
           ],
           "enumDescriptions": [
-            "Unspecified. Defaults to SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED.",
-            "Prevents work profile contacts from appearing in personal profile contact searches and incoming calls",
-            "Default. Allows work profile contacts to appear in personal profile contact searches and incoming calls",
+            "Unspecified. Defaults to SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED. When this is set, exemptions_to_show_work_contacts_in_personal_profile must not be set.",
+            "Prevents personal apps from accessing work profile contacts and looking up work contacts. When this is set, personal apps specified in exemptions_to_show_work_contacts_in_personal_profile are allowlisted and can access work profile contacts directly. Supported on Android 7.0 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 7.0.",
+            "Default. Allows apps in the personal profile to access work profile contacts including contact searches and incoming calls. When this is set, personal apps specified in exemptions_to_show_work_contacts_in_personal_profile are blocklisted and can not access work profile contacts directly. Supported on Android 7.0 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 7.0.",
             "Prevents most personal apps from accessing work profile contacts including contact searches and incoming calls, except for the OEM default Dialer, Messages, and Contacts apps. Neither user-configured Dialer, Messages, and Contacts apps, nor any other system or play installed apps, will be able to query work contacts directly. When this is set, personal apps specified in exemptions_to_show_work_contacts_in_personal_profile are allowlisted and can access work profile contacts. Supported on Android 14 and above. If this is set on a device with Android version less than 14, the behaviour falls back to SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED and a nonComplianceDetail with API_LEVEL is reported."
           ],
           "type": "string"
@@ -2638,6 +2638,34 @@
             "Unspecified. Defaults to AIRPLANE_MODE_USER_CHOICE.",
             "The user is allowed to toggle airplane mode on or off.",
             "Airplane mode is disabled. The user is not allowed to toggle airplane mode on. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 9."
+          ],
+          "type": "string"
+        },
+        "cellularTwoGState": {
+          "description": "Controls whether cellular 2G setting can be toggled by the user or not.",
+          "enum": [
+            "CELLULAR_TWO_G_STATE_UNSPECIFIED",
+            "CELLULAR_TWO_G_USER_CHOICE",
+            "CELLULAR_TWO_G_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to CELLULAR_TWO_G_USER_CHOICE.",
+            "The user is allowed to toggle cellular 2G on or off.",
+            "Cellular 2G is disabled. The user is not allowed to toggle cellular 2G on via settings. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 14."
+          ],
+          "type": "string"
+        },
+        "ultraWidebandState": {
+          "description": "Controls the state of the ultra wideband setting and whether the user can toggle it on or off.",
+          "enum": [
+            "ULTRA_WIDEBAND_STATE_UNSPECIFIED",
+            "ULTRA_WIDEBAND_USER_CHOICE",
+            "ULTRA_WIDEBAND_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ULTRA_WIDEBAND_USER_CHOICE.",
+            "The user is allowed to toggle ultra wideband on or off.",
+            "Ultra wideband is disabled. The user is not allowed to toggle ultra wideband on via settings. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 14."
           ],
           "type": "string"
         },
@@ -4319,7 +4347,7 @@
           ],
           "enumDescriptions": [
             "Unspecified. Defaults to AVAILABLE.",
-            "The app is blocked and can't be installed in the personal profile.",
+            "The app is blocked and can't be installed in the personal profile. If the app was previously installed in the device, it will be uninstalled.",
             "The app is available to install in the personal profile."
           ],
           "type": "string"
@@ -4347,7 +4375,7 @@
           "type": "boolean"
         },
         "maxDaysWithWorkOff": {
-          "description": "Controls how long the work profile can stay off. The duration must be at least 3 days.",
+          "description": "Controls how long the work profile can stay off. The minimum duration must be at least 3 days. Other details are as follows: - If the duration is set to 0, the feature is turned off. - If the duration is set to any value between 1-2 days, the feature is automatically set to 3 days. *Note:* If you want to avoid personal profiles being suspended during long periods of off-time, you can temporarily set a large value for this parameter.",
           "format": "int32",
           "type": "integer"
         },
@@ -4642,6 +4670,7 @@
               "FACE",
               "IRIS",
               "BIOMETRICS",
+              "SHORTCUTS",
               "ALL_FEATURES"
             ],
             "enumDescriptions": [
@@ -4655,6 +4684,7 @@
               "Disable face authentication on secure keyguard screens.",
               "Disable iris authentication on secure keyguard screens.",
               "Disable all biometric authentication on secure keyguard screens.",
+              "Disable all shortcuts on secure keyguard screen on Android 14 and above.",
               "Disable all current and future keyguard customizations."
             ],
             "type": "string"
@@ -5231,7 +5261,7 @@
       "type": "object"
     },
     "SigninDetail": {
-      "description": "A resource containing sign in details for an enterprise.",
+      "description": "A resource containing sign in details for an enterprise. Use enterprises to manage SigninDetails for a given enterprise.For an enterprise, we can have any number of SigninDetails that is uniquely identified by combination of the following three fields (signin_url, allow_personal_usage, token_tag). One cannot create two SigninDetails with the same (signin_url, allow_personal_usage, token_tag). (token_tag is an optional field).Patch: The operation updates the current list of SigninDetails with the new list of SigninDetails. If the stored SigninDetail configuration is passed, it returns the same signin_enrollment_token and qr_code. If we pass multiple identical SigninDetail configurations that are not stored, it will store the first one amongst those SigninDetail configurations. if the configuration already exists we cannot request it more than once in a particular patch API call, otherwise it will give a duplicate key error and the whole operation will fail. If we remove certain SigninDetail configuration from the request then it will get removed from the storage. We can then request another signin_enrollment_token and qr_code for the same SigninDetail configuration.",
       "id": "SigninDetail",
       "properties": {
         "allowPersonalUsage": {
@@ -5258,6 +5288,10 @@
         },
         "signinUrl": {
           "description": "Sign-in URL for authentication when device is provisioned with a sign-in enrollment token. The sign-in endpoint should finish authentication flow with a URL in the form of https://enterprise.google.com/android/enroll?et= for a successful login, or https://enterprise.google.com/android/enroll/invalid for a failed login.",
+          "type": "string"
+        },
+        "tokenTag": {
+          "description": "An EMM-specified metadata to distinguish between instances of SigninDetail.",
           "type": "string"
         }
       },

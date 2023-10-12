@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/chromepolicy",
-  "version": "7.1.4",
+  "version": "8.0.0",
   "description": "chromepolicy",
   "main": "build/index.js",
   "types": "build/index.d.ts",

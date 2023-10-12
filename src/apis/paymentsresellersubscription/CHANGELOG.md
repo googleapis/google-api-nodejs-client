@@ -1,5 +1,24 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/paymentsresellersubscription-v5.1.1...paymentsresellersubscription-v6.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **paymentsresellersubscription:** This release has breaking changes.
+
+### Features
+
+* **paymentsresellersubscription:** update the API ([56dbb81](https://github.com/googleapis/google-api-nodejs-client/commit/56dbb8114e00ed6b24b9617d3f28eac444ef67d3))
+* **paymentsresellersubscription:** update the API ([31816cb](https://github.com/googleapis/google-api-nodejs-client/commit/31816cbcc95cc5d8bbefa5fc1852ab07cf98fea8))
+* **paymentsresellersubscription:** update the API ([fa9bc92](https://github.com/googleapis/google-api-nodejs-client/commit/fa9bc92c284d6097a6d44d9b3a691cba60213a36))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **paymentsresellersubscription:** update the API ([ecff656](https://github.com/googleapis/google-api-nodejs-client/commit/ecff6566f26daaf7a908df8302902d0d8e0ccb33))
+
 ## [5.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/paymentsresellersubscription-v5.1.0...paymentsresellersubscription-v5.1.1) (2023-08-25)
 
 

@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v1.1.1...networksecurity-v2.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **networksecurity:** update the API ([7241b06](https://github.com/googleapis/google-api-nodejs-client/commit/7241b067b4fc85f8030827bcec51dbe2f430abf6))
+* **networksecurity:** update the API ([d9f4f91](https://github.com/googleapis/google-api-nodejs-client/commit/d9f4f9174fbfe847670c9c27d8e48feba76ff4b0))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **networksecurity:** update the API ([942415b](https://github.com/googleapis/google-api-nodejs-client/commit/942415b3721d458a82295e5db26e9975ba8653df))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v1.1.0...networksecurity-v1.1.1) (2023-08-25)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v5.0.2...playdeveloperreporting-v5.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **playdeveloperreporting:** update the API ([e05bcaf](https://github.com/googleapis/google-api-nodejs-client/commit/e05bcaf6c0616547f1eebed91479c971d1f703dd))
+
 ## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v5.0.1...playdeveloperreporting-v5.0.2) (2023-08-25)
 
 

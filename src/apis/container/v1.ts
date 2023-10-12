@@ -731,6 +731,10 @@ export namespace container_v1 {
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
+     * The configuration of the parent product of the cluster. This field is used by Google internal products that are built on top of the GKE cluster and take the ownership of the cluster.
+     */
+    parentProductConfig?: Schema$ParentProductConfig;
+    /**
      * Configuration for private cluster.
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
@@ -974,6 +978,10 @@ export namespace container_v1 {
      */
     desiredNotificationConfig?: Schema$NotificationConfig;
     /**
+     * The desired parent product config for the cluster.
+     */
+    desiredParentProductConfig?: Schema$ParentProductConfig;
+    /**
      * The desired private cluster configuration.
      */
     desiredPrivateClusterConfig?: Schema$PrivateClusterConfig;
@@ -1199,11 +1207,11 @@ export namespace container_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSD.
+   * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.
    */
   export interface Schema$EphemeralStorageLocalSsdConfig {
     /**
-     * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. Each local SSD is 375 GB in size. If zero, it means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.
+     * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.
      */
     localSsdCount?: number | null;
   }
@@ -1645,11 +1653,11 @@ export namespace container_v1 {
     subnetworks?: Schema$UsableSubnetwork[];
   }
   /**
-   * LocalNvmeSsdBlockConfig contains configuration for using raw-block local NVMe SSD.
+   * LocalNvmeSsdBlockConfig contains configuration for using raw-block local NVMe SSDs
    */
   export interface Schema$LocalNvmeSsdBlockConfig {
     /**
-     * The number of raw-block local NVMe SSD disks to be attached to the node. Each local SSD is 375 GB in size. If zero, it means no raw-block local NVMe SSD disks to be attached to the node. The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.
+     * Number of local NVMe SSDs to use. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.
      */
     localSsdCount?: number | null;
   }
@@ -2464,6 +2472,19 @@ export namespace container_v1 {
      * Status of an operation stage. Unset for single-stage operations.
      */
     status?: string | null;
+  }
+  /**
+   * ParentProductConfig is the configuration of the parent product of the cluster. This field is used by Google internal products that are built on top of a GKE cluster and take the ownership of the cluster.
+   */
+  export interface Schema$ParentProductConfig {
+    /**
+     * Labels contain the configuration of the parent product.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Name of the parent product associated with the cluster.
+     */
+    productName?: string | null;
   }
   /**
    * PlacementPolicy defines the placement policy used by the node pool.

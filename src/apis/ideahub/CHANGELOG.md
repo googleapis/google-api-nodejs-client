@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/ideahub-v1.0.6...ideahub-v1.0.7) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **ideahub:** update the API ([1540d50](https://github.com/googleapis/google-api-nodejs-client/commit/1540d50df9a1b80c8a78dd89bae9922bac3fc122))
+
 ## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/ideahub-v1.0.5...ideahub-v1.0.6) (2023-08-25)
 
 

@@ -21,8 +21,53 @@
   "endpoints": [
     {
       "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/",
-      "description": "Regional Endpoint",
-      "location": "me-central2"
+      "location": "me-central2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://apt.me-central2.rep.pkg.dev/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://docker.me-central2.rep.pkg.dev/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://go.me-central2.rep.pkg.dev/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://googet.me-central2.rep.pkg.dev/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://kfp.me-central2.rep.pkg.dev/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://maven.me-central2.rep.pkg.dev/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://npm.me-central2.rep.pkg.dev/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://python.me-central2.rep.pkg.dev/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://yum.me-central2.rep.pkg.dev/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -300,7 +345,7 @@
                       "type": "string"
                     },
                     "repositoryId": {
-                      "description": "The repository id to use for this repository.",
+                      "description": "Required. The repository id to use for this repository.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1142,7 +1187,7 @@
       }
     }
   },
-  "revision": "20230913",
+  "revision": "20231006",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {

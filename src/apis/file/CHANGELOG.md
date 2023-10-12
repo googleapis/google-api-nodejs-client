@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/file-v5.0.3...file-v5.0.4) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **file:** update the API ([16d1c38](https://github.com/googleapis/google-api-nodejs-client/commit/16d1c381e4003d3d13aef706556ca2a21f1b711e))
+* **file:** update the API ([9bbf034](https://github.com/googleapis/google-api-nodejs-client/commit/9bbf0348a0e2932c0d1dad6d46fddf2e891563ad))
+
 ## [5.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/file-v5.0.2...file-v5.0.3) (2023-08-25)
 
 

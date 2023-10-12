@@ -24,6 +24,13 @@
   "description": "Manages Google Cloud Dataflow projects on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/dataflow",
+  "endpoints": [
+    {
+      "endpointUrl": "https://dataflow.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
+      "description": "Regional Endpoint"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -2214,7 +2221,7 @@
       }
     }
   },
-  "revision": "20230917",
+  "revision": "20230929",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {

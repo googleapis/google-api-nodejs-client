@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v1.0.4...localservices-v1.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **localservices:** update the API ([db5b627](https://github.com/googleapis/google-api-nodejs-client/commit/db5b6271a4ea64ef44eaef014de4ff21ab4e3d7b))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v1.0.3...localservices-v1.0.4) (2023-08-25)
 
 

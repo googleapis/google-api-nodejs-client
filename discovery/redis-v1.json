@@ -177,6 +177,203 @@
             }
           },
           "resources": {
+            "clusters": {
+              "methods": {
+                "create": {
+                  "description": "Creates a Redis cluster based on the specified properties. The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis cluster will be fully functional. The completed longrunning.Operation will contain the new cluster object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters",
+                  "httpMethod": "POST",
+                  "id": "redis.projects.locations.clusters.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "clusterId": {
+                      "description": "Required. The logical name of the Redis cluster in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the cluster location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Idempotent request UUID.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/clusters",
+                  "request": {
+                    "$ref": "Cluster"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a specific Redis cluster. Cluster stops serving and data is deleted.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}",
+                  "httpMethod": "DELETE",
+                  "id": "redis.projects.locations.clusters.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Redis cluster resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Idempotent request UUID.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a specific Redis cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}",
+                  "httpMethod": "GET",
+                  "id": "redis.projects.locations.clusters.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Redis cluster resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Cluster"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getCertificateAuthority": {
+                  "description": "Gets the details of certificate authority information for Redis cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/certificateAuthority",
+                  "httpMethod": "GET",
+                  "id": "redis.projects.locations.clusters.getCertificateAuthority",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Redis cluster certificate authority resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}/certificateAuthority` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}/certificateAuthority",
+                  "response": {
+                    "$ref": "CertificateAuthority"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all Redis clusters owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id}/locations/{location_id}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters",
+                  "httpMethod": "GET",
+                  "id": "redis.projects.locations.clusters.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more clusters left to be queried.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The `next_page_token` value returned from a previous ListClusters request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the cluster location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/clusters",
+                  "response": {
+                    "$ref": "ListClustersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the metadata and configuration of a specific Redis cluster. Completed longrunning.Operation will contain the new cluster object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}",
+                  "httpMethod": "PATCH",
+                  "id": "redis.projects.locations.clusters.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Idempotent request UUID.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Cluster: * `size_gb` * `replica_count`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Cluster"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "instances": {
               "methods": {
                 "create": {
@@ -624,9 +821,168 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20231002",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
+    "CertChain": {
+      "id": "CertChain",
+      "properties": {
+        "certificates": {
+          "description": "The certificates that form the CA chain, from leaf to root order.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CertificateAuthority": {
+      "description": "Redis cluster certificate authority",
+      "id": "CertificateAuthority",
+      "properties": {
+        "managedServerCa": {
+          "$ref": "ManagedCertificateAuthority"
+        }
+      },
+      "type": "object"
+    },
+    "Cluster": {
+      "description": "A cluster instance.",
+      "id": "Cluster",
+      "properties": {
+        "authorizationMode": {
+          "description": "Optional. The authorization mode of the Redis cluster. If not provided, auth feature is disabled for the cluster.",
+          "enum": [
+            "AUTH_MODE_UNSPECIFIED",
+            "AUTH_MODE_IAM_AUTH",
+            "AUTH_MODE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "IAM basic authorization mode",
+            "Authorization disabled mode"
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp associated with the cluster creation request.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "discoveryEndpoints": {
+          "description": "Output only. Endpoints created on each given network, for Redis clients to connect to the cluster. Currently only one discovery endpoint is supported.",
+          "items": {
+            "$ref": "DiscoveryEndpoint"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
+          "type": "string"
+        },
+        "pscConfigs": {
+          "description": "Required. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.",
+          "items": {
+            "$ref": "PscConfig"
+          },
+          "type": "array"
+        },
+        "pscConnections": {
+          "description": "Output only. PSC connections for discovery of the cluster topology and accessing the cluster.",
+          "items": {
+            "$ref": "PscConnection"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "replicaCount": {
+          "description": "Optional. The number of replica nodes per shard.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "shardCount": {
+          "description": "Required. Number of shards for the Redis cluster.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sizeGb": {
+          "description": "Output only. Redis memory size in GB for the entire cluster.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "state": {
+          "description": "Output only. The current state of this cluster. Can be CREATING, READY, UPDATING, DELETING and SUSPENDED",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Redis cluster is being created.",
+            "Redis cluster has been created and is fully usable.",
+            "Redis cluster configuration is being updated.",
+            "Redis cluster is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateInfo": {
+          "$ref": "StateInfo",
+          "description": "Output only. Additional information about the current state of the cluster.",
+          "readOnly": true
+        },
+        "transitEncryptionMode": {
+          "description": "Optional. The in-transit encryption for the Redis cluster. If not provided, encryption is disabled for the cluster.",
+          "enum": [
+            "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
+            "TRANSIT_ENCRYPTION_MODE_DISABLED",
+            "TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION"
+          ],
+          "enumDescriptions": [
+            "In-transit encryption not set.",
+            "In-transit encryption disabled.",
+            "Use server managed encryption for in-transit encryption."
+          ],
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System assigned, unique identifier for the cluster.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryEndpoint": {
+      "description": "Endpoints on each network, for Redis clients to connect to the cluster.",
+      "id": "DiscoveryEndpoint",
+      "properties": {
+        "address": {
+          "description": "Output only. Address of the exposed Redis endpoint used by clients to connect to the service. The address could be either IP or hostname.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "port": {
+          "description": "Output only. The port number of the exposed Redis endpoint.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "pscConfig": {
+          "$ref": "PscConfig",
+          "description": "Output only. Customer configuration for where the endpoint is created and accessed from.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -1030,6 +1386,31 @@
       },
       "type": "object"
     },
+    "ListClustersResponse": {
+      "description": "Response for ListClusters.",
+      "id": "ListClustersResponse",
+      "properties": {
+        "clusters": {
+          "description": "A list of Redis clusters in the project in the specified location, or across all locations. If the `location_id` in the parent field of the request is \"-\", all regions available to the project are queried, and the results aggregated. If in such an aggregated query a location is unavailable, a placeholder Redis entry is included in the response with the `name` field set to a value of the form `projects/{project_id}/locations/{location_id}/clusters/`- and the `status` field set to ERROR and `status_message` field set to \"location not available for ListClusters\".",
+          "items": {
+            "$ref": "Cluster"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListInstancesResponse": {
       "description": "Response for ListInstances.",
       "id": "ListInstancesResponse",
@@ -1185,6 +1566,19 @@
       },
       "type": "object"
     },
+    "ManagedCertificateAuthority": {
+      "id": "ManagedCertificateAuthority",
+      "properties": {
+        "caCerts": {
+          "description": "The PEM encoded CA certificate chains for redis managed server authentication",
+          "items": {
+            "$ref": "CertChain"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "NodeInfo": {
       "description": "Node specific properties.",
       "id": "NodeInfo",
@@ -1233,6 +1627,50 @@
           },
           "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OperationMetadata": {
+      "description": "Pre-defined metadata fields.",
+      "id": "OperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1298,6 +1736,47 @@
       },
       "type": "object"
     },
+    "PscConfig": {
+      "id": "PscConfig",
+      "properties": {
+        "network": {
+          "description": "Required. The network where the IP address of the discovery endpoint will be reserved, in the form of projects/{network_project}/global/networks/{network_id}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscConnection": {
+      "description": "Details of consumer resources in a PSC connection.",
+      "id": "PscConnection",
+      "properties": {
+        "address": {
+          "description": "Output only. The IP allocated on the consumer network for the PSC forwarding rule.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "Output only. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId}/regions/us-east1/forwardingRules/{resourceId}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "The consumer network where the IP address resides, in the form of projects/{project_id}/global/networks/{network_id}.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Output only. The consumer project_id where the forwarding rule is created from.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pscConnectionId": {
+          "description": "Output only. The PSC connection id of the forwarding rule connected to the service attachment.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReconciliationOperationMetadata": {
       "description": "Operation metadata returned by the CLH during resource state reconciliation.",
       "id": "ReconciliationOperationMetadata",
@@ -1353,6 +1832,17 @@
           "description": "Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StateInfo": {
+      "description": "Represents additional information about the state of the cluster.",
+      "id": "StateInfo",
+      "properties": {
+        "updateInfo": {
+          "$ref": "UpdateInfo",
+          "description": "Describes ongoing update on the cluster when cluster state is UPDATING."
         }
       },
       "type": "object"
@@ -1438,6 +1928,23 @@
         "sha1Fingerprint": {
           "description": "Sha1 Fingerprint of the certificate.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateInfo": {
+      "description": "Represents information about an updating cluster.",
+      "id": "UpdateInfo",
+      "properties": {
+        "targetReplicaCount": {
+          "description": "Target number of replica nodes per shard.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetShardCount": {
+          "description": "Target number of shards for redis cluster",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

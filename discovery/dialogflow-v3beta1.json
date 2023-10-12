@@ -2576,6 +2576,35 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     },
+                    "export": {
+                      "description": "Exports the selected intents. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ExportIntentsMetadata - `response`: ExportIntentsResponse",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/intents:export",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.intents.export",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the parent agent to export intents. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/intents:export",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ExportIntentsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
                     "get": {
                       "description": "Retrieves the specified intent.",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/intents/{intentsId}",
@@ -2601,6 +2630,35 @@
                       "path": "v3beta1/{+name}",
                       "response": {
                         "$ref": "GoogleCloudDialogflowCxV3beta1Intent"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "import": {
+                      "description": "Imports the specified intents into the agent. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ImportIntentsMetadata - `response`: ImportIntentsResponse",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/intents:import",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.intents.import",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The agent to import the intents into. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/intents:import",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ImportIntentsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -4068,7 +4126,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20231002",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4575,6 +4633,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ExportIntentsMetadata": {
+      "description": "Metadata returned for the Intents.ExportIntents long running operation.",
+      "id": "GoogleCloudDialogflowCxV3ExportIntentsMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ExportIntentsResponse": {
+      "description": "The response message for Intents.ExportIntents.",
+      "id": "GoogleCloudDialogflowCxV3ExportIntentsResponse",
+      "properties": {
+        "intentsContent": {
+          "$ref": "GoogleCloudDialogflowCxV3InlineDestination",
+          "description": "Uncompressed byte content for intents. This field is populated only if `intents_content_inline` is set to true in ExportIntentsRequest."
+        },
+        "intentsUri": {
+          "description": "The URI to a file containing the exported intents. This field is populated only if `intents_uri` is specified in ExportIntentsRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ExportTestCasesMetadata": {
       "description": "Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3ExportTestCasesMetadata",
@@ -4849,6 +4928,51 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ImportIntentsMetadata": {
+      "description": "Metadata returned for the Intents.ImportIntents long running operation.",
+      "id": "GoogleCloudDialogflowCxV3ImportIntentsMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ImportIntentsResponse": {
+      "description": "The response message for Intents.ImportIntents.",
+      "id": "GoogleCloudDialogflowCxV3ImportIntentsResponse",
+      "properties": {
+        "conflictingResources": {
+          "$ref": "GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources",
+          "description": "Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportIntentsRequest."
+        },
+        "intents": {
+          "description": "The unique identifier of the imported intents. Format: `projects//locations//agents//intents/`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources": {
+      "description": "Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.",
+      "id": "GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources",
+      "properties": {
+        "entityDisplayNames": {
+          "description": "Display names of conflicting entities.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "intentDisplayNames": {
+          "description": "Display names of conflicting intents.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ImportTestCasesMetadata": {
       "description": "Metadata returned for the TestCases.ImportTestCases long running operation.",
       "id": "GoogleCloudDialogflowCxV3ImportTestCasesMetadata",
@@ -4873,6 +4997,19 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3InlineDestination": {
+      "description": "Inline destination for a Dialogflow operation that writes or exports objects (e.g. intents) outside of Dialogflow.",
+      "id": "GoogleCloudDialogflowCxV3InlineDestination",
+      "properties": {
+        "content": {
+          "description": "Output only. The uncompressed byte content for the objects. Only populated in responses.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -7480,6 +7617,65 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ExportIntentsMetadata": {
+      "description": "Metadata returned for the Intents.ExportIntents long running operation.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportIntentsMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ExportIntentsRequest": {
+      "description": "The request message for Intents.ExportIntents.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportIntentsRequest",
+      "properties": {
+        "dataFormat": {
+          "description": "Optional. The data format of the exported intents. If not specified, `BLOB` is assumed.",
+          "enum": [
+            "DATA_FORMAT_UNSPECIFIED",
+            "BLOB",
+            "JSON",
+            "CSV"
+          ],
+          "enumDescriptions": [
+            "Unspecified format. Treated as `BLOB`.",
+            "Intents will be exported as raw bytes.",
+            "Intents will be exported in JSON format.",
+            "Intents will be exported in CSV format."
+          ],
+          "type": "string"
+        },
+        "intents": {
+          "description": "Required. The name of the intents to export. Format: `projects//locations//agents//intents/`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "intentsContentInline": {
+          "description": "Optional. The option to return the serialized intents inline.",
+          "type": "boolean"
+        },
+        "intentsUri": {
+          "description": "Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the intents to. The format of this URI must be `gs:///`. Dialogflow performs a write operation for the Cloud Storage object on the caller's behalf, so your request authentication must have write permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ExportIntentsResponse": {
+      "description": "The response message for Intents.ExportIntents.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportIntentsResponse",
+      "properties": {
+        "intentsContent": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1InlineDestination",
+          "description": "Uncompressed byte content for intents. This field is populated only if `intents_content_inline` is set to true in ExportIntentsRequest."
+        },
+        "intentsUri": {
+          "description": "The URI to a file containing the exported intents. This field is populated only if `intents_uri` is specified in ExportIntentsRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata": {
       "description": "Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata",
@@ -8053,6 +8249,97 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ImportIntentsMetadata": {
+      "description": "Metadata returned for the Intents.ImportIntents long running operation.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportIntentsMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportIntentsRequest": {
+      "description": "The request message for Intents.ImportIntents.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportIntentsRequest",
+      "properties": {
+        "intentsContent": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1InlineSource",
+          "description": "Uncompressed byte content of intents."
+        },
+        "intentsUri": {
+          "description": "The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to import intents from. The format of this URI must be `gs:///`. Dialogflow performs a read operation for the Cloud Storage object on the caller's behalf, so your request authentication must have read permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).",
+          "type": "string"
+        },
+        "mergeOption": {
+          "description": "Merge option for importing intents. If not specified, `REJECT` is assumed.",
+          "enum": [
+            "MERGE_OPTION_UNSPECIFIED",
+            "REJECT",
+            "REPLACE",
+            "MERGE",
+            "RENAME",
+            "REPORT_CONFLICT",
+            "KEEP"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "Unspecified. Should not be used.",
+            "DEPRECATED: Please use REPORT_CONFLICT instead. Fail the request if there are intents whose display names conflict with the display names of intents in the agent.",
+            "Replace the original intent in the agent with the new intent when display name conflicts exist.",
+            "Merge the original intent with the new intent when display name conflicts exist.",
+            "Create new intents with new display names to differentiate them from the existing intents when display name conflicts exist.",
+            "Report conflict information if display names conflict is detected. Otherwise, import intents.",
+            "Keep the original intent and discard the conflicting new intent when display name conflicts exist."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportIntentsResponse": {
+      "description": "The response message for Intents.ImportIntents.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportIntentsResponse",
+      "properties": {
+        "conflictingResources": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources",
+          "description": "Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportIntentsRequest."
+        },
+        "intents": {
+          "description": "The unique identifier of the imported intents. Format: `projects//locations//agents//intents/`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources": {
+      "description": "Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources",
+      "properties": {
+        "entityDisplayNames": {
+          "description": "Display names of conflicting entities.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "intentDisplayNames": {
+          "description": "Display names of conflicting intents.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ImportTestCasesMetadata": {
       "description": "Metadata returned for the TestCases.ImportTestCases long running operation.",
       "id": "GoogleCloudDialogflowCxV3beta1ImportTestCasesMetadata",
@@ -8093,6 +8380,31 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1InlineDestination": {
+      "description": "Inline destination for a Dialogflow operation that writes or exports objects (e.g. intents) outside of Dialogflow.",
+      "id": "GoogleCloudDialogflowCxV3beta1InlineDestination",
+      "properties": {
+        "content": {
+          "description": "Output only. The uncompressed byte content for the objects. Only populated in responses.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1InlineSource": {
+      "description": "Inline source for a Dialogflow operation that reads or imports objects (e.g. intents) into Dialogflow.",
+      "id": "GoogleCloudDialogflowCxV3beta1InlineSource",
+      "properties": {
+        "content": {
+          "description": "The uncompressed byte content for the objects.",
+          "format": "byte",
+          "type": "string"
         }
       },
       "type": "object"

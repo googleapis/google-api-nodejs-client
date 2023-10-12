@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/accessapproval",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "accessapproval",
   "main": "build/index.js",
   "types": "build/index.d.ts",

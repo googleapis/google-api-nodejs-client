@@ -620,6 +620,10 @@ export namespace docs_v1 {
      */
     firstPageHeaderId?: string | null;
     /**
+     * Optional. Indicates whether to flip the dimensions of the page_size, which allows changing the page orientation between portrait and landscape.
+     */
+    flipPageOrientation?: boolean | null;
+    /**
      * The bottom page margin. Updating the bottom page margin on the document style clears the bottom page margin on all section styles.
      */
     marginBottom?: Schema$Dimension;
@@ -696,6 +700,10 @@ export namespace docs_v1 {
      * Indicates if there was a suggested change to first_page_header_id.
      */
     firstPageHeaderIdSuggested?: boolean | null;
+    /**
+     * Optional. Indicates if there was a suggested change to flip_page_orientation.
+     */
+    flipPageOrientationSuggested?: boolean | null;
     /**
      * Indicates if there was a suggested change to margin_bottom.
      */
@@ -2385,6 +2393,10 @@ export namespace docs_v1 {
      * The ID of the header used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the header on the first page of the section. If it's false, the header on the first page of the section uses the default_header_id. If unset, the value inherits from the previous SectionBreak's SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle's first_page_header_id. This property is read-only.
      */
     firstPageHeaderId?: string | null;
+    /**
+     * Optional. Indicates whether to flip the dimensions of DocumentStyle's page_size for this section, which allows changing the page orientation between portrait and landscape. If unset, the value inherits from DocumentStyle's flip_page_orientation. When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    flipPageOrientation?: boolean | null;
     /**
      * The bottom page margin of the section. If unset, the value defaults to margin_bottom from DocumentStyle. When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
      */

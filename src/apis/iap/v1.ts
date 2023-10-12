@@ -495,6 +495,10 @@ export namespace iap_v1 {
   export interface Schema$ResetIdentityAwareProxyClientSecretRequest {}
   export interface Schema$Resource {
     /**
+     * The proto or JSON formatted expected next state of the resource, wrapped in a google.protobuf.Any proto, against which the policy rules are evaluated. Services not integrated with custom org policy can omit this field. Services integrated with custom org policy must populate this field for all requests where the API call changes the state of the resource. Custom org policy backend uses these attributes to enforce custom org policies. When a proto is wrapped, it is generally the One Platform API proto. When a JSON string is wrapped, use `google.protobuf.StringValue` for the inner value. It is sufficient to pass just the max set of attributes that are allowed for use in custom constraints; other attributes can be omitted. See go/custom-constraints-org-policy-integration-guide for additional details.
+     */
+    expectedNextState?: {[key: string]: any} | null;
+    /**
      * The service defined labels of the resource on which the conditions will be evaluated. The semantics - including the key names - are vague to IAM. If the effective condition has a reference to a `resource.labels[foo]` construct, IAM consults with this map to retrieve the values associated with `foo` key for Conditions evaluation. If the provided key is not found in the labels map, the condition would evaluate to false. This field is in limited use. If your intended use case is not expected to express resource.labels attribute in IAM Conditions, leave this field empty. Before planning on using this attribute please: * Read go/iam-conditions-labels-comm and ensure your service can meet the data availability and management requirements. * Talk to iam-conditions-eng@ about your use case.
      */
     labels?: {[key: string]: string} | null;

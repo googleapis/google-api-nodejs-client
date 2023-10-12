@@ -585,6 +585,23 @@ export namespace dialogflow_v2beta1 {
     flowUri?: string | null;
   }
   /**
+   * Metadata returned for the Intents.ExportIntents long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportIntentsMetadata {}
+  /**
+   * The response message for Intents.ExportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportIntentsResponse {
+    /**
+     * Uncompressed byte content for intents. This field is populated only if `intents_content_inline` is set to true in ExportIntentsRequest.
+     */
+    intentsContent?: Schema$GoogleCloudDialogflowCxV3beta1InlineDestination;
+    /**
+     * The URI to a file containing the exported intents. This field is populated only if `intents_uri` is specified in ExportIntentsRequest.
+     */
+    intentsUri?: string | null;
+  }
+  /**
    * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata {}
@@ -791,6 +808,36 @@ export namespace dialogflow_v2beta1 {
     flow?: string | null;
   }
   /**
+   * Metadata returned for the Intents.ImportIntents long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsMetadata {}
+  /**
+   * The response message for Intents.ImportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsResponse {
+    /**
+     * Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportIntentsRequest.
+     */
+    conflictingResources?: Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources;
+    /**
+     * The unique identifier of the imported intents. Format: `projects//locations//agents//intents/`.
+     */
+    intents?: string[] | null;
+  }
+  /**
+   * Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources {
+    /**
+     * Display names of conflicting entities.
+     */
+    entityDisplayNames?: string[] | null;
+    /**
+     * Display names of conflicting intents.
+     */
+    intentDisplayNames?: string[] | null;
+  }
+  /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ImportTestCasesMetadata {
@@ -807,6 +854,15 @@ export namespace dialogflow_v2beta1 {
      * The unique identifiers of the new test cases. Format: `projects//locations//agents//testCases/`.
      */
     names?: string[] | null;
+  }
+  /**
+   * Inline destination for a Dialogflow operation that writes or exports objects (e.g. intents) outside of Dialogflow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1InlineDestination {
+    /**
+     * Output only. The uncompressed byte content for the objects. Only populated in responses.
+     */
+    content?: string | null;
   }
   /**
    * Instructs the speech recognizer on how to process the audio content.
@@ -2059,6 +2115,23 @@ export namespace dialogflow_v2beta1 {
     flowUri?: string | null;
   }
   /**
+   * Metadata returned for the Intents.ExportIntents long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportIntentsMetadata {}
+  /**
+   * The response message for Intents.ExportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportIntentsResponse {
+    /**
+     * Uncompressed byte content for intents. This field is populated only if `intents_content_inline` is set to true in ExportIntentsRequest.
+     */
+    intentsContent?: Schema$GoogleCloudDialogflowCxV3InlineDestination;
+    /**
+     * The URI to a file containing the exported intents. This field is populated only if `intents_uri` is specified in ExportIntentsRequest.
+     */
+    intentsUri?: string | null;
+  }
+  /**
    * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportTestCasesMetadata {}
@@ -2265,6 +2338,36 @@ export namespace dialogflow_v2beta1 {
     flow?: string | null;
   }
   /**
+   * Metadata returned for the Intents.ImportIntents long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportIntentsMetadata {}
+  /**
+   * The response message for Intents.ImportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportIntentsResponse {
+    /**
+     * Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportIntentsRequest.
+     */
+    conflictingResources?: Schema$GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources;
+    /**
+     * The unique identifier of the imported intents. Format: `projects//locations//agents//intents/`.
+     */
+    intents?: string[] | null;
+  }
+  /**
+   * Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources {
+    /**
+     * Display names of conflicting entities.
+     */
+    entityDisplayNames?: string[] | null;
+    /**
+     * Display names of conflicting intents.
+     */
+    intentDisplayNames?: string[] | null;
+  }
+  /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ImportTestCasesMetadata {
@@ -2281,6 +2384,15 @@ export namespace dialogflow_v2beta1 {
      * The unique identifiers of the new test cases. Format: `projects//locations//agents//testCases/`.
      */
     names?: string[] | null;
+  }
+  /**
+   * Inline destination for a Dialogflow operation that writes or exports objects (e.g. intents) outside of Dialogflow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3InlineDestination {
+    /**
+     * Output only. The uncompressed byte content for the objects. Only populated in responses.
+     */
+    content?: string | null;
   }
   /**
    * Instructs the speech recognizer on how to process the audio content.

@@ -29,8 +29,8 @@
   "documentationLink": "https://cloud.google.com/logging/docs/",
   "endpoints": [
     {
-      "location": "me-central2",
       "endpointUrl": "https://logging.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
       "description": "Regional Endpoint"
     }
   ],
@@ -7084,7 +7084,7 @@
       }
     }
   },
-  "revision": "20230924",
+  "revision": "20230928",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryDataset": {

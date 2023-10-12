@@ -4360,7 +4360,7 @@
       }
     }
   },
-  "revision": "20230911",
+  "revision": "20231007",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -5523,10 +5523,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1DataQualityDimension": {
+      "description": "A dimension captures data quality intent about a defined subset of the rules specified.",
+      "id": "GoogleCloudDataplexV1DataQualityDimension",
+      "properties": {
+        "name": {
+          "description": "The dimension name a rule belongs to. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"INTEGRITY\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1DataQualityDimensionResult": {
       "description": "DataQualityDimensionResult provides a more detailed, per-dimension view of the results.",
       "id": "GoogleCloudDataplexV1DataQualityDimensionResult",
       "properties": {
+        "dimension": {
+          "$ref": "GoogleCloudDataplexV1DataQualityDimension",
+          "description": "Output only. The dimension config specified in the DataQualitySpec, as is.",
+          "readOnly": true
+        },
         "passed": {
           "description": "Whether the dimension passed or failed.",
           "type": "boolean"
@@ -7011,6 +7027,80 @@
           "description": "Output only. Queries over sessions to mark whether the environment is currently active or not",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GovernanceEvent": {
+      "description": "Payload associated with Governance related log events.",
+      "id": "GoogleCloudDataplexV1GovernanceEvent",
+      "properties": {
+        "entity": {
+          "$ref": "GoogleCloudDataplexV1GovernanceEventEntity",
+          "description": "Entity resource information if the log event is associated with a specific entity."
+        },
+        "eventType": {
+          "description": "The type of the event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "RESOURCE_IAM_POLICY_UPDATE",
+            "BIGQUERY_TABLE_CREATE",
+            "BIGQUERY_TABLE_UPDATE",
+            "BIGQUERY_TABLE_DELETE",
+            "BIGQUERY_CONNECTION_CREATE",
+            "BIGQUERY_CONNECTION_UPDATE",
+            "BIGQUERY_CONNECTION_DELETE",
+            "BIGQUERY_TAXONOMY_CREATE",
+            "BIGQUERY_POLICY_TAG_CREATE",
+            "BIGQUERY_POLICY_TAG_DELETE",
+            "BIGQUERY_POLICY_TAG_SET_IAM_POLICY",
+            "ACCESS_POLICY_UPDATE"
+          ],
+          "enumDescriptions": [
+            "An unspecified event type.",
+            "Resource IAM policy update event.",
+            "BigQuery table create event.",
+            "BigQuery table update event.",
+            "BigQuery table delete event.",
+            "BigQuery connection create event.",
+            "BigQuery connection update event.",
+            "BigQuery connection delete event.",
+            "BigQuery taxonomy created.",
+            "BigQuery policy tag created.",
+            "BigQuery policy tag deleted.",
+            "BigQuery set iam policy for policy tag.",
+            "Access policy update event."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "The log message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GovernanceEventEntity": {
+      "description": "Information about Entity resource that the log event is associated with.",
+      "id": "GoogleCloudDataplexV1GovernanceEventEntity",
+      "properties": {
+        "entity": {
+          "description": "The Entity resource the log event is associated with. Format: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}",
+          "type": "string"
+        },
+        "entityType": {
+          "description": "Type of entity.",
+          "enum": [
+            "ENTITY_TYPE_UNSPECIFIED",
+            "TABLE",
+            "FILESET"
+          ],
+          "enumDescriptions": [
+            "An unspecified Entity type.",
+            "Table entity type.",
+            "Fileset entity type."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

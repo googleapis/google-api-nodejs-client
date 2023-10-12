@@ -1,5 +1,28 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v3.0.0...gkehub-v4.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **gkehub:** This release has breaking changes.
+* **gkehub:** This release has breaking changes.
+* **gkehub:** This release has breaking changes.
+
+### Features
+
+* **gkehub:** update the API ([9c0ed64](https://github.com/googleapis/google-api-nodejs-client/commit/9c0ed647e7be592a2a0284a3c76a8dc4bcffab5e))
+* **gkehub:** update the API ([5918dbd](https://github.com/googleapis/google-api-nodejs-client/commit/5918dbd2d31811a16e7204146bf04b2ce89ab3c6))
+* **gkehub:** update the API ([7c7c561](https://github.com/googleapis/google-api-nodejs-client/commit/7c7c5611a631fbbbc7252fba133de7f3bd254cdf))
+* **gkehub:** update the API ([81d36c9](https://github.com/googleapis/google-api-nodejs-client/commit/81d36c9368aefdc6d1c1140d473a4691f9f99856))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v2.0.0...gkehub-v3.0.0) (2023-08-25)
 
 
