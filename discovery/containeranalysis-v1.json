@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20231006",
+  "revision": "20230929",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2912,20 +2912,6 @@
         },
         "object": {
           "description": "Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
-          "type": "string"
-        },
-        "sourceFetcher": {
-          "description": "Optional. Option to specify the tool to fetch the source file for the build.",
-          "enum": [
-            "SOURCE_FETCHER_UNSPECIFIED",
-            "GSUTIL",
-            "GCS_FETCHER"
-          ],
-          "enumDescriptions": [
-            "Unspecified defaults to GSUTIL.",
-            "Use the \"gsutil\" tool to download the source file.",
-            "Use the Cloud Storage Fetcher tool to download the source file."
-          ],
           "type": "string"
         }
       },
