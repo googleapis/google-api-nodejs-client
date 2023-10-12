@@ -1404,6 +1404,10 @@ export namespace run_v1 {
      */
     conditions?: Schema$GoogleCloudRunV1Condition[];
     /**
+     * Output only. The desired number of instances running this revision. For Cloud Run, this only includes instances provisioned using the minScale annotation. It does not include instances created by autoscaling.
+     */
+    desiredReplicas?: number | null;
+    /**
      * ImageDigest holds the resolved digest for the image specified within .Spec.Container.Image. The digest is resolved during the creation of Revision. This field holds the digest value regardless of whether a tag or digest was originally specified in the Container object.
      */
     imageDigest?: string | null;

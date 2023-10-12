@@ -1748,7 +1748,7 @@
       }
     }
   },
-  "revision": "20230917",
+  "revision": "20231008",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -1758,6 +1758,10 @@
         "cost": {
           "$ref": "GoogleTypeMoney",
           "description": "An approximate projection on amount saved or amount incurred. Negative cost units indicate cost savings and positive cost units indicate increase. See google.type.Money documentation for positive/negative units. A user's permissions may affect whether the cost is computed using list prices or custom contract prices."
+        },
+        "costInLocalCurrency": {
+          "$ref": "GoogleTypeMoney",
+          "description": "The approximate cost savings in the billing account's local currency."
         },
         "duration": {
           "description": "Duration for which this cost applies.",
@@ -2308,6 +2312,13 @@
         "stateInfo": {
           "$ref": "GoogleCloudRecommenderV1beta1RecommendationStateInfo",
           "description": "Information for state. Contains state and metadata."
+        },
+        "targetResources": {
+          "description": "Fully qualified resource names that this recommendation is targeting.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "xorGroupId": {
           "description": "Corresponds to a mutually exclusive group ID within a recommender. A non-empty ID indicates that the recommendation belongs to a mutually exclusive group. This means that only one recommendation within the group is suggested to be applied.",

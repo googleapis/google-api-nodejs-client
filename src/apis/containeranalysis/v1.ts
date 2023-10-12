@@ -1317,10 +1317,6 @@ export namespace containeranalysis_v1 {
      * Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
-    /**
-     * Optional. Option to specify the tool to fetch the source file for the build.
-     */
-    sourceFetcher?: string | null;
   }
   /**
    * Location of the source manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
