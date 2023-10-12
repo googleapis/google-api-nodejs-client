@@ -17,8 +17,8 @@
   "documentationLink": "https://cloud.google.com/dataproc/",
   "endpoints": [
     {
-      "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/",
       "location": "me-central2",
+      "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/",
       "description": "Regional Endpoint"
     }
   ],

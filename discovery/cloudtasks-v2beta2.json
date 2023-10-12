@@ -238,17 +238,13 @@
               "httpMethod": "PATCH",
               "id": "cloudtasks.projects.locations.updateCmekConfig",
               "parameterOrder": [
-                "projectsId",
-                "locationsId"
+                "name"
               ],
               "parameters": {
-                "locationsId": {
+                "name": {
+                  "description": "Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`",
                   "location": "path",
-                  "required": true,
-                  "type": "string"
-                },
-                "projectsId": {
-                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfig$",
                   "required": true,
                   "type": "string"
                 },
@@ -259,7 +255,7 @@
                   "type": "string"
                 }
               },
-              "path": "v2beta2/projects/{projectsId}/locations/{locationsId}/cmekConfig",
+              "path": "v2beta2/{+name}",
               "request": {
                 "$ref": "CmekConfig"
               },
@@ -939,7 +935,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20230929",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AcknowledgeTaskRequest": {

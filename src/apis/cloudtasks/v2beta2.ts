@@ -1335,17 +1335,14 @@ export namespace cloudtasks_v2beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl +
-              '/v2beta2/projects/{projectsId}/locations/{locationsId}/cmekConfig'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
         ),
         params,
-        requiredParams: ['projectsId', 'locationsId'],
-        pathParams: ['locationsId', 'projectsId'],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
@@ -1395,13 +1392,9 @@ export namespace cloudtasks_v2beta2 {
   export interface Params$Resource$Projects$Locations$Updatecmekconfig
     extends StandardParameters {
     /**
-     *
+     * Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
      */
-    locationsId?: string;
-    /**
-     *
-     */
-    projectsId?: string;
+    name?: string;
     /**
      * List of fields to be updated in this request.
      */

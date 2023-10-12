@@ -1479,7 +1479,7 @@
       }
     }
   },
-  "revision": "20231004",
+  "revision": "20230920",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -1635,11 +1635,9 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
-            "TYPE_ROLLOUT_UPDATE",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -1655,7 +1653,6 @@
             "A process aborted.",
             "Restriction check failed.",
             "Resource deleted.",
-            "Rollout updated.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -1700,11 +1697,9 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
-            "TYPE_ROLLOUT_UPDATE",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -1720,7 +1715,6 @@
             "A process aborted.",
             "Restriction check failed.",
             "Resource deleted.",
-            "Rollout updated.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -2091,11 +2085,9 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
-            "TYPE_ROLLOUT_UPDATE",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -2111,7 +2103,6 @@
             "A process aborted.",
             "Restriction check failed.",
             "Resource deleted.",
-            "Rollout updated.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -2613,11 +2604,9 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
-            "TYPE_ROLLOUT_UPDATE",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -2633,7 +2622,6 @@
             "A process aborted.",
             "Restriction check failed.",
             "Resource deleted.",
-            "Rollout updated.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -3452,11 +3440,9 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
-            "TYPE_ROLLOUT_UPDATE",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -3472,7 +3458,6 @@
             "A process aborted.",
             "Restriction check failed.",
             "Resource deleted.",
-            "Rollout updated.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -3817,11 +3802,9 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
-            "TYPE_ROLLOUT_UPDATE",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -3837,7 +3820,6 @@
             "A process aborted.",
             "Restriction check failed.",
             "Resource deleted.",
-            "Rollout updated.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -4201,11 +4183,9 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
-            "TYPE_ROLLOUT_UPDATE",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -4221,7 +4201,6 @@
             "A process aborted.",
             "Restriction check failed.",
             "Resource deleted.",
-            "Rollout updated.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -4240,7 +4219,6 @@
             "CLOUD_BUILD_UNAVAILABLE",
             "EXECUTION_FAILED",
             "CLOUD_BUILD_REQUEST_FAILED",
-            "VERIFICATION_CONFIG_NOT_FOUND",
             "CUSTOM_ACTION_NOT_FOUND"
           ],
           "enumDescriptions": [
@@ -4248,7 +4226,6 @@
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The render operation did not complete successfully; check Cloud Build logs.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details.",
-            "The render operation did not complete successfully because the verification stanza required for verify was not found on the skaffold configuration.",
             "The render operation did not complete successfully because the custom action required for predeploy or postdeploy was not found in the skaffold configuration. See failure_message for additional details."
           ],
           "readOnly": true,
