@@ -143,6 +143,10 @@ export namespace recommender_v1beta1 {
      */
     cost?: Schema$GoogleTypeMoney;
     /**
+     * The approximate cost savings in the billing account's local currency.
+     */
+    costInLocalCurrency?: Schema$GoogleTypeMoney;
+    /**
      * Duration for which this cost applies.
      */
     duration?: string | null;
@@ -515,6 +519,10 @@ export namespace recommender_v1beta1 {
      * Information for state. Contains state and metadata.
      */
     stateInfo?: Schema$GoogleCloudRecommenderV1beta1RecommendationStateInfo;
+    /**
+     * Fully qualified resource names that this recommendation is targeting.
+     */
+    targetResources?: string[] | null;
     /**
      * Corresponds to a mutually exclusive group ID within a recommender. A non-empty ID indicates that the recommendation belongs to a mutually exclusive group. This means that only one recommendation within the group is suggested to be applied.
      */
