@@ -3648,10 +3648,6 @@ export namespace containeranalysis_v1alpha1 {
      */
     effectiveSeverity?: string | null;
     /**
-     * Occurrence-specific extra details about the vulnerability.
-     */
-    extraDetails?: string | null;
-    /**
      * The set of affected locations and their fixes (if available) within the associated resource.
      */
     packageIssue?: Schema$PackageIssue[];

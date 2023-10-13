@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20230929",
+  "revision": "20230922",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -5492,6 +5492,10 @@
           },
           "type": "array"
         },
+        "extraDetails": {
+          "description": "Occurrence-specific extra details about the vulnerability.",
+          "type": "string"
+        },
         "severity": {
           "description": "The note provider assigned severity of this vulnerability.",
           "enum": [
@@ -5576,10 +5580,6 @@
             "High severity.",
             "Critical severity."
           ],
-          "type": "string"
-        },
-        "extraDetails": {
-          "description": "Occurrence-specific extra details about the vulnerability.",
           "type": "string"
         },
         "fixAvailable": {

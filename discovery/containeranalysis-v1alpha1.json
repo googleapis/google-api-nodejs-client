@@ -1233,7 +1233,7 @@
       }
     }
   },
-  "revision": "20230929",
+  "revision": "20230922",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -6668,10 +6668,6 @@
             "High Impact",
             "Critical Impact"
           ],
-          "type": "string"
-        },
-        "extraDetails": {
-          "description": "Occurrence-specific extra details about the vulnerability.",
           "type": "string"
         },
         "packageIssue": {
