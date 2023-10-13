@@ -859,6 +859,10 @@ export namespace run_v2 {
      */
     scaling?: Schema$GoogleCloudRunV2RevisionScaling;
     /**
+     * Output only. The current effective scaling settings for the revision.
+     */
+    scalingStatus?: Schema$GoogleCloudRunV2RevisionScalingStatus;
+    /**
      * Output only. The name of the parent service.
      */
     service?: string | null;
@@ -903,6 +907,15 @@ export namespace run_v2 {
      * Minimum number of serving instances that this resource should have.
      */
     minInstanceCount?: number | null;
+  }
+  /**
+   * Effective settings for the current revision
+   */
+  export interface Schema$GoogleCloudRunV2RevisionScalingStatus {
+    /**
+     * The current number of min instances provisioned for this revision.
+     */
+    desiredMinInstanceCount?: number | null;
   }
   /**
    * RevisionTemplate describes the data a revision should have when created from a template.
