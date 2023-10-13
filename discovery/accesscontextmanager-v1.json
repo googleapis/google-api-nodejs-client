@@ -1235,7 +1235,7 @@
       }
     }
   },
-  "revision": "20230917",
+  "revision": "20231011",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -1793,7 +1793,7 @@
       "type": "object"
     },
     "GcpUserAccessBindingOperationMetadata": {
-      "description": "Currently, a completed operation means nothing. In the future, this metadata and a completed operation may indicate that the binding has taken effect and is affecting access decisions for all users.",
+      "description": "Metadata of GCP Access Binding Long Running Operations.",
       "id": "GcpUserAccessBindingOperationMetadata",
       "properties": {},
       "type": "object"
