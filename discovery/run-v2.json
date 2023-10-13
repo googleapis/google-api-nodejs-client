@@ -1115,7 +1115,7 @@
       }
     }
   },
-  "revision": "20231001",
+  "revision": "20231008",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2286,6 +2286,11 @@
           "$ref": "GoogleCloudRunV2RevisionScaling",
           "description": "Scaling settings for this revision."
         },
+        "scalingStatus": {
+          "$ref": "GoogleCloudRunV2RevisionScalingStatus",
+          "description": "Output only. The current effective scaling settings for the revision.",
+          "readOnly": true
+        },
         "service": {
           "description": "Output only. The name of the parent service.",
           "readOnly": true,
@@ -2340,6 +2345,18 @@
         },
         "minInstanceCount": {
           "description": "Minimum number of serving instances that this resource should have.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2RevisionScalingStatus": {
+      "description": "Effective settings for the current revision",
+      "id": "GoogleCloudRunV2RevisionScalingStatus",
+      "properties": {
+        "desiredMinInstanceCount": {
+          "description": "The current number of min instances provisioned for this revision.",
           "format": "int32",
           "type": "integer"
         }

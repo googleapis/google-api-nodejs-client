@@ -7581,7 +7581,7 @@ export namespace content_v2_1 {
     buyboxWinsCount?: number | null;
   }
   /**
-   * Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met.
+   * *Deprecated*: New merchants can't start using this resource. Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met.
    */
   export interface Schema$RepricingRule {
     /**
@@ -7589,7 +7589,7 @@ export namespace content_v2_1 {
      */
     cogsBasedRule?: Schema$RepricingRuleCostOfGoodsSaleRule;
     /**
-     * Required. Immutable. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. "US").
+     * Required. Immutable. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (for example, "US").
      */
     countryCode?: string | null;
     /**
@@ -7642,7 +7642,7 @@ export namespace content_v2_1 {
      */
     percentageDelta?: number | null;
     /**
-     * The price delta against the COGS. E.g. 2 means $2 more of the COGS.
+     * The price delta against the COGS. For example, 2 means $2 more of the COGS.
      */
     priceDelta?: string | null;
   }
@@ -7695,7 +7695,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$RepricingRuleEligibleOfferMatcherStringMatcher {
     /**
-     * String attributes, as long as such attribute of an offer is one of the string attribute values, the offer is considered as passing the matcher. The string matcher checks an offer for inclusivity in the string attributes, not equality. Only literal string matching is supported, no regex.
+     * String attributes, as long as such attribute of an offer is one of the string attribute values, the offer is considered as passing the matcher. The string matcher checks an offer for inclusivity in the string attributes, not equality. Only literal string matching is supported, no regular expressions.
      */
     strAttributes?: string[] | null;
   }
@@ -8443,7 +8443,7 @@ export namespace content_v2_1 {
      */
     rateGroups?: Schema$RateGroup[];
     /**
-     * Type of locations this service ships orders to. Acceptable values are: - "`delivery`" - "`pickup`" - "`local_delivery`"
+     * Type of locations this service ships orders to. Acceptable values are: - "`delivery`" - "`pickup`" - "`local_delivery`" - "`collection_point`"
      */
     shipmentType?: string | null;
     /**
@@ -25896,7 +25896,7 @@ export namespace content_v2_1 {
   export interface Params$Resource$Repricingrules$List
     extends StandardParameters {
     /**
-     * [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. "US"), used as a filter on repricing rules.
+     * [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (for example, "US"), used as a filter on repricing rules.
      */
     countryCode?: string;
     /**
@@ -25940,7 +25940,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Lists the metrics report for a given Repricing rule.
+     * *Deprecated*: New merchants can't start using this service. Lists the metrics report for a given Repricing rule.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

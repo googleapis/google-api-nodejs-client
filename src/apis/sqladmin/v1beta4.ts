@@ -598,7 +598,7 @@ export namespace sqladmin_v1beta4 {
      */
     outOfDiskReport?: Schema$SqlOutOfDiskReport;
     /**
-     * Output only. The dns name of the primary instance in a replication group.
+     * Output only. DEPRECATED: please use write_endpoint instead.
      */
     primaryDnsName?: string | null;
     /**
@@ -661,6 +661,10 @@ export namespace sqladmin_v1beta4 {
      * If the instance state is SUSPENDED, the reason for the suspension.
      */
     suspensionReason?: string[] | null;
+    /**
+     * Output only. The dns name of the primary instance in a replication group.
+     */
+    writeEndpoint?: string | null;
   }
   /**
    * Database list response.
@@ -1191,12 +1195,16 @@ export namespace sqladmin_v1beta4 {
      */
     pscConfig?: Schema$PscConfig;
     /**
-     * Whether SSL connections over IP are enforced or not.
+     * LINT.IfChange(require_ssl_deprecate) Whether SSL/TLS connections over IP are enforced or not. If set to false, allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate will not be verified. If set to true, only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, use the `ssl_mode` flag instead of the legacy `require_ssl` flag. LINT.ThenChange(//depot/google3/java/com/google/storage/speckle/boss/admin/actions/InstanceUpdateAction.java:update_api_temp_fix)
      */
     requireSsl?: boolean | null;
+    /**
+     * Specify how SSL/TLS will be enforced in database connections. This flag is only supported for PostgreSQL. Use the legacy `require_ssl` flag for enforcing SSL/TLS in MySQL and SQL Server. But, for PostgreSQL, it is recommended to use the `ssl_mode` flag instead of the legacy `require_ssl` flag. To avoid the conflict between those flags in PostgreSQL, only the following value pairs are valid: ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED, require_ssl=false; ssl_mode=ENCRYPTED_ONLY, require_ssl=false; ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED, require_ssl=true; Note that the value of `ssl_mode` gets priority over the value of the legacy `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY, require_ssl=false`, the `ssl_mode=ENCRYPTED_ONLY` means "only accepts SSL connection", while the `require_ssl=false` means "both non-SSL and SSL connections are allowed". The database will respect `ssl_mode` in this case and only accept SSL connections.
+     */
+    sslMode?: string | null;
   }
   /**
-   * Database instance IP Mapping.
+   * Database instance IP mapping
    */
   export interface Schema$IpMapping {
     /**
@@ -1521,6 +1529,10 @@ export namespace sqladmin_v1beta4 {
      */
     complexity?: string | null;
     /**
+     * Disallow credentials that have been previously compromised by a public data breach.
+     */
+    disallowCompromisedCredentials?: boolean | null;
+    /**
      * Disallow username as a part of the password.
      */
     disallowUsernameSubstring?: boolean | null;
@@ -1555,7 +1567,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$PscConfig {
     /**
-     * List of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).
+     * Optional. The list of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).
      */
     allowedConsumerProjects?: string[] | null;
     /**
@@ -1567,6 +1579,10 @@ export namespace sqladmin_v1beta4 {
    * Read-replica configuration for connecting to the primary instance.
    */
   export interface Schema$ReplicaConfiguration {
+    /**
+     * Optional. Specifies if a SQL Server replica is a cascadable replica. A cascadable replica is a SQL Server cross region replica that supports replica(s) under it.
+     */
+    cascadableReplica?: boolean | null;
     /**
      * Specifies if the replica is the failover target. If the field is set to `true` the replica will be designated as a failover replica. In case the primary instance fails, the replica instance will be promoted as the new primary instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the primary instance.
      */
@@ -5334,6 +5350,93 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
+     * Switches over from the primary instance to a replica instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    switchover(
+      params: Params$Resource$Instances$Switchover,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    switchover(
+      params?: Params$Resource$Instances$Switchover,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    switchover(
+      params: Params$Resource$Instances$Switchover,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    switchover(
+      params: Params$Resource$Instances$Switchover,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(
+      params: Params$Resource$Instances$Switchover,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(callback: BodyResponseCallback<Schema$Operation>): void;
+    switchover(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Switchover
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Switchover;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Switchover;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/switchover'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Truncate MySQL general and slow query log tables MySQL only.
      *
      * @param params - Parameters for request
@@ -5560,7 +5663,7 @@ export namespace sqladmin_v1beta4 {
   }
   export interface Params$Resource$Instances$Export extends StandardParameters {
     /**
-     * Cloud SQL instance ID. This does not include the project ID.
+     * The Cloud SQL instance ID. This doesn't include the project ID.
      */
     instance?: string;
     /**
@@ -5672,6 +5775,10 @@ export namespace sqladmin_v1beta4 {
   export interface Params$Resource$Instances$Promotereplica
     extends StandardParameters {
     /**
+     * Set to true if the promote operation should attempt to re-add the original primary as a replica when it comes back online. Otherwise, if this value is false or not set, the original primary will be a standalone instance.
+     */
+    failover?: boolean;
+    /**
      * Cloud SQL read replica instance name.
      */
     instance?: string;
@@ -5769,6 +5876,21 @@ export namespace sqladmin_v1beta4 {
     instance?: string;
     /**
      * ID of the project that contains the read replica.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Instances$Switchover
+    extends StandardParameters {
+    /**
+     * Optional. (MySQL only) Cloud SQL instance operations timeout, which is a sum of all database operations. Default value is 10 minutes and can be modified to a maximum value of 24 hours.
+     */
+    dbTimeout?: string;
+    /**
+     * Cloud SQL read replica instance name.
+     */
+    instance?: string;
+    /**
+     * ID of the project that contains the replica.
      */
     project?: string;
   }

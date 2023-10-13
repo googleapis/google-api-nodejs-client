@@ -273,7 +273,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryOptions {
     /**
-     * References to fields excluded from scanning. This allows you to skip inspection of entire columns which you know have no findings. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be impacted because hints from excluded columns will not be used.
+     * References to fields excluded from scanning. This allows you to skip inspection of entire columns which you know have no findings. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be affected because hints from excluded columns will not be used.
      */
     excludedFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
@@ -281,7 +281,7 @@ export namespace dlp_v2 {
      */
     identifyingFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
-     * Limit scanning only to these fields. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be impacted because hints from excluded columns will not be used.
+     * Limit scanning only to these fields. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be affected because hints from excluded columns will not be used.
      */
     includedFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
@@ -1404,7 +1404,7 @@ export namespace dlp_v2 {
      */
     details?: Schema$GoogleRpcStatus;
     /**
-     * The times the error occurred. List includes the oldest timestamp, and the last 9 ones.
+     * The times the error occurred. List includes the oldest timestamp and the last 9 timestamps.
      */
     timestamps?: string[] | null;
   }
@@ -1851,7 +1851,7 @@ export namespace dlp_v2 {
     versions?: Schema$GooglePrivacyDlpV2VersionDescription[];
   }
   /**
-   * Configuration to control custom minimum likelihoods per infotype. Used when certain infotypes need to return with higher or lower precision than the baseline, i.e. when wanting PERSON_NAME to return all possible names without lowering the precision of other infotypes.
+   * Configuration for setting a minimum likelihood per infotype. Used to customize the minimum likelihood level for specific infotypes in the request. For example, use this if you want to lower the precision for PERSON_NAME without lowering the precision for the other infotypes in the request.
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeLikelihood {
     /**
@@ -1859,7 +1859,7 @@ export namespace dlp_v2 {
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
-     * Only returns findings equal or above this threshold. This field is required or else the configuration fails.
+     * Only returns findings equal to or above this threshold. This field is required or else the configuration fails.
      */
     minLikelihood?: string | null;
   }
@@ -1953,11 +1953,11 @@ export namespace dlp_v2 {
      */
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
     /**
-     * Only returns findings equal or above this threshold. The default is POSSIBLE. See https://cloud.google.com/dlp/docs/likelihood to learn more.
+     * Only returns findings equal to or above this threshold. The default is POSSIBLE. In general, the highest likelihood setting yields the fewest findings in results and the lowest chance of a false positive. For more information, see [Match likelihood](https://cloud.google.com/dlp/docs/likelihood).
      */
     minLikelihood?: string | null;
     /**
-     * Per infotype likelihoods. For each infotype, a user can specify a minimum likelihood, and only return that infotype if it is above that threshold. If an infotype is not included, it uses the InspectConfig min_likelihood.
+     * Minimum likelihood per infotype. For each infotype, a user can specify a minimum likelihood. The system only returns a finding if its likelihood is above this threshold. If this field is not set, the system uses the InspectConfig min_likelihood.
      */
     minLikelihoodPerInfoType?: Schema$GooglePrivacyDlpV2InfoTypeLikelihood[];
     /**

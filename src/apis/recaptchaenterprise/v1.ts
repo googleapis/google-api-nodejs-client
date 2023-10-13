@@ -129,7 +129,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment {
     /**
-     * Labels for this request.
+     * Output only. Labels for this request.
      */
     labels?: string[] | null;
   }
@@ -138,11 +138,11 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo {
     /**
-     * Endpoints that can be used for identity verification.
+     * Optional. Endpoints that can be used for identity verification.
      */
     endpoints?: Schema$GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo[];
     /**
-     * Language code preference for the verification message, set as a IETF BCP 47 language code.
+     * Optional. Language code preference for the verification message, set as a IETF BCP 47 language code.
      */
     languageCode?: string | null;
     /**
@@ -159,15 +159,15 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AndroidKeySettings {
     /**
-     * If set to true, allowed_package_names are not enforced.
+     * Optional. If set to true, allowed_package_names are not enforced.
      */
     allowAllPackageNames?: boolean | null;
     /**
-     * Android package names of apps allowed to use the key. Example: 'com.companyname.appname'
+     * Optional. Android package names of apps allowed to use the key. Example: 'com.companyname.appname'
      */
     allowedPackageNames?: string[] | null;
     /**
-     * Set to true for keys that are used in an Android application that is available for download in app stores in addition to the Google Play Store.
+     * Optional. Set to true for keys that are used in an Android application that is available for download in app stores in addition to the Google Play Store.
      */
     supportNonGoogleAppStoreDistribution?: boolean | null;
   }
@@ -218,23 +218,23 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Assessment {
     /**
-     * Assessment returned by account defender when a hashed_account_id is provided.
+     * Output only. Assessment returned by account defender when a hashed_account_id is provided.
      */
     accountDefenderAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment;
     /**
-     * Account verification information for identity verification. The assessment event must include a token and site key to use this feature.
+     * Optional. Account verification information for identity verification. The assessment event must include a token and site key to use this feature.
      */
     accountVerification?: Schema$GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo;
     /**
-     * The event being assessed.
+     * Optional. The event being assessed.
      */
     event?: Schema$GoogleCloudRecaptchaenterpriseV1Event;
     /**
-     * Assessment returned when firewall policies belonging to the project are evaluated using the field firewall_policy_evaluation.
+     * Output only. Assessment returned when firewall policies belonging to the project are evaluated using the field firewall_policy_evaluation.
      */
     firewallPolicyAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment;
     /**
-     * Assessment returned by Fraud Prevention when TransactionData is provided.
+     * Output only. Assessment returned by Fraud Prevention when TransactionData is provided.
      */
     fraudPreventionAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment;
     /**
@@ -242,11 +242,11 @@ export namespace recaptchaenterprise_v1 {
      */
     fraudSignals?: Schema$GoogleCloudRecaptchaenterpriseV1FraudSignals;
     /**
-     * Output only. The resource name for the Assessment in the format "projects/{project\}/assessments/{assessment\}".
+     * Output only. The resource name for the Assessment in the format `projects/{project\}/assessments/{assessment\}`.
      */
     name?: string | null;
     /**
-     * The private password leak verification field contains the parameters that are used to to check for leaks privately without sharing user credentials.
+     * Optional. The private password leak verification field contains the parameters that are used to to check for leaks privately without sharing user credentials.
      */
     privatePasswordLeakVerification?: Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification;
     /**
@@ -325,7 +325,7 @@ export namespace recaptchaenterprise_v1 {
      */
     headers?: string[] | null;
     /**
-     * Optional. Optional JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients.
      */
     ja3?: string | null;
     /**
@@ -399,11 +399,11 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction {
     /**
-     * The header key to set in the request to the backend server.
+     * Optional. The header key to set in the request to the backend server.
      */
     key?: string | null;
     /**
-     * The header value to set in the request to the backend server.
+     * Optional. The header value to set in the request to the backend server.
      */
     value?: string | null;
   }
@@ -412,7 +412,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction {
     /**
-     * The address to redirect to. The target is a relative path in the current host. Example: "/blog/404.html".
+     * Optional. The address to redirect to. The target is a relative path in the current host. Example: "/blog/404.html".
      */
     path?: string | null;
   }
@@ -421,23 +421,23 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy {
     /**
-     * The actions that the caller should take regarding user access. There should be at most one terminal action. A terminal action is any action that forces a response, such as AllowAction, BlockAction or SubstituteAction. Zero or more non-terminal actions such as SetHeader might be specified. A single policy can contain up to 16 actions.
+     * Optional. The actions that the caller should take regarding user access. There should be at most one terminal action. A terminal action is any action that forces a response, such as `AllowAction`, `BlockAction` or `SubstituteAction`. Zero or more non-terminal actions such as `SetHeader` might be specified. A single policy can contain up to 16 actions.
      */
     actions?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallAction[];
     /**
-     * A CEL (Common Expression Language) conditional expression that specifies if this policy applies to an incoming user request. If this condition evaluates to true and the requested path matched the path pattern, the associated actions should be executed by the caller. The condition string is checked for CEL syntax correctness on creation. For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md). A condition has a max length of 500 characters.
+     * Optional. A CEL (Common Expression Language) conditional expression that specifies if this policy applies to an incoming user request. If this condition evaluates to true and the requested path matched the path pattern, the associated actions should be executed by the caller. The condition string is checked for CEL syntax correctness on creation. For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md). A condition has a max length of 500 characters.
      */
     condition?: string | null;
     /**
-     * A description of what this policy aims to achieve, for convenience purposes. The description can at most include 256 UTF-8 characters.
+     * Optional. A description of what this policy aims to achieve, for convenience purposes. The description can at most include 256 UTF-8 characters.
      */
     description?: string | null;
     /**
-     * The resource name for the FirewallPolicy in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     * The resource name for the FirewallPolicy in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
      */
     name?: string | null;
     /**
-     * The path for which this policy applies, specified as a glob pattern. For more information on glob, see the [manual page](https://man7.org/linux/man-pages/man7/glob.7.html). A path has a max length of 200 characters.
+     * Optional. The path for which this policy applies, specified as a glob pattern. For more information on glob, see the [manual page](https://man7.org/linux/man-pages/man7/glob.7.html). A path has a max length of 200 characters.
      */
     path?: string | null;
   }
@@ -446,7 +446,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment {
     /**
-     * If the processing of a policy config fails, an error will be populated and the firewall_policy will be left empty.
+     * Output only. If the processing of a policy config fails, an error will be populated and the firewall_policy will be left empty.
      */
     error?: Schema$GoogleRpcStatus;
     /**
@@ -459,19 +459,19 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment {
     /**
-     * Assessment of this transaction for behavioral trust.
+     * Output only. Assessment of this transaction for behavioral trust.
      */
     behavioralTrustVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict;
     /**
-     * Assessment of this transaction for risk of being part of a card testing attack.
+     * Output only. Assessment of this transaction for risk of being part of a card testing attack.
      */
     cardTestingVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict;
     /**
-     * Assessment of this transaction for risk of a stolen instrument.
+     * Output only. Assessment of this transaction for risk of a stolen instrument.
      */
     stolenInstrumentVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict;
     /**
-     * Probability of this transaction being fraudulent. Summarizes the combined risk of attack vectors below. Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction being fraudulent. Summarizes the combined risk of attack vectors below. Values are from 0.0 (lowest) to 1.0 (highest).
      */
     transactionRisk?: number | null;
   }
@@ -480,7 +480,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict {
     /**
-     * Probability of this transaction attempt being executed in a behaviorally trustworthy way. Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction attempt being executed in a behaviorally trustworthy way. Values are from 0.0 (lowest) to 1.0 (highest).
      */
     trust?: number | null;
   }
@@ -489,7 +489,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict {
     /**
-     * Probability of this transaction attempt being part of a card testing attack. Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction attempt being part of a card testing attack. Values are from 0.0 (lowest) to 1.0 (highest).
      */
     risk?: number | null;
   }
@@ -498,7 +498,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict {
     /**
-     * Probability of this transaction being executed with a stolen instrument. Values are from 0.0 (lowest) to 1.0 (highest).
+     * Output only. Probability of this transaction being executed with a stolen instrument. Values are from 0.0 (lowest) to 1.0 (highest).
      */
     risk?: number | null;
   }
@@ -542,15 +542,15 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1IOSKeySettings {
     /**
-     * If set to true, allowed_bundle_ids are not enforced.
+     * Optional. If set to true, allowed_bundle_ids are not enforced.
      */
     allowAllBundleIds?: boolean | null;
     /**
-     * iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'
+     * Optional. iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'
      */
     allowedBundleIds?: string[] | null;
     /**
-     * Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA Enterprise to get a better assessment of the integrity of your app.
+     * Optional. Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA Enterprise to get a better assessment of the integrity of your app.
      */
     appleDeveloperId?: Schema$GoogleCloudRecaptchaenterpriseV1AppleDeveloperId;
   }
@@ -567,7 +567,7 @@ export namespace recaptchaenterprise_v1 {
      */
     createTime?: string | null;
     /**
-     * Human-readable display name of this key. Modifiable by user.
+     * Required. Human-readable display name of this key. Modifiable by user.
      */
     displayName?: string | null;
     /**
@@ -575,19 +575,19 @@ export namespace recaptchaenterprise_v1 {
      */
     iosSettings?: Schema$GoogleCloudRecaptchaenterpriseV1IOSKeySettings;
     /**
-     * See Creating and managing labels.
+     * Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha-enterprise/docs/labels).
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name for the Key in the format "projects/{project\}/keys/{key\}".
+     * The resource name for the Key in the format `projects/{project\}/keys/{key\}`.
      */
     name?: string | null;
     /**
-     * Options for user acceptance testing.
+     * Optional. Options for user acceptance testing.
      */
     testingOptions?: Schema$GoogleCloudRecaptchaenterpriseV1TestingOptions;
     /**
-     * Settings for WAF
+     * Optional. Settings for WAF
      */
     wafSettings?: Schema$GoogleCloudRecaptchaenterpriseV1WafSettings;
     /**
@@ -656,7 +656,7 @@ export namespace recaptchaenterprise_v1 {
      */
     challengeMetrics?: Schema$GoogleCloudRecaptchaenterpriseV1ChallengeMetrics[];
     /**
-     * Output only. The name of the metrics, in the format "projects/{project\}/keys/{key\}/metrics".
+     * Output only. The name of the metrics, in the format `projects/{project\}/keys/{key\}/metrics`.
      */
     name?: string | null;
     /**
@@ -690,7 +690,7 @@ export namespace recaptchaenterprise_v1 {
      */
     encryptedUserCredentialsHash?: string | null;
     /**
-     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It is used to look up password leaks associated with that hash prefix.
+     * Required. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It is used to look up password leaks associated with that hash prefix.
      */
     lookupHashPrefix?: string | null;
     /**
@@ -734,15 +734,15 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RiskAnalysis {
     /**
-     * Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.
+     * Output only. Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.
      */
     extendedVerdictReasons?: string[] | null;
     /**
-     * Reasons contributing to the risk analysis verdict.
+     * Output only. Reasons contributing to the risk analysis verdict.
      */
     reasons?: string[] | null;
     /**
-     * Legitimate event score from 0.0 to 1.0. (1.0 means very likely legitimate traffic while 0.0 means very likely non-legitimate traffic).
+     * Output only. Legitimate event score from 0.0 to 1.0. (1.0 means very likely legitimate traffic while 0.0 means very likely non-legitimate traffic).
      */
     score?: number | null;
   }
@@ -805,11 +805,11 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TestingOptions {
     /**
-     * For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site will return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.
+     * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site will return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.
      */
     testingChallenge?: string | null;
     /**
-     * All assessments for this Key will return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
+     * Optional. All assessments for this Key will return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
      */
     testingScore?: number | null;
   }
@@ -818,76 +818,76 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TokenProperties {
     /**
-     * Action name provided at token generation.
+     * Output only. Action name provided at token generation.
      */
     action?: string | null;
     /**
-     * The name of the Android package with which the token was generated (Android keys only).
+     * Output only. The name of the Android package with which the token was generated (Android keys only).
      */
     androidPackageName?: string | null;
     /**
-     * The timestamp corresponding to the generation of the token.
+     * Output only. The timestamp corresponding to the generation of the token.
      */
     createTime?: string | null;
     /**
-     * The hostname of the page on which the token was generated (Web keys only).
+     * Output only. The hostname of the page on which the token was generated (Web keys only).
      */
     hostname?: string | null;
     /**
-     * Reason associated with the response when valid = false.
+     * Output only. Reason associated with the response when valid = false.
      */
     invalidReason?: string | null;
     /**
-     * The ID of the iOS bundle with which the token was generated (iOS keys only).
+     * Output only. The ID of the iOS bundle with which the token was generated (iOS keys only).
      */
     iosBundleId?: string | null;
     /**
-     * Whether the provided user response token is valid. When valid = false, the reason could be specified in invalid_reason or it could also be due to a user failing to solve a challenge or a sitekey mismatch (i.e the sitekey used to generate the token was different than the one specified in the assessment).
+     * Output only. Whether the provided user response token is valid. When valid = false, the reason could be specified in invalid_reason or it could also be due to a user failing to solve a challenge or a sitekey mismatch (i.e the sitekey used to generate the token was different than the one specified in the assessment).
      */
     valid?: boolean | null;
   }
   /**
-   * Transaction data associated with a payment protected by reCAPTCHA Enterprise. All fields are optional.
+   * Transaction data associated with a payment protected by reCAPTCHA Enterprise.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionData {
     /**
-     * Address associated with the payment method when applicable.
+     * Optional. Address associated with the payment method when applicable.
      */
     billingAddress?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataAddress;
     /**
-     * The Bank Identification Number - generally the first 6 or 8 digits of the card.
+     * Optional. The Bank Identification Number - generally the first 6 or 8 digits of the card.
      */
     cardBin?: string | null;
     /**
-     * The last four digits of the card.
+     * Optional. The last four digits of the card.
      */
     cardLastFour?: string | null;
     /**
-     * The currency code in ISO-4217 format.
+     * Optional. The currency code in ISO-4217 format.
      */
     currencyCode?: string | null;
     /**
-     * Information about the payment gateway's response to the transaction.
+     * Optional. Information about the payment gateway's response to the transaction.
      */
     gatewayInfo?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo;
     /**
-     * Items purchased in this transaction.
+     * Optional. Items purchased in this transaction.
      */
     items?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataItem[];
     /**
-     * Information about the user or users fulfilling the transaction.
+     * Optional. Information about the user or users fulfilling the transaction.
      */
     merchants?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataUser[];
     /**
-     * The payment method for the transaction. The allowed values are: * credit-card * debit-card * gift-card * processor-{name\} (If a third-party is used, for example, processor-paypal) * custom-{name\} (If an alternative method is used, for example, custom-crypto)
+     * Optional. The payment method for the transaction. The allowed values are: * credit-card * debit-card * gift-card * processor-{name\} (If a third-party is used, for example, processor-paypal) * custom-{name\} (If an alternative method is used, for example, custom-crypto)
      */
     paymentMethod?: string | null;
     /**
-     * Destination address if this transaction involves shipping a physical item.
+     * Optional. Destination address if this transaction involves shipping a physical item.
      */
     shippingAddress?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataAddress;
     /**
-     * The value of shipping in the specified currency. 0 for free or no shipping.
+     * Optional. The value of shipping in the specified currency. 0 for free or no shipping.
      */
     shippingValue?: number | null;
     /**
@@ -895,11 +895,11 @@ export namespace recaptchaenterprise_v1 {
      */
     transactionId?: string | null;
     /**
-     * Information about the user paying/initiating the transaction.
+     * Optional. Information about the user paying/initiating the transaction.
      */
     user?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataUser;
     /**
-     * The decimal value of the transaction in the specified currency.
+     * Optional. The decimal value of the transaction in the specified currency.
      */
     value?: number | null;
   }
@@ -908,27 +908,27 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataAddress {
     /**
-     * The first lines of the address. The first line generally contains the street name and number, and further lines may include information such as an apartment number.
+     * Optional. The first lines of the address. The first line generally contains the street name and number, and further lines may include information such as an apartment number.
      */
     address?: string[] | null;
     /**
-     * The state, province, or otherwise administrative area of the address.
+     * Optional. The state, province, or otherwise administrative area of the address.
      */
     administrativeArea?: string | null;
     /**
-     * The town/city of the address.
+     * Optional. The town/city of the address.
      */
     locality?: string | null;
     /**
-     * The postal or ZIP code of the address.
+     * Optional. The postal or ZIP code of the address.
      */
     postalCode?: string | null;
     /**
-     * The recipient name, potentially including information such as "care of".
+     * Optional. The recipient name, potentially including information such as "care of".
      */
     recipient?: string | null;
     /**
-     * The CLDR country/region of the address.
+     * Optional. The CLDR country/region of the address.
      */
     regionCode?: string | null;
   }
@@ -937,19 +937,19 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo {
     /**
-     * AVS response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).
+     * Optional. AVS response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).
      */
     avsResponseCode?: string | null;
     /**
-     * CVV response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).
+     * Optional. CVV response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).
      */
     cvvResponseCode?: string | null;
     /**
-     * Gateway response code describing the state of the transaction.
+     * Optional. Gateway response code describing the state of the transaction.
      */
     gatewayResponseCode?: string | null;
     /**
-     * Name of the gateway service (for example, stripe, square, paypal).
+     * Optional. Name of the gateway service (for example, stripe, square, paypal).
      */
     name?: string | null;
   }
@@ -958,19 +958,19 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataItem {
     /**
-     * When a merchant is specified, its corresponding account_id. Necessary to populate marketplace-style transactions.
+     * Optional. When a merchant is specified, its corresponding account_id. Necessary to populate marketplace-style transactions.
      */
     merchantAccountId?: string | null;
     /**
-     * The full name of the item.
+     * Optional. The full name of the item.
      */
     name?: string | null;
     /**
-     * The quantity of this item that is being purchased.
+     * Optional. The quantity of this item that is being purchased.
      */
     quantity?: string | null;
     /**
-     * The value per item that the user is paying, in the transaction currency, after discounts.
+     * Optional. The value per item that the user is paying, in the transaction currency, after discounts.
      */
     value?: number | null;
   }
@@ -979,27 +979,27 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataUser {
     /**
-     * Unique account identifier for this user. If using account defender, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.
+     * Optional. Unique account identifier for this user. If using account defender, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.
      */
     accountId?: string | null;
     /**
-     * The epoch milliseconds of the user's account creation.
+     * Optional. The epoch milliseconds of the user's account creation.
      */
     creationMs?: string | null;
     /**
-     * The email address of the user.
+     * Optional. The email address of the user.
      */
     email?: string | null;
     /**
-     * Whether the email has been verified to be accessible by the user (OTP or similar).
+     * Optional. Whether the email has been verified to be accessible by the user (OTP or similar).
      */
     emailVerified?: boolean | null;
     /**
-     * The phone number of the user, with country code.
+     * Optional. The phone number of the user, with country code.
      */
     phoneNumber?: string | null;
     /**
-     * Whether the phone number has been verified to be accessible by the user (OTP or similar).
+     * Optional. Whether the phone number has been verified to be accessible by the user (OTP or similar).
      */
     phoneVerified?: boolean | null;
   }
@@ -1042,19 +1042,19 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1WebKeySettings {
     /**
-     * If set to true, it means allowed_domains will not be enforced.
+     * Optional. If set to true, it means allowed_domains will not be enforced.
      */
     allowAllDomains?: boolean | null;
     /**
-     * If set to true, the key can be used on AMP (Accelerated Mobile Pages) websites. This is supported only for the SCORE integration type.
+     * Optional. If set to true, the key can be used on AMP (Accelerated Mobile Pages) websites. This is supported only for the SCORE integration type.
      */
     allowAmpTraffic?: boolean | null;
     /**
-     * Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com'
+     * Optional. Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com'
      */
     allowedDomains?: string[] | null;
     /**
-     * Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE.
+     * Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE.
      */
     challengeSecurityPreference?: string | null;
     /**
@@ -1310,7 +1310,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Assessments$Annotate
     extends StandardParameters {
     /**
-     * Required. The resource name of the Assessment, in the format "projects/{project\}/assessments/{assessment\}".
+     * Required. The resource name of the Assessment, in the format `projects/{project\}/assessments/{assessment\}`.
      */
     name?: string;
 
@@ -1322,7 +1322,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Assessments$Create
     extends StandardParameters {
     /**
-     * Required. The name of the project in which the assessment will be created, in the format "projects/{project\}".
+     * Required. The name of the project in which the assessment will be created, in the format `projects/{project\}`.
      */
     parent?: string;
 
@@ -1812,7 +1812,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Firewallpolicies$Create
     extends StandardParameters {
     /**
-     * Required. The name of the project this policy will apply to, in the format "projects/{project\}".
+     * Required. The name of the project this policy will apply to, in the format `projects/{project\}`.
      */
     parent?: string;
 
@@ -1824,14 +1824,14 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Firewallpolicies$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the policy to be deleted, in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     * Required. The name of the policy to be deleted, in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Firewallpolicies$Get
     extends StandardParameters {
     /**
-     * Required. The name of the requested policy, in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     * Required. The name of the requested policy, in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
      */
     name?: string;
   }
@@ -1846,14 +1846,14 @@ export namespace recaptchaenterprise_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project to list the policies for, in the format "projects/{project\}".
+     * Required. The name of the project to list the policies for, in the format `projects/{project\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Firewallpolicies$Patch
     extends StandardParameters {
     /**
-     * The resource name for the FirewallPolicy in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     * The resource name for the FirewallPolicy in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
      */
     name?: string;
     /**
@@ -2629,7 +2629,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Keys$Create
     extends StandardParameters {
     /**
-     * Required. The name of the project in which the key will be created, in the format "projects/{project\}".
+     * Required. The name of the project in which the key will be created, in the format `projects/{project\}`.
      */
     parent?: string;
 
@@ -2641,21 +2641,21 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Keys$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the key to be deleted, in the format "projects/{project\}/keys/{key\}".
+     * Required. The name of the key to be deleted, in the format `projects/{project\}/keys/{key\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Keys$Get
     extends StandardParameters {
     /**
-     * Required. The name of the requested key, in the format "projects/{project\}/keys/{key\}".
+     * Required. The name of the requested key, in the format `projects/{project\}/keys/{key\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Keys$Getmetrics
     extends StandardParameters {
     /**
-     * Required. The name of the requested metrics, in the format "projects/{project\}/keys/{key\}/metrics".
+     * Required. The name of the requested metrics, in the format `projects/{project\}/keys/{key\}/metrics`.
      */
     name?: string;
   }
@@ -2670,14 +2670,14 @@ export namespace recaptchaenterprise_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project that contains the keys that will be listed, in the format "projects/{project\}".
+     * Required. The name of the project that contains the keys that will be listed, in the format `projects/{project\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Keys$Migrate
     extends StandardParameters {
     /**
-     * Required. The name of the key to be migrated, in the format "projects/{project\}/keys/{key\}".
+     * Required. The name of the key to be migrated, in the format `projects/{project\}/keys/{key\}`.
      */
     name?: string;
 
@@ -2689,7 +2689,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Keys$Patch
     extends StandardParameters {
     /**
-     * The resource name for the Key in the format "projects/{project\}/keys/{key\}".
+     * The resource name for the Key in the format `projects/{project\}/keys/{key\}`.
      */
     name?: string;
     /**
@@ -2705,7 +2705,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Keys$Retrievelegacysecretkey
     extends StandardParameters {
     /**
-     * Required. The public key name linked to the requested secret key in the format "projects/{project\}/keys/{key\}".
+     * Required. The public key name linked to the requested secret key in the format `projects/{project\}/keys/{key\}`.
      */
     key?: string;
   }
@@ -2817,7 +2817,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Relatedaccountgroupmemberships$Search
     extends StandardParameters {
     /**
-     * Required. The name of the project to search related account group memberships from. Specify the project name in the following format: "projects/{project\}".
+     * Required. The name of the project to search related account group memberships from. Specify the project name in the following format: `projects/{project\}`.
      */
     project?: string;
 
@@ -2946,7 +2946,7 @@ export namespace recaptchaenterprise_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project to list related account groups from, in the format "projects/{project\}".
+     * Required. The name of the project to list related account groups from, in the format `projects/{project\}`.
      */
     parent?: string;
   }
