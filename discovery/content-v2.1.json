@@ -5523,7 +5523,7 @@
           ],
           "parameters": {
             "countryCode": {
-              "description": "[CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. \"US\"), used as a filter on repricing rules.",
+              "description": "[CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (for example, \"US\"), used as a filter on repricing rules.",
               "location": "query",
               "type": "string"
             },
@@ -5599,7 +5599,7 @@
         "repricingreports": {
           "methods": {
             "list": {
-              "description": "Lists the metrics report for a given Repricing rule.",
+              "description": "*Deprecated*: New merchants can't start using this service. Lists the metrics report for a given Repricing rule.",
               "flatPath": "{merchantId}/repricingrules/{ruleId}/repricingreports",
               "httpMethod": "GET",
               "id": "content.repricingrules.repricingreports.list",
@@ -6488,7 +6488,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231011",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -16578,7 +16578,7 @@
       "type": "object"
     },
     "RepricingRule": {
-      "description": "Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met.",
+      "description": "*Deprecated*: New merchants can't start using this resource. Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met.",
       "id": "RepricingRule",
       "properties": {
         "cogsBasedRule": {
@@ -16586,7 +16586,7 @@
           "description": "The rule definition for TYPE_COGS_BASED. Required when the rule type is TYPE_COGS_BASED."
         },
         "countryCode": {
-          "description": "Required. Immutable. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. \"US\").",
+          "description": "Required. Immutable. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (for example, \"US\").",
           "type": "string"
         },
         "effectiveTimePeriod": {
@@ -16659,7 +16659,7 @@
           "type": "integer"
         },
         "priceDelta": {
-          "description": "The price delta against the COGS. E.g. 2 means $2 more of the COGS.",
+          "description": "The price delta against the COGS. For example, 2 means $2 more of the COGS.",
           "type": "string"
         }
       },
@@ -16739,7 +16739,7 @@
       "id": "RepricingRuleEligibleOfferMatcherStringMatcher",
       "properties": {
         "strAttributes": {
-          "description": "String attributes, as long as such attribute of an offer is one of the string attribute values, the offer is considered as passing the matcher. The string matcher checks an offer for inclusivity in the string attributes, not equality. Only literal string matching is supported, no regex.",
+          "description": "String attributes, as long as such attribute of an offer is one of the string attribute values, the offer is considered as passing the matcher. The string matcher checks an offer for inclusivity in the string attributes, not equality. Only literal string matching is supported, no regular expressions.",
           "items": {
             "type": "string"
           },
@@ -17784,7 +17784,7 @@
           "type": "array"
         },
         "shipmentType": {
-          "description": "Type of locations this service ships orders to. Acceptable values are: - \"`delivery`\" - \"`pickup`\" - \"`local_delivery`\" ",
+          "description": "Type of locations this service ships orders to. Acceptable values are: - \"`delivery`\" - \"`pickup`\" - \"`local_delivery`\" - \"`collection_point`\" ",
           "type": "string"
         },
         "storeConfig": {
