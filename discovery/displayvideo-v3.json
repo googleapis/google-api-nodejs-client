@@ -9127,7 +9127,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231012",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -10139,7 +10139,7 @@
             "AD_POSITION",
             "OPERATING_SYSTEM_ID",
             "MOBILE_MODEL_ID",
-            "EXCHANGE_ID",
+            "EXCHANGE",
             "ENVIRONMENT",
             "COUNTRY_ID",
             "CITY_ID",
@@ -10153,7 +10153,7 @@
             "Ad position. Value is stored in the onScreenPositionValue field of the comparison value.",
             "The operating system identifier. Value is stored in the int64Value field of the comparison value.",
             "The mobile model identifier. Value is stored in the int64Value field of the comparison value.",
-            "The exchange identifier. Value is stored in the int64Value field of the comparison value.",
+            "Exchange. Value is stored in the exchangeValue field of the comparison value.",
             "Serving environment. Value is stored in the environmentValue field of the comparison value.",
             "The country or region identifier. Value is stored in the int64Value field of the comparison value.",
             "The city identifier. Value is stored in the int64Value field of the comparison value.",

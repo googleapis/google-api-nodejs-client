@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231011",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
@@ -1605,13 +1605,13 @@
         "label": {
           "enum": [
             "LABEL_OPTIONAL",
-            "LABEL_REQUIRED",
-            "LABEL_REPEATED"
+            "LABEL_REPEATED",
+            "LABEL_REQUIRED"
           ],
           "enumDescriptions": [
             "0 is reserved for errors",
             "",
-            ""
+            "The required label is only allowed in proto2. In proto3 and Editions it's explicitly prohibited. In Editions, the `field_presence` feature can be used to get this behavior."
           ],
           "type": "string"
         },
@@ -1663,7 +1663,7 @@
             "",
             "",
             "",
-            "Tag-delimited aggregate. Group type is deprecated and not supported in proto3. However, Proto3 implementations should still be able to parse the group wire format and treat group fields as unknown fields.",
+            "Tag-delimited aggregate. Group type is deprecated and not supported after proto2. However, Proto3 implementations should still be able to parse the group wire format and treat group fields as unknown fields. In Editions, the group wire format can be enabled via the `message_encoding` feature.",
             "Length-delimited aggregate.",
             "New in version 2.",
             "",

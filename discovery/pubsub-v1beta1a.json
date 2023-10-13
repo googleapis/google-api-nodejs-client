@@ -20,8 +20,8 @@
   "documentationLink": "https://cloud.google.com/pubsub/docs",
   "endpoints": [
     {
-      "location": "me-central2",
       "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
       "description": "Regional Endpoint"
     }
   ],
@@ -464,7 +464,7 @@
       }
     }
   },
-  "revision": "20230928",
+  "revision": "20231003",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
