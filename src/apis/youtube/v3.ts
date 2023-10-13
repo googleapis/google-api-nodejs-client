@@ -129,6 +129,7 @@ export namespace youtube_v3 {
     liveStreams: Resource$Livestreams;
     members: Resource$Members;
     membershipsLevels: Resource$Membershipslevels;
+    playlistImages: Resource$Playlistimages;
     playlistItems: Resource$Playlistitems;
     playlists: Resource$Playlists;
     search: Resource$Search;
@@ -166,6 +167,7 @@ export namespace youtube_v3 {
       this.liveStreams = new Resource$Livestreams(this.context);
       this.members = new Resource$Members(this.context);
       this.membershipsLevels = new Resource$Membershipslevels(this.context);
+      this.playlistImages = new Resource$Playlistimages(this.context);
       this.playlistItems = new Resource$Playlistitems(this.context);
       this.playlists = new Resource$Playlists(this.context);
       this.search = new Resource$Search(this.context);
@@ -3021,6 +3023,57 @@ export namespace youtube_v3 {
      */
     itemCount?: number | null;
   }
+  export interface Schema$PlaylistImage {
+    /**
+     * Identifies this resource (playlist id and image type).
+     */
+    id?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "youtube#playlistImages".
+     */
+    kind?: string | null;
+    snippet?: Schema$PlaylistImageSnippet;
+  }
+  export interface Schema$PlaylistImageListResponse {
+    items?: Schema$PlaylistImage[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "youtube#playlistImageListResponse".
+     */
+    kind?: string | null;
+    /**
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
+     */
+    nextPageToken?: string | null;
+    /**
+     * General pagination information.
+     */
+    pageInfo?: Schema$PageInfo;
+    /**
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
+     */
+    prevPageToken?: string | null;
+  }
+  /**
+   * A *playlistImage* resource identifies another resource, such as a image, that is associated with a playlist. In addition, the playlistImage resource contains details about the included resource that pertain specifically to how that resource is used in that playlist. YouTube uses playlists to identify special collections of videos for a channel, such as: - uploaded videos - favorite videos - positively rated (liked) videos - watch history To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the channel resource for a given channel. You can then use the playlistImages.list method to retrieve image data for any of those playlists. You can also add or remove images from those lists by calling the playlistImages.insert and playlistImages.delete methods.
+   */
+  export interface Schema$PlaylistImageSnippet {
+    /**
+     * The image height.
+     */
+    height?: number | null;
+    /**
+     * The Playlist ID of the playlist this image is associated with.
+     */
+    playlistId?: string | null;
+    /**
+     * The image type.
+     */
+    type?: string | null;
+    /**
+     * The image width.
+     */
+    width?: number | null;
+  }
   /**
    * A *playlistItem* resource identifies another resource, such as a video, that is included in a playlist. In addition, the playlistItem resource contains details about the included resource that pertain specifically to how that resource is used in that playlist. YouTube uses playlists to identify special collections of videos for a channel, such as: - uploaded videos - favorite videos - positively rated (liked) videos - watch history - watch later To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the channel resource for a given channel. You can then use the playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the playlistItems.insert and playlistItems.delete methods. For example, if a user gives a positive rating to a video, you would insert that video into the liked videos playlist for that user's channel.
    */
@@ -5714,10 +5767,6 @@ export namespace youtube_v3 {
      * Return the channels within the specified guide category ID.
      */
     categoryId?: string;
-    /**
-     * Return the channel associated with a YouTube handle. UNIMPLEMENTED.
-     */
-    forHandle?: string;
     /**
      * Return the channel associated with a YouTube username.
      */
@@ -9576,6 +9625,441 @@ export namespace youtube_v3 {
     part?: string[];
   }
 
+  export class Resource$Playlistimages {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Playlistimages$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Playlistimages$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Playlistimages$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Playlistimages$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Playlistimages$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Playlistimages$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistimages$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Playlistimages$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlistImages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Inserts a new resource into this collection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Playlistimages$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Playlistimages$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistImage>;
+    insert(
+      params: Params$Resource$Playlistimages$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Playlistimages$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$PlaylistImage>,
+      callback: BodyResponseCallback<Schema$PlaylistImage>
+    ): void;
+    insert(
+      params: Params$Resource$Playlistimages$Insert,
+      callback: BodyResponseCallback<Schema$PlaylistImage>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$PlaylistImage>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Playlistimages$Insert
+        | BodyResponseCallback<Schema$PlaylistImage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlaylistImage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlaylistImage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PlaylistImage> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistimages$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Playlistimages$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlistImages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PlaylistImage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PlaylistImage>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of resources, possibly filtered.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Playlistimages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Playlistimages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistImageListResponse>;
+    list(
+      params: Params$Resource$Playlistimages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Playlistimages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistImageListResponse>,
+      callback: BodyResponseCallback<Schema$PlaylistImageListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Playlistimages$List,
+      callback: BodyResponseCallback<Schema$PlaylistImageListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$PlaylistImageListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Playlistimages$List
+        | BodyResponseCallback<Schema$PlaylistImageListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlaylistImageListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlaylistImageListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlaylistImageListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistimages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Playlistimages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlistImages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PlaylistImageListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PlaylistImageListResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Playlistimages$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Playlistimages$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistImage>;
+    update(
+      params: Params$Resource$Playlistimages$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Playlistimages$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$PlaylistImage>,
+      callback: BodyResponseCallback<Schema$PlaylistImage>
+    ): void;
+    update(
+      params: Params$Resource$Playlistimages$Update,
+      callback: BodyResponseCallback<Schema$PlaylistImage>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$PlaylistImage>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Playlistimages$Update
+        | BodyResponseCallback<Schema$PlaylistImage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlaylistImage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlaylistImage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PlaylistImage> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistimages$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Playlistimages$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlistImages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PlaylistImage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PlaylistImage>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Playlistimages$Delete
+    extends StandardParameters {
+    /**
+     * Id to identify this image. This is returned from by the List method.
+     */
+    id?: string;
+    /**
+     * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     */
+    onBehalfOfContentOwner?: string;
+  }
+  export interface Params$Resource$Playlistimages$Insert
+    extends StandardParameters {
+    /**
+     * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     */
+    onBehalfOfContentOwnerChannel?: string;
+    /**
+     * The *part* parameter specifies the properties that the API response will include.
+     */
+    part?: string[];
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PlaylistImage;
+  }
+  export interface Params$Resource$Playlistimages$List
+    extends StandardParameters {
+    /**
+     * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     */
+    maxResults?: number;
+    /**
+     * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     */
+    onBehalfOfContentOwnerChannel?: string;
+    /**
+     * The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     */
+    pageToken?: string;
+    /**
+     * Return PlaylistImages for this playlist id.
+     */
+    parent?: string;
+    /**
+     * The *part* parameter specifies a comma-separated list of one or more playlistImage resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response.
+     */
+    part?: string[];
+  }
+  export interface Params$Resource$Playlistimages$Update
+    extends StandardParameters {
+    /**
+     * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * The *part* parameter specifies the properties that the API response will include.
+     */
+    part?: string[];
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PlaylistImage;
+  }
+
   export class Resource$Playlistitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -10608,10 +11092,6 @@ export namespace youtube_v3 {
      * Display the content as seen by viewers in this country.
      */
     regionCode?: string;
-    /**
-     * Search related to a resource.
-     */
-    relatedToVideoId?: string;
     /**
      * Return results relevant to this language.
      */

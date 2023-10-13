@@ -717,11 +717,6 @@
               "location": "query",
               "type": "string"
             },
-            "forHandle": {
-              "description": "Return the channel associated with a YouTube handle. UNIMPLEMENTED.",
-              "location": "query",
-              "type": "string"
-            },
             "forUsername": {
               "description": "Return the channel associated with a YouTube username.",
               "location": "query",
@@ -2171,6 +2166,158 @@
         }
       }
     },
+    "playlistImages": {
+      "methods": {
+        "delete": {
+          "description": "Deletes a resource.",
+          "flatPath": "youtube/v3/playlistImages",
+          "httpMethod": "DELETE",
+          "id": "youtube.playlistImages.delete",
+          "parameterOrder": [],
+          "parameters": {
+            "id": {
+              "description": "Id to identify this image. This is returned from by the List method.",
+              "location": "query",
+              "type": "string"
+            },
+            "onBehalfOfContentOwner": {
+              "description": "*Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/playlistImages",
+          "scopes": [
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.force-ssl",
+            "https://www.googleapis.com/auth/youtubepartner"
+          ]
+        },
+        "insert": {
+          "description": "Inserts a new resource into this collection.",
+          "flatPath": "youtube/v3/playlistImages",
+          "httpMethod": "POST",
+          "id": "youtube.playlistImages.insert",
+          "parameterOrder": [],
+          "parameters": {
+            "onBehalfOfContentOwner": {
+              "description": "*Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.",
+              "location": "query",
+              "type": "string"
+            },
+            "onBehalfOfContentOwnerChannel": {
+              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "location": "query",
+              "type": "string"
+            },
+            "part": {
+              "description": "The *part* parameter specifies the properties that the API response will include.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/playlistImages",
+          "request": {
+            "$ref": "PlaylistImage"
+          },
+          "response": {
+            "$ref": "PlaylistImage"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.force-ssl",
+            "https://www.googleapis.com/auth/youtubepartner"
+          ]
+        },
+        "list": {
+          "description": "Retrieves a list of resources, possibly filtered.",
+          "flatPath": "youtube/v3/playlistImages",
+          "httpMethod": "GET",
+          "id": "youtube.playlistImages.list",
+          "parameterOrder": [],
+          "parameters": {
+            "maxResults": {
+              "default": "5",
+              "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.",
+              "format": "uint32",
+              "location": "query",
+              "maximum": "50",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "onBehalfOfContentOwner": {
+              "description": "*Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.",
+              "location": "query",
+              "type": "string"
+            },
+            "onBehalfOfContentOwnerChannel": {
+              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Return PlaylistImages for this playlist id.",
+              "location": "query",
+              "type": "string"
+            },
+            "part": {
+              "description": "The *part* parameter specifies a comma-separated list of one or more playlistImage resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/playlistImages",
+          "response": {
+            "$ref": "PlaylistImageListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.force-ssl",
+            "https://www.googleapis.com/auth/youtube.readonly",
+            "https://www.googleapis.com/auth/youtubepartner"
+          ]
+        },
+        "update": {
+          "description": "Updates an existing resource.",
+          "flatPath": "youtube/v3/playlistImages",
+          "httpMethod": "PUT",
+          "id": "youtube.playlistImages.update",
+          "parameterOrder": [],
+          "parameters": {
+            "onBehalfOfContentOwner": {
+              "description": "*Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.",
+              "location": "query",
+              "type": "string"
+            },
+            "part": {
+              "description": "The *part* parameter specifies the properties that the API response will include.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/playlistImages",
+          "request": {
+            "$ref": "PlaylistImage"
+          },
+          "response": {
+            "$ref": "PlaylistImage"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.force-ssl",
+            "https://www.googleapis.com/auth/youtubepartner"
+          ]
+        }
+      }
+    },
     "playlistItems": {
       "methods": {
         "delete": {
@@ -2655,11 +2802,6 @@
             },
             "regionCode": {
               "description": "Display the content as seen by viewers in this country.",
-              "location": "query",
-              "type": "string"
-            },
-            "relatedToVideoId": {
-              "description": "Search related to a resource.",
               "location": "query",
               "type": "string"
             },
@@ -3852,7 +3994,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231011",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -9539,6 +9681,84 @@
         "itemCount": {
           "description": "The number of videos in the playlist.",
           "format": "uint32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PlaylistImage": {
+      "id": "PlaylistImage",
+      "properties": {
+        "id": {
+          "description": "Identifies this resource (playlist id and image type).",
+          "type": "string"
+        },
+        "kind": {
+          "default": "youtube#playlistImage",
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#playlistImages\".",
+          "type": "string"
+        },
+        "snippet": {
+          "$ref": "PlaylistImageSnippet"
+        }
+      },
+      "type": "object"
+    },
+    "PlaylistImageListResponse": {
+      "id": "PlaylistImageListResponse",
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "PlaylistImage"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "youtube#PlaylistImageListResponse",
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#playlistImageListResponse\".",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.",
+          "type": "string"
+        },
+        "pageInfo": {
+          "$ref": "PageInfo",
+          "description": "General pagination information."
+        },
+        "prevPageToken": {
+          "description": "The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlaylistImageSnippet": {
+      "description": "A *playlistImage* resource identifies another resource, such as a image, that is associated with a playlist. In addition, the playlistImage resource contains details about the included resource that pertain specifically to how that resource is used in that playlist. YouTube uses playlists to identify special collections of videos for a channel, such as: - uploaded videos - favorite videos - positively rated (liked) videos - watch history To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the channel resource for a given channel. You can then use the playlistImages.list method to retrieve image data for any of those playlists. You can also add or remove images from those lists by calling the playlistImages.insert and playlistImages.delete methods.",
+      "id": "PlaylistImageSnippet",
+      "properties": {
+        "height": {
+          "description": "The image height.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "playlistId": {
+          "description": "The Playlist ID of the playlist this image is associated with.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The image type.",
+          "enum": [
+            "hero"
+          ],
+          "enumDescriptions": [
+            "The main image that will be used for this playlist."
+          ],
+          "type": "string"
+        },
+        "width": {
+          "description": "The image width.",
+          "format": "int32",
           "type": "integer"
         }
       },
