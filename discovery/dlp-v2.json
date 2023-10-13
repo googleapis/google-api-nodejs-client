@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20231001",
+  "revision": "20231008",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3580,7 +3580,7 @@
       "id": "GooglePrivacyDlpV2BigQueryOptions",
       "properties": {
         "excludedFields": {
-          "description": "References to fields excluded from scanning. This allows you to skip inspection of entire columns which you know have no findings. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be impacted because hints from excluded columns will not be used.",
+          "description": "References to fields excluded from scanning. This allows you to skip inspection of entire columns which you know have no findings. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be affected because hints from excluded columns will not be used.",
           "items": {
             "$ref": "GooglePrivacyDlpV2FieldId"
           },
@@ -3594,7 +3594,7 @@
           "type": "array"
         },
         "includedFields": {
-          "description": "Limit scanning only to these fields. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be impacted because hints from excluded columns will not be used.",
+          "description": "Limit scanning only to these fields. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be affected because hints from excluded columns will not be used.",
           "items": {
             "$ref": "GooglePrivacyDlpV2FieldId"
           },
@@ -5283,7 +5283,7 @@
           "description": "Detailed error codes and messages."
         },
         "timestamps": {
-          "description": "The times the error occurred. List includes the oldest timestamp, and the last 9 ones.",
+          "description": "The times the error occurred. List includes the oldest timestamp and the last 9 timestamps.",
           "items": {
             "format": "google-datetime",
             "type": "string"
@@ -6008,7 +6008,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2InfoTypeLikelihood": {
-      "description": "Configuration to control custom minimum likelihoods per infotype. Used when certain infotypes need to return with higher or lower precision than the baseline, i.e. when wanting PERSON_NAME to return all possible names without lowering the precision of other infotypes.",
+      "description": "Configuration for setting a minimum likelihood per infotype. Used to customize the minimum likelihood level for specific infotypes in the request. For example, use this if you want to lower the precision for PERSON_NAME without lowering the precision for the other infotypes in the request.",
       "id": "GooglePrivacyDlpV2InfoTypeLikelihood",
       "properties": {
         "infoType": {
@@ -6016,7 +6016,7 @@
           "description": "Type of information the likelihood threshold applies to. Only one likelihood per info_type should be provided. If InfoTypeLikelihood does not have an info_type, the configuration fails."
         },
         "minLikelihood": {
-          "description": "Only returns findings equal or above this threshold. This field is required or else the configuration fails.",
+          "description": "Only returns findings equal to or above this threshold. This field is required or else the configuration fails.",
           "enum": [
             "LIKELIHOOD_UNSPECIFIED",
             "VERY_UNLIKELY",
@@ -6167,7 +6167,7 @@
           "description": "Configuration to control the number of findings returned. This is not used for data profiling. When redacting sensitive data from images, finding limits don't apply. They can cause unexpected or inconsistent results, where only some data is redacted. Don't include finding limits in RedactImage requests. Otherwise, Cloud DLP returns an error. When set within an InspectJobConfig, the specified maximum values aren't hard limits. If an inspection job reaches these limits, the job ends gradually, not abruptly. Therefore, the actual number of findings that Cloud DLP returns can be multiple times higher than these maximum values."
         },
         "minLikelihood": {
-          "description": "Only returns findings equal or above this threshold. The default is POSSIBLE. See https://cloud.google.com/dlp/docs/likelihood to learn more.",
+          "description": "Only returns findings equal to or above this threshold. The default is POSSIBLE. In general, the highest likelihood setting yields the fewest findings in results and the lowest chance of a false positive. For more information, see [Match likelihood](https://cloud.google.com/dlp/docs/likelihood).",
           "enum": [
             "LIKELIHOOD_UNSPECIFIED",
             "VERY_UNLIKELY",
@@ -6187,7 +6187,7 @@
           "type": "string"
         },
         "minLikelihoodPerInfoType": {
-          "description": "Per infotype likelihoods. For each infotype, a user can specify a minimum likelihood, and only return that infotype if it is above that threshold. If an infotype is not included, it uses the InspectConfig min_likelihood.",
+          "description": "Minimum likelihood per infotype. For each infotype, a user can specify a minimum likelihood. The system only returns a finding if its likelihood is above this threshold. If this field is not set, the system uses the InspectConfig min_likelihood.",
           "items": {
             "$ref": "GooglePrivacyDlpV2InfoTypeLikelihood"
           },
