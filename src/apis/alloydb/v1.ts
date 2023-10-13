@@ -681,7 +681,7 @@ export namespace alloydb_v1 {
      */
     queryInsightsConfig?: Schema$QueryInsightsInstanceConfig;
     /**
-     * Read pool instance configuration. This is required if the value of instanceType is READ_POOL.
+     * Read pool specific config.
      */
     readPoolConfig?: Schema$ReadPoolConfig;
     /**
@@ -843,7 +843,7 @@ export namespace alloydb_v1 {
    */
   export interface Schema$NetworkConfig {
     /**
-     * Optional. Name of the allocated IP range for the private IP AlloyDB cluster, for example: "google-managed-services-default". If set, the instance IPs for this cluster will be created in the allocated range. The range name must comply with RFC 1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. Field name is intended to be consistent with Cloud SQL.
+     * Optional. Name of the allocated IP range for the private IP AlloyDB cluster, for example: "google-managed-services-default". If set, the instance IPs for this cluster will be created in the allocated range. The range name must comply with RFC 1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Field name is intended to be consistent with CloudSQL.
      */
     allocatedIpRange?: string | null;
     /**
@@ -1187,7 +1187,7 @@ export namespace alloydb_v1 {
      */
     description?: string | null;
     /**
-     * Required. The last time at which the event described by this signal took place
+     * The last time at which the event described by this signal took place
      */
     eventTime?: string | null;
     /**
@@ -1195,7 +1195,7 @@ export namespace alloydb_v1 {
      */
     externalUri?: string | null;
     /**
-     * Required. The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.
+     * The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.
      */
     name?: string | null;
     /**
@@ -1207,21 +1207,17 @@ export namespace alloydb_v1 {
      */
     resourceContainer?: string | null;
     /**
-     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     * Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
     resourceName?: string | null;
     /**
-     * Required. The class of the signal, such as if it's a THREAT or VULNERABILITY.
+     * The class of the signal, such as if it's a THREAT or VULNERABILITY.
      */
     signalClass?: string | null;
     /**
-     * Required. Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.
+     * Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.
      */
     signalId?: string | null;
-    /**
-     * Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.
-     */
-    signalType?: string | null;
     state?: string | null;
   }
   /**
