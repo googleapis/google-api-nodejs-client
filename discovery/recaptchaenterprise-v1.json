@@ -119,7 +119,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the Assessment, in the format \"projects/{project}/assessments/{assessment}\".",
+                  "description": "Required. The resource name of the Assessment, in the format `projects/{project}/assessments/{assessment}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/assessments/[^/]+$",
                   "required": true,
@@ -147,7 +147,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the project in which the assessment will be created, in the format \"projects/{project}\".",
+                  "description": "Required. The name of the project in which the assessment will be created, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -179,7 +179,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the project this policy will apply to, in the format \"projects/{project}\".",
+                  "description": "Required. The name of the project this policy will apply to, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -207,7 +207,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the policy to be deleted, in the format \"projects/{project}/firewallpolicies/{firewallpolicy}\".",
+                  "description": "Required. The name of the policy to be deleted, in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/firewallpolicies/[^/]+$",
                   "required": true,
@@ -232,7 +232,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the requested policy, in the format \"projects/{project}/firewallpolicies/{firewallpolicy}\".",
+                  "description": "Required. The name of the requested policy, in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/firewallpolicies/[^/]+$",
                   "required": true,
@@ -268,7 +268,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the project to list the policies for, in the format \"projects/{project}\".",
+                  "description": "Required. The name of the project to list the policies for, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -293,7 +293,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name for the FirewallPolicy in the format \"projects/{project}/firewallpolicies/{firewallpolicy}\".",
+                  "description": "The resource name for the FirewallPolicy in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/firewallpolicies/[^/]+$",
                   "required": true,
@@ -331,7 +331,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the project in which the key will be created, in the format \"projects/{project}\".",
+                  "description": "Required. The name of the project in which the key will be created, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -359,7 +359,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the key to be deleted, in the format \"projects/{project}/keys/{key}\".",
+                  "description": "Required. The name of the key to be deleted, in the format `projects/{project}/keys/{key}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/keys/[^/]+$",
                   "required": true,
@@ -384,7 +384,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the requested key, in the format \"projects/{project}/keys/{key}\".",
+                  "description": "Required. The name of the requested key, in the format `projects/{project}/keys/{key}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/keys/[^/]+$",
                   "required": true,
@@ -409,7 +409,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the requested metrics, in the format \"projects/{project}/keys/{key}/metrics\".",
+                  "description": "Required. The name of the requested metrics, in the format `projects/{project}/keys/{key}/metrics`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/keys/[^/]+/metrics$",
                   "required": true,
@@ -445,7 +445,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the project that contains the keys that will be listed, in the format \"projects/{project}\".",
+                  "description": "Required. The name of the project that contains the keys that will be listed, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -470,7 +470,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the key to be migrated, in the format \"projects/{project}/keys/{key}\".",
+                  "description": "Required. The name of the key to be migrated, in the format `projects/{project}/keys/{key}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/keys/[^/]+$",
                   "required": true,
@@ -498,7 +498,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name for the Key in the format \"projects/{project}/keys/{key}\".",
+                  "description": "The resource name for the Key in the format `projects/{project}/keys/{key}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/keys/[^/]+$",
                   "required": true,
@@ -532,7 +532,7 @@
               ],
               "parameters": {
                 "key": {
-                  "description": "Required. The public key name linked to the requested secret key in the format \"projects/{project}/keys/{key}\".",
+                  "description": "Required. The public key name linked to the requested secret key in the format `projects/{project}/keys/{key}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/keys/[^/]+$",
                   "required": true,
@@ -561,7 +561,7 @@
               ],
               "parameters": {
                 "project": {
-                  "description": "Required. The name of the project to search related account group memberships from. Specify the project name in the following format: \"projects/{project}\".",
+                  "description": "Required. The name of the project to search related account group memberships from. Specify the project name in the following format: `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -604,7 +604,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the project to list related account groups from, in the format \"projects/{project}\".",
+                  "description": "Required. The name of the project to list related account groups from, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -666,7 +666,7 @@
       }
     }
   },
-  "revision": "20230917",
+  "revision": "20231008",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -674,7 +674,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
       "properties": {
         "labels": {
-          "description": "Labels for this request.",
+          "description": "Output only. Labels for this request.",
           "items": {
             "enum": [
               "ACCOUNT_DEFENDER_LABEL_UNSPECIFIED",
@@ -692,6 +692,7 @@
             ],
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -702,14 +703,14 @@
       "id": "GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo",
       "properties": {
         "endpoints": {
-          "description": "Endpoints that can be used for identity verification.",
+          "description": "Optional. Endpoints that can be used for identity verification.",
           "items": {
             "$ref": "GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo"
           },
           "type": "array"
         },
         "languageCode": {
-          "description": "Language code preference for the verification message, set as a IETF BCP 47 language code.",
+          "description": "Optional. Language code preference for the verification message, set as a IETF BCP 47 language code.",
           "type": "string"
         },
         "latestVerificationResult": {
@@ -754,18 +755,18 @@
       "id": "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings",
       "properties": {
         "allowAllPackageNames": {
-          "description": "If set to true, allowed_package_names are not enforced.",
+          "description": "Optional. If set to true, allowed_package_names are not enforced.",
           "type": "boolean"
         },
         "allowedPackageNames": {
-          "description": "Android package names of apps allowed to use the key. Example: 'com.companyname.appname'",
+          "description": "Optional. Android package names of apps allowed to use the key. Example: 'com.companyname.appname'",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "supportNonGoogleAppStoreDistribution": {
-          "description": "Set to true for keys that are used in an Android application that is available for download in app stores in addition to the Google Play Store.",
+          "description": "Optional. Set to true for keys that are used in an Android application that is available for download in app stores in addition to the Google Play Store.",
           "type": "boolean"
         }
       },
@@ -884,23 +885,26 @@
       "properties": {
         "accountDefenderAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
-          "description": "Assessment returned by account defender when a hashed_account_id is provided."
+          "description": "Output only. Assessment returned by account defender when a hashed_account_id is provided.",
+          "readOnly": true
         },
         "accountVerification": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo",
-          "description": "Account verification information for identity verification. The assessment event must include a token and site key to use this feature."
+          "description": "Optional. Account verification information for identity verification. The assessment event must include a token and site key to use this feature."
         },
         "event": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1Event",
-          "description": "The event being assessed."
+          "description": "Optional. The event being assessed."
         },
         "firewallPolicyAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment",
-          "description": "Assessment returned when firewall policies belonging to the project are evaluated using the field firewall_policy_evaluation."
+          "description": "Output only. Assessment returned when firewall policies belonging to the project are evaluated using the field firewall_policy_evaluation.",
+          "readOnly": true
         },
         "fraudPreventionAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment",
-          "description": "Assessment returned by Fraud Prevention when TransactionData is provided."
+          "description": "Output only. Assessment returned by Fraud Prevention when TransactionData is provided.",
+          "readOnly": true
         },
         "fraudSignals": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FraudSignals",
@@ -908,13 +912,13 @@
           "readOnly": true
         },
         "name": {
-          "description": "Output only. The resource name for the Assessment in the format \"projects/{project}/assessments/{assessment}\".",
+          "description": "Output only. The resource name for the Assessment in the format `projects/{project}/assessments/{assessment}`.",
           "readOnly": true,
           "type": "string"
         },
         "privatePasswordLeakVerification": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification",
-          "description": "The private password leak verification field contains the parameters that are used to to check for leaks privately without sharing user credentials."
+          "description": "Optional. The private password leak verification field contains the parameters that are used to to check for leaks privately without sharing user credentials."
         },
         "riskAnalysis": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
@@ -1011,7 +1015,7 @@
           "type": "array"
         },
         "ja3": {
-          "description": "Optional. Optional JA3 fingerprint for SSL clients.",
+          "description": "Optional. JA3 fingerprint for SSL clients.",
           "type": "string"
         },
         "requestedUri": {
@@ -1095,11 +1099,11 @@
       "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction",
       "properties": {
         "key": {
-          "description": "The header key to set in the request to the backend server.",
+          "description": "Optional. The header key to set in the request to the backend server.",
           "type": "string"
         },
         "value": {
-          "description": "The header value to set in the request to the backend server.",
+          "description": "Optional. The header value to set in the request to the backend server.",
           "type": "string"
         }
       },
@@ -1110,7 +1114,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction",
       "properties": {
         "path": {
-          "description": "The address to redirect to. The target is a relative path in the current host. Example: \"/blog/404.html\".",
+          "description": "Optional. The address to redirect to. The target is a relative path in the current host. Example: \"/blog/404.html\".",
           "type": "string"
         }
       },
@@ -1121,26 +1125,26 @@
       "id": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy",
       "properties": {
         "actions": {
-          "description": "The actions that the caller should take regarding user access. There should be at most one terminal action. A terminal action is any action that forces a response, such as AllowAction, BlockAction or SubstituteAction. Zero or more non-terminal actions such as SetHeader might be specified. A single policy can contain up to 16 actions.",
+          "description": "Optional. The actions that the caller should take regarding user access. There should be at most one terminal action. A terminal action is any action that forces a response, such as `AllowAction`, `BlockAction` or `SubstituteAction`. Zero or more non-terminal actions such as `SetHeader` might be specified. A single policy can contain up to 16 actions.",
           "items": {
             "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallAction"
           },
           "type": "array"
         },
         "condition": {
-          "description": "A CEL (Common Expression Language) conditional expression that specifies if this policy applies to an incoming user request. If this condition evaluates to true and the requested path matched the path pattern, the associated actions should be executed by the caller. The condition string is checked for CEL syntax correctness on creation. For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md). A condition has a max length of 500 characters.",
+          "description": "Optional. A CEL (Common Expression Language) conditional expression that specifies if this policy applies to an incoming user request. If this condition evaluates to true and the requested path matched the path pattern, the associated actions should be executed by the caller. The condition string is checked for CEL syntax correctness on creation. For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md). A condition has a max length of 500 characters.",
           "type": "string"
         },
         "description": {
-          "description": "A description of what this policy aims to achieve, for convenience purposes. The description can at most include 256 UTF-8 characters.",
+          "description": "Optional. A description of what this policy aims to achieve, for convenience purposes. The description can at most include 256 UTF-8 characters.",
           "type": "string"
         },
         "name": {
-          "description": "The resource name for the FirewallPolicy in the format \"projects/{project}/firewallpolicies/{firewallpolicy}\".",
+          "description": "The resource name for the FirewallPolicy in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
           "type": "string"
         },
         "path": {
-          "description": "The path for which this policy applies, specified as a glob pattern. For more information on glob, see the [manual page](https://man7.org/linux/man-pages/man7/glob.7.html). A path has a max length of 200 characters.",
+          "description": "Optional. The path for which this policy applies, specified as a glob pattern. For more information on glob, see the [manual page](https://man7.org/linux/man-pages/man7/glob.7.html). A path has a max length of 200 characters.",
           "type": "string"
         }
       },
@@ -1152,7 +1156,8 @@
       "properties": {
         "error": {
           "$ref": "GoogleRpcStatus",
-          "description": "If the processing of a policy config fails, an error will be populated and the firewall_policy will be left empty."
+          "description": "Output only. If the processing of a policy config fails, an error will be populated and the firewall_policy will be left empty.",
+          "readOnly": true
         },
         "firewallPolicy": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy",
@@ -1168,19 +1173,23 @@
       "properties": {
         "behavioralTrustVerdict": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict",
-          "description": "Assessment of this transaction for behavioral trust."
+          "description": "Output only. Assessment of this transaction for behavioral trust.",
+          "readOnly": true
         },
         "cardTestingVerdict": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict",
-          "description": "Assessment of this transaction for risk of being part of a card testing attack."
+          "description": "Output only. Assessment of this transaction for risk of being part of a card testing attack.",
+          "readOnly": true
         },
         "stolenInstrumentVerdict": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict",
-          "description": "Assessment of this transaction for risk of a stolen instrument."
+          "description": "Output only. Assessment of this transaction for risk of a stolen instrument.",
+          "readOnly": true
         },
         "transactionRisk": {
-          "description": "Probability of this transaction being fraudulent. Summarizes the combined risk of attack vectors below. Values are from 0.0 (lowest) to 1.0 (highest).",
+          "description": "Output only. Probability of this transaction being fraudulent. Summarizes the combined risk of attack vectors below. Values are from 0.0 (lowest) to 1.0 (highest).",
           "format": "float",
+          "readOnly": true,
           "type": "number"
         }
       },
@@ -1191,8 +1200,9 @@
       "id": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict",
       "properties": {
         "trust": {
-          "description": "Probability of this transaction attempt being executed in a behaviorally trustworthy way. Values are from 0.0 (lowest) to 1.0 (highest).",
+          "description": "Output only. Probability of this transaction attempt being executed in a behaviorally trustworthy way. Values are from 0.0 (lowest) to 1.0 (highest).",
           "format": "float",
+          "readOnly": true,
           "type": "number"
         }
       },
@@ -1203,8 +1213,9 @@
       "id": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict",
       "properties": {
         "risk": {
-          "description": "Probability of this transaction attempt being part of a card testing attack. Values are from 0.0 (lowest) to 1.0 (highest).",
+          "description": "Output only. Probability of this transaction attempt being part of a card testing attack. Values are from 0.0 (lowest) to 1.0 (highest).",
           "format": "float",
+          "readOnly": true,
           "type": "number"
         }
       },
@@ -1215,8 +1226,9 @@
       "id": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict",
       "properties": {
         "risk": {
-          "description": "Probability of this transaction being executed with a stolen instrument. Values are from 0.0 (lowest) to 1.0 (highest).",
+          "description": "Output only. Probability of this transaction being executed with a stolen instrument. Values are from 0.0 (lowest) to 1.0 (highest).",
           "format": "float",
+          "readOnly": true,
           "type": "number"
         }
       },
@@ -1290,11 +1302,11 @@
       "id": "GoogleCloudRecaptchaenterpriseV1IOSKeySettings",
       "properties": {
         "allowAllBundleIds": {
-          "description": "If set to true, allowed_bundle_ids are not enforced.",
+          "description": "Optional. If set to true, allowed_bundle_ids are not enforced.",
           "type": "boolean"
         },
         "allowedBundleIds": {
-          "description": "iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'",
+          "description": "Optional. iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'",
           "items": {
             "type": "string"
           },
@@ -1302,7 +1314,7 @@
         },
         "appleDeveloperId": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1AppleDeveloperId",
-          "description": "Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA Enterprise to get a better assessment of the integrity of your app."
+          "description": "Optional. Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA Enterprise to get a better assessment of the integrity of your app."
         }
       },
       "type": "object"
@@ -1322,7 +1334,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Human-readable display name of this key. Modifiable by user.",
+          "description": "Required. Human-readable display name of this key. Modifiable by user.",
           "type": "string"
         },
         "iosSettings": {
@@ -1333,20 +1345,20 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "See Creating and managing labels.",
+          "description": "Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha-enterprise/docs/labels).",
           "type": "object"
         },
         "name": {
-          "description": "The resource name for the Key in the format \"projects/{project}/keys/{key}\".",
+          "description": "The resource name for the Key in the format `projects/{project}/keys/{key}`.",
           "type": "string"
         },
         "testingOptions": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions",
-          "description": "Options for user acceptance testing."
+          "description": "Optional. Options for user acceptance testing."
         },
         "wafSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings",
-          "description": "Settings for WAF"
+          "description": "Optional. Settings for WAF"
         },
         "webSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings",
@@ -1439,7 +1451,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. The name of the metrics, in the format \"projects/{project}/keys/{key}/metrics\".",
+          "description": "Output only. The name of the metrics, in the format `projects/{project}/keys/{key}/metrics`.",
           "readOnly": true,
           "type": "string"
         },
@@ -1488,7 +1500,7 @@
           "type": "string"
         },
         "lookupHashPrefix": {
-          "description": "Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It is used to look up password leaks associated with that hash prefix.",
+          "description": "Required. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It is used to look up password leaks associated with that hash prefix.",
           "format": "byte",
           "type": "string"
         },
@@ -1544,14 +1556,15 @@
       "id": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
       "properties": {
         "extendedVerdictReasons": {
-          "description": "Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.",
+          "description": "Output only. Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "reasons": {
-          "description": "Reasons contributing to the risk analysis verdict.",
+          "description": "Output only. Reasons contributing to the risk analysis verdict.",
           "items": {
             "enum": [
               "CLASSIFICATION_REASON_UNSPECIFIED",
@@ -1575,11 +1588,13 @@
             ],
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "score": {
-          "description": "Legitimate event score from 0.0 to 1.0. (1.0 means very likely legitimate traffic while 0.0 means very likely non-legitimate traffic).",
+          "description": "Output only. Legitimate event score from 0.0 to 1.0. (1.0 means very likely legitimate traffic while 0.0 means very likely non-legitimate traffic).",
           "format": "float",
+          "readOnly": true,
           "type": "number"
         }
       },
@@ -1662,7 +1677,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TestingOptions",
       "properties": {
         "testingChallenge": {
-          "description": "For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site will return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.",
+          "description": "Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site will return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.",
           "enum": [
             "TESTING_CHALLENGE_UNSPECIFIED",
             "NOCAPTCHA",
@@ -1676,7 +1691,7 @@
           "type": "string"
         },
         "testingScore": {
-          "description": "All assessments for this Key will return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.",
+          "description": "Optional. All assessments for this Key will return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.",
           "format": "float",
           "type": "number"
         }
@@ -1688,24 +1703,28 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TokenProperties",
       "properties": {
         "action": {
-          "description": "Action name provided at token generation.",
+          "description": "Output only. Action name provided at token generation.",
+          "readOnly": true,
           "type": "string"
         },
         "androidPackageName": {
-          "description": "The name of the Android package with which the token was generated (Android keys only).",
+          "description": "Output only. The name of the Android package with which the token was generated (Android keys only).",
+          "readOnly": true,
           "type": "string"
         },
         "createTime": {
-          "description": "The timestamp corresponding to the generation of the token.",
+          "description": "Output only. The timestamp corresponding to the generation of the token.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "hostname": {
-          "description": "The hostname of the page on which the token was generated (Web keys only).",
+          "description": "Output only. The hostname of the page on which the token was generated (Web keys only).",
+          "readOnly": true,
           "type": "string"
         },
         "invalidReason": {
-          "description": "Reason associated with the response when valid = false.",
+          "description": "Output only. Reason associated with the response when valid = false.",
           "enum": [
             "INVALID_REASON_UNSPECIFIED",
             "UNKNOWN_INVALID_REASON",
@@ -1724,67 +1743,70 @@
             "The user verification token was not present.",
             "A retriable error (such as network failure) occurred on the browser. Could easily be simulated by an attacker."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "iosBundleId": {
-          "description": "The ID of the iOS bundle with which the token was generated (iOS keys only).",
+          "description": "Output only. The ID of the iOS bundle with which the token was generated (iOS keys only).",
+          "readOnly": true,
           "type": "string"
         },
         "valid": {
-          "description": "Whether the provided user response token is valid. When valid = false, the reason could be specified in invalid_reason or it could also be due to a user failing to solve a challenge or a sitekey mismatch (i.e the sitekey used to generate the token was different than the one specified in the assessment).",
+          "description": "Output only. Whether the provided user response token is valid. When valid = false, the reason could be specified in invalid_reason or it could also be due to a user failing to solve a challenge or a sitekey mismatch (i.e the sitekey used to generate the token was different than the one specified in the assessment).",
+          "readOnly": true,
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1TransactionData": {
-      "description": "Transaction data associated with a payment protected by reCAPTCHA Enterprise. All fields are optional.",
+      "description": "Transaction data associated with a payment protected by reCAPTCHA Enterprise.",
       "id": "GoogleCloudRecaptchaenterpriseV1TransactionData",
       "properties": {
         "billingAddress": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataAddress",
-          "description": "Address associated with the payment method when applicable."
+          "description": "Optional. Address associated with the payment method when applicable."
         },
         "cardBin": {
-          "description": "The Bank Identification Number - generally the first 6 or 8 digits of the card.",
+          "description": "Optional. The Bank Identification Number - generally the first 6 or 8 digits of the card.",
           "type": "string"
         },
         "cardLastFour": {
-          "description": "The last four digits of the card.",
+          "description": "Optional. The last four digits of the card.",
           "type": "string"
         },
         "currencyCode": {
-          "description": "The currency code in ISO-4217 format.",
+          "description": "Optional. The currency code in ISO-4217 format.",
           "type": "string"
         },
         "gatewayInfo": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo",
-          "description": "Information about the payment gateway's response to the transaction."
+          "description": "Optional. Information about the payment gateway's response to the transaction."
         },
         "items": {
-          "description": "Items purchased in this transaction.",
+          "description": "Optional. Items purchased in this transaction.",
           "items": {
             "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataItem"
           },
           "type": "array"
         },
         "merchants": {
-          "description": "Information about the user or users fulfilling the transaction.",
+          "description": "Optional. Information about the user or users fulfilling the transaction.",
           "items": {
             "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataUser"
           },
           "type": "array"
         },
         "paymentMethod": {
-          "description": "The payment method for the transaction. The allowed values are: * credit-card * debit-card * gift-card * processor-{name} (If a third-party is used, for example, processor-paypal) * custom-{name} (If an alternative method is used, for example, custom-crypto)",
+          "description": "Optional. The payment method for the transaction. The allowed values are: * credit-card * debit-card * gift-card * processor-{name} (If a third-party is used, for example, processor-paypal) * custom-{name} (If an alternative method is used, for example, custom-crypto)",
           "type": "string"
         },
         "shippingAddress": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataAddress",
-          "description": "Destination address if this transaction involves shipping a physical item."
+          "description": "Optional. Destination address if this transaction involves shipping a physical item."
         },
         "shippingValue": {
-          "description": "The value of shipping in the specified currency. 0 for free or no shipping.",
+          "description": "Optional. The value of shipping in the specified currency. 0 for free or no shipping.",
           "format": "double",
           "type": "number"
         },
@@ -1794,10 +1816,10 @@
         },
         "user": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataUser",
-          "description": "Information about the user paying/initiating the transaction."
+          "description": "Optional. Information about the user paying/initiating the transaction."
         },
         "value": {
-          "description": "The decimal value of the transaction in the specified currency.",
+          "description": "Optional. The decimal value of the transaction in the specified currency.",
           "format": "double",
           "type": "number"
         }
@@ -1809,30 +1831,30 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataAddress",
       "properties": {
         "address": {
-          "description": "The first lines of the address. The first line generally contains the street name and number, and further lines may include information such as an apartment number.",
+          "description": "Optional. The first lines of the address. The first line generally contains the street name and number, and further lines may include information such as an apartment number.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "administrativeArea": {
-          "description": "The state, province, or otherwise administrative area of the address.",
+          "description": "Optional. The state, province, or otherwise administrative area of the address.",
           "type": "string"
         },
         "locality": {
-          "description": "The town/city of the address.",
+          "description": "Optional. The town/city of the address.",
           "type": "string"
         },
         "postalCode": {
-          "description": "The postal or ZIP code of the address.",
+          "description": "Optional. The postal or ZIP code of the address.",
           "type": "string"
         },
         "recipient": {
-          "description": "The recipient name, potentially including information such as \"care of\".",
+          "description": "Optional. The recipient name, potentially including information such as \"care of\".",
           "type": "string"
         },
         "regionCode": {
-          "description": "The CLDR country/region of the address.",
+          "description": "Optional. The CLDR country/region of the address.",
           "type": "string"
         }
       },
@@ -1843,19 +1865,19 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo",
       "properties": {
         "avsResponseCode": {
-          "description": "AVS response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).",
+          "description": "Optional. AVS response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).",
           "type": "string"
         },
         "cvvResponseCode": {
-          "description": "CVV response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).",
+          "description": "Optional. CVV response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).",
           "type": "string"
         },
         "gatewayResponseCode": {
-          "description": "Gateway response code describing the state of the transaction.",
+          "description": "Optional. Gateway response code describing the state of the transaction.",
           "type": "string"
         },
         "name": {
-          "description": "Name of the gateway service (for example, stripe, square, paypal).",
+          "description": "Optional. Name of the gateway service (for example, stripe, square, paypal).",
           "type": "string"
         }
       },
@@ -1866,20 +1888,20 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataItem",
       "properties": {
         "merchantAccountId": {
-          "description": "When a merchant is specified, its corresponding account_id. Necessary to populate marketplace-style transactions.",
+          "description": "Optional. When a merchant is specified, its corresponding account_id. Necessary to populate marketplace-style transactions.",
           "type": "string"
         },
         "name": {
-          "description": "The full name of the item.",
+          "description": "Optional. The full name of the item.",
           "type": "string"
         },
         "quantity": {
-          "description": "The quantity of this item that is being purchased.",
+          "description": "Optional. The quantity of this item that is being purchased.",
           "format": "int64",
           "type": "string"
         },
         "value": {
-          "description": "The value per item that the user is paying, in the transaction currency, after discounts.",
+          "description": "Optional. The value per item that the user is paying, in the transaction currency, after discounts.",
           "format": "double",
           "type": "number"
         }
@@ -1891,28 +1913,28 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataUser",
       "properties": {
         "accountId": {
-          "description": "Unique account identifier for this user. If using account defender, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.",
+          "description": "Optional. Unique account identifier for this user. If using account defender, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.",
           "type": "string"
         },
         "creationMs": {
-          "description": "The epoch milliseconds of the user's account creation.",
+          "description": "Optional. The epoch milliseconds of the user's account creation.",
           "format": "int64",
           "type": "string"
         },
         "email": {
-          "description": "The email address of the user.",
+          "description": "Optional. The email address of the user.",
           "type": "string"
         },
         "emailVerified": {
-          "description": "Whether the email has been verified to be accessible by the user (OTP or similar).",
+          "description": "Optional. Whether the email has been verified to be accessible by the user (OTP or similar).",
           "type": "boolean"
         },
         "phoneNumber": {
-          "description": "The phone number of the user, with country code.",
+          "description": "Optional. The phone number of the user, with country code.",
           "type": "string"
         },
         "phoneVerified": {
-          "description": "Whether the phone number has been verified to be accessible by the user (OTP or similar).",
+          "description": "Optional. Whether the phone number has been verified to be accessible by the user (OTP or similar).",
           "type": "boolean"
         }
       },
@@ -2029,22 +2051,22 @@
       "id": "GoogleCloudRecaptchaenterpriseV1WebKeySettings",
       "properties": {
         "allowAllDomains": {
-          "description": "If set to true, it means allowed_domains will not be enforced.",
+          "description": "Optional. If set to true, it means allowed_domains will not be enforced.",
           "type": "boolean"
         },
         "allowAmpTraffic": {
-          "description": "If set to true, the key can be used on AMP (Accelerated Mobile Pages) websites. This is supported only for the SCORE integration type.",
+          "description": "Optional. If set to true, the key can be used on AMP (Accelerated Mobile Pages) websites. This is supported only for the SCORE integration type.",
           "type": "boolean"
         },
         "allowedDomains": {
-          "description": "Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com'",
+          "description": "Optional. Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com'",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "challengeSecurityPreference": {
-          "description": "Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE.",
+          "description": "Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE.",
           "enum": [
             "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
             "USABILITY",
