@@ -1857,7 +1857,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$RegionalPriceMigrationConfig {
     /**
-     * Required. The cutoff time for historical prices that subscribers can remain paying. Subscribers who are on a price that was created before this cutoff time will be migrated to the currently-offered price. These subscribers will receive a notification that they will be paying a different price. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.
+     * Required. The cutoff time for historical prices that subscribers can remain paying. Subscribers on prices which were available at this cutoff time or later will stay on their existing price. Subscribers on older prices will be migrated to the currently-offered price. The migrated subscribers will receive a notification that they will be paying a different price. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.
      */
     oldestAllowedPriceVersionTime?: string | null;
     /**
@@ -11204,7 +11204,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Refunds a user's subscription or in-app purchase order. Orders older than 1 year cannot be refunded.
+     * Refunds a user's subscription or in-app purchase order. Orders older than 3 years cannot be refunded.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
