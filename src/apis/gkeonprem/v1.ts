@@ -147,7 +147,7 @@ export namespace gkeonprem_v1 {
     value?: string | null;
   }
   /**
-   * Resource that represents a bare metal admin cluster. LINT.IfChange
+   * ## Resource that represents a bare metal admin cluster.
    */
   export interface Schema$BareMetalAdminCluster {
     /**
@@ -531,7 +531,7 @@ export namespace gkeonprem_v1 {
     ipAddress?: string | null;
   }
   /**
-   * Resource that represents a bare metal user cluster. LINT.IfChange
+   * Resource that represents a bare metal user cluster.
    */
   export interface Schema$BareMetalCluster {
     /**
@@ -1918,10 +1918,6 @@ export namespace gkeonprem_v1 {
      */
     platformConfig?: Schema$VmwarePlatformConfig;
     /**
-     * The VMware admin cluster prepared secrets configuration.
-     */
-    preparedSecrets?: Schema$VmwareAdminPreparedSecretsConfig;
-    /**
      * Output only. If set, there are currently changes in flight to the VMware admin cluster.
      */
     reconciling?: boolean | null;
@@ -2072,15 +2068,6 @@ export namespace gkeonprem_v1 {
      * vcenter_network specifies vCenter network name.
      */
     vcenterNetwork?: string | null;
-  }
-  /**
-   * VmwareAdminPreparedSecretsConfig represents configuration for admin cluster prepared secrets.
-   */
-  export interface Schema$VmwareAdminPreparedSecretsConfig {
-    /**
-     * Whether prepared secrets is enabled.
-     */
-    enabled?: boolean | null;
   }
   /**
    * VmwareSeesawConfig represents configuration parameters for an already existing Seesaw load balancer. IMPORTANT: Please note that the Anthos On-Prem API will not generate or update Seesaw configurations it can only bind a pre-existing configuration to a new user cluster. IMPORTANT: When attempting to create a user cluster with a pre-existing Seesaw load balancer you will need to follow some preparation steps before calling the 'CreateVmwareCluster' API method. First you will need to create the user cluster's namespace via kubectl. The namespace will need to use the following naming convention : -gke-onprem-mgmt or -gke-onprem-mgmt depending on whether you used the 'VmwareCluster.local_name' to disambiguate collisions; for more context see the documentation of 'VmwareCluster.local_name'. Once the namespace is created you will need to create a secret resource via kubectl. This secret will contain copies of your Seesaw credentials. The Secret must be called 'user-cluster-creds' and contain Seesaw's SSH and Cert credentials. The credentials must be keyed with the following names: 'seesaw-ssh-private-key', 'seesaw-ssh-public-key', 'seesaw-ssh-ca-key', 'seesaw-ssh-ca-cert'.
