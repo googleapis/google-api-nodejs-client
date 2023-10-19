@@ -211,7 +211,7 @@ export namespace cloudbuild_v2 {
     whenExpressions?: Schema$WhenExpression[];
   }
   /**
-   * A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Server or GitLab.
+   * A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data Center or GitLab.
    */
   export interface Schema$Connection {
     /**
@@ -831,7 +831,7 @@ export namespace cloudbuild_v2 {
      */
     pipelineRef?: Schema$PipelineRef;
     /**
-     * Status of the PipelineRun.
+     * Pipelinerun status the user can provide. Used for cancellation.
      */
     pipelineRunStatus?: string | null;
     /**

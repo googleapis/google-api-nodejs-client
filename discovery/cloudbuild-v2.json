@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20231017",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -987,7 +987,7 @@
       "type": "object"
     },
     "Connection": {
-      "description": "A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Server or GitLab.",
+      "description": "A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data Center or GitLab.",
       "id": "Connection",
       "properties": {
         "annotations": {
@@ -1843,7 +1843,7 @@
           "description": "PipelineRef refer to a specific instance of a Pipeline."
         },
         "pipelineRunStatus": {
-          "description": "Status of the PipelineRun.",
+          "description": "Pipelinerun status the user can provide. Used for cancellation.",
           "enum": [
             "PIPELINE_RUN_STATUS_UNSPECIFIED",
             "PIPELINE_RUN_CANCELLED"
