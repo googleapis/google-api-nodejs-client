@@ -279,7 +279,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Required. Field mask is used to specify the fields to be overwritten in the PartnerTenant resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. ",
+                          "description": "Required. Field mask is used to specify the fields to be overwritten in the PartnerTenant resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Mutable fields: display_name, partner_metadata, group_information.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -609,7 +609,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The resource name of the Tenant using the form: `organizations/{organization_id}/locations/global/tenants/{tenant_id}`",
+                              "description": "Required. The resource name of the parent PartnerTenant using the form: `organizations/{organization_id}/locations/global/partnerTenants/{partner_tenant_id}`",
                               "location": "path",
                               "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+$",
                               "required": true,
@@ -672,7 +672,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the ProxyConfig using the form: `organizations/{organization_id}/locations/global/tenants/{tenant_id}/proxyConfigs/{proxy_config_id}`",
+                              "description": "Required. The resource name of the ProxyConfig using the form: `organizations/{organization_id}/locations/global/partnerTenants/{partner_tenant_id}/proxyConfigs/{proxy_config_id}`",
                               "location": "path",
                               "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+/proxyConfigs/[^/]+$",
                               "required": true,
@@ -3674,7 +3674,7 @@
       }
     }
   },
-  "revision": "20231002",
+  "revision": "20231011",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5237,7 +5237,7 @@
       "type": "object"
     },
     "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyConfig": {
-      "description": "Proxy Configuration of a Tenant.",
+      "description": "Proxy Configuration of a PartnerTenant.",
       "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyConfig",
       "properties": {
         "createTime": {
@@ -5259,10 +5259,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "proxyProtocolConfig": {
-          "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig",
-          "description": "Optional. Protocol config data for the Proxy."
-        },
         "proxyUri": {
           "description": "Required. The URI of the proxy server.",
           "type": "string"
@@ -5280,20 +5276,6 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig": {
-      "description": "The protocol data that specifies how to communicate with Partner's Proxy.",
-      "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig",
-      "properties": {
-        "metadata": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optional. Untyped property bag to be sent back to the proxy using client specific mechanism.",
-          "type": "object"
         }
       },
       "type": "object"
