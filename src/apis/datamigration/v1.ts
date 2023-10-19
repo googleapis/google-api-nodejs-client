@@ -716,7 +716,7 @@ export namespace datamigration_v1 {
      */
     engine?: string | null;
     /**
-     * Required. Engine named version, for example 12.c.1.
+     * Required. Engine version, for example "12.c.1".
      */
     version?: string | null;
   }

@@ -2097,7 +2097,7 @@
       }
     }
   },
-  "revision": "20230912",
+  "revision": "20231011",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2477,10 +2477,10 @@
             "SQL_DATABASE_VERSION_UNSPECIFIED",
             "MYSQL_5_6",
             "MYSQL_5_7",
+            "MYSQL_8_0",
             "POSTGRES_9_6",
             "POSTGRES_11",
             "POSTGRES_10",
-            "MYSQL_8_0",
             "POSTGRES_12",
             "POSTGRES_13",
             "POSTGRES_14",
@@ -2490,10 +2490,10 @@
             "Unspecified version.",
             "MySQL 5.6.",
             "MySQL 5.7.",
+            "MySQL 8.0.",
             "PostgreSQL 9.6.",
             "PostgreSQL 11.",
             "PostgreSQL 10.",
-            "MySQL 8.0.",
             "PostgreSQL 12.",
             "PostgreSQL 13.",
             "PostgreSQL 14.",
@@ -2982,7 +2982,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Required. Engine named version, for example 12.c.1.",
+          "description": "Required. Engine version, for example \"12.c.1\".",
           "type": "string"
         }
       },
@@ -4507,7 +4507,8 @@
             "ERROR_RDBMS",
             "SOURCE_SIZE_EXCEEDS_THRESHOLD",
             "EXISTING_CONFLICTING_DATABASES",
-            "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE"
+            "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
+            "EXISTING_DATA"
           ],
           "enumDescriptions": [
             "An unknown error occurred",
@@ -4537,7 +4538,8 @@
             "There was an underlying RDBMS error.",
             "The source DB size in Bytes exceeds a certain threshold. The migration might require an increase of quota, or might not be supported.",
             "The destination DB contains existing databases that are conflicting with those in the source DB.",
-            "Insufficient privilege to enable the parallelism configuration."
+            "Insufficient privilege to enable the parallelism configuration.",
+            "The destination instance contains existing data or user defined entities (for example databases, tables, or functions). You can only migrate to empty instances. Clear your destination instance and retry the migration job."
           ],
           "readOnly": true,
           "type": "string"
