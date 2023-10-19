@@ -837,72 +837,6 @@
             }
           }
         },
-        "policyIssues": {
-          "methods": {
-            "get": {
-              "description": "Gets information about the selected policy issue.",
-              "flatPath": "v2/accounts/{accountsId}/policyIssues/{policyIssuesId}",
-              "httpMethod": "GET",
-              "id": "adsense.accounts.policyIssues.get",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. Name of the policy issue. Format: accounts/{account}/policyIssues/{policy_issue}",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+/policyIssues/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v2/{+name}",
-              "response": {
-                "$ref": "PolicyIssue"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/adsense"
-              ]
-            },
-            "list": {
-              "description": "Lists all the policy issues for the specified account.",
-              "flatPath": "v2/accounts/{accountsId}/policyIssues",
-              "httpMethod": "GET",
-              "id": "adsense.accounts.policyIssues.list",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "pageSize": {
-                  "description": "The maximum number of policy issues to include in the response, used for paging. If unspecified, at most 10000 policy issues will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
-                  "format": "int32",
-                  "location": "query",
-                  "type": "integer"
-                },
-                "pageToken": {
-                  "description": "A page token, received from a previous `ListPolicyIssues` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPolicyIssues` must match the call that provided the page token.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "parent": {
-                  "description": "Required. The account for which policy issues are being retrieved. Format: accounts/{account}",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v2/{+parent}/policyIssues",
-              "response": {
-                "$ref": "ListPolicyIssuesResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/adsense",
-                "https://www.googleapis.com/auth/adsense.readonly"
-              ]
-            }
-          }
-        },
         "reports": {
           "methods": {
             "generate": {
@@ -1910,7 +1844,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20231018",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -2457,24 +2391,6 @@
       },
       "type": "object"
     },
-    "ListPolicyIssuesResponse": {
-      "description": "Response definition for the policy issues list rpc. Policy issues are reported only if the publisher has at least one AFC ad client in READY or GETTING_READY state. If the publisher has no such AFC ad client, the response will be an empty list.",
-      "id": "ListPolicyIssuesResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "Continuation token used to page through policy issues. To retrieve the next page of the results, set the next request's \"page_token\" value to this.",
-          "type": "string"
-        },
-        "policyIssues": {
-          "description": "The policy issues returned in the list response.",
-          "items": {
-            "$ref": "PolicyIssue"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "ListSavedReportsResponse": {
       "description": "Response definition for the saved reports list rpc.",
       "id": "ListSavedReportsResponse",
@@ -2546,109 +2462,6 @@
         "name": {
           "description": "Output only. Resource name of the payment. Format: - accounts/{account}/payments/unpaid for unpaid (current) AdSense earnings. - accounts/{account}/payments/youtube-unpaid for unpaid (current) YouTube earnings. - accounts/{account}/payments/yyyy-MM-dd for paid AdSense earnings. - accounts/{account}/payments/youtube-yyyy-MM-dd for paid YouTube earnings.",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PolicyIssue": {
-      "description": "Representation of a policy issue for a single entity (site, site-section, or page). All issues for a single entity are represented by a single PolicyIssue resource, though that PolicyIssue can have multiple causes (or \"topics\") that can change over time. Policy issues are removed if there are no issues detected recently or if there's a recent successful appeal for the entity.",
-      "id": "PolicyIssue",
-      "properties": {
-        "action": {
-          "description": "Required. The most severe action taken on the entity over the past seven days.",
-          "enum": [
-            "ENFORCEMENT_ACTION_UNSPECIFIED",
-            "WARNED",
-            "AD_SERVING_RESTRICTED",
-            "AD_SERVING_DISABLED",
-            "AD_SERVED_WITH_CLICK_CONFIRMATION"
-          ],
-          "enumDescriptions": [
-            "The action is unspecified.",
-            "No ad serving enforcement is currently present, but enforcement will start on the `warning_escalation_date` if the issue is not resolved.",
-            "Ad serving demand has been restricted on the entity.",
-            "Ad serving has been disabled on the entity.",
-            "Ads are being served for the entity but Confirmed Click is being applied to the ads. See https://support.google.com/adsense/answer/10025624."
-          ],
-          "type": "string"
-        },
-        "adClients": {
-          "description": "Optional. List of ad clients associated with the policy issue (either as the primary ad client or an associated host/secondary ad client). In the latter case, this will be an ad client that is not owned by the current account.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "adRequestCount": {
-          "description": "Required. Total number of ad requests affected by the policy violations over the past seven days.",
-          "format": "int64",
-          "type": "string"
-        },
-        "entityType": {
-          "description": "Required. Type of the entity indicating if the entity is a site, site-section, or page.",
-          "enum": [
-            "ENTITY_TYPE_UNSPECIFIED",
-            "SITE",
-            "SITE_SECTION",
-            "PAGE"
-          ],
-          "enumDescriptions": [
-            "The entity type is unspecified.",
-            "The enforced entity is an entire website.",
-            "The enforced entity is a particular section of a website. All the pages with this prefix are enforced.",
-            "The enforced entity is a single web page."
-          ],
-          "type": "string"
-        },
-        "firstDetectedDate": {
-          "$ref": "Date",
-          "description": "Required. The date (in the America/Los_Angeles timezone) when policy violations were first detected on the entity."
-        },
-        "lastDetectedDate": {
-          "$ref": "Date",
-          "description": "Required. The date (in the America/Los_Angeles timezone) when policy violations were last detected on the entity."
-        },
-        "name": {
-          "description": "Required. Resource name of the entity with policy issues. Format: accounts/{account}/policyIssues/{policy_issue}",
-          "type": "string"
-        },
-        "policyTopics": {
-          "description": "Required. Unordered list. The policy topics that this entity was found to violate over the past seven days.",
-          "items": {
-            "$ref": "PolicyTopic"
-          },
-          "type": "array"
-        },
-        "site": {
-          "description": "Required. Hostname/domain of the entity (for example \"foo.com\" or \"www.foo.com\"). This _should_ be a bare domain/host name without any protocol. This will be present for all policy issues.",
-          "type": "string"
-        },
-        "siteSection": {
-          "description": "Optional. Prefix of the site-section having policy issues (For example \"foo.com/bar-section\"). This will be present if the `entity_type` is `SITE_SECTION` and will be absent for other entity types.",
-          "type": "string"
-        },
-        "uri": {
-          "description": "Optional. URI of the page having policy violations (for example \"foo.com/bar\" or \"www.foo.com/bar\"). This will be present if the `entity_type` is `PAGE` and will be absent for other entity types.",
-          "type": "string"
-        },
-        "warningEscalationDate": {
-          "$ref": "Date",
-          "description": "Optional. The date (in the America/Los_Angeles timezone) when the entity will have ad serving demand restricted or ad serving disabled. This is present only for issues with a `WARNED` enforcement action. See https://support.google.com/adsense/answer/11066888."
-        }
-      },
-      "type": "object"
-    },
-    "PolicyTopic": {
-      "description": "Information about a particular policy topic. A policy topic represents a single class of policy issue that can impact ad serving for your site. For example, sexual content or having ads that obscure your content. A single policy issue can have multiple policy topics for a single entity.",
-      "id": "PolicyTopic",
-      "properties": {
-        "mustFix": {
-          "description": "Required. Indicates if this is a policy violation or not. When the value is true, issues that are instances of this topic must be addressed to remain in compliance with the partner's agreements with Google. A false value indicates that it's not mandatory to fix the issues but advertising demand might be restricted.",
-          "type": "boolean"
-        },
-        "topic": {
-          "description": "Required. The policy topic. For example, \"sexual-content\" or \"ads-obscuring-content\".\"",
           "type": "string"
         }
       },
