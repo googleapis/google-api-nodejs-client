@@ -252,7 +252,7 @@ export namespace metastore_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Contains information of the customer's network configurations.Next available ID: 5
+   * Contains information of the customer's network configurations.
    */
   export interface Schema$Consumer {
     /**
@@ -696,7 +696,7 @@ export namespace metastore_v1 {
     constituentRegions?: string[] | null;
   }
   /**
-   * Network configuration for the Dataproc Metastore service.Next available ID: 4
+   * Network configuration for the Dataproc Metastore service.
    */
   export interface Schema$NetworkConfig {
     /**
