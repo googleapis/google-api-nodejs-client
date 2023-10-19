@@ -315,7 +315,7 @@ export namespace firebaseappcheck_v1beta {
      */
     challenge?: string | null;
     /**
-     * Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.
+     * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
   }
@@ -336,7 +336,7 @@ export namespace firebaseappcheck_v1beta {
      */
     keyId?: string | null;
     /**
-     * Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.
+     * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
   }
@@ -366,7 +366,7 @@ export namespace firebaseappcheck_v1beta {
      */
     customToken?: string | null;
     /**
-     * Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.
+     * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
   }
@@ -379,7 +379,7 @@ export namespace firebaseappcheck_v1beta {
      */
     debugToken?: string | null;
     /**
-     * Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.
+     * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
   }
@@ -392,7 +392,7 @@ export namespace firebaseappcheck_v1beta {
      */
     deviceToken?: string | null;
     /**
-     * Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.
+     * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
   }
@@ -401,7 +401,7 @@ export namespace firebaseappcheck_v1beta {
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest {
     /**
-     * Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.
+     * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
     /**
@@ -414,7 +414,7 @@ export namespace firebaseappcheck_v1beta {
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest {
     /**
-     * Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.
+     * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
     /**
@@ -436,7 +436,7 @@ export namespace firebaseappcheck_v1beta {
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest {
     /**
-     * Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.
+     * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
     /**
