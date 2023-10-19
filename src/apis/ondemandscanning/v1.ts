@@ -1041,6 +1041,10 @@ export namespace ondemandscanning_v1 {
      */
     hashDigest?: string | null;
     /**
+     * The list of licenses found that are related to a given package. Note that licenses may also be stored on the BinarySourceInfo. If there is no BinarySourceInfo (because there's no concept of source vs binary), then it will be stored here, while if there are BinarySourceInfos, it will be stored there, as one source can have multiple binaries with different licenses.
+     */
+    licenses?: string[] | null;
+    /**
      * The maintainer of the package.
      */
     maintainer?: Schema$Maintainer;
@@ -1153,6 +1157,10 @@ export namespace ondemandscanning_v1 {
     version?: Schema$Version;
   }
   export interface Schema$PackageVersion {
+    /**
+     * The licenses associated with this package. Note that this has to go on the PackageVersion level, because we can have cases with images with the same source having different licences. E.g. in Alpine, musl and musl-utils both have the same origin musl, but have different sets of licenses.
+     */
+    licenses?: string[] | null;
     name?: string | null;
     version?: string | null;
   }
