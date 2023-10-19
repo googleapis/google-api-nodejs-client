@@ -2319,7 +2319,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20231017",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -5040,6 +5040,20 @@
         },
         "object": {
           "description": "Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
+          "type": "string"
+        },
+        "sourceFetcher": {
+          "description": "Optional. Option to specify the tool to fetch the source file for the build.",
+          "enum": [
+            "SOURCE_FETCHER_UNSPECIFIED",
+            "GSUTIL",
+            "GCS_FETCHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified defaults to GSUTIL.",
+            "Use the \"gsutil\" tool to download the source file.",
+            "Use the Cloud Storage Fetcher tool to download the source file."
+          ],
           "type": "string"
         }
       },
