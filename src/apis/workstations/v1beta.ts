@@ -227,6 +227,15 @@ export namespace workstations_v1beta {
     kmsKeyServiceAccount?: string | null;
   }
   /**
+   * Configuration options for a custom domain.
+   */
+  export interface Schema$DomainConfig {
+    /**
+     * Immutable. Domain used by Workstations for HTTP ingress.
+     */
+    domain?: string | null;
+  }
+  /**
    * An ephemeral directory which won't persist across workstation sessions. It is freshly created on every workstation start operation.
    */
   export interface Schema$EphemeralDirectory {
@@ -339,7 +348,7 @@ export namespace workstations_v1beta {
      */
     sourceImage?: string | null;
     /**
-     * Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. This field is mutable.
+     * Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Must be empty if read_only is false. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. This field is mutable.
      */
     sourceSnapshot?: string | null;
   }
@@ -759,7 +768,7 @@ export namespace workstations_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Full name of this workstation.
+     * Identifier. Full name of this workstation.
      */
     name?: string | null;
     /**
@@ -816,6 +825,10 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
+     * Optional. Configuration options for a custom domain.
+     */
+    domainConfig?: Schema$DomainConfig;
+    /**
      * Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
@@ -824,7 +837,7 @@ export namespace workstations_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Full name of this workstation cluster.
+     * Identifier. Full name of this workstation cluster.
      */
     name?: string | null;
     /**
@@ -913,7 +926,7 @@ export namespace workstations_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Full name of this workstation configuration.
+     * Identifier. Full name of this workstation configuration.
      */
     name?: string | null;
     /**
@@ -1898,7 +1911,7 @@ export namespace workstations_v1beta {
      */
     allowMissing?: boolean;
     /**
-     * Full name of this workstation cluster.
+     * Identifier. Full name of this workstation cluster.
      */
     name?: string;
     /**
@@ -2832,7 +2845,7 @@ export namespace workstations_v1beta {
      */
     allowMissing?: boolean;
     /**
-     * Full name of this workstation configuration.
+     * Identifier. Full name of this workstation configuration.
      */
     name?: string;
     /**
@@ -4056,7 +4069,7 @@ export namespace workstations_v1beta {
      */
     allowMissing?: boolean;
     /**
-     * Full name of this workstation.
+     * Identifier. Full name of this workstation.
      */
     name?: string;
     /**

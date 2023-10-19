@@ -456,7 +456,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Full name of this workstation cluster.",
+                      "description": "Identifier. Full name of this workstation cluster.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+$",
                       "required": true,
@@ -710,7 +710,7 @@
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Full name of this workstation configuration.",
+                          "description": "Identifier. Full name of this workstation configuration.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+/workstationConfigs/[^/]+$",
                           "required": true,
@@ -1043,7 +1043,7 @@
                               "type": "boolean"
                             },
                             "name": {
-                              "description": "Full name of this workstation.",
+                              "description": "Identifier. Full name of this workstation.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+/workstationConfigs/[^/]+/workstations/[^/]+$",
                               "required": true,
@@ -1195,7 +1195,7 @@
       }
     }
   },
-  "revision": "20230904",
+  "revision": "20231001",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2041,7 +2041,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Full name of this workstation.",
+          "description": "Identifier. Full name of this workstation.",
           "type": "string"
         },
         "reconciling": {
@@ -2145,7 +2145,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Full name of this workstation cluster.",
+          "description": "Identifier. Full name of this workstation cluster.",
           "type": "string"
         },
         "network": {
@@ -2248,7 +2248,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Full name of this workstation configuration.",
+          "description": "Identifier. Full name of this workstation configuration.",
           "type": "string"
         },
         "persistentDirectories": {

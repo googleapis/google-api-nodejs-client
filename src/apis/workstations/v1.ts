@@ -742,7 +742,7 @@ export namespace workstations_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Full name of this workstation.
+     * Identifier. Full name of this workstation.
      */
     name?: string | null;
     /**
@@ -807,7 +807,7 @@ export namespace workstations_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Full name of this workstation cluster.
+     * Identifier. Full name of this workstation cluster.
      */
     name?: string | null;
     /**
@@ -888,7 +888,7 @@ export namespace workstations_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Full name of this workstation configuration.
+     * Identifier. Full name of this workstation configuration.
      */
     name?: string | null;
     /**
@@ -2073,7 +2073,7 @@ export namespace workstations_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Full name of this workstation cluster.
+     * Identifier. Full name of this workstation cluster.
      */
     name?: string;
     /**
@@ -3007,7 +3007,7 @@ export namespace workstations_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Full name of this workstation configuration.
+     * Identifier. Full name of this workstation configuration.
      */
     name?: string;
     /**
@@ -4227,7 +4227,7 @@ export namespace workstations_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Full name of this workstation.
+     * Identifier. Full name of this workstation.
      */
     name?: string;
     /**

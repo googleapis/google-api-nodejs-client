@@ -388,7 +388,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Full name of this workstation cluster.",
+                      "description": "Identifier. Full name of this workstation cluster.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+$",
                       "required": true,
@@ -642,7 +642,7 @@
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Full name of this workstation configuration.",
+                          "description": "Identifier. Full name of this workstation configuration.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+/workstationConfigs/[^/]+$",
                           "required": true,
@@ -975,7 +975,7 @@
                               "type": "boolean"
                             },
                             "name": {
-                              "description": "Full name of this workstation.",
+                              "description": "Identifier. Full name of this workstation.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+/workstationConfigs/[^/]+/workstations/[^/]+$",
                               "required": true,
@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20230904",
+  "revision": "20231011",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1278,6 +1278,17 @@
       },
       "type": "object"
     },
+    "DomainConfig": {
+      "description": "Configuration options for a custom domain.",
+      "id": "DomainConfig",
+      "properties": {
+        "domain": {
+          "description": "Immutable. Domain used by Workstations for HTTP ingress.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EphemeralDirectory": {
       "description": "An ephemeral directory which won't persist across workstation sessions. It is freshly created on every workstation start operation.",
       "id": "EphemeralDirectory",
@@ -1412,7 +1423,7 @@
           "type": "string"
         },
         "sourceSnapshot": {
-          "description": "Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. This field is mutable.",
+          "description": "Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Must be empty if read_only is false. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. This field is mutable.",
           "type": "string"
         }
       },
@@ -1989,7 +2000,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Full name of this workstation.",
+          "description": "Identifier. Full name of this workstation.",
           "type": "string"
         },
         "reconciling": {
@@ -2081,6 +2092,10 @@
           "description": "Optional. Human-readable name for this workstation cluster.",
           "type": "string"
         },
+        "domainConfig": {
+          "$ref": "DomainConfig",
+          "description": "Optional. Configuration options for a custom domain."
+        },
         "etag": {
           "description": "Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
           "type": "string"
@@ -2093,7 +2108,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Full name of this workstation cluster.",
+          "description": "Identifier. Full name of this workstation cluster.",
           "type": "string"
         },
         "network": {
@@ -2207,7 +2222,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Full name of this workstation configuration.",
+          "description": "Identifier. Full name of this workstation configuration.",
           "type": "string"
         },
         "persistentDirectories": {
