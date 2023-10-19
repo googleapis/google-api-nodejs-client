@@ -522,7 +522,7 @@ export namespace gkebackup_v1 {
      */
     resourceGroup?: string | null;
     /**
-     * Optional. Kind of a Kubernetes resource, e.g. "CustomResourceDefinition", "StorageClass", etc.
+     * Optional. Kind of a Kubernetes resource, must be in UpperCamelCase (PascalCase) and singular form. E.g. "CustomResourceDefinition", "StorageClass", etc.
      */
     resourceKind?: string | null;
   }
@@ -757,7 +757,7 @@ export namespace gkebackup_v1 {
     namespaces?: string[] | null;
   }
   /**
-   * Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 18
+   * Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 19
    */
   export interface Schema$Restore {
     /**
