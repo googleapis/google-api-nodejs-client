@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v1.1.2...managedidentities-v1.1.3) (2023-10-19)
+
+
+### Bug Fixes
+
+* **managedidentities:** update the API ([e7f0e4d](https://github.com/googleapis/google-api-nodejs-client/commit/e7f0e4dadc2acc92dd37852f02855251fd05ef4e))
+
 ## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v1.1.1...managedidentities-v1.1.2) (2023-10-11)
 
 

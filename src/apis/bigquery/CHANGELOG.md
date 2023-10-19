@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v4.0.0...bigquery-v5.0.0) (2023-10-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **bigquery:** This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([98f9682](https://github.com/googleapis/google-api-nodejs-client/commit/98f9682375d082ce707fe1dfc7f105fc7d94ca9d))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v3.0.0...bigquery-v4.0.0) (2023-10-11)
 
 

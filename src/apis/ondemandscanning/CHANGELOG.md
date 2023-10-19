@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v11.0.0...ondemandscanning-v11.1.0) (2023-10-19)
+
+
+### Features
+
+* **ondemandscanning:** update the API ([b0934db](https://github.com/googleapis/google-api-nodejs-client/commit/b0934db5160ebc470f5756cb30391c8ba2a5d831))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v10.2.2...ondemandscanning-v11.0.0) (2023-10-11)
 
 

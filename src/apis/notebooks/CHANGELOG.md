@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v2.0.0...notebooks-v3.0.0) (2023-10-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3362](https://github.com/googleapis/google-api-nodejs-client/issues/3362)) ([24846e8](https://github.com/googleapis/google-api-nodejs-client/commit/24846e81aa8f487b8d30b4d1b31c945e9968ec42))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v1.1.1...notebooks-v2.0.0) (2023-10-11)
 
 

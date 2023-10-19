@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v4.3.0...datamigration-v4.3.1) (2023-10-19)
+
+
+### Bug Fixes
+
+* **datamigration:** update the API ([7518af9](https://github.com/googleapis/google-api-nodejs-client/commit/7518af914eb9d8a3a1bb41ff4fdff700ef94e90f))
+
 ## [4.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v4.2.1...datamigration-v4.3.0) (2023-10-11)
 
 

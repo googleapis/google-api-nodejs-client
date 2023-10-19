@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v2.0.0...places-v3.0.0) (2023-10-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **places:** This release has breaking changes.
+
+### Features
+
+* **places:** update the API ([22793ea](https://github.com/googleapis/google-api-nodejs-client/commit/22793ea0dc7ebcca893c2eb984c8f5fcea738562))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v1.0.2...places-v2.0.0) (2023-10-11)
 
 
