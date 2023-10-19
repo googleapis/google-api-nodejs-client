@@ -1170,6 +1170,9 @@ export namespace aiplatform_v1 {
      * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.
      */
     featureId?: string | null;
+    /**
+     * Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format for entity_type as parent: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` Format for feature_group as parent: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     */
     parent?: string | null;
   }
   /**
@@ -1389,6 +1392,10 @@ export namespace aiplatform_v1 {
      * Optional. The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the Job should be peered. For example, `projects/12345/global/networks/myVPC`. [Format](/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project\}/global/networks/{network\}`. Where {project\} is a project number, as in `12345`, and {network\} is a network name. To specify this field, you must have already [configured VPC Network Peering for Vertex AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering). If this field is left unspecified, the job is not peered with any network.
      */
     network?: string | null;
+    /**
+     * The ID of the location to store protected artifacts. e.g. us-central1. Populate only when the location is different than CustomJob location. For unprotected artifacts, the value of this field is ignored. List of supported locations: https://cloud.google.com/vertex-ai/docs/general/locations
+     */
+    protectedArtifactLocationId?: string | null;
     /**
      * Optional. A list of names for the reserved ip ranges under the VPC network that can be used for this job. If set, we will deploy the job within the provided ip ranges. Otherwise, the job will be deployed to any ip ranges under the provided VPC network. Example: ['vertex-ai-ip-range'].
      */
@@ -2857,11 +2864,11 @@ export namespace aiplatform_v1 {
     timeSeriesDataPoints?: Schema$GoogleCloudAiplatformV1TimeSeriesDataPoint[];
   }
   /**
-   * Feature Metadata information that describes an attribute of an entity type. For example, apple is an entity type, and color is a feature that describes apple.
+   * Feature Metadata information. For example, color is a feature that describes an apple.
    */
   export interface Schema$GoogleCloudAiplatformV1Feature {
     /**
-     * Output only. Timestamp when this EntityType was created.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy). Timestamp when this EntityType was created.
      */
     createTime?: string | null;
     /**
@@ -2869,7 +2876,7 @@ export namespace aiplatform_v1 {
      */
     description?: string | null;
     /**
-     * Optional. If not set, use the monitoring_config defined for the EntityType this Feature belongs to. Only Features with type (Feature.ValueType) BOOL, STRING, DOUBLE or INT64 can enable monitoring. If set to true, all types of data monitoring are disabled despite the config on EntityType.
+     * Optional. Only applicable for Vertex AI Feature Store (Legacy). If not set, use the monitoring_config defined for the EntityType this Feature belongs to. Only Features with type (Feature.ValueType) BOOL, STRING, DOUBLE or INT64 can enable monitoring. If set to true, all types of data monitoring are disabled despite the config on EntityType.
      */
     disableMonitoring?: boolean | null;
     /**
@@ -2881,19 +2888,19 @@ export namespace aiplatform_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The list of historical stats and anomalies with specified objectives.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy). The list of historical stats and anomalies with specified objectives.
      */
     monitoringStatsAnomalies?: Schema$GoogleCloudAiplatformV1FeatureMonitoringStatsAnomaly[];
     /**
-     * Immutable. Name of the Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.
+     * Immutable. Name of the Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/features/{feature\}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.
      */
     name?: string | null;
     /**
-     * Output only. Timestamp when this EntityType was most recently updated.
+     * Output only. Only applicable for Vertex AI Feature Store (Legacy). Timestamp when this EntityType was most recently updated.
      */
     updateTime?: string | null;
     /**
-     * Immutable. Type of Feature value.
+     * Immutable. Only applicable for Vertex AI Feature Store (Legacy). Type of Feature value.
      */
     valueType?: string | null;
   }
@@ -24530,7 +24537,7 @@ export namespace aiplatform_v1 {
      */
     featureId?: string;
     /**
-     *
+     * Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format for entity_type as parent: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` Format for feature_group as parent: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
      */
     parent?: string;
 
@@ -24549,7 +24556,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Get
     extends StandardParameters {
     /**
-     * Required. The name of the Feature resource. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The name of the Feature resource. Format for entity_type as parent: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` Format for feature_group as parent: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
      */
     name?: string;
   }
@@ -24560,7 +24567,7 @@ export namespace aiplatform_v1 {
      */
     filter?: string;
     /**
-     * If set, return the most recent ListFeaturesRequest.latest_stats_count of stats for each Feature in response. Valid value is [0, 10]. If number of stats exists < ListFeaturesRequest.latest_stats_count, return all existing stats.
+     * Only applicable for Vertex AI Feature Store (Legacy). If set, return the most recent ListFeaturesRequest.latest_stats_count of stats for each Feature in response. Valid value is [0, 10]. If number of stats exists < ListFeaturesRequest.latest_stats_count, return all existing stats.
      */
     latestStatsCount?: number;
     /**
@@ -24572,11 +24579,11 @@ export namespace aiplatform_v1 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous FeaturestoreService.ListFeatures call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeaturestoreService.ListFeatures must match the call that provided the page token.
+     * A page token, received from a previous FeaturestoreService.ListFeatures call or FeatureRegistryService.ListFeatures call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeaturestoreService.ListFeatures or or FeatureRegistryService.ListFeatures must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Location to list Features. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The resource name of the Location to list Features. Format for entity_type as parent: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` Format for feature_group as parent: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
      */
     parent?: string;
     /**
@@ -24587,11 +24594,11 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Patch
     extends StandardParameters {
     /**
-     * Immutable. Name of the Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.
+     * Immutable. Name of the Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/features/{feature\}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring`
+     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)
      */
     updateMask?: string;
 
