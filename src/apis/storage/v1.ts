@@ -104,6 +104,7 @@ export namespace storage_v1 {
     buckets: Resource$Buckets;
     channels: Resource$Channels;
     defaultObjectAccessControls: Resource$Defaultobjectaccesscontrols;
+    managedFolders: Resource$Managedfolders;
     notifications: Resource$Notifications;
     objectAccessControls: Resource$Objectaccesscontrols;
     objects: Resource$Objects;
@@ -123,6 +124,7 @@ export namespace storage_v1 {
       this.channels = new Resource$Channels(this.context);
       this.defaultObjectAccessControls =
         new Resource$Defaultobjectaccesscontrols(this.context);
+      this.managedFolders = new Resource$Managedfolders(this.context);
       this.notifications = new Resource$Notifications(this.context);
       this.objectAccessControls = new Resource$Objectaccesscontrols(
         this.context
@@ -642,6 +644,60 @@ export namespace storage_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * A managed folder.
+   */
+  export interface Schema$ManagedFolder {
+    /**
+     * The name of the bucket containing this managed folder.
+     */
+    bucket?: string | null;
+    /**
+     * The creation time of the managed folder in RFC 3339 format.
+     */
+    createTime?: string | null;
+    /**
+     * The ID of the managed folder, including the bucket name and managed folder name.
+     */
+    id?: string | null;
+    /**
+     * The kind of item this is. For managed folders, this is always storage#managedFolder.
+     */
+    kind?: string | null;
+    /**
+     * The version of the metadata for this managed folder. Used for preconditions and for detecting changes in metadata.
+     */
+    metageneration?: string | null;
+    /**
+     * The name of the managed folder. Required if not specified by URL parameter.
+     */
+    name?: string | null;
+    /**
+     * The link to this managed folder.
+     */
+    selfLink?: string | null;
+    /**
+     * The last update time of the managed folder metadata in RFC 3339 format.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A list of managed folders.
+   */
+  export interface Schema$ManagedFolders {
+    /**
+     * The list of items.
+     */
+    items?: Schema$ManagedFolder[];
+    /**
+     * The kind of item this is. For lists of managed folders, this is always storage#managedFolders.
+     */
+    kind?: string | null;
+    /**
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * A subscription to receive Google PubSub notifications.
    */
   export interface Schema$Notification {
@@ -946,7 +1002,7 @@ export namespace storage_v1 {
     prefixes?: string[] | null;
   }
   /**
-   * A bucket/object IAM policy.
+   * A bucket/object/managedFolder IAM policy.
    */
   export interface Schema$Policy {
     /**
@@ -966,7 +1022,7 @@ export namespace storage_v1 {
      */
     kind?: string | null;
     /**
-     * The ID of the resource to which this policy belongs. Will be of the form projects/_/buckets/bucket for buckets, and projects/_/buckets/bucket/objects/object for objects. A specific generation may be specified by appending #generationNumber to the end of the object name, e.g. projects/_/buckets/my-bucket/objects/data.txt#17. The current generation can be denoted with #0. This field is ignored on input.
+     * The ID of the resource to which this policy belongs. Will be of the form projects/_/buckets/bucket for buckets, projects/_/buckets/bucket/objects/object for objects, and projects/_/buckets/bucket/managedFolders/managedFolder. A specific generation may be specified by appending #generationNumber to the end of the object name, e.g. projects/_/buckets/my-bucket/objects/data.txt#17. The current generation can be denoted with #0. This field is ignored on input.
      */
     resourceId?: string | null;
     /**
@@ -1017,7 +1073,7 @@ export namespace storage_v1 {
     kind?: string | null;
   }
   /**
-   * A storage.(buckets|objects).testIamPermissions response.
+   * A storage.(buckets|objects|managedFolders).testIamPermissions response.
    */
   export interface Schema$TestIamPermissionsResponse {
     /**
@@ -1025,7 +1081,7 @@ export namespace storage_v1 {
      */
     kind?: string | null;
     /**
-     * The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets or objects. The supported permissions are as follows:
+     * The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets, objects, or managedFolders. The supported permissions are as follows:
      * - storage.buckets.delete — Delete bucket.
      * - storage.buckets.get — Read bucket metadata.
      * - storage.buckets.getIamPolicy — Read bucket IAM policy.
@@ -1040,6 +1096,12 @@ export namespace storage_v1 {
      * - storage.objects.list — List objects.
      * - storage.objects.setIamPolicy — Update object IAM policy.
      * - storage.objects.update — Update object metadata.
+     * - storage.managedFolders.delete — Delete managed folder.
+     * - storage.managedFolders.get — Read managed folder metadata.
+     * - storage.managedFolders.getIamPolicy — Read managed folder IAM policy.
+     * - storage.managedFolders.create — Create managed folder.
+     * - storage.managedFolders.list — List managed folders.
+     * - storage.managedFolders.setIamPolicy — Update managed folder IAM policy.
      */
     permissions?: string[] | null;
   }
@@ -3525,6 +3587,753 @@ export namespace storage_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ObjectAccessControl;
+  }
+
+  export class Resource$Managedfolders {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Permanently deletes a managed folder.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Managedfolders$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Managedfolders$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Managedfolders$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Managedfolders$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Managedfolders$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Managedfolders$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedfolders$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedfolders$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/storage/v1/b/{bucket}/managedFolders/{managedFolder}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'managedFolder'],
+        pathParams: ['bucket', 'managedFolder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Returns metadata of the specified managed folder.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Managedfolders$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Managedfolders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedFolder>;
+    get(
+      params: Params$Resource$Managedfolders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Managedfolders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedFolder>,
+      callback: BodyResponseCallback<Schema$ManagedFolder>
+    ): void;
+    get(
+      params: Params$Resource$Managedfolders$Get,
+      callback: BodyResponseCallback<Schema$ManagedFolder>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ManagedFolder>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Managedfolders$Get
+        | BodyResponseCallback<Schema$ManagedFolder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedFolder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedFolder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManagedFolder> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedfolders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedfolders$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/storage/v1/b/{bucket}/managedFolders/{managedFolder}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'managedFolder'],
+        pathParams: ['bucket', 'managedFolder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManagedFolder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManagedFolder>(parameters);
+      }
+    }
+
+    /**
+     * Returns an IAM policy for the specified managed folder.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Managedfolders$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Managedfolders$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Managedfolders$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Managedfolders$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Managedfolders$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Managedfolders$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedfolders$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedfolders$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/managedFolders/{managedFolder}/iam'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'managedFolder'],
+        pathParams: ['bucket', 'managedFolder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new managed folder.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Managedfolders$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Managedfolders$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedFolder>;
+    insert(
+      params: Params$Resource$Managedfolders$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Managedfolders$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedFolder>,
+      callback: BodyResponseCallback<Schema$ManagedFolder>
+    ): void;
+    insert(
+      params: Params$Resource$Managedfolders$Insert,
+      callback: BodyResponseCallback<Schema$ManagedFolder>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$ManagedFolder>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Managedfolders$Insert
+        | BodyResponseCallback<Schema$ManagedFolder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedFolder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedFolder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManagedFolder> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedfolders$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedfolders$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/managedFolders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManagedFolder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManagedFolder>(parameters);
+      }
+    }
+
+    /**
+     * Lists managed folders in the given bucket.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Managedfolders$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Managedfolders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedFolders>;
+    list(
+      params: Params$Resource$Managedfolders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Managedfolders$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedFolders>,
+      callback: BodyResponseCallback<Schema$ManagedFolders>
+    ): void;
+    list(
+      params: Params$Resource$Managedfolders$List,
+      callback: BodyResponseCallback<Schema$ManagedFolders>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ManagedFolders>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Managedfolders$List
+        | BodyResponseCallback<Schema$ManagedFolders>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedFolders>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedFolders>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManagedFolders> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedfolders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedfolders$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/managedFolders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManagedFolders>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManagedFolders>(parameters);
+      }
+    }
+
+    /**
+     * Updates an IAM policy for the specified managed folder.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Managedfolders$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Managedfolders$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Managedfolders$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Managedfolders$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Managedfolders$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Managedfolders$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedfolders$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedfolders$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/managedFolders/{managedFolder}/iam'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'managedFolder'],
+        pathParams: ['bucket', 'managedFolder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Tests a set of permissions on the given managed folder to see which, if any, are held by the caller.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Managedfolders$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Managedfolders$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Managedfolders$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Managedfolders$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Managedfolders$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Managedfolders$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedfolders$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedfolders$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/managedFolders/{managedFolder}/iam/testPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'managedFolder', 'permissions'],
+        pathParams: ['bucket', 'managedFolder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Managedfolders$Delete
+    extends StandardParameters {
+    /**
+     * Name of the bucket containing the managed folder.
+     */
+    bucket?: string;
+    /**
+     * If set, only deletes the managed folder if its metageneration matches this value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * If set, only deletes the managed folder if its metageneration does not match this value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * The managed folder name/path.
+     */
+    managedFolder?: string;
+  }
+  export interface Params$Resource$Managedfolders$Get
+    extends StandardParameters {
+    /**
+     * Name of the bucket containing the managed folder.
+     */
+    bucket?: string;
+    /**
+     * Makes the return of the managed folder metadata conditional on whether the managed folder's current metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the return of the managed folder metadata conditional on whether the managed folder's current metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * The managed folder name/path.
+     */
+    managedFolder?: string;
+  }
+  export interface Params$Resource$Managedfolders$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Name of the bucket containing the managed folder.
+     */
+    bucket?: string;
+    /**
+     * The managed folder name/path.
+     */
+    managedFolder?: string;
+    /**
+     * The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
+     */
+    optionsRequestedPolicyVersion?: number;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Managedfolders$Insert
+    extends StandardParameters {
+    /**
+     * Name of the bucket containing the managed folder.
+     */
+    bucket?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ManagedFolder;
+  }
+  export interface Params$Resource$Managedfolders$List
+    extends StandardParameters {
+    /**
+     * Name of the bucket containing the managed folder.
+     */
+    bucket?: string;
+    /**
+     * Maximum number of items return in a single page of responses.
+     */
+    pageSize?: number;
+    /**
+     * A previously-returned page token representing part of the larger set of results to view.
+     */
+    pageToken?: string;
+    /**
+     * The managed folder name/path prefix to filter the output list of results.
+     */
+    prefix?: string;
+  }
+  export interface Params$Resource$Managedfolders$Setiampolicy
+    extends StandardParameters {
+    /**
+     * Name of the bucket containing the managed folder.
+     */
+    bucket?: string;
+    /**
+     * The managed folder name/path.
+     */
+    managedFolder?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
+     */
+    userProject?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Policy;
+  }
+  export interface Params$Resource$Managedfolders$Testiampermissions
+    extends StandardParameters {
+    /**
+     * Name of the bucket containing the managed folder.
+     */
+    bucket?: string;
+    /**
+     * The managed folder name/path.
+     */
+    managedFolder?: string;
+    /**
+     * Permissions to test.
+     */
+    permissions?: string[];
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
+     */
+    userProject?: string;
   }
 
   export class Resource$Notifications {
@@ -6253,6 +7062,10 @@ export namespace storage_v1 {
      * Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      */
     endOffset?: string;
+    /**
+     * Only applicable if delimiter is set to '/'. If true, will also include folders and managed folders (besides objects) in the returned prefixes.
+     */
+    includeFoldersAsPrefixes?: boolean;
     /**
      * If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      */
