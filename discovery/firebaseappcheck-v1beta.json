@@ -1625,7 +1625,7 @@
       }
     }
   },
-  "revision": "20230911",
+  "revision": "20231009",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestConfig": {
@@ -1883,7 +1883,7 @@
           "type": "string"
         },
         "limitedUse": {
-          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "description": "Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.",
           "type": "boolean"
         }
       },
@@ -1909,7 +1909,7 @@
           "type": "string"
         },
         "limitedUse": {
-          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "description": "Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.",
           "type": "boolean"
         }
       },
@@ -1945,7 +1945,7 @@
           "type": "string"
         },
         "limitedUse": {
-          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "description": "Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.",
           "type": "boolean"
         }
       },
@@ -1960,7 +1960,7 @@
           "type": "string"
         },
         "limitedUse": {
-          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "description": "Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.",
           "type": "boolean"
         }
       },
@@ -1975,7 +1975,7 @@
           "type": "string"
         },
         "limitedUse": {
-          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "description": "Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.",
           "type": "boolean"
         }
       },
@@ -1986,7 +1986,7 @@
       "id": "GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest",
       "properties": {
         "limitedUse": {
-          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "description": "Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.",
           "type": "boolean"
         },
         "playIntegrityToken": {
@@ -2001,7 +2001,7 @@
       "id": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest",
       "properties": {
         "limitedUse": {
-          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "description": "Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.",
           "type": "boolean"
         },
         "recaptchaEnterpriseToken": {
@@ -2028,7 +2028,7 @@
       "id": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest",
       "properties": {
         "limitedUse": {
-          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "description": "Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.",
           "type": "boolean"
         },
         "recaptchaV3Token": {
