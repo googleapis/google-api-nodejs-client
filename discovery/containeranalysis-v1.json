@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20230922",
+  "revision": "20231006",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2912,6 +2912,20 @@
         },
         "object": {
           "description": "Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
+          "type": "string"
+        },
+        "sourceFetcher": {
+          "description": "Optional. Option to specify the tool to fetch the source file for the build.",
+          "enum": [
+            "SOURCE_FETCHER_UNSPECIFIED",
+            "GSUTIL",
+            "GCS_FETCHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified defaults to GSUTIL.",
+            "Use the \"gsutil\" tool to download the source file.",
+            "Use the Cloud Storage Fetcher tool to download the source file."
+          ],
           "type": "string"
         }
       },
@@ -5492,10 +5506,6 @@
           },
           "type": "array"
         },
-        "extraDetails": {
-          "description": "Occurrence-specific extra details about the vulnerability.",
-          "type": "string"
-        },
         "severity": {
           "description": "The note provider assigned severity of this vulnerability.",
           "enum": [
@@ -5580,6 +5590,10 @@
             "High severity.",
             "Critical severity."
           ],
+          "type": "string"
+        },
+        "extraDetails": {
+          "description": "Occurrence-specific extra details about the vulnerability.",
           "type": "string"
         },
         "fixAvailable": {
