@@ -471,19 +471,6 @@ export namespace adsense_v2 {
     payments?: Schema$Payment[];
   }
   /**
-   * Response definition for the policy issues list rpc. Policy issues are reported only if the publisher has at least one AFC ad client in READY or GETTING_READY state. If the publisher has no such AFC ad client, the response will be an empty list.
-   */
-  export interface Schema$ListPolicyIssuesResponse {
-    /**
-     * Continuation token used to page through policy issues. To retrieve the next page of the results, set the next request's "page_token" value to this.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The policy issues returned in the list response.
-     */
-    policyIssues?: Schema$PolicyIssue[];
-  }
-  /**
    * Response definition for the saved reports list rpc.
    */
   export interface Schema$ListSavedReportsResponse {
@@ -538,72 +525,6 @@ export namespace adsense_v2 {
      * Output only. Resource name of the payment. Format: - accounts/{account\}/payments/unpaid for unpaid (current) AdSense earnings. - accounts/{account\}/payments/youtube-unpaid for unpaid (current) YouTube earnings. - accounts/{account\}/payments/yyyy-MM-dd for paid AdSense earnings. - accounts/{account\}/payments/youtube-yyyy-MM-dd for paid YouTube earnings.
      */
     name?: string | null;
-  }
-  /**
-   * Representation of a policy issue for a single entity (site, site-section, or page). All issues for a single entity are represented by a single PolicyIssue resource, though that PolicyIssue can have multiple causes (or "topics") that can change over time. Policy issues are removed if there are no issues detected recently or if there's a recent successful appeal for the entity.
-   */
-  export interface Schema$PolicyIssue {
-    /**
-     * Required. The most severe action taken on the entity over the past seven days.
-     */
-    action?: string | null;
-    /**
-     * Optional. List of ad clients associated with the policy issue (either as the primary ad client or an associated host/secondary ad client). In the latter case, this will be an ad client that is not owned by the current account.
-     */
-    adClients?: string[] | null;
-    /**
-     * Required. Total number of ad requests affected by the policy violations over the past seven days.
-     */
-    adRequestCount?: string | null;
-    /**
-     * Required. Type of the entity indicating if the entity is a site, site-section, or page.
-     */
-    entityType?: string | null;
-    /**
-     * Required. The date (in the America/Los_Angeles timezone) when policy violations were first detected on the entity.
-     */
-    firstDetectedDate?: Schema$Date;
-    /**
-     * Required. The date (in the America/Los_Angeles timezone) when policy violations were last detected on the entity.
-     */
-    lastDetectedDate?: Schema$Date;
-    /**
-     * Required. Resource name of the entity with policy issues. Format: accounts/{account\}/policyIssues/{policy_issue\}
-     */
-    name?: string | null;
-    /**
-     * Required. Unordered list. The policy topics that this entity was found to violate over the past seven days.
-     */
-    policyTopics?: Schema$PolicyTopic[];
-    /**
-     * Required. Hostname/domain of the entity (for example "foo.com" or "www.foo.com"). This _should_ be a bare domain/host name without any protocol. This will be present for all policy issues.
-     */
-    site?: string | null;
-    /**
-     * Optional. Prefix of the site-section having policy issues (For example "foo.com/bar-section"). This will be present if the `entity_type` is `SITE_SECTION` and will be absent for other entity types.
-     */
-    siteSection?: string | null;
-    /**
-     * Optional. URI of the page having policy violations (for example "foo.com/bar" or "www.foo.com/bar"). This will be present if the `entity_type` is `PAGE` and will be absent for other entity types.
-     */
-    uri?: string | null;
-    /**
-     * Optional. The date (in the America/Los_Angeles timezone) when the entity will have ad serving demand restricted or ad serving disabled. This is present only for issues with a `WARNED` enforcement action. See https://support.google.com/adsense/answer/11066888.
-     */
-    warningEscalationDate?: Schema$Date;
-  }
-  /**
-   * Information about a particular policy topic. A policy topic represents a single class of policy issue that can impact ad serving for your site. For example, sexual content or having ads that obscure your content. A single policy issue can have multiple policy topics for a single entity.
-   */
-  export interface Schema$PolicyTopic {
-    /**
-     * Required. Indicates if this is a policy violation or not. When the value is true, issues that are instances of this topic must be addressed to remain in compliance with the partner's agreements with Google. A false value indicates that it's not mandatory to fix the issues but advertising demand might be restricted.
-     */
-    mustFix?: boolean | null;
-    /**
-     * Required. The policy topic. For example, "sexual-content" or "ads-obscuring-content"."
-     */
-    topic?: string | null;
   }
   /**
    * Result of a generated report.
@@ -725,7 +646,6 @@ export namespace adsense_v2 {
     adclients: Resource$Accounts$Adclients;
     alerts: Resource$Accounts$Alerts;
     payments: Resource$Accounts$Payments;
-    policyIssues: Resource$Accounts$Policyissues;
     reports: Resource$Accounts$Reports;
     sites: Resource$Accounts$Sites;
     constructor(context: APIRequestContext) {
@@ -733,7 +653,6 @@ export namespace adsense_v2 {
       this.adclients = new Resource$Accounts$Adclients(this.context);
       this.alerts = new Resource$Accounts$Alerts(this.context);
       this.payments = new Resource$Accounts$Payments(this.context);
-      this.policyIssues = new Resource$Accounts$Policyissues(this.context);
       this.reports = new Resource$Accounts$Reports(this.context);
       this.sites = new Resource$Accounts$Sites(this.context);
     }
@@ -3076,212 +2995,6 @@ export namespace adsense_v2 {
     extends StandardParameters {
     /**
      * Required. The account which owns the collection of payments. Format: accounts/{account\}
-     */
-    parent?: string;
-  }
-
-  export class Resource$Accounts$Policyissues {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets information about the selected policy issue.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Accounts$Policyissues$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Accounts$Policyissues$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$PolicyIssue>;
-    get(
-      params: Params$Resource$Accounts$Policyissues$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Accounts$Policyissues$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$PolicyIssue>,
-      callback: BodyResponseCallback<Schema$PolicyIssue>
-    ): void;
-    get(
-      params: Params$Resource$Accounts$Policyissues$Get,
-      callback: BodyResponseCallback<Schema$PolicyIssue>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$PolicyIssue>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Policyissues$Get
-        | BodyResponseCallback<Schema$PolicyIssue>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$PolicyIssue>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$PolicyIssue>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PolicyIssue> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Policyissues$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Policyissues$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$PolicyIssue>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$PolicyIssue>(parameters);
-      }
-    }
-
-    /**
-     * Lists all the policy issues for the specified account.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Accounts$Policyissues$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Accounts$Policyissues$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPolicyIssuesResponse>;
-    list(
-      params: Params$Resource$Accounts$Policyissues$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Accounts$Policyissues$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPolicyIssuesResponse>,
-      callback: BodyResponseCallback<Schema$ListPolicyIssuesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Accounts$Policyissues$List,
-      callback: BodyResponseCallback<Schema$ListPolicyIssuesResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListPolicyIssuesResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Policyissues$List
-        | BodyResponseCallback<Schema$ListPolicyIssuesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListPolicyIssuesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListPolicyIssuesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListPolicyIssuesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Policyissues$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Policyissues$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+parent}/policyIssues').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListPolicyIssuesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListPolicyIssuesResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Accounts$Policyissues$Get
-    extends StandardParameters {
-    /**
-     * Required. Name of the policy issue. Format: accounts/{account\}/policyIssues/{policy_issue\}
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Policyissues$List
-    extends StandardParameters {
-    /**
-     * The maximum number of policy issues to include in the response, used for paging. If unspecified, at most 10000 policy issues will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous `ListPolicyIssues` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPolicyIssues` must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The account for which policy issues are being retrieved. Format: accounts/{account\}
      */
     parent?: string;
   }
