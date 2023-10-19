@@ -1339,7 +1339,7 @@
       }
     }
   },
-  "revision": "20230926",
+  "revision": "20231010",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -1549,7 +1549,7 @@
       "type": "object"
     },
     "Consumer": {
-      "description": "Contains information of the customer's network configurations.Next available ID: 5",
+      "description": "Contains information of the customer's network configurations.",
       "id": "Consumer",
       "properties": {
         "endpointLocation": {
@@ -2250,7 +2250,7 @@
       "type": "object"
     },
     "NetworkConfig": {
-      "description": "Network configuration for the Dataproc Metastore service.Next available ID: 4",
+      "description": "Network configuration for the Dataproc Metastore service.",
       "id": "NetworkConfig",
       "properties": {
         "consumers": {
