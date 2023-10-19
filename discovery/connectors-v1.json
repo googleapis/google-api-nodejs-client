@@ -134,6 +134,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getRegionalSettings": {
+              "description": "GetRegionalSettings gets settings of a region. RegionalSettings is a singleton resource.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalSettings",
+              "httpMethod": "GET",
+              "id": "connectors.projects.locations.getRegionalSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the Regional Settings.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/regionalSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "RegionalSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "getRuntimeConfig": {
               "description": "Gets the runtimeConfig of a location. RuntimeConfig is a singleton resource for each location.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/runtimeConfig",
@@ -195,6 +220,40 @@
               "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateRegionalSettings": {
+              "description": "Update the settings of a region.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalSettings",
+              "httpMethod": "PATCH",
+              "id": "connectors.projects.locations.updateRegionalSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/{location}/regionalSettings",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/regionalSettings$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "RegionalSettings"
+              },
+              "response": {
+                "$ref": "Operation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1773,7 +1832,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20231011",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2460,6 +2519,20 @@
           "format": "int64",
           "type": "string"
         },
+        "deploymentModel": {
+          "description": "Indicate whether connector is deployed on GKE/CloudRun",
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "GKE_MST",
+            "CLOUD_RUN_MST"
+          ],
+          "enumDescriptions": [
+            "Deployment model is not specified.",
+            "Default model gke mst.",
+            "Cloud run mst."
+          ],
+          "type": "string"
+        },
         "hpaConfig": {
           "$ref": "HPAConfig",
           "description": "HPA autoscaling config."
@@ -2681,6 +2754,7 @@
           "type": "integer"
         },
         "serviceAttachment": {
+          "deprecated": true,
           "description": "PSC service attachments. Format: projects/*/regions/*/serviceAttachments/*",
           "type": "string"
         }
@@ -4319,6 +4393,35 @@
       },
       "type": "object"
     },
+    "NetworkConfig": {
+      "description": "Regional Network Config.",
+      "id": "NetworkConfig",
+      "properties": {
+        "egressIps": {
+          "description": "Output only. Egress IPs",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "egressMode": {
+          "description": "Optional. Egress mode for the network.",
+          "enum": [
+            "NETWORK_EGRESS_MODE_UNSPECIFIED",
+            "AUTO_IP",
+            "STATIC_IP"
+          ],
+          "enumDescriptions": [
+            "Egress mode unspecified.",
+            "Network egress through auto assigned IPs.",
+            "Network egress through static IPs."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeConfig": {
       "description": "Node configuration for the connection.",
       "id": "NodeConfig",
@@ -4598,6 +4701,22 @@
       "description": "Request message for ConnectorsService.RefreshConnectionSchemaMetadata.",
       "id": "RefreshConnectionSchemaMetadataRequest",
       "properties": {},
+      "type": "object"
+    },
+    "RegionalSettings": {
+      "description": "Regional Settings details.",
+      "id": "RegionalSettings",
+      "properties": {
+        "name": {
+          "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/{location}/regionalSettings",
+          "readOnly": true,
+          "type": "string"
+        },
+        "networkConfig": {
+          "$ref": "NetworkConfig",
+          "description": "Optional. Regional network config."
+        }
+      },
       "type": "object"
     },
     "RepairEventingRequest": {

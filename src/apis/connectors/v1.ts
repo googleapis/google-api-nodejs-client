@@ -553,6 +553,10 @@ export namespace connectors_v1 {
      */
     connectionRatelimitWindowSeconds?: string | null;
     /**
+     * Indicate whether connector is deployed on GKE/CloudRun
+     */
+    deploymentModel?: string | null;
+    /**
      * HPA autoscaling config.
      */
     hpaConfig?: Schema$HPAConfig;
@@ -1581,6 +1585,19 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
+   * Regional Network Config.
+   */
+  export interface Schema$NetworkConfig {
+    /**
+     * Output only. Egress IPs
+     */
+    egressIps?: string[] | null;
+    /**
+     * Optional. Egress mode for the network.
+     */
+    egressMode?: string | null;
+  }
+  /**
    * Node configuration for the connection.
    */
   export interface Schema$NodeConfig {
@@ -1784,6 +1801,19 @@ export namespace connectors_v1 {
    * Request message for ConnectorsService.RefreshConnectionSchemaMetadata.
    */
   export interface Schema$RefreshConnectionSchemaMetadataRequest {}
+  /**
+   * Regional Settings details.
+   */
+  export interface Schema$RegionalSettings {
+    /**
+     * Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/regionalSettings
+     */
+    name?: string | null;
+    /**
+     * Optional. Regional network config.
+     */
+    networkConfig?: Schema$NetworkConfig;
+  }
   /**
    * Request message for ConnectorsService.RepairEventing
    */
@@ -2296,6 +2326,92 @@ export namespace connectors_v1 {
     }
 
     /**
+     * GetRegionalSettings gets settings of a region. RegionalSettings is a singleton resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getRegionalSettings(
+      params: Params$Resource$Projects$Locations$Getregionalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getRegionalSettings(
+      params?: Params$Resource$Projects$Locations$Getregionalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RegionalSettings>;
+    getRegionalSettings(
+      params: Params$Resource$Projects$Locations$Getregionalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getRegionalSettings(
+      params: Params$Resource$Projects$Locations$Getregionalsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$RegionalSettings>,
+      callback: BodyResponseCallback<Schema$RegionalSettings>
+    ): void;
+    getRegionalSettings(
+      params: Params$Resource$Projects$Locations$Getregionalsettings,
+      callback: BodyResponseCallback<Schema$RegionalSettings>
+    ): void;
+    getRegionalSettings(
+      callback: BodyResponseCallback<Schema$RegionalSettings>
+    ): void;
+    getRegionalSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getregionalsettings
+        | BodyResponseCallback<Schema$RegionalSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RegionalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RegionalSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RegionalSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getregionalsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getregionalsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RegionalSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RegionalSettings>(parameters);
+      }
+    }
+
+    /**
      * Gets the runtimeConfig of a location. RuntimeConfig is a singleton resource for each location.
      *
      * @param params - Parameters for request
@@ -2472,12 +2588,106 @@ export namespace connectors_v1 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Update the settings of a region.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateRegionalSettings(
+      params: Params$Resource$Projects$Locations$Updateregionalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateRegionalSettings(
+      params?: Params$Resource$Projects$Locations$Updateregionalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateRegionalSettings(
+      params: Params$Resource$Projects$Locations$Updateregionalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateRegionalSettings(
+      params: Params$Resource$Projects$Locations$Updateregionalsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateRegionalSettings(
+      params: Params$Resource$Projects$Locations$Updateregionalsettings,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateRegionalSettings(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateRegionalSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updateregionalsettings
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updateregionalsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Updateregionalsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
      * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getregionalsettings
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Regional Settings.
      */
     name?: string;
   }
@@ -2506,6 +2716,22 @@ export namespace connectors_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Updateregionalsettings
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/regionalSettings
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionalSettings;
   }
 
   export class Resource$Projects$Locations$Connections {
