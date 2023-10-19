@@ -1983,7 +1983,7 @@ export namespace vmmigration_v1alpha1 {
      */
     name?: string | null;
     /**
-     * The target project ID (number) or project name.
+     * Required. The target project ID (number) or project name.
      */
     project?: string | null;
     /**
