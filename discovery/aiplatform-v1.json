@@ -20,14 +20,14 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
-      "description": "Locational Endpoint",
       "location": "asia-east1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
     },
     {
-      "location": "asia-east2",
       "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-east2"
     },
     {
       "description": "Locational Endpoint",
@@ -36,72 +36,72 @@
     },
     {
       "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
-      "location": "asia-northeast2",
+      "description": "Locational Endpoint",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
+      "location": "asia-northeast3"
+    },
+    {
+      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
+      "location": "asia-south1",
       "description": "Locational Endpoint"
     },
     {
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "asia-northeast3",
-      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/"
+      "location": "asia-southeast1"
     },
     {
-      "description": "Locational Endpoint",
-      "location": "asia-south1",
-      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/"
-    },
-    {
-      "location": "asia-southeast1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/"
-    },
-    {
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
       "location": "asia-southeast2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "australia-southeast1"
     },
     {
-      "location": "australia-southeast2",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
+      "location": "australia-southeast2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
-      "location": "europe-central2",
-      "description": "Locational Endpoint"
+      "location": "europe-central2"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
-      "location": "europe-north1"
+      "location": "europe-north1",
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
       "location": "europe-southwest1",
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "europe-west1"
-    },
-    {
-      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
-      "location": "europe-west2",
+      "location": "europe-west1",
       "description": "Locational Endpoint"
     },
     {
-      "location": "europe-west3",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/"
+      "location": "europe-west2",
+      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-west4",
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "europe-west3"
+    },
+    {
       "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
+      "location": "europe-west4",
       "description": "Locational Endpoint"
     },
     {
@@ -111,38 +111,38 @@
     },
     {
       "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
-      "location": "europe-west8",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "europe-west8"
     },
     {
-      "location": "europe-west9",
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/"
-    },
-    {
-      "location": "me-west1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/"
+      "location": "europe-west9"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
-      "location": "northamerica-northeast1"
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "location": "me-west1"
     },
     {
       "description": "Locational Endpoint",
-      "location": "northamerica-northeast2",
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
+      "location": "northamerica-northeast1",
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
     },
     {
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "northamerica-northeast2"
+    },
+    {
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
       "location": "southamerica-east1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
-      "location": "southamerica-west1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "southamerica-west1"
     },
     {
       "description": "Locational Endpoint",
@@ -150,14 +150,14 @@
       "endpointUrl": "https://us-central1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "us-central2"
+      "location": "us-central2",
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
     },
     {
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
       "location": "us-east1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
@@ -170,24 +170,24 @@
       "location": "us-south1"
     },
     {
-      "location": "us-west1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "us-west1"
     },
     {
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
       "location": "us-west2",
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
+      "location": "us-west3",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
-      "location": "us-west3"
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/"
     },
     {
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "us-west4",
-      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/"
+      "location": "us-west4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -4114,6 +4114,7 @@
                               "type": "string"
                             },
                             "parent": {
+                              "description": "Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format for entity_type as parent: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` Format for feature_group as parent: `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -4166,7 +4167,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                              "description": "Required. The name of the Feature resource. Format for entity_type as parent: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` Format for feature_group as parent: `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
@@ -4196,7 +4197,7 @@
                               "type": "string"
                             },
                             "latestStatsCount": {
-                              "description": "If set, return the most recent ListFeaturesRequest.latest_stats_count of stats for each Feature in response. Valid value is [0, 10]. If number of stats exists < ListFeaturesRequest.latest_stats_count, return all existing stats.",
+                              "description": "Only applicable for Vertex AI Feature Store (Legacy). If set, return the most recent ListFeaturesRequest.latest_stats_count of stats for each Feature in response. Valid value is [0, 10]. If number of stats exists < ListFeaturesRequest.latest_stats_count, return all existing stats.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -4213,12 +4214,12 @@
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "A page token, received from a previous FeaturestoreService.ListFeatures call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeaturestoreService.ListFeatures must match the call that provided the page token.",
+                              "description": "A page token, received from a previous FeaturestoreService.ListFeatures call or FeatureRegistryService.ListFeatures call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeaturestoreService.ListFeatures or or FeatureRegistryService.ListFeatures must match the call that provided the page token.",
                               "location": "query",
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                              "description": "Required. The resource name of the Location to list Features. Format for entity_type as parent: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` Format for feature_group as parent: `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -4249,14 +4250,14 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. Name of the Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.",
+                              "description": "Immutable. Name of the Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring`",
+                              "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -12997,7 +12998,7 @@
       }
     }
   },
-  "revision": "20231002",
+  "revision": "20231012",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -14414,6 +14415,7 @@
           "type": "string"
         },
         "parent": {
+          "description": "Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format for entity_type as parent: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` Format for feature_group as parent: `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
           "type": "string"
         }
       },
@@ -14706,6 +14708,10 @@
         },
         "network": {
           "description": "Optional. The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the Job should be peered. For example, `projects/12345/global/networks/myVPC`. [Format](/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project}/global/networks/{network}`. Where {project} is a project number, as in `12345`, and {network} is a network name. To specify this field, you must have already [configured VPC Network Peering for Vertex AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering). If this field is left unspecified, the job is not peered with any network.",
+          "type": "string"
+        },
+        "protectedArtifactLocationId": {
+          "description": "The ID of the location to store protected artifacts. e.g. us-central1. Populate only when the location is different than CustomJob location. For unprotected artifacts, the value of this field is ignored. List of supported locations: https://cloud.google.com/vertex-ai/docs/general/locations",
           "type": "string"
         },
         "reservedIpRanges": {
@@ -16732,11 +16738,11 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1Feature": {
-      "description": "Feature Metadata information that describes an attribute of an entity type. For example, apple is an entity type, and color is a feature that describes apple.",
+      "description": "Feature Metadata information. For example, color is a feature that describes an apple.",
       "id": "GoogleCloudAiplatformV1Feature",
       "properties": {
         "createTime": {
-          "description": "Output only. Timestamp when this EntityType was created.",
+          "description": "Output only. Only applicable for Vertex AI Feature Store (Legacy). Timestamp when this EntityType was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -16746,7 +16752,7 @@
           "type": "string"
         },
         "disableMonitoring": {
-          "description": "Optional. If not set, use the monitoring_config defined for the EntityType this Feature belongs to. Only Features with type (Feature.ValueType) BOOL, STRING, DOUBLE or INT64 can enable monitoring. If set to true, all types of data monitoring are disabled despite the config on EntityType.",
+          "description": "Optional. Only applicable for Vertex AI Feature Store (Legacy). If not set, use the monitoring_config defined for the EntityType this Feature belongs to. Only Features with type (Feature.ValueType) BOOL, STRING, DOUBLE or INT64 can enable monitoring. If set to true, all types of data monitoring are disabled despite the config on EntityType.",
           "type": "boolean"
         },
         "etag": {
@@ -16761,7 +16767,7 @@
           "type": "object"
         },
         "monitoringStatsAnomalies": {
-          "description": "Output only. The list of historical stats and anomalies with specified objectives.",
+          "description": "Output only. Only applicable for Vertex AI Feature Store (Legacy). The list of historical stats and anomalies with specified objectives.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1FeatureMonitoringStatsAnomaly"
           },
@@ -16769,17 +16775,17 @@
           "type": "array"
         },
         "name": {
-          "description": "Immutable. Name of the Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.",
+          "description": "Immutable. Name of the Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.",
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Timestamp when this EntityType was most recently updated.",
+          "description": "Output only. Only applicable for Vertex AI Feature Store (Legacy). Timestamp when this EntityType was most recently updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "valueType": {
-          "description": "Immutable. Type of Feature value.",
+          "description": "Immutable. Only applicable for Vertex AI Feature Store (Legacy). Type of Feature value.",
           "enum": [
             "VALUE_TYPE_UNSPECIFIED",
             "BOOL",
