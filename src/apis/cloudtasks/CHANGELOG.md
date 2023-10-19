@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v9.0.0...cloudtasks-v10.0.0) (2023-10-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3362](https://github.com/googleapis/google-api-nodejs-client/issues/3362)) ([24846e8](https://github.com/googleapis/google-api-nodejs-client/commit/24846e81aa8f487b8d30b4d1b31c945e9968ec42))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v8.0.4...cloudtasks-v9.0.0) (2023-10-11)
 
 

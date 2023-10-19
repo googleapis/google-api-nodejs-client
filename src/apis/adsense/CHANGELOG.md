@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v5.0.5...adsense-v6.0.0) (2023-10-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **adsense:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **adsense:** update the API ([b9182c1](https://github.com/googleapis/google-api-nodejs-client/commit/b9182c19c9a4d9d1726a88cb9ef0c27dbce5afa2))
+* run the generator ([#3362](https://github.com/googleapis/google-api-nodejs-client/issues/3362)) ([24846e8](https://github.com/googleapis/google-api-nodejs-client/commit/24846e81aa8f487b8d30b4d1b31c945e9968ec42))
+
 ## [5.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v5.0.4...adsense-v5.0.5) (2023-10-11)
 
 

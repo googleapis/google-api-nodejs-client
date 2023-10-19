@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v5.0.0...iap-v5.0.1) (2023-10-19)
+
+
+### Bug Fixes
+
+* **iap:** update the API ([972d221](https://github.com/googleapis/google-api-nodejs-client/commit/972d221b98ba0dc08d202198a03482742459d6d0))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v4.0.3...iap-v5.0.0) (2023-10-11)
 
 

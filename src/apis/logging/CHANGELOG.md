@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v1.2.0...logging-v1.2.1) (2023-10-19)
+
+
+### Bug Fixes
+
+* **logging:** update the API ([28f4df7](https://github.com/googleapis/google-api-nodejs-client/commit/28f4df70c4c94ac8d8b3a6f4ccb4264246e8277f))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v1.1.1...logging-v1.2.0) (2023-10-11)
 
 

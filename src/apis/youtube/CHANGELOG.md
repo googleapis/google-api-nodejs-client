@@ -1,5 +1,16 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v12.0.0...youtube-v13.0.0) (2023-10-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3364](https://github.com/googleapis/google-api-nodejs-client/issues/3364)) ([8a012d1](https://github.com/googleapis/google-api-nodejs-client/commit/8a012d18c1dd5499a087b114eda0f2c22baef203))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v11.0.1...youtube-v12.0.0) (2023-10-11)
 
 

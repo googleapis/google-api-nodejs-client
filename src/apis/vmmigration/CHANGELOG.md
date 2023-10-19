@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v4.0.0...vmmigration-v4.0.1) (2023-10-19)
+
+
+### Bug Fixes
+
+* **vmmigration:** update the API ([82eb241](https://github.com/googleapis/google-api-nodejs-client/commit/82eb241b1f32866cdd051570657d8cee8715678a))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v3.0.0...vmmigration-v4.0.0) (2023-10-11)
 
 

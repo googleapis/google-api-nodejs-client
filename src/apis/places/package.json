@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/places",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "places",
   "main": "build/index.js",
   "types": "build/index.d.ts",
