@@ -147,9 +147,17 @@ export namespace bigtableadmin_v2 {
      */
     name?: string | null;
     /**
+     * This field has been deprecated in favor of `standard_isolation.priority`. If you set this field, `standard_isolation.priority` will be set instead. The priority of requests sent using this app profile.
+     */
+    priority?: string | null;
+    /**
      * Use a single-cluster routing policy.
      */
     singleClusterRouting?: Schema$SingleClusterRouting;
+    /**
+     * The standard options used for isolating this app profile's traffic from other use cases.
+     */
+    standardIsolation?: Schema$StandardIsolation;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
@@ -917,10 +925,6 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$ModifyColumnFamiliesRequest {
     /**
-     * If true, ignore safety checks when modifying the column families.
-     */
-    ignoreWarnings?: boolean | null;
-    /**
      * Required. Modifications to be atomically applied to the specified table's families. Entries are applied in order, meaning that earlier modifications can be masked by later ones (in the case of repeated updates to the same family, for example).
      */
     modifications?: Schema$Modification[];
@@ -1135,6 +1139,15 @@ export namespace bigtableadmin_v2 {
      * Row key to use as an initial tablet boundary.
      */
     key?: string | null;
+  }
+  /**
+   * Standard options for isolating this app profile's traffic from other use cases.
+   */
+  export interface Schema$StandardIsolation {
+    /**
+     * The priority of requests sent using this app profile.
+     */
+    priority?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
