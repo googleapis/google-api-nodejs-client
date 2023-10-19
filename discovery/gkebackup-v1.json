@@ -1688,7 +1688,7 @@
       }
     }
   },
-  "revision": "20230927",
+  "revision": "20231011",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2259,7 +2259,7 @@
           "type": "string"
         },
         "resourceKind": {
-          "description": "Optional. Kind of a Kubernetes resource, e.g. \"CustomResourceDefinition\", \"StorageClass\", etc.",
+          "description": "Optional. Kind of a Kubernetes resource, must be in UpperCamelCase (PascalCase) and singular form. E.g. \"CustomResourceDefinition\", \"StorageClass\", etc.",
           "type": "string"
         }
       },
@@ -2590,7 +2590,7 @@
       "type": "object"
     },
     "Restore": {
-      "description": "Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 18",
+      "description": "Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 19",
       "id": "Restore",
       "properties": {
         "backup": {
