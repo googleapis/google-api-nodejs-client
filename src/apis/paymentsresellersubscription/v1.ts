@@ -710,7 +710,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     languageCode?: string | null;
     /**
-     * Localized string in the language corresponding to `language_code' below.
+     * Localized string in the language corresponding to language_code below.
      */
     text?: string | null;
   }
