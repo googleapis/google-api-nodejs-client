@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20231008",
+  "revision": "20231012",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -4184,7 +4184,8 @@
             "CLONE_ERROR",
             "CUTOVER_ERROR",
             "UTILIZATION_REPORT_ERROR",
-            "APPLIANCE_UPGRADE_ERROR"
+            "APPLIANCE_UPGRADE_ERROR",
+            "IMAGE_IMPORT_ERROR"
           ],
           "enumDescriptions": [
             "Default value. This value is not used.",
@@ -4196,7 +4197,8 @@
             "Migrate to Virtual Machines encountered an error in clone operation.",
             "Migrate to Virtual Machines encountered an error in cutover operation.",
             "Migrate to Virtual Machines encountered an error during utilization report creation.",
-            "Migrate to Virtual Machines encountered an error during appliance upgrade."
+            "Migrate to Virtual Machines encountered an error during appliance upgrade.",
+            "Migrate to Virtual Machines encountered an error in image import operation."
           ],
           "readOnly": true,
           "type": "string"
@@ -4795,7 +4797,7 @@
           "type": "string"
         },
         "project": {
-          "description": "The target project ID (number) or project name.",
+          "description": "Required. The target project ID (number) or project name.",
           "type": "string"
         },
         "updateTime": {
