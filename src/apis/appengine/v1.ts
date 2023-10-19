@@ -402,6 +402,20 @@ export namespace appengine_v1 {
     image?: string | null;
   }
   /**
+   * ContainerState contains the externally-visible container state that is used to communicate the state and reasoning for that state to the CLH. This data is not persisted by CCFE, but is instead derived from CCFE's internal representation of the container state.
+   */
+  export interface Schema$ContainerState {
+    currentReasons?: Schema$Reasons;
+    /**
+     * The previous and current reasons for a container state will be sent for a container event. CLHs that need to know the signal that caused the container event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com).
+     */
+    previousReasons?: Schema$Reasons;
+    /**
+     * The current state of the container. This state is the culmination of all of the opinions from external systems that CCFE knows about of the container.
+     */
+    state?: string | null;
+  }
+  /**
    * Target scaling by CPU usage.
    */
   export interface Schema$CpuUtilization {
@@ -1201,7 +1215,7 @@ export namespace appengine_v1 {
     /**
      * The state of the project that led to this event.
      */
-    state?: Schema$ProjectState;
+    state?: Schema$ContainerState;
   }
   /**
    * ProjectsMetadata is the metadata CCFE stores about the all the relevant projects (tenant, consumer, producer).
@@ -1241,20 +1255,6 @@ export namespace appengine_v1 {
     tenantProjectNumber?: string | null;
   }
   /**
-   * ProjectState contains the externally-visible project state that is used to communicate the state and reasoning for that state to the CLH. This data is not persisted by CCFE, but is instead derived from CCFE's internal representation of the project state.
-   */
-  export interface Schema$ProjectState {
-    currentReasons?: Schema$Reasons;
-    /**
-     * The previous and current reasons for a project state will be sent for a project event. CLHs that need to know the signal that caused the project event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com).
-     */
-    previousReasons?: Schema$Reasons;
-    /**
-     * The current state of the project. This state is the culmination of all of the opinions from external systems that CCFE knows about of the project.
-     */
-    state?: string | null;
-  }
-  /**
    * Readiness checking configuration for VM instances. Unhealthy instances are removed from traffic rotation.
    */
   export interface Schema$ReadinessCheck {
@@ -1288,7 +1288,7 @@ export namespace appengine_v1 {
     timeout?: string | null;
   }
   /**
-   * Projects transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API)
+   * Containers transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API)
    */
   export interface Schema$Reasons {
     abuse?: string | null;

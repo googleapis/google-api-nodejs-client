@@ -417,6 +417,20 @@ export namespace appengine_v1beta {
     image?: string | null;
   }
   /**
+   * ContainerState contains the externally-visible container state that is used to communicate the state and reasoning for that state to the CLH. This data is not persisted by CCFE, but is instead derived from CCFE's internal representation of the container state.
+   */
+  export interface Schema$ContainerState {
+    currentReasons?: Schema$Reasons;
+    /**
+     * The previous and current reasons for a container state will be sent for a container event. CLHs that need to know the signal that caused the container event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com).
+     */
+    previousReasons?: Schema$Reasons;
+    /**
+     * The current state of the container. This state is the culmination of all of the opinions from external systems that CCFE knows about of the container.
+     */
+    state?: string | null;
+  }
+  /**
    * Target scaling by CPU usage.
    */
   export interface Schema$CpuUtilization {
@@ -1275,7 +1289,7 @@ export namespace appengine_v1beta {
     /**
      * The state of the project that led to this event.
      */
-    state?: Schema$ProjectState;
+    state?: Schema$ContainerState;
   }
   /**
    * ProjectsMetadata is the metadata CCFE stores about the all the relevant projects (tenant, consumer, producer).
@@ -1315,20 +1329,6 @@ export namespace appengine_v1beta {
     tenantProjectNumber?: string | null;
   }
   /**
-   * ProjectState contains the externally-visible project state that is used to communicate the state and reasoning for that state to the CLH. This data is not persisted by CCFE, but is instead derived from CCFE's internal representation of the project state.
-   */
-  export interface Schema$ProjectState {
-    currentReasons?: Schema$Reasons;
-    /**
-     * The previous and current reasons for a project state will be sent for a project event. CLHs that need to know the signal that caused the project event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com).
-     */
-    previousReasons?: Schema$Reasons;
-    /**
-     * The current state of the project. This state is the culmination of all of the opinions from external systems that CCFE knows about of the project.
-     */
-    state?: string | null;
-  }
-  /**
    * Readiness checking configuration for VM instances. Unhealthy instances are removed from traffic rotation.
    */
   export interface Schema$ReadinessCheck {
@@ -1362,7 +1362,7 @@ export namespace appengine_v1beta {
     timeout?: string | null;
   }
   /**
-   * Projects transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API)
+   * Containers transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API)
    */
   export interface Schema$Reasons {
     abuse?: string | null;
@@ -1880,7 +1880,6 @@ export namespace appengine_v1beta {
     firewall: Resource$Apps$Firewall;
     locations: Resource$Apps$Locations;
     operations: Resource$Apps$Operations;
-    runtimes: Resource$Apps$Runtimes;
     services: Resource$Apps$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1894,7 +1893,6 @@ export namespace appengine_v1beta {
       this.firewall = new Resource$Apps$Firewall(this.context);
       this.locations = new Resource$Apps$Locations(this.context);
       this.operations = new Resource$Apps$Operations(this.context);
-      this.runtimes = new Resource$Apps$Runtimes(this.context);
       this.services = new Resource$Apps$Services(this.context);
     }
 
@@ -2064,6 +2062,100 @@ export namespace appengine_v1beta {
         );
       } else {
         return createAPIRequest<Schema$Application>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the available runtimes for the application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listRuntimes(
+      params: Params$Resource$Apps$Listruntimes,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listRuntimes(
+      params?: Params$Resource$Apps$Listruntimes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRuntimesResponse>;
+    listRuntimes(
+      params: Params$Resource$Apps$Listruntimes,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listRuntimes(
+      params: Params$Resource$Apps$Listruntimes,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    listRuntimes(
+      params: Params$Resource$Apps$Listruntimes,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    listRuntimes(
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    listRuntimes(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Listruntimes
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRuntimesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Listruntimes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Listruntimes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/apps/{appsId}:listRuntimes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appsId'],
+        pathParams: ['appsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRuntimesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRuntimesResponse>(parameters);
       }
     }
 
@@ -2255,6 +2347,17 @@ export namespace appengine_v1beta {
      * Optional. Options to include extra data
      */
     includeExtraData?: string;
+  }
+  export interface Params$Resource$Apps$Listruntimes
+    extends StandardParameters {
+    /**
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Optional. The environment of the Application.
+     */
+    environment?: string;
   }
   export interface Params$Resource$Apps$Patch extends StandardParameters {
     /**
@@ -4533,117 +4636,6 @@ export namespace appengine_v1beta {
      * The standard list page token.
      */
     pageToken?: string;
-  }
-
-  export class Resource$Apps$Runtimes {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists all the available runtimes for the application.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Apps$Runtimes$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Apps$Runtimes$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRuntimesResponse>;
-    list(
-      params: Params$Resource$Apps$Runtimes$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Apps$Runtimes$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRuntimesResponse>,
-      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Apps$Runtimes$List,
-      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListRuntimesResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Apps$Runtimes$List
-        | BodyResponseCallback<Schema$ListRuntimesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListRuntimesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListRuntimesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListRuntimesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Apps$Runtimes$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Apps$Runtimes$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/apps/{appsId}/runtimes').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['appsId'],
-        pathParams: ['appsId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListRuntimesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListRuntimesResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Apps$Runtimes$List
-    extends StandardParameters {
-    /**
-     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
-     */
-    appsId?: string;
-    /**
-     * Optional. The environment of the Application.
-     */
-    environment?: string;
   }
 
   export class Resource$Apps$Services {
