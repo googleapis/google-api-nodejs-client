@@ -345,7 +345,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update. The currently supported fields are: `labels` `hyperthreading_enabled` `os_image` `ssh_keys`",
+                      "description": "The list of fields to update. The currently supported fields are: `labels` `hyperthreading_enabled` `os_image` `ssh_keys` `kms_key_version`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1613,7 +1613,7 @@
       }
     }
   },
-  "revision": "20231004",
+  "revision": "20231009",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {

@@ -27,8 +27,8 @@
   "endpoints": [
     {
       "endpointUrl": "https://dataflow.me-central2.rep.googleapis.com/",
-      "description": "Regional Endpoint",
-      "location": "me-central2"
+      "location": "me-central2",
+      "description": "Regional Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2221,7 +2221,7 @@
       }
     }
   },
-  "revision": "20230929",
+  "revision": "20231008",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
