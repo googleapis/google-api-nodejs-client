@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230924",
+  "revision": "20231017",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -1381,7 +1381,7 @@
           "type": "string"
         },
         "text": {
-          "description": "Localized string in the language corresponding to `language_code' below.",
+          "description": "Localized string in the language corresponding to language_code below.",
           "type": "string"
         }
       },
