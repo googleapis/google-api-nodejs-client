@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231016",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1874,6 +1874,13 @@
           "description": "HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.",
           "type": "string"
         },
+        "licenses": {
+          "description": "The list of licenses found that are related to a given package. Note that licenses may also be stored on the BinarySourceInfo. If there is no BinarySourceInfo (because there's no concept of source vs binary), then it will be stored here, while if there are BinarySourceInfos, it will be stored there, as one source can have multiple binaries with different licenses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "maintainer": {
           "$ref": "Maintainer",
           "description": "The maintainer of the package."
@@ -2056,6 +2063,13 @@
     "PackageVersion": {
       "id": "PackageVersion",
       "properties": {
+        "licenses": {
+          "description": "The licenses associated with this package. Note that this has to go on the PackageVersion level, because we can have cases with images with the same source having different licences. E.g. in Alpine, musl and musl-utils both have the same origin musl, but have different sets of licenses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "name": {
           "type": "string"
         },
