@@ -1489,7 +1489,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20231006",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AutomatedBackupPolicy": {
@@ -1640,7 +1640,8 @@
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Reserved for future use.",
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
           "type": "boolean"
         },
         "sizeBytes": {
@@ -1901,7 +1902,8 @@
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Reserved for future use.",
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
           "type": "boolean"
         },
         "secondaryConfig": {
@@ -2407,7 +2409,7 @@
         },
         "readPoolConfig": {
           "$ref": "ReadPoolConfig",
-          "description": "Read pool specific config."
+          "description": "Read pool instance configuration. This is required if the value of instanceType is READ_POOL."
         },
         "reconciling": {
           "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Instance does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.",
@@ -2415,7 +2417,8 @@
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Reserved for future use.",
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
           "type": "boolean"
         },
         "state": {
@@ -2668,7 +2671,7 @@
       "id": "NetworkConfig",
       "properties": {
         "allocatedIpRange": {
-          "description": "Optional. Name of the allocated IP range for the private IP AlloyDB cluster, for example: \"google-managed-services-default\". If set, the instance IPs for this cluster will be created in the allocated range. The range name must comply with RFC 1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Field name is intended to be consistent with CloudSQL.",
+          "description": "Optional. Name of the allocated IP range for the private IP AlloyDB cluster, for example: \"google-managed-services-default\". If set, the instance IPs for this cluster will be created in the allocated range. The range name must comply with RFC 1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. Field name is intended to be consistent with Cloud SQL.",
           "type": "string"
         },
         "network": {
@@ -3175,7 +3178,7 @@
           "type": "string"
         },
         "eventTime": {
-          "description": "The last time at which the event described by this signal took place",
+          "description": "Required. The last time at which the event described by this signal took place",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3184,7 +3187,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.",
+          "description": "Required. The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.",
           "type": "string"
         },
         "provider": {
@@ -3214,11 +3217,11 @@
           "type": "string"
         },
         "resourceName": {
-          "description": "Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
           "type": "string"
         },
         "signalClass": {
-          "description": "The class of the signal, such as if it's a THREAT or VULNERABILITY.",
+          "description": "Required. The class of the signal, such as if it's a THREAT or VULNERABILITY.",
           "enum": [
             "CLASS_UNSPECIFIED",
             "THREAT",
@@ -3238,7 +3241,109 @@
           "type": "string"
         },
         "signalId": {
-          "description": "Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.",
+          "description": "Required. Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.",
+          "type": "string"
+        },
+        "signalType": {
+          "description": "Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_ZONES",
+            "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_REGIONS",
+            "SIGNAL_TYPE_NO_PROMOTABLE_REPLICA",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+            "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+            "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+            "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+            "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_STATISTICS_LOGGED",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATISTICS",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATISTICS",
+            "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+            "SIGNAL_TYPE_LOGGING_QUERY_STATISTICS",
+            "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+            "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+            "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+            "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+            "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+            "SIGNAL_TYPE_EXPOSED_BY_OWNERSHIP_CHAINING",
+            "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+            "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+            "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+            "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+            "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+            "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Represents if the resource is available in multiple zones or not.",
+            "Represents if a resource is available in multiple regions.",
+            "Represents if a resource has a promotable replica.",
+            "Represents if a resource has an automated backup policy.",
+            "Represents if a resources has a short backup retention period.",
+            "Represents if the last backup of a resource failed.",
+            "Represents if the last backup of a resource is older than some threshold value.",
+            "Represents if a resource violates CIS GCP Foundation 2.0.",
+            "Represents if a resource violates CIS GCP Foundation 1.3.",
+            "Represents if a resource violates CIS GCP Foundation 1.2.",
+            "Represents if a resource violates CIS GCP Foundation 1.1.",
+            "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates PCI-DSS v3.2.1.",
+            "LINT.IfChange(scc_signals) Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
+            "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is not set appropriately.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance does not have an appropriate severity level.",
+            "Represents if the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is not set to warning or another recommended value.",
+            "Represents if the databaseFlags property of instance metadata for the log_executor_status field is set to on.",
+            "Represents if the log_hostname database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_parser_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_planner_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_statement database flag for a Cloud SQL for PostgreSQL instance is not set to DDL (all data definition statements).",
+            "Represents if the log_statement_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_temp_files database flag for a Cloud SQL for PostgreSQL instance is not set to \"0\". (NOTE: 0 = ON)",
+            "Represents if the user connections database flag for a Cloud SQL for SQL Server instance is configured.",
+            "Represents if the user options database flag for Cloud SQL SQL Server instance is configured or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a Cloud SQL database has a password configured for the root account or not.",
+            "Represents if a Cloud SQL database has a weak password configured for the root account.",
+            "Represents if a SQL database instance is not encrypted with customer-managed encryption keys (CMEK).",
+            "Represents if The contained database authentication database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the cross_db_ownership_chaining database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if he external scripts enabled database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the local_infile database flag for a Cloud SQL for MySQL instance is not set to off.",
+            "Represents if the log_connections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
+            "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on. LINT.ThenChange(//depot/google3/storage/databasecenter/ingestion/borgjob/message_adapter/health_signal_feed/health_signal_mapping.h)"
+          ],
           "type": "string"
         },
         "state": {
@@ -3378,12 +3483,14 @@
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
             "PRIMARY",
+            "SECONDARY",
             "READ_REPLICA",
             "OTHER"
           ],
           "enumDescriptions": [
             "",
             "A regular primary database instance.",
+            "A cluster or an instance acting as a secondary.",
             "An instance acting as a read-replica.",
             "For rest of the other categories."
           ],
