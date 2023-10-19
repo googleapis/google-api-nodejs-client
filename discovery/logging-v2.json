@@ -29,9 +29,9 @@
   "documentationLink": "https://cloud.google.com/logging/docs/",
   "endpoints": [
     {
-      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.me-central2.rep.googleapis.com/",
       "location": "me-central2",
-      "endpointUrl": "https://logging.me-central2.rep.googleapis.com/"
+      "description": "Regional Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1361,7 +1361,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.",
+                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1406,7 +1406,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.",
+                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2963,7 +2963,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.",
+                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3008,7 +3008,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.",
+                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -5209,7 +5209,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.",
+                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -5254,7 +5254,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.",
+                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -6688,7 +6688,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.",
+                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -6733,7 +6733,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.",
+                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -6916,7 +6916,7 @@
           ],
           "parameters": {
             "customWriterIdentity": {
-              "description": "Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.",
+              "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
               "location": "query",
               "type": "string"
             },
@@ -7084,7 +7084,7 @@
       }
     }
   },
-  "revision": "20230928",
+  "revision": "20231006",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryDataset": {
