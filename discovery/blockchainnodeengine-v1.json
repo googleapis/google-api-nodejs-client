@@ -487,7 +487,7 @@
       }
     }
   },
-  "revision": "20230927",
+  "revision": "20231011",
   "rootUrl": "https://blockchainnodeengine.googleapis.com/",
   "schemas": {
     "BlockchainNode": {
@@ -677,7 +677,7 @@
             "The network has not been specified, but should be.",
             "The Ethereum Mainnet.",
             "The Ethereum Testnet based on Goerli protocol.",
-            "The Ethereum Testnet based on Sepolia/Bepolia protocol."
+            "The Ethereum Testnet based on Sepolia/Bepolia protocol. See https://github.com/eth-clients/sepolia."
           ],
           "type": "string"
         },

@@ -135,8 +135,7 @@
             "$ref": "DetectLanguageResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-translation"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "getSupportedLanguages": {
@@ -199,8 +198,7 @@
             "$ref": "RomanizeTextResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-translation"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "translateText": {
@@ -228,8 +226,7 @@
             "$ref": "TranslateTextResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-translation"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       },
@@ -317,8 +314,7 @@
                 "$ref": "DetectLanguageResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-translation"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "get": {
@@ -449,8 +445,7 @@
                 "$ref": "RomanizeTextResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-translation"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "translateDocument": {
@@ -507,8 +502,7 @@
                 "$ref": "TranslateTextResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-translation"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
           },
@@ -540,8 +534,7 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-translation"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "delete": {
@@ -621,8 +614,7 @@
                     "$ref": "Dataset"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-translation"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "importData": {
@@ -687,8 +679,7 @@
                     "$ref": "ListDatasetsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-translation"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
               },
@@ -1170,8 +1161,7 @@
                     "$ref": "ListModelsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-translation"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
               }
@@ -1337,7 +1327,7 @@
       }
     }
   },
-  "revision": "20230922",
+  "revision": "20231013",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {

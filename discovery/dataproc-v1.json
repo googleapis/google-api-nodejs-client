@@ -17,9 +17,9 @@
   "documentationLink": "https://cloud.google.com/dataproc/",
   "endpoints": [
     {
-      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/",
       "location": "me-central2",
-      "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/"
+      "description": "Regional Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3006,7 +3006,7 @@
       }
     }
   },
-  "revision": "20231002",
+  "revision": "20231012",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {

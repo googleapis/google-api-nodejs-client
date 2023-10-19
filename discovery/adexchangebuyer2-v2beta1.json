@@ -2568,7 +2568,7 @@
       }
     }
   },
-  "revision": "20230808",
+  "revision": "20231018",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -3109,7 +3109,8 @@
               "NON_INTERSTITIAL",
               "IN_BANNER_VIDEO",
               "RENDERING_SIZELESS_ADX",
-              "OMSDK_1_0"
+              "OMSDK_1_0",
+              "RENDERING_PLAYABLE"
             ],
             "enumDescriptions": [
               "Do not use. This is a placeholder value only.",
@@ -3149,7 +3150,8 @@
               "The creative has an interstitial size of non interstitial. For pretargeting.",
               "The video type is in-banner video.",
               "The creative can dynamically resize to fill a variety of slot sizes.",
-              "The open measurement SDK is supported."
+              "The open measurement SDK is supported.",
+              "The creative is considered a playable display creative."
             ],
             "type": "string"
           },
