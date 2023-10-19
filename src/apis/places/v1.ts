@@ -172,167 +172,167 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1Place {
     /**
-     * Output only. Information about the accessibility options a place offers.
+     * Information about the accessibility options a place offers.
      */
     accessibilityOptions?: Schema$GoogleMapsPlacesV1PlaceAccessibilityOptions;
     /**
-     * Output only. Repeated components for each locality level.
+     * Repeated components for each locality level. Note the following facts about the address_components[] array: - The array of address components may contain more components than the formatted_address. - The array does not necessarily include all the political entities that contain an address, apart from those included in the formatted_address. To retrieve all the political entities that contain a specific address, you should use reverse geocoding, passing the latitude/longitude of the address as a parameter to the request. - The format of the response is not guaranteed to remain the same between requests. In particular, the number of address_components varies based on the address requested and can change over time for the same address. A component can change position in the array. The type of the component can change. A particular component may be missing in a later response.
      */
     addressComponents?: Schema$GoogleMapsPlacesV1PlaceAddressComponent[];
     /**
-     * Output only. The place's address in adr microformat: http://microformats.org/wiki/adr.
+     * The place's address in adr microformat: http://microformats.org/wiki/adr.
      */
     adrFormatAddress?: string | null;
     /**
-     * Output only. A set of data provider that must be shown with this result.
+     * A set of data provider that must be shown with this result.
      */
     attributions?: Schema$GoogleMapsPlacesV1PlaceAttribution[];
     /**
-     * Output only. The business status for the place.
+     * The business status for the place.
      */
     businessStatus?: string | null;
     /**
-     * Output only. Specifies if the business supports curbside pickup.
+     * Specifies if the business supports curbside pickup.
      */
     curbsidePickup?: boolean | null;
     /**
-     * Output only. The hours of operation for the next seven days (including today). The time period starts at midnight on the date of the request and ends at 11:59 pm six days later. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.
+     * The hours of operation for the next seven days (including today). The time period starts at midnight on the date of the request and ends at 11:59 pm six days later. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.
      */
     currentOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours;
     /**
-     * Output only. Contains an array of entries for the next seven days including information about secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.
+     * Contains an array of entries for the next seven days including information about secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.
      */
     currentSecondaryOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours[];
     /**
-     * Output only. Specifies if the business supports delivery.
+     * Specifies if the business supports delivery.
      */
     delivery?: boolean | null;
     /**
-     * Output only. Specifies if the business supports indoor or outdoor seating options.
+     * Specifies if the business supports indoor or outdoor seating options.
      */
     dineIn?: boolean | null;
     /**
-     * Output only. The localized name of the place, suitable as a short human-readable description. For example, "Google Sydney", "Starbucks", "Pyrmont", etc.
+     * The localized name of the place, suitable as a short human-readable description. For example, "Google Sydney", "Starbucks", "Pyrmont", etc.
      */
     displayName?: Schema$GoogleTypeLocalizedText;
     /**
-     * Output only. Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code for these if applicable. Summary text must be presented as-is and can not be modified or altered.
+     * Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code for these if applicable. Summary text must be presented as-is and can not be modified or altered.
      */
     editorialSummary?: Schema$GoogleTypeLocalizedText;
     /**
-     * Output only. A full, human-readable address for this place.
+     * A full, human-readable address for this place.
      */
     formattedAddress?: string | null;
     /**
-     * Output only. A URL providing more information about this place.
+     * A URL providing more information about this place.
      */
     googleMapsUri?: string | null;
     /**
-     * Output only. Background color for icon_mask in hex format, e.g. #909CE1.
+     * Background color for icon_mask in hex format, e.g. #909CE1.
      */
     iconBackgroundColor?: string | null;
     /**
-     * Output only. A truncated URL to an v2 icon mask. User can access different icon type by appending type suffix to the end (eg, ".svg" or ".png").
+     * A truncated URL to an v2 icon mask. User can access different icon type by appending type suffix to the end (eg, ".svg" or ".png").
      */
     iconMaskBaseUri?: string | null;
     /**
-     * Output only. The unique identifier of a place.
+     * The unique identifier of a place.
      */
     id?: string | null;
     /**
-     * Output only. A human-readable phone number for the place, in international format.
+     * A human-readable phone number for the place, in international format.
      */
     internationalPhoneNumber?: string | null;
     /**
-     * Output only. The position of this place.
+     * The position of this place.
      */
     location?: Schema$GoogleTypeLatLng;
     /**
-     * Output only. An ID representing this place which may be used to look up this place again (a.k.a. the API "resource" name: places/).
+     * An ID representing this place which may be used to look up this place again (a.k.a. the API "resource" name: places/place_id).
      */
     name?: string | null;
     /**
-     * Output only. A human-readable phone number for the place, in national format.
+     * A human-readable phone number for the place, in national format.
      */
     nationalPhoneNumber?: string | null;
     /**
-     * Output only. Plus code of the place location lat/long.
+     * Plus code of the place location lat/long.
      */
     plusCode?: Schema$GoogleMapsPlacesV1PlacePlusCode;
     /**
-     * Output only. Price level of the place.
+     * Price level of the place.
      */
     priceLevel?: string | null;
     /**
-     * Output only. A rating between 1.0 and 5.0, based on user reviews of this place.
+     * A rating between 1.0 and 5.0, based on user reviews of this place.
      */
     rating?: number | null;
     /**
-     * Output only. The regular hours of operation.
+     * The regular hours of operation.
      */
     regularOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours;
     /**
-     * Output only. Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.
+     * Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.
      */
     regularSecondaryOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours[];
     /**
-     * Output only. Specifies if the place supports reservations.
+     * Specifies if the place supports reservations.
      */
     reservable?: boolean | null;
     /**
-     * Output only. List of reviews about this place.
+     * List of reviews about this place.
      */
     reviews?: Schema$GoogleMapsPlacesV1Review[];
     /**
-     * Output only. Specifies if the place serves beer.
+     * Specifies if the place serves beer.
      */
     servesBeer?: boolean | null;
     /**
-     * Output only. Specifies if the place serves breakfast.
+     * Specifies if the place serves breakfast.
      */
     servesBreakfast?: boolean | null;
     /**
-     * Output only. Specifies if the place serves brunch.
+     * Specifies if the place serves brunch.
      */
     servesBrunch?: boolean | null;
     /**
-     * Output only. Specifies if the place serves dinner.
+     * Specifies if the place serves dinner.
      */
     servesDinner?: boolean | null;
     /**
-     * Output only. Specifies if the place serves lunch.
+     * Specifies if the place serves lunch.
      */
     servesLunch?: boolean | null;
     /**
-     * Output only. Specifies if the place serves vegetarian food.
+     * Specifies if the place serves vegetarian food.
      */
     servesVegetarianFood?: boolean | null;
     /**
-     * Output only. Specifies if the place serves wine.
+     * Specifies if the place serves wine.
      */
     servesWine?: boolean | null;
     /**
-     * Output only. Specifies if the business supports takeout.
+     * Specifies if the business supports takeout.
      */
     takeout?: boolean | null;
     /**
-     * Output only. A set of type tags for this result. For example, "political" and "locality".
+     * A set of type tags for this result. For example, "political" and "locality". See: https://developers.google.com/maps/documentation/places/web-service/place-types
      */
     types?: string[] | null;
     /**
-     * Output only. The total number of reviews (with or without text) for this place.
+     * The total number of reviews (with or without text) for this place.
      */
     userRatingCount?: number | null;
     /**
-     * Output only. Number of minutes this place's timezone is currently offset from UTC. This is expressed in minutes to support timezones that are offset by fractions of an hour, e.g. X hours and 15 minutes.
+     * Number of minutes this place's timezone is currently offset from UTC. This is expressed in minutes to support timezones that are offset by fractions of an hour, e.g. X hours and 15 minutes.
      */
     utcOffsetMinutes?: number | null;
     /**
-     * Output only. A viewport suitable for displaying the place on an average-sized map.
+     * A viewport suitable for displaying the place on an average-sized map.
      */
     viewport?: Schema$GoogleGeoTypeViewport;
     /**
-     * Output only. The authoritative website for this place, e.g. a business' homepage. Note that for places that are part of a chain (e.g. an IKEA store), this will usually be the website for the individual store, not the overall chain.
+     * The authoritative website for this place, e.g. a business' homepage. Note that for places that are part of a chain (e.g. an IKEA store), this will usually be the website for the individual store, not the overall chain.
      */
     websiteUri?: string | null;
   }
@@ -350,19 +350,19 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1PlaceAddressComponent {
     /**
-     * Output only. The language used to format this components, in CLDR notation.
+     * The language used to format this components, in CLDR notation.
      */
     languageCode?: string | null;
     /**
-     * Output only. The full text description or name of the address component. For example, an address component for the country Australia may have a long_name of "Australia".
+     * The full text description or name of the address component. For example, an address component for the country Australia may have a long_name of "Australia".
      */
     longText?: string | null;
     /**
-     * Output only. An abbreviated textual name for the address component, if available. For example, an address component for the country of Australia may have a short_name of "AU".
+     * An abbreviated textual name for the address component, if available. For example, an address component for the country of Australia may have a short_name of "AU".
      */
     shortText?: string | null;
     /**
-     * Output only. An array indicating the type(s) of the address component.
+     * An array indicating the type(s) of the address component.
      */
     types?: string[] | null;
   }
@@ -371,11 +371,11 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1PlaceAttribution {
     /**
-     * Output only. Name of the Place's data provider.
+     * Name of the Place's data provider.
      */
     provider?: string | null;
     /**
-     * Output only. URI to the Place's data provider.
+     * URI to the Place's data provider.
      */
     providerUri?: string | null;
   }
@@ -384,23 +384,23 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1PlaceOpeningHours {
     /**
-     * Output only. Is this place open right now? Always present unless we lack time-of-day or timezone data for these opening hours.
+     * Is this place open right now? Always present unless we lack time-of-day or timezone data for these opening hours.
      */
     openNow?: boolean | null;
     /**
-     * Output only. The periods that this place is open during the week. The periods are in chronological order, starting with Sunday in the place-local timezone. An empty (but not absent) value indicates a place that is never open, e.g. because it is closed temporarily for renovations.
+     * The periods that this place is open during the week. The periods are in chronological order, starting with Sunday in the place-local timezone. An empty (but not absent) value indicates a place that is never open, e.g. because it is closed temporarily for renovations.
      */
     periods?: Schema$GoogleMapsPlacesV1PlaceOpeningHoursPeriod[];
     /**
-     * Output only. A type string used to identify the type of secondary hours.
+     * A type string used to identify the type of secondary hours.
      */
     secondaryHoursType?: string | null;
     /**
-     * Output only. Structured information for special days that fall within the period that the returned opening hours cover. Special days are days that could impact the business hours of a place, e.g. Christmas day. Set for current_opening_hours and current_secondary_opening_hours if there are exceptional hours.
+     * Structured information for special days that fall within the period that the returned opening hours cover. Special days are days that could impact the business hours of a place, e.g. Christmas day. Set for current_opening_hours and current_secondary_opening_hours if there are exceptional hours.
      */
     specialDays?: Schema$GoogleMapsPlacesV1PlaceOpeningHoursSpecialDay[];
     /**
-     * Output only. Localized strings describing the opening hours of this place, one string for each day of the week. Will be empty if the hours are unknown or could not be converted to localized text. Example: "Sun: 18:00–06:00"
+     * Localized strings describing the opening hours of this place, one string for each day of the week. Will be empty if the hours are unknown or could not be converted to localized text. Example: "Sun: 18:00–06:00"
      */
     weekdayDescriptions?: string[] | null;
   }
@@ -409,11 +409,11 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1PlaceOpeningHoursPeriod {
     /**
-     * Output only. The time that the place starts to be closed.
+     * The time that the place starts to be closed.
      */
     close?: Schema$GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint;
     /**
-     * Output only. The time that the place starts to be open.
+     * The time that the place starts to be open.
      */
     open?: Schema$GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint;
   }
@@ -422,23 +422,23 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint {
     /**
-     * Output only. Date in the local timezone for the place.
+     * Date in the local timezone for the place.
      */
     date?: Schema$GoogleTypeDate;
     /**
-     * Output only. A day of the week, as an integer in the range 0-6. 0 is Sunday, 1 is Monday, etc.
+     * A day of the week, as an integer in the range 0-6. 0 is Sunday, 1 is Monday, etc.
      */
     day?: number | null;
     /**
-     * Output only. The hour in 2 digits. Ranges from 00 to 23.
+     * The hour in 2 digits. Ranges from 00 to 23.
      */
     hour?: number | null;
     /**
-     * Output only. The minute in 2 digits. Ranges from 00 to 59.
+     * The minute in 2 digits. Ranges from 00 to 59.
      */
     minute?: number | null;
     /**
-     * Output only. Whether or not this endpoint was truncated. Truncation occurs when the real hours are outside the times we are willing to return hours between, so we truncate the hours back to these boundaries. This ensures that at most 24 * 7 hours from midnight of the day of the request are returned.
+     * Whether or not this endpoint was truncated. Truncation occurs when the real hours are outside the times we are willing to return hours between, so we truncate the hours back to these boundaries. This ensures that at most 24 * 7 hours from midnight of the day of the request are returned.
      */
     truncated?: boolean | null;
   }
@@ -447,7 +447,7 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1PlaceOpeningHoursSpecialDay {
     /**
-     * Output only. The date of this special day.
+     * The date of this special day.
      */
     date?: Schema$GoogleTypeDate;
   }
@@ -456,11 +456,11 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1PlacePlusCode {
     /**
-     * Output only. Place's compound code, such as "33GV+HQ, Ramberg, Norway", containing the suffix of the global code and replacing the prefix with a formatted name of a reference entity.
+     * Place's compound code, such as "33GV+HQ, Ramberg, Norway", containing the suffix of the global code and replacing the prefix with a formatted name of a reference entity.
      */
     compoundCode?: string | null;
     /**
-     * Output only. Place's global (full) code, such as "9FWM33GV+HQ", representing an 1/8000 by 1/8000 degree area (~14 by 14 meters).
+     * Place's global (full) code, such as "9FWM33GV+HQ", representing an 1/8000 by 1/8000 degree area (~14 by 14 meters).
      */
     globalCode?: string | null;
   }
@@ -498,7 +498,7 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1SearchTextRequest {
     /**
-     * The requested place type. Full list of types supported: https://developers.google.com/places/supported_types. Only support one included type.
+     * The requested place type. Full list of types supported: https://developers.google.com/maps/documentation/places/web-service/place-types. Only support one included type.
      */
     includedType?: string | null;
     /**
@@ -522,7 +522,7 @@ export namespace places_v1 {
      */
     minRating?: number | null;
     /**
-     * Used to restrict the search to places that are open at a specific time. open_now marks if a business is currently open.
+     * Used to restrict the search to places that are currently open.
      */
     openNow?: boolean | null;
     /**
@@ -616,7 +616,7 @@ export namespace places_v1 {
      */
     languageCode?: string | null;
     /**
-     * Localized string in the language corresponding to `language_code' below.
+     * Localized string in the language corresponding to language_code below.
      */
     text?: string | null;
   }

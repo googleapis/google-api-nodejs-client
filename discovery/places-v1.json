@@ -136,7 +136,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231017",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -198,32 +198,28 @@
       "properties": {
         "accessibilityOptions": {
           "$ref": "GoogleMapsPlacesV1PlaceAccessibilityOptions",
-          "description": "Output only. Information about the accessibility options a place offers.",
-          "readOnly": true
+          "description": "Information about the accessibility options a place offers."
         },
         "addressComponents": {
-          "description": "Output only. Repeated components for each locality level.",
+          "description": "Repeated components for each locality level. Note the following facts about the address_components[] array: - The array of address components may contain more components than the formatted_address. - The array does not necessarily include all the political entities that contain an address, apart from those included in the formatted_address. To retrieve all the political entities that contain a specific address, you should use reverse geocoding, passing the latitude/longitude of the address as a parameter to the request. - The format of the response is not guaranteed to remain the same between requests. In particular, the number of address_components varies based on the address requested and can change over time for the same address. A component can change position in the array. The type of the component can change. A particular component may be missing in a later response.",
           "items": {
             "$ref": "GoogleMapsPlacesV1PlaceAddressComponent"
           },
-          "readOnly": true,
           "type": "array"
         },
         "adrFormatAddress": {
-          "description": "Output only. The place's address in adr microformat: http://microformats.org/wiki/adr.",
-          "readOnly": true,
+          "description": "The place's address in adr microformat: http://microformats.org/wiki/adr.",
           "type": "string"
         },
         "attributions": {
-          "description": "Output only. A set of data provider that must be shown with this result.",
+          "description": "A set of data provider that must be shown with this result.",
           "items": {
             "$ref": "GoogleMapsPlacesV1PlaceAttribution"
           },
-          "readOnly": true,
           "type": "array"
         },
         "businessStatus": {
-          "description": "Output only. The business status for the place.",
+          "description": "The business status for the place.",
           "enum": [
             "BUSINESS_STATUS_UNSPECIFIED",
             "OPERATIONAL",
@@ -236,99 +232,81 @@
             "The establishment is temporarily closed.",
             "The establishment is permanently closed."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "curbsidePickup": {
-          "description": "Output only. Specifies if the business supports curbside pickup.",
-          "readOnly": true,
+          "description": "Specifies if the business supports curbside pickup.",
           "type": "boolean"
         },
         "currentOpeningHours": {
           "$ref": "GoogleMapsPlacesV1PlaceOpeningHours",
-          "description": "Output only. The hours of operation for the next seven days (including today). The time period starts at midnight on the date of the request and ends at 11:59 pm six days later. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.",
-          "readOnly": true
+          "description": "The hours of operation for the next seven days (including today). The time period starts at midnight on the date of the request and ends at 11:59 pm six days later. This field includes the special_days subfield of all hours, set for dates that have exceptional hours."
         },
         "currentSecondaryOpeningHours": {
-          "description": "Output only. Contains an array of entries for the next seven days including information about secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.",
+          "description": "Contains an array of entries for the next seven days including information about secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.",
           "items": {
             "$ref": "GoogleMapsPlacesV1PlaceOpeningHours"
           },
-          "readOnly": true,
           "type": "array"
         },
         "delivery": {
-          "description": "Output only. Specifies if the business supports delivery.",
-          "readOnly": true,
+          "description": "Specifies if the business supports delivery.",
           "type": "boolean"
         },
         "dineIn": {
-          "description": "Output only. Specifies if the business supports indoor or outdoor seating options.",
-          "readOnly": true,
+          "description": "Specifies if the business supports indoor or outdoor seating options.",
           "type": "boolean"
         },
         "displayName": {
           "$ref": "GoogleTypeLocalizedText",
-          "description": "Output only. The localized name of the place, suitable as a short human-readable description. For example, \"Google Sydney\", \"Starbucks\", \"Pyrmont\", etc.",
-          "readOnly": true
+          "description": "The localized name of the place, suitable as a short human-readable description. For example, \"Google Sydney\", \"Starbucks\", \"Pyrmont\", etc."
         },
         "editorialSummary": {
           "$ref": "GoogleTypeLocalizedText",
-          "description": "Output only. Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code for these if applicable. Summary text must be presented as-is and can not be modified or altered.",
-          "readOnly": true
+          "description": "Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code for these if applicable. Summary text must be presented as-is and can not be modified or altered."
         },
         "formattedAddress": {
-          "description": "Output only. A full, human-readable address for this place.",
-          "readOnly": true,
+          "description": "A full, human-readable address for this place.",
           "type": "string"
         },
         "googleMapsUri": {
-          "description": "Output only. A URL providing more information about this place.",
-          "readOnly": true,
+          "description": "A URL providing more information about this place.",
           "type": "string"
         },
         "iconBackgroundColor": {
-          "description": "Output only. Background color for icon_mask in hex format, e.g. #909CE1.",
-          "readOnly": true,
+          "description": "Background color for icon_mask in hex format, e.g. #909CE1.",
           "type": "string"
         },
         "iconMaskBaseUri": {
-          "description": "Output only. A truncated URL to an v2 icon mask. User can access different icon type by appending type suffix to the end (eg, \".svg\" or \".png\").",
-          "readOnly": true,
+          "description": "A truncated URL to an v2 icon mask. User can access different icon type by appending type suffix to the end (eg, \".svg\" or \".png\").",
           "type": "string"
         },
         "id": {
-          "description": "Output only. The unique identifier of a place.",
-          "readOnly": true,
+          "description": "The unique identifier of a place.",
           "type": "string"
         },
         "internationalPhoneNumber": {
-          "description": "Output only. A human-readable phone number for the place, in international format.",
-          "readOnly": true,
+          "description": "A human-readable phone number for the place, in international format.",
           "type": "string"
         },
         "location": {
           "$ref": "GoogleTypeLatLng",
-          "description": "Output only. The position of this place.",
-          "readOnly": true
+          "description": "The position of this place."
         },
         "name": {
-          "description": "Output only. An ID representing this place which may be used to look up this place again (a.k.a. the API \"resource\" name: places/).",
-          "readOnly": true,
+          "description": "An ID representing this place which may be used to look up this place again (a.k.a. the API \"resource\" name: places/place_id).",
           "type": "string"
         },
         "nationalPhoneNumber": {
-          "description": "Output only. A human-readable phone number for the place, in national format.",
-          "readOnly": true,
+          "description": "A human-readable phone number for the place, in national format.",
           "type": "string"
         },
         "plusCode": {
           "$ref": "GoogleMapsPlacesV1PlacePlusCode",
-          "description": "Output only. Plus code of the place location lat/long.",
-          "readOnly": true
+          "description": "Plus code of the place location lat/long."
         },
         "priceLevel": {
-          "description": "Output only. Price level of the place.",
+          "description": "Price level of the place.",
           "enum": [
             "PRICE_LEVEL_UNSPECIFIED",
             "PRICE_LEVEL_FREE",
@@ -345,109 +323,90 @@
             "Place provides expensive services.",
             "Place provides very expensive service s."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "rating": {
-          "description": "Output only. A rating between 1.0 and 5.0, based on user reviews of this place.",
+          "description": "A rating between 1.0 and 5.0, based on user reviews of this place.",
           "format": "double",
-          "readOnly": true,
           "type": "number"
         },
         "regularOpeningHours": {
           "$ref": "GoogleMapsPlacesV1PlaceOpeningHours",
-          "description": "Output only. The regular hours of operation.",
-          "readOnly": true
+          "description": "The regular hours of operation."
         },
         "regularSecondaryOpeningHours": {
-          "description": "Output only. Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.",
+          "description": "Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.",
           "items": {
             "$ref": "GoogleMapsPlacesV1PlaceOpeningHours"
           },
-          "readOnly": true,
           "type": "array"
         },
         "reservable": {
-          "description": "Output only. Specifies if the place supports reservations.",
-          "readOnly": true,
+          "description": "Specifies if the place supports reservations.",
           "type": "boolean"
         },
         "reviews": {
-          "description": "Output only. List of reviews about this place.",
+          "description": "List of reviews about this place.",
           "items": {
             "$ref": "GoogleMapsPlacesV1Review"
           },
-          "readOnly": true,
           "type": "array"
         },
         "servesBeer": {
-          "description": "Output only. Specifies if the place serves beer.",
-          "readOnly": true,
+          "description": "Specifies if the place serves beer.",
           "type": "boolean"
         },
         "servesBreakfast": {
-          "description": "Output only. Specifies if the place serves breakfast.",
-          "readOnly": true,
+          "description": "Specifies if the place serves breakfast.",
           "type": "boolean"
         },
         "servesBrunch": {
-          "description": "Output only. Specifies if the place serves brunch.",
-          "readOnly": true,
+          "description": "Specifies if the place serves brunch.",
           "type": "boolean"
         },
         "servesDinner": {
-          "description": "Output only. Specifies if the place serves dinner.",
-          "readOnly": true,
+          "description": "Specifies if the place serves dinner.",
           "type": "boolean"
         },
         "servesLunch": {
-          "description": "Output only. Specifies if the place serves lunch.",
-          "readOnly": true,
+          "description": "Specifies if the place serves lunch.",
           "type": "boolean"
         },
         "servesVegetarianFood": {
-          "description": "Output only. Specifies if the place serves vegetarian food.",
-          "readOnly": true,
+          "description": "Specifies if the place serves vegetarian food.",
           "type": "boolean"
         },
         "servesWine": {
-          "description": "Output only. Specifies if the place serves wine.",
-          "readOnly": true,
+          "description": "Specifies if the place serves wine.",
           "type": "boolean"
         },
         "takeout": {
-          "description": "Output only. Specifies if the business supports takeout.",
-          "readOnly": true,
+          "description": "Specifies if the business supports takeout.",
           "type": "boolean"
         },
         "types": {
-          "description": "Output only. A set of type tags for this result. For example, \"political\" and \"locality\".",
+          "description": "A set of type tags for this result. For example, \"political\" and \"locality\". See: https://developers.google.com/maps/documentation/places/web-service/place-types",
           "items": {
             "type": "string"
           },
-          "readOnly": true,
           "type": "array"
         },
         "userRatingCount": {
-          "description": "Output only. The total number of reviews (with or without text) for this place.",
+          "description": "The total number of reviews (with or without text) for this place.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "utcOffsetMinutes": {
-          "description": "Output only. Number of minutes this place's timezone is currently offset from UTC. This is expressed in minutes to support timezones that are offset by fractions of an hour, e.g. X hours and 15 minutes.",
+          "description": "Number of minutes this place's timezone is currently offset from UTC. This is expressed in minutes to support timezones that are offset by fractions of an hour, e.g. X hours and 15 minutes.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "viewport": {
           "$ref": "GoogleGeoTypeViewport",
-          "description": "Output only. A viewport suitable for displaying the place on an average-sized map.",
-          "readOnly": true
+          "description": "A viewport suitable for displaying the place on an average-sized map."
         },
         "websiteUri": {
-          "description": "Output only. The authoritative website for this place, e.g. a business' homepage. Note that for places that are part of a chain (e.g. an IKEA store), this will usually be the website for the individual store, not the overall chain.",
-          "readOnly": true,
+          "description": "The authoritative website for this place, e.g. a business' homepage. Note that for places that are part of a chain (e.g. an IKEA store), this will usually be the website for the individual store, not the overall chain.",
           "type": "string"
         }
       },
@@ -469,26 +428,22 @@
       "id": "GoogleMapsPlacesV1PlaceAddressComponent",
       "properties": {
         "languageCode": {
-          "description": "Output only. The language used to format this components, in CLDR notation.",
-          "readOnly": true,
+          "description": "The language used to format this components, in CLDR notation.",
           "type": "string"
         },
         "longText": {
-          "description": "Output only. The full text description or name of the address component. For example, an address component for the country Australia may have a long_name of \"Australia\".",
-          "readOnly": true,
+          "description": "The full text description or name of the address component. For example, an address component for the country Australia may have a long_name of \"Australia\".",
           "type": "string"
         },
         "shortText": {
-          "description": "Output only. An abbreviated textual name for the address component, if available. For example, an address component for the country of Australia may have a short_name of \"AU\".",
-          "readOnly": true,
+          "description": "An abbreviated textual name for the address component, if available. For example, an address component for the country of Australia may have a short_name of \"AU\".",
           "type": "string"
         },
         "types": {
-          "description": "Output only. An array indicating the type(s) of the address component.",
+          "description": "An array indicating the type(s) of the address component.",
           "items": {
             "type": "string"
           },
-          "readOnly": true,
           "type": "array"
         }
       },
@@ -499,13 +454,11 @@
       "id": "GoogleMapsPlacesV1PlaceAttribution",
       "properties": {
         "provider": {
-          "description": "Output only. Name of the Place's data provider.",
-          "readOnly": true,
+          "description": "Name of the Place's data provider.",
           "type": "string"
         },
         "providerUri": {
-          "description": "Output only. URI to the Place's data provider.",
-          "readOnly": true,
+          "description": "URI to the Place's data provider.",
           "type": "string"
         }
       },
@@ -516,20 +469,18 @@
       "id": "GoogleMapsPlacesV1PlaceOpeningHours",
       "properties": {
         "openNow": {
-          "description": "Output only. Is this place open right now? Always present unless we lack time-of-day or timezone data for these opening hours.",
-          "readOnly": true,
+          "description": "Is this place open right now? Always present unless we lack time-of-day or timezone data for these opening hours.",
           "type": "boolean"
         },
         "periods": {
-          "description": "Output only. The periods that this place is open during the week. The periods are in chronological order, starting with Sunday in the place-local timezone. An empty (but not absent) value indicates a place that is never open, e.g. because it is closed temporarily for renovations.",
+          "description": "The periods that this place is open during the week. The periods are in chronological order, starting with Sunday in the place-local timezone. An empty (but not absent) value indicates a place that is never open, e.g. because it is closed temporarily for renovations.",
           "items": {
             "$ref": "GoogleMapsPlacesV1PlaceOpeningHoursPeriod"
           },
-          "readOnly": true,
           "type": "array"
         },
         "secondaryHoursType": {
-          "description": "Output only. A type string used to identify the type of secondary hours.",
+          "description": "A type string used to identify the type of secondary hours.",
           "enum": [
             "SECONDARY_HOURS_TYPE_UNSPECIFIED",
             "DRIVE_THROUGH",
@@ -562,23 +513,20 @@
             "The special hours for seniors.",
             "The online service hours."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "specialDays": {
-          "description": "Output only. Structured information for special days that fall within the period that the returned opening hours cover. Special days are days that could impact the business hours of a place, e.g. Christmas day. Set for current_opening_hours and current_secondary_opening_hours if there are exceptional hours.",
+          "description": "Structured information for special days that fall within the period that the returned opening hours cover. Special days are days that could impact the business hours of a place, e.g. Christmas day. Set for current_opening_hours and current_secondary_opening_hours if there are exceptional hours.",
           "items": {
             "$ref": "GoogleMapsPlacesV1PlaceOpeningHoursSpecialDay"
           },
-          "readOnly": true,
           "type": "array"
         },
         "weekdayDescriptions": {
-          "description": "Output only. Localized strings describing the opening hours of this place, one string for each day of the week. Will be empty if the hours are unknown or could not be converted to localized text. Example: \"Sun: 18:00–06:00\"",
+          "description": "Localized strings describing the opening hours of this place, one string for each day of the week. Will be empty if the hours are unknown or could not be converted to localized text. Example: \"Sun: 18:00–06:00\"",
           "items": {
             "type": "string"
           },
-          "readOnly": true,
           "type": "array"
         }
       },
@@ -590,13 +538,11 @@
       "properties": {
         "close": {
           "$ref": "GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint",
-          "description": "Output only. The time that the place starts to be closed.",
-          "readOnly": true
+          "description": "The time that the place starts to be closed."
         },
         "open": {
           "$ref": "GoogleMapsPlacesV1PlaceOpeningHoursPeriodPoint",
-          "description": "Output only. The time that the place starts to be open.",
-          "readOnly": true
+          "description": "The time that the place starts to be open."
         }
       },
       "type": "object"
@@ -607,30 +553,25 @@
       "properties": {
         "date": {
           "$ref": "GoogleTypeDate",
-          "description": "Output only. Date in the local timezone for the place.",
-          "readOnly": true
+          "description": "Date in the local timezone for the place."
         },
         "day": {
-          "description": "Output only. A day of the week, as an integer in the range 0-6. 0 is Sunday, 1 is Monday, etc.",
+          "description": "A day of the week, as an integer in the range 0-6. 0 is Sunday, 1 is Monday, etc.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "hour": {
-          "description": "Output only. The hour in 2 digits. Ranges from 00 to 23.",
+          "description": "The hour in 2 digits. Ranges from 00 to 23.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "minute": {
-          "description": "Output only. The minute in 2 digits. Ranges from 00 to 59.",
+          "description": "The minute in 2 digits. Ranges from 00 to 59.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "truncated": {
-          "description": "Output only. Whether or not this endpoint was truncated. Truncation occurs when the real hours are outside the times we are willing to return hours between, so we truncate the hours back to these boundaries. This ensures that at most 24 * 7 hours from midnight of the day of the request are returned.",
-          "readOnly": true,
+          "description": "Whether or not this endpoint was truncated. Truncation occurs when the real hours are outside the times we are willing to return hours between, so we truncate the hours back to these boundaries. This ensures that at most 24 * 7 hours from midnight of the day of the request are returned.",
           "type": "boolean"
         }
       },
@@ -642,8 +583,7 @@
       "properties": {
         "date": {
           "$ref": "GoogleTypeDate",
-          "description": "Output only. The date of this special day.",
-          "readOnly": true
+          "description": "The date of this special day."
         }
       },
       "type": "object"
@@ -653,13 +593,11 @@
       "id": "GoogleMapsPlacesV1PlacePlusCode",
       "properties": {
         "compoundCode": {
-          "description": "Output only. Place's compound code, such as \"33GV+HQ, Ramberg, Norway\", containing the suffix of the global code and replacing the prefix with a formatted name of a reference entity.",
-          "readOnly": true,
+          "description": "Place's compound code, such as \"33GV+HQ, Ramberg, Norway\", containing the suffix of the global code and replacing the prefix with a formatted name of a reference entity.",
           "type": "string"
         },
         "globalCode": {
-          "description": "Output only. Place's global (full) code, such as \"9FWM33GV+HQ\", representing an 1/8000 by 1/8000 degree area (~14 by 14 meters).",
-          "readOnly": true,
+          "description": "Place's global (full) code, such as \"9FWM33GV+HQ\", representing an 1/8000 by 1/8000 degree area (~14 by 14 meters).",
           "type": "string"
         }
       },
@@ -709,7 +647,7 @@
       "id": "GoogleMapsPlacesV1SearchTextRequest",
       "properties": {
         "includedType": {
-          "description": "The requested place type. Full list of types supported: https://developers.google.com/places/supported_types. Only support one included type.",
+          "description": "The requested place type. Full list of types supported: https://developers.google.com/maps/documentation/places/web-service/place-types. Only support one included type.",
           "type": "string"
         },
         "languageCode": {
@@ -735,7 +673,7 @@
           "type": "number"
         },
         "openNow": {
-          "description": "Used to restrict the search to places that are open at a specific time. open_now marks if a business is currently open.",
+          "description": "Used to restrict the search to places that are currently open.",
           "type": "boolean"
         },
         "priceLevels": {
@@ -878,7 +816,7 @@
           "type": "string"
         },
         "text": {
-          "description": "Localized string in the language corresponding to `language_code' below.",
+          "description": "Localized string in the language corresponding to language_code below.",
           "type": "string"
         }
       },
