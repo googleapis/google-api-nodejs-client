@@ -1966,7 +1966,7 @@
       }
     }
   },
-  "revision": "20230913",
+  "revision": "20231013",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -1989,9 +1989,30 @@
           "description": "The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.",
           "type": "string"
         },
+        "priority": {
+          "deprecated": true,
+          "description": "This field has been deprecated in favor of `standard_isolation.priority`. If you set this field, `standard_isolation.priority` will be set instead. The priority of requests sent using this app profile.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "PRIORITY_LOW",
+            "PRIORITY_MEDIUM",
+            "PRIORITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. Mapped to PRIORITY_HIGH (the legacy behavior) on creation.",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "singleClusterRouting": {
           "$ref": "SingleClusterRouting",
           "description": "Use a single-cluster routing policy."
+        },
+        "standardIsolation": {
+          "$ref": "StandardIsolation",
+          "description": "The standard options used for isolating this app profile's traffic from other use cases."
         }
       },
       "type": "object"
@@ -3067,10 +3088,6 @@
       "description": "Request message for google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies",
       "id": "ModifyColumnFamiliesRequest",
       "properties": {
-        "ignoreWarnings": {
-          "description": "If true, ignore safety checks when modifying the column families.",
-          "type": "boolean"
-        },
         "modifications": {
           "description": "Required. Modifications to be atomically applied to the specified table's families. Entries are applied in order, meaning that earlier modifications can be masked by later ones (in the case of repeated updates to the same family, for example).",
           "items": {
@@ -3361,6 +3378,29 @@
         "key": {
           "description": "Row key to use as an initial tablet boundary.",
           "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StandardIsolation": {
+      "description": "Standard options for isolating this app profile's traffic from other use cases.",
+      "id": "StandardIsolation",
+      "properties": {
+        "priority": {
+          "description": "The priority of requests sent using this app profile.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "PRIORITY_LOW",
+            "PRIORITY_MEDIUM",
+            "PRIORITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. Mapped to PRIORITY_HIGH (the legacy behavior) on creation.",
+            "",
+            "",
+            ""
+          ],
           "type": "string"
         }
       },
