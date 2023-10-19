@@ -139,6 +139,11 @@
               "required": true,
               "type": "string"
             },
+            "datasetView": {
+              "description": "Specifies the view that determines which dataset information is returned. By default, metadata and ACL information are returned. Allowed values: METADATA, ACL, FULL.",
+              "location": "query",
+              "type": "string"
+            },
             "projectId": {
               "description": "Project ID of the requested dataset",
               "location": "path",
@@ -1681,7 +1686,7 @@
       }
     }
   },
-  "revision": "20230812",
+  "revision": "20231012",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -1726,6 +1731,25 @@
       },
       "type": "object"
     },
+    "AggregationThresholdPolicy": {
+      "description": "Represents privacy policy associated with \"aggregation threshold\" method.",
+      "id": "AggregationThresholdPolicy",
+      "properties": {
+        "privacyUnitColumns": {
+          "description": "Optional. The privacy unit column(s) associated with this policy. For now, only one column per data source object (table, view) is allowed as a privacy unit column. Representing as a repeated field in metadata for extensibility to multiple columns in future. Duplicates and Repeated struct fields are not allowed. For nested fields, use dot notation (\"outer.inner\")",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "threshold": {
+          "description": "Optional. The threshold for the \"aggregation threshold\" policy.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Argument": {
       "description": "Input/output argument of a function or a stored procedure.",
       "id": "Argument",
@@ -1738,7 +1762,7 @@
             "ANY_TYPE"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "The argument is a variable with fully specified type, which can be a struct or an array, but not a table.",
             "The argument is any type, including struct or array, but not a table. To be added: FIXED_TABLE, ANY_TABLE"
           ],
@@ -1747,6 +1771,10 @@
         "dataType": {
           "$ref": "StandardSqlDataType",
           "description": "Required unless argument_kind = ANY_TYPE."
+        },
+        "isAggregate": {
+          "description": "Optional. Whether the argument is an aggregate function parameter. Must be Unset for routine types other than AGGREGATE_FUNCTION. For AGGREGATE_FUNCTION, if set to false, it is equivalent to adding \"NOT AGGREGATE\" clause in DDL; Otherwise, it is equivalent to omitting \"NOT AGGREGATE\" clause in DDL.",
+          "type": "boolean"
         },
         "mode": {
           "description": "Optional. Specifies whether the argument is input or output. Can be set for procedures only.",
@@ -1757,7 +1785,7 @@
             "INOUT"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "The argument is input-only.",
             "The argument is output-only.",
             "The argument is both an input and an output."
@@ -2679,7 +2707,7 @@
           "description": "[Optional] The separator for fields in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence \"\\t\" to specify a tab separator. The default value is a comma (',').",
           "type": "string"
         },
-        "null_marker": {
+        "nullMarker": {
           "description": "[Optional] An custom string that will represent a NULL value in CSV import data.",
           "type": "string"
         },
@@ -3830,7 +3858,7 @@
             "STOPPED_EARLY"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Scheduled but not started.",
             "Running state.",
             "The trial succeeded.",
@@ -3999,6 +4027,10 @@
         "id": {
           "description": "[Output-only] Opaque ID field of the job",
           "type": "string"
+        },
+        "jobCreationReason": {
+          "description": "[Output-only] If set, it provides the reason why a Job was created. If not set, it should be treated as the default: REQUESTED. This feature is not yet available. Jobs will always be created.",
+          "type": "any"
         },
         "jobReference": {
           "$ref": "JobReference",
@@ -4465,6 +4497,32 @@
       },
       "type": "object"
     },
+    "JobCreationReason": {
+      "description": "Reason about why a Job was created from a [`jobs.query`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query) method when used with `JOB_CREATION_OPTIONAL` Job creation mode. For [`jobs.insert`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert) method calls it will always be `REQUESTED`. This feature is not yet available. Jobs will always be created.",
+      "id": "JobCreationReason",
+      "properties": {
+        "code": {
+          "description": "Output only. Specifies the high level reason why a Job was created.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "REQUESTED",
+            "LONG_RUNNING",
+            "LARGE_RESULTS",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Reason is not specified.",
+            "Job creation was requested.",
+            "The query request ran beyond a system defined timeout specified by the [timeoutMs field in the QueryRequest](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest). As a result it was considered a long running operation for which a job was created.",
+            "The results from the query cannot fit in the response.",
+            "BigQuery has determined that the query needs to be executed as a Job."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "JobList": {
       "id": "JobList",
       "properties": {
@@ -4699,7 +4757,7 @@
         },
         "ddlTargetDataset": {
           "$ref": "DatasetReference",
-          "description": "[Output only] The DDL target dataset. Present only for CREATE/ALTER/DROP SCHEMA queries."
+          "description": "[Output only] The DDL target dataset. Present only for CREATE/ALTER/DROP/UNDROP SCHEMA queries."
         },
         "ddlTargetRoutine": {
           "$ref": "RoutineReference",
@@ -4956,6 +5014,7 @@
       "type": "any"
     },
     "ListModelsResponse": {
+      "description": "Response format for a single page when listing BigQuery ML models.",
       "id": "ListModelsResponse",
       "properties": {
         "models": {
@@ -4973,6 +5032,7 @@
       "type": "object"
     },
     "ListRoutinesResponse": {
+      "description": "Describes the format of a single result page when listing routines.",
       "id": "ListRoutinesResponse",
       "properties": {
         "nextPageToken": {
@@ -5192,7 +5252,7 @@
             "ONNX"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Linear regression model.",
             "Logistic regression based classification model.",
             "K-means clustering model.",
@@ -5391,6 +5451,17 @@
       },
       "type": "object"
     },
+    "PrivacyPolicy": {
+      "description": "Represents privacy policy that contains the privacy requirements specified by the data owner. Currently, this is only supported on views.",
+      "id": "PrivacyPolicy",
+      "properties": {
+        "aggregationThresholdPolicy": {
+          "$ref": "AggregationThresholdPolicy",
+          "description": "Optional. Policy used for aggregation thresholds."
+        }
+      },
+      "type": "object"
+    },
     "ProjectList": {
       "id": "ProjectList",
       "properties": {
@@ -5559,6 +5630,10 @@
           "description": "[Optional] If set to true, BigQuery doesn't run the job. Instead, if the query is valid, BigQuery returns statistics about the job such as how many bytes would be processed. If the query is invalid, an error returns. The default value is false.",
           "type": "boolean"
         },
+        "jobCreationMode": {
+          "description": "Optional. If not set, jobs are always required. If set, the query request will follow the behavior described JobCreationMode. This feature is not yet available. Jobs will always be created.",
+          "type": "string"
+        },
         "kind": {
           "default": "bigquery#queryRequest",
           "description": "The resource type of the request.",
@@ -5653,6 +5728,10 @@
           "description": "Whether the query has completed or not. If rows or totalRows are present, this will always be true. If this is false, totalRows will not be available.",
           "type": "boolean"
         },
+        "jobCreationReason": {
+          "description": "Optional. Only relevant when a job_reference is present in the response. If job_reference is not present it will always be unset. When job_reference is present, this field should be interpreted as follows: If set, it will provide the reason of why a Job was created. If not set, it should be treated as the default: REQUESTED. This feature is not yet available. Jobs will always be created.",
+          "type": "any"
+        },
         "jobReference": {
           "$ref": "JobReference",
           "description": "Reference to the Job that was created to run the query. This field will be present even if the original request timed out, in which case GetQueryResults can be used to read the results once the query has completed. Since this API only returns the first page of results, subsequent pages can be fetched via the same mechanism (GetQueryResults)."
@@ -5669,6 +5748,10 @@
         },
         "pageToken": {
           "description": "A token used for paging results.",
+          "type": "string"
+        },
+        "queryId": {
+          "description": "Query ID for the completed query. This ID will be auto-generated. This field is not yet available and it is currently not guaranteed to be populated.",
           "type": "string"
         },
         "rows": {
@@ -5915,13 +5998,13 @@
           "type": "string"
         },
         "dataGovernanceType": {
-          "description": "Optional. Data governance specific option, if the value is DATA_MASKING, the function will be validated as masking functions.",
+          "description": "Optional. If set to `DATA_MASKING`, the function is validated and made available as a masking function. For more information, see [Create custom masking routines](https://cloud.google.com/bigquery/docs/user-defined-functions#custom-mask).",
           "enum": [
             "DATA_GOVERNANCE_TYPE_UNSPECIFIED",
             "DATA_MASKING"
           ],
           "enumDescriptions": [
-            "Unspecified data governance type.",
+            "The data governance type is unspecified.",
             "The data governance type is data masking."
           ],
           "type": "string"
@@ -5971,7 +6054,7 @@
             "SCALA"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "SQL language.",
             "JavaScript language.",
             "Python language.",
@@ -6012,11 +6095,25 @@
             "AGGREGATE_FUNCTION"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Non-built-in persistent scalar function.",
             "Stored procedure.",
             "Non-built-in persistent TVF.",
             "Non-built-in persistent aggregate function."
+          ],
+          "type": "string"
+        },
+        "securityMode": {
+          "description": "Optional. The security mode of the routine, if defined. If not defined, the security mode is automatically determined from the routine's configuration.",
+          "enum": [
+            "SECURITY_MODE_UNSPECIFIED",
+            "DEFINER",
+            "INVOKER"
+          ],
+          "enumDescriptions": [
+            "The security mode of the routine is unspecified.",
+            "The routine is to be executed with the privileges of the user who defines it.",
+            "The routine is to be executed with the privileges of the user who invokes it."
           ],
           "type": "string"
         },
@@ -6243,11 +6340,11 @@
     "SparkLoggingInfo": {
       "id": "SparkLoggingInfo",
       "properties": {
-        "project_id": {
+        "projectId": {
           "description": "[Output-only] Project ID used for logging",
           "type": "string"
         },
-        "resource_type": {
+        "resourceType": {
           "description": "[Output-only] Resource type used for logging",
           "type": "string"
         }
@@ -6420,9 +6517,11 @@
       "type": "object"
     },
     "StandardSqlStructType": {
+      "description": "The representation of a SQL STRUCT type.",
       "id": "StandardSqlStructType",
       "properties": {
         "fields": {
+          "description": "Fields within the struct.",
           "items": {
             "$ref": "StandardSqlField"
           },
@@ -6639,6 +6738,13 @@
           "default": "false",
           "description": "[Optional] If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified.",
           "type": "boolean"
+        },
+        "resourceTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "[Optional] The tags associated with this table. Tag keys are globally unique. See additional information on [tags](https://cloud.google.com/iam/docs/tags-access-control#definitions). An object containing a list of \"key\": value pairs. The key is the namespaced friendly name of the tag key, e.g. \"12345/environment\" where 12345 is parent id. The value is the friendly short name of the tag value, e.g. \"production\".",
+          "type": "object"
         },
         "schema": {
           "$ref": "TableSchema",
@@ -7287,7 +7393,7 @@
             "PER_MINUTE"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Automatically inferred from timestamps.",
             "Yearly data.",
             "Quarterly data.",
@@ -7319,7 +7425,7 @@
             "AUTO_SPLIT"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Splits data randomly.",
             "Splits data with the user provided tags.",
             "Splits data sequentially.",
@@ -7340,7 +7446,7 @@
             "COSINE"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Eculidean distance.",
             "Cosine distance."
           ],
@@ -7367,7 +7473,7 @@
             "EXPLICIT"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Use weighted-als for implicit feedback problems.",
             "Use nonweighted-als for explicit feedback problems."
           ],
@@ -7815,7 +7921,7 @@
             "CONSTANT"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Use line search to determine learning rate.",
             "Use a constant learning rate."
           ],
@@ -7829,7 +7935,7 @@
             "MEAN_LOG_LOSS"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Mean squared loss, used for linear regression.",
             "Mean log loss, used for logistic regression."
           ],
@@ -7882,7 +7988,7 @@
             "VERTEX_AI"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Vertex AI."
           ],
           "type": "string"
@@ -7928,7 +8034,7 @@
             "NORMAL_EQUATION"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Uses an iterative batch gradient descent algorithm.",
             "Uses a normal equation to solve linear regression problem."
           ],
@@ -7952,7 +8058,7 @@
             "AUTO"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "Full eigen-decoposition.",
             "Randomized SVD.",
             "Auto."

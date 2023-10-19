@@ -156,6 +156,19 @@ export namespace bigquery_v2 {
     threshold?: number | null;
   }
   /**
+   * Represents privacy policy associated with "aggregation threshold" method.
+   */
+  export interface Schema$AggregationThresholdPolicy {
+    /**
+     * Optional. The privacy unit column(s) associated with this policy. For now, only one column per data source object (table, view) is allowed as a privacy unit column. Representing as a repeated field in metadata for extensibility to multiple columns in future. Duplicates and Repeated struct fields are not allowed. For nested fields, use dot notation ("outer.inner")
+     */
+    privacyUnitColumns?: string[] | null;
+    /**
+     * Optional. The threshold for the "aggregation threshold" policy.
+     */
+    threshold?: string | null;
+  }
+  /**
    * Input/output argument of a function or a stored procedure.
    */
   export interface Schema$Argument {
@@ -167,6 +180,10 @@ export namespace bigquery_v2 {
      * Required unless argument_kind = ANY_TYPE.
      */
     dataType?: Schema$StandardSqlDataType;
+    /**
+     * Optional. Whether the argument is an aggregate function parameter. Must be Unset for routine types other than AGGREGATE_FUNCTION. For AGGREGATE_FUNCTION, if set to false, it is equivalent to adding "NOT AGGREGATE" clause in DDL; Otherwise, it is equivalent to omitting "NOT AGGREGATE" clause in DDL.
+     */
+    isAggregate?: boolean | null;
     /**
      * Optional. Specifies whether the argument is input or output. Can be set for procedures only.
      */
@@ -759,7 +776,7 @@ export namespace bigquery_v2 {
     /**
      * [Optional] An custom string that will represent a NULL value in CSV import data.
      */
-    null_marker?: string | null;
+    nullMarker?: string | null;
     /**
      * [Optional] Preserves the embedded ASCII control characters (the first 32 characters in the ASCII-table, from '\x00' to '\x1F') when loading from CSV. Only applicable to CSV, ignored for other formats.
      */
@@ -1724,6 +1741,10 @@ export namespace bigquery_v2 {
      */
     id?: string | null;
     /**
+     * [Output-only] If set, it provides the reason why a Job was created. If not set, it should be treated as the default: REQUESTED. This feature is not yet available. Jobs will always be created.
+     */
+    jobCreationReason?: any | null;
+    /**
      * [Optional] Reference describing the unique-per-user name of the job.
      */
     jobReference?: Schema$JobReference;
@@ -2108,6 +2129,15 @@ export namespace bigquery_v2 {
      */
     writeDisposition?: string | null;
   }
+  /**
+   * Reason about why a Job was created from a [`jobs.query`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query) method when used with `JOB_CREATION_OPTIONAL` Job creation mode. For [`jobs.insert`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert) method calls it will always be `REQUESTED`. This feature is not yet available. Jobs will always be created.
+   */
+  export interface Schema$JobCreationReason {
+    /**
+     * Output only. Specifies the high level reason why a Job was created.
+     */
+    code?: string | null;
+  }
   export interface Schema$JobList {
     /**
      * A hash of this page of results.
@@ -2258,7 +2288,7 @@ export namespace bigquery_v2 {
      */
     ddlOperationPerformed?: string | null;
     /**
-     * [Output only] The DDL target dataset. Present only for CREATE/ALTER/DROP SCHEMA queries.
+     * [Output only] The DDL target dataset. Present only for CREATE/ALTER/DROP/UNDROP SCHEMA queries.
      */
     ddlTargetDataset?: Schema$DatasetReference;
     /**
@@ -2433,6 +2463,9 @@ export namespace bigquery_v2 {
     encoding?: string | null;
   }
   export interface Schema$JsonValue {}
+  /**
+   * Response format for a single page when listing BigQuery ML models.
+   */
   export interface Schema$ListModelsResponse {
     /**
      * Models in the requested dataset. Only the following fields are populated: model_reference, model_type, creation_time, last_modified_time and labels.
@@ -2443,6 +2476,9 @@ export namespace bigquery_v2 {
      */
     nextPageToken?: string | null;
   }
+  /**
+   * Describes the format of a single result page when listing routines.
+   */
   export interface Schema$ListRoutinesResponse {
     /**
      * A token to request the next page of results.
@@ -2690,6 +2726,15 @@ export namespace bigquery_v2 {
      */
     principalComponentId?: string | null;
   }
+  /**
+   * Represents privacy policy that contains the privacy requirements specified by the data owner. Currently, this is only supported on views.
+   */
+  export interface Schema$PrivacyPolicy {
+    /**
+     * Optional. Policy used for aggregation thresholds.
+     */
+    aggregationThresholdPolicy?: Schema$AggregationThresholdPolicy;
+  }
   export interface Schema$ProjectList {
     /**
      * A hash of the page of results
@@ -2792,6 +2837,10 @@ export namespace bigquery_v2 {
      */
     dryRun?: boolean | null;
     /**
+     * Optional. If not set, jobs are always required. If set, the query request will follow the behavior described JobCreationMode. This feature is not yet available. Jobs will always be created.
+     */
+    jobCreationMode?: string | null;
+    /**
      * The resource type of the request.
      */
     kind?: string | null;
@@ -2862,6 +2911,10 @@ export namespace bigquery_v2 {
      */
     jobComplete?: boolean | null;
     /**
+     * Optional. Only relevant when a job_reference is present in the response. If job_reference is not present it will always be unset. When job_reference is present, this field should be interpreted as follows: If set, it will provide the reason of why a Job was created. If not set, it should be treated as the default: REQUESTED. This feature is not yet available. Jobs will always be created.
+     */
+    jobCreationReason?: any | null;
+    /**
      * Reference to the Job that was created to run the query. This field will be present even if the original request timed out, in which case GetQueryResults can be used to read the results once the query has completed. Since this API only returns the first page of results, subsequent pages can be fetched via the same mechanism (GetQueryResults).
      */
     jobReference?: Schema$JobReference;
@@ -2877,6 +2930,10 @@ export namespace bigquery_v2 {
      * A token used for paging results.
      */
     pageToken?: string | null;
+    /**
+     * Query ID for the completed query. This ID will be auto-generated. This field is not yet available and it is currently not guaranteed to be populated.
+     */
+    queryId?: string | null;
     /**
      * An object with as many results as can be contained within the maximum permitted reply size. To get any additional rows, you can call GetQueryResults and specify the jobReference returned above.
      */
@@ -3039,7 +3096,7 @@ export namespace bigquery_v2 {
      */
     creationTime?: string | null;
     /**
-     * Optional. Data governance specific option, if the value is DATA_MASKING, the function will be validated as masking functions.
+     * Optional. If set to `DATA_MASKING`, the function is validated and made available as a masking function. For more information, see [Create custom masking routines](https://cloud.google.com/bigquery/docs/user-defined-functions#custom-mask).
      */
     dataGovernanceType?: string | null;
     /**
@@ -3090,6 +3147,10 @@ export namespace bigquery_v2 {
      * Required. The type of routine.
      */
     routineType?: string | null;
+    /**
+     * Optional. The security mode of the routine, if defined. If not defined, the security mode is automatically determined from the routine's configuration.
+     */
+    securityMode?: string | null;
     /**
      * Optional. Spark specific options.
      */
@@ -3254,11 +3315,11 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Project ID used for logging
      */
-    project_id?: string | null;
+    projectId?: string | null;
     /**
      * [Output-only] Resource type used for logging
      */
-    resource_type?: string | null;
+    resourceType?: string | null;
   }
   /**
    * Options for a user-defined Spark routine.
@@ -3357,7 +3418,13 @@ export namespace bigquery_v2 {
      */
     type?: Schema$StandardSqlDataType;
   }
+  /**
+   * The representation of a SQL STRUCT type.
+   */
   export interface Schema$StandardSqlStructType {
+    /**
+     * Fields within the struct.
+     */
     fields?: Schema$StandardSqlField[];
   }
   /**
@@ -3529,6 +3596,10 @@ export namespace bigquery_v2 {
      * [Optional] If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified.
      */
     requirePartitionFilter?: boolean | null;
+    /**
+     * [Optional] The tags associated with this table. Tag keys are globally unique. See additional information on [tags](https://cloud.google.com/iam/docs/tags-access-control#definitions). An object containing a list of "key": value pairs. The key is the namespaced friendly name of the tag key, e.g. "12345/environment" where 12345 is parent id. The value is the friendly short name of the tag value, e.g. "production".
+     */
+    resourceTags?: {[key: string]: string} | null;
     /**
      * [Optional] Describes the schema of this table.
      */
@@ -4776,6 +4847,10 @@ export namespace bigquery_v2 {
      * Dataset ID of the requested dataset
      */
     datasetId?: string;
+    /**
+     * Specifies the view that determines which dataset information is returned. By default, metadata and ACL information are returned. Allowed values: METADATA, ACL, FULL.
+     */
+    datasetView?: string;
     /**
      * Project ID of the requested dataset
      */
