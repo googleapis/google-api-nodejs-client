@@ -1460,7 +1460,7 @@ export namespace retail_v2 {
      */
     ignoredFacetValues?: Schema$GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues[];
     /**
-     * Each instance replaces a list of facet values by a merged facet value. If a facet value is not in any list, then it will stay the same. To avoid conflicts, only paths of length 1 are accepted. In other words, if "dark_blue" merged into "BLUE", then the latter can't merge into "blues" because this would create a path of length 2. The maximum number of instances of MergedFacetValue per CatalogAttribute is 100.
+     * Each instance replaces a list of facet values by a merged facet value. If a facet value is not in any list, then it will stay the same. To avoid conflicts, only paths of length 1 are accepted. In other words, if "dark_blue" merged into "BLUE", then the latter can't merge into "blues" because this would create a path of length 2. The maximum number of instances of MergedFacetValue per CatalogAttribute is 100. This feature is available only for textual custom attributes.
      */
     mergedFacetValues?: Schema$GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue[];
   }
@@ -1477,20 +1477,20 @@ export namespace retail_v2 {
      */
     startTime?: string | null;
     /**
-     * List of facet values to ignore for the following time range. The facet values are the same as the attribute values. There is a limit of 10 values per instance of IgnoredFacetValues. Each value can have at most 60 characters.
+     * List of facet values to ignore for the following time range. The facet values are the same as the attribute values. There is a limit of 10 values per instance of IgnoredFacetValues. Each value can have at most 128 characters.
      */
     values?: string[] | null;
   }
   /**
-   * Replaces a set of facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute.
+   * Replaces a set of textual facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute. This feature is available only for textual custom attributes.
    */
   export interface Schema$GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue {
     /**
-     * All the previous values are replaced by this merged facet value. This merged_value must be non-empty and can have up to 60 characters.
+     * All the previous values are replaced by this merged facet value. This merged_value must be non-empty and can have up to 128 characters.
      */
     mergedValue?: string | null;
     /**
-     * All the facet values that are replaces by the same merged_value that follows. The maximum number of values per MergedFacetValue is 25. Each value can have up to 60 characters.
+     * All the facet values that are replaces by the same merged_value that follows. The maximum number of values per MergedFacetValue is 25. Each value can have up to 128 characters.
      */
     values?: string[] | null;
   }
