@@ -1219,7 +1219,7 @@ export namespace beyondcorp_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * Proxy Configuration of a Tenant.
+   * Proxy Configuration of a PartnerTenant.
    */
   export interface Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaProxyConfig {
     /**
@@ -1239,10 +1239,6 @@ export namespace beyondcorp_v1alpha {
      */
     name?: string | null;
     /**
-     * Optional. Protocol config data for the Proxy.
-     */
-    proxyProtocolConfig?: Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig;
-    /**
      * Required. The URI of the proxy server.
      */
     proxyUri?: string | null;
@@ -1258,15 +1254,6 @@ export namespace beyondcorp_v1alpha {
      * Output only. Timestamp when the resource was last modified.
      */
     updateTime?: string | null;
-  }
-  /**
-   * The protocol data that specifies how to communicate with Partner's Proxy.
-   */
-  export interface Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig {
-    /**
-     * Optional. Untyped property bag to be sent back to the proxy using client specific mechanism.
-     */
-    metadata?: {[key: string]: string} | null;
   }
   /**
    * Message contains the routing information to direct traffic to the proxy server.
@@ -2865,7 +2852,7 @@ export namespace beyondcorp_v1alpha {
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the PartnerTenant resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten in the PartnerTenant resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Mutable fields: display_name, partner_metadata, group_information.
      */
     updateMask?: string;
 
@@ -4519,7 +4506,7 @@ export namespace beyondcorp_v1alpha {
   export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Create
     extends StandardParameters {
     /**
-     * Required. The resource name of the Tenant using the form: `organizations/{organization_id\}/locations/global/tenants/{tenant_id\}`
+     * Required. The resource name of the parent PartnerTenant using the form: `organizations/{organization_id\}/locations/global/partnerTenants/{partner_tenant_id\}`
      */
     parent?: string;
     /**
@@ -4546,7 +4533,7 @@ export namespace beyondcorp_v1alpha {
   export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the ProxyConfig using the form: `organizations/{organization_id\}/locations/global/tenants/{tenant_id\}/proxyConfigs/{proxy_config_id\}`
+     * Required. The resource name of the ProxyConfig using the form: `organizations/{organization_id\}/locations/global/partnerTenants/{partner_tenant_id\}/proxyConfigs/{proxy_config_id\}`
      */
     name?: string;
   }
