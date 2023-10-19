@@ -1449,7 +1449,7 @@ export namespace workflows_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$List
     extends StandardParameters {
     /**
-     * Filter to restrict results to specific workflows.
+     * Filter to restrict results to specific workflows. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `createTime\>"2023-08-01" AND state="FAILED"`
      */
     filter?: string;
     /**
