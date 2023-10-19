@@ -485,7 +485,7 @@ export namespace iap_v1 {
      */
     method?: string | null;
     /**
-     * How IAP determines the effective policy in cases of hierarchial policies. Policies are merged from higher in the hierarchy to lower in the hierarchy.
+     * How IAP determines the effective policy in cases of hierarchical policies. Policies are merged from higher in the hierarchy to lower in the hierarchy.
      */
     policyType?: string | null;
   }
