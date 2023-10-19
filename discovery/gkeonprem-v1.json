@@ -2996,7 +2996,7 @@
       }
     }
   },
-  "revision": "20230925",
+  "revision": "20231004",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -3029,7 +3029,7 @@
       "type": "object"
     },
     "BareMetalAdminCluster": {
-      "description": "## Resource that represents a bare metal admin cluster.",
+      "description": "Resource that represents a bare metal admin cluster. LINT.IfChange",
       "id": "BareMetalAdminCluster",
       "properties": {
         "annotations": {
@@ -3532,7 +3532,7 @@
       "type": "object"
     },
     "BareMetalCluster": {
-      "description": "Resource that represents a bare metal user cluster.",
+      "description": "Resource that represents a bare metal user cluster. LINT.IfChange",
       "id": "BareMetalCluster",
       "properties": {
         "adminClusterMembership": {
@@ -5503,6 +5503,10 @@
           "$ref": "VmwarePlatformConfig",
           "description": "The VMware platform configuration."
         },
+        "preparedSecrets": {
+          "$ref": "VmwareAdminPreparedSecretsConfig",
+          "description": "The VMware admin cluster prepared secrets configuration."
+        },
         "reconciling": {
           "description": "Output only. If set, there are currently changes in flight to the VMware admin cluster.",
           "readOnly": true,
@@ -5708,6 +5712,17 @@
         "vcenterNetwork": {
           "description": "vcenter_network specifies vCenter network name.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VmwareAdminPreparedSecretsConfig": {
+      "description": "VmwareAdminPreparedSecretsConfig represents configuration for admin cluster prepared secrets.",
+      "id": "VmwareAdminPreparedSecretsConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether prepared secrets is enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
