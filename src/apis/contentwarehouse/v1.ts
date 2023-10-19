@@ -2083,7 +2083,7 @@ export namespace contentwarehouse_v1 {
      */
     pronunciations?: Schema$SocialGraphApiProtoPronunciations;
     /**
-     * Read-only. A possibly shorter version of the user's name. - The purpose of this field is to address the needs of UIs where a full display name might be too large to fit. Instead of relying on `first_name`, which might not be present, `short_display_name` is preferred. - This is only available for PROFILE and DOMAIN_PROFILE container types. - About the actual content in this field: will be the first name when it's visible to the requester, or the same as `display_name`, otherwise. A sample scenario where the first name may not be visible is when the limited profile is returned. For more info, see: http://shortn/_9iV7TJ33la
+     * NOTE: this is currently NOT IMPLEMENTED due to changed priorities. Clients usually rely on "first name" instead, when a short name is needed. Read-only. A possibly shorter version of the user's name. - The purpose of this field is to address the needs of UIs where a full display name might be too large to fit. Instead of relying on `first_name`, which might not be present, `short_display_name` is preferred. - This is only available for PROFILE and DOMAIN_PROFILE container types. - About the actual content in this field: will be the first name when it's visible to the requester, or the same as `display_name`, otherwise. A sample scenario where the first name may not be visible is when the limited profile is returned. For more info, see: http://shortn/_9iV7TJ33la
      */
     shortDisplayName?: string | null;
     /**
@@ -4851,13 +4851,17 @@ export namespace contentwarehouse_v1 {
     useBirdsongTacl?: boolean | null;
   }
   /**
-   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. NEXT ID: 5 IMPORTANT: The definitions of the SurfaceIdentity and SurfaceVersion protos are being moved to //assistant/api/core_types/governed/surface_identity.proto All existing references will be updated to point to the new location. If you are adding a reference, use the new SurfaceIdentity and SurfaceVersion protos instead of the protos defined here. LINT.IfChange
+   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. NEXT ID: 6 IMPORTANT: The definitions of the SurfaceIdentity and SurfaceVersion protos are being moved to //assistant/api/core_types/governed/surface_identity.proto All existing references will be updated to point to the new location. If you are adding a reference, use the new SurfaceIdentity and SurfaceVersion protos instead of the protos defined here. LINT.IfChange
    */
   export interface Schema$AssistantApiCoreTypesSurfaceIdentity {
     /**
      * The identifier of the device.
      */
     deviceId?: Schema$AssistantApiCoreTypesDeviceId;
+    /**
+     * DEPRECATED: The legacy device's surface type enum. NOTE: Prefer using the ontological `surface_type` field above. If you need to access the legacy surface type, please file a bug and add it in your code to migrate to ontological surface type.
+     */
+    legacySurfaceType?: string | null;
     /**
      * The device's surface type. The types are defined at google3/assistant/api/core_types/surfaces.gcl. For more details, refer to go/ontologicalize-surface-type.
      */
@@ -8093,7 +8097,7 @@ export namespace contentwarehouse_v1 {
     surfaceType?: string | null;
   }
   /**
-   * The states of the device. They are dynamic and may change based on the current context. Next ID: 13
+   * The states of the device. They are dynamic and may change based on the current context. Next ID: 15
    */
   export interface Schema$AssistantGroundingRankerDeviceTargetingFeaturesStates {
     /**
@@ -8144,6 +8148,14 @@ export namespace contentwarehouse_v1 {
      * Indicate whether the device is tethered to another device.
      */
     isTethered?: boolean | null;
+    /**
+     * Indicates the state of media focus from a separate non-local hearing device.
+     */
+    mediaFocusStateFromHearingDevice?: string | null;
+    /**
+     * Indicates the state of media focus from a separate local device.
+     */
+    mediaFocusStateFromLocalDevice?: string | null;
   }
   /**
    * Labels tagged by Device Targeting library (Lumos). See go/hgr-lumos-integration and go/lumos-feature-extraction for more details. Next ID: 2
@@ -8199,7 +8211,7 @@ export namespace contentwarehouse_v1 {
     assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
   }
   /**
-   * Features to be passed from Media GP to HGR. Next ID: 19
+   * Features to be passed from Media GP to HGR. Next ID: 20
    */
   export interface Schema$AssistantGroundingRankerMediaGroundingProviderFeatures {
     /**
@@ -8247,6 +8259,10 @@ export namespace contentwarehouse_v1 {
      * Indicates whether this is youtube content seeking music.
      */
     isYoutubeMusicSeeking?: boolean | null;
+    /**
+     * Account Type of the user for the provider
+     */
+    mediaAccountType?: string | null;
     /**
      * MediaAquaAction::media_content_type from interpretation. It can be used for cross-content type ranking, for example, if a candidate's content type does not match this content type from interpretation, this candidate will be slightly demoted. Also, we might avoid fetching some signals when the content type is generic music, since some content types do not need ranking.
      */
@@ -9028,7 +9044,7 @@ export namespace contentwarehouse_v1 {
     sortedNameString?: string | null;
   }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 66
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 68
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
     /**
@@ -9123,6 +9139,10 @@ export namespace contentwarehouse_v1 {
      * Whether the intent is a media control intent.
      */
     isMediaControlIntent?: boolean | null;
+    /**
+     * Whether this interpretation was genearted by NSP.
+     */
+    isNspIntent?: boolean | null;
     /**
      * Whether the intent is a PlayGenericMusic-type intent.
      */
@@ -9253,6 +9273,10 @@ export namespace contentwarehouse_v1 {
      * Average of per-word confidence for top speech recognition hypothesis. The value is from RecognizerHypothesisLog: http://google3/logs/proto/speech/service/recognizer_log.proto?l=848&rcl=281400256
      */
     topHypothesisConfidence?: number | null;
+    /**
+     * Whether the interpretation should run through grounding box or not.
+     */
+    usesGroundingBox?: boolean | null;
     /**
      * Horizontal feature that stores information about confidence scores for each resolution within the binding set.
      */
@@ -14334,7 +14358,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GeostoreFlowLineProto {
     /**
-     * Curvature of the flowline. Note that, curvature can be present even if the flowline doesn't have a track. In which case, curvature will be derived from the segment polyline.
+     * RESERVED
      */
     curvature?: Schema$GeostoreCurvatureProto;
     track?: Schema$GeostoreTrackProto;
@@ -22071,6 +22095,15 @@ export namespace contentwarehouse_v1 {
     windowName?: string | null;
   }
   /**
+   * Defines a generic attribute. The name field is the name of the attribute (for example beard, glasses, joy). The confidence defines how reliable the given annotation is. For binary attributes it is bounded between 0 and 1 and can be interpreted as the posterior probability. The value field can be used for continuous attributes like age. Information returned or stored in this message may be sensitive from a privacy, policy, or legal point of view. Clients should consult with their p-counsels and the privacy working group (go/pwg) to make sure their use respects Google policies.
+   */
+  export interface Schema$HumanSensingFaceAttribute {
+    confidence?: number | null;
+    name?: string | null;
+    type?: string | null;
+    value?: number | null;
+  }
+  /**
    * The PhoneNumber object that is used by all LibPhoneNumber API's to fully represent a phone number.
    */
   export interface Schema$I18nPhonenumbersPhoneNumber {
@@ -22261,7 +22294,7 @@ export namespace contentwarehouse_v1 {
     version?: number | null;
   }
   /**
-   * This defines the per-doc data which is extracted from thumbnails and propagated over to indexing. It contains all information that can be used for restricts. Next tag id: 131
+   * This defines the per-doc data which is extracted from thumbnails and propagated over to indexing. It contains all information that can be used for restricts. Next tag id: 132
    */
   export interface Schema$ImageData {
     /**
@@ -22352,6 +22385,10 @@ export namespace contentwarehouse_v1 {
      * The EXIF generated by photos backend team's (more specifically FIFE's) thumbnailer library. This exif model is more comprehensive since a dedicated team is constantly improving it and adding new fields over time. This is currently populated by moonshine for selected corpora.
      */
     extendedExif?: Schema$PhotosImageMetadata;
+    /**
+     * Face Detection.
+     */
+    faceDetection?: Schema$ReneFaceResponse;
     /**
      * Properties used in featured imagesearch project. inspiration_score indicates how well an image is related to products, or how inspirational it is.
      */
@@ -24617,7 +24654,7 @@ export namespace contentwarehouse_v1 {
     extraMessage?: Schema$Proto2BridgeMessageSet;
   }
   /**
-   * DataVersion tracks the version of data in CompositeDoc. The notion of "data" here is loose and people can define the name of their own. For example, a signal generated by Index Signals or an annotation generated by Goldmine (and other components) can all be considered as data here. Each field in this proto represents the human readable version string and the timestamp of one particular data. We choose to explicitly list out all of the data here for better understanding about which data are tracked. NOTE that human_readable_version is not intended for comparison, use timestamp_micros. In addition, we have an annotation about the field paths of each data. With proto reflection (using google3/net/proto2/util/public/field_path.h), downstream systems can take advantage of this annotation to automatically handle newly introduced data without modifying their code. Please also see the comment of FieldProjector above. There are also some fields in DataInfo that annotate who generates the data, the Index Signals or Goldmine annotator name for the fields already onboarded or being onboarded to FDP. Fields without annotation of signal_names or goldmine_annotator_names are not onboarded. Next ID: 538
+   * DataVersion tracks the version of data in CompositeDoc. The notion of "data" here is loose and people can define the name of their own. For example, a signal generated by Index Signals or an annotation generated by Goldmine (and other components) can all be considered as data here. Each field in this proto represents the human readable version string and the timestamp of one particular data. We choose to explicitly list out all of the data here for better understanding about which data are tracked. NOTE that human_readable_version is not intended for comparison, use timestamp_micros. In addition, we have an annotation about the field paths of each data. With proto reflection (using google3/net/proto2/util/public/field_path.h), downstream systems can take advantage of this annotation to automatically handle newly introduced data without modifying their code. Please also see the comment of FieldProjector above. There are also some fields in DataInfo that annotate who generates the data, the Index Signals or Goldmine annotator name for the fields already onboarded or being onboarded to FDP. Fields without annotation of signal_names or goldmine_annotator_names are not onboarded. Next ID: 539
    */
   export interface Schema$IndexingDocjoinerDataVersion {
     acceleratedShoppingSignal?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -24671,10 +24708,11 @@ export namespace contentwarehouse_v1 {
     imageContentAnnotationLabels?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     imageContentColorSearchColorDetectionResults?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     imageDataList?: Schema$IndexingDocjoinerDataVersionVersionInfo;
+    imageembed?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     /**
      * END DATA FIELDS
      */
-    imageembed?: Schema$IndexingDocjoinerDataVersionVersionInfo;
+    imageembedDomainNorm?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     imageExtraImageExtraTerms?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     imageMonetizationFeaturedDocumentProperties?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     imageMustangFaviconInfo?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -36363,6 +36401,202 @@ export namespace contentwarehouse_v1 {
     yMin?: number | null;
   }
   /**
+   * FaceParams are a collection of parameters of a single face found in an image. WARNING: This message has a jspb target. If you add a new message field inside, either put its definition inside this message as well or add the js file corresponding to the new message to the js_deps and proto_js rules in the BUILD file; otherwise it will break lots of builds. The js file name is the message name all in lowercase letters. Next available id: 40.
+   */
+  export interface Schema$PhotosVisionServiceFaceFaceParams {
+    /**
+     * The age of the face. Range [0.0, 120.0].
+     */
+    age?: number | null;
+    angerProbability?: number | null;
+    /**
+     * Attributes for the detected face. Information returned or stored in this message may be sensitive from a privacy, policy, or legal point of view. Clients should consult with their p-counsels and the privacy working group (go/pwg) to make sure their use respects Google policies.
+     */
+    attribute?: Schema$HumanSensingFaceAttribute[];
+    beardProbability?: number | null;
+    blurredProbability?: number | null;
+    /**
+     * Bounding box around the face. The coordinates of the bounding box are in the original image's scale as returned in ImageParams. The bounding box is computed to "frame" the face as a human would expect, and is typically used in UI (e.g. G+ to show circles around detected faces). It is based on the landmarker results.
+     */
+    boundingBox?: Schema$PhotosVisionServiceFaceFaceParamsBoundingBox;
+    darkGlassesProbability?: number | null;
+    /**
+     * Confidence is in the range [0,1].
+     */
+    detectionConfidence?: number | null;
+    extendedLandmarks?: Schema$PhotosVisionServiceFaceFaceParamsExtendedLandmark[];
+    eyesClosedProbability?: number | null;
+    /**
+     * Attributes of the detected face useful for generating a cartoon version of the face.
+     */
+    face2cartoonResults?: Schema$ResearchVisionFace2cartoonFace2CartoonResults;
+    faceCropV8?: Schema$PhotosVisionServiceFaceFaceParamsFaceCropV8;
+    /**
+     * This other bounding box is tighter than the previous one, and encloses only the skin part of the face. It is typically used to eliminate the face from any image analysis that looks up the "amount of skin" visible in an image (e.g. safesearch content score). It is not based on the landmarker results, just on the initial face detection, hence the 'fd' prefix.
+     */
+    fdBoundingBox?: Schema$PhotosVisionServiceFaceFaceParamsBoundingBox;
+    /**
+     * Probability is in the range [0,1].
+     */
+    femaleProbability?: number | null;
+    frontalGazeProbability?: number | null;
+    glassesProbability?: number | null;
+    headwearProbability?: number | null;
+    /**
+     * A copy of the 'image_params' field that is also returned as part of the ExtractFacesReply. It contains the with and height of the image the face extraction was performed on and provides the original frame of reference for the bounding boxes above.
+     */
+    imageParams?: Schema$PhotosVisionServiceFaceImageParams;
+    joyProbability?: number | null;
+    landmarkingConfidence?: number | null;
+    landmarkPositions?: Schema$PhotosVisionServiceFaceFaceParamsLandmarkPosition[];
+    leftEyeClosedProbability?: number | null;
+    longHairProbability?: number | null;
+    mouthOpenProbability?: number | null;
+    nonHumanProbability?: number | null;
+    /**
+     * Yaw angle. Indicates how much leftward/rightward the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
+     */
+    panAngle?: number | null;
+    poseMatrix?: Schema$PhotosVisionServiceFaceFaceParamsPoseMatrix;
+    pretemplate?: string | null;
+    /**
+     * A score produced by the Face Quality Scoring Module that indicates overall quality of the face and its relative suitability for using it in conjunction with face recognition for instance. As such, the score predicts the likelihood to recognize a given face correctly. A face recognition client could use the score and a threshold to determine whether to use the face in a face model, or whether to even consider it for recognition.
+     */
+    qualityScore?: number | null;
+    rightEyeClosedProbability?: number | null;
+    /**
+     * Roll angle indicates how much clockwise/anti-clockwise the face is rotated relative to the image vertical and about the axis perpendicular to the face. Range [-180,180].
+     */
+    rollAngle?: number | null;
+    /**
+     * Deprecated: signature will continue to be used for the pre-1.7 SDK template format typically created by the converter module CNVprec_461. All newer templates created with CNVprec_465 or later will use the repeated 'versioned_signatures' field to store the templates and version info.
+     */
+    signature?: string | null;
+    skinBrightnessProbability?: number | null;
+    sorrowProbability?: number | null;
+    surpriseProbability?: number | null;
+    /**
+     * Pitch angle. Indicates how much upwards/downwards the face is pointing relative to the image's horizontal plane. Range [-180,180].
+     */
+    tiltAngle?: number | null;
+    underExposedProbability?: number | null;
+    versionedSignatures?: Schema$PhotosVisionServiceFaceVersionedFaceSignature[];
+  }
+  export interface Schema$PhotosVisionServiceFaceFaceParamsBoundingBox {
+    /**
+     * These coordinates are in the same scale as the original image. 0 <= x < width, 0 <= y < height.
+     */
+    x1?: number | null;
+    x2?: number | null;
+    y1?: number | null;
+    y2?: number | null;
+  }
+  /**
+   * Below is the set of extended landmarks added by LMprec_508 and 510. All future additional landmarks should be added to this message.
+   */
+  export interface Schema$PhotosVisionServiceFaceFaceParamsExtendedLandmark {
+    id?: string | null;
+    /**
+     * NOTE that landmark positions may fall outside the bounds of the image when the face is near one or more edges of the image. That is, it is NOT guaranteed that 0 <= x < width or 0 <= y < height. Rounded version of x_f.
+     */
+    x?: number | null;
+    xF?: number | null;
+    /**
+     * Rounded version of y_f.
+     */
+    y?: number | null;
+    yF?: number | null;
+    z?: number | null;
+  }
+  /**
+   * Information defining a FaceCrop for a particular face. See go/on-device-face-grouping-face-crops for more details.
+   */
+  export interface Schema$PhotosVisionServiceFaceFaceParamsFaceCropV8 {
+    /**
+     * The X coordinate of the center of the face crop.
+     */
+    centerX?: number | null;
+    /**
+     * The Y coordinate of the center of the face crop.
+     */
+    centerY?: number | null;
+    /**
+     * Rotation of the face crop, in radians.
+     */
+    rotation?: number | null;
+    /**
+     * Scale to apply to the coordinates of the face crop.
+     */
+    scale?: number | null;
+  }
+  export interface Schema$PhotosVisionServiceFaceFaceParamsLandmarkPosition {
+    /**
+     * Some landmarks are set during face finding and some are set during landmark finding. Only after landmarking will all landmarks be set.
+     */
+    landmark?: string | null;
+    /**
+     * NOTE that landmark positions may fall outside the bounds of the image when the face is near one or more edges of the image. That is, it is NOT guaranteed that 0 <= x < width or 0 <= y < height. Rounded version of x_f.
+     */
+    x?: number | null;
+    xF?: number | null;
+    /**
+     * Rounded version of y_f.
+     */
+    y?: number | null;
+    yF?: number | null;
+    z?: number | null;
+  }
+  /**
+   * Stores the full pose transformation matrix of the detected face. From this the roll, pan, tilt angles can be computed.
+   */
+  export interface Schema$PhotosVisionServiceFaceFaceParamsPoseMatrix {
+    xx?: number | null;
+    xy?: number | null;
+    xz?: number | null;
+    yx?: number | null;
+    yy?: number | null;
+    yz?: number | null;
+    zx?: number | null;
+    zy?: number | null;
+    zz?: number | null;
+  }
+  /**
+   * ImageParams are a collection of parameters of the image on which face detection was performed.
+   */
+  export interface Schema$PhotosVisionServiceFaceImageParams {
+    height?: number | null;
+    width?: number | null;
+  }
+  /**
+   * From newer SDK versions onward (1.7+), each face template (signature) will also store a version # derived from the converter version that created the template.
+   */
+  export interface Schema$PhotosVisionServiceFaceVersionedFaceSignature {
+    /**
+     * Confidence score based on embedding uncertainty. This is populated if fetch_facenet_confidence has been set as true in FaceNetConfig, and FaceNet version satisfies one of the following: 1. FACENET_8. 2. FACENET_9 with confidence model enabled in FaceTemplatesConfig. If face_embedding_confidence module is requested, this will also be populated, and the signature will be empty.
+     */
+    confidence?: number | null;
+    /**
+     * The Confidence version that populated the confidence.
+     */
+    confidenceVersion?: string | null;
+    /**
+     * The converter version that created this template.
+     */
+    converterVersion?: string | null;
+    /**
+     * The face template bytes.
+     */
+    signature?: string | null;
+    /**
+     * Specifies the source of the signature in cases where the bytes are from a lower level of the FaceNet architecture. This is useful in combination with the FaceNetClient when it returns multiple outputs and we need to keep track of their contents. For example, this could contain the string 'avgpool-0' while another instance can use the standard 'normalizing' string.
+     */
+    signatureSource?: string | null;
+    /**
+     * The internal version of the template. This is a copy of the version stored within the template.
+     */
+    version?: number | null;
+  }
+  /**
    * A protocol buffer to store the url, referer and porn flag for a url. and an optional image score. Next available tag id: 51.
    */
   export interface Schema$PornFlagData {
@@ -39533,6 +39767,15 @@ export namespace contentwarehouse_v1 {
      * This is the number of days since January 1st 1995 that this domain last expired. This should always fit in 15 bits. Jan 1st 1995 was chosen by the history project as a special epoch date. Both the registrationinfo dates and the linkage dates are measured in days since this epoch.
      */
     expiredDate?: number | null;
+  }
+  /**
+   * The output of the face recognition signal.
+   */
+  export interface Schema$ReneFaceResponse {
+    /**
+     * Recognized faces in the image.
+     */
+    faces?: Schema$PhotosVisionServiceFaceFaceParams[];
   }
   /**
    * GeoTopicality of a document is a set of GeoTopics ordered by their normalized scores.
@@ -43560,6 +43803,161 @@ export namespace contentwarehouse_v1 {
      */
     versionClusterId?: string | null;
   }
+  export interface Schema$ResearchVisionFace2cartoonAgeClassifierResults {
+    age?: string | null;
+    predictedAge?: number | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonChinLengthClassifierResults {
+    chinLength?: string | null;
+    confidence?: number | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonEyebrowShapeClassifierResults {
+    confidence?: number | null;
+    eyebrowShape?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonEyebrowThicknessClassifierResults {
+    confidence?: number | null;
+    eyebrowThickness?: string | null;
+  }
+  /**
+   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
+   */
+  export interface Schema$ResearchVisionFace2cartoonEyebrowWidthClassifierResults {
+    confidence?: number | null;
+    eyebrowWidth?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonEyeColorClassifierResults {
+    color?: string | null;
+    confidence?: number | null;
+  }
+  /**
+   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
+   */
+  export interface Schema$ResearchVisionFace2cartoonEyeEyebrowDistanceClassifierResults {
+    confidence?: number | null;
+    eyeEyebrowDistance?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonEyeShapeClassifierResults {
+    confidence?: number | null;
+    shape?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonEyeSlantClassifierResults {
+    confidence?: number | null;
+    eyeSlant?: string | null;
+  }
+  /**
+   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
+   */
+  export interface Schema$ResearchVisionFace2cartoonEyeVerticalPositionClassifierResults {
+    confidence?: number | null;
+    eyeVerticalPosition?: string | null;
+  }
+  /**
+   * Results of the Face2Cartoon pipeline.
+   */
+  export interface Schema$ResearchVisionFace2cartoonFace2CartoonResults {
+    ageClassifierResults?: Schema$ResearchVisionFace2cartoonAgeClassifierResults[];
+    chinLengthClassifierResults?: Schema$ResearchVisionFace2cartoonChinLengthClassifierResults[];
+    eyebrowShapeClassifierResults?: Schema$ResearchVisionFace2cartoonEyebrowShapeClassifierResults[];
+    eyebrowThicknessClassifierResults?: Schema$ResearchVisionFace2cartoonEyebrowThicknessClassifierResults[];
+    eyebrowWidthClassifierResults?: Schema$ResearchVisionFace2cartoonEyebrowWidthClassifierResults[];
+    eyeColorClassifierResults?: Schema$ResearchVisionFace2cartoonEyeColorClassifierResults[];
+    eyeEyebrowDistanceClassifierResults?: Schema$ResearchVisionFace2cartoonEyeEyebrowDistanceClassifierResults[];
+    eyeShapeClassifierResults?: Schema$ResearchVisionFace2cartoonEyeShapeClassifierResults[];
+    eyeSlantClassifierResults?: Schema$ResearchVisionFace2cartoonEyeSlantClassifierResults[];
+    eyeVerticalPositionClassifierResults?: Schema$ResearchVisionFace2cartoonEyeVerticalPositionClassifierResults[];
+    faceWidthClassifierResults?: Schema$ResearchVisionFace2cartoonFaceWidthClassifierResults[];
+    facialHairClassifierResults?: Schema$ResearchVisionFace2cartoonFacialHairClassifierResults[];
+    genderClassifierResults?: Schema$ResearchVisionFace2cartoonGenderClassifierResults[];
+    glassesClassifierResults?: Schema$ResearchVisionFace2cartoonGlassesClassifierResults[];
+    hairColorClassifierResults?: Schema$ResearchVisionFace2cartoonHairColorClassifierResults[];
+    hairStyleClassifierResults?: Schema$ResearchVisionFace2cartoonHairStyleClassifierResults[];
+    interEyeDistanceClassifierResults?: Schema$ResearchVisionFace2cartoonInterEyeDistanceClassifierResults[];
+    jawShapeClassifierResults?: Schema$ResearchVisionFace2cartoonJawShapeClassifierResults[];
+    lipThicknessClassifierResults?: Schema$ResearchVisionFace2cartoonLipThicknessClassifierResults[];
+    mouthVerticalPositionClassifierResults?: Schema$ResearchVisionFace2cartoonMouthVerticalPositionClassifierResults[];
+    mouthWidthClassifierResults?: Schema$ResearchVisionFace2cartoonMouthWidthClassifierResults[];
+    noseVerticalPositionClassifierResults?: Schema$ResearchVisionFace2cartoonNoseVerticalPositionClassifierResults[];
+    noseWidthClassifierResults?: Schema$ResearchVisionFace2cartoonNoseWidthClassifierResults[];
+    skinToneClassifierResults?: Schema$ResearchVisionFace2cartoonSkinToneClassifierResults[];
+  }
+  export interface Schema$ResearchVisionFace2cartoonFaceWidthClassifierResults {
+    confidence?: number | null;
+    faceWidth?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonFacialHairClassifierResults {
+    confidence?: number | null;
+    facialHair?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonGenderClassifierResults {
+    /**
+     * Uses a scaled version of the FaceSDK classifier's probability as the confidence (since the probability for the selected gender is between (0.5, 1] we scale it to be between (0, 1]).
+     */
+    confidence?: number | null;
+    gender?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonGlassesClassifierResults {
+    /**
+     * Uses a scaled version of the FaceSDK classifier's probability as the confidence (since the probability for the selected glasses is between (0.5, 1] we scale it to be between (0, 1]).
+     */
+    confidence?: number | null;
+    glassesType?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonHairColorClassifierResults {
+    confidence?: number | null;
+    hairColor?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonHairStyleClassifierResults {
+    confidence?: number | null;
+    hairStyle?: string | null;
+  }
+  /**
+   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
+   */
+  export interface Schema$ResearchVisionFace2cartoonInterEyeDistanceClassifierResults {
+    confidence?: number | null;
+    interEyeDistance?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonJawShapeClassifierResults {
+    confidence?: number | null;
+    jawShape?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonLipThicknessClassifierResults {
+    confidence?: number | null;
+    lipThickness?: string | null;
+  }
+  /**
+   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
+   */
+  export interface Schema$ResearchVisionFace2cartoonMouthVerticalPositionClassifierResults {
+    confidence?: number | null;
+    mouthVerticalPosition?: string | null;
+  }
+  /**
+   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
+   */
+  export interface Schema$ResearchVisionFace2cartoonMouthWidthClassifierResults {
+    confidence?: number | null;
+    mouthWidth?: string | null;
+  }
+  /**
+   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
+   */
+  export interface Schema$ResearchVisionFace2cartoonNoseVerticalPositionClassifierResults {
+    confidence?: number | null;
+    noseVerticalPosition?: string | null;
+  }
+  /**
+   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
+   */
+  export interface Schema$ResearchVisionFace2cartoonNoseWidthClassifierResults {
+    confidence?: number | null;
+    noseWidth?: string | null;
+  }
+  export interface Schema$ResearchVisionFace2cartoonSkinToneClassifierResults {
+    confidence?: number | null;
+    skinToneType?: string | null;
+  }
   /**
    * Next ID: 11
    */
@@ -43627,11 +44025,15 @@ export namespace contentwarehouse_v1 {
      */
     speechClass?: string | null;
   }
+  export interface Schema$SafesearchImageOffensiveAnnotation {
+    hatefulDerogatoryScore?: number | null;
+  }
   /**
    * A proto that stores SafeSearch internal signals that are not exported to clients.
    */
   export interface Schema$SafesearchInternalImageSignals {
     imageEntitiesViolenceScore?: number | null;
+    offensiveAnnotation?: Schema$SafesearchImageOffensiveAnnotation;
     /**
      * Additional SafeSearch signals that are used to compute final scores.
      */
