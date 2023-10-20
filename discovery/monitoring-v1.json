@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20231001",
+  "revision": "20231016",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1267,6 +1267,34 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } ",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "ErrorReportingPanel": {
+      "description": "A widget that displays a list of error groups.",
+      "id": "ErrorReportingPanel",
+      "properties": {
+        "projectNames": {
+          "description": "The resource name of the Google Cloud Platform project. Written as projects/{projectID} or projects/{projectNumber}, where {projectID} and {projectNumber} can be found in the Google Cloud console (https://support.google.com/cloud/answer/6158840).Examples: projects/my-project-123, projects/5551234.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "services": {
+          "description": "An identifier of the service, such as the name of the executable, job, or Google App Engine service name. This field is expected to have a low number of values that are relatively stable over time, as opposed to version, which can be changed whenever new code is deployed.Contains the service name for error reports extracted from Google App Engine logs or default if the App Engine default service is used.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "versions": {
+          "description": "Represents the source code version that the developer provided, which could represent a version label or a Git SHA-1 hash, for example. For App Engine standard environment, the version is set to the version of the app.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Field": {
@@ -1800,15 +1828,6 @@
         "showLabels": {
           "description": "Optional. Indicates whether or not the pie chart should show slices' labels",
           "type": "boolean"
-        },
-        "showTotal": {
-          "description": "Optional. Indicates whether or not donut chart should show the total in the middle",
-          "type": "boolean"
-        },
-        "sliceAggregatedThreshold": {
-          "description": "Optional. If slices's values are smaller than this value, they will be combined into other category",
-          "format": "float",
-          "type": "number"
         }
       },
       "type": "object"
@@ -2582,6 +2601,14 @@
         "collapsibleGroup": {
           "$ref": "CollapsibleGroup",
           "description": "A widget that groups the other widgets. All widgets that are within the area spanned by the grouping widget are considered member widgets."
+        },
+        "errorReportingPanel": {
+          "$ref": "ErrorReportingPanel",
+          "description": "A widget that displays a list of error groups."
+        },
+        "id": {
+          "description": "Optional. The widget id. Ids may be made up of alphanumerics, dashes and underscores. Widget ids are optional.",
+          "type": "string"
         },
         "incidentList": {
           "$ref": "IncidentList",
