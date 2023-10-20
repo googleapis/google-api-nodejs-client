@@ -380,6 +380,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CloudRunMetadata {
     /**
+     * Output only. The name of the Cloud Run job that is associated with a `Rollout`. Format is projects/{project\}/locations/{location\}/jobs/{job_name\}.
+     */
+    job?: string | null;
+    /**
      * Output only. The Cloud Run Revision id associated with a `Rollout`.
      */
     revision?: string | null;
