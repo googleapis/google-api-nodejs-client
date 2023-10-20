@@ -3948,6 +3948,10 @@ export namespace dialogflow_v3 {
      */
     disableWebhook?: boolean | null;
     /**
+     * Optional. Information about the end-user to improve the relevance and accuracy of generative answers. This will be interpreted and used by a language model, so, for good results, the data should be self-descriptive, and in a simple structure. Example: ```json { "subscription plan": "Business Premium Plus", "devices owned": [ {"model": "Google Pixel 7"\}, {"model": "Google Pixel Tablet"\} ] \} ```
+     */
+    endUserMetadata?: {[key: string]: any} | null;
+    /**
      * A list of flow versions to override for the request. Format: `projects//locations//agents//flows//versions/`. If version 1 of flow X is included in this list, the traffic of flow X will go through version 1 regardless of the version configuration in the environment. Each flow can have at most one version specified in this list.
      */
     flowVersions?: string[] | null;
