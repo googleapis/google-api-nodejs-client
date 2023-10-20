@@ -18,6 +18,13 @@
   "description": "Manages keys and performs cryptographic operations in a central cloud service, for direct use by other cloud resources and applications. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/kms/",
+  "endpoints": [
+    {
+      "endpointUrl": "https://cloudkms.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
+      "description": "Regional Endpoint"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1821,7 +1828,7 @@
       }
     }
   },
-  "revision": "20230808",
+  "revision": "20231012",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {

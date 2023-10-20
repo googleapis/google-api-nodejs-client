@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20230802",
+  "revision": "20231011",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1773,7 +1773,8 @@
             "ERROR_RDBMS",
             "SOURCE_SIZE_EXCEEDS_THRESHOLD",
             "EXISTING_CONFLICTING_DATABASES",
-            "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE"
+            "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
+            "EXISTING_DATA"
           ],
           "enumDescriptions": [
             "An unknown error occurred",
@@ -1791,7 +1792,8 @@
             "There was an underlying RDBMS error.",
             "The source DB size in Bytes exceeds a certain threshold. The migration might require an increase of quota, or might not be supported.",
             "The destination DB contains existing databases that are conflicting with those in the source DB.",
-            "Insufficient privilege to enable the parallelism configuration."
+            "Insufficient privilege to enable the parallelism configuration.",
+            "The destination instance contains existing data or user defined entities (for example databases, tables, or functions). You can only migrate to empty instances. Clear your destination instance and retry the migration job."
           ],
           "readOnly": true,
           "type": "string"
