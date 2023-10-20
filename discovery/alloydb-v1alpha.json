@@ -1489,7 +1489,7 @@
       }
     }
   },
-  "revision": "20231006",
+  "revision": "20231011",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AutomatedBackupPolicy": {
@@ -3146,7 +3146,8 @@
         },
         "resourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
-          "description": "Required. Primary key associated with the Resource"
+          "deprecated": true,
+          "description": "Primary key associated with the Resource. resource_id is available in individual feed level as well."
         },
         "resourceMetadata": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata"
@@ -3213,7 +3214,7 @@
           "type": "string"
         },
         "resourceContainer": {
-          "description": "Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\".",
+          "description": "Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\". For GCP provided resources, number should be project number.",
           "type": "string"
         },
         "resourceName": {
@@ -3509,7 +3510,7 @@
           "description": "The product this resource represents."
         },
         "resourceContainer": {
-          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\".",
+          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\". For GCP provided resources, number should be project number.",
           "type": "string"
         },
         "resourceName": {
