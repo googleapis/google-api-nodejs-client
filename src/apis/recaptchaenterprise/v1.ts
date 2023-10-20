@@ -184,7 +184,7 @@ export namespace recaptchaenterprise_v1 {
      */
     hashedAccountId?: string | null;
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     * Optional. Reasons for the annotation that are assigned to the event.
      */
     reasons?: string[] | null;
     /**

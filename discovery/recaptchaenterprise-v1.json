@@ -666,7 +666,7 @@
       }
     }
   },
-  "revision": "20231008",
+  "revision": "20231015",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -807,7 +807,7 @@
           "type": "string"
         },
         "reasons": {
-          "description": "Optional. Optional reasons for the annotation that will be assigned to the Event.",
+          "description": "Optional. Reasons for the annotation that are assigned to the event.",
           "items": {
             "enum": [
               "REASON_UNSPECIFIED",
