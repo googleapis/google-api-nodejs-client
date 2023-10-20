@@ -502,6 +502,10 @@ export namespace assuredworkloads_v1 {
      */
     provisionedResourcesParent?: string | null;
     /**
+     * Output only. Indicates whether resource monitoring is enabled for workload or not. It is true when Resource feed is subscribed to AWM topic and AWM Service Agent Role is binded to AW Service Account for resource Assured workload.
+     */
+    resourceMonitoringEnabled?: boolean | null;
+    /**
      * Output only. The resources associated with this workload. These resources will be created when creating the workload. If any of the projects already exist, the workload creation will fail. Always read only.
      */
     resources?: Schema$GoogleCloudAssuredworkloadsV1WorkloadResourceInfo[];
