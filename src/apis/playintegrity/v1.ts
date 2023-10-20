@@ -267,7 +267,7 @@ export namespace playintegrity_v1 {
    */
   export interface Schema$UserRemediationDetails {
     /**
-     * Description of the user remediation action. Required.
+     * Description of the user remediation action.
      */
     remediation?: string | null;
   }

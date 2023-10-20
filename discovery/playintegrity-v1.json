@@ -138,7 +138,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231018",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -371,7 +371,7 @@
       "id": "UserRemediationDetails",
       "properties": {
         "remediation": {
-          "description": "Description of the user remediation action. Required.",
+          "description": "Description of the user remediation action.",
           "enum": [
             "UNKNOWN_USER_REMEDIATION",
             "RESTORE_FACTORY_ROM",
