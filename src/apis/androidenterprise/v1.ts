@@ -1007,11 +1007,11 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$Permission {
     /**
-     * A longer description of the Permissions resource, giving more details of what it affects.
+     * A longer description of the Permissions resource, giving more details of what it affects. This field may be absent.
      */
     description?: string | null;
     /**
-     * The name of the permission.
+     * The name of the permission. This field may be absent.
      */
     name?: string | null;
     /**

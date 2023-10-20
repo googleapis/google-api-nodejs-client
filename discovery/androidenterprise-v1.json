@@ -2649,7 +2649,7 @@
       }
     }
   },
-  "revision": "20230802",
+  "revision": "20231018",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3990,11 +3990,11 @@
       "id": "Permission",
       "properties": {
         "description": {
-          "description": "A longer description of the Permissions resource, giving more details of what it affects.",
+          "description": "A longer description of the Permissions resource, giving more details of what it affects. This field may be absent.",
           "type": "string"
         },
         "name": {
-          "description": "The name of the permission.",
+          "description": "The name of the permission. This field may be absent.",
           "type": "string"
         },
         "permissionId": {
