@@ -2102,7 +2102,7 @@
       }
     }
   },
-  "revision": "20230928",
+  "revision": "20231013",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2865,6 +2865,23 @@
       },
       "type": "object"
     },
+    "DetectedSoftware": {
+      "description": "Information about software detected on an asset.",
+      "id": "DetectedSoftware",
+      "properties": {
+        "softwareFamily": {
+          "description": "Output only. Software family of the detected software, e.g. Database, SAP family.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "softwareName": {
+          "description": "Output only. Software's name.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DiskEntry": {
       "description": "Single disk entry.",
       "id": "DiskEntry",
@@ -3277,11 +3294,11 @@
           "type": "string"
         },
         "description": {
-          "description": "The description of the resource.",
+          "description": "Optional. The description of the group.",
           "type": "string"
         },
         "displayName": {
-          "description": "User-friendly display name.",
+          "description": "Optional. User-friendly display name.",
           "type": "string"
         },
         "labels": {
@@ -3732,6 +3749,11 @@
         "migrationInsight": {
           "$ref": "MigrationInsight",
           "description": "Output only. An insight about potential migrations for an asset.",
+          "readOnly": true
+        },
+        "softwareInsight": {
+          "$ref": "SoftwareInsight",
+          "description": "Output only. An insight regarding software detected on an asset.",
           "readOnly": true
         }
       },
@@ -5309,6 +5331,18 @@
         "preferenceSet": {
           "description": "The preference set used by default for a project.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SoftwareInsight": {
+      "description": "An insight regarding software detected on an asset.",
+      "id": "SoftwareInsight",
+      "properties": {
+        "detectedSoftware": {
+          "$ref": "DetectedSoftware",
+          "description": "Output only. Information about the detected software.",
+          "readOnly": true
         }
       },
       "type": "object"

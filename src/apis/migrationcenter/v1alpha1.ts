@@ -667,6 +667,19 @@ export namespace migrationcenter_v1alpha1 {
     year?: number | null;
   }
   /**
+   * Information about software detected on an asset.
+   */
+  export interface Schema$DetectedSoftware {
+    /**
+     * Output only. Software family of the detected software, e.g. Database, SAP family.
+     */
+    softwareFamily?: string | null;
+    /**
+     * Output only. Software's name.
+     */
+    softwareName?: string | null;
+  }
+  /**
    * Single disk entry.
    */
   export interface Schema$DiskEntry {
@@ -955,11 +968,11 @@ export namespace migrationcenter_v1alpha1 {
      */
     createTime?: string | null;
     /**
-     * The description of the resource.
+     * Optional. The description of the group.
      */
     description?: string | null;
     /**
-     * User-friendly display name.
+     * Optional. User-friendly display name.
      */
     displayName?: string | null;
     /**
@@ -1247,6 +1260,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. An insight about potential migrations for an asset.
      */
     migrationInsight?: Schema$MigrationInsight;
+    /**
+     * Output only. An insight regarding software detected on an asset.
+     */
+    softwareInsight?: Schema$SoftwareInsight;
   }
   /**
    * Message containing insights list.
@@ -2429,6 +2446,15 @@ export namespace migrationcenter_v1alpha1 {
      * The preference set used by default for a project.
      */
     preferenceSet?: string | null;
+  }
+  /**
+   * An insight regarding software detected on an asset.
+   */
+  export interface Schema$SoftwareInsight {
+    /**
+     * Output only. Information about the detected software.
+     */
+    detectedSoftware?: Schema$DetectedSoftware;
   }
   /**
    * Preferences concerning Sole Tenancy nodes and VMs.

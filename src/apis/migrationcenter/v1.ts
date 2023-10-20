@@ -889,11 +889,11 @@ export namespace migrationcenter_v1 {
      */
     createTime?: string | null;
     /**
-     * The description of the resource.
+     * Optional. The description of the group.
      */
     description?: string | null;
     /**
-     * User-friendly display name.
+     * Optional. User-friendly display name.
      */
     displayName?: string | null;
     /**
@@ -2400,6 +2400,10 @@ export namespace migrationcenter_v1 {
    * Describes the Migration Center settings related to the project.
    */
   export interface Schema$Settings {
+    /**
+     * Disable Cloud Logging for the Migration Center API. Users are billed for the logs.
+     */
+    disableCloudLogging?: boolean | null;
     /**
      * Output only. The name of the resource.
      */
