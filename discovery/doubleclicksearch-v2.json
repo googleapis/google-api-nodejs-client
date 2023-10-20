@@ -543,7 +543,7 @@
       }
     }
   },
-  "revision": "20221206",
+  "revision": "20231017",
   "rootUrl": "https://doubleclicksearch.googleapis.com/",
   "schemas": {
     "Availability": {
@@ -617,6 +617,20 @@
         "adId": {
           "description": "DS ad ID.",
           "format": "int64",
+          "type": "string"
+        },
+        "adUserDataConsent": {
+          "description": "Ad user data consent for this conversion.",
+          "enum": [
+            "UNKNOWN",
+            "GRANTED",
+            "DENIED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Granted.",
+            "Denied."
+          ],
           "type": "string"
         },
         "advertiserId": {
