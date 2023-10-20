@@ -1077,7 +1077,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string | null;
     /**
-     * Output only. Default Channel Group defined by Google, which cannot be updated.
+     * Output only. If true, then this channel group is the Default Channel Group predefined by Google Analytics. Display name and grouping rules cannot be updated for this channel group.
      */
     systemDefined?: boolean | null;
   }

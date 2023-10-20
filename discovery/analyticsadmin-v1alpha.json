@@ -4298,7 +4298,7 @@
       }
     }
   },
-  "revision": "20231006",
+  "revision": "20231018",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5668,7 +5668,7 @@
           "type": "string"
         },
         "systemDefined": {
-          "description": "Output only. Default Channel Group defined by Google, which cannot be updated.",
+          "description": "Output only. If true, then this channel group is the Default Channel Group predefined by Google Analytics. Display name and grouping rules cannot be updated for this channel group.",
           "readOnly": true,
           "type": "boolean"
         }
