@@ -692,6 +692,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "migrate": {
+                  "description": "Migrates an existing User-Managed Notebook to Workbench Instances.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:migrate",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.instances.migrate",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:migrate",
+                  "request": {
+                    "$ref": "MigrateInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "register": {
                   "description": "Registers an existing legacy notebook instance to the Notebooks API server. Legacy instances are instances created with the legacy Compute Engine calls. They are not manageable by the Notebooks API out of the box. This call makes these instances manageable by the Notebooks API.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances:register",
@@ -1493,6 +1521,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "migrate": {
+                  "description": "Migrate an existing Runtime to a new Workbench Instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/runtimes/{runtimesId}:migrate",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.runtimes.migrate",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/runtimes/{runtime_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/runtimes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:migrate",
+                  "request": {
+                    "$ref": "MigrateRuntimeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "patch": {
                   "description": "Update Notebook Runtime configuration.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/runtimes/{runtimesId}",
@@ -1952,7 +2008,7 @@
       }
     }
   },
-  "revision": "20230926",
+  "revision": "20231003",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2835,7 +2891,7 @@
             ],
             "enumDescriptions": [
               "Default type.",
-              "The UmN uses an machine type that's unsupported in WbI. It will be migrated with the default machine type n2-standard-4. Users can change the machine type after the migration.",
+              "The UmN uses an machine type that's unsupported in WbI. It will be migrated with the default machine type e2-standard-4. Users can change the machine type after the migration.",
               "The UmN uses an accelerator type that's unsupported in WbI. It will be migrated without an accelerator. User can attach an accelerator after the migration.",
               "The UmN uses an operating system that's unsupported in WbI (e.g. Debian 10, Ubuntu). It will be replaced with Debian 11 in WbI.",
               "This UmN is configured with no_remove_data_disk, which is no longer available in WbI.",
@@ -3177,6 +3233,64 @@
         },
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MigrateInstanceRequest": {
+      "description": "Request for migrating a User-Managed Notebook to Workbench Instances.",
+      "id": "MigrateInstanceRequest",
+      "properties": {
+        "postStartupScriptOption": {
+          "description": "Optional. Specifies the behavior of post startup script during migration.",
+          "enum": [
+            "POST_STARTUP_SCRIPT_OPTION_UNSPECIFIED",
+            "POST_STARTUP_SCRIPT_OPTION_SKIP",
+            "POST_STARTUP_SCRIPT_OPTION_RERUN"
+          ],
+          "enumDescriptions": [
+            "Post startup script option is not specified. Default is POST_STARTUP_SCRIPT_OPTION_SKIP.",
+            "Not migrate the post startup script to the new Workbench Instance.",
+            "Redownload and rerun the same post startup script as the User-Managed Notebook."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MigrateRuntimeRequest": {
+      "description": "Request for migrating a Runtime to a Workbench Instance.",
+      "id": "MigrateRuntimeRequest",
+      "properties": {
+        "network": {
+          "description": "Optional. Name of the VPC that the new Instance is in. This is required if the Runtime uses google-managed network. If the Runtime uses customer-owned network, it will reuse the same VPC, and this field must be empty. Format: `projects/{project_id}/global/networks/{network_id}`",
+          "type": "string"
+        },
+        "postStartupScriptOption": {
+          "description": "Optional. Specifies the behavior of post startup script during migration.",
+          "enum": [
+            "POST_STARTUP_SCRIPT_OPTION_UNSPECIFIED",
+            "POST_STARTUP_SCRIPT_OPTION_SKIP",
+            "POST_STARTUP_SCRIPT_OPTION_RERUN"
+          ],
+          "enumDescriptions": [
+            "Post startup script option is not specified. Default is POST_STARTUP_SCRIPT_OPTION_SKIP.",
+            "Not migrate the post startup script to the new Workbench Instance.",
+            "Redownload and rerun the same post startup script as the Google-Managed Notebook."
+          ],
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. Idempotent request UUID.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account to be included in the Compute Engine instance of the new Workbench Instance when the Runtime uses \"single user only\" mode for permission. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used. When the Runtime uses service account mode for permission, it will reuse the same service account, and this field must be empty.",
+          "type": "string"
+        },
+        "subnet": {
+          "description": "Optional. Name of the subnet that the new Instance is in. This is required if the Runtime uses google-managed network. If the Runtime uses customer-owned network, it will reuse the same subnet, and this field must be empty. Format: `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`",
           "type": "string"
         }
       },
