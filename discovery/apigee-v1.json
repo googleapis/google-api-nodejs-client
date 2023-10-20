@@ -1716,7 +1716,7 @@
               ]
             },
             "update": {
-              "description": "Updates an appGroup. This API replaces the existing appGroup details with those specified in the request. Include or exclude any existing details that you want to retain or delete, respectively. Note that the state of the AppGroup should be updated using `action`, and not via AppGroup. **Note**: OAuth access tokens and Key Management Service (KMS) entities (apps, developers, and API products) are cached for 180 seconds (current default). Any custom attributes associated with these entities are cached for at least 180 seconds after the entity is accessed at runtime. Therefore, an `ExpiresIn` element on the OAuthV2 policy won't be able to expire an access token in less than 180 seconds.",
+              "description": "Updates an AppGroup. This API replaces the existing AppGroup details with those specified in the request. Include or exclude any existing details that you want to retain or delete, respectively. Note that the state of the AppGroup should be updated using `action`, and not via AppGroup.",
               "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}",
               "httpMethod": "PUT",
               "id": "apigee.organizations.appgroups.update",
@@ -1725,7 +1725,7 @@
               ],
               "parameters": {
                 "action": {
-                  "description": "Activate or de-activate the appGroup by setting the action as `active` or `inactive`. The `Content-Type` header must be set to `application/octet-stream`, with empty body.",
+                  "description": "Activate or de-activate the AppGroup by setting the action as `active` or `inactive`. The `Content-Type` header must be set to `application/octet-stream`, with empty body.",
                   "location": "query",
                   "type": "string"
                 },
@@ -9440,7 +9440,7 @@
             "apicategories": {
               "methods": {
                 "create": {
-                  "description": "Creates a new category on the portal.",
+                  "description": "Creates a new API category.",
                   "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apicategories",
                   "httpMethod": "POST",
                   "id": "apigee.organizations.sites.apicategories.create",
@@ -9468,7 +9468,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a category from the portal.",
+                  "description": "Deletes an API category.",
                   "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apicategories/{apicategoriesId}",
                   "httpMethod": "DELETE",
                   "id": "apigee.organizations.sites.apicategories.delete",
@@ -9493,7 +9493,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets a category on the portal.",
+                  "description": "Gets an API category.",
                   "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apicategories/{apicategoriesId}",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.sites.apicategories.get",
@@ -9518,7 +9518,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists the categories on the portal.",
+                  "description": "Returns the API categories associated with a portal.",
                   "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apicategories",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.sites.apicategories.list",
@@ -9543,7 +9543,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a category on the portal.",
+                  "description": "Updates an API category.",
                   "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apicategories/{apicategoriesId}",
                   "httpMethod": "PATCH",
                   "id": "apigee.organizations.sites.apicategories.patch",
@@ -9609,7 +9609,7 @@
       }
     }
   },
-  "revision": "20230929",
+  "revision": "20231016",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -9898,15 +9898,15 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1ApiCategory": {
-      "description": "the Api category resource wrapped with response status, error_code etc.",
+      "description": "The API category resource wrapped with response status, error_code, etc.",
       "id": "GoogleCloudApigeeV1ApiCategory",
       "properties": {
         "data": {
           "$ref": "GoogleCloudApigeeV1ApiCategoryData",
-          "description": "Details of category."
+          "description": "Details of the category."
         },
         "errorCode": {
-          "description": "ID that can be used to find errors in the log files.",
+          "description": "Unique error code for the request, if any.",
           "type": "string"
         },
         "message": {
@@ -9914,7 +9914,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "ID that can be used to find request details in the log files.",
+          "description": "Unique ID of the request.",
           "type": "string"
         },
         "status": {
@@ -9925,13 +9925,9 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1ApiCategoryData": {
-      "description": "the Api category resource.",
+      "description": "`ApiCategoryData` represents an API category. Catalog items can be tagged with API categories; users viewing the API catalog in the portal will have the option to browse the catalog by category.",
       "id": "GoogleCloudApigeeV1ApiCategoryData",
       "properties": {
-        "gcpResource": {
-          "description": "GCP name of api category resource.",
-          "type": "string"
-        },
         "id": {
           "description": "ID of the category (a UUID).",
           "type": "string"
@@ -11526,11 +11522,11 @@
       "id": "GoogleCloudApigeeV1DeleteResponse",
       "properties": {
         "errorCode": {
-          "description": "ID that can be used to find errors in the log files.",
+          "description": "Unique error code for the request, if any.",
           "type": "string"
         },
         "gcpResource": {
-          "description": "GCP name of deleted resource.",
+          "description": "Google Cloud name of deleted resource.",
           "type": "string"
         },
         "message": {
@@ -11538,7 +11534,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "ID that can be used to find request details in the log files.",
+          "description": "Unique ID of the request.",
           "type": "string"
         },
         "status": {
@@ -13251,18 +13247,18 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1ListApiCategoriesResponse": {
-      "description": "the response for ListApiCategoriesRequest.",
+      "description": "The response for `ListApiCategoriesRequest`.",
       "id": "GoogleCloudApigeeV1ListApiCategoriesResponse",
       "properties": {
         "data": {
-          "description": "Details of categories.",
+          "description": "Details of the categories.",
           "items": {
             "$ref": "GoogleCloudApigeeV1ApiCategoryData"
           },
           "type": "array"
         },
         "errorCode": {
-          "description": "ID that can be used to find errors in the log files.",
+          "description": "Unique error code for the request, if any.",
           "type": "string"
         },
         "message": {
@@ -13270,7 +13266,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "ID that can be used to find request details in the log files.",
+          "description": "Unique ID of the request.",
           "type": "string"
         },
         "status": {

@@ -1610,7 +1610,7 @@
       }
     }
   },
-  "revision": "20231004",
+  "revision": "20231016",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3747,6 +3747,7 @@
       "properties": {
         "apiConfig": {
           "$ref": "ApiConfigHandler",
+          "deprecated": true,
           "description": "Serving configuration for Google Cloud Endpoints (https://cloud.google.com/endpoints).Only returned in GET requests if view=FULL is set."
         },
         "appEngineApis": {

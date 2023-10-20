@@ -1573,7 +1573,7 @@
       }
     }
   },
-  "revision": "20231003",
+  "revision": "20231010",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1616,14 +1616,16 @@
             "ACTIVE",
             "PERMISSION_DENIED",
             "NOT_FOUND",
-            "SCHEMA_MISMATCH"
+            "SCHEMA_MISMATCH",
+            "IN_TRANSIT_LOCATION_RESTRICTION"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The subscription can actively send messages to BigQuery",
             "Cannot write to the BigQuery table because of permission denied errors. This can happen if - Pub/Sub SA has not been granted the [appropriate BigQuery IAM permissions](https://cloud.google.com/pubsub/docs/create-subscription#assign_bigquery_service_account) - bigquery.googleapis.com API is not enabled for the project ([instructions](https://cloud.google.com/service-usage/docs/enable-disable))",
             "Cannot write to the BigQuery table because it does not exist.",
-            "Cannot write to the BigQuery table due to a schema mismatch."
+            "Cannot write to the BigQuery table due to a schema mismatch.",
+            "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions."
           ],
           "readOnly": true,
           "type": "string"
@@ -1701,13 +1703,15 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "PERMISSION_DENIED",
-            "NOT_FOUND"
+            "NOT_FOUND",
+            "IN_TRANSIT_LOCATION_RESTRICTION"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The subscription can actively send messages to Cloud Storage.",
             "Cannot write to the Cloud Storage bucket because of permission denied errors.",
-            "Cannot write to the Cloud Storage bucket because it does not exist."
+            "Cannot write to the Cloud Storage bucket because it does not exist.",
+            "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions."
           ],
           "readOnly": true,
           "type": "string"
