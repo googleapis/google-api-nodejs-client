@@ -174,10 +174,6 @@ export namespace doubleclicksearch_v2 {
      */
     adId?: string | null;
     /**
-     * Ad user data consent for this conversion.
-     */
-    adUserDataConsent?: string | null;
-    /**
      * DS advertiser ID.
      */
     advertiserId?: string | null;
