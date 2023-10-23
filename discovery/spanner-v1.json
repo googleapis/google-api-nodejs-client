@@ -21,6 +21,13 @@
   "description": "Cloud Spanner is a managed, mission-critical, globally consistent and scalable relational database service.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/spanner/",
+  "endpoints": [
+    {
+      "endpointUrl": "https://spanner.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
+      "description": "Regional Endpoint"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -2594,7 +2601,7 @@
       }
     }
   },
-  "revision": "20231005",
+  "revision": "20231017",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -3654,6 +3661,25 @@
           "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "IndexAdvice": {
+      "description": "Recommendation to add new indexes to run queries more efficiently.",
+      "id": "IndexAdvice",
+      "properties": {
+        "ddl": {
+          "description": "Optional. DDL statements to add new indexes that will improve the query.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "improvementFactor": {
+          "description": "Optional. Estimated latency improvement factor. For example if the query currently takes 500 ms to run and the estimated latency with new indexes is 100 ms this field will be 5.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -4740,6 +4766,20 @@
       },
       "type": "object"
     },
+    "QueryAdvisorResult": {
+      "description": "Output of query advisor analysis.",
+      "id": "QueryAdvisorResult",
+      "properties": {
+        "indexAdvice": {
+          "description": "Optional. Index Recommendation for a query. This is an optional field and the recommendation will only be available when the recommendation guarantees significant improvement in query performance.",
+          "items": {
+            "$ref": "IndexAdvice"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "QueryOptions": {
       "description": "Query optimizer configuration.",
       "id": "QueryOptions",
@@ -4765,6 +4805,10 @@
             "$ref": "PlanNode"
           },
           "type": "array"
+        },
+        "queryAdvice": {
+          "$ref": "QueryAdvisorResult",
+          "description": "Optional. The advices/recommendations for a query. Currently this field will be serving index recommendations for a query."
         }
       },
       "type": "object"
