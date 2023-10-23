@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20230912",
+  "revision": "20231017",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "CertChain": {
@@ -843,6 +843,10 @@
       "properties": {
         "managedServerCa": {
           "$ref": "ManagedCertificateAuthority"
+        },
+        "name": {
+          "description": "Identifier. Unique name of the resource in this scope including project, location and cluster using the form: `projects/{project}/locations/{location}/clusters/{cluster}/certificateAuthority`",
+          "type": "string"
         }
       },
       "type": "object"
