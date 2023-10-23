@@ -1918,7 +1918,7 @@ export namespace gkeonprem_v1 {
      */
     platformConfig?: Schema$VmwarePlatformConfig;
     /**
-     * The VMware admin cluster prepared secrets configuration.
+     * Output only. The VMware admin cluster prepared secrets configuration. It should always be enabled by the Central API, instead of letting users set it.
      */
     preparedSecrets?: Schema$VmwareAdminPreparedSecretsConfig;
     /**

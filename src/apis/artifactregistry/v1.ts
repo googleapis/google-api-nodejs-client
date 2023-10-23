@@ -1022,6 +1022,10 @@ export namespace artifactregistry_v1 {
      */
     pythonRepository?: Schema$PythonRepository;
     /**
+     * Optional. The credentials used to access the remote repository.
+     */
+    upstreamCredentials?: Schema$UpstreamCredentials;
+    /**
      * Specific settings for a Yum remote repository.
      */
     yumRepository?: Schema$YumRepository;
@@ -1274,6 +1278,15 @@ export namespace artifactregistry_v1 {
     yumArtifacts?: Schema$YumArtifact[];
   }
   /**
+   * The credentials to access the remote repository.
+   */
+  export interface Schema$UpstreamCredentials {
+    /**
+     * Use username and password to access the remote repository.
+     */
+    usernamePasswordCredentials?: Schema$UsernamePasswordCredentials;
+  }
+  /**
    * Artifact policy configuration for the repository contents.
    */
   export interface Schema$UpstreamPolicy {
@@ -1289,6 +1302,19 @@ export namespace artifactregistry_v1 {
      * A reference to the repository resource, for example: "projects/p1/locations/us-central1/repositories/repo1".
      */
     repository?: string | null;
+  }
+  /**
+   * Username and password credentials.
+   */
+  export interface Schema$UsernamePasswordCredentials {
+    /**
+     * The Secret Manager key version that holds the password to access the remote repository. Must be in the format of `projects/{project\}/secrets/{secret\}/versions/{version\}`.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * The username to access the remote repository.
+     */
+    username?: string | null;
   }
   /**
    * The body of a version resource. A version resource represents a collection of components, such as files and other data. This may correspond to a version in many package management schemes.

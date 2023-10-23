@@ -135,6 +135,10 @@ export namespace redis_v1 {
    */
   export interface Schema$CertificateAuthority {
     managedServerCa?: Schema$ManagedCertificateAuthority;
+    /**
+     * Identifier. Unique name of the resource in this scope including project, location and cluster using the form: `projects/{project\}/locations/{location\}/clusters/{cluster\}/certificateAuthority`
+     */
+    name?: string | null;
   }
   /**
    * A cluster instance.

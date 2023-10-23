@@ -3524,7 +3524,7 @@
       }
     }
   },
-  "revision": "20231006",
+  "revision": "20231017",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -9007,12 +9007,12 @@
       "id": "GoogleCloudIntegrationsV1alphaAttemptStats",
       "properties": {
         "endTime": {
-          "description": "The end time of the event execution for current attempt.",
+          "description": "The end time of the integration execution for current attempt.",
           "format": "google-datetime",
           "type": "string"
         },
         "startTime": {
-          "description": "The start time of the event execution for current attempt. This could be in the future if it's been scheduled.",
+          "description": "The start time of the integration execution for current attempt. This could be in the future if it's been scheduled.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -11676,10 +11676,10 @@
             "Task is under processing.",
             "Task execution successfully finished. There's no more change after this state.",
             "Task execution failed. There's no more change after this state.",
-            "Task execution failed and cause the whole event execution to fail immediately. There's no more change after this state.",
+            "Task execution failed and cause the whole integration execution to fail immediately. There's no more change after this state.",
             "Task execution failed and waiting for retry.",
-            "Task execution skipped. This happens when its precondition wasn't met, or the event execution been canceled before reach to the task. There's no more changes after this state.",
-            "Task execution canceled when in progress. This happens when event execution been canceled or any other task fall in fatal state.",
+            "Task execution skipped. This happens when its precondition wasn't met, or the integration execution been canceled before reach to the task. There's no more changes after this state.",
+            "Task execution canceled when in progress. This happens when integration execution been canceled or any other task fall in fatal state.",
             "Task is waiting for its dependency tasks' rollback to finish to start its rollback.",
             "Task is rolling back.",
             "Task is rolled back. This is the state we will set regardless of rollback succeeding or failing.",

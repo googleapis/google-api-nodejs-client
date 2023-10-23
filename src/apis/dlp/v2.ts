@@ -181,6 +181,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2AllInfoTypes {}
   /**
+   * Catch-all for all other tables not specified by other filters. Should always be last, except for single-table configurations, which will only have a TableReference target.
+   */
+  export interface Schema$GooglePrivacyDlpV2AllOtherBigQueryTables {}
+  /**
    * Apply to all text.
    */
   export interface Schema$GooglePrivacyDlpV2AllText {}
@@ -243,6 +247,27 @@ export namespace dlp_v2 {
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
   /**
+   * Target used to match against for Discovery with BigQuery tables
+   */
+  export interface Schema$GooglePrivacyDlpV2BigQueryDiscoveryTarget {
+    /**
+     * How often and when to update profiles. New tables that match both the filter and conditions are scanned as quickly as possible depending on system capacity.
+     */
+    cadence?: Schema$GooglePrivacyDlpV2DiscoveryGenerationCadence;
+    /**
+     * In addition to matching the filter, these conditions must be true before a profile is generated.
+     */
+    conditions?: Schema$GooglePrivacyDlpV2DiscoveryBigQueryConditions;
+    /**
+     * Tables that match this filter will not have profiles created.
+     */
+    disabled?: Schema$GooglePrivacyDlpV2Disabled;
+    /**
+     * Required. The tables the Discovery cadence applies to. The first target with a matching filter will be the one to apply to a table.
+     */
+    filter?: Schema$GooglePrivacyDlpV2DiscoveryBigQueryFilter;
+  }
+  /**
    * Message defining a field of a BigQuery table.
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryField {
@@ -299,6 +324,32 @@ export namespace dlp_v2 {
     tableReference?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
   /**
+   * A pattern to match against one or more tables, datasets, or projects that contain BigQuery tables. At least one pattern must be specified. Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.
+   */
+  export interface Schema$GooglePrivacyDlpV2BigQueryRegex {
+    /**
+     * If unset, this property matches all datasets.
+     */
+    datasetIdRegex?: string | null;
+    /**
+     * For organizations, if unset, will match all projects. Has no effect for data profile configurations created within a project.
+     */
+    projectIdRegex?: string | null;
+    /**
+     * If unset, this property matches all tables.
+     */
+    tableIdRegex?: string | null;
+  }
+  /**
+   * A collection of regular expressions to determine what tables to match against.
+   */
+  export interface Schema$GooglePrivacyDlpV2BigQueryRegexes {
+    /**
+     * A single BigQuery regular expression pattern to match against one or more tables, datasets, or projects that contain BigQuery tables.
+     */
+    patterns?: Schema$GooglePrivacyDlpV2BigQueryRegex[];
+  }
+  /**
    * Message defining the location of a BigQuery table. A table is uniquely identified by its project_id, dataset_id, and table_name. Within a query a table is often referenced with a string in the format of: `:.` or `..`.
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryTable {
@@ -314,6 +365,24 @@ export namespace dlp_v2 {
      * Name of the table.
      */
     tableId?: string | null;
+  }
+  /**
+   * Specifies a collection of BigQuery tables. Used for Discovery.
+   */
+  export interface Schema$GooglePrivacyDlpV2BigQueryTableCollection {
+    /**
+     * A collection of regular expressions to match a BigQuery table against.
+     */
+    includeRegexes?: Schema$GooglePrivacyDlpV2BigQueryRegexes;
+  }
+  /**
+   * The types of bigquery tables supported by Cloud DLP.
+   */
+  export interface Schema$GooglePrivacyDlpV2BigQueryTableTypes {
+    /**
+     * A set of bigquery table types.
+     */
+    types?: string[] | null;
   }
   /**
    * Bounding box encompassing detected text within an image.
@@ -741,6 +810,19 @@ export namespace dlp_v2 {
      * The template id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
      */
     templateId?: string | null;
+  }
+  /**
+   * Request message for CreateDiscoveryConfig.
+   */
+  export interface Schema$GooglePrivacyDlpV2CreateDiscoveryConfigRequest {
+    /**
+     * The config id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
+     */
+    configId?: string | null;
+    /**
+     * Required. The DiscoveryConfig to create.
+     */
+    discoveryConfig?: Schema$GooglePrivacyDlpV2DiscoveryConfig;
   }
   /**
    * Request message for CreateDlpJobRequest. Used to initiate long running jobs such as calculating risk metrics or inspecting Google Cloud Storage.
@@ -1323,6 +1405,154 @@ export namespace dlp_v2 {
      * List of words or phrases to search for.
      */
     wordList?: Schema$GooglePrivacyDlpV2WordList;
+  }
+  /**
+   * Do nothing.
+   */
+  export interface Schema$GooglePrivacyDlpV2Disabled {}
+  /**
+   * Requirements that must be true before a table is scanned in Discovery for the first time. There is an AND relationship between the top-level attributes.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryBigQueryConditions {
+    /**
+     * BigQuery table must have been created after this date. Used to avoid backfilling.
+     */
+    createdAfter?: string | null;
+    /**
+     * At least one of the conditions must be true for a table to be scanned.
+     */
+    orConditions?: Schema$GooglePrivacyDlpV2OrConditions;
+    /**
+     * Restrict Discovery to categories of table types.
+     */
+    typeCollection?: string | null;
+    /**
+     * Restrict Discovery to specific table types.
+     */
+    types?: Schema$GooglePrivacyDlpV2BigQueryTableTypes;
+  }
+  /**
+   * Determines what tables will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID, dataset ID, and table ID. Also lets you set minimum conditions that must be met before Cloud DLP scans a table (like a minimum row count or a minimum table age).
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryBigQueryFilter {
+    /**
+     * Catch-all. This should always be the last filter in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically.
+     */
+    otherTables?: Schema$GooglePrivacyDlpV2AllOtherBigQueryTables;
+    /**
+     * A specific set of tables for this filter to apply to. A table collection must be specified in only one filter per config. If a table id or dataset is empty, Cloud DLP assumes all tables in that collection must be profiled. Must specify a project ID.
+     */
+    tables?: Schema$GooglePrivacyDlpV2BigQueryTableCollection;
+  }
+  /**
+   * Configuration for Discovery to scan resources for profile generation. Only one Discovery configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/dlp/docs/data-profiles#retention).
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryConfig {
+    /**
+     * Actions to execute at the completion of scanning.
+     */
+    actions?: Schema$GooglePrivacyDlpV2DataProfileAction[];
+    /**
+     * Output only. The creation timestamp of a DiscoveryConfig.
+     */
+    createTime?: string | null;
+    /**
+     * Display name (max 100 chars)
+     */
+    displayName?: string | null;
+    /**
+     * Output only. A stream of errors encountered when the config was activated. Repeated errors may result in the config automatically being paused. Output only field. Will return the last 100 errors. Whenever the config is modified this list will be cleared.
+     */
+    errors?: Schema$GooglePrivacyDlpV2Error[];
+    /**
+     * Detection logic for profile generation. Not all template features are used by Discovery. FindingLimits, include_quote and exclude_info_types have no impact on Discovery. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://cloud.google.com/dlp/docs/data-profiles#data_residency.
+     */
+    inspectTemplates?: string[] | null;
+    /**
+     * Output only. The timestamp of the last time this config was executed.
+     */
+    lastRunTime?: string | null;
+    /**
+     * Unique resource name for the DiscoveryConfig, assigned by the service when the DiscoveryConfig is created, for example `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.
+     */
+    name?: string | null;
+    /**
+     * Only set when the parent is an org.
+     */
+    orgConfig?: Schema$GooglePrivacyDlpV2OrgConfig;
+    /**
+     * Required. A status for this configuration.
+     */
+    status?: string | null;
+    /**
+     * Target to match against for determining what to scan and how frequently.
+     */
+    targets?: Schema$GooglePrivacyDlpV2DiscoveryTarget[];
+    /**
+     * Output only. The last update timestamp of a DiscoveryConfig.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * What must take place for a profile to be updated and how frequently it should occur. New tables are scanned as quickly as possible depending on system capacity.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryGenerationCadence {
+    /**
+     * Governs when to update data profiles when a schema is modified.
+     */
+    schemaModifiedCadence?: Schema$GooglePrivacyDlpV2DiscoverySchemaModifiedCadence;
+    /**
+     * Governs when to update data profiles when a table is modified.
+     */
+    tableModifiedCadence?: Schema$GooglePrivacyDlpV2DiscoveryTableModifiedCadence;
+  }
+  /**
+   * The cadence at which to update data profiles when a schema is modified.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoverySchemaModifiedCadence {
+    /**
+     * How frequently profiles may be updated when schemas are modified. Defaults to monthly.
+     */
+    frequency?: string | null;
+    /**
+     * The type of events to consider when deciding if the table's schema has been modified and should have the profile updated. Defaults to NEW_COLUMNS.
+     */
+    types?: string[] | null;
+  }
+  /**
+   * The location to begin a Discovery scan. Denotes an organization ID or folder ID within an organization.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryStartingLocation {
+    /**
+     * The ID of the Folder within an organization to scan.
+     */
+    folderId?: string | null;
+    /**
+     * The ID of an organization to scan.
+     */
+    organizationId?: string | null;
+  }
+  /**
+   * The cadence at which to update data profiles when a table is modified.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryTableModifiedCadence {
+    /**
+     * How frequently data profiles can be updated when tables are modified. Defaults to never.
+     */
+    frequency?: string | null;
+    /**
+     * The type of events to consider when deciding if the table has been modified and should have the profile updated. Defaults to MODIFIED_TIMESTAMP.
+     */
+    types?: string[] | null;
+  }
+  /**
+   * Target used to match against for Discovery.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryTarget {
+    /**
+     * BigQuery target for Discovery. The first target to match a table will be the one applied.
+     */
+    bigQueryTarget?: Schema$GooglePrivacyDlpV2BigQueryDiscoveryTarget;
   }
   /**
    * Combines all of the information about a DLP job.
@@ -2430,6 +2660,19 @@ export namespace dlp_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListDiscoveryConfigs.
+   */
+  export interface Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse {
+    /**
+     * List of configs, up to page_size in ListDiscoveryConfigsRequest.
+     */
+    discoveryConfigs?: Schema$GooglePrivacyDlpV2DiscoveryConfig[];
+    /**
+     * If the next page is available then the next page token to be used in following ListDiscoveryConfigs request.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for listing DLP jobs.
    */
   export interface Schema$GooglePrivacyDlpV2ListDlpJobsResponse {
@@ -2553,6 +2796,32 @@ export namespace dlp_v2 {
      * List of 99 values that partition the set of field values into 100 equal sized buckets.
      */
     quantileValues?: Schema$GooglePrivacyDlpV2Value[];
+  }
+  /**
+   * There is an OR relationship between these attributes. They are used to determine if a table should be scanned or not in Discovery.
+   */
+  export interface Schema$GooglePrivacyDlpV2OrConditions {
+    /**
+     * Minimum age a table must have before Cloud DLP can profile it. Value must be 1 hour or greater.
+     */
+    minAge?: string | null;
+    /**
+     * Minimum number of rows that should be present before Cloud DLP profiles a table
+     */
+    minRowCount?: number | null;
+  }
+  /**
+   * Project and scan location information. Only set when the parent is an org.
+   */
+  export interface Schema$GooglePrivacyDlpV2OrgConfig {
+    /**
+     * The data to scan: folder, org, or project
+     */
+    location?: Schema$GooglePrivacyDlpV2DiscoveryStartingLocation;
+    /**
+     * The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.
+     */
+    projectId?: string | null;
   }
   /**
    * Infotype details for other infoTypes found within a column.
@@ -3730,6 +3999,19 @@ export namespace dlp_v2 {
      * New DeidentifyTemplate value.
      */
     deidentifyTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
+    /**
+     * Mask to control which fields get updated.
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * Request message for UpdateDiscoveryConfig.
+   */
+  export interface Schema$GooglePrivacyDlpV2UpdateDiscoveryConfigRequest {
+    /**
+     * New DiscoveryConfig value.
+     */
+    discoveryConfig?: Schema$GooglePrivacyDlpV2DiscoveryConfig;
     /**
      * Mask to control which fields get updated.
      */
@@ -5248,6 +5530,7 @@ export namespace dlp_v2 {
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
     deidentifyTemplates: Resource$Organizations$Locations$Deidentifytemplates;
+    discoveryConfigs: Resource$Organizations$Locations$Discoveryconfigs;
     dlpJobs: Resource$Organizations$Locations$Dlpjobs;
     inspectTemplates: Resource$Organizations$Locations$Inspecttemplates;
     jobTriggers: Resource$Organizations$Locations$Jobtriggers;
@@ -5256,6 +5539,8 @@ export namespace dlp_v2 {
       this.context = context;
       this.deidentifyTemplates =
         new Resource$Organizations$Locations$Deidentifytemplates(this.context);
+      this.discoveryConfigs =
+        new Resource$Organizations$Locations$Discoveryconfigs(this.context);
       this.dlpJobs = new Resource$Organizations$Locations$Dlpjobs(this.context);
       this.inspectTemplates =
         new Resource$Organizations$Locations$Inspecttemplates(this.context);
@@ -5804,6 +6089,541 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest;
+  }
+
+  export class Resource$Organizations$Locations$Discoveryconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a config for Discovery to scan and profile storage.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Discoveryconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    create(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Create,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Discoveryconfigs$Create
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Discoveryconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Discoveryconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/discoveryConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a Discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Discoveryconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Discoveryconfigs$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Discoveryconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Discoveryconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Discoveryconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    get(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Get,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Discoveryconfigs$Get
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Discoveryconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Discoveryconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Discovery configurations.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Discoveryconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Discoveryconfigs$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Discoveryconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Discoveryconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/discoveryConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a Discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Discoveryconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Discoveryconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Discoveryconfigs$Patch
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Discoveryconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Discoveryconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2CreateDiscoveryConfigRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the project and the config, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$List
+    extends StandardParameters {
+    /**
+     * Comma separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.
+     */
+    orderBy?: string;
+    /**
+     * Size of the page, can be limited by a server.
+     */
+    pageSize?: number;
+    /**
+     * Page token to continue retrieval. Comes from previous call to ListDiscoveryConfigs. `order_by` field must not change for subsequent calls.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateDiscoveryConfigRequest;
   }
 
   export class Resource$Organizations$Locations$Dlpjobs {
@@ -10825,6 +11645,7 @@ export namespace dlp_v2 {
     context: APIRequestContext;
     content: Resource$Projects$Locations$Content;
     deidentifyTemplates: Resource$Projects$Locations$Deidentifytemplates;
+    discoveryConfigs: Resource$Projects$Locations$Discoveryconfigs;
     dlpJobs: Resource$Projects$Locations$Dlpjobs;
     image: Resource$Projects$Locations$Image;
     inspectTemplates: Resource$Projects$Locations$Inspecttemplates;
@@ -10835,6 +11656,9 @@ export namespace dlp_v2 {
       this.content = new Resource$Projects$Locations$Content(this.context);
       this.deidentifyTemplates =
         new Resource$Projects$Locations$Deidentifytemplates(this.context);
+      this.discoveryConfigs = new Resource$Projects$Locations$Discoveryconfigs(
+        this.context
+      );
       this.dlpJobs = new Resource$Projects$Locations$Dlpjobs(this.context);
       this.image = new Resource$Projects$Locations$Image(this.context);
       this.inspectTemplates = new Resource$Projects$Locations$Inspecttemplates(
@@ -11718,6 +12542,539 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest;
+  }
+
+  export class Resource$Projects$Locations$Discoveryconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a config for Discovery to scan and profile storage.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Discoveryconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Create,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryconfigs$Create
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/discoveryConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a Discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Discoveryconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryconfigs$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Discoveryconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Get,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryconfigs$Get
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Discoveryconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Discovery configurations.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Discoveryconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryconfigs$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Discoveryconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/discoveryConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDiscoveryConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a Discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Discoveryconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryconfigs$Patch
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DiscoveryConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DiscoveryConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2CreateDiscoveryConfigRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the project and the config, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$List
+    extends StandardParameters {
+    /**
+     * Comma separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.
+     */
+    orderBy?: string;
+    /**
+     * Size of the page, can be limited by a server.
+     */
+    pageSize?: number;
+    /**
+     * Page token to continue retrieval. Comes from previous call to ListDiscoveryConfigs. `order_by` field must not change for subsequent calls.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateDiscoveryConfigRequest;
   }
 
   export class Resource$Projects$Locations$Dlpjobs {

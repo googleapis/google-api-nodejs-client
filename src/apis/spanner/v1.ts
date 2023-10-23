@@ -880,6 +880,19 @@ export namespace spanner_v1 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * Recommendation to add new indexes to run queries more efficiently.
+   */
+  export interface Schema$IndexAdvice {
+    /**
+     * Optional. DDL statements to add new indexes that will improve the query.
+     */
+    ddl?: string[] | null;
+    /**
+     * Optional. Estimated latency improvement factor. For example if the query currently takes 500 ms to run and the estimated latency with new indexes is 100 ms this field will be 5.
+     */
+    improvementFactor?: number | null;
+  }
+  /**
    * A message representing a (sparse) collection of hot keys for specific key buckets.
    */
   export interface Schema$IndexedHotKey {
@@ -1630,6 +1643,15 @@ export namespace spanner_v1 {
     word?: string | null;
   }
   /**
+   * Output of query advisor analysis.
+   */
+  export interface Schema$QueryAdvisorResult {
+    /**
+     * Optional. Index Recommendation for a query. This is an optional field and the recommendation will only be available when the recommendation guarantees significant improvement in query performance.
+     */
+    indexAdvice?: Schema$IndexAdvice[];
+  }
+  /**
    * Query optimizer configuration.
    */
   export interface Schema$QueryOptions {
@@ -1650,6 +1672,10 @@ export namespace spanner_v1 {
      * The nodes in the query plan. Plan nodes are returned in pre-order starting with the plan root. Each PlanNode's `id` corresponds to its index in `plan_nodes`.
      */
     planNodes?: Schema$PlanNode[];
+    /**
+     * Optional. The advices/recommendations for a query. Currently this field will be serving index recommendations for a query.
+     */
+    queryAdvice?: Schema$QueryAdvisorResult;
   }
   /**
    * Message type to initiate a read-only transaction.

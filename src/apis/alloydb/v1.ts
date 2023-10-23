@@ -1165,7 +1165,7 @@ export namespace alloydb_v1 {
      */
     resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
     /**
-     * Required. Primary key associated with the Resource
+     * Primary key associated with the Resource. resource_id is available in individual feed level as well.
      */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     resourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata;
@@ -1203,7 +1203,7 @@ export namespace alloydb_v1 {
      */
     provider?: string | null;
     /**
-     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123".
+     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
     /**
@@ -1298,7 +1298,7 @@ export namespace alloydb_v1 {
      */
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
     /**
-     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123".
+     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
     /**

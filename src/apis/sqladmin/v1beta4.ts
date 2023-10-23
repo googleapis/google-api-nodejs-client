@@ -1195,11 +1195,11 @@ export namespace sqladmin_v1beta4 {
      */
     pscConfig?: Schema$PscConfig;
     /**
-     * Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the legacy `require_ssl` flag.
+     * LINT.IfChange(require_ssl_deprecate) Whether SSL/TLS connections over IP are enforced or not. If set to false, allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate will not be verified. If set to true, only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, use the `ssl_mode` flag instead of the legacy `require_ssl` flag. LINT.ThenChange(//depot/google3/java/com/google/storage/speckle/boss/admin/actions/InstanceUpdateAction.java:update_api_temp_fix)
      */
     requireSsl?: boolean | null;
     /**
-     * Specify how SSL/TLS is enforced in database connections. This flag is supported only for PostgreSQL. Use the legacy `require_ssl` flag for enforcing SSL/TLS in MySQL and SQL Server. But, for PostgreSQL, use the `ssl_mode` flag instead of the legacy `require_ssl` flag. To avoid the conflict between those flags in PostgreSQL, only the following value pairs are valid: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` Note that the value of `ssl_mode` gets priority over the value of the legacy `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY, require_ssl=false`, the `ssl_mode=ENCRYPTED_ONLY` means "only accepts SSL connection", while the `require_ssl=false` means "both non-SSL and SSL connections are allowed". The database respects `ssl_mode` in this case and only accepts SSL connections.
+     * Specify how SSL/TLS will be enforced in database connections. This flag is only supported for PostgreSQL. Use the legacy `require_ssl` flag for enforcing SSL/TLS in MySQL and SQL Server. But, for PostgreSQL, it is recommended to use the `ssl_mode` flag instead of the legacy `require_ssl` flag. To avoid the conflict between those flags in PostgreSQL, only the following value pairs are valid: ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED, require_ssl=false; ssl_mode=ENCRYPTED_ONLY, require_ssl=false; ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED, require_ssl=true; Note that the value of `ssl_mode` gets priority over the value of the legacy `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY, require_ssl=false`, the `ssl_mode=ENCRYPTED_ONLY` means "only accepts SSL connection", while the `require_ssl=false` means "both non-SSL and SSL connections are allowed". The database will respect `ssl_mode` in this case and only accept SSL connections.
      */
     sslMode?: string | null;
   }
@@ -1528,6 +1528,10 @@ export namespace sqladmin_v1beta4 {
      * The complexity of the password.
      */
     complexity?: string | null;
+    /**
+     * Disallow credentials that have been previously compromised by a public data breach.
+     */
+    disallowCompromisedCredentials?: boolean | null;
     /**
      * Disallow username as a part of the password.
      */

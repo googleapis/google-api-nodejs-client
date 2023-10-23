@@ -229,10 +229,6 @@ export namespace content_v2_1 {
      */
     automaticLabelIds?: string[] | null;
     /**
-     * The business identity attributes can be used to self-declare attributes that let customers know more about your business.
-     */
-    businessIdentity?: Schema$AccountBusinessIdentity;
-    /**
      * The business information of the account.
      */
     businessInformation?: Schema$AccountBusinessInformation;
@@ -330,35 +326,6 @@ export namespace content_v2_1 {
      */
     shippingImprovements?: Schema$AccountShippingImprovements;
   }
-  /**
-   * The [business identity attributes](https://support.google.com/merchants/answer/10342414) can be used to self-declare attributes that let customers know more about your business. NEXT ID: 7.
-   */
-  export interface Schema$AccountBusinessIdentity {
-    /**
-     * Specifies whether the business identifies itself as being black-owned. This optional field is only available for merchants with a business country set to "US". This field is not allowed for marketplaces or marketplace sellers.
-     */
-    blackOwned?: Schema$AccountIdentityType;
-    /**
-     * Required. By setting this field, your business may be included in promotions for all the selected attributes. If you clear this option, it won't affect your identification with any of the attributes. For this field to be set, the merchant must self identify with at least one of the `AccountIdentityType`. If none are included, the request will be considered invalid.
-     */
-    includeForPromotions?: boolean | null;
-    /**
-     * Specifies whether the business identifies itself as being latino-owned. This optional field is only available for merchants with a business country set to "US". This field is not allowed for marketplaces or marketplace sellers.
-     */
-    latinoOwned?: Schema$AccountIdentityType;
-    /**
-     * Specifies whether the business identifies itself as a small business. This optional field is only available for merchants with a business country set to "US". This field is not allowed for marketplaces or marketplace sellers.
-     */
-    smallBusiness?: Schema$AccountIdentityType;
-    /**
-     * Specifies whether the business identifies itself as being veteran-owned. This optional field is only available for merchants with a business country set to "US". This field is not allowed for marketplaces or marketplace sellers.
-     */
-    veteranOwned?: Schema$AccountIdentityType;
-    /**
-     * Specifies whether the business identifies itself as being women-owned. This optional field is only available for merchants with a business country set to "US". This field is not allowed for marketplaces or marketplace sellers.
-     */
-    womenOwned?: Schema$AccountIdentityType;
-  }
   export interface Schema$AccountBusinessInformation {
     /**
      * The address of the business. Use `\n` to add a second address line.
@@ -445,10 +412,6 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
   }
-  /**
-   * The account identity type used to specify attributes.
-   */
-  export interface Schema$AccountIdentityType {}
   /**
    * This improvement will attempt to automatically correct submitted images if they don't meet the [image requirements](https://support.google.com/merchants/answer/6324350), for example, removing overlays. If successful, the image will be replaced and approved. This improvement is only applied to images of disapproved offers. For more information see: [Automatic image improvements](https://support.google.com/merchants/answer/9242973)
    */
@@ -3138,7 +3101,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$LocalInventory {
     /**
-     * The availability of the product. For accepted attribute values, see the local product inventory feed specification.
+     * Availability of the product. For accepted attribute values, see the local product inventory feed specification.
      */
     availability?: string | null;
     /**
@@ -3146,7 +3109,7 @@ export namespace content_v2_1 {
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
-     * The in-store product location.
+     * In-store product location.
      */
     instoreProductLocation?: string | null;
     /**
@@ -3154,23 +3117,23 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * The supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed specification.
+     * Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed specification.
      */
     pickupMethod?: string | null;
     /**
-     * The expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the local product inventory feed specification.
+     * Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the local product inventory feed specification.
      */
     pickupSla?: string | null;
     /**
-     * The price of the product.
+     * Price of the product.
      */
     price?: Schema$Price;
     /**
-     * The quantity of the product. Must be nonnegative.
+     * Quantity of the product. Must be nonnegative.
      */
     quantity?: number | null;
     /**
-     * The sale price of the product. Mandatory if `sale_price_effective_date` is defined.
+     * Sale price of the product. Mandatory if `sale_price_effective_date` is defined.
      */
     salePrice?: Schema$Price;
     /**
@@ -3178,7 +3141,7 @@ export namespace content_v2_1 {
      */
     salePriceEffectiveDate?: string | null;
     /**
-     * Required. The store code of this local inventory resource.
+     * Required. Store code of this local inventory resource.
      */
     storeCode?: string | null;
   }

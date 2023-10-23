@@ -665,6 +665,157 @@
                 }
               }
             },
+            "discoveryConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a config for Discovery to scan and profile storage.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/discoveryConfigs",
+                  "httpMethod": "POST",
+                  "id": "dlp.organizations.locations.discoveryConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/discoveryConfigs",
+                  "request": {
+                    "$ref": "GooglePrivacyDlpV2CreateDiscoveryConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2DiscoveryConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a Discovery configuration.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/discoveryConfigs/{discoveryConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dlp.organizations.locations.discoveryConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the project and the config, for example `projects/dlp-test-project/discoveryConfigs/53234423`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/discoveryConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a Discovery configuration.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/discoveryConfigs/{discoveryConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "dlp.organizations.locations.discoveryConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/discoveryConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2DiscoveryConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Discovery configurations.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/discoveryConfigs",
+                  "httpMethod": "GET",
+                  "id": "dlp.organizations.locations.discoveryConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "orderBy": {
+                      "description": "Comma separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Size of the page, can be limited by a server.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Page token to continue retrieval. Comes from previous call to ListDiscoveryConfigs. `order_by` field must not change for subsequent calls.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/discoveryConfigs",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ListDiscoveryConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a Discovery configuration.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/discoveryConfigs/{discoveryConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "dlp.organizations.locations.discoveryConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/discoveryConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "GooglePrivacyDlpV2UpdateDiscoveryConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2DiscoveryConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "dlpJobs": {
               "methods": {
                 "list": {
@@ -2443,6 +2594,157 @@
                 }
               }
             },
+            "discoveryConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a config for Discovery to scan and profile storage.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/discoveryConfigs",
+                  "httpMethod": "POST",
+                  "id": "dlp.projects.locations.discoveryConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/discoveryConfigs",
+                  "request": {
+                    "$ref": "GooglePrivacyDlpV2CreateDiscoveryConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2DiscoveryConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a Discovery configuration.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/discoveryConfigs/{discoveryConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dlp.projects.locations.discoveryConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the project and the config, for example `projects/dlp-test-project/discoveryConfigs/53234423`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a Discovery configuration.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/discoveryConfigs/{discoveryConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.discoveryConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2DiscoveryConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Discovery configurations.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/discoveryConfigs",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.discoveryConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "orderBy": {
+                      "description": "Comma separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Size of the page, can be limited by a server.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Page token to continue retrieval. Comes from previous call to ListDiscoveryConfigs. `order_by` field must not change for subsequent calls.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/discoveryConfigs",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ListDiscoveryConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a Discovery configuration.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/discoveryConfigs/{discoveryConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "dlp.projects.locations.discoveryConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the project and the configuration, for example `projects/dlp-test-project/discoveryConfigs/53234423`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "GooglePrivacyDlpV2UpdateDiscoveryConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2DiscoveryConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "dlpJobs": {
               "methods": {
                 "cancel": {
@@ -3412,7 +3714,7 @@
       }
     }
   },
-  "revision": "20231008",
+  "revision": "20231015",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3470,6 +3772,12 @@
     "GooglePrivacyDlpV2AllInfoTypes": {
       "description": "Apply transformation to all findings.",
       "id": "GooglePrivacyDlpV2AllInfoTypes",
+      "properties": {},
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2AllOtherBigQueryTables": {
+      "description": "Catch-all for all other tables not specified by other filters. Should always be last, except for single-table configurations, which will only have a TableReference target.",
+      "id": "GooglePrivacyDlpV2AllOtherBigQueryTables",
       "properties": {},
       "type": "object"
     },
@@ -3540,6 +3848,29 @@
         "table": {
           "$ref": "GooglePrivacyDlpV2BigQueryTable",
           "description": "Required. Auxiliary table location."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2BigQueryDiscoveryTarget": {
+      "description": "Target used to match against for Discovery with BigQuery tables",
+      "id": "GooglePrivacyDlpV2BigQueryDiscoveryTarget",
+      "properties": {
+        "cadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryGenerationCadence",
+          "description": "How often and when to update profiles. New tables that match both the filter and conditions are scanned as quickly as possible depending on system capacity."
+        },
+        "conditions": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryBigQueryConditions",
+          "description": "In addition to matching the filter, these conditions must be true before a profile is generated."
+        },
+        "disabled": {
+          "$ref": "GooglePrivacyDlpV2Disabled",
+          "description": "Tables that match this filter will not have profiles created."
+        },
+        "filter": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryBigQueryFilter",
+          "description": "Required. The tables the Discovery cadence applies to. The first target with a matching filter will be the one to apply to a table."
         }
       },
       "type": "object"
@@ -3630,6 +3961,39 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2BigQueryRegex": {
+      "description": "A pattern to match against one or more tables, datasets, or projects that contain BigQuery tables. At least one pattern must be specified. Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.",
+      "id": "GooglePrivacyDlpV2BigQueryRegex",
+      "properties": {
+        "datasetIdRegex": {
+          "description": "If unset, this property matches all datasets.",
+          "type": "string"
+        },
+        "projectIdRegex": {
+          "description": "For organizations, if unset, will match all projects. Has no effect for data profile configurations created within a project.",
+          "type": "string"
+        },
+        "tableIdRegex": {
+          "description": "If unset, this property matches all tables.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2BigQueryRegexes": {
+      "description": "A collection of regular expressions to determine what tables to match against.",
+      "id": "GooglePrivacyDlpV2BigQueryRegexes",
+      "properties": {
+        "patterns": {
+          "description": "A single BigQuery regular expression pattern to match against one or more tables, datasets, or projects that contain BigQuery tables.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2BigQueryRegex"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2BigQueryTable": {
       "description": "Message defining the location of a BigQuery table. A table is uniquely identified by its project_id, dataset_id, and table_name. Within a query a table is often referenced with a string in the format of: `:.` or `..`.",
       "id": "GooglePrivacyDlpV2BigQueryTable",
@@ -3645,6 +4009,41 @@
         "tableId": {
           "description": "Name of the table.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2BigQueryTableCollection": {
+      "description": "Specifies a collection of BigQuery tables. Used for Discovery.",
+      "id": "GooglePrivacyDlpV2BigQueryTableCollection",
+      "properties": {
+        "includeRegexes": {
+          "$ref": "GooglePrivacyDlpV2BigQueryRegexes",
+          "description": "A collection of regular expressions to match a BigQuery table against."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2BigQueryTableTypes": {
+      "description": "The types of bigquery tables supported by Cloud DLP.",
+      "id": "GooglePrivacyDlpV2BigQueryTableTypes",
+      "properties": {
+        "types": {
+          "description": "A set of bigquery table types.",
+          "items": {
+            "enum": [
+              "BIG_QUERY_TABLE_TYPE_UNSPECIFIED",
+              "BIG_QUERY_TABLE_TYPE_TABLE",
+              "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE"
+            ],
+            "enumDescriptions": [
+              "Unused.",
+              "A normal BigQuery table.",
+              "A table that references data stored in Cloud Storage."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4349,6 +4748,21 @@
         "templateId": {
           "description": "The template id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2CreateDiscoveryConfigRequest": {
+      "description": "Request message for CreateDiscoveryConfig.",
+      "id": "GooglePrivacyDlpV2CreateDiscoveryConfigRequest",
+      "properties": {
+        "configId": {
+          "description": "The config id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.",
+          "type": "string"
+        },
+        "discoveryConfig": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryConfig",
+          "description": "Required. The DiscoveryConfig to create."
         }
       },
       "type": "object"
@@ -5154,6 +5568,262 @@
         "wordList": {
           "$ref": "GooglePrivacyDlpV2WordList",
           "description": "List of words or phrases to search for."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2Disabled": {
+      "description": "Do nothing.",
+      "id": "GooglePrivacyDlpV2Disabled",
+      "properties": {},
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryBigQueryConditions": {
+      "description": "Requirements that must be true before a table is scanned in Discovery for the first time. There is an AND relationship between the top-level attributes.",
+      "id": "GooglePrivacyDlpV2DiscoveryBigQueryConditions",
+      "properties": {
+        "createdAfter": {
+          "description": "BigQuery table must have been created after this date. Used to avoid backfilling.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "orConditions": {
+          "$ref": "GooglePrivacyDlpV2OrConditions",
+          "description": "At least one of the conditions must be true for a table to be scanned."
+        },
+        "typeCollection": {
+          "description": "Restrict Discovery to categories of table types.",
+          "enum": [
+            "BIG_QUERY_COLLECTION_UNSPECIFIED",
+            "BIG_QUERY_COLLECTION_ALL_TYPES",
+            "BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "Automatically generate profiles for all tables, even if the table type is not yet fully supported for analysis. These unsupported profiles will be generated with errors to indicate their partial support. When support is added, they will automatically be profiled during the next scheduled run.",
+            "Only those types fully supported will be profiled. Will expand automatically as new support is added. Unsupported table types will not have a profile generated."
+          ],
+          "type": "string"
+        },
+        "types": {
+          "$ref": "GooglePrivacyDlpV2BigQueryTableTypes",
+          "description": "Restrict Discovery to specific table types."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryBigQueryFilter": {
+      "description": "Determines what tables will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID, dataset ID, and table ID. Also lets you set minimum conditions that must be met before Cloud DLP scans a table (like a minimum row count or a minimum table age).",
+      "id": "GooglePrivacyDlpV2DiscoveryBigQueryFilter",
+      "properties": {
+        "otherTables": {
+          "$ref": "GooglePrivacyDlpV2AllOtherBigQueryTables",
+          "description": "Catch-all. This should always be the last filter in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically."
+        },
+        "tables": {
+          "$ref": "GooglePrivacyDlpV2BigQueryTableCollection",
+          "description": "A specific set of tables for this filter to apply to. A table collection must be specified in only one filter per config. If a table id or dataset is empty, Cloud DLP assumes all tables in that collection must be profiled. Must specify a project ID."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryConfig": {
+      "description": "Configuration for Discovery to scan resources for profile generation. Only one Discovery configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/dlp/docs/data-profiles#retention).",
+      "id": "GooglePrivacyDlpV2DiscoveryConfig",
+      "properties": {
+        "actions": {
+          "description": "Actions to execute at the completion of scanning.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2DataProfileAction"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The creation timestamp of a DiscoveryConfig.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name (max 100 chars)",
+          "type": "string"
+        },
+        "errors": {
+          "description": "Output only. A stream of errors encountered when the config was activated. Repeated errors may result in the config automatically being paused. Output only field. Will return the last 100 errors. Whenever the config is modified this list will be cleared.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Error"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "inspectTemplates": {
+          "description": "Detection logic for profile generation. Not all template features are used by Discovery. FindingLimits, include_quote and exclude_info_types have no impact on Discovery. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including \"global\"). Each region is scanned using the applicable template. If no region-specific template is specified, but a \"global\" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://cloud.google.com/dlp/docs/data-profiles#data_residency.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lastRunTime": {
+          "description": "Output only. The timestamp of the last time this config was executed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Unique resource name for the DiscoveryConfig, assigned by the service when the DiscoveryConfig is created, for example `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.",
+          "type": "string"
+        },
+        "orgConfig": {
+          "$ref": "GooglePrivacyDlpV2OrgConfig",
+          "description": "Only set when the parent is an org."
+        },
+        "status": {
+          "description": "Required. A status for this configuration.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "RUNNING",
+            "PAUSED"
+          ],
+          "enumDescriptions": [
+            "Unused",
+            "The Discovery config is currently active.",
+            "The Discovery config is paused temporarily."
+          ],
+          "type": "string"
+        },
+        "targets": {
+          "description": "Target to match against for determining what to scan and how frequently.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2DiscoveryTarget"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The last update timestamp of a DiscoveryConfig.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryGenerationCadence": {
+      "description": "What must take place for a profile to be updated and how frequently it should occur. New tables are scanned as quickly as possible depending on system capacity.",
+      "id": "GooglePrivacyDlpV2DiscoveryGenerationCadence",
+      "properties": {
+        "schemaModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoverySchemaModifiedCadence",
+          "description": "Governs when to update data profiles when a schema is modified."
+        },
+        "tableModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryTableModifiedCadence",
+          "description": "Governs when to update data profiles when a table is modified."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoverySchemaModifiedCadence": {
+      "description": "The cadence at which to update data profiles when a schema is modified.",
+      "id": "GooglePrivacyDlpV2DiscoverySchemaModifiedCadence",
+      "properties": {
+        "frequency": {
+          "description": "How frequently profiles may be updated when schemas are modified. Defaults to monthly.",
+          "enum": [
+            "UPDATE_FREQUENCY_UNSPECIFIED",
+            "UPDATE_FREQUENCY_NEVER",
+            "UPDATE_FREQUENCY_DAILY",
+            "UPDATE_FREQUENCY_MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "After the data profile is created, it will never be updated.",
+            "The data profile can be updated up to once every 24 hours.",
+            "The data profile can be updated up to once every 30 days. Default."
+          ],
+          "type": "string"
+        },
+        "types": {
+          "description": "The type of events to consider when deciding if the table's schema has been modified and should have the profile updated. Defaults to NEW_COLUMNS.",
+          "items": {
+            "enum": [
+              "SCHEMA_MODIFICATION_UNSPECIFIED",
+              "SCHEMA_NEW_COLUMNS",
+              "SCHEMA_REMOVED_COLUMNS"
+            ],
+            "enumDescriptions": [
+              "Unused",
+              "Profiles should be regenerated when new columns are added to the table. Default.",
+              "Profiles should be regenerated when columns are removed from the table."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryStartingLocation": {
+      "description": "The location to begin a Discovery scan. Denotes an organization ID or folder ID within an organization.",
+      "id": "GooglePrivacyDlpV2DiscoveryStartingLocation",
+      "properties": {
+        "folderId": {
+          "description": "The ID of the Folder within an organization to scan.",
+          "format": "int64",
+          "type": "string"
+        },
+        "organizationId": {
+          "description": "The ID of an organization to scan.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryTableModifiedCadence": {
+      "description": "The cadence at which to update data profiles when a table is modified.",
+      "id": "GooglePrivacyDlpV2DiscoveryTableModifiedCadence",
+      "properties": {
+        "frequency": {
+          "description": "How frequently data profiles can be updated when tables are modified. Defaults to never.",
+          "enum": [
+            "UPDATE_FREQUENCY_UNSPECIFIED",
+            "UPDATE_FREQUENCY_NEVER",
+            "UPDATE_FREQUENCY_DAILY",
+            "UPDATE_FREQUENCY_MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "After the data profile is created, it will never be updated.",
+            "The data profile can be updated up to once every 24 hours.",
+            "The data profile can be updated up to once every 30 days. Default."
+          ],
+          "type": "string"
+        },
+        "types": {
+          "description": "The type of events to consider when deciding if the table has been modified and should have the profile updated. Defaults to MODIFIED_TIMESTAMP.",
+          "items": {
+            "enum": [
+              "TABLE_MODIFICATION_UNSPECIFIED",
+              "TABLE_MODIFIED_TIMESTAMP"
+            ],
+            "enumDescriptions": [
+              "Unused.",
+              "A table will be considered modified when the last_modified_time from BigQuery has been updated."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryTarget": {
+      "description": "Target used to match against for Discovery.",
+      "id": "GooglePrivacyDlpV2DiscoveryTarget",
+      "properties": {
+        "bigQueryTarget": {
+          "$ref": "GooglePrivacyDlpV2BigQueryDiscoveryTarget",
+          "description": "BigQuery target for Discovery. The first target to match a table will be the one applied."
         }
       },
       "type": "object"
@@ -6852,6 +7522,24 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2ListDiscoveryConfigsResponse": {
+      "description": "Response message for ListDiscoveryConfigs.",
+      "id": "GooglePrivacyDlpV2ListDiscoveryConfigsResponse",
+      "properties": {
+        "discoveryConfigs": {
+          "description": "List of configs, up to page_size in ListDiscoveryConfigsRequest.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2DiscoveryConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If the next page is available then the next page token to be used in following ListDiscoveryConfigs request.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2ListDlpJobsResponse": {
       "description": "The response message for listing DLP jobs.",
       "id": "GooglePrivacyDlpV2ListDlpJobsResponse",
@@ -7022,6 +7710,38 @@
             "$ref": "GooglePrivacyDlpV2Value"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2OrConditions": {
+      "description": "There is an OR relationship between these attributes. They are used to determine if a table should be scanned or not in Discovery.",
+      "id": "GooglePrivacyDlpV2OrConditions",
+      "properties": {
+        "minAge": {
+          "description": "Minimum age a table must have before Cloud DLP can profile it. Value must be 1 hour or greater.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "minRowCount": {
+          "description": "Minimum number of rows that should be present before Cloud DLP profiles a table",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2OrgConfig": {
+      "description": "Project and scan location information. Only set when the parent is an org.",
+      "id": "GooglePrivacyDlpV2OrgConfig",
+      "properties": {
+        "location": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryStartingLocation",
+          "description": "The data to scan: folder, org, or project"
+        },
+        "projectId": {
+          "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8682,6 +9402,22 @@
         "deidentifyTemplate": {
           "$ref": "GooglePrivacyDlpV2DeidentifyTemplate",
           "description": "New DeidentifyTemplate value."
+        },
+        "updateMask": {
+          "description": "Mask to control which fields get updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2UpdateDiscoveryConfigRequest": {
+      "description": "Request message for UpdateDiscoveryConfig.",
+      "id": "GooglePrivacyDlpV2UpdateDiscoveryConfigRequest",
+      "properties": {
+        "discoveryConfig": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryConfig",
+          "description": "New DiscoveryConfig value."
         },
         "updateMask": {
           "description": "Mask to control which fields get updated.",
