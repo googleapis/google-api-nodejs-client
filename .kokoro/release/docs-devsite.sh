@@ -25,6 +25,6 @@ if [[ -z "$CREDENTIALS" ]]; then
 fi
 
 npm install
-npm install --no-save @google-cloud/cloud-rad@^0.3.7
+npm install --no-save @google-cloud/cloud-rad@^0.4.0
 # publish docs to devsite
 npx @google-cloud/cloud-rad . cloud-rad
