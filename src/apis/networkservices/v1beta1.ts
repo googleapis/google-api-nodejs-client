@@ -997,7 +997,7 @@ export namespace networkservices_v1beta1 {
      */
     extensionChains?: Schema$ExtensionChain[];
     /**
-     * Required. A list of references to the forwarding rules to which this service extension is attach to. At least one forwarding rule is required. There can be only one `LbRouteExtension` resource per forwarding rule.
+     * Required. A list of references to the forwarding rules to which this service extension is attached to. At least one forwarding rule is required. There can be only one `LbRouteExtension` resource per forwarding rule.
      */
     forwardingRules?: string[] | null;
     /**
@@ -1005,7 +1005,7 @@ export namespace networkservices_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`.
+     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Choosing a load balancer](https://cloud.google.com/load-balancing/docs/backend-service).
      */
     loadBalancingScheme?: string | null;
     /**
@@ -1034,7 +1034,7 @@ export namespace networkservices_v1beta1 {
      */
     extensionChains?: Schema$ExtensionChain[];
     /**
-     * Required. A list of references to the forwarding rules to which this service extension is attach to. At least one forwarding rule is required. There can be only one `LBTrafficExtension` resource per forwarding rule.
+     * Required. A list of references to the forwarding rules to which this service extension is attached to. At least one forwarding rule is required. There can be only one `LBTrafficExtension` resource per forwarding rule.
      */
     forwardingRules?: string[] | null;
     /**
