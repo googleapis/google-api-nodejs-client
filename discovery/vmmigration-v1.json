@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20231012",
+  "revision": "20231109",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2618,6 +2618,10 @@
           ],
           "type": "string"
         },
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Optional. The encryption to apply to the boot disk."
+        },
         "image": {
           "$ref": "DiskImageDefaults",
           "description": "The image to use when creating the disk."
@@ -2872,6 +2876,10 @@
           ],
           "type": "string"
         },
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Optional. Immutable. The encryption to apply to the VM disks."
+        },
         "hostname": {
           "description": "The hostname to assign to the VM.",
           "type": "string"
@@ -2997,6 +3005,10 @@
             "An alternative to SSD persistent disks that balance performance and cost."
           ],
           "type": "string"
+        },
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Optional. The encryption to apply to the VM disks."
         },
         "hostname": {
           "description": "The hostname to assign to the VM.",
@@ -3444,6 +3456,10 @@
           "$ref": "ComputeScheduling",
           "description": "Optional. Compute instance scheduling information (if empty default is used)."
         },
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Optional. The encryption to apply to the VM."
+        },
         "hostname": {
           "description": "Optional. The hostname to assign to the VM.",
           "type": "string"
@@ -3515,6 +3531,17 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "Encryption": {
+      "description": "Encryption message describes the details of the applied encryption.",
+      "id": "Encryption",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. The name of the encryption key that is stored in Google Cloud KMS.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "FetchInventoryResponse": {
@@ -4139,8 +4166,7 @@
             "CLONE_ERROR",
             "CUTOVER_ERROR",
             "UTILIZATION_REPORT_ERROR",
-            "APPLIANCE_UPGRADE_ERROR",
-            "IMAGE_IMPORT_ERROR"
+            "APPLIANCE_UPGRADE_ERROR"
           ],
           "enumDescriptions": [
             "Default value. This value is not used.",
@@ -4152,8 +4178,7 @@
             "Migrate to Virtual Machines encountered an error in clone operation.",
             "Migrate to Virtual Machines encountered an error in cutover operation.",
             "Migrate to Virtual Machines encountered an error during utilization report creation.",
-            "Migrate to Virtual Machines encountered an error during appliance upgrade.",
-            "Migrate to Virtual Machines encountered an error in image import operation."
+            "Migrate to Virtual Machines encountered an error during appliance upgrade."
           ],
           "readOnly": true,
           "type": "string"
@@ -4417,6 +4442,10 @@
           ],
           "type": "string"
         },
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Optional. The encryption to apply to the disk."
+        },
         "sourceDiskNumber": {
           "description": "Required. The ordinal number of the source VM disk.",
           "format": "int32",
@@ -4646,6 +4675,10 @@
         "description": {
           "description": "User-provided description of the source.",
           "type": "string"
+        },
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Optional. Immutable. The encryption details of the source data stored by the service."
         },
         "labels": {
           "additionalProperties": {

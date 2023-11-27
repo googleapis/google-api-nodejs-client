@@ -529,6 +529,10 @@ export namespace vmmigration_v1alpha1 {
      */
     diskType?: string | null;
     /**
+     * Optional. The encryption to apply to the boot disk.
+     */
+    encryption?: Schema$Encryption;
+    /**
      * The image to use when creating the disk.
      */
     image?: Schema$DiskImageDefaults;
@@ -703,6 +707,10 @@ export namespace vmmigration_v1alpha1 {
      */
     diskType?: string | null;
     /**
+     * Optional. Immutable. The encryption to apply to the VM disks.
+     */
+    encryption?: Schema$Encryption;
+    /**
      * The hostname to assign to the VM.
      */
     hostname?: string | null;
@@ -779,6 +787,10 @@ export namespace vmmigration_v1alpha1 {
      * The disk type to use in the VM.
      */
     diskType?: string | null;
+    /**
+     * Optional. The encryption to apply to the VM disks.
+     */
+    encryption?: Schema$Encryption;
     /**
      * The hostname to assign to the VM.
      */
@@ -1094,6 +1106,10 @@ export namespace vmmigration_v1alpha1 {
      */
     computeScheduling?: Schema$ComputeScheduling;
     /**
+     * Optional. The encryption to apply to the VM.
+     */
+    encryption?: Schema$Encryption;
+    /**
      * Optional. The hostname to assign to the VM.
      */
     hostname?: string | null;
@@ -1147,6 +1163,15 @@ export namespace vmmigration_v1alpha1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Encryption message describes the details of the applied encryption.
+   */
+  export interface Schema$Encryption {
+    /**
+     * Required. The name of the encryption key that is stored in Google Cloud KMS.
+     */
+    kmsKey?: string | null;
+  }
   /**
    * Response message for fetchInventory.
    */
@@ -1749,6 +1774,10 @@ export namespace vmmigration_v1alpha1 {
      */
     diskType?: string | null;
     /**
+     * Optional. The encryption to apply to the disk.
+     */
+    encryption?: Schema$Encryption;
+    /**
      * Required. The ordinal number of the source VM disk.
      */
     sourceDiskNumber?: number | null;
@@ -1911,6 +1940,10 @@ export namespace vmmigration_v1alpha1 {
      * User-provided description of the source.
      */
     description?: string | null;
+    /**
+     * Optional. Immutable. The encryption details of the source data stored by the service.
+     */
+    encryption?: Schema$Encryption;
     /**
      * Output only. Provides details on the state of the Source in case of an error.
      */
