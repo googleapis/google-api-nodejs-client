@@ -129,7 +129,7 @@ export namespace gkeonprem_v1 {
    */
   export interface Schema$Authorization {
     /**
-     * Required. For VMware and bare metal user clusters, users will be granted the cluster-admin role on the cluster, which provides full administrative access to the cluster. For bare metal admin clusters, users will be granted the cluster-view role, which limits users to read-only access.
+     * For VMware and bare metal user clusters, users will be granted the cluster-admin role on the cluster, which provides full administrative access to the cluster. For bare metal admin clusters, users will be granted the cluster-view role, which limits users to read-only access.
      */
     adminUsers?: Schema$ClusterUser[];
   }
@@ -1842,6 +1842,15 @@ export namespace gkeonprem_v1 {
     autoResizeConfig?: Schema$VmwareAutoResizeConfig;
   }
   /**
+   * VmwareAdminAuthorizationConfig represents configuration for admin cluster authorization.
+   */
+  export interface Schema$VmwareAdminAuthorizationConfig {
+    /**
+     * For VMware admin clusters, users will be granted the cluster-viewer role on the cluster.
+     */
+    viewerUsers?: Schema$ClusterUser[];
+  }
+  /**
    * Resource that represents a VMware admin cluster.
    */
   export interface Schema$VmwareAdminCluster {
@@ -1857,6 +1866,10 @@ export namespace gkeonprem_v1 {
      * The VMware admin cluster anti affinity group configuration.
      */
     antiAffinityGroups?: Schema$VmwareAAGConfig;
+    /**
+     * The VMware admin cluster authorization configuration.
+     */
+    authorization?: Schema$VmwareAdminAuthorizationConfig;
     /**
      * The VMware admin cluster auto repair configuration.
      */
@@ -2551,7 +2564,7 @@ export namespace gkeonprem_v1 {
      */
     staticIpConfig?: Schema$VmwareStaticIpConfig;
     /**
-     * Output only. vcenter_network specifies vCenter network name. Inherited from the admin cluster.
+     * vcenter_network specifies vCenter network name. Inherited from the admin cluster.
      */
     vcenterNetwork?: string | null;
   }

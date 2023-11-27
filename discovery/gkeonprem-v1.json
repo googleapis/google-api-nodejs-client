@@ -2996,7 +2996,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20231108",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -3004,7 +3004,7 @@
       "id": "Authorization",
       "properties": {
         "adminUsers": {
-          "description": "Required. For VMware and bare metal user clusters, users will be granted the cluster-admin role on the cluster, which provides full administrative access to the cluster. For bare metal admin clusters, users will be granted the cluster-view role, which limits users to read-only access.",
+          "description": "For VMware and bare metal user clusters, users will be granted the cluster-admin role on the cluster, which provides full administrative access to the cluster. For bare metal admin clusters, users will be granted the cluster-view role, which limits users to read-only access.",
           "items": {
             "$ref": "ClusterUser"
           },
@@ -5419,6 +5419,20 @@
       },
       "type": "object"
     },
+    "VmwareAdminAuthorizationConfig": {
+      "description": "VmwareAdminAuthorizationConfig represents configuration for admin cluster authorization.",
+      "id": "VmwareAdminAuthorizationConfig",
+      "properties": {
+        "viewerUsers": {
+          "description": "For VMware admin clusters, users will be granted the cluster-viewer role on the cluster.",
+          "items": {
+            "$ref": "ClusterUser"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "VmwareAdminCluster": {
       "description": "Resource that represents a VMware admin cluster.",
       "id": "VmwareAdminCluster",
@@ -5437,6 +5451,10 @@
         "antiAffinityGroups": {
           "$ref": "VmwareAAGConfig",
           "description": "The VMware admin cluster anti affinity group configuration."
+        },
+        "authorization": {
+          "$ref": "VmwareAdminAuthorizationConfig",
+          "description": "The VMware admin cluster authorization configuration."
         },
         "autoRepairConfig": {
           "$ref": "VmwareAutoRepairConfig",
@@ -6309,8 +6327,7 @@
           "description": "Configuration settings for a static IP configuration."
         },
         "vcenterNetwork": {
-          "description": "Output only. vcenter_network specifies vCenter network name. Inherited from the admin cluster.",
-          "readOnly": true,
+          "description": "vcenter_network specifies vCenter network name. Inherited from the admin cluster.",
           "type": "string"
         }
       },
