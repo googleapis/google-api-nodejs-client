@@ -450,6 +450,134 @@
                   ]
                 }
               }
+            },
+            "ssdCaches": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}/ssdCaches/{ssdCachesId}/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "spanner.projects.instanceConfigs.ssdCaches.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instanceConfigs/[^/]+/ssdCaches/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancel",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}/ssdCaches/{ssdCachesId}/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "spanner.projects.instanceConfigs.ssdCaches.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instanceConfigs/[^/]+/ssdCaches/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}/ssdCaches/{ssdCachesId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "spanner.projects.instanceConfigs.ssdCaches.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instanceConfigs/[^/]+/ssdCaches/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                      "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}/ssdCaches/{ssdCachesId}/operations",
+                      "httpMethod": "GET",
+                      "id": "spanner.projects.instanceConfigs.ssdCaches.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instanceConfigs/[^/]+/ssdCaches/[^/]+/operations$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "ListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    }
+                  }
+                }
+              }
             }
           }
         },
@@ -2601,9 +2729,68 @@
       }
     }
   },
-  "revision": "20231017",
+  "revision": "20231114",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
+    "AutoscalingConfig": {
+      "description": "Autoscaling config for an instance.",
+      "id": "AutoscalingConfig",
+      "properties": {
+        "autoscalingLimits": {
+          "$ref": "AutoscalingLimits",
+          "description": "Required. Autoscaling limits for an instance."
+        },
+        "autoscalingTargets": {
+          "$ref": "AutoscalingTargets",
+          "description": "Required. The autoscaling targets for an instance."
+        }
+      },
+      "type": "object"
+    },
+    "AutoscalingLimits": {
+      "description": "The autoscaling limits for the instance. Users can define the minimum and maximum compute capacity allocated to the instance, and the autoscaler will only scale within that range. Users can either use nodes or processing units to specify the limits, but should use the same unit to set both the min_limit and max_limit.",
+      "id": "AutoscalingLimits",
+      "properties": {
+        "maxNodes": {
+          "description": "Maximum number of nodes allocated to the instance. If set, this number should be greater than or equal to min_nodes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxProcessingUnits": {
+          "description": "Maximum number of processing units allocated to the instance. If set, this number should be multiples of 1000 and be greater than or equal to min_processing_units.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minNodes": {
+          "description": "Minimum number of nodes allocated to the instance. If set, this number should be greater than or equal to 1.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minProcessingUnits": {
+          "description": "Minimum number of processing units allocated to the instance. If set, this number should be multiples of 1000.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AutoscalingTargets": {
+      "description": "The autoscaling targets for an instance.",
+      "id": "AutoscalingTargets",
+      "properties": {
+        "highPriorityCpuUtilizationPercent": {
+          "description": "Required. The target high priority cpu utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "storageUtilizationPercent": {
+          "description": "Required. The target storage utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 100] inclusive.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Backup": {
       "description": "A backup of a Cloud Spanner database.",
       "id": "Backup",
@@ -3387,6 +3574,21 @@
       },
       "type": "object"
     },
+    "DirectedReadOptions": {
+      "description": "The DirectedReadOptions can be used to indicate which replicas or regions should be used for non-transactional reads or queries. DirectedReadOptions may only be specified for a read-only transaction, otherwise the API will return an `INVALID_ARGUMENT` error.",
+      "id": "DirectedReadOptions",
+      "properties": {
+        "excludeReplicas": {
+          "$ref": "ExcludeReplicas",
+          "description": "Exclude_replicas indicates that should be excluded from serving requests. Spanner will not route requests to the replicas in this list."
+        },
+        "includeReplicas": {
+          "$ref": "IncludeReplicas",
+          "description": "Include_replicas indicates the order of replicas (as they appear in this list) to process the request. If auto_failover_disabled is set to true and all replicas are exhausted without finding a healthy replica, Spanner will wait for a replica in the list to become available, requests may fail due to `DEADLINE_EXCEEDED` errors."
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -3432,6 +3634,20 @@
           "description": "Output only. A Cloud KMS key version that is being used to protect the database or backup.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExcludeReplicas": {
+      "description": "An ExcludeReplicas contains a repeated set of ReplicaSelection that should be excluded from serving requests.",
+      "id": "ExcludeReplicas",
+      "properties": {
+        "replicaSelections": {
+          "description": "The directed read replica selector.",
+          "items": {
+            "$ref": "ReplicaSelection"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3488,6 +3704,10 @@
         "dataBoostEnabled": {
           "description": "If this is for a partitioned query and this field is set to `true`, the request is executed with Spanner Data Boost independent compute resources. If the field is set to `true` but the request does not set `partition_token`, the API returns an `INVALID_ARGUMENT` error.",
           "type": "boolean"
+        },
+        "directedReadOptions": {
+          "$ref": "DirectedReadOptions",
+          "description": "Directed read options for this request."
         },
         "paramTypes": {
           "additionalProperties": {
@@ -3665,6 +3885,24 @@
       },
       "type": "object"
     },
+    "IncludeReplicas": {
+      "description": "An IncludeReplicas contains a repeated set of ReplicaSelection which indicates the order in which replicas should be considered.",
+      "id": "IncludeReplicas",
+      "properties": {
+        "autoFailoverDisabled": {
+          "description": "If true, Spanner will not route requests to a replica outside the include_replicas list when all of the specified replicas are unavailable or unhealthy. Default value is `false`.",
+          "type": "boolean"
+        },
+        "replicaSelections": {
+          "description": "The directed read replica selector.",
+          "items": {
+            "$ref": "ReplicaSelection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "IndexAdvice": {
       "description": "Recommendation to add new indexes to run queries more efficiently.",
       "id": "IndexAdvice",
@@ -3717,6 +3955,10 @@
       "description": "An isolated set of Cloud Spanner resources on which databases can be hosted.",
       "id": "Instance",
       "properties": {
+        "autoscalingConfig": {
+          "$ref": "AutoscalingConfig",
+          "description": "Optional. The autoscaling configuration. Autoscaling is enabled if this field is set. When autoscaling is enabled, node_count and processing_units are treated as OUTPUT_ONLY fields and reflect the current compute capacity allocated to the instance."
+        },
         "config": {
           "description": "Required. The name of the instance's configuration. Values are of the form `projects//instanceConfigs/`. See also InstanceConfig and ListInstanceConfigs.",
           "type": "string"
@@ -4863,6 +5105,10 @@
           "description": "If this is for a partitioned read and this field is set to `true`, the request is executed with Spanner Data Boost independent compute resources. If the field is set to `true` but the request does not set `partition_token`, the API returns an `INVALID_ARGUMENT` error.",
           "type": "boolean"
         },
+        "directedReadOptions": {
+          "$ref": "DirectedReadOptions",
+          "description": "Directed read options for this request."
+        },
         "index": {
           "description": "If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information.",
           "type": "string"
@@ -4946,6 +5192,31 @@
             "Read-write replicas support both reads and writes. These replicas: * Maintain a full copy of your data. * Serve reads. * Can vote whether to commit a write. * Participate in leadership election. * Are eligible to become a leader.",
             "Read-only replicas only support reads (not writes). Read-only replicas: * Maintain a full copy of your data. * Serve reads. * Do not participate in voting to commit writes. * Are not eligible to become a leader.",
             "Witness replicas don't support reads but do participate in voting to commit writes. Witness replicas: * Do not maintain a full copy of data. * Do not serve reads. * Vote whether to commit writes. * Participate in leader election but are not eligible to become leader."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReplicaSelection": {
+      "description": "The directed read replica selector. Callers must provide one or more of the following fields for replica selection: * `location` - The location must be one of the regions within the multi-region configuration of your database. * `type` - The type of the replica. Some examples of using replica_selectors are: * `location:us-east1` --> The \"us-east1\" replica(s) of any available type will be used to process the request. * `type:READ_ONLY` --> The \"READ_ONLY\" type replica(s) in nearest . available location will be used to process the request. * `location:us-east1 type:READ_ONLY` --> The \"READ_ONLY\" type replica(s) in location \"us-east1\" will be used to process the request.",
+      "id": "ReplicaSelection",
+      "properties": {
+        "location": {
+          "description": "The location or region of the serving requests, e.g. \"us-east1\".",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of replica.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "READ_WRITE",
+            "READ_ONLY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Read-write replicas support both reads and writes.",
+            "Read-only replicas only support reads (not writes)."
           ],
           "type": "string"
         }

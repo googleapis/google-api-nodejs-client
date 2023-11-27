@@ -127,6 +127,53 @@ export namespace spanner_v1 {
   }
 
   /**
+   * Autoscaling config for an instance.
+   */
+  export interface Schema$AutoscalingConfig {
+    /**
+     * Required. Autoscaling limits for an instance.
+     */
+    autoscalingLimits?: Schema$AutoscalingLimits;
+    /**
+     * Required. The autoscaling targets for an instance.
+     */
+    autoscalingTargets?: Schema$AutoscalingTargets;
+  }
+  /**
+   * The autoscaling limits for the instance. Users can define the minimum and maximum compute capacity allocated to the instance, and the autoscaler will only scale within that range. Users can either use nodes or processing units to specify the limits, but should use the same unit to set both the min_limit and max_limit.
+   */
+  export interface Schema$AutoscalingLimits {
+    /**
+     * Maximum number of nodes allocated to the instance. If set, this number should be greater than or equal to min_nodes.
+     */
+    maxNodes?: number | null;
+    /**
+     * Maximum number of processing units allocated to the instance. If set, this number should be multiples of 1000 and be greater than or equal to min_processing_units.
+     */
+    maxProcessingUnits?: number | null;
+    /**
+     * Minimum number of nodes allocated to the instance. If set, this number should be greater than or equal to 1.
+     */
+    minNodes?: number | null;
+    /**
+     * Minimum number of processing units allocated to the instance. If set, this number should be multiples of 1000.
+     */
+    minProcessingUnits?: number | null;
+  }
+  /**
+   * The autoscaling targets for an instance.
+   */
+  export interface Schema$AutoscalingTargets {
+    /**
+     * Required. The target high priority cpu utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive.
+     */
+    highPriorityCpuUtilizationPercent?: number | null;
+    /**
+     * Required. The target storage utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 100] inclusive.
+     */
+    storageUtilizationPercent?: number | null;
+  }
+  /**
    * A backup of a Cloud Spanner database.
    */
   export interface Schema$Backup {
@@ -685,6 +732,19 @@ export namespace spanner_v1 {
     shortMessage?: Schema$LocalizedString;
   }
   /**
+   * The DirectedReadOptions can be used to indicate which replicas or regions should be used for non-transactional reads or queries. DirectedReadOptions may only be specified for a read-only transaction, otherwise the API will return an `INVALID_ARGUMENT` error.
+   */
+  export interface Schema$DirectedReadOptions {
+    /**
+     * Exclude_replicas indicates that should be excluded from serving requests. Spanner will not route requests to the replicas in this list.
+     */
+    excludeReplicas?: Schema$ExcludeReplicas;
+    /**
+     * Include_replicas indicates the order of replicas (as they appear in this list) to process the request. If auto_failover_disabled is set to true and all replicas are exhausted without finding a healthy replica, Spanner will wait for a replica in the list to become available, requests may fail due to `DEADLINE_EXCEEDED` errors.
+     */
+    includeReplicas?: Schema$IncludeReplicas;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -713,6 +773,15 @@ export namespace spanner_v1 {
      * Output only. A Cloud KMS key version that is being used to protect the database or backup.
      */
     kmsKeyVersion?: string | null;
+  }
+  /**
+   * An ExcludeReplicas contains a repeated set of ReplicaSelection that should be excluded from serving requests.
+   */
+  export interface Schema$ExcludeReplicas {
+    /**
+     * The directed read replica selector.
+     */
+    replicaSelections?: Schema$ReplicaSelection[];
   }
   /**
    * The request for ExecuteBatchDml.
@@ -756,6 +825,10 @@ export namespace spanner_v1 {
      * If this is for a partitioned query and this field is set to `true`, the request is executed with Spanner Data Boost independent compute resources. If the field is set to `true` but the request does not set `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      */
     dataBoostEnabled?: boolean | null;
+    /**
+     * Directed read options for this request.
+     */
+    directedReadOptions?: Schema$DirectedReadOptions;
     /**
      * Parameter names and values that bind to placeholders in the SQL string. A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names must conform to the naming requirements of identifiers as specified at https://cloud.google.com/spanner/docs/lexical#identifiers. Parameters can appear anywhere that a literal value is expected. The same parameter name can be used more than once, for example: `"WHERE id \> @msg_id AND id < @msg_id + 100"` It is an error to execute a SQL statement with unbound parameters.
      */
@@ -880,6 +953,19 @@ export namespace spanner_v1 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * An IncludeReplicas contains a repeated set of ReplicaSelection which indicates the order in which replicas should be considered.
+   */
+  export interface Schema$IncludeReplicas {
+    /**
+     * If true, Spanner will not route requests to a replica outside the include_replicas list when all of the specified replicas are unavailable or unhealthy. Default value is `false`.
+     */
+    autoFailoverDisabled?: boolean | null;
+    /**
+     * The directed read replica selector.
+     */
+    replicaSelections?: Schema$ReplicaSelection[];
+  }
+  /**
    * Recommendation to add new indexes to run queries more efficiently.
    */
   export interface Schema$IndexAdvice {
@@ -914,6 +1000,10 @@ export namespace spanner_v1 {
    * An isolated set of Cloud Spanner resources on which databases can be hosted.
    */
   export interface Schema$Instance {
+    /**
+     * Optional. The autoscaling configuration. Autoscaling is enabled if this field is set. When autoscaling is enabled, node_count and processing_units are treated as OUTPUT_ONLY fields and reflect the current compute capacity allocated to the instance.
+     */
+    autoscalingConfig?: Schema$AutoscalingConfig;
     /**
      * Required. The name of the instance's configuration. Values are of the form `projects//instanceConfigs/`. See also InstanceConfig and ListInstanceConfigs.
      */
@@ -1719,6 +1809,10 @@ export namespace spanner_v1 {
      */
     dataBoostEnabled?: boolean | null;
     /**
+     * Directed read options for this request.
+     */
+    directedReadOptions?: Schema$DirectedReadOptions;
+    /**
      * If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information.
      */
     index?: string | null;
@@ -1767,6 +1861,19 @@ export namespace spanner_v1 {
     defaultLeaderLocation?: boolean | null;
     /**
      * The location of the serving resources, e.g. "us-central1".
+     */
+    location?: string | null;
+    /**
+     * The type of replica.
+     */
+    type?: string | null;
+  }
+  /**
+   * The directed read replica selector. Callers must provide one or more of the following fields for replica selection: * `location` - The location must be one of the regions within the multi-region configuration of your database. * `type` - The type of the replica. Some examples of using replica_selectors are: * `location:us-east1` --\> The "us-east1" replica(s) of any available type will be used to process the request. * `type:READ_ONLY` --\> The "READ_ONLY" type replica(s) in nearest . available location will be used to process the request. * `location:us-east1 type:READ_ONLY` --\> The "READ_ONLY" type replica(s) in location "us-east1" will be used to process the request.
+   */
+  export interface Schema$ReplicaSelection {
+    /**
+     * The location or region of the serving requests, e.g. "us-east1".
      */
     location?: string | null;
     /**
@@ -2495,9 +2602,13 @@ export namespace spanner_v1 {
   export class Resource$Projects$Instanceconfigs {
     context: APIRequestContext;
     operations: Resource$Projects$Instanceconfigs$Operations;
+    ssdCaches: Resource$Projects$Instanceconfigs$Ssdcaches;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations = new Resource$Projects$Instanceconfigs$Operations(
+        this.context
+      );
+      this.ssdCaches = new Resource$Projects$Instanceconfigs$Ssdcaches(
         this.context
       );
     }
@@ -3370,6 +3481,411 @@ export namespace spanner_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Instanceconfigs$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Projects$Instanceconfigs$Ssdcaches {
+    context: APIRequestContext;
+    operations: Resource$Projects$Instanceconfigs$Ssdcaches$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Instanceconfigs$Ssdcaches$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Instanceconfigs$Ssdcaches$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List
     extends StandardParameters {
     /**
      * The standard list filter.
