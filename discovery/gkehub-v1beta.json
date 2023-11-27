@@ -1308,325 +1308,9 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
+                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/scopes/{scope}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+/rbacrolebindings/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "updateMask": {
-                          "description": "Required. The fields to be updated.",
-                          "format": "google-fieldmask",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta/{+name}",
-                      "request": {
-                        "$ref": "RBACRoleBinding"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "namespaces": {
-              "methods": {
-                "create": {
-                  "description": "Creates a fleet namespace.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces",
-                  "httpMethod": "POST",
-                  "id": "gkehub.projects.locations.namespaces.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "namespaceId": {
-                      "description": "Required. Client chosen ID for the Namespace. `namespace_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The parent (project and location) where the Namespace will be created. Specified in the format `projects/*/locations/*`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/{+parent}/namespaces",
-                  "request": {
-                    "$ref": "Namespace"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "delete": {
-                  "description": "Deletes a fleet namespace.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
-                  "httpMethod": "DELETE",
-                  "id": "gkehub.projects.locations.namespaces.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The Namespace resource name in the format `projects/*/locations/*/namespaces/*`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/{+name}",
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "get": {
-                  "description": "Returns the details of a fleet namespace.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
-                  "httpMethod": "GET",
-                  "id": "gkehub.projects.locations.namespaces.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The Namespace resource name in the format `projects/*/locations/*/namespaces/*`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/{+name}",
-                  "response": {
-                    "$ref": "Namespace"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "list": {
-                  "description": "Lists fleet namespaces.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces",
-                  "httpMethod": "GET",
-                  "id": "gkehub.projects.locations.namespaces.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "pageSize": {
-                      "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "Optional. Token returned by previous call to `ListFeatures` which specifies the position in the list from where to continue listing the resources.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/*/locations/*`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/{+parent}/namespaces",
-                  "response": {
-                    "$ref": "ListNamespacesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "patch": {
-                  "description": "Updates a fleet namespace.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
-                  "httpMethod": "PATCH",
-                  "id": "gkehub.projects.locations.namespaces.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "The resource name for the namespace `projects/{project}/locations/{location}/namespaces/{namespace}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. The fields to be updated.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/{+name}",
-                  "request": {
-                    "$ref": "Namespace"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              },
-              "resources": {
-                "rbacrolebindings": {
-                  "methods": {
-                    "create": {
-                      "description": "Creates a RBACRoleBinding.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings",
-                      "httpMethod": "POST",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.create",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/*/locations/*/namespaces/*`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "rbacrolebindingId": {
-                          "description": "Required. Client chosen ID for the RBACRoleBinding. `rbacrolebinding_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta/{+parent}/rbacrolebindings",
-                      "request": {
-                        "$ref": "RBACRoleBinding"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "delete": {
-                      "description": "Deletes a RBACRoleBinding.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings/{rbacrolebindingsId}",
-                      "httpMethod": "DELETE",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.delete",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The RBACRoleBinding resource name in the format `projects/*/locations/*/namespaces/*/rbacrolebindings/*`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/rbacrolebindings/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta/{+name}",
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "get": {
-                      "description": "Returns the details of a RBACRoleBinding.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings/{rbacrolebindingsId}",
-                      "httpMethod": "GET",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The RBACRoleBinding resource name in the format `projects/*/locations/*/namespaces/*/rbacrolebindings/*`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/rbacrolebindings/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta/{+name}",
-                      "response": {
-                        "$ref": "RBACRoleBinding"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "list": {
-                      "description": "Lists RBACRoleBinding.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings",
-                      "httpMethod": "GET",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.list",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "pageSize": {
-                          "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "Optional. Token returned by previous call to `ListRBACRoleBindings` which specifies the position in the list from where to continue listing the resources.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/*/locations/*/namespaces/*`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta/{+parent}/rbacrolebindings",
-                      "response": {
-                        "$ref": "ListRBACRoleBindingsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "patch": {
-                      "description": "Updates a RBACRoleBinding.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings/{rbacrolebindingsId}",
-                      "httpMethod": "PATCH",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.patch",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/rbacrolebindings/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
@@ -2307,7 +1991,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
+                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/scopes/{scope}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/scopes/[^/]+/rbacrolebindings/[^/]+$",
                           "required": true,
@@ -2340,7 +2024,7 @@
       }
     }
   },
-  "revision": "20231013",
+  "revision": "20231114",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2475,6 +2159,34 @@
       },
       "type": "object"
     },
+    "BinaryAuthorizationConfig": {
+      "description": "BinaryAuthorizationConfig defines the fleet level configuration of binary authorization feature.",
+      "id": "BinaryAuthorizationConfig",
+      "properties": {
+        "evaluationMode": {
+          "description": "Optional. Mode of operation for binauthz policy evaluation.",
+          "enum": [
+            "EVALUATION_MODE_UNSPECIFIED",
+            "DISABLED",
+            "POLICY_BINDINGS"
+          ],
+          "enumDescriptions": [
+            "Default value",
+            "Disable BinaryAuthorization",
+            "Use Binary Authorization with the policies specified in policy_bindings."
+          ],
+          "type": "string"
+        },
+        "policyBindings": {
+          "description": "Optional. Binauthz policies that apply to this cluster.",
+          "items": {
+            "$ref": "PolicyBinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members`, or principals, with a `role`.",
       "id": "Binding",
@@ -2503,6 +2215,264 @@
       "properties": {},
       "type": "object"
     },
+    "ClusterUpgradeFleetSpec": {
+      "description": "**ClusterUpgrade**: The configuration for the fleet-level ClusterUpgrade feature.",
+      "id": "ClusterUpgradeFleetSpec",
+      "properties": {
+        "gkeUpgradeOverrides": {
+          "description": "Allow users to override some properties of each GKE upgrade.",
+          "items": {
+            "$ref": "ClusterUpgradeGKEUpgradeOverride"
+          },
+          "type": "array"
+        },
+        "postConditions": {
+          "$ref": "ClusterUpgradePostConditions",
+          "description": "Required. Post conditions to evaluate to mark an upgrade COMPLETE. Required."
+        },
+        "upstreamFleets": {
+          "description": "This fleet consumes upgrades that have COMPLETE status code in the upstream fleets. See UpgradeStatus.Code for code definitions. The fleet name should be either fleet project number or id. This is defined as repeated for future proof reasons. Initial implementation will enforce at most one upstream fleet.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeFleetState": {
+      "description": "**ClusterUpgrade**: The state for the fleet-level ClusterUpgrade feature.",
+      "id": "ClusterUpgradeFleetState",
+      "properties": {
+        "downstreamFleets": {
+          "description": "This fleets whose upstream_fleets contain the current fleet. The fleet name should be either fleet project number or id.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gkeState": {
+          "$ref": "ClusterUpgradeGKEUpgradeFeatureState",
+          "description": "Feature state for GKE clusters."
+        },
+        "ignored": {
+          "additionalProperties": {
+            "$ref": "ClusterUpgradeIgnoredMembership"
+          },
+          "description": "A list of memberships ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel. The membership resource is in the format: `projects/{p}/locations/{l}/membership/{m}`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeGKEUpgrade": {
+      "description": "GKEUpgrade represents a GKE provided upgrade, e.g., control plane upgrade.",
+      "id": "ClusterUpgradeGKEUpgrade",
+      "properties": {
+        "name": {
+          "description": "Name of the upgrade, e.g., \"k8s_control_plane\". It should be a valid upgrade name. It must not exceet 99 characters.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the upgrade, e.g., \"1.22.1-gke.100\". It should be a valid version. It must not exceet 99 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeGKEUpgradeFeatureCondition": {
+      "description": "GKEUpgradeFeatureCondition describes the condition of the feature for GKE clusters at a certain point of time.",
+      "id": "ClusterUpgradeGKEUpgradeFeatureCondition",
+      "properties": {
+        "reason": {
+          "description": "Reason why the feature is in this status.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the condition, one of True, False, Unknown.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the condition, for example, \"ready\".",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Last timestamp the condition was updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeGKEUpgradeFeatureState": {
+      "description": "GKEUpgradeFeatureState contains feature states for GKE clusters in the scope.",
+      "id": "ClusterUpgradeGKEUpgradeFeatureState",
+      "properties": {
+        "conditions": {
+          "description": "Current conditions of the feature.",
+          "items": {
+            "$ref": "ClusterUpgradeGKEUpgradeFeatureCondition"
+          },
+          "type": "array"
+        },
+        "upgradeState": {
+          "description": "Upgrade state. It will eventually replace `state`.",
+          "items": {
+            "$ref": "ClusterUpgradeGKEUpgradeState"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeGKEUpgradeOverride": {
+      "description": "Properties of a GKE upgrade that can be overridden by the user. For example, a user can skip soaking by overriding the soaking to 0.",
+      "id": "ClusterUpgradeGKEUpgradeOverride",
+      "properties": {
+        "postConditions": {
+          "$ref": "ClusterUpgradePostConditions",
+          "description": "Required. Post conditions to override for the specified upgrade (name + version). Required."
+        },
+        "upgrade": {
+          "$ref": "ClusterUpgradeGKEUpgrade",
+          "description": "Required. Which upgrade to override. Required."
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeGKEUpgradeState": {
+      "description": "GKEUpgradeState is a GKEUpgrade and its state at the scope and fleet level.",
+      "id": "ClusterUpgradeGKEUpgradeState",
+      "properties": {
+        "stats": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Number of GKE clusters in each status code.",
+          "type": "object"
+        },
+        "status": {
+          "$ref": "ClusterUpgradeUpgradeStatus",
+          "description": "Status of the upgrade."
+        },
+        "upgrade": {
+          "$ref": "ClusterUpgradeGKEUpgrade",
+          "description": "Which upgrade to track the state."
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeIgnoredMembership": {
+      "description": "IgnoredMembership represents a membership ignored by the feature. A membership can be ignored because it was manually upgraded to a newer version than RC default.",
+      "id": "ClusterUpgradeIgnoredMembership",
+      "properties": {
+        "ignoredTime": {
+          "description": "Time when the membership was first set to ignored.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Reason why the membership is ignored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeMembershipGKEUpgradeState": {
+      "description": "ScopeGKEUpgradeState is a GKEUpgrade and its state per-membership.",
+      "id": "ClusterUpgradeMembershipGKEUpgradeState",
+      "properties": {
+        "status": {
+          "$ref": "ClusterUpgradeUpgradeStatus",
+          "description": "Status of the upgrade."
+        },
+        "upgrade": {
+          "$ref": "ClusterUpgradeGKEUpgrade",
+          "description": "Which upgrade to track the state."
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeMembershipState": {
+      "description": "Per-membership state for this feature.",
+      "id": "ClusterUpgradeMembershipState",
+      "properties": {
+        "fleet": {
+          "description": "Project number or id of the fleet. It is set only for Memberships that are part of fleet-based Rollout Sequencing.",
+          "type": "string"
+        },
+        "ignored": {
+          "$ref": "ClusterUpgradeIgnoredMembership",
+          "description": "Whether this membership is ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel."
+        },
+        "scopes": {
+          "description": "Fully qualified scope names that this clusters is bound to which also have rollout sequencing enabled.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "upgrades": {
+          "description": "Actual upgrade state against desired.",
+          "items": {
+            "$ref": "ClusterUpgradeMembershipGKEUpgradeState"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradePostConditions": {
+      "description": "Post conditional checks after an upgrade has been applied on all eligible clusters.",
+      "id": "ClusterUpgradePostConditions",
+      "properties": {
+        "soaking": {
+          "description": "Required. Amount of time to \"soak\" after a rollout has been finished before marking it COMPLETE. Cannot exceed 30 days. Required.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeUpgradeStatus": {
+      "description": "UpgradeStatus provides status information for each upgrade.",
+      "id": "ClusterUpgradeUpgradeStatus",
+      "properties": {
+        "code": {
+          "description": "Status code of the upgrade.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "INELIGIBLE",
+            "PENDING",
+            "IN_PROGRESS",
+            "SOAKING",
+            "FORCED_SOAKING",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Required by https://linter.aip.dev/126/unspecified.",
+            "The upgrade is ineligible. At the scope level, this means the upgrade is ineligible for all the clusters in the scope.",
+            "The upgrade is pending. At the scope level, this means the upgrade is pending for all the clusters in the scope.",
+            "The upgrade is in progress. At the scope level, this means the upgrade is in progress for at least one cluster in the scope.",
+            "The upgrade has finished and is soaking until the soaking time is up. At the scope level, this means at least one cluster is in soaking while the rest are either soaking or complete.",
+            "A cluster will be forced to enter soaking if an upgrade doesn't finish within a certain limit, despite it's actual status.",
+            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status."
+          ],
+          "type": "string"
+        },
+        "reason": {
+          "description": "Reason for this status.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Last timestamp the status was updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CommonFeatureSpec": {
       "description": "CommonFeatureSpec contains Hub-wide configuration information",
       "id": "CommonFeatureSpec",
@@ -2514,6 +2484,10 @@
         "appdevexperience": {
           "$ref": "AppDevExperienceFeatureSpec",
           "description": "Appdevexperience specific spec."
+        },
+        "clusterupgrade": {
+          "$ref": "ClusterUpgradeFleetSpec",
+          "description": "ClusterUpgrade (fleet-based) feature spec."
         },
         "fleetobservability": {
           "$ref": "FleetObservabilityFeatureSpec",
@@ -2533,6 +2507,10 @@
         "appdevexperience": {
           "$ref": "AppDevExperienceFeatureState",
           "description": "Appdevexperience specific state."
+        },
+        "clusterupgrade": {
+          "$ref": "ClusterUpgradeFleetState",
+          "description": "ClusterUpgrade fleet-level state."
         },
         "fleetobservability": {
           "$ref": "FleetObservabilityFeatureState",
@@ -2557,6 +2535,10 @@
         "identityservice": {
           "$ref": "IdentityServiceMembershipSpec",
           "description": "Identity Service-specific spec."
+        },
+        "mesh": {
+          "$ref": "ServiceMeshMembershipSpec",
+          "description": "Anthos Service Mesh-specific spec"
         },
         "policycontroller": {
           "$ref": "PolicyControllerMembershipSpec",
@@ -2590,13 +2572,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         }
@@ -2646,10 +2630,6 @@
         "sourceFormat": {
           "description": "Specifies whether the Config Sync Repo is in \"hierarchical\" or \"unstructured\" mode.",
           "type": "string"
-        },
-        "stopSyncing": {
-          "description": "Set to true to stop syncing configs for a single cluster when automatic Feature management is enabled. Default to false. The field will be ignored when automatic Feature management is disabled.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -2664,13 +2644,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -2680,13 +2662,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -2696,13 +2680,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -2712,13 +2698,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -2728,13 +2716,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -2744,13 +2734,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -2760,13 +2752,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         }
@@ -2878,13 +2872,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -2894,13 +2890,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -2910,13 +2908,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         }
@@ -3011,13 +3011,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3027,13 +3029,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         }
@@ -3101,20 +3105,6 @@
         "hierarchyController": {
           "$ref": "ConfigManagementHierarchyControllerConfig",
           "description": "Hierarchy Controller configuration for the cluster."
-        },
-        "management": {
-          "description": "Enables automatic Feature management.",
-          "enum": [
-            "MANAGEMENT_UNSPECIFIED",
-            "MANAGEMENT_AUTOMATIC",
-            "MANAGEMENT_MANUAL"
-          ],
-          "enumDescriptions": [
-            "Unspecified",
-            "Google will manage the Feature for the cluster.",
-            "User will manually manage the Feature for the cluster."
-          ],
-          "type": "string"
         },
         "policyController": {
           "$ref": "ConfigManagementPolicyController",
@@ -3200,13 +3190,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3450,6 +3442,21 @@
       },
       "type": "object"
     },
+    "DefaultClusterConfig": {
+      "description": "DefaultClusterConfig describes the default cluster configurations to be applied to all clusters born-in-fleet.",
+      "id": "DefaultClusterConfig",
+      "properties": {
+        "binaryAuthorizationConfig": {
+          "$ref": "BinaryAuthorizationConfig",
+          "description": "Optional. Enable/Disable binary authorization features for the cluster."
+        },
+        "securityPostureConfig": {
+          "$ref": "SecurityPostureConfig",
+          "description": "Enable/Disable Security Posture features for the cluster."
+        }
+      },
+      "type": "object"
+    },
     "EdgeCluster": {
       "description": "EdgeCluster contains information specific to Google Edge Clusters.",
       "id": "EdgeCluster",
@@ -3643,6 +3650,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "defaultClusterConfig": {
+          "$ref": "DefaultClusterConfig",
+          "description": "Optional. The default cluster configurations to apply across the fleet."
         },
         "deleteTime": {
           "description": "Output only. When the Fleet was deleted.",
@@ -4288,24 +4299,6 @@
       },
       "type": "object"
     },
-    "ListNamespacesResponse": {
-      "description": "List of fleet namespaces.",
-      "id": "ListNamespacesResponse",
-      "properties": {
-        "namespaces": {
-          "description": "The list of fleet namespaces",
-          "items": {
-            "$ref": "Namespace"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A token to request the next page of resources from the `ListNamespaces` method. The value of an empty string means that there are no more resources to return.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "ListOperationsResponse",
@@ -4318,24 +4311,6 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ListRBACRoleBindingsResponse": {
-      "description": "List of RBACRoleBindings.",
-      "id": "ListRBACRoleBindingsResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "A token to request the next page of resources from the `ListRBACRoleBindings` method. The value of an empty string means that there are no more resources to return.",
-          "type": "string"
-        },
-        "rbacrolebindings": {
-          "description": "The list of RBACRoleBindings",
-          "items": {
-            "$ref": "RBACRoleBinding"
           },
           "type": "array"
         }
@@ -4667,6 +4642,10 @@
         "appdevexperience": {
           "$ref": "AppDevExperienceFeatureState",
           "description": "Appdevexperience specific state."
+        },
+        "clusterupgrade": {
+          "$ref": "ClusterUpgradeMembershipState",
+          "description": "ClusterUpgrade state."
         },
         "configmanagement": {
           "$ref": "ConfigManagementMembershipState",
@@ -5092,6 +5071,17 @@
       },
       "type": "object"
     },
+    "PolicyBinding": {
+      "description": "Binauthz policy that applies to this cluster.",
+      "id": "PolicyBinding",
+      "properties": {
+        "name": {
+          "description": "The relative resource name of the binauthz platform policy to audit. GKE platform policies have the following format: `projects/{project_number}/platforms/gke/policies/{policy_id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PolicyControllerBundleInstallSpec": {
       "description": "BundleInstallSpec is the specification configuration for a single managed bundle.",
       "id": "PolicyControllerBundleInstallSpec",
@@ -5482,7 +5472,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
+          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/scopes/{scope}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
           "type": "string"
         },
         "role": {
@@ -5689,6 +5679,43 @@
             "The scope is being updated."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPostureConfig": {
+      "description": "SecurityPostureConfig defines the flags needed to enable/disable features for the Security Posture API.",
+      "id": "SecurityPostureConfig",
+      "properties": {
+        "mode": {
+          "description": "Sets which mode to use for Security Posture features.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "BASIC"
+          ],
+          "enumDescriptions": [
+            "Default value not specified.",
+            "Disables Security Posture features on the cluster.",
+            "Applies Security Posture features on the cluster."
+          ],
+          "type": "string"
+        },
+        "vulnerabilityMode": {
+          "description": "Sets which mode to use for vulnerability scanning.",
+          "enum": [
+            "VULNERABILITY_MODE_UNSPECIFIED",
+            "VULNERABILITY_DISABLED",
+            "VULNERABILITY_BASIC",
+            "VULNERABILITY_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Default value not specified.",
+            "Disables vulnerability scanning on the cluster.",
+            "Applies basic vulnerability scanning on the cluster.",
+            "Applies the Security Posture's vulnerability on cluster Enterprise level features."
+          ],
           "type": "string"
         }
       },
