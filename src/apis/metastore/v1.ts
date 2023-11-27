@@ -290,6 +290,15 @@ export namespace metastore_v1 {
     type?: string | null;
   }
   /**
+   * Specifies how metastore metadata should be integrated with the Data Catalog service.
+   */
+  export interface Schema$DataCatalogConfig {
+    /**
+     * Optional. Defines whether the metastore metadata should be synced to Data Catalog. The default value is to disable syncing metastore metadata to Data Catalog.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -653,6 +662,15 @@ export namespace metastore_v1 {
     updateTime?: string | null;
   }
   /**
+   * Specifies how metastore metadata should be integrated with external services.
+   */
+  export interface Schema$MetadataIntegration {
+    /**
+     * Optional. The integration config for the Data Catalog service.
+     */
+    dataCatalogConfig?: Schema$DataCatalogConfig;
+  }
+  /**
    * The metadata management activities of the metastore service.
    */
   export interface Schema$MetadataManagementActivity {
@@ -810,6 +828,10 @@ export namespace metastore_v1 {
      */
     backup?: string | null;
     /**
+     * Optional. A Cloud Storage URI specifying where the backup artifacts are stored, in the format gs:///.
+     */
+    backupLocation?: string | null;
+    /**
      * Output only. The restore details containing the revision of the service to be restored to, in format of JSON.
      */
     details?: string | null;
@@ -905,6 +927,10 @@ export namespace metastore_v1 {
      * The one hour maintenance window of the metastore service. This specifies when the service can be restarted for maintenance purposes in UTC time. Maintenance window is not needed for services with the SPANNER database type.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
+    /**
+     * Optional. The setting that defines how metastore metadata should be integrated with external services and systems.
+     */
+    metadataIntegration?: Schema$MetadataIntegration;
     /**
      * Output only. The metadata management activities of the metastore service.
      */
