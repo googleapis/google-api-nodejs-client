@@ -1198,6 +1198,10 @@ export namespace servicenetworking_v1beta {
    */
   export interface Schema$MethodSettings {
     /**
+     * List of top-level fields of the request message, that should be automatically populated by the client libraries based on their (google.api.field_info).format. Currently supported format: UUID4. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.CreateExample auto_populated_fields: - request_id
+     */
+    autoPopulatedFields?: string[] | null;
+    /**
      * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes
      */
     longRunning?: Schema$LongRunning;
@@ -1953,6 +1957,15 @@ export namespace servicenetworking_v1beta {
      * If true, the selected method should skip service control and the control plane features, such as quota and billing, will not be available. This flag is used by Google Cloud Endpoints to bypass checks for internal methods, such as service health check methods.
      */
     skipServiceControl?: boolean | null;
+  }
+  /**
+   * Response for the get VPC Service Controls request.
+   */
+  export interface Schema$VpcServiceControls {
+    /**
+     * Output only. Indicates whether the VPC Service Controls are enabled or disabled for the connection. If the consumer called the EnableVpcServiceControls method, then this is true. If the consumer called DisableVpcServiceControls, then this is false. The default is false.
+     */
+    enabled?: boolean | null;
   }
 
   export class Resource$Operations {

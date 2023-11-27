@@ -236,6 +236,10 @@ export namespace servicenetworking_v1 {
      */
     description?: string | null;
     /**
+     * Optional. The url of an Internal Range. Eg: `projects//locations/global/internalRanges/`. If specified, it means that the subnetwork cidr will be created using the combination of requested_address/ip_prefix_length. Note that the subnet cidr has to be within the cidr range of this Internal Range.
+     */
+    internalRange?: string | null;
+    /**
      * Required. The prefix length of the subnet's IP address range. Use CIDR range notation, such as `29` to provision a subnet with an `x.x.x.x/29` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer's allocated range. GCE disallows subnets with prefix_length \> 29
      */
     ipPrefixLength?: number | null;
@@ -1395,6 +1399,10 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$MethodSettings {
     /**
+     * List of top-level fields of the request message, that should be automatically populated by the client libraries based on their (google.api.field_info).format. Currently supported format: UUID4. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.CreateExample auto_populated_fields: - request_id
+     */
+    autoPopulatedFields?: string[] | null;
+    /**
      * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes
      */
     longRunning?: Schema$LongRunning;
@@ -2285,6 +2293,15 @@ export namespace servicenetworking_v1 {
      * The first validation which failed.
      */
     validationError?: string | null;
+  }
+  /**
+   * Response for the get VPC Service Controls request.
+   */
+  export interface Schema$VpcServiceControls {
+    /**
+     * Output only. Indicates whether the VPC Service Controls are enabled or disabled for the connection. If the consumer called the EnableVpcServiceControls method, then this is true. If the consumer called DisableVpcServiceControls, then this is false. The default is false.
+     */
+    enabled?: boolean | null;
   }
 
   export class Resource$Operations {
@@ -4484,6 +4501,100 @@ export namespace servicenetworking_v1 {
     }
 
     /**
+     * Consumers use this method to find out the state of VPC Service Controls. The controls could be enabled or disabled for a connection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVpcServiceControls(
+      params: Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getVpcServiceControls(
+      params?: Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VpcServiceControls>;
+    getVpcServiceControls(
+      params: Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVpcServiceControls(
+      params: Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols,
+      options: MethodOptions | BodyResponseCallback<Schema$VpcServiceControls>,
+      callback: BodyResponseCallback<Schema$VpcServiceControls>
+    ): void;
+    getVpcServiceControls(
+      params: Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols,
+      callback: BodyResponseCallback<Schema$VpcServiceControls>
+    ): void;
+    getVpcServiceControls(
+      callback: BodyResponseCallback<Schema$VpcServiceControls>
+    ): void;
+    getVpcServiceControls(
+      paramsOrCallback?:
+        | Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols
+        | BodyResponseCallback<Schema$VpcServiceControls>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VpcServiceControls>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VpcServiceControls>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VpcServiceControls>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/vpcServiceControls').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpcServiceControls>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VpcServiceControls>(parameters);
+      }
+    }
+
+    /**
      * Service producers use this method to update the configuration of their connection including the import/export of custom routes and subnetwork routes with public IP.
      *
      * @param params - Parameters for request
@@ -4583,6 +4694,13 @@ export namespace servicenetworking_v1 {
     includeUsedIpRanges?: boolean;
     /**
      * Required. Name of the consumer config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$Projects$Global$Networks$Getvpcservicecontrols
+    extends StandardParameters {
+    /**
+     * Required. Name of the VPC Service Controls config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
      */
     name?: string;
   }
