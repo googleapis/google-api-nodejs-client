@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v10.0.0...androidpublisher-v10.1.0) (2023-11-27)
+
+
+### Features
+
+* **androidpublisher:** update the API ([c553ef1](https://github.com/googleapis/google-api-nodejs-client/commit/c553ef124ce0ce889e13c9f9b0bdb907faf49137))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v9.0.0...androidpublisher-v10.0.0) (2023-10-19)
 
 

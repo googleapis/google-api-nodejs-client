@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v3.0.0...analyticsadmin-v3.1.0) (2023-11-27)
+
+
+### Features
+
+* **analyticsadmin:** update the API ([134dc22](https://github.com/googleapis/google-api-nodejs-client/commit/134dc220e7df7b27a6c0d37d2f5955c326bbb733))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+
+
+### Bug Fixes
+
+* **analyticsadmin:** update the API ([4c62556](https://github.com/googleapis/google-api-nodejs-client/commit/4c6255647b4414f352df0c2336a233a171bba10d))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v2.1.0...analyticsadmin-v3.0.0) (2023-10-11)
 
 

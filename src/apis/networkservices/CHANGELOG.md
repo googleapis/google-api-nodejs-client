@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v8.0.0...networkservices-v8.0.1) (2023-11-27)
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([029d25c](https://github.com/googleapis/google-api-nodejs-client/commit/029d25c56efe992b5c7e69607d5a128794922599))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v7.0.3...networkservices-v8.0.0) (2023-10-11)
 
 

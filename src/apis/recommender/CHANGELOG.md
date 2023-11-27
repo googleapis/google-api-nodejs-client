@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v2.0.0...recommender-v2.0.1) (2023-11-27)
+
+
+### Bug Fixes
+
+* **recommender:** update the API ([e4f8194](https://github.com/googleapis/google-api-nodejs-client/commit/e4f8194acfb8af6d0bfd30df8a991500795f6422))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v1.1.2...recommender-v2.0.0) (2023-10-19)
 
 

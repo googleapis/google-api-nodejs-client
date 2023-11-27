@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v3.0.0...notebooks-v3.1.0) (2023-11-27)
+
+
+### Features
+
+* **notebooks:** update the API ([54a6e56](https://github.com/googleapis/google-api-nodejs-client/commit/54a6e5684cf00913854db1a2ba237c44ae301d82))
+* **notebooks:** update the API ([5dedc3d](https://github.com/googleapis/google-api-nodejs-client/commit/5dedc3dc48977d795e1e3b88425b1e87723c4008))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v2.0.0...notebooks-v3.0.0) (2023-10-19)
 
 
