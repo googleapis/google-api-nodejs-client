@@ -142,15 +142,15 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1AuthorAttribution {
     /**
-     * Output only. Name of the author of the Photo or Review.
+     * Name of the author of the Photo or Review.
      */
     displayName?: string | null;
     /**
-     * Output only. Profile photo URI of the author of the Photo or Review.
+     * Profile photo URI of the author of the Photo or Review.
      */
     photoUri?: string | null;
     /**
-     * Output only. URI of the author of the Photo or Review.
+     * URI of the author of the Photo or Review.
      */
     uri?: string | null;
   }
@@ -168,6 +168,108 @@ export namespace places_v1 {
     radius?: number | null;
   }
   /**
+   * Information about the EV Charge Station hosted in Place. Terminology follows https://afdc.energy.gov/fuels/electricity_infrastructure.html One port could charge one car at a time. One port has one or more connectors. One station has one or more ports.
+   */
+  export interface Schema$GoogleMapsPlacesV1EVChargeOptions {
+    /**
+     * A list of EV charging connector aggregations that contain connectors of the same type and same charge rate.
+     */
+    connectorAggregation?: Schema$GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation[];
+    /**
+     * Number of connectors at this station. However, because some ports can have multiple connectors but only be able to charge one car at a time (e.g.) the number of connectors may be greater than the total number of cars which can charge simultaneously.
+     */
+    connectorCount?: number | null;
+  }
+  /**
+   * EV charging information grouped by [type, max_charge_rate_kw]. Shows EV charge aggregation of connectors that have the same type and max charge rate in kw.
+   */
+  export interface Schema$GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation {
+    /**
+     * The timestamp when the connector availability information in this aggregation was last updated.
+     */
+    availabilityLastUpdateTime?: string | null;
+    /**
+     * Number of connectors in this aggregation that are currently available.
+     */
+    availableCount?: number | null;
+    /**
+     * Number of connectors in this aggregation.
+     */
+    count?: number | null;
+    /**
+     * The static max charging rate in kw of each connector in the aggregation.
+     */
+    maxChargeRateKw?: number | null;
+    /**
+     * Number of connectors in this aggregation that are currently out of service.
+     */
+    outOfServiceCount?: number | null;
+    /**
+     * The connector type of this aggregation.
+     */
+    type?: string | null;
+  }
+  /**
+   * The most recent information about fuel options in a gas station. This information is updated regularly.
+   */
+  export interface Schema$GoogleMapsPlacesV1FuelOptions {
+    /**
+     * The last known fuel price for each type of fuel this station has. There is one entry per fuel type this station has. Order is not important.
+     */
+    fuelPrices?: Schema$GoogleMapsPlacesV1FuelOptionsFuelPrice[];
+  }
+  /**
+   * Fuel price information for a given type.
+   */
+  export interface Schema$GoogleMapsPlacesV1FuelOptionsFuelPrice {
+    /**
+     * The price of the fuel.
+     */
+    price?: Schema$GoogleTypeMoney;
+    /**
+     * The type of fuel.
+     */
+    type?: string | null;
+    /**
+     * The time the fuel price was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Information about a photo of a place.
+   */
+  export interface Schema$GoogleMapsPlacesV1Photo {
+    /**
+     * This photo's authors.
+     */
+    authorAttributions?: Schema$GoogleMapsPlacesV1AuthorAttribution[];
+    /**
+     * The maximum available height, in pixels.
+     */
+    heightPx?: number | null;
+    /**
+     * Identifier. A reference representing this place photo which may be used to look up this place photo again (a.k.a. the API "resource" name: places/{place_id\}/photos/{photo\}).
+     */
+    name?: string | null;
+    /**
+     * The maximum available width, in pixels.
+     */
+    widthPx?: number | null;
+  }
+  /**
+   * A photo media from Places API.
+   */
+  export interface Schema$GoogleMapsPlacesV1PhotoMedia {
+    /**
+     * The resource name of a photo media in the format: `places/place_id/photos/photo_reference/media`.
+     */
+    name?: string | null;
+    /**
+     * A short-lived uri that can be used to render the photo.
+     */
+    photoUri?: string | null;
+  }
+  /**
    * All the information representing a Place.
    */
   export interface Schema$GoogleMapsPlacesV1Place {
@@ -183,6 +285,10 @@ export namespace places_v1 {
      * The place's address in adr microformat: http://microformats.org/wiki/adr.
      */
     adrFormatAddress?: string | null;
+    /**
+     * Place allows dogs.
+     */
+    allowsDogs?: boolean | null;
     /**
      * A set of data provider that must be shown with this result.
      */
@@ -220,9 +326,29 @@ export namespace places_v1 {
      */
     editorialSummary?: Schema$GoogleTypeLocalizedText;
     /**
+     * Information of ev charging options.
+     */
+    evChargeOptions?: Schema$GoogleMapsPlacesV1EVChargeOptions;
+    /**
      * A full, human-readable address for this place.
      */
     formattedAddress?: string | null;
+    /**
+     * The most recent information about fuel options in a gas station. This information is updated regularly.
+     */
+    fuelOptions?: Schema$GoogleMapsPlacesV1FuelOptions;
+    /**
+     * Place is good for children.
+     */
+    goodForChildren?: boolean | null;
+    /**
+     * Place accommodates groups.
+     */
+    goodForGroups?: boolean | null;
+    /**
+     * Place is suitable for watching sports.
+     */
+    goodForWatchingSports?: boolean | null;
     /**
      * A URL providing more information about this place.
      */
@@ -232,7 +358,7 @@ export namespace places_v1 {
      */
     iconBackgroundColor?: string | null;
     /**
-     * A truncated URL to an v2 icon mask. User can access different icon type by appending type suffix to the end (eg, ".svg" or ".png").
+     * A truncated URL to an icon mask. User can access different icon type by appending type suffix to the end (eg, ".svg" or ".png").
      */
     iconMaskBaseUri?: string | null;
     /**
@@ -244,9 +370,17 @@ export namespace places_v1 {
      */
     internationalPhoneNumber?: string | null;
     /**
+     * Place provides live music.
+     */
+    liveMusic?: boolean | null;
+    /**
      * The position of this place.
      */
     location?: Schema$GoogleTypeLatLng;
+    /**
+     * Place has a children's menu.
+     */
+    menuForChildren?: boolean | null;
     /**
      * An ID representing this place which may be used to look up this place again (a.k.a. the API "resource" name: places/place_id).
      */
@@ -256,6 +390,22 @@ export namespace places_v1 {
      */
     nationalPhoneNumber?: string | null;
     /**
+     * Place provides outdoor seating.
+     */
+    outdoorSeating?: boolean | null;
+    /**
+     * Options of parking provided by the place.
+     */
+    parkingOptions?: Schema$GoogleMapsPlacesV1PlaceParkingOptions;
+    /**
+     * Payment options the place accepts. If a payment option data is not available, the payment option field will be unset.
+     */
+    paymentOptions?: Schema$GoogleMapsPlacesV1PlacePaymentOptions;
+    /**
+     * Information (including references) about photos of this place.
+     */
+    photos?: Schema$GoogleMapsPlacesV1Photo[];
+    /**
      * Plus code of the place location lat/long.
      */
     plusCode?: Schema$GoogleMapsPlacesV1PlacePlusCode;
@@ -263,6 +413,14 @@ export namespace places_v1 {
      * Price level of the place.
      */
     priceLevel?: string | null;
+    /**
+     * The primary type of the given result. This type must one of the Places API supported types. For example, "restaurant", "cafe", "airport", etc. A place can only have a single primary type. For the complete list of possible values, see Table A and Table B at https://developers.google.com/maps/documentation/places/web-service/place-types
+     */
+    primaryType?: string | null;
+    /**
+     * The display name of the primary type, localized to the request language if applicable. For the complete list of possible values, see Table A and Table B at https://developers.google.com/maps/documentation/places/web-service/place-types
+     */
+    primaryTypeDisplayName?: Schema$GoogleTypeLocalizedText;
     /**
      * A rating between 1.0 and 5.0, based on user reviews of this place.
      */
@@ -280,7 +438,11 @@ export namespace places_v1 {
      */
     reservable?: boolean | null;
     /**
-     * List of reviews about this place.
+     * Place has restroom.
+     */
+    restroom?: boolean | null;
+    /**
+     * List of reviews about this place, sorted by relevance.
      */
     reviews?: Schema$GoogleMapsPlacesV1Review[];
     /**
@@ -295,6 +457,18 @@ export namespace places_v1 {
      * Specifies if the place serves brunch.
      */
     servesBrunch?: boolean | null;
+    /**
+     * Place serves cocktails.
+     */
+    servesCocktails?: boolean | null;
+    /**
+     * Place serves coffee.
+     */
+    servesCoffee?: boolean | null;
+    /**
+     * Place serves dessert.
+     */
+    servesDessert?: boolean | null;
     /**
      * Specifies if the place serves dinner.
      */
@@ -312,11 +486,19 @@ export namespace places_v1 {
      */
     servesWine?: boolean | null;
     /**
+     * A short, human-readable address for this place.
+     */
+    shortFormattedAddress?: string | null;
+    /**
+     * A list of sub destinations related to the place.
+     */
+    subDestinations?: Schema$GoogleMapsPlacesV1PlaceSubDestination[];
+    /**
      * Specifies if the business supports takeout.
      */
     takeout?: boolean | null;
     /**
-     * A set of type tags for this result. For example, "political" and "locality". See: https://developers.google.com/maps/documentation/places/web-service/place-types
+     * A set of type tags for this result. For example, "political" and "locality". For the complete list of possible values, see Table A and Table B at https://developers.google.com/maps/documentation/places/web-service/place-types
      */
     types?: string[] | null;
     /**
@@ -344,6 +526,18 @@ export namespace places_v1 {
      * Places has wheelchair accessible entrance.
      */
     wheelchairAccessibleEntrance?: boolean | null;
+    /**
+     * Place offers wheelchair accessible parking.
+     */
+    wheelchairAccessibleParking?: boolean | null;
+    /**
+     * Place has wheelchair accessible restroom.
+     */
+    wheelchairAccessibleRestroom?: boolean | null;
+    /**
+     * Place has wheelchair accessible seating.
+     */
+    wheelchairAccessibleSeating?: boolean | null;
   }
   /**
    * The structured components that form the formatted address, if this information is available.
@@ -452,6 +646,60 @@ export namespace places_v1 {
     date?: Schema$GoogleTypeDate;
   }
   /**
+   * Information about parking options for the place. A parking lot could support more than one option at the same time.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceParkingOptions {
+    /**
+     * Place offers free garage parking.
+     */
+    freeGarageParking?: boolean | null;
+    /**
+     * Place offers free parking lots.
+     */
+    freeParkingLot?: boolean | null;
+    /**
+     * Place offers free street parking.
+     */
+    freeStreetParking?: boolean | null;
+    /**
+     * Place offers paid garage parking.
+     */
+    paidGarageParking?: boolean | null;
+    /**
+     * Place offers paid parking lots.
+     */
+    paidParkingLot?: boolean | null;
+    /**
+     * Place offers paid street parking.
+     */
+    paidStreetParking?: boolean | null;
+    /**
+     * Place offers valet parking.
+     */
+    valetParking?: boolean | null;
+  }
+  /**
+   * Payment options the place accepts.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlacePaymentOptions {
+    /**
+     * Place accepts cash only as payment. Places with this attribute may still accept other payment methods.
+     */
+    acceptsCashOnly?: boolean | null;
+    /**
+     * Place accepts credit cards as payment.
+     */
+    acceptsCreditCards?: boolean | null;
+    /**
+     * Place accepts debit cards as payment.
+     */
+    acceptsDebitCards?: boolean | null;
+    /**
+     * Place accepts NFC payments.
+     */
+    acceptsNfc?: boolean | null;
+  }
+  /**
    * Plus code (http://plus.codes) is a location reference with two formats: global code defining a 14mx14m (1/8000th of a degree) or smaller rectangle, and compound code, replacing the prefix with a reference location.
    */
   export interface Schema$GoogleMapsPlacesV1PlacePlusCode {
@@ -465,33 +713,109 @@ export namespace places_v1 {
     globalCode?: string | null;
   }
   /**
+   * Place resource name and id of sub destinations that relate to the place. For example, different terminals are different destinations of an airport.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceSubDestination {
+    /**
+     * The place id of the sub destination.
+     */
+    id?: string | null;
+    /**
+     * The resource name of the sub destination.
+     */
+    name?: string | null;
+  }
+  /**
    * Information about a review of a place.
    */
   export interface Schema$GoogleMapsPlacesV1Review {
     /**
-     * Output only. This review's author.
+     * This review's author.
      */
     authorAttribution?: Schema$GoogleMapsPlacesV1AuthorAttribution;
     /**
-     * Output only. The review text in its original language.
+     * A reference representing this place review which may be used to look up this place review again (also called the API "resource" name: places/place_id/reviews/review).
+     */
+    name?: string | null;
+    /**
+     * The review text in its original language.
      */
     originalText?: Schema$GoogleTypeLocalizedText;
     /**
-     * Output only. Timestamp for the review.
+     * Timestamp for the review.
      */
     publishTime?: string | null;
     /**
-     * Output only. A number between 1.0 and 5.0, a.k.a. the number of stars.
+     * A number between 1.0 and 5.0, also called the number of stars.
      */
     rating?: number | null;
     /**
-     * Output only. A string of formatted recent time, expressing the review time relative to the current time in a form appropriate for the language and country.
+     * A string of formatted recent time, expressing the review time relative to the current time in a form appropriate for the language and country.
      */
     relativePublishTimeDescription?: string | null;
     /**
-     * Output only. The localized text of the review.
+     * The localized text of the review.
      */
     text?: Schema$GoogleTypeLocalizedText;
+  }
+  /**
+   * Request proto for Search Nearby.
+   */
+  export interface Schema$GoogleMapsPlacesV1SearchNearbyRequest {
+    /**
+     * Excluded primary Place type (e.g. "restaurant" or "gas_station") from https://developers.google.com/maps/documentation/places/web-service/place-types. If there are any conflicting primary types, i.e. a type appears in both included_primary_types and excluded_primary_types, an INVALID_ARGUMENT error is returned. If a Place type is specified with multiple type restrictions, only places that satisfy all of the restrictions are returned. For example, if we have {included_types = ["restaurant"], excluded_primary_types = ["restaurant"]\}, the returned places provide "restaurant" related services but do not operate primarily as "restaurants".
+     */
+    excludedPrimaryTypes?: string[] | null;
+    /**
+     * Excluded Place type (eg, "restaurant" or "gas_station") from https://developers.google.com/maps/documentation/places/web-service/place-types. If the client provides both included_types (e.g. restaurant) and excluded_types (e.g. cafe), then the response should include places that are restaurant but not cafe. The response includes places that match at least one of the included_types and none of the excluded_types. If there are any conflicting types, i.e. a type appears in both included_types and excluded_types, an INVALID_ARGUMENT error is returned. If a Place type is specified with multiple type restrictions, only places that satisfy all of the restrictions are returned. For example, if we have {included_types = ["restaurant"], excluded_primary_types = ["restaurant"]\}, the returned places provide "restaurant" related services but do not operate primarily as "restaurants".
+     */
+    excludedTypes?: string[] | null;
+    /**
+     * Included primary Place type (e.g. "restaurant" or "gas_station") from https://developers.google.com/maps/documentation/places/web-service/place-types. A place can only have a single primary type from the supported types table associated with it. If there are any conflicting primary types, i.e. a type appears in both included_primary_types and excluded_primary_types, an INVALID_ARGUMENT error is returned. If a Place type is specified with multiple type restrictions, only places that satisfy all of the restrictions are returned. For example, if we have {included_types = ["restaurant"], excluded_primary_types = ["restaurant"]\}, the returned places provide "restaurant" related services but do not operate primarily as "restaurants".
+     */
+    includedPrimaryTypes?: string[] | null;
+    /**
+     * Included Place type (eg, "restaurant" or "gas_station") from https://developers.google.com/maps/documentation/places/web-service/place-types. If there are any conflicting types, i.e. a type appears in both included_types and excluded_types, an INVALID_ARGUMENT error is returned. If a Place type is specified with multiple type restrictions, only places that satisfy all of the restrictions are returned. For example, if we have {included_types = ["restaurant"], excluded_primary_types = ["restaurant"]\}, the returned places provide "restaurant" related services but do not operate primarily as "restaurants".
+     */
+    includedTypes?: string[] | null;
+    /**
+     * Place details will be displayed with the preferred language if available. If the language code is unspecified or unrecognized, place details of any language may be returned, with a preference for English if such details exist. Current list of supported languages: https://developers.google.com/maps/faq#languagesupport.
+     */
+    languageCode?: string | null;
+    /**
+     * Required. The region to search.
+     */
+    locationRestriction?: Schema$GoogleMapsPlacesV1SearchNearbyRequestLocationRestriction;
+    /**
+     * Maximum number of results to return. It must be between 1 and 20 (default), inclusively. If the number is unset, it falls back to the upper limit. If the number is set to negative or exceeds the upper limit, an INVALID_ARGUMENT error is returned.
+     */
+    maxResultCount?: number | null;
+    /**
+     * How results will be ranked in the response.
+     */
+    rankPreference?: string | null;
+    /**
+     * The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For more information, see https://www.unicode.org/cldr/charts/latest/supplemental/territory_language_information.html. Note that 3-digit region codes are not currently supported.
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * The region to search.
+   */
+  export interface Schema$GoogleMapsPlacesV1SearchNearbyRequestLocationRestriction {
+    /**
+     * A circle defined by center point and radius.
+     */
+    circle?: Schema$GoogleMapsPlacesV1Circle;
+  }
+  /**
+   * Response proto for Search Nearby.
+   */
+  export interface Schema$GoogleMapsPlacesV1SearchNearbyResponse {
+    /**
+     * A list of places that meets user's requirements like places types, number of places and specific location restriction.
+     */
+    places?: Schema$GoogleMapsPlacesV1Place[];
   }
   /**
    * Request proto for SearchText.
@@ -514,15 +838,15 @@ export namespace places_v1 {
      */
     locationRestriction?: Schema$GoogleMapsPlacesV1SearchTextRequestLocationRestriction;
     /**
-     * Maximum number of results to return. It must be between 1 and 20, inclusively. If the number is unset, it falls back to the upper limit. If the number is set to negative or exceeds the upper limit, an INVALID_ARGUMENT error is returned.
+     * Maximum number of results to return. It must be between 1 and 20, inclusively. The default is 20. If the number is unset, it falls back to the upper limit. If the number is set to negative or exceeds the upper limit, an INVALID_ARGUMENT error is returned.
      */
     maxResultCount?: number | null;
     /**
-     * Filter out results whose average user rating is strictly less than this limit. A valid value must be an float between 0 and 5 (inclusively) at a 0.5 cadence i.e. [0, 0.5, 1.0, ... , 5.0] inclusively. This is to keep parity with LocalRefinement_UserRating. The input rating will round up to the nearest 0.5(ceiling). For instance, a rating of 0.6 will eliminate all results with a less than 1.0 rating.
+     * Filter out results whose average user rating is strictly less than this limit. A valid value must be a float between 0 and 5 (inclusively) at a 0.5 cadence i.e. [0, 0.5, 1.0, ... , 5.0] inclusively. The input rating will round up to the nearest 0.5(ceiling). For instance, a rating of 0.6 will eliminate all results with a less than 1.0 rating.
      */
     minRating?: number | null;
     /**
-     * Used to restrict the search to places that are currently open.
+     * Used to restrict the search to places that are currently open. The default is false.
      */
     openNow?: boolean | null;
     /**
@@ -534,7 +858,7 @@ export namespace places_v1 {
      */
     rankPreference?: string | null;
     /**
-     * The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag. Note that 3-digit region codes are not currently supported.
+     * The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For more information, see https://www.unicode.org/cldr/charts/latest/supplemental/territory_language_information.html. Note that 3-digit region codes are not currently supported.
      */
     regionCode?: string | null;
     /**
@@ -555,7 +879,7 @@ export namespace places_v1 {
      */
     circle?: Schema$GoogleMapsPlacesV1Circle;
     /**
-     * A rectangle box defined by northeast and southwest corner.
+     * A rectangle box defined by northeast and southwest corner. `rectangle.high()` must be the northeast point of the rectangle viewport. `rectangle.low()` must be the southwest point of the rectangle viewport.
      */
     rectangle?: Schema$GoogleGeoTypeViewport;
   }
@@ -564,7 +888,7 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1SearchTextRequestLocationRestriction {
     /**
-     * A rectangle box defined by northeast and southwest corner.
+     * A rectangle box defined by northeast and southwest corner. `rectangle.high()` must be the northeast point of the rectangle viewport. `rectangle.low()` must be the southwest point of the rectangle viewport.
      */
     rectangle?: Schema$GoogleGeoTypeViewport;
   }
@@ -620,11 +944,214 @@ export namespace places_v1 {
      */
     text?: string | null;
   }
+  /**
+   * Represents an amount of money with its currency type.
+   */
+  export interface Schema$GoogleTypeMoney {
+    /**
+     * The three-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     */
+    nanos?: number | null;
+    /**
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+     */
+    units?: string | null;
+  }
 
   export class Resource$Places {
     context: APIRequestContext;
+    photos: Resource$Places$Photos;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.photos = new Resource$Places$Photos(this.context);
+    }
+
+    /**
+     * Get place details with a place id (in a name) string.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Places$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Places$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleMapsPlacesV1Place>;
+    get(
+      params: Params$Resource$Places$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Places$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>
+    ): void;
+    get(
+      params: Params$Resource$Places$Get,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Places$Get
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleMapsPlacesV1Place>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Places$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Places$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://places.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleMapsPlacesV1Place>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleMapsPlacesV1Place>(parameters);
+      }
+    }
+
+    /**
+     * Search for places near locations.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchNearby(
+      params: Params$Resource$Places$Searchnearby,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchNearby(
+      params?: Params$Resource$Places$Searchnearby,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleMapsPlacesV1SearchNearbyResponse>;
+    searchNearby(
+      params: Params$Resource$Places$Searchnearby,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchNearby(
+      params: Params$Resource$Places$Searchnearby,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchNearbyResponse>,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+    ): void;
+    searchNearby(
+      params: Params$Resource$Places$Searchnearby,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+    ): void;
+    searchNearby(
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+    ): void;
+    searchNearby(
+      paramsOrCallback?:
+        | Params$Resource$Places$Searchnearby
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Places$Searchnearby;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Places$Searchnearby;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://places.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/places:searchNearby').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleMapsPlacesV1SearchNearbyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleMapsPlacesV1SearchNearbyResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -724,11 +1251,152 @@ export namespace places_v1 {
     }
   }
 
+  export interface Params$Resource$Places$Get extends StandardParameters {
+    /**
+     * Optional. Place details will be displayed with the preferred language if available. Current list of supported languages: https://developers.google.com/maps/faq#languagesupport.
+     */
+    languageCode?: string;
+    /**
+     * Required. A place ID returned in a Place (with "places/" prefix), or equivalently the name in the same Place. Format: places/xplace_id*.
+     */
+    name?: string;
+    /**
+     * Optional. The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For more information, see https://www.unicode.org/cldr/charts/latest/supplemental/territory_language_information.html. Note that 3-digit region codes are not currently supported.
+     */
+    regionCode?: string;
+  }
+  export interface Params$Resource$Places$Searchnearby
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleMapsPlacesV1SearchNearbyRequest;
+  }
   export interface Params$Resource$Places$Searchtext
     extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleMapsPlacesV1SearchTextRequest;
+  }
+
+  export class Resource$Places$Photos {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a photo media with a photo reference string.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getMedia(
+      params: Params$Resource$Places$Photos$Getmedia,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMedia(
+      params?: Params$Resource$Places$Photos$Getmedia,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleMapsPlacesV1PhotoMedia>;
+    getMedia(
+      params: Params$Resource$Places$Photos$Getmedia,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getMedia(
+      params: Params$Resource$Places$Photos$Getmedia,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1PhotoMedia>,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1PhotoMedia>
+    ): void;
+    getMedia(
+      params: Params$Resource$Places$Photos$Getmedia,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1PhotoMedia>
+    ): void;
+    getMedia(
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1PhotoMedia>
+    ): void;
+    getMedia(
+      paramsOrCallback?:
+        | Params$Resource$Places$Photos$Getmedia
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1PhotoMedia>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1PhotoMedia>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1PhotoMedia>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleMapsPlacesV1PhotoMedia>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Places$Photos$Getmedia;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Places$Photos$Getmedia;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://places.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleMapsPlacesV1PhotoMedia>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleMapsPlacesV1PhotoMedia>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Places$Photos$Getmedia
+    extends StandardParameters {
+    /**
+     * Optional. Specifies the maximum desired height, in pixels, of the image. If the image is smaller than the values specified, the original image will be returned. If the image is larger in either dimension, it will be scaled to match the smaller of the two dimensions, restricted to its original aspect ratio. Both the max_height_px and max_width_px properties accept an integer between 1 and 4800, inclusively. If the value is not within the allowed range, an INVALID_ARGUMENT error will be returned. At least one of max_height_px or max_width_px needs to be specified. If neither max_height_px nor max_width_px is specified, an INVALID_ARGUMENT error will be returned.
+     */
+    maxHeightPx?: number;
+    /**
+     * Optional. Specifies the maximum desired width, in pixels, of the image. If the image is smaller than the values specified, the original image will be returned. If the image is larger in either dimension, it will be scaled to match the smaller of the two dimensions, restricted to its original aspect ratio. Both the max_height_px and max_width_px properties accept an integer between 1 and 4800, inclusively. If the value is not within the allowed range, an INVALID_ARGUMENT error will be returned. At least one of max_height_px or max_width_px needs to be specified. If neither max_height_px nor max_width_px is specified, an INVALID_ARGUMENT error will be returned.
+     */
+    maxWidthPx?: number;
+    /**
+     * Required. The resource name of a photo media in the format: `"places/place_id/photos/photo_reference/media"`. The resource name of a photo as returned in a Place object's `photos.name` field comes with the format `"places/place_id/photos/photo_reference"`. You need to append `"/media"` at the end of the photo resource to get the photo media resource name.
+     */
+    name?: string;
+    /**
+     * Optional. If set, skip the default HTTP redirect behavior and render a text format (for example, in JSON format for HTTP use case) response. If not set, an HTTP redirect will be issued to redirect the call to the image media. This option is ignored for non-HTTP requests.
+     */
+    skipHttpRedirect?: boolean;
   }
 }
