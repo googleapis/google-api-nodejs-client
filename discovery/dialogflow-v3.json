@@ -2852,6 +2852,35 @@
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
+                    },
+                    "submitAnswerFeedback": {
+                      "description": "Updates the feedback received from the user for a single turn of the bot response.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/sessions/{sessionsId}:submitAnswerFeedback",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.sessions.submitAnswerFeedback",
+                      "parameterOrder": [
+                        "session"
+                      ],
+                      "parameters": {
+                        "session": {
+                          "description": "Required. The name of the session the feedback was sent to.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/sessions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+session}:submitAnswerFeedback",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3SubmitAnswerFeedbackRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3AnswerFeedback"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
                     }
                   },
                   "resources": {
@@ -4126,7 +4155,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20231109",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4190,6 +4219,10 @@
         "advancedSettings": {
           "$ref": "GoogleCloudDialogflowCxV3AdvancedSettings",
           "description": "Hierarchical advanced settings for this agent. The settings exposed at the lower level overrides the settings exposed at the higher level."
+        },
+        "answerFeedbackSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3AgentAnswerFeedbackSettings",
+          "description": "Optional. Answer feedback collection settings."
         },
         "avatarUri": {
           "description": "The URI of the agent's avatar. Avatars are used throughout the Dialogflow console and in the self-hosted [Web Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo) integration.",
@@ -4258,6 +4291,17 @@
         "timeZone": {
           "description": "Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3AgentAnswerFeedbackSettings": {
+      "description": "Settings for answer feedback collection.",
+      "id": "GoogleCloudDialogflowCxV3AgentAnswerFeedbackSettings",
+      "properties": {
+        "enableAnswerFeedback": {
+          "description": "Optional. If enabled, end users will be able to provide answer feedback to Dialogflow responses. Feature works only if interaction logging is enabled in the Dialogflow agent.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4332,6 +4376,53 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3AnswerFeedback": {
+      "description": "Stores information about feedback provided by users about a response.",
+      "id": "GoogleCloudDialogflowCxV3AnswerFeedback",
+      "properties": {
+        "customRating": {
+          "description": "Optional. Custom rating from the user about the provided answer, with maximum length of 1024 characters. For example, client could use a customized JSON object to indicate the rating.",
+          "type": "string"
+        },
+        "rating": {
+          "description": "Optional. Rating from user for the specific Dialogflow response.",
+          "enum": [
+            "RATING_UNSPECIFIED",
+            "THUMBS_UP",
+            "THUMBS_DOWN"
+          ],
+          "enumDescriptions": [
+            "Rating not specified.",
+            "Thumbs up feedback from user.",
+            "Thumbs down feedback from user."
+          ],
+          "type": "string"
+        },
+        "ratingReason": {
+          "$ref": "GoogleCloudDialogflowCxV3AnswerFeedbackRatingReason",
+          "description": "Optional. In case of thumbs down rating provided, users can optionally provide context about the rating."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3AnswerFeedbackRatingReason": {
+      "description": "Stores extra information about why users provided thumbs down rating.",
+      "id": "GoogleCloudDialogflowCxV3AnswerFeedbackRatingReason",
+      "properties": {
+        "feedback": {
+          "description": "Optional. Additional feedback about the rating. This field can be populated without choosing a predefined `reason`.",
+          "type": "string"
+        },
+        "reasonLabels": {
+          "description": "Optional. Custom reason labels for thumbs down rating provided by the user. The maximum number of labels allowed is 10 and the maximum length of a single label is 128 characters.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3AudioInput": {
       "description": "Represents the natural speech audio to be processed.",
       "id": "GoogleCloudDialogflowCxV3AudioInput",
@@ -4344,6 +4435,23 @@
         "config": {
           "$ref": "GoogleCloudDialogflowCxV3InputAudioConfig",
           "description": "Required. Instructs the speech recognizer how to process the speech audio."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3BargeInConfig": {
+      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length fromt the the start of the input audio. The flow goes like below: --> Time without speech detection | utterance only | utterance or no-speech event | | +-------------+ | +------------+ | +---------------+ ----------+ no barge-in +-|-+ barge-in +-|-+ normal period +----------- +-------------+ | +------------+ | +---------------+ No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
+      "id": "GoogleCloudDialogflowCxV3BargeInConfig",
+      "properties": {
+        "noBargeInDuration": {
+          "description": "Duration that is not eligible for barge-in at the beginning of the input audio.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "totalDuration": {
+          "description": "Total duration for the playback at the beginning of the input audio.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4402,6 +4510,57 @@
           "description": "The test case results. The detailed conversation turns are empty in this response.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3TestCaseResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3BoostSpec": {
+      "description": "Boost specification to boost certain documents. A copy of google.cloud.discoveryengine.v1main.BoostSpec, field documentation is available at https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/BoostSpec",
+      "id": "GoogleCloudDialogflowCxV3BoostSpec",
+      "properties": {
+        "conditionBoostSpecs": {
+          "description": "Optional. Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpec": {
+      "description": "Boost applies to documents which match a condition.",
+      "id": "GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpec",
+      "properties": {
+        "boost": {
+          "description": "Optional. Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.",
+          "format": "float",
+          "type": "number"
+        },
+        "condition": {
+          "description": "Optional. An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. Examples: * To boost documents with document ID \"doc_1\" or \"doc_2\", and color \"Red\" or \"Blue\": * (id: ANY(\"doc_1\", \"doc_2\")) AND (color: ANY(\"Red\",\"Blue\"))",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3BoostSpecs": {
+      "description": "Boost specifications for data stores.",
+      "id": "GoogleCloudDialogflowCxV3BoostSpecs",
+      "properties": {
+        "dataStores": {
+          "description": "Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}` `projects/{project}/locations/{location}/dataStores/{data_store}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "spec": {
+          "description": "Optional. A list of boosting specifications.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3BoostSpec"
           },
           "type": "array"
         }
@@ -5544,6 +5703,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3FilterSpecs": {
+      "description": "Filter specifications for data stores.",
+      "id": "GoogleCloudDialogflowCxV3FilterSpecs",
+      "properties": {
+        "dataStores": {
+          "description": "Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}` `projects/{project}/locations/{location}/dataStores/{data_store}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "description": "Optional. The filter expression to be applied. Expression syntax is documented at https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata#filter-expression-syntax",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3Flow": {
       "description": "Flows represents the conversation flows when you build your chatbot agent. A flow consists of many pages connected by the transition routes. Conversations always start with the built-in Start Flow (with an all-0 ID). Transition routes can direct the conversation session from the current flow (parent flow) to another flow (sub flow). When the sub flow is finished, Dialogflow will bring the session back to the parent flow, where the sub flow is started. Usually, when a transition route is followed by a matched intent, the intent will be \"consumed\". This means the intent won't activate more transition routes. However, when the followed transition route moves the conversation session into a different flow, the matched intent can be carried over and to be consumed in the target flow.",
       "id": "GoogleCloudDialogflowCxV3Flow",
@@ -6253,6 +6430,10 @@
             "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000."
           ],
           "type": "string"
+        },
+        "bargeInConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3BargeInConfig",
+          "description": "Configuration of barge-in behavior during the streaming of input audio."
         },
         "enableWordInfo": {
           "description": "Optional. If `true`, Dialogflow returns SpeechWordInfo in StreamingRecognitionResult with information about the recognized speech words, e.g. start and end time offsets. If false or unspecified, Speech doesn't return any word-level information.",
@@ -7210,6 +7391,10 @@
           "description": "This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: ``` { \"telephony\": { \"caller_id\": \"+18558363987\" } } ```",
           "type": "object"
         },
+        "searchConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3SearchConfig",
+          "description": "Optional. Search configuration for UCS search queries."
+        },
         "sessionEntityTypes": {
           "description": "Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session of this query.",
           "items": {
@@ -7243,6 +7428,10 @@
         "advancedSettings": {
           "$ref": "GoogleCloudDialogflowCxV3AdvancedSettings",
           "description": "Returns the current advanced settings including IVR settings. Even though the operations configured by these settings are performed by Dialogflow, the client may need to perform special logic at the moment. For example, if Dialogflow exports audio to Google Cloud Storage, then the client may need to wait for the resulting object to appear in the bucket before proceeding."
+        },
+        "allowAnswerFeedback": {
+          "description": "Indicates whether the Thumbs up/Thumbs down rating controls are need to be shown for the response in the Dialogflow Messenger widget.",
+          "type": "boolean"
         },
         "currentPage": {
           "$ref": "GoogleCloudDialogflowCxV3Page",
@@ -7774,6 +7963,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3SearchConfig": {
+      "description": "Search configuration for UCS search queries.",
+      "id": "GoogleCloudDialogflowCxV3SearchConfig",
+      "properties": {
+        "boostSpecs": {
+          "description": "Optional. Boosting configuration for the datastores.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3BoostSpecs"
+          },
+          "type": "array"
+        },
+        "filterSpecs": {
+          "description": "Optional. Filter configuration for the datastores.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3FilterSpecs"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3SecuritySettings": {
       "description": "Represents the settings related to security issues, such as data redaction and data retention. It may take hours for updates on the settings to propagate to all the related components and take effect.",
       "id": "GoogleCloudDialogflowCxV3SecuritySettings",
@@ -7995,6 +8205,26 @@
       "description": "The request message for Experiments.StopExperiment.",
       "id": "GoogleCloudDialogflowCxV3StopExperimentRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3SubmitAnswerFeedbackRequest": {
+      "description": "The request to set the feedback for a bot answer.",
+      "id": "GoogleCloudDialogflowCxV3SubmitAnswerFeedbackRequest",
+      "properties": {
+        "answerFeedback": {
+          "$ref": "GoogleCloudDialogflowCxV3AnswerFeedback",
+          "description": "Required. Feedback provided for a bot answer."
+        },
+        "responseId": {
+          "description": "Required. ID of the response to update its feedback. This is the same as DetectIntentResponse.response_id.",
+          "type": "string"
+        },
+        "updateMask": {
+          "description": "Optional. The mask to control which fields to update. If the mask is not present, all fields will be updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3SynthesizeSpeechConfig": {
@@ -9125,6 +9355,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1BargeInConfig": {
+      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length fromt the the start of the input audio. The flow goes like below: --> Time without speech detection | utterance only | utterance or no-speech event | | +-------------+ | +------------+ | +---------------+ ----------+ no barge-in +-|-+ barge-in +-|-+ normal period +----------- +-------------+ | +------------+ | +---------------+ No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
+      "id": "GoogleCloudDialogflowCxV3beta1BargeInConfig",
+      "properties": {
+        "noBargeInDuration": {
+          "description": "Duration that is not eligible for barge-in at the beginning of the input audio.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "totalDuration": {
+          "description": "Total duration for the playback at the beginning of the input audio.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1BatchRunTestCasesMetadata": {
       "description": "Metadata returned for the TestCases.BatchRunTestCases long running operation.",
       "id": "GoogleCloudDialogflowCxV3beta1BatchRunTestCasesMetadata",
@@ -9967,6 +10214,10 @@
             "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000."
           ],
           "type": "string"
+        },
+        "bargeInConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1BargeInConfig",
+          "description": "Configuration of barge-in behavior during the streaming of input audio."
         },
         "enableWordInfo": {
           "description": "Optional. If `true`, Dialogflow returns SpeechWordInfo in StreamingRecognitionResult with information about the recognized speech words, e.g. start and end time offsets. If false or unspecified, Speech doesn't return any word-level information.",
@@ -11635,6 +11886,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2EncryptionSpec": {
+      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
+      "id": "GoogleCloudDialogflowV2EncryptionSpec",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2EntityType": {
       "description": "Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2EntityType",
@@ -11874,6 +12140,29 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata": {
+      "description": "Metadata for initializing a location-level encryption specification.",
+      "id": "GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata",
+      "properties": {
+        "request": {
+          "$ref": "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest",
+          "description": "Output only. The original request for initialization.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest": {
+      "description": "The request to initialize a location-level encryption specification.",
+      "id": "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest",
+      "properties": {
+        "encryptionSpec": {
+          "$ref": "GoogleCloudDialogflowV2EncryptionSpec",
+          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
         }
       },
       "type": "object"
@@ -13577,6 +13866,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1EncryptionSpec": {
+      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
+      "id": "GoogleCloudDialogflowV2beta1EncryptionSpec",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1EntityType": {
       "description": "Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2beta1EntityType",
@@ -13777,6 +14081,29 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata": {
+      "description": "Metadata for initializing a location-level encryption specification.",
+      "id": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata",
+      "properties": {
+        "request": {
+          "$ref": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest",
+          "description": "Output only. The original request for initialization.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest": {
+      "description": "The request to initialize a location-level encryption specification.",
+      "id": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest",
+      "properties": {
+        "encryptionSpec": {
+          "$ref": "GoogleCloudDialogflowV2beta1EncryptionSpec",
+          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
         }
       },
       "type": "object"
