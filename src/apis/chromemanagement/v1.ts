@@ -1177,6 +1177,19 @@ export namespace chromemanagement_v1 {
     systemRamFreeBytes?: string | null;
   }
   /**
+   * Network bandwidth report. * Granular permission needed: TELEMETRY_API_NETWORK_REPORT
+   */
+  export interface Schema$GoogleChromeManagementV1NetworkBandwidthReport {
+    /**
+     * Output only. Download speed in kilobits per second.
+     */
+    downloadSpeedKbps?: string | null;
+    /**
+     * Output only. Timestamp of when the report was collected.
+     */
+    reportTime?: string | null;
+  }
+  /**
    * Details about the network device. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportNetworkDeviceConfiguration](https://chromeenterprise.google/policies/#ReportNetworkDeviceConfiguration) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1NetworkDevice {
@@ -1532,6 +1545,10 @@ export namespace chromemanagement_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Network bandwidth reports collected periodically sorted in a decreasing order of report_time.
+     */
+    networkBandwidthReport?: Schema$GoogleChromeManagementV1NetworkBandwidthReport[];
+    /**
      * Output only. Network diagnostics collected periodically.
      */
     networkDiagnosticsReport?: Schema$GoogleChromeManagementV1NetworkDiagnosticsReport[];
@@ -1782,6 +1799,10 @@ export namespace chromemanagement_v1 {
      * The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.
      */
     deviceId?: string | null;
+    /**
+     * Output only. Network bandwidth reports collected periodically sorted in a decreasing order of report_time.
+     */
+    networkBandwidthReport?: Schema$GoogleChromeManagementV1NetworkBandwidthReport[];
     /**
      * Output only. Peripherals reports collected periodically sorted in a decreasing order of report_time.
      */
