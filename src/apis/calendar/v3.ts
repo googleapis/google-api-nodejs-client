@@ -667,6 +667,10 @@ export namespace calendar_v3 {
       shared?: {[key: string]: string};
     } | null;
     /**
+     * Focus Time event data.
+     */
+    focusTimeProperties?: Schema$EventFocusTimeProperties;
+    /**
      * A gadget that extends this event. Gadgets are deprecated; this structure is instead only used for returning birthday calendar metadata.
      */
     gadget?: {
@@ -738,6 +742,10 @@ export namespace calendar_v3 {
      * For an instance of a recurring event, this is the time at which this event would start according to the recurrence data in the recurring event identified by recurringEventId. It uniquely identifies the instance within the recurring event series even if the instance was moved to a different time. Immutable.
      */
     originalStartTime?: Schema$EventDateTime;
+    /**
+     * Out of office event data.
+     */
+    outOfOfficeProperties?: Schema$EventOutOfOfficeProperties;
     /**
      * If set to True, Event propagation is disabled. Note that it is not the same thing as Private event properties. Optional. Immutable. The default is False.
      */
@@ -894,6 +902,30 @@ export namespace calendar_v3 {
      * The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. "Europe/Zurich".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end.
      */
     timeZone?: string | null;
+  }
+  export interface Schema$EventFocusTimeProperties {
+    /**
+     * Whether to decline meeting invitations which overlap Focus Time events. Valid values are declineNone, meaning that no meeting invitations are declined; declineAllConflictingInvitations, meaning that all conflicting meeting invitations that conflict with the event are declined; and declineOnlyNewConflictingInvitations, meaning that only new conflicting meeting invitations which arrive while the Focus Time event is present are to be declined.
+     */
+    autoDeclineMode?: string | null;
+    /**
+     * The status to mark the user in Chat and related products. This can be available or doNotDisturb.
+     */
+    chatStatus?: string | null;
+    /**
+     * Response message to set if an existing event or new invitation is automatically declined by Calendar.
+     */
+    declineMessage?: string | null;
+  }
+  export interface Schema$EventOutOfOfficeProperties {
+    /**
+     * Whether to decline meeting invitations which overlap Out of office events. Valid values are declineNone, meaning that no meeting invitations are declined; declineAllConflictingInvitations, meaning that all conflicting meeting invitations that conflict with the event are declined; and declineOnlyNewConflictingInvitations, meaning that only new conflicting meeting invitations which arrive while the Out of office event is present are to be declined.
+     */
+    autoDeclineMode?: string | null;
+    /**
+     * Response message to set if an existing event or new invitation is automatically declined by Calendar.
+     */
+    declineMessage?: string | null;
   }
   export interface Schema$EventReminder {
     /**
@@ -3864,7 +3896,7 @@ export namespace calendar_v3 {
     }
 
     /**
-     * Moves an event to another calendar, i.e. changes an event's organizer.
+     * Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; outOfOffice, focusTime and workingLocation events cannot be moved.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4476,7 +4508,18 @@ export namespace calendar_v3 {
      */
     privateExtendedProperty?: string[];
     /**
-     * Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
+     * Free text search terms to find events that match these terms in the following fields:
+     *
+     * - summary
+     * - description
+     * - location
+     * - attendee's displayName
+     * - attendee's email
+     * - workingLocationProperties.officeLocation.buildingId
+     * - workingLocationProperties.officeLocation.deskId
+     * - workingLocationProperties.officeLocation.label
+     * - workingLocationProperties.customLocation.label
+     * These search terms also match predefined keywords against all display title translations of working location, out-of-office, and focus-time events. For example, searching for "Office" or "Bureau" returns working location events of type officeLocation, whereas searching for "Out of office" or "Abwesend" returns out-of-office events. Optional.
      */
     q?: string;
     /**
@@ -4701,7 +4744,18 @@ export namespace calendar_v3 {
      */
     privateExtendedProperty?: string[];
     /**
-     * Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
+     * Free text search terms to find events that match these terms in the following fields:
+     *
+     * - summary
+     * - description
+     * - location
+     * - attendee's displayName
+     * - attendee's email
+     * - workingLocationProperties.officeLocation.buildingId
+     * - workingLocationProperties.officeLocation.deskId
+     * - workingLocationProperties.officeLocation.label
+     * - workingLocationProperties.customLocation.label
+     * These search terms also match predefined keywords against all display title translations of working location, out-of-office, and focus-time events. For example, searching for "Office" or "Bureau" returns working location events of type officeLocation, whereas searching for "Out of office" or "Abwesend" returns out-of-office events. Optional.
      */
     q?: string;
     /**
