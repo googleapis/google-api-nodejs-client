@@ -247,7 +247,7 @@ export namespace dlp_v2 {
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
   /**
-   * Target used to match against for Discovery with BigQuery tables
+   * Target used to match against for discovery with BigQuery tables
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryDiscoveryTarget {
     /**
@@ -263,7 +263,7 @@ export namespace dlp_v2 {
      */
     disabled?: Schema$GooglePrivacyDlpV2Disabled;
     /**
-     * Required. The tables the Discovery cadence applies to. The first target with a matching filter will be the one to apply to a table.
+     * Required. The tables the discovery cadence applies to. The first target with a matching filter will be the one to apply to a table.
      */
     filter?: Schema$GooglePrivacyDlpV2DiscoveryBigQueryFilter;
   }
@@ -376,11 +376,11 @@ export namespace dlp_v2 {
     includeRegexes?: Schema$GooglePrivacyDlpV2BigQueryRegexes;
   }
   /**
-   * The types of bigquery tables supported by Cloud DLP.
+   * The types of BigQuery tables supported by Cloud DLP.
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryTableTypes {
     /**
-     * A set of bigquery table types.
+     * A set of BigQuery table types.
      */
     types?: string[] | null;
   }
@@ -652,7 +652,7 @@ export namespace dlp_v2 {
      */
     name?: string | null;
     /**
-     * Other types found within this column. List will be un-ordered.
+     * Other types found within this column. List will be unordered.
      */
     otherMatches?: Schema$GooglePrivacyDlpV2OtherInfoTypeSummary[];
     /**
@@ -676,7 +676,7 @@ export namespace dlp_v2 {
      */
     state?: string | null;
     /**
-     * The resource name to the table data profile.
+     * The resource name of the table data profile.
      */
     tableDataProfile?: string | null;
     /**
@@ -816,7 +816,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CreateDiscoveryConfigRequest {
     /**
-     * The config id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
+     * The config ID can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
      */
     configId?: string | null;
     /**
@@ -997,7 +997,7 @@ export namespace dlp_v2 {
      */
     regex?: Schema$GooglePrivacyDlpV2Regex;
     /**
-     * Sensitivity for this CustomInfoType. If this CustomInfoType extends an existing InfoType, the sensitivity here will take precedent over that of the original InfoType. If unset for a CustomInfoType, it will default to HIGH. This only applies to data profiling.
+     * Sensitivity for this CustomInfoType. If this CustomInfoType extends an existing InfoType, the sensitivity here will take precedence over that of the original InfoType. If unset for a CustomInfoType, it will default to HIGH. This only applies to data profiling.
      */
     sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
     /**
@@ -1023,7 +1023,7 @@ export namespace dlp_v2 {
     pubSubNotification?: Schema$GooglePrivacyDlpV2PubSubNotification;
   }
   /**
-   * The schema of data to be saved to the BigQuery when the `DataProfileAction` is enabled.
+   * The schema of data to be saved to the BigQuery table when the `DataProfileAction` is enabled.
    */
   export interface Schema$GooglePrivacyDlpV2DataProfileBigQueryRowSchema {
     /**
@@ -1040,7 +1040,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DataProfileConfigSnapshot {
     /**
-     * A copy of the configuration used to generate this profile.
+     * A copy of the configuration used to generate this profile. This is deprecated and will be replaced by DiscoveryConfig. DataProfileJobConfig will still be written here for Discovery in BigQuery for backwards compatibility, but will not be updated with new fields, while DiscoveryConfig will.
      */
     dataProfileJob?: Schema$GooglePrivacyDlpV2DataProfileJobConfig;
     /**
@@ -1057,7 +1057,7 @@ export namespace dlp_v2 {
      */
     dataProfileActions?: Schema$GooglePrivacyDlpV2DataProfileAction[];
     /**
-     * Detection logic for profile generation. Not all template features are used by profiles. FindingLimits, include_quote and exclude_info_types have no impact on data profiling. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://cloud.google.com/dlp/docs/data-profiles#data_residency.
+     * Detection logic for profile generation. Not all template features are used by profiles. FindingLimits, include_quote and exclude_info_types have no impact on data profiling. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://cloud.google.com/dlp/docs/data-profiles#data-residency.
      */
     inspectTemplates?: string[] | null;
     /**
@@ -1407,11 +1407,11 @@ export namespace dlp_v2 {
     wordList?: Schema$GooglePrivacyDlpV2WordList;
   }
   /**
-   * Do nothing.
+   * Do not profile the tables.
    */
   export interface Schema$GooglePrivacyDlpV2Disabled {}
   /**
-   * Requirements that must be true before a table is scanned in Discovery for the first time. There is an AND relationship between the top-level attributes.
+   * Requirements that must be true before a table is scanned in discovery for the first time. There is an AND relationship between the top-level attributes. Additionally, minimum conditions with an OR relationship that must be met before Cloud DLP scans a table can be set (like a minimum row count or a minimum table age).
    */
   export interface Schema$GooglePrivacyDlpV2DiscoveryBigQueryConditions {
     /**
@@ -1423,16 +1423,16 @@ export namespace dlp_v2 {
      */
     orConditions?: Schema$GooglePrivacyDlpV2OrConditions;
     /**
-     * Restrict Discovery to categories of table types.
+     * Restrict discovery to categories of table types.
      */
     typeCollection?: string | null;
     /**
-     * Restrict Discovery to specific table types.
+     * Restrict discovery to specific table types.
      */
     types?: Schema$GooglePrivacyDlpV2BigQueryTableTypes;
   }
   /**
-   * Determines what tables will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID, dataset ID, and table ID. Also lets you set minimum conditions that must be met before Cloud DLP scans a table (like a minimum row count or a minimum table age).
+   * Determines what tables will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID, dataset ID, and table ID.
    */
   export interface Schema$GooglePrivacyDlpV2DiscoveryBigQueryFilter {
     /**
@@ -1445,7 +1445,7 @@ export namespace dlp_v2 {
     tables?: Schema$GooglePrivacyDlpV2BigQueryTableCollection;
   }
   /**
-   * Configuration for Discovery to scan resources for profile generation. Only one Discovery configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/dlp/docs/data-profiles#retention).
+   * Configuration for discovery to scan resources for profile generation. Only one discovery configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/dlp/docs/data-profiles#retention).
    */
   export interface Schema$GooglePrivacyDlpV2DiscoveryConfig {
     /**
@@ -1465,7 +1465,7 @@ export namespace dlp_v2 {
      */
     errors?: Schema$GooglePrivacyDlpV2Error[];
     /**
-     * Detection logic for profile generation. Not all template features are used by Discovery. FindingLimits, include_quote and exclude_info_types have no impact on Discovery. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://cloud.google.com/dlp/docs/data-profiles#data_residency.
+     * Detection logic for profile generation. Not all template features are used by Discovery. FindingLimits, include_quote and exclude_info_types have no impact on Discovery. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://cloud.google.com/dlp/docs/data-profiles#data-residency.
      */
     inspectTemplates?: string[] | null;
     /**
@@ -1520,7 +1520,7 @@ export namespace dlp_v2 {
     types?: string[] | null;
   }
   /**
-   * The location to begin a Discovery scan. Denotes an organization ID or folder ID within an organization.
+   * The location to begin a discovery scan. Denotes an organization ID or folder ID within an organization.
    */
   export interface Schema$GooglePrivacyDlpV2DiscoveryStartingLocation {
     /**
@@ -2175,7 +2175,7 @@ export namespace dlp_v2 {
      */
     includeQuote?: boolean | null;
     /**
-     * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://cloud.google.com/dlp/docs/infotypes-reference. When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference, otherwise a default list will be used, which may change over time.
+     * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://cloud.google.com/dlp/docs/infotypes-reference. When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose a default list of detectors to run, which may change over time. If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference, otherwise a default list will be used, which may change over time.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     /**
@@ -2655,7 +2655,7 @@ export namespace dlp_v2 {
      */
     deidentifyTemplates?: Schema$GooglePrivacyDlpV2DeidentifyTemplate[];
     /**
-     * If the next page is available then the next page token to be used in following ListDeidentifyTemplates request.
+     * If the next page is available then the next page token to be used in the following ListDeidentifyTemplates request.
      */
     nextPageToken?: string | null;
   }
@@ -2668,7 +2668,7 @@ export namespace dlp_v2 {
      */
     discoveryConfigs?: Schema$GooglePrivacyDlpV2DiscoveryConfig[];
     /**
-     * If the next page is available then the next page token to be used in following ListDiscoveryConfigs request.
+     * If the next page is available then this value is the next page token to be used in the following ListDiscoveryConfigs request.
      */
     nextPageToken?: string | null;
   }
@@ -2703,7 +2703,7 @@ export namespace dlp_v2 {
      */
     inspectTemplates?: Schema$GooglePrivacyDlpV2InspectTemplate[];
     /**
-     * If the next page is available then the next page token to be used in following ListInspectTemplates request.
+     * If the next page is available then the next page token to be used in the following ListInspectTemplates request.
      */
     nextPageToken?: string | null;
   }
@@ -2716,7 +2716,7 @@ export namespace dlp_v2 {
      */
     jobTriggers?: Schema$GooglePrivacyDlpV2JobTrigger[];
     /**
-     * If the next page is available then the next page token to be used in following ListJobTriggers request.
+     * If the next page is available then this value is the next page token to be used in the following ListJobTriggers request.
      */
     nextPageToken?: string | null;
   }
@@ -2725,7 +2725,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse {
     /**
-     * If the next page is available then the next page token to be used in following ListStoredInfoTypes request.
+     * If the next page is available then the next page token to be used in the following ListStoredInfoTypes request.
      */
     nextPageToken?: string | null;
     /**
@@ -3322,7 +3322,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ReplaceWithInfoTypeConfig {}
   /**
-   * De-id options.
+   * De-identification options.
    */
   export interface Schema$GooglePrivacyDlpV2RequestedDeidentifyOptions {
     /**
@@ -4009,7 +4009,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2UpdateDiscoveryConfigRequest {
     /**
-     * New DiscoveryConfig value.
+     * Required. New DiscoveryConfig value.
      */
     discoveryConfig?: Schema$GooglePrivacyDlpV2DiscoveryConfig;
     /**
@@ -4964,15 +4964,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * Page token to continue retrieval. Comes from the previous call to `ListDeidentifyTemplates`.
      */
     pageToken?: string;
     /**
@@ -5498,15 +5498,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * Page token to continue retrieval. Comes from the previous call to `ListInspectTemplates`.
      */
     pageToken?: string;
     /**
@@ -6062,15 +6062,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * Page token to continue retrieval. Comes from the previous call to `ListDeidentifyTemplates`.
      */
     pageToken?: string;
     /**
@@ -6098,7 +6098,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a config for Discovery to scan and profile storage.
+     * Creates a config for discovery to scan and profile storage.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6195,7 +6195,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a Discovery configuration.
+     * Deletes a discovery configuration.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6283,7 +6283,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a Discovery configuration.
+     * Gets a discovery configuration.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6377,7 +6377,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists Discovery configurations.
+     * Lists discovery configurations.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6474,7 +6474,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates a Discovery configuration.
+     * Updates a discovery configuration.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6597,15 +6597,15 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Discoveryconfigs$List
     extends StandardParameters {
     /**
-     * Comma separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.
+     * Comma separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by a server.
+     * Size of the page. This value can be limited by a server.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to ListDiscoveryConfigs. `order_by` field must not change for subsequent calls.
+     * Page token to continue retrieval. Comes from the previous call to ListDiscoveryConfigs. `order_by` field must not change for subsequent calls.
      */
     pageToken?: string;
     /**
@@ -6740,7 +6740,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to the time the job was created. - `end_time`: corresponds to the time the job ended. - `name`: corresponds to the job's name. - `state`: corresponds to `state`
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to the time the job was created. - `end_time`: corresponds to the time the job ended. - `name`: corresponds to the job's name. - `state`: corresponds to `state`
      */
     orderBy?: string;
     /**
@@ -7271,15 +7271,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * Page token to continue retrieval. Comes from the previous call to `ListInspectTemplates`.
      */
     pageToken?: string;
     /**
@@ -7812,15 +7812,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the JobTrigger was created. - `update_time`: corresponds to the time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to the JobTrigger's name. - `display_name`: corresponds to the JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the JobTrigger was created. - `update_time`: corresponds to the time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to the JobTrigger's name. - `display_name`: corresponds to the JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by a server.
+     * Size of the page. This value can be limited by a server.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
+     * Page token to continue retrieval. Comes from the previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      */
     pageToken?: string;
     /**
@@ -8355,15 +8355,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to the time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to the time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * Page token to continue retrieval. Comes from the previous call to `ListStoredInfoTypes`.
      */
     pageToken?: string;
     /**
@@ -8889,15 +8889,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to the time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to the time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * Page token to continue retrieval. Comes from the previous call to `ListStoredInfoTypes`.
      */
     pageToken?: string;
     /**
@@ -9784,15 +9784,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * Page token to continue retrieval. Comes from the previous call to `ListDeidentifyTemplates`.
      */
     pageToken?: string;
     /**
@@ -10322,7 +10322,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to the time the job was created. - `end_time`: corresponds to the time the job ended. - `name`: corresponds to the job's name. - `state`: corresponds to `state`
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to the time the job was created. - `end_time`: corresponds to the time the job ended. - `name`: corresponds to the job's name. - `state`: corresponds to `state`
      */
     orderBy?: string;
     /**
@@ -10964,15 +10964,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * Page token to continue retrieval. Comes from the previous call to `ListInspectTemplates`.
      */
     pageToken?: string;
     /**
@@ -11608,15 +11608,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the JobTrigger was created. - `update_time`: corresponds to the time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to the JobTrigger's name. - `display_name`: corresponds to the JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the JobTrigger was created. - `update_time`: corresponds to the time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to the JobTrigger's name. - `display_name`: corresponds to the JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by a server.
+     * Size of the page. This value can be limited by a server.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
+     * Page token to continue retrieval. Comes from the previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      */
     pageToken?: string;
     /**
@@ -12515,15 +12515,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * Page token to continue retrieval. Comes from the previous call to `ListDeidentifyTemplates`.
      */
     pageToken?: string;
     /**
@@ -12551,7 +12551,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Creates a config for Discovery to scan and profile storage.
+     * Creates a config for discovery to scan and profile storage.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12648,7 +12648,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Deletes a Discovery configuration.
+     * Deletes a discovery configuration.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12736,7 +12736,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Gets a Discovery configuration.
+     * Gets a discovery configuration.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12829,7 +12829,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Lists Discovery configurations.
+     * Lists discovery configurations.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12925,7 +12925,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Updates a Discovery configuration.
+     * Updates a discovery configuration.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13048,15 +13048,15 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Discoveryconfigs$List
     extends StandardParameters {
     /**
-     * Comma separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.
+     * Comma separated list of config fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `last_run_time`: corresponds to the last time the DiscoveryConfig ran. - `name`: corresponds to the DiscoveryConfig's name. - `status`: corresponds to DiscoveryConfig's status.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by a server.
+     * Size of the page. This value can be limited by a server.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to ListDiscoveryConfigs. `order_by` field must not change for subsequent calls.
+     * Page token to continue retrieval. Comes from the previous call to ListDiscoveryConfigs. `order_by` field must not change for subsequent calls.
      */
     pageToken?: string;
     /**
@@ -13793,7 +13793,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to the time the job was created. - `end_time`: corresponds to the time the job ended. - `name`: corresponds to the job's name. - `state`: corresponds to `state`
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to the time the job was created. - `end_time`: corresponds to the time the job ended. - `name`: corresponds to the job's name. - `state`: corresponds to `state`
      */
     orderBy?: string;
     /**
@@ -14438,15 +14438,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the template was created. - `update_time`: corresponds to the time the template was last updated. - `name`: corresponds to the template's name. - `display_name`: corresponds to the template's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * Page token to continue retrieval. Comes from the previous call to `ListInspectTemplates`.
      */
     pageToken?: string;
     /**
@@ -15191,15 +15191,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the JobTrigger was created. - `update_time`: corresponds to the time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to the JobTrigger's name. - `display_name`: corresponds to the JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to the time the JobTrigger was created. - `update_time`: corresponds to the time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to the JobTrigger's name. - `display_name`: corresponds to the JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by a server.
+     * Size of the page. This value can be limited by a server.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
+     * Page token to continue retrieval. Comes from the previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      */
     pageToken?: string;
     /**
@@ -15731,15 +15731,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to the time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to the time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * Page token to continue retrieval. Comes from the previous call to `ListStoredInfoTypes`.
      */
     pageToken?: string;
     /**
@@ -16265,15 +16265,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to the time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to the time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
-     * Size of the page, can be limited by the server. If zero server returns a page of max size 100.
+     * Size of the page. This value can be limited by the server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * Page token to continue retrieval. Comes from the previous call to `ListStoredInfoTypes`.
      */
     pageToken?: string;
     /**
