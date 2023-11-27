@@ -209,7 +209,25 @@ export namespace cloudtasks_v2 {
     role?: string | null;
   }
   /**
-   * CMEK, or Customer Managed Encryption Keys, enables GCP products to put control over encryption and key management in their customer’s hands.
+   * Request message for BufferTask.
+   */
+  export interface Schema$BufferTaskRequest {
+    /**
+     * Optional. Body of the HTTP request. The body can take any generic value. The value is written to the HttpRequest of the [Task].
+     */
+    body?: Schema$HttpBody;
+  }
+  /**
+   * Response message for BufferTask.
+   */
+  export interface Schema$BufferTaskResponse {
+    /**
+     * The created task.
+     */
+    task?: Schema$Task;
+  }
+  /**
+   * Describes the customer-managed encryption key (CMEK) configuration associated with a project and location.
    */
   export interface Schema$CmekConfig {
     /**
@@ -278,6 +296,45 @@ export namespace cloudtasks_v2 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * Defines a header message. A header can have a key and a value.
+   */
+  export interface Schema$Header {
+    /**
+     * The Key of the header.
+     */
+    key?: string | null;
+    /**
+     * The Value of the header.
+     */
+    value?: string | null;
+  }
+  /**
+   * Wraps the Header object.
+   */
+  export interface Schema$HeaderOverride {
+    /**
+     * header embodying a key and a value.
+     */
+    header?: Schema$Header;
+  }
+  /**
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   */
+  export interface Schema$HttpBody {
+    /**
+     * The HTTP Content-Type header value specifying the content type of the body.
+     */
+    contentType?: string | null;
+    /**
+     * The HTTP request/response body as raw binary.
+     */
+    data?: string | null;
+    /**
+     * Application specific response metadata. Must be set in the first response for streaming APIs.
+     */
+    extensions?: Array<{[key: string]: any}> | null;
+  }
+  /**
    * HTTP request. The task will be pushed to the worker as an HTTP request. If the worker or the redirected worker acknowledges the task by returning a successful HTTP response code ([`200` - `299`]), the task will be removed from the queue. If any other HTTP response code is returned or no response is received, the task will be retried according to the following: * User-specified throttling: retry configuration, rate limits, and the queue's state. * System throttling: To prevent the worker from overloading, Cloud Tasks may temporarily reduce the queue's effective rate. User-specified settings will not be changed. System throttling happens because: * Cloud Tasks backs off on all errors. Normally the backoff specified in rate limits will be used. But if the worker returns `429` (Too Many Requests), `503` (Service Unavailable), or the rate of errors is high, Cloud Tasks will use a higher backoff rate. The retry specified in the `Retry-After` HTTP response header is considered. * To prevent traffic spikes and to smooth sudden increases in traffic, dispatches ramp up slowly when the queue is newly created or idle and if large numbers of tasks suddenly become available to dispatch (due to spikes in create task rates, the queue being unpaused, or many tasks that are scheduled at the same time).
    */
   export interface Schema$HttpRequest {
@@ -305,6 +362,31 @@ export namespace cloudtasks_v2 {
      * Required. The full url path that the request will be sent to. This string must begin with either "http://" or "https://". Some examples are: `http://acme.com` and `https://acme.com/sales:8080`. Cloud Tasks will encode some characters for safety and compatibility. The maximum allowed URL length is 2083 characters after encoding. The `Location` header response from a redirect response [`300` - `399`] may be followed. The redirect is not counted as a separate attempt.
      */
     url?: string | null;
+  }
+  /**
+   * HTTP target. When specified as a Queue, all the tasks with [HttpRequest] will be overridden according to the target.
+   */
+  export interface Schema$HttpTarget {
+    /**
+     * HTTP target headers. This map contains the header field names and values. Headers will be set when running the CreateTask and/or BufferTask. These headers represent a subset of the headers that will be configured for the task's HTTP request. Some HTTP request headers will be ignored or replaced. A partial list of headers that will be ignored or replaced is: * Several predefined headers, prefixed with "X-CloudTasks-", can be used to define properties of the task. * Host: This will be computed by Cloud Tasks and derived from HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. `Content-Type` won't be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the task is created. For example,`Content-Type` can be set to `"application/octet-stream"` or `"application/json"`. The default value is set to "application/json"`. * User-Agent: This will be set to `"Google-Cloud-Tasks"`. Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values. The size of the headers must be less than 80KB. Queue-level headers to override headers of all the tasks in the queue.
+     */
+    headerOverrides?: Schema$HeaderOverride[];
+    /**
+     * The HTTP method to use for the request. When specified, it overrides HttpRequest for the task. Note that if the value is set to HttpMethod the HttpRequest of the task will be ignored at execution time.
+     */
+    httpMethod?: string | null;
+    /**
+     * If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as the `Authorization` header in the HTTP request. This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
+     */
+    oauthToken?: Schema$OAuthToken;
+    /**
+     * If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
+     */
+    oidcToken?: Schema$OidcToken;
+    /**
+     * URI override. When specified, overrides the execution URI for all the tasks in the queue.
+     */
+    uriOverride?: Schema$UriOverride;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -397,6 +479,15 @@ export namespace cloudtasks_v2 {
     serviceAccountEmail?: string | null;
   }
   /**
+   * PathOverride. Path message defines path override for HTTP targets.
+   */
+  export interface Schema$PathOverride {
+    /**
+     * The URI path (e.g., /users/1234). Default is an empty string.
+     */
+    path?: string | null;
+  }
+  /**
    * Request message for PauseQueue.
    */
   export interface Schema$PauseQueueRequest {}
@@ -422,6 +513,15 @@ export namespace cloudtasks_v2 {
    */
   export interface Schema$PurgeQueueRequest {}
   /**
+   * QueryOverride. Query message defines query override for HTTP targets.
+   */
+  export interface Schema$QueryOverride {
+    /**
+     * The query parameters (e.g., qparam1=123&qparam2=456). Default is an empty string.
+     */
+    queryParams?: string | null;
+  }
+  /**
    * A queue is a container of related tasks. Queues are configured to manage how those tasks are dispatched. Configurable properties include rate limits, retry options, queue types, and others.
    */
   export interface Schema$Queue {
@@ -429,6 +529,10 @@ export namespace cloudtasks_v2 {
      * Overrides for task-level app_engine_routing. These settings apply only to App Engine tasks in this queue. Http tasks are not affected. If set, `app_engine_routing_override` is used for all App Engine tasks in the queue, no matter what the setting is for the task-level app_engine_routing.
      */
     appEngineRoutingOverride?: Schema$AppEngineRouting;
+    /**
+     * Modifies HTTP target for HTTP tasks.
+     */
+    httpTarget?: Schema$HttpTarget;
     /**
      * Caller-specified and required in CreateQueue, after which it becomes output only. The queue name. The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or hyphens (-). The maximum length is 100 characters.
      */
@@ -610,6 +714,35 @@ export namespace cloudtasks_v2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * URI Override. When specified, all the HTTP tasks inside the queue will be partially or fully overridden depending on the configured values.
+   */
+  export interface Schema$UriOverride {
+    /**
+     * Host override. When specified, replaces the host part of the task URL. For example, if the task URL is "https://www.google.com," and host value is set to "example.net", the overridden URI will be changed to "https://example.net." Host value cannot be an empty string (INVALID_ARGUMENT).
+     */
+    host?: string | null;
+    /**
+     * URI path. When specified, replaces the existing path of the task URL. Setting the path value to an empty string clears the URI path segment.
+     */
+    pathOverride?: Schema$PathOverride;
+    /**
+     * Port override. When specified, replaces the port part of the task URI. For instance, for a URI http://www.google.com/foo and port=123, the overridden URI becomes http://www.google.com:123/foo. Note that the port value must be a positive integer. Setting the port to 0 (Zero) clears the URI port.
+     */
+    port?: string | null;
+    /**
+     * URI query. When specified, replaces the query part of the task URI. Setting the query value to an empty string clears the URI query segment.
+     */
+    queryOverride?: Schema$QueryOverride;
+    /**
+     * Scheme override. When specified, the task URI scheme is replaced by the provided value (HTTP or HTTPS).
+     */
+    scheme?: string | null;
+    /**
+     * URI Override Enforce Mode When specified, determines the Target UriOverride mode. If not specified, it defaults to ALWAYS.
+     */
+    uriOverrideEnforceMode?: string | null;
   }
 
   export class Resource$Projects {
@@ -1120,7 +1253,7 @@ export namespace cloudtasks_v2 {
     }
 
     /**
-     * Deletes a queue. This command will delete the queue even if it has tasks in it. Note: If you delete a queue, a queue with the same name can't be created for 7 days. WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using this method.
+     * Deletes a queue. This command will delete the queue even if it has tasks in it. Note: If you delete a queue, you may be prevented from creating a new queue with the same name as the deleted queue for a tombstone window of up to 3 days. During this window, the CreateQueue operation may appear to recreate the queue, but this can be misleading. If you attempt to create a queue with the same name as one that is in the tombstone window, run GetQueue to confirm that the queue creation was successful. If GetQueue returns 200 response code, your queue was successfully created with the name of the previously deleted queue. Otherwise, your queue did not successfully recreate. WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using this method.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2124,6 +2257,96 @@ export namespace cloudtasks_v2 {
     }
 
     /**
+     * Creates and buffers a new task without the need to explicitly define a Task message. The queue must have HTTP target. To create the task with a custom ID, use the following format and set TASK_ID to your desired ID: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer To create the task with an automatically generated ID, use the following format: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    buffer(
+      params?: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BufferTaskResponse>;
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      options: MethodOptions | BodyResponseCallback<Schema$BufferTaskResponse>,
+      callback: BodyResponseCallback<Schema$BufferTaskResponse>
+    ): void;
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      callback: BodyResponseCallback<Schema$BufferTaskResponse>
+    ): void;
+    buffer(callback: BodyResponseCallback<Schema$BufferTaskResponse>): void;
+    buffer(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Tasks$Buffer
+        | BodyResponseCallback<Schema$BufferTaskResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BufferTaskResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BufferTaskResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BufferTaskResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Tasks$Buffer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Tasks$Buffer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+queue}/tasks/{taskId}:buffer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['queue', 'taskId'],
+        pathParams: ['queue', 'taskId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BufferTaskResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BufferTaskResponse>(parameters);
+      }
+    }
+
+    /**
      * Creates a task and adds it to a queue. Tasks cannot be updated after creation; there is no UpdateTask command. * The maximum task size is 100KB.
      *
      * @param params - Parameters for request
@@ -2553,6 +2776,22 @@ export namespace cloudtasks_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Buffer
+    extends StandardParameters {
+    /**
+     * Required. The parent queue name. For example: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
+     */
+    queue?: string;
+    /**
+     * Optional. Task ID for the task being created. If not provided, Cloud Tasks generates an ID for the task.
+     */
+    taskId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BufferTaskRequest;
+  }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Create
     extends StandardParameters {
     /**
