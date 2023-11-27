@@ -524,7 +524,7 @@
       }
     }
   },
-  "revision": "20230908",
+  "revision": "20231115",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ABNFGrammar": {
@@ -672,6 +672,25 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "Entry": {
+      "description": "A single replacement configuration.",
+      "id": "Entry",
+      "properties": {
+        "caseSensitive": {
+          "description": "Whether the search is case sensitive.",
+          "type": "boolean"
+        },
+        "replace": {
+          "description": "What to replace with. Max length is 100 characters.",
+          "type": "string"
+        },
+        "search": {
+          "description": "What to replace. Max length is 100 characters.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ListCustomClassesResponse": {
@@ -1024,6 +1043,7 @@
             "AMR_WB",
             "OGG_OPUS",
             "SPEEX_WITH_HEADER_BYTE",
+            "MP3",
             "WEBM_OPUS"
           ],
           "enumDescriptions": [
@@ -1035,7 +1055,8 @@
             "Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.",
             "Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000.",
             "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Cloud Speech API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000.",
-            "Opus encoded audio frames in WebM container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000."
+            "MP3 audio. MP3 encoding is a Beta feature and only available in v1p1beta1. Support all standard MP3 bitrates (which range from 32-320 kbps). When using this encoding, `sample_rate_hertz` has to match the sample rate of the file being used.",
+            "Opus encoded audio frames in WebM container ([WebM](https://www.webmproject.org/docs/container/)). `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000."
           ],
           "type": "string"
         },
@@ -1071,6 +1092,10 @@
             "$ref": "SpeechContext"
           },
           "type": "array"
+        },
+        "transcriptNormalization": {
+          "$ref": "TranscriptNormalization",
+          "description": "Optional. Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability > 0.8) and final transcripts."
         },
         "useEnhanced": {
           "description": "Set to true to use an enhanced model for speech recognition. If `use_enhanced` is set to true and the `model` field is not set, then an appropriate enhanced model is chosen if an enhanced model exists for the audio. If `use_enhanced` is true and an enhanced version of the specified model does not exist, then the speech is recognized using the standard version of the specified model.",
@@ -1394,6 +1419,20 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TranscriptNormalization": {
+      "description": "Transcription normalization configuration. Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability > 0.8) and final transcripts.",
+      "id": "TranscriptNormalization",
+      "properties": {
+        "entries": {
+          "description": "A list of replacement entries. We will perform replacement with one entry at a time. For example, the second entry in [\"cat\" => \"dog\", \"mountain cat\" => \"mountain dog\"] will never be applied because we will always process the first entry before it. At most 100 entries.",
+          "items": {
+            "$ref": "Entry"
+          },
+          "type": "array"
         }
       },
       "type": "object"
