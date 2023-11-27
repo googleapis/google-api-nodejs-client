@@ -473,6 +473,32 @@ export namespace healthcare_v1beta1 {
     role?: string | null;
   }
   /**
+   * BlobStorageInfo contains details about the data stored in Blob Storage for the referenced resource. Note: Storage class is only valid for DICOM and hence will only be populated for DICOM resources.
+   */
+  export interface Schema$BlobStorageInfo {
+    /**
+     * Size in bytes of data stored in Blob Storage.
+     */
+    sizeBytes?: string | null;
+    /**
+     * The storage class in which the Blob data is stored.
+     */
+    storageClass?: string | null;
+    /**
+     * The time at which the storage class was updated. This is used to compute early deletion fees of the resource.
+     */
+    storageClassUpdateTime?: string | null;
+  }
+  /**
+   * Settings for data stored in Blob storage.
+   */
+  export interface Schema$BlobStorageSettings {
+    /**
+     * The Storage class in which the Blob data is stored.
+     */
+    blobStorageClass?: string | null;
+  }
+  /**
    * A bounding polygon for the detected image annotation.
    */
   export interface Schema$BoundingPoly {
@@ -1941,6 +1967,10 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportDicomDataRequest {
     /**
+     * Optional. The blob storage settings for the data imported by this operation.
+     */
+    blobStorageSettings?: Schema$BlobStorageSettings;
+    /**
      * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1DicomGcsSource;
@@ -2615,7 +2645,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$RollbackFhirResourceFilteringFields {
     /**
-     * Optional. A string to use for filtering resource metadata. Complies with AIP-160 except without the has operator. Additionally, supports 2 functions: hastag("system") = "code" for tag filtering and extension_ts_value("uri") = timestamp for filtering extensions with timestamp, which is given as a unix timestamp. extension_ts_url can be used with \>, <, <=, \>=, != comparisons as well.
+     * Optional. A filter expression that matches data in the `Resource.meta` element. Supports all filters in [AIP-160](https://google.aip.dev/160) except the "has" (`:`) operator. Supports the following custom functions: * `tag("") = ""` for tag filtering. * `extension_value_ts("") = ` for filtering extensions with a timestamp, where `` is a Unix timestamp. Supports the `\>`, `<`, `<=`, `\>=`, and `!=` comparison operators.
      */
     metadataFilter?: string | null;
     /**
@@ -2845,6 +2875,23 @@ export namespace healthcare_v1beta1 {
     structuredStorageSizeBytes?: string | null;
   }
   /**
+   * Request message for `SetBlobStorageSettings` method.
+   */
+  export interface Schema$SetBlobStorageSettingsRequest {
+    /**
+     * The blob storage settings to update for the specified resources. Only fields listed in `update_mask` are applied.
+     */
+    blobStorageSettings?: Schema$BlobStorageSettings;
+    /**
+     * Optional. A filter configuration. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
+     */
+    filterConfig?: Schema$DicomFilterConfig;
+  }
+  /**
+   * Returns additional info in regards to a completed set blob storage settings API.
+   */
+  export interface Schema$SetBlobStorageSettingsResponse {}
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -2896,6 +2943,23 @@ export namespace healthcare_v1beta1 {
     message?: string | null;
   }
   /**
+   * StorageInfo encapsulates all the storage info of a resource.
+   */
+  export interface Schema$StorageInfo {
+    /**
+     * Info about the data stored in blob storage for the resource.
+     */
+    blobStorageInfo?: Schema$BlobStorageInfo;
+    /**
+     * The resource whose storage info is returned. For example, to specify the resource path of a DICOM Instance: `projects/{projectid\}/datasets/{datasetid\}/dicomStores/{dicom_store_id\}/dicomWeb/studi/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`
+     */
+    referencedResource?: string | null;
+    /**
+     * Info about the data stored in structured storage for the resource.
+     */
+    structuredStorageInfo?: Schema$StructuredStorageInfo;
+  }
+  /**
    * Contains configuration for streaming FHIR export.
    */
   export interface Schema$StreamConfig {
@@ -2911,6 +2975,15 @@ export namespace healthcare_v1beta1 {
      * Supply a FHIR resource type (such as "Patient" or "Observation"). See https://www.hl7.org/fhir/valueset-resource-types.html for a list of all FHIR resource types. The server treats an empty list as an intent to stream all the supported resource types in this FHIR store.
      */
     resourceTypes?: string[] | null;
+  }
+  /**
+   * StructuredStorageInfo contains details about the data stored in Structured Storage for the referenced resource.
+   */
+  export interface Schema$StructuredStorageInfo {
+    /**
+     * Size in bytes of data stored in structured storage.
+     */
+    sizeBytes?: string | null;
   }
   /**
    * StudyMetrics contains metrics describing a DICOM study.
@@ -10516,7 +10589,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForInstances, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForInstances, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
+     * SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForInstances, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForInstances, see [Search for DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#search-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10603,7 +10676,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * SearchForSeries returns a list of matching series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForSeries, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForSeries, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
+     * SearchForSeries returns a list of matching series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForSeries, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForSeries, see [Search for DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#search-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10690,7 +10763,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * SearchForStudies returns a list of matching studies. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForStudies, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForStudies, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
+     * SearchForStudies returns a list of matching studies. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForStudies, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForStudies, see [Search for DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#search-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10773,6 +10846,95 @@ export namespace healthcare_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * SetBlobStorageSettings sets the blob storage settings of the specified resources.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setBlobStorageSettings(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+resource}:setBlobStorageSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -10865,7 +11027,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See [Store Transaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5). For details on the implementation of StoreInstances, see [Store transaction](https://cloud.google.com/healthcare/docs/dicom#store_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call StoreInstances, see [Storing DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#storing_dicom_data).
+     * StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See [Store Transaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5). For details on the implementation of StoreInstances, see [Store transaction](https://cloud.google.com/healthcare/docs/dicom#store_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call StoreInstances, see [Store DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#store-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11199,6 +11361,18 @@ export namespace healthcare_v1beta1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings
+    extends StandardParameters {
+    /**
+     * Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}`, `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/`, or `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetBlobStorageSettingsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy
     extends StandardParameters {
     /**
@@ -11350,6 +11524,95 @@ export namespace healthcare_v1beta1 {
         return createAPIRequest<Schema$StudyMetrics>(parameters);
       }
     }
+
+    /**
+     * SetBlobStorageSettings sets the blob storage settings of the specified resources.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setBlobStorageSettings(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+resource}:setBlobStorageSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics
@@ -11359,11 +11622,28 @@ export namespace healthcare_v1beta1 {
      */
     study?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings
+    extends StandardParameters {
+    /**
+     * Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}`, `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/`, or `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetBlobStorageSettingsRequest;
+  }
 
   export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series {
     context: APIRequestContext;
+    instances: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.instances =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances(
+          this.context
+        );
     }
 
     /**
@@ -11465,6 +11745,109 @@ export namespace healthcare_v1beta1 {
     series?: string;
   }
 
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * GetStorageInfo returns the storage info of the specified resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getStorageInfo(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getStorageInfo(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StorageInfo>;
+    getStorageInfo(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getStorageInfo(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      options: MethodOptions | BodyResponseCallback<Schema$StorageInfo>,
+      callback: BodyResponseCallback<Schema$StorageInfo>
+    ): void;
+    getStorageInfo(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      callback: BodyResponseCallback<Schema$StorageInfo>
+    ): void;
+    getStorageInfo(callback: BodyResponseCallback<Schema$StorageInfo>): void;
+    getStorageInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo
+        | BodyResponseCallback<Schema$StorageInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StorageInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StorageInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$StorageInfo> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getStorageInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StorageInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StorageInfo>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo
+    extends StandardParameters {
+    /**
+     * Required. The path of the resource for which the storage info is requested (for exaxmple for a DICOM Instance: `projects/{projectid\}/datasets/{datasetid\}/dicomStores/{dicomStoreId\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`)
+     */
+    resource?: string;
+  }
+
   export class Resource$Projects$Locations$Datasets$Dicomstores$Studies {
     context: APIRequestContext;
     series: Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series;
@@ -11477,7 +11860,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * DeleteStudy deletes all instances within the given study using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Instances cannot be inserted into a study that is being deleted by an operation until the operation completes. For samples that show how to call DeleteStudy, see [Deleting a study, series, or instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#deleting_a_study_series_or_instance).
+     * DeleteStudy deletes all instances within the given study using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Instances cannot be inserted into a study that is being deleted by an operation until the operation completes. For samples that show how to call DeleteStudy, see [Delete a study, series, or instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#delete-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11564,7 +11947,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * RetrieveStudyMetadata returns instance associated with the given study presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveStudyMetadata, see [Metadata resources](https://cloud.google.com/healthcare/docs/dicom#metadata_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveStudyMetadata, see [Retrieving metadata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_metadata).
+     * RetrieveStudyMetadata returns instance associated with the given study presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveStudyMetadata, see [Metadata resources](https://cloud.google.com/healthcare/docs/dicom#metadata_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveStudyMetadata, see [Retrieve metadata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-metadata).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11651,7 +12034,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * RetrieveStudy returns all instances within the given study. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveStudy, see [DICOM study/series/instances](https://cloud.google.com/healthcare/docs/dicom#dicom_studyseriesinstances) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveStudy, see [Retrieving DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_dicom_data).
+     * RetrieveStudy returns all instances within the given study. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveStudy, see [DICOM study/series/instances](https://cloud.google.com/healthcare/docs/dicom#dicom_studyseriesinstances) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveStudy, see [Retrieve DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11738,7 +12121,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForInstances, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForInstances, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
+     * SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForInstances, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForInstances, see [Search for DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#search-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11825,7 +12208,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * SearchForSeries returns a list of matching series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForSeries, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForSeries, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
+     * SearchForSeries returns a list of matching series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForSeries, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForSeries, see [Search for DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#search-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11912,7 +12295,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See [Store Transaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5). For details on the implementation of StoreInstances, see [Store transaction](https://cloud.google.com/healthcare/docs/dicom#store_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call StoreInstances, see [Storing DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#storing_dicom_data).
+     * StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See [Store Transaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5). For details on the implementation of StoreInstances, see [Store transaction](https://cloud.google.com/healthcare/docs/dicom#store_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call StoreInstances, see [Store DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#store-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12083,7 +12466,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * DeleteSeries deletes all instances within the given study and series using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Instances cannot be inserted into a series that is being deleted by an operation until the operation completes. For samples that show how to call DeleteSeries, see [Deleting a study, series, or instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#deleting_a_study_series_or_instance).
+     * DeleteSeries deletes all instances within the given study and series using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Instances cannot be inserted into a series that is being deleted by an operation until the operation completes. For samples that show how to call DeleteSeries, see [Delete a study, series, or instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#delete-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12170,7 +12553,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * RetrieveSeriesMetadata returns instance associated with the given study and series, presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveSeriesMetadata, see [Metadata resources](https://cloud.google.com/healthcare/docs/dicom#metadata_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveSeriesMetadata, see [Retrieving metadata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_metadata).
+     * RetrieveSeriesMetadata returns instance associated with the given study and series, presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveSeriesMetadata, see [Metadata resources](https://cloud.google.com/healthcare/docs/dicom#metadata_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveSeriesMetadata, see [Retrieve metadata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-metadata).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12257,7 +12640,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * RetrieveSeries returns all instances within the given study and series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveSeries, see [DICOM study/series/instances](https://cloud.google.com/healthcare/docs/dicom#dicom_studyseriesinstances) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveSeries, see [Retrieving DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_dicom_data).
+     * RetrieveSeries returns all instances within the given study and series. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveSeries, see [DICOM study/series/instances](https://cloud.google.com/healthcare/docs/dicom#dicom_studyseriesinstances) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveSeries, see [Retrieve DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12344,7 +12727,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForInstances, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForInstances, see [Searching for studies, series, instances, and frames](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#searching_for_studies_series_instances_and_frames).
+     * SearchForInstances returns a list of matching instances. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of SearchForInstances, see [Search transaction](https://cloud.google.com/healthcare/docs/dicom#search_transaction) in the Cloud Healthcare API conformance statement. For samples that show how to call SearchForInstances, see [Search for DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#search-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12488,7 +12871,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * DeleteInstance deletes an instance associated with the given study, series, and SOP Instance UID. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. Study and series search results can take a few seconds to be updated after an instance is deleted using DeleteInstance. For samples that show how to call DeleteInstance, see [Deleting a study, series, or instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#deleting_a_study_series_or_instance).
+     * DeleteInstance deletes an instance associated with the given study, series, and SOP Instance UID. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. Study and series search results can take a few seconds to be updated after an instance is deleted using DeleteInstance. For samples that show how to call DeleteInstance, see [Delete a study, series, or instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#delete-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12575,7 +12958,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * RetrieveInstance returns instance associated with the given study, series, and SOP Instance UID. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveInstance, see [DICOM study/series/instances](https://cloud.google.com/healthcare/docs/dicom#dicom_studyseriesinstances) and [DICOM instances](https://cloud.google.com/healthcare/docs/dicom#dicom_instances) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveInstance, see [Retrieving an instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_an_instance).
+     * RetrieveInstance returns instance associated with the given study, series, and SOP Instance UID. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveInstance, see [DICOM study/series/instances](https://cloud.google.com/healthcare/docs/dicom#dicom_studyseriesinstances) and [DICOM instances](https://cloud.google.com/healthcare/docs/dicom#dicom_instances) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveInstance, see [Retrieve an instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-instance).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12662,7 +13045,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * RetrieveInstanceMetadata returns instance associated with the given study, series, and SOP Instance UID presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveInstanceMetadata, see [Metadata resources](https://cloud.google.com/healthcare/docs/dicom#metadata_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveInstanceMetadata, see [Retrieving metadata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_metadata).
+     * RetrieveInstanceMetadata returns instance associated with the given study, series, and SOP Instance UID presented as metadata with the bulk data removed. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveInstanceMetadata, see [Metadata resources](https://cloud.google.com/healthcare/docs/dicom#metadata_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveInstanceMetadata, see [Retrieve metadata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-metadata).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12749,7 +13132,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * RetrieveRenderedInstance returns instance associated with the given study, series, and SOP Instance UID in an acceptable Rendered Media Type. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveRenderedInstance, see [Rendered resources](https://cloud.google.com/healthcare/docs/dicom#rendered_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveRenderedInstance, see [Retrieving consumer image formats](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_consumer_image_formats).
+     * RetrieveRenderedInstance returns instance associated with the given study, series, and SOP Instance UID in an acceptable Rendered Media Type. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveRenderedInstance, see [Rendered resources](https://cloud.google.com/healthcare/docs/dicom#rendered_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveRenderedInstance, see [Retrieve consumer image formats](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-consumer).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12888,7 +13271,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * RetrieveFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveFrames, see [DICOM frames](https://cloud.google.com/healthcare/docs/dicom#dicom_frames) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveFrames, see [Retrieving DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_dicom_data).
+     * RetrieveFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveFrames, see [DICOM frames](https://cloud.google.com/healthcare/docs/dicom#dicom_frames) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveFrames, see [Retrieve DICOM data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-dicom).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12975,7 +13358,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * RetrieveRenderedFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers in an acceptable Rendered Media Type. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveRenderedFrames, see [Rendered resources](https://cloud.google.com/healthcare/docs/dicom#rendered_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveRenderedFrames, see [Retrieving consumer image formats](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieving_consumer_image_formats).
+     * RetrieveRenderedFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers in an acceptable Rendered Media Type. See [RetrieveTransaction](http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4). For details on the implementation of RetrieveRenderedFrames, see [Rendered resources](https://cloud.google.com/healthcare/docs/dicom#rendered_resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveRenderedFrames, see [Retrieve consumer image formats](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-consumer).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17416,7 +17799,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Gets metrics asssociated with the HL7v2 store.
+     * Gets metrics associated with the HL7v2 store.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
