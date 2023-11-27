@@ -653,6 +653,7 @@ export namespace sqladmin_v1 {
      * The user settings.
      */
     settings?: Schema$Settings;
+    sqlNetworkArchitecture?: string | null;
     /**
      * The current serving state of the Cloud SQL instance.
      */
@@ -687,6 +688,19 @@ export namespace sqladmin_v1 {
      * Whether data cache is enabled for the instance.
      */
     dataCacheEnabled?: boolean | null;
+  }
+  /**
+   * This context is used to demote an existing standalone instance to be a Cloud SQL read replica for an external database server.
+   */
+  export interface Schema$DemoteContext {
+    /**
+     * This is always `sql#demoteContext`.
+     */
+    kind?: string | null;
+    /**
+     * Required. The name of the instance which acts as the on-premises primary instance in the replication setup.
+     */
+    sourceRepresentativeInstanceName?: string | null;
   }
   /**
    * Read-replica configuration for connecting to the on-premises primary instance.
@@ -1069,6 +1083,15 @@ export namespace sqladmin_v1 {
     demoteMasterContext?: Schema$DemoteMasterContext;
   }
   /**
+   * This request is used to demote an existing standalone instance to be a Cloud SQL read replica for an external database server.
+   */
+  export interface Schema$InstancesDemoteRequest {
+    /**
+     * Required. Contains details about the demote operation.
+     */
+    demoteContext?: Schema$DemoteContext;
+  }
+  /**
    * Database instance export request.
    */
   export interface Schema$InstancesExportRequest {
@@ -1195,11 +1218,11 @@ export namespace sqladmin_v1 {
      */
     pscConfig?: Schema$PscConfig;
     /**
-     * LINT.IfChange(require_ssl_deprecate) Whether SSL/TLS connections over IP are enforced or not. If set to false, allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate will not be verified. If set to true, only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, use the `ssl_mode` flag instead of the legacy `require_ssl` flag. LINT.ThenChange(//depot/google3/java/com/google/storage/speckle/boss/admin/actions/InstanceUpdateAction.java:update_api_temp_fix)
+     * Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the legacy `require_ssl` flag.
      */
     requireSsl?: boolean | null;
     /**
-     * Specify how SSL/TLS will be enforced in database connections. This flag is only supported for PostgreSQL. Use the legacy `require_ssl` flag for enforcing SSL/TLS in MySQL and SQL Server. But, for PostgreSQL, it is recommended to use the `ssl_mode` flag instead of the legacy `require_ssl` flag. To avoid the conflict between those flags in PostgreSQL, only the following value pairs are valid: ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED, require_ssl=false; ssl_mode=ENCRYPTED_ONLY, require_ssl=false; ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED, require_ssl=true; Note that the value of `ssl_mode` gets priority over the value of the legacy `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY, require_ssl=false`, the `ssl_mode=ENCRYPTED_ONLY` means "only accepts SSL connection", while the `require_ssl=false` means "both non-SSL and SSL connections are allowed". The database will respect `ssl_mode` in this case and only accept SSL connections.
+     * Specify how SSL/TLS is enforced in database connections. This flag is supported only for PostgreSQL. Use the legacy `require_ssl` flag for enforcing SSL/TLS in MySQL and SQL Server. But, for PostgreSQL, use the `ssl_mode` flag instead of the legacy `require_ssl` flag. To avoid the conflict between those flags in PostgreSQL, only the following value pairs are valid: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` Note that the value of `ssl_mode` gets priority over the value of the legacy `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY, require_ssl=false`, the `ssl_mode=ENCRYPTED_ONLY` means "only accepts SSL connection", while the `require_ssl=false` means "both non-SSL and SSL connections are allowed". The database respects `ssl_mode` in this case and only accepts SSL connections.
      */
     sslMode?: string | null;
   }
@@ -1365,6 +1388,10 @@ export namespace sqladmin_v1 {
    * An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.
    */
   export interface Schema$Operation {
+    /**
+     * An Admin API warning message.
+     */
+    apiWarning?: Schema$ApiWarning;
     /**
      * The context for backup operation, if applicable.
      */
@@ -3868,6 +3895,91 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Demotes an existing standalone instance to be a Cloud SQL read replica for an external database server.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    demote(
+      params: Params$Resource$Instances$Demote,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    demote(
+      params?: Params$Resource$Instances$Demote,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    demote(
+      params: Params$Resource$Instances$Demote,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    demote(
+      params: Params$Resource$Instances$Demote,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    demote(
+      params: Params$Resource$Instances$Demote,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    demote(callback: BodyResponseCallback<Schema$Operation>): void;
+    demote(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Demote
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Instances$Demote;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Demote;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/projects/{project}/instances/{instance}/demote'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Demotes the stand-alone instance to be a Cloud SQL read replica for an external database server.
      *
      * @param params - Parameters for request
@@ -5641,6 +5753,21 @@ export namespace sqladmin_v1 {
      * Project ID of the project that contains the instance to be deleted.
      */
     project?: string;
+  }
+  export interface Params$Resource$Instances$Demote extends StandardParameters {
+    /**
+     * Required. Cloud SQL instance name.
+     */
+    instance?: string;
+    /**
+     * Required. ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstancesDemoteRequest;
   }
   export interface Params$Resource$Instances$Demotemaster
     extends StandardParameters {
