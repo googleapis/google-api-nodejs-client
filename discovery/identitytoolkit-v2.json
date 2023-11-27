@@ -289,32 +289,6 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
-        "getPasskeyConfig": {
-          "description": "Retrieve a passkey configuration for an Identity Toolkit project.",
-          "flatPath": "v2/projects/{projectsId}/passkeyConfig",
-          "httpMethod": "GET",
-          "id": "identitytoolkit.projects.getPasskeyConfig",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the config, for example: 'projects/my-awesome-project/passkeyConfig'.",
-              "location": "path",
-              "pattern": "^projects/[^/]+/passkeyConfig$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}",
-          "response": {
-            "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/firebase"
-          ]
-        },
         "updateConfig": {
           "description": "Update an Identity Toolkit project configuration.",
           "flatPath": "v2/projects/{projectsId}/config",
@@ -344,41 +318,6 @@
           },
           "response": {
             "$ref": "GoogleCloudIdentitytoolkitAdminV2Config"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/firebase"
-          ]
-        },
-        "updatePasskeyConfig": {
-          "description": "Update a passkey configuration for an Identity Toolkit project.",
-          "flatPath": "v2/projects/{projectsId}/passkeyConfig",
-          "httpMethod": "PATCH",
-          "id": "identitytoolkit.projects.updatePasskeyConfig",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The name of the PasskeyConfig resource.",
-              "location": "path",
-              "pattern": "^projects/[^/]+/passkeyConfig$",
-              "required": true,
-              "type": "string"
-            },
-            "updateMask": {
-              "description": "Optional. The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
-              "format": "google-fieldmask",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}",
-          "request": {
-            "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
-          },
-          "response": {
-            "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -1017,32 +956,6 @@
                 "https://www.googleapis.com/auth/firebase"
               ]
             },
-            "getPasskeyConfig": {
-              "description": "Retrieve a passkey configuration for an Identity Toolkit project.",
-              "flatPath": "v2/projects/{projectsId}/tenants/{tenantsId}/passkeyConfig",
-              "httpMethod": "GET",
-              "id": "identitytoolkit.projects.tenants.getPasskeyConfig",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The resource name of the config, for example: 'projects/my-awesome-project/passkeyConfig'.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/tenants/[^/]+/passkeyConfig$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v2/{+name}",
-              "response": {
-                "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/firebase"
-              ]
-            },
             "list": {
               "description": "List tenants under the given agent project. Requires read permission on the Agent project.",
               "flatPath": "v2/projects/{projectsId}/tenants",
@@ -1167,41 +1080,6 @@
               },
               "response": {
                 "$ref": "GoogleIamV1TestIamPermissionsResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/firebase"
-              ]
-            },
-            "updatePasskeyConfig": {
-              "description": "Update a passkey configuration for an Identity Toolkit project.",
-              "flatPath": "v2/projects/{projectsId}/tenants/{tenantsId}/passkeyConfig",
-              "httpMethod": "PATCH",
-              "id": "identitytoolkit.projects.tenants.updatePasskeyConfig",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The name of the PasskeyConfig resource.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/tenants/[^/]+/passkeyConfig$",
-                  "required": true,
-                  "type": "string"
-                },
-                "updateMask": {
-                  "description": "Optional. The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
-                  "format": "google-fieldmask",
-                  "location": "query",
-                  "type": "string"
-                }
-              },
-              "path": "v2/{+name}",
-              "request": {
-                "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
-              },
-              "response": {
-                "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -1777,7 +1655,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20231103",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
@@ -2602,28 +2480,6 @@
           "deprecated": true,
           "description": "Do not use. The `token` response type is not supported at the moment.",
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig": {
-      "description": "Configuration for signing in users using passkeys.",
-      "id": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig",
-      "properties": {
-        "expectedOrigins": {
-          "description": "Required. The website or app origins associated with the customer's sites or apps. Only challenges signed from these origins will be allowed to sign in with passkeys.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "name": {
-          "description": "Required. The name of the PasskeyConfig resource.",
-          "type": "string"
-        },
-        "rpId": {
-          "description": "Required. The relying party ID for the purpose of passkeys verifications. This cannot be changed once created.",
-          "type": "string"
         }
       },
       "type": "object"
