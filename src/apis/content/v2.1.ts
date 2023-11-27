@@ -229,6 +229,10 @@ export namespace content_v2_1 {
      */
     automaticLabelIds?: string[] | null;
     /**
+     * The business identity attributes can be used to self-declare attributes that let customers know more about your business.
+     */
+    businessIdentity?: Schema$AccountBusinessIdentity;
+    /**
      * The business information of the account.
      */
     businessInformation?: Schema$AccountBusinessInformation;
@@ -326,6 +330,35 @@ export namespace content_v2_1 {
      */
     shippingImprovements?: Schema$AccountShippingImprovements;
   }
+  /**
+   * The [business identity attributes](https://support.google.com/merchants/answer/10342414) can be used to self-declare attributes that let customers know more about your business.
+   */
+  export interface Schema$AccountBusinessIdentity {
+    /**
+     * Specifies whether the business identifies itself as being black-owned. This optional field is only available for merchants with a business country set to "US". This field is not allowed for marketplaces or marketplace sellers.
+     */
+    blackOwned?: Schema$AccountIdentityType;
+    /**
+     * Required. By setting this field, your business may be included in promotions for all the selected attributes. If you clear this option, it won't affect your identification with any of the attributes. For this field to be set, the merchant must self identify with at least one of the `AccountIdentityType`. If none are included, the request will be considered invalid.
+     */
+    includeForPromotions?: boolean | null;
+    /**
+     * Specifies whether the business identifies itself as being latino-owned. This optional field is only available for merchants with a business country set to "US". This field is not allowed for marketplaces or marketplace sellers.
+     */
+    latinoOwned?: Schema$AccountIdentityType;
+    /**
+     * Specifies whether the business identifies itself as a small business. This optional field is only available for merchants with a business country set to "US". It is also not allowed for marketplaces, but it is allowed to marketplace sellers.
+     */
+    smallBusiness?: Schema$AccountIdentityType;
+    /**
+     * Specifies whether the business identifies itself as being veteran-owned. This optional field is only available for merchants with a business country set to "US". This field is not allowed for marketplaces or marketplace sellers.
+     */
+    veteranOwned?: Schema$AccountIdentityType;
+    /**
+     * Specifies whether the business identifies itself as being women-owned. This optional field is only available for merchants with a business country set to "US". This field is not allowed for marketplaces or marketplace sellers.
+     */
+    womenOwned?: Schema$AccountIdentityType;
+  }
   export interface Schema$AccountBusinessInformation {
     /**
      * The address of the business. Use `\n` to add a second address line.
@@ -411,6 +444,15 @@ export namespace content_v2_1 {
      * The merchant account ID, set for individual accounts and subaccounts.
      */
     merchantId?: string | null;
+  }
+  /**
+   * The account identity type used to specify attributes.
+   */
+  export interface Schema$AccountIdentityType {
+    /**
+     * Optional. Indicates that the business identifies itself with a given identity type. Setting this field does not automatically mean eligibility for promotions.
+     */
+    selfIdentified?: boolean | null;
   }
   /**
    * This improvement will attempt to automatically correct submitted images if they don't meet the [image requirements](https://support.google.com/merchants/answer/6324350), for example, removing overlays. If successful, the image will be replaced and approved. This improvement is only applied to images of disapproved offers. For more information see: [Automatic image improvements](https://support.google.com/merchants/answer/9242973)
@@ -3101,7 +3143,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$LocalInventory {
     /**
-     * Availability of the product. For accepted attribute values, see the local product inventory feed specification.
+     * The availability of the product. For accepted attribute values, see the local product inventory feed specification.
      */
     availability?: string | null;
     /**
@@ -3109,7 +3151,7 @@ export namespace content_v2_1 {
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
-     * In-store product location.
+     * The in-store product location.
      */
     instoreProductLocation?: string | null;
     /**
@@ -3117,23 +3159,23 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed specification.
+     * The supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed specification.
      */
     pickupMethod?: string | null;
     /**
-     * Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the local product inventory feed specification.
+     * The expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the local product inventory feed specification.
      */
     pickupSla?: string | null;
     /**
-     * Price of the product.
+     * The price of the product.
      */
     price?: Schema$Price;
     /**
-     * Quantity of the product. Must be nonnegative.
+     * The quantity of the product. Must be nonnegative.
      */
     quantity?: number | null;
     /**
-     * Sale price of the product. Mandatory if `sale_price_effective_date` is defined.
+     * The sale price of the product. Mandatory if `sale_price_effective_date` is defined.
      */
     salePrice?: Schema$Price;
     /**
@@ -3141,7 +3183,7 @@ export namespace content_v2_1 {
      */
     salePriceEffectiveDate?: string | null;
     /**
-     * Required. Store code of this local inventory resource.
+     * Required. The store code of this local inventory resource.
      */
     storeCode?: string | null;
   }
@@ -5717,7 +5759,7 @@ export namespace content_v2_1 {
      */
     predictedConversionsChangeFraction?: number | null;
     /**
-     * The predicted change in gross profit as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in gross profit.
+     * *Deprecated*: This field is no longer supported and will start returning 0. The predicted change in gross profit as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in gross profit.
      */
     predictedGrossProfitChangeFraction?: number | null;
     /**
@@ -5725,11 +5767,11 @@ export namespace content_v2_1 {
      */
     predictedImpressionsChangeFraction?: number | null;
     /**
-     * The predicted monthly gross profit change currency (ISO 4217 code).
+     * *Deprecated*: This field is no longer supported and will start returning USD for all requests. The predicted monthly gross profit change currency (ISO 4217 code).
      */
     predictedMonthlyGrossProfitChangeCurrencyCode?: string | null;
     /**
-     * The predicted change in gross profit in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) after introducing the suggested price for a month compared to current active price.
+     * *Deprecated*: This field is no longer supported and will start returning 0. The predicted change in gross profit in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) after introducing the suggested price for a month compared to current active price.
      */
     predictedMonthlyGrossProfitChangeMicros?: string | null;
     /**
@@ -8443,7 +8485,7 @@ export namespace content_v2_1 {
      */
     rateGroups?: Schema$RateGroup[];
     /**
-     * Type of locations this service ships orders to. Acceptable values are: - "`delivery`" - "`pickup`" - "`local_delivery`" - "`collection_point`"
+     * Type of locations this service ships orders to. Acceptable values are: - "`delivery`" - "`pickup` (deprecated)" - "`local_delivery`" - "`collection_point`"
      */
     shipmentType?: string | null;
     /**

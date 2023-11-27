@@ -6488,7 +6488,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20231120",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6522,6 +6522,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "businessIdentity": {
+          "$ref": "AccountBusinessIdentity",
+          "description": "The business identity attributes can be used to self-declare attributes that let customers know more about your business."
         },
         "businessInformation": {
           "$ref": "AccountBusinessInformation",
@@ -6646,6 +6650,37 @@
       },
       "type": "object"
     },
+    "AccountBusinessIdentity": {
+      "description": "The [business identity attributes](https://support.google.com/merchants/answer/10342414) can be used to self-declare attributes that let customers know more about your business.",
+      "id": "AccountBusinessIdentity",
+      "properties": {
+        "blackOwned": {
+          "$ref": "AccountIdentityType",
+          "description": "Specifies whether the business identifies itself as being black-owned. This optional field is only available for merchants with a business country set to \"US\". This field is not allowed for marketplaces or marketplace sellers."
+        },
+        "includeForPromotions": {
+          "description": "Required. By setting this field, your business may be included in promotions for all the selected attributes. If you clear this option, it won't affect your identification with any of the attributes. For this field to be set, the merchant must self identify with at least one of the `AccountIdentityType`. If none are included, the request will be considered invalid.",
+          "type": "boolean"
+        },
+        "latinoOwned": {
+          "$ref": "AccountIdentityType",
+          "description": "Specifies whether the business identifies itself as being latino-owned. This optional field is only available for merchants with a business country set to \"US\". This field is not allowed for marketplaces or marketplace sellers."
+        },
+        "smallBusiness": {
+          "$ref": "AccountIdentityType",
+          "description": "Specifies whether the business identifies itself as a small business. This optional field is only available for merchants with a business country set to \"US\". It is also not allowed for marketplaces, but it is allowed to marketplace sellers."
+        },
+        "veteranOwned": {
+          "$ref": "AccountIdentityType",
+          "description": "Specifies whether the business identifies itself as being veteran-owned. This optional field is only available for merchants with a business country set to \"US\". This field is not allowed for marketplaces or marketplace sellers."
+        },
+        "womenOwned": {
+          "$ref": "AccountIdentityType",
+          "description": "Specifies whether the business identifies itself as being women-owned. This optional field is only available for merchants with a business country set to \"US\". This field is not allowed for marketplaces or marketplace sellers."
+        }
+      },
+      "type": "object"
+    },
     "AccountBusinessInformation": {
       "id": "AccountBusinessInformation",
       "properties": {
@@ -6766,6 +6801,17 @@
           "description": "The merchant account ID, set for individual accounts and subaccounts.",
           "format": "uint64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountIdentityType": {
+      "description": "The account identity type used to specify attributes.",
+      "id": "AccountIdentityType",
+      "properties": {
+        "selfIdentified": {
+          "description": "Optional. Indicates that the business identifies itself with a given identity type. Setting this field does not automatically mean eligibility for promotions.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -10672,7 +10718,7 @@
       "id": "LocalInventory",
       "properties": {
         "availability": {
-          "description": "Availability of the product. For accepted attribute values, see the local product inventory feed specification.",
+          "description": "The availability of the product. For accepted attribute values, see the local product inventory feed specification.",
           "type": "string"
         },
         "customAttributes": {
@@ -10683,7 +10729,7 @@
           "type": "array"
         },
         "instoreProductLocation": {
-          "description": "In-store product location.",
+          "description": "The in-store product location.",
           "type": "string"
         },
         "kind": {
@@ -10691,32 +10737,32 @@
           "type": "string"
         },
         "pickupMethod": {
-          "description": "Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed specification.",
+          "description": "The supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed specification.",
           "type": "string"
         },
         "pickupSla": {
-          "description": "Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the local product inventory feed specification.",
+          "description": "The expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the local product inventory feed specification.",
           "type": "string"
         },
         "price": {
           "$ref": "Price",
-          "description": "Price of the product."
+          "description": "The price of the product."
         },
         "quantity": {
-          "description": "Quantity of the product. Must be nonnegative.",
+          "description": "The quantity of the product. Must be nonnegative.",
           "format": "uint32",
           "type": "integer"
         },
         "salePrice": {
           "$ref": "Price",
-          "description": "Sale price of the product. Mandatory if `sale_price_effective_date` is defined."
+          "description": "The sale price of the product. Mandatory if `sale_price_effective_date` is defined."
         },
         "salePriceEffectiveDate": {
           "description": "A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates may be specified as 'null' if undecided.",
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. Store code of this local inventory resource.",
+          "description": "Required. The store code of this local inventory resource.",
           "type": "string"
         }
       },
@@ -14020,7 +14066,7 @@
           "type": "number"
         },
         "predictedGrossProfitChangeFraction": {
-          "description": "The predicted change in gross profit as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in gross profit.",
+          "description": "*Deprecated*: This field is no longer supported and will start returning 0. The predicted change in gross profit as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in gross profit.",
           "format": "double",
           "type": "number"
         },
@@ -14030,11 +14076,11 @@
           "type": "number"
         },
         "predictedMonthlyGrossProfitChangeCurrencyCode": {
-          "description": "The predicted monthly gross profit change currency (ISO 4217 code).",
+          "description": "*Deprecated*: This field is no longer supported and will start returning USD for all requests. The predicted monthly gross profit change currency (ISO 4217 code).",
           "type": "string"
         },
         "predictedMonthlyGrossProfitChangeMicros": {
-          "description": "The predicted change in gross profit in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) after introducing the suggested price for a month compared to current active price.",
+          "description": "*Deprecated*: This field is no longer supported and will start returning 0. The predicted change in gross profit in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) after introducing the suggested price for a month compared to current active price.",
           "format": "int64",
           "type": "string"
         },
@@ -17784,7 +17830,7 @@
           "type": "array"
         },
         "shipmentType": {
-          "description": "Type of locations this service ships orders to. Acceptable values are: - \"`delivery`\" - \"`pickup`\" - \"`local_delivery`\" - \"`collection_point`\" ",
+          "description": "Type of locations this service ships orders to. Acceptable values are: - \"`delivery`\" - \"`pickup` (deprecated)\" - \"`local_delivery`\" - \"`collection_point`\" ",
           "type": "string"
         },
         "storeConfig": {
