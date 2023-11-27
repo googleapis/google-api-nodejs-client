@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20220604",
+  "revision": "20231112",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -618,7 +618,10 @@
             "XSS_ANGULAR_CALLBACK",
             "INVALID_HEADER",
             "MISSPELLED_SECURITY_HEADER_NAME",
-            "MISMATCHING_SECURITY_HEADER_VALUES"
+            "MISMATCHING_SECURITY_HEADER_VALUES",
+            "ACCESSIBLE_GIT_REPOSITORY",
+            "ACCESSIBLE_SVN_REPOSITORY",
+            "ACCESSIBLE_ENV_FILE"
           ],
           "enumDescriptions": [
             "The invalid finding type.",
@@ -632,7 +635,10 @@
             "A cross-site scripting (XSS) vulnerability in AngularJS module that occurs when a user-provided string is interpolated by Angular.",
             "A malformed or invalid valued header.",
             "Misspelled security header name.",
-            "Mismatching values in a duplicate security header."
+            "Mismatching values in a duplicate security header.",
+            "A world-readable git repository that potentially leaks source code, commit history or sensitive information such as credentials.",
+            "A world-readable subversion repository that potentially leaks source code, commit history or sensitive information such as credentials.",
+            "A world-readable env file that potentially leaks source code, commit history or sensitive information such as credentials."
           ],
           "type": "string"
         },
@@ -706,7 +712,10 @@
             "XSS_ANGULAR_CALLBACK",
             "INVALID_HEADER",
             "MISSPELLED_SECURITY_HEADER_NAME",
-            "MISMATCHING_SECURITY_HEADER_VALUES"
+            "MISMATCHING_SECURITY_HEADER_VALUES",
+            "ACCESSIBLE_GIT_REPOSITORY",
+            "ACCESSIBLE_SVN_REPOSITORY",
+            "ACCESSIBLE_ENV_FILE"
           ],
           "enumDescriptions": [
             "The invalid finding type.",
@@ -720,7 +729,10 @@
             "A cross-site scripting (XSS) vulnerability in AngularJS module that occurs when a user-provided string is interpolated by Angular.",
             "A malformed or invalid valued header.",
             "Misspelled security header name.",
-            "Mismatching values in a duplicate security header."
+            "Mismatching values in a duplicate security header.",
+            "A world-readable git repository that potentially leaks source code, commit history or sensitive information such as credentials.",
+            "A world-readable subversion repository that potentially leaks source code, commit history or sensitive information such as credentials.",
+            "A world-readable env file that potentially leaks source code, commit history or sensitive information such as credentials."
           ],
           "type": "string"
         }

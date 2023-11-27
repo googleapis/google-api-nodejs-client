@@ -9458,10 +9458,10 @@
                   },
                   "path": "v1/{+parent}/apicategories",
                   "request": {
-                    "$ref": "GoogleCloudApigeeV1ApiCategoryData"
+                    "$ref": "GoogleCloudApigeeV1ApiCategory"
                   },
                   "response": {
-                    "$ref": "GoogleCloudApigeeV1ApiCategory"
+                    "$ref": "GoogleCloudApigeeV1ApiCategoryResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -9511,7 +9511,7 @@
                   },
                   "path": "v1/{+name}",
                   "response": {
-                    "$ref": "GoogleCloudApigeeV1ApiCategory"
+                    "$ref": "GoogleCloudApigeeV1ApiCategoryResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -9561,10 +9561,10 @@
                   },
                   "path": "v1/{+name}",
                   "request": {
-                    "$ref": "GoogleCloudApigeeV1ApiCategoryData"
+                    "$ref": "GoogleCloudApigeeV1ApiCategory"
                   },
                   "response": {
-                    "$ref": "GoogleCloudApigeeV1ApiCategory"
+                    "$ref": "GoogleCloudApigeeV1ApiCategoryResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -9609,7 +9609,7 @@
       }
     }
   },
-  "revision": "20231016",
+  "revision": "20231114",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -9898,35 +9898,8 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1ApiCategory": {
-      "description": "The API category resource wrapped with response status, error_code, etc.",
+      "description": "`ApiCategory` represents an API category. [Catalog items](/apigee/docs/reference/apis/apigee/rest/v1/organizations.sites.apidocs) can be tagged with API categories; users viewing the API catalog in the portal will have the option to browse the catalog by category.",
       "id": "GoogleCloudApigeeV1ApiCategory",
-      "properties": {
-        "data": {
-          "$ref": "GoogleCloudApigeeV1ApiCategoryData",
-          "description": "Details of the category."
-        },
-        "errorCode": {
-          "description": "Unique error code for the request, if any.",
-          "type": "string"
-        },
-        "message": {
-          "description": "Description of the operation.",
-          "type": "string"
-        },
-        "requestId": {
-          "description": "Unique ID of the request.",
-          "type": "string"
-        },
-        "status": {
-          "description": "Status of the operation.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1ApiCategoryData": {
-      "description": "`ApiCategoryData` represents an API category. Catalog items can be tagged with API categories; users viewing the API catalog in the portal will have the option to browse the catalog by category.",
-      "id": "GoogleCloudApigeeV1ApiCategoryData",
       "properties": {
         "id": {
           "description": "ID of the category (a UUID).",
@@ -9943,6 +9916,33 @@
         "updateTime": {
           "description": "Time the category was last modified in milliseconds since epoch.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ApiCategoryResponse": {
+      "description": "The API category resource wrapped with response status, error_code, etc.",
+      "id": "GoogleCloudApigeeV1ApiCategoryResponse",
+      "properties": {
+        "data": {
+          "$ref": "GoogleCloudApigeeV1ApiCategory",
+          "description": "The API category resource."
+        },
+        "errorCode": {
+          "description": "Unique error code for the request, if any.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Description of the operation.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Unique ID of the request.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the operation.",
           "type": "string"
         }
       },
@@ -13247,13 +13247,13 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1ListApiCategoriesResponse": {
-      "description": "The response for `ListApiCategoriesRequest`.",
+      "description": "The response for `ListApiCategoriesRequest`. Next ID: 6",
       "id": "GoogleCloudApigeeV1ListApiCategoriesResponse",
       "properties": {
         "data": {
-          "description": "Details of the categories.",
+          "description": "The API category resources.",
           "items": {
-            "$ref": "GoogleCloudApigeeV1ApiCategoryData"
+            "$ref": "GoogleCloudApigeeV1ApiCategory"
           },
           "type": "array"
         },
@@ -14241,7 +14241,7 @@
           "enumDescriptions": [
             "Billing type not specified.",
             "A pre-paid subscription to Apigee.",
-            "Free and limited access to Apigee for evaluation purposes only. only.",
+            "Free and limited access to Apigee for evaluation purposes only.",
             "Access to Apigee using a Pay-As-You-Go plan."
           ],
           "type": "string"

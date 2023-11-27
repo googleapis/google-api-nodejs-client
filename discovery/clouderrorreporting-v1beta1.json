@@ -15,6 +15,7 @@
   "description": "Groups and counts similar errors from cloud services and applications, reports new errors, and provides access to error groups and their associated errors. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/error-reporting/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -430,7 +431,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231106",
   "rootUrl": "https://clouderrorreporting.googleapis.com/",
   "schemas": {
     "DeleteEventsResponse": {

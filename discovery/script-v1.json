@@ -219,7 +219,8 @@
                 "FAILED",
                 "TIMED_OUT",
                 "UNKNOWN",
-                "DELAYED"
+                "DELAYED",
+                "EXECUTION_DISABLED"
               ],
               "enumDescriptions": [
                 "Unspecified status.",
@@ -230,7 +231,8 @@
                 "The process failed.",
                 "The process timed out.",
                 "Process status unknown.",
-                "The process is delayed, waiting for quota."
+                "The process is delayed, waiting for quota.",
+                "AppsScript executions are disabled by Admin."
               ],
               "location": "query",
               "repeated": true,
@@ -351,7 +353,8 @@
                 "FAILED",
                 "TIMED_OUT",
                 "UNKNOWN",
-                "DELAYED"
+                "DELAYED",
+                "EXECUTION_DISABLED"
               ],
               "enumDescriptions": [
                 "Unspecified status.",
@@ -362,7 +365,8 @@
                 "The process failed.",
                 "The process timed out.",
                 "Process status unknown.",
-                "The process is delayed, waiting for quota."
+                "The process is delayed, waiting for quota.",
+                "AppsScript executions are disabled by Admin."
               ],
               "location": "query",
               "repeated": true,
@@ -887,7 +891,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20231105",
   "rootUrl": "https://script.googleapis.com/",
   "schemas": {
     "Content": {
@@ -1267,7 +1271,8 @@
             "FAILED",
             "TIMED_OUT",
             "UNKNOWN",
-            "DELAYED"
+            "DELAYED",
+            "EXECUTION_DISABLED"
           ],
           "enumDescriptions": [
             "Unspecified status.",
@@ -1278,7 +1283,8 @@
             "The process failed.",
             "The process timed out.",
             "Process status unknown.",
-            "The process is delayed, waiting for quota."
+            "The process is delayed, waiting for quota.",
+            "AppsScript executions are disabled by Admin."
           ],
           "type": "string"
         },
