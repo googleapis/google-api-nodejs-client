@@ -111,6 +111,80 @@
           "resources": {
             "collections": {
               "resources": {
+                "dataConnector": {
+                  "resources": {
+                    "operations": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataConnector/operations/{operationsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataConnector.operations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataConnector/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataConnector/operations",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataConnector.operations.list",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "The standard list filter.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the operation's parent resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataConnector$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The standard list page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The standard list page token.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}/operations",
+                          "response": {
+                            "$ref": "GoogleLongrunningListOperationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
                 "dataStores": {
                   "methods": {
                     "completeQuery": {
@@ -1020,7 +1094,7 @@
                           ],
                           "parameters": {
                             "servingConfig": {
-                              "description": "Required. Full resource name of the format: `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` Before you can request recommendations from your model, you must create at least one serving config for it.",
+                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your Recommend requests.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -1048,7 +1122,7 @@
                           ],
                           "parameters": {
                             "servingConfig": {
-                              "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
+                              "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/engines/*/servingConfigs/default_serving_config`, or `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -1403,7 +1477,7 @@
                           ],
                           "parameters": {
                             "servingConfig": {
-                              "description": "Required. Full resource name of the format: `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` Before you can request recommendations from your model, you must create at least one serving config for it.",
+                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your Recommend requests.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -1431,7 +1505,7 @@
                           ],
                           "parameters": {
                             "servingConfig": {
-                              "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
+                              "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/engines/*/servingConfigs/default_serving_config`, or `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -2362,7 +2436,7 @@
                       ],
                       "parameters": {
                         "servingConfig": {
-                          "description": "Required. Full resource name of the format: `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` Before you can request recommendations from your model, you must create at least one serving config for it.",
+                          "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your Recommend requests.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -2390,7 +2464,7 @@
                       ],
                       "parameters": {
                         "servingConfig": {
-                          "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
+                          "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/engines/*/servingConfigs/default_serving_config`, or `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -2658,7 +2732,7 @@
       }
     }
   },
-  "revision": "20231016",
+  "revision": "20231110",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3038,9 +3112,152 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaCreateDataStoreMetadata": {
+      "description": "Metadata related to the progress of the DataStoreService.CreateDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCreateDataStoreMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCreateEngineMetadata": {
+      "description": "Metadata related to the progress of the EngineService.CreateEngine operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCreateEngineMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata": {
       "description": "Metadata for Create Schema LRO.",
       "id": "GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDataStore": {
+      "description": "DataStore captures global settings and configs at the DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataStore",
+      "properties": {
+        "contentConfig": {
+          "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
+          "enum": [
+            "CONTENT_CONFIG_UNSPECIFIED",
+            "NO_CONTENT",
+            "CONTENT_REQUIRED",
+            "PUBLIC_WEBSITE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Only contains documents without any Document.content.",
+            "Only contains documents with Document.content.",
+            "The data store is used for public website search."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp the DataStore was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultSchemaId": {
+          "description": "Output only. The id of the default Schema asscociated to this data store.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The data store display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "industryVertical": {
+          "description": "Immutable. The industry vertical that the data store registers.",
+          "enum": [
+            "INDUSTRY_VERTICAL_UNSPECIFIED",
+            "GENERIC",
+            "MEDIA"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "The generic vertical for documents that are not specific to any industry vertical.",
+            "The media industry vertical."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "solutionTypes": {
+          "description": "The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.",
+          "items": {
+            "enum": [
+              "SOLUTION_TYPE_UNSPECIFIED",
+              "SOLUTION_TYPE_RECOMMENDATION",
+              "SOLUTION_TYPE_SEARCH",
+              "SOLUTION_TYPE_CHAT"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Used for Recommendations AI.",
+              "Used for Discovery Search.",
+              "Used for use cases related to the Generative AI agent."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeleteDataStoreMetadata": {
+      "description": "Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteDataStoreMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeleteEngineMetadata": {
+      "description": "Metadata related to the progress of the EngineService.DeleteEngine operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteEngineMetadata",
       "properties": {
         "createTime": {
           "description": "Operation create time.",
@@ -3070,6 +3287,297 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngine": {
+      "description": "Metadata that describes the training and serving parameters of an Engine.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngine",
+      "properties": {
+        "chatEngineConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
+          "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
+        },
+        "chatEngineMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineMetadata",
+          "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
+          "readOnly": true
+        },
+        "commonConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineCommonConfig",
+          "description": "Common config spec that specifies the metadata of the engine."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp the Recommendation Engine was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataStoreIds": {
+          "description": "The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary intializations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
+          "type": "string"
+        },
+        "industryVertical": {
+          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore liniked to the engine.",
+          "enum": [
+            "INDUSTRY_VERTICAL_UNSPECIFIED",
+            "GENERIC",
+            "MEDIA"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "The generic vertical for documents that are not specific to any industry vertical.",
+            "The media industry vertical."
+          ],
+          "type": "string"
+        },
+        "mediaRecommendationEngineConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
+          "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
+        },
+        "name": {
+          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "recommendationMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata",
+          "description": "Output only. Additional information of a recommendation engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.",
+          "readOnly": true
+        },
+        "searchEngineConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig",
+          "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
+        },
+        "similarDocumentsConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineSimilarDocumentsEngineConfig",
+          "description": "Additional config specs for a `similar-items` engine."
+        },
+        "solutionType": {
+          "description": "Required. The solutions of the engine.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Discovery Search.",
+            "Used for use cases related to the Generative AI agent."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp the Recommendation Engine was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig": {
+      "description": "Configurations for a Chat Engine.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
+      "properties": {
+        "agentCreationConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfigAgentCreationConfig",
+          "description": "The configurationt generate the Dialogflow agent that is associated to this Engine. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation."
+        },
+        "dialogflowAgentToLink": {
+          "description": "The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Please use chat_engine_metadata.dialogflow_agent for actual agent association after Engine is created.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfigAgentCreationConfig": {
+      "description": "Configurations for generating a Dialogflow agent. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfigAgentCreationConfig",
+      "properties": {
+        "business": {
+          "description": "Name of the company, organization or other entity that the agent represents. Used for knowledge connector LLM prompt and for knowledge search.",
+          "type": "string"
+        },
+        "defaultLanguageCode": {
+          "description": "Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineChatEngineMetadata": {
+      "description": "Additional information of a Chat Engine. Fields in this message are output only.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineMetadata",
+      "properties": {
+        "dialogflowAgent": {
+          "description": "The resource name of a Dialogflow agent, that this Chat Engine refers to. Format: `projects//locations//agents/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineCommonConfig": {
+      "description": "Common configurations for an Engine.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineCommonConfig",
+      "properties": {
+        "companyName": {
+          "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig": {
+      "description": "Additional config specs for a Media Recommendation engine.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
+      "properties": {
+        "optimizationObjective": {
+          "description": "The optimization objective e.g. `cvr`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `ctr`, `cvr`. If not specified, we choose default based on engine type. Default depends on type of recommendation: `recommended-for-you` => `ctr` `others-you-may-like` => `ctr`",
+          "type": "string"
+        },
+        "optimizationObjectiveConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig",
+          "description": "Name and value of the custom threshold for cvr optimization_objective. For target_field `watch-time`, target_field_value must be an integer value indicating the media progress time in seconds between (0, 86400] (excludes 0, includes 86400) (e.g., 90). For target_field `watch-percentage`, the target_field_value must be a valid float value between (0, 1.0] (excludes 0, includes 1.0) (e.g., 0.5)."
+        },
+        "trainingState": {
+          "description": "The training state that the engine is in (e.g. `TRAINING` or `PAUSED`). Since part of the cost of running the service is frequency of training - this can be used to determine when to train engine in order to control cost. If not specified: the default value for `CreateEngine` method is `TRAINING`. The default value for `UpdateEngine` method is to keep the state the same as before.",
+          "enum": [
+            "TRAINING_STATE_UNSPECIFIED",
+            "PAUSED",
+            "TRAINING"
+          ],
+          "enumDescriptions": [
+            "Unspecified training state.",
+            "The engine training is paused.",
+            "The engine is training."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of engine e.g. `recommended-for-you`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `recommended-for-you`, `others-you-may-like`, `more-like-this`, `most-popular-items`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig": {
+      "description": "Custom threshold for `cvr` optimization_objective.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig",
+      "properties": {
+        "targetField": {
+          "description": "Required. The name of the field to target. Currently supported values: `watch-percentage`, `watch-time`.",
+          "type": "string"
+        },
+        "targetFieldValueFloat": {
+          "description": "Required. The threshold to be applied to the target (e.g., 0.5).",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata": {
+      "description": "Additional information of a recommendation engine.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata",
+      "properties": {
+        "dataState": {
+          "description": "Output only. The state of data requirements for this engine: `DATA_OK` and `DATA_ERROR`. Engine cannot be trained if the data is in `DATA_ERROR` state. Engine can have `DATA_ERROR` state even if serving state is `ACTIVE`: engines were trained successfully before, but cannot be refreshed because the underlying engine no longer has sufficient data for training.",
+          "enum": [
+            "DATA_STATE_UNSPECIFIED",
+            "DATA_OK",
+            "DATA_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified default value, should never be explicitly set.",
+            "The engine has sufficient training data.",
+            "The engine does not have sufficient training data. Error messages can be queried via Stackdriver."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastTuneTime": {
+          "description": "Output only. The timestamp when the latest successful tune finished. Only applicable on Media Recommendation engines.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "servingState": {
+          "description": "Output only. The serving state of the engine: `ACTIVE`, `NOT_ACTIVE`.",
+          "enum": [
+            "SERVING_STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE",
+            "TUNED"
+          ],
+          "enumDescriptions": [
+            "Unspecified serving state.",
+            "The engine is not serving.",
+            "The engine is serving and can be queried.",
+            "The engine is trained on tuned hyperparameters and can be queried."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "tuningOperation": {
+          "description": "Output only. The latest tune operation id associated with the engine. Only applicable on Media Recommendation engines. If present, this operation id can be used to determine if there is an ongoing tune for this engine. To check the operation status, send the GetOperation request with this operation id in the engine resource format. If no tuning has happened for this engine, the string is empty.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig": {
+      "description": "Configurations for a Search Engine.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig",
+      "properties": {
+        "searchAddOns": {
+          "description": "The add-on that this search engine enables.",
+          "items": {
+            "enum": [
+              "SEARCH_ADD_ON_UNSPECIFIED",
+              "SEARCH_ADD_ON_LLM"
+            ],
+            "enumDescriptions": [
+              "Default value when the enum is unspecified. This is invalid to use.",
+              "Large language model add-on."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "searchTier": {
+          "description": "The search feature tier of this engine. Different tiers might have different pricing. To learn more, please check the pricing documentation. Defaults to SearchTier.SEARCH_TIER_STANDARD if not specified.",
+          "enum": [
+            "SEARCH_TIER_UNSPECIFIED",
+            "SEARCH_TIER_STANDARD",
+            "SEARCH_TIER_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Default value when the enum is unspecified. This is invalid to use.",
+            "Standard tier.",
+            "Enterprise tier."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineSimilarDocumentsEngineConfig": {
+      "description": "Additional config specs for a `similar-items` engine.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineSimilarDocumentsEngineConfig",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaFieldConfig": {
@@ -3645,6 +4153,23 @@
     },
     "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure": {
       "id": "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaTuneEngineMetadata": {
+      "description": "Metadata associated with a tune operation.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTuneEngineMetadata",
+      "properties": {
+        "engine": {
+          "description": "Required. The resource name of the engine that this tune applies to. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaTuneEngineResponse": {
+      "description": "Response associated with a tune operation.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTuneEngineResponse",
       "properties": {},
       "type": "object"
     },
@@ -4694,6 +5219,10 @@
           "description": "The branch resource name, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/branches/0`. Use `default_branch` as the branch ID or leave this field empty, to search documents under the default branch.",
           "type": "string"
         },
+        "canonicalFilter": {
+          "description": "The default filter that is applied when a user performs a search without checking any filters on the search page. The filter applied to every search request when quality improvement such as query expansion is needed. In the case a query does not have a sufficient amount of results this filter will be used to determine whether or not to enable the query expansion flow. The original filter will still be used for the query expanded search. This field is strongly recommended to achieve high search quality. For more information about filter syntax, see SearchRequest.filter.",
+          "type": "string"
+        },
         "contentSearchSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec",
           "description": "A specification for configuring the behavior of content search."
@@ -4739,7 +5268,7 @@
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Additional search parameters. For public website search only, supported values are: * `user_country_code`: string. Default empty. If set to non-empty, results are restricted or boosted based on the location provided. * `search_type`: double. Default empty. Enables non-webpage searching depending on the value. The only valid non-default value is 1, which enables image searching.",
+          "description": "Additional search parameters. For public website search only, supported values are: * `user_country_code`: string. Default empty. If set to non-empty, results are restricted or boosted based on the location provided. Example: user_country_code: \"au\" For available codes see [Country Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes) * `search_type`: double. Default empty. Enables non-webpage searching depending on the value. The only valid non-default value is 1, which enables image searching. Example: search_type: 1",
           "type": "object"
         },
         "query": {
