@@ -971,7 +971,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityResult {
     /**
-     * A list of results at the dimension level.
+     * A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.
      */
     dimensions?: Schema$GoogleCloudDataplexV1DataQualityDimensionResult[];
     /**
@@ -1475,9 +1475,17 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataScanEventDataQualityResult {
     /**
+     * The score of each column scanned in the data scan job. The key of the map is the name of the column. The value is the data quality score for the column.The score ranges between 0, 100 (up to two decimal points).
+     */
+    columnScore?: {[key: string]: number} | null;
+    /**
      * The result of each dimension for data quality result. The key of the map is the name of the dimension. The value is the bool value depicting whether the dimension result was pass or not.
      */
     dimensionPassed?: {[key: string]: boolean} | null;
+    /**
+     * The score of each dimension for data quality result. The key of the map is the name of the dimension. The value is the data quality score for the dimension.The score ranges between 0, 100 (up to two decimal points).
+     */
+    dimensionScore?: {[key: string]: number} | null;
     /**
      * Whether the data quality result was pass or not.
      */
@@ -1486,6 +1494,10 @@ export namespace dataplex_v1 {
      * The count of rows processed in the data scan job.
      */
     rowCount?: string | null;
+    /**
+     * The table-level data quality score for the data scan job.The data quality score ranges between 0, 100 (up to two decimal points).
+     */
+    score?: number | null;
   }
   /**
    * Post scan actions result for data scan job.

@@ -4360,7 +4360,7 @@
       }
     }
   },
-  "revision": "20231007",
+  "revision": "20231103",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -5555,7 +5555,7 @@
       "id": "GoogleCloudDataplexV1DataQualityResult",
       "properties": {
         "dimensions": {
-          "description": "A list of results at the dimension level.",
+          "description": "A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityDimensionResult"
           },
@@ -6285,11 +6285,27 @@
       "description": "Data quality result for data scan job.",
       "id": "GoogleCloudDataplexV1DataScanEventDataQualityResult",
       "properties": {
+        "columnScore": {
+          "additionalProperties": {
+            "format": "float",
+            "type": "number"
+          },
+          "description": "The score of each column scanned in the data scan job. The key of the map is the name of the column. The value is the data quality score for the column.The score ranges between 0, 100 (up to two decimal points).",
+          "type": "object"
+        },
         "dimensionPassed": {
           "additionalProperties": {
             "type": "boolean"
           },
           "description": "The result of each dimension for data quality result. The key of the map is the name of the dimension. The value is the bool value depicting whether the dimension result was pass or not.",
+          "type": "object"
+        },
+        "dimensionScore": {
+          "additionalProperties": {
+            "format": "float",
+            "type": "number"
+          },
+          "description": "The score of each dimension for data quality result. The key of the map is the name of the dimension. The value is the data quality score for the dimension.The score ranges between 0, 100 (up to two decimal points).",
           "type": "object"
         },
         "passed": {
@@ -6300,6 +6316,11 @@
           "description": "The count of rows processed in the data scan job.",
           "format": "int64",
           "type": "string"
+        },
+        "score": {
+          "description": "The table-level data quality score for the data scan job.The data quality score ranges between 0, 100 (up to two decimal points).",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -7054,7 +7075,10 @@
             "BIGQUERY_POLICY_TAG_CREATE",
             "BIGQUERY_POLICY_TAG_DELETE",
             "BIGQUERY_POLICY_TAG_SET_IAM_POLICY",
-            "ACCESS_POLICY_UPDATE"
+            "ACCESS_POLICY_UPDATE",
+            "GOVERNANCE_RULE_MATCHED_RESOURCES",
+            "GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS",
+            "GOVERNANCE_RULE_ERRORS"
           ],
           "enumDescriptions": [
             "An unspecified event type.",
@@ -7069,7 +7093,10 @@
             "BigQuery policy tag created.",
             "BigQuery policy tag deleted.",
             "BigQuery set iam policy for policy tag.",
-            "Access policy update event."
+            "Access policy update event.",
+            "Number of resources matched with particular Query.",
+            "Rule processing exceeds the allowed limit.",
+            "Rule processing errors."
           ],
           "type": "string"
         },
