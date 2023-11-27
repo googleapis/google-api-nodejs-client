@@ -141,13 +141,34 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$AdvanceChildRolloutJobRun {
     /**
-     * Output only. Name of the `ChildRollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
      */
     rollout?: string | null;
     /**
      * Output only. the ID of the ChildRollout's Phase.
      */
     rolloutPhaseId?: string | null;
+  }
+  /**
+   * Contains the information of an automated advance-rollout operation.
+   */
+  export interface Schema$AdvanceRolloutOperation {
+    /**
+     * Output only. The phase to which the rollout will be advanced to.
+     */
+    destinationPhase?: string | null;
+    /**
+     * Output only. The name of the rollout that initiates the `AutomationRun`.
+     */
+    rollout?: string | null;
+    /**
+     * Output only. The phase of a deployment that initiated the operation.
+     */
+    sourcePhase?: string | null;
+    /**
+     * Output only. How long the operation will be paused.
+     */
+    wait?: string | null;
   }
   /**
    * The request object used by `AdvanceRollout`.
@@ -162,6 +183,27 @@ export namespace clouddeploy_v1 {
    * The response object from `AdvanceRollout`.
    */
   export interface Schema$AdvanceRolloutResponse {}
+  /**
+   * The `AdvanceRollout` automation rule will automatically advance a successful Rollout to the next phase.
+   */
+  export interface Schema$AdvanceRolloutRule {
+    /**
+     * Output only. Information around the state of the Automation rule.
+     */
+    condition?: Schema$AutomationRuleCondition;
+    /**
+     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62\}`.
+     */
+    id?: string | null;
+    /**
+     * Optional. Proceeds only after phase name matched any one in the list. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    sourcePhases?: string[] | null;
+    /**
+     * Optional. How long to wait after a rollout is finished.
+     */
+    wait?: string | null;
+  }
   /**
    * Information specifying an Anthos Cluster.
    */
@@ -211,6 +253,59 @@ export namespace clouddeploy_v1 {
     logType?: string | null;
   }
   /**
+   * An `Automation` resource in the Cloud Deploy API. An `Automation` enables the automation of manually driven actions for a Delivery Pipeline, which includes Release promotion amongst Targets, Rollout repair and Rollout deployment strategy advancement. The intention of Automation is to reduce manual intervention in the continuous delivery process.
+   */
+  export interface Schema$Automation {
+    /**
+     * Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. Annotations must meet the following constraints: * Annotations are key/value pairs. * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (`/`). * The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. * The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots(`.`), not longer than 253 characters in total, followed by a slash (`/`). See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set for more details.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. Time at which the automation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the `Automation`. Max length is 255 characters.
+     */
+    description?: string | null;
+    /**
+     * Optional. The weak etag of the `Automation` resource. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 63 characters.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Name of the `Automation`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automations/{automation\}`.
+     */
+    name?: string | null;
+    /**
+     * Required. List of Automation rules associated with the Automation resource. Must have at least one rule and limited to 250 rules per Delivery Pipeline. Note: the order of the rules here is not the same as the order of execution.
+     */
+    rules?: Schema$AutomationRule[];
+    /**
+     * Required. Selected resources to which the automation will be applied.
+     */
+    selector?: Schema$AutomationResourceSelector;
+    /**
+     * Required. Email address of the user-managed IAM service account that creates Cloud Deploy release and rollout resources.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Optional. When Suspended, automation is deactivated from execution.
+     */
+    suspended?: boolean | null;
+    /**
+     * Output only. Unique identifier of the `Automation`.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Time at which the automation was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Payload proto for "clouddeploy.googleapis.com/automation" Platform Log event that describes the Automation related events.
    */
   export interface Schema$AutomationEvent {
@@ -230,6 +325,127 @@ export namespace clouddeploy_v1 {
      * Type of this notification, e.g. for a Pub/Sub failure.
      */
     type?: string | null;
+  }
+  /**
+   * AutomationResourceSelector contains the information to select the resources to which an Automation is going to be applied.
+   */
+  export interface Schema$AutomationResourceSelector {
+    /**
+     * Contains attributes about a target.
+     */
+    targets?: Schema$TargetAttribute[];
+  }
+  /**
+   * AutomationRolloutMetadata contains Automation-related actions that were performed on a rollout.
+   */
+  export interface Schema$AutomationRolloutMetadata {
+    /**
+     * Output only. The IDs of the AutomationRuns initiated by an advance rollout rule.
+     */
+    advanceAutomationRuns?: string[] | null;
+    /**
+     * Output only. The ID of the AutomationRun initiated by a promote release rule.
+     */
+    promoteAutomationRun?: string | null;
+    /**
+     * Output only. The IDs of the AutomationRuns initiated by a repair rollout rule.
+     */
+    repairAutomationRuns?: string[] | null;
+  }
+  /**
+   * `AutomationRule` defines the automation activities.
+   */
+  export interface Schema$AutomationRule {
+    /**
+     * Optional. The `AdvanceRolloutRule` will automatically advance a successful Rollout.
+     */
+    advanceRolloutRule?: Schema$AdvanceRolloutRule;
+    /**
+     * Optional. `PromoteReleaseRule` will automatically promote a release from the current target to a specified target.
+     */
+    promoteReleaseRule?: Schema$PromoteReleaseRule;
+    /**
+     * Optional. The `RepairRolloutRule` will automatically repair a failed rollout.
+     */
+    repairRolloutRule?: Schema$RepairRolloutRule;
+  }
+  /**
+   * `AutomationRuleCondition` contains conditions relevant to an `Automation` rule.
+   */
+  export interface Schema$AutomationRuleCondition {
+    /**
+     * Optional. Details around targets enumerated in the rule.
+     */
+    targetsPresentCondition?: Schema$TargetsPresentCondition;
+  }
+  /**
+   * An `AutomationRun` resource in the Cloud Deploy API. An `AutomationRun` represents an automation execution instance of an automation rule.
+   */
+  export interface Schema$AutomationRun {
+    /**
+     * Output only. Advances a rollout to the next phase.
+     */
+    advanceRolloutOperation?: Schema$AdvanceRolloutOperation;
+    /**
+     * Output only. The ID of the automation that initiated the operation.
+     */
+    automationId?: string | null;
+    /**
+     * Output only. Snapshot of the Automation taken at AutomationRun creation time.
+     */
+    automationSnapshot?: Schema$Automation;
+    /**
+     * Output only. Time at which the `AutomationRun` was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The weak etag of the `AutomationRun` resource. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Output only. Time the `AutomationRun` will expire. An `AutomationRun` will expire after 14 days from its creation date.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. Name of the `AutomationRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automationRuns/{automation_run\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Promotes a release to a specified 'Target'.
+     */
+    promoteReleaseOperation?: Schema$PromoteReleaseOperation;
+    /**
+     * Output only. Repairs a failed 'Rollout'.
+     */
+    repairRolloutOperation?: Schema$RepairRolloutOperation;
+    /**
+     * Output only. The ID of the automation rule that initiated the operation.
+     */
+    ruleId?: string | null;
+    /**
+     * Output only. Email address of the user-managed IAM service account that performs the operations against Cloud Deploy resources.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Output only. Current state of the `AutomationRun`.
+     */
+    state?: string | null;
+    /**
+     * Output only. Explains the current state of the `AutomationRun`. Present only an explanation is needed.
+     */
+    stateDescription?: string | null;
+    /**
+     * Output only. The ID of the target that represents the promotion stage that initiates the `AutomationRun`. The value of this field is the last segment of a target name.
+     */
+    targetId?: string | null;
+    /**
+     * Output only. Time at which the automationRun was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. Earliest time the `AutomationRun` will attempt to resume. Wait-time is configured by `wait` in automation rule.
+     */
+    waitUntilTime?: string | null;
   }
   /**
    * Payload proto for "clouddeploy.googleapis.com/automation_run" Platform Log event that describes the AutomationRun related events.
@@ -333,6 +549,14 @@ export namespace clouddeploy_v1 {
     verify?: boolean | null;
   }
   /**
+   * The request object used by `CancelAutomationRun`.
+   */
+  export interface Schema$CancelAutomationRunRequest {}
+  /**
+   * The response object from `CancelAutomationRun`.
+   */
+  export interface Schema$CancelAutomationRunResponse {}
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -380,7 +604,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CloudRunMetadata {
     /**
-     * Output only. The name of the Cloud Run job that is associated with a `Rollout`. Format is projects/{project\}/locations/{location\}/jobs/{job_name\}.
+     * Output only. The name of the Cloud Run job that is associated with a `Rollout`. Format is `projects/{project\}/locations/{location\}/jobs/{job_name\}`.
      */
     job?: string | null;
     /**
@@ -388,7 +612,7 @@ export namespace clouddeploy_v1 {
      */
     revision?: string | null;
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`. Format is projects/{project\}/locations/{location\}/services/{service\}.
+     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`. Format is `projects/{project\}/locations/{location\}/services/{service\}`.
      */
     service?: string | null;
     /**
@@ -401,7 +625,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CloudRunRenderMetadata {
     /**
-     * Output only. The name of the Cloud Run Service in the rendered manifest. Format is projects/{project\}/locations/{location\}/services/{service\}.
+     * Output only. The name of the Cloud Run Service in the rendered manifest. Format is `projects/{project\}/locations/{location\}/services/{service\}`.
      */
     service?: string | null;
   }
@@ -431,7 +655,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CreateChildRolloutJobRun {
     /**
-     * Output only. Name of the `ChildRollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
      */
     rollout?: string | null;
     /**
@@ -507,7 +731,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/a-z{0,62\}.
+     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/a-z{0,62\}`.
      */
     name?: string | null;
     /**
@@ -570,7 +794,7 @@ export namespace clouddeploy_v1 {
      */
     artifact?: Schema$DeployArtifact;
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to deploy. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     * Output only. The resource name of the Cloud Build `Build` object that is used to deploy. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
      */
     build?: string | null;
     /**
@@ -713,7 +937,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$GkeCluster {
     /**
-     * Information specifying a GKE Cluster. Format is `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}.
+     * Information specifying a GKE Cluster. Format is `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`.
      */
     cluster?: string | null;
     /**
@@ -816,7 +1040,7 @@ export namespace clouddeploy_v1 {
      */
     jobId?: string | null;
     /**
-     * Optional. Name of the `JobRun`. Format is projects/{project\}/locations/{location\}/ deliveryPipelines/{deliveryPipeline\}/releases/{releases\}/rollouts/ {rollouts\}/jobRuns/{uuid\}.
+     * Optional. Name of the `JobRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{releases\}/rollouts/{rollouts\}/jobRuns/{uuid\}`.
      */
     name?: string | null;
     /**
@@ -893,6 +1117,40 @@ export namespace clouddeploy_v1 {
      * Kubernetes Service networking configuration.
      */
     serviceNetworking?: Schema$ServiceNetworking;
+  }
+  /**
+   * The response object from `ListAutomationRuns`.
+   */
+  export interface Schema$ListAutomationRunsResponse {
+    /**
+     * The `AutomationRuns` objects.
+     */
+    automationRuns?: Schema$AutomationRun[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * The response object from `ListAutomations`.
+   */
+  export interface Schema$ListAutomationsResponse {
+    /**
+     * The `Automations` objects.
+     */
+    automations?: Schema$Automation[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response object from `ListDeliveryPipelines`.
@@ -1034,6 +1292,10 @@ export namespace clouddeploy_v1 {
    * Metadata includes information associated with a `Rollout`.
    */
   export interface Schema$Metadata {
+    /**
+     * Output only. AutomationRolloutMetadata contains the information about the interactions between Automation service and this rollout.
+     */
+    automation?: Schema$AutomationRolloutMetadata;
     /**
      * Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
      */
@@ -1251,7 +1513,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$PostdeployJobRun {
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the postdeploy Job. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     * Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the postdeploy Job. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
      */
     build?: string | null;
     /**
@@ -1286,7 +1548,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$PredeployJobRun {
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the predeploy Job. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     * Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the predeploy Job. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
      */
     build?: string | null;
     /**
@@ -1314,6 +1576,52 @@ export namespace clouddeploy_v1 {
      * Required. Resource name of the Cloud Build worker pool to use. The format is `projects/{project\}/locations/{location\}/workerPools/{pool\}`.
      */
     workerPool?: string | null;
+  }
+  /**
+   * Contains the information of an automated promote-release operation.
+   */
+  export interface Schema$PromoteReleaseOperation {
+    /**
+     * Output only. The starting phase of the rollout created by this operation.
+     */
+    phase?: string | null;
+    /**
+     * Output only. The name of the rollout that initiates the `AutomationRun`.
+     */
+    rollout?: string | null;
+    /**
+     * Output only. The ID of the target that represents the promotion stage to which the release will be promoted. The value of this field is the last segment of a target name.
+     */
+    targetId?: string | null;
+    /**
+     * Output only. How long the operation will be paused.
+     */
+    wait?: string | null;
+  }
+  /**
+   * `PromoteRelease` rule will automatically promote a release from the current target to a specified target.
+   */
+  export interface Schema$PromoteReleaseRule {
+    /**
+     * Output only. Information around the state of the Automation rule.
+     */
+    condition?: Schema$AutomationRuleCondition;
+    /**
+     * Optional. The starting phase of the rollout created by this operation. Default to the first phase.
+     */
+    destinationPhase?: string | null;
+    /**
+     * Optional. The ID of the stage in the pipeline to which this `Release` is deploying. If unspecified, default it to the next stage in the promotion flow. The value of this field could be one of the following: * The last segment of a target name. It only needs the ID to determine if the target is one of the stages in the promotion sequence defined in the pipeline. * "@next", the next target in the promotion sequence.
+     */
+    destinationTargetId?: string | null;
+    /**
+     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62\}`.
+     */
+    id?: string | null;
+    /**
+     * Optional. How long the release need to be paused until being promoted to the next target.
+     */
+    wait?: string | null;
   }
   /**
    * A `Release` resource in the Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed.
@@ -1360,7 +1668,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `Release`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/a-z{0,62\}.
+     * Optional. Name of the `Release`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/a-z{0,62\}`.
      */
     name?: string | null;
     /**
@@ -1452,9 +1760,13 @@ export namespace clouddeploy_v1 {
      */
     message?: string | null;
     /**
-     * The name of the `Release`.
+     * The name of the release.
      */
     release?: string | null;
+    /**
+     * The state of the release render.
+     */
+    releaseRenderState?: string | null;
   }
   /**
    * RenderMetadata includes information associated with a `Release` render.
@@ -1464,6 +1776,112 @@ export namespace clouddeploy_v1 {
      * Output only. Metadata associated with rendering for Cloud Run.
      */
     cloudRun?: Schema$CloudRunRenderMetadata;
+  }
+  /**
+   * Configuration of the repair action.
+   */
+  export interface Schema$RepairMode {
+    /**
+     * Optional. Retries a failed job.
+     */
+    retry?: Schema$Retry;
+    /**
+     * Optional. Rolls back a `Rollout`.
+     */
+    rollback?: Schema$Rollback;
+  }
+  /**
+   * RepairPhase tracks the repair attempts that have been made for each `RepairMode` specified in the `Automation` resource.
+   */
+  export interface Schema$RepairPhase {
+    /**
+     * Output only. Records of the retry attempts for retry repair mode.
+     */
+    retry?: Schema$RetryPhase;
+    /**
+     * Output only. Rollback attempt for rollback repair mode .
+     */
+    rollback?: Schema$RollbackAttempt;
+  }
+  /**
+   * Contains the information for an automated `repair rollout` operation.
+   */
+  export interface Schema$RepairRolloutOperation {
+    /**
+     * Output only. The index of the current repair action in the repair sequence.
+     */
+    currentRepairModeIndex?: string | null;
+    /**
+     * Output only. Records of the repair attempts. Each repair phase may have multiple retry attempts or single rollback attempt.
+     */
+    repairPhases?: Schema$RepairPhase[];
+    /**
+     * Output only. The name of the rollout that initiates the `AutomationRun`.
+     */
+    rollout?: string | null;
+  }
+  /**
+   * The `RepairRolloutRule` automation rule will automatically repair a failed `Rollout`.
+   */
+  export interface Schema$RepairRolloutRule {
+    /**
+     * Output only. Information around the state of the 'Automation' rule.
+     */
+    condition?: Schema$AutomationRuleCondition;
+    /**
+     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62\}`.
+     */
+    id?: string | null;
+    /**
+     * Optional. Jobs to repair. Proceeds only after job name matched any one in the list, or for all jobs if unspecified or empty. The phase that includes the job must match the phase ID specified in `source_phase`. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    jobs?: string[] | null;
+    /**
+     * Required. Defines the types of automatic repair actions for failed jobs.
+     */
+    repairModes?: Schema$RepairMode[];
+    /**
+     * Optional. Phases within which jobs are subject to automatic repair actions on failure. Proceeds only after phase name matched any one in the list, or for all phases if unspecified. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    sourcePhases?: string[] | null;
+  }
+  /**
+   * Retries the failed job.
+   */
+  export interface Schema$Retry {
+    /**
+     * Required. Total number of retries. Retry will skipped if set to 0; The minimum value is 1, and the maximum value is 10.
+     */
+    attempts?: string | null;
+    /**
+     * Optional. The pattern of how wait time will be increased. Default is linear. Backoff mode will be ignored if `wait` is 0.
+     */
+    backoffMode?: string | null;
+    /**
+     * Optional. How long to wait for the first retry. Default is 0, and the maximum value is 14d.
+     */
+    wait?: string | null;
+  }
+  /**
+   * RetryAttempt represents an action of retrying the failed Cloud Deploy job.
+   */
+  export interface Schema$RetryAttempt {
+    /**
+     * Output only. The index of this retry attempt.
+     */
+    attempt?: string | null;
+    /**
+     * Output only. Valid state of this retry action.
+     */
+    state?: string | null;
+    /**
+     * Output only. Description of the state of the Retry.
+     */
+    stateDesc?: string | null;
+    /**
+     * Output only. How long the operation will be paused.
+     */
+    wait?: string | null;
   }
   /**
    * RetryJobRequest is the request object used by `RetryJob`.
@@ -1482,6 +1900,61 @@ export namespace clouddeploy_v1 {
    * The response object from 'RetryJob'.
    */
   export interface Schema$RetryJobResponse {}
+  /**
+   * RetryPhase contains the retry attempts and the metadata for initiating a new attempt.
+   */
+  export interface Schema$RetryPhase {
+    /**
+     * Output only. Detail of a retry action.
+     */
+    attempts?: Schema$RetryAttempt[];
+    /**
+     * Output only. The pattern of how the wait time of the retry attempt is calculated.
+     */
+    backoffMode?: string | null;
+    /**
+     * Output only. The job ID for the Job to retry.
+     */
+    jobId?: string | null;
+    /**
+     * Output only. The phase ID of the phase that includes the job being retried.
+     */
+    phaseId?: string | null;
+    /**
+     * Output only. The number of attempts that have been made.
+     */
+    totalAttempts?: string | null;
+  }
+  /**
+   * Rolls back a `Rollout`.
+   */
+  export interface Schema$Rollback {
+    /**
+     * Optional. The starting phase ID for the `Rollout`. If unspecified, the `Rollout` will start in the stable phase.
+     */
+    destinationPhase?: string | null;
+  }
+  /**
+   * RollbackAttempt represents an action of rolling back a Cloud Deploy 'Target'.
+   */
+  export interface Schema$RollbackAttempt {
+    /**
+     * Output only. The phase to which the rollout will be rolled back to.
+     */
+    destinationPhase?: string | null;
+    /**
+     * Output only. ID of the rollback `Rollout` to create.
+     */
+    rolloutId?: string | null;
+    /**
+     * Output only. Valid state of this rollback action.
+     */
+    state?: string | null;
+    /**
+     * Output only. Description of the state of the Rollback.
+     */
+    stateDesc?: string | null;
+  }
   /**
    * Configs for the Rollback rollout.
    */
@@ -1550,7 +2023,7 @@ export namespace clouddeploy_v1 {
      */
     approveTime?: string | null;
     /**
-     * Output only. Name of the `ControllerRollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     * Output only. Name of the `ControllerRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
      */
     controllerRollout?: string | null;
     /**
@@ -1598,7 +2071,7 @@ export namespace clouddeploy_v1 {
      */
     metadata?: Schema$Metadata;
     /**
-     * Optional. Name of the `Rollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     * Optional. Name of the `Rollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
      */
     name?: string | null;
     /**
@@ -1652,6 +2125,39 @@ export namespace clouddeploy_v1 {
     targetId?: string | null;
     /**
      * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/rollout_update" Platform Log event that describes the rollout update event.
+   */
+  export interface Schema$RolloutUpdateEvent {
+    /**
+     * Debug message for when a rollout update event occurs.
+     */
+    message?: string | null;
+    /**
+     * Unique identifier of the pipeline.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Unique identifier of the release.
+     */
+    releaseUid?: string | null;
+    /**
+     * The name of the rollout.
+     */
+    rollout?: string | null;
+    /**
+     * The type of the rollout update.
+     */
+    rolloutUpdateType?: string | null;
+    /**
+     * ID of the target.
+     */
+    targetId?: string | null;
+    /**
+     * Type of this notification, e.g. for a rollout update event.
      */
     type?: string | null;
   }
@@ -1862,7 +2368,7 @@ export namespace clouddeploy_v1 {
      */
     multiTarget?: Schema$MultiTarget;
     /**
-     * Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/targets/a-z{0,62\}.
+     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/a-z{0,62\}`.
      */
     name?: string | null;
     /**
@@ -1906,6 +2412,19 @@ export namespace clouddeploy_v1 {
      * Output only. File path of the resolved Skaffold configuration relative to the URI.
      */
     skaffoldConfigPath?: string | null;
+  }
+  /**
+   * Contains criteria for selecting Targets. Attributes provided must match the target resource in order for policy restrictions to apply. E.g. if id "prod" and labels "foo: bar" are given the target resource must match both that id and have that label in order to be selected.
+   */
+  export interface Schema$TargetAttribute {
+    /**
+     * ID of the `Target`. The value of this field could be one of the following: * The last segment of a target name. It only needs the ID to determine which target is being referred to * "*", all targets in a location.
+     */
+    id?: string | null;
+    /**
+     * Target labels.
+     */
+    labels?: {[key: string]: string} | null;
   }
   /**
    * Payload proto for "clouddeploy.googleapis.com/target_notification" Platform Log event that describes the failure to send target status change Pub/Sub notification.
@@ -1954,7 +2473,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$TargetsPresentCondition {
     /**
-     * The list of Target names that do not exist. For example, projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
+     * The list of Target names that do not exist. For example, `projects/{project_id\}/locations/{location_name\}/targets/{target_name\}`.
      */
     missingTargets?: string[] | null;
     /**
@@ -2018,7 +2537,7 @@ export namespace clouddeploy_v1 {
      */
     artifactUri?: string | null;
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to verify. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     * Output only. The resource name of the Cloud Build `Build` object that is used to verify. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
      */
     build?: string | null;
     /**
@@ -2356,9 +2875,19 @@ export namespace clouddeploy_v1 {
 
   export class Resource$Projects$Locations$Deliverypipelines {
     context: APIRequestContext;
+    automationRuns: Resource$Projects$Locations$Deliverypipelines$Automationruns;
+    automations: Resource$Projects$Locations$Deliverypipelines$Automations;
     releases: Resource$Projects$Locations$Deliverypipelines$Releases;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.automationRuns =
+        new Resource$Projects$Locations$Deliverypipelines$Automationruns(
+          this.context
+        );
+      this.automations =
+        new Resource$Projects$Locations$Deliverypipelines$Automations(
+          this.context
+        );
       this.releases =
         new Resource$Projects$Locations$Deliverypipelines$Releases(
           this.context
@@ -3178,7 +3707,7 @@ export namespace clouddeploy_v1 {
      */
     deliveryPipelineId?: string;
     /**
-     * Required. The parent collection in which the `DeliveryPipeline` should be created. Format should be projects/{project_id\}/locations/{location_name\}.
+     * Required. The parent collection in which the `DeliveryPipeline` should be created. Format should be `projects/{project_id\}/locations/{location_name\}`.
      */
     parent?: string;
     /**
@@ -3210,7 +3739,7 @@ export namespace clouddeploy_v1 {
      */
     force?: boolean;
     /**
-     * Required. The name of the `DeliveryPipeline` to delete. Format should be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}.
+     * Required. The name of the `DeliveryPipeline` to delete. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     name?: string;
     /**
@@ -3225,7 +3754,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Get
     extends StandardParameters {
     /**
-     * Required. Name of the `DeliveryPipeline`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}.
+     * Required. Name of the `DeliveryPipeline`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     name?: string;
   }
@@ -3259,7 +3788,7 @@ export namespace clouddeploy_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of pipelines. Format must be projects/{project_id\}/locations/{location_name\}.
+     * Required. The parent, which owns this collection of pipelines. Format must be `projects/{project_id\}/locations/{location_name\}`.
      */
     parent?: string;
   }
@@ -3270,7 +3799,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/a-z{0,62\}.
+     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/a-z{0,62\}`.
      */
     name?: string;
     /**
@@ -3294,7 +3823,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget
     extends StandardParameters {
     /**
-     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be created. Format should be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}.
+     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be created. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     name?: string;
 
@@ -3326,6 +3855,877 @@ export namespace clouddeploy_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Deliverypipelines$Automationruns {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Cancels an AutomationRun. The `state` of the `AutomationRun` after cancelling is `CANCELLED`. `CancelAutomationRun` can be called on AutomationRun in the state `IN_PROGRESS` and `PENDING`; AutomationRun in a different state returns an `FAILED_PRECONDITION` error.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CancelAutomationRunResponse>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelAutomationRunResponse>,
+      callback: BodyResponseCallback<Schema$CancelAutomationRunResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
+      callback: BodyResponseCallback<Schema$CancelAutomationRunResponse>
+    ): void;
+    cancel(
+      callback: BodyResponseCallback<Schema$CancelAutomationRunResponse>
+    ): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel
+        | BodyResponseCallback<Schema$CancelAutomationRunResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CancelAutomationRunResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CancelAutomationRunResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CancelAutomationRunResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CancelAutomationRunResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CancelAutomationRunResponse>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single AutomationRun.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutomationRun>;
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AutomationRun>,
+      callback: BodyResponseCallback<Schema$AutomationRun>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
+      callback: BodyResponseCallback<Schema$AutomationRun>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AutomationRun>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get
+        | BodyResponseCallback<Schema$AutomationRun>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutomationRun>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutomationRun>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AutomationRun> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutomationRun>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutomationRun>(parameters);
+      }
+    }
+
+    /**
+     * Lists AutomationRuns in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAutomationRunsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutomationRunsResponse>,
+      callback: BodyResponseCallback<Schema$ListAutomationRunsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
+      callback: BodyResponseCallback<Schema$ListAutomationRunsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAutomationRunsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List
+        | BodyResponseCallback<Schema$ListAutomationRunsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAutomationRunsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAutomationRunsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAutomationRunsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/automationRuns').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAutomationRunsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAutomationRunsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel
+    extends StandardParameters {
+    /**
+     * Required. Name of the `AutomationRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automationRuns/{automation_run\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelAutomationRunRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the `AutomationRun`. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automationRuns/{automation_run\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List
+    extends StandardParameters {
+    /**
+     * Filter automationRuns to be returned. All fields can be used in the filter.
+     */
+    filter?: string;
+    /**
+     * Field to sort by.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of automationRuns to return. The service may return fewer than this value. If unspecified, at most 50 automationRuns will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAutomationRuns` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of automationRuns. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Deliverypipelines$Automations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new Automation in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/automations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Automation resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Automation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Automation>;
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Automation>,
+      callback: BodyResponseCallback<Schema$Automation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
+      callback: BodyResponseCallback<Schema$Automation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Automation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get
+        | BodyResponseCallback<Schema$Automation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Automation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Automation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Automation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Automation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Automation>(parameters);
+      }
+    }
+
+    /**
+     * Lists Automations in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAutomationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutomationsResponse>,
+      callback: BodyResponseCallback<Schema$ListAutomationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
+      callback: BodyResponseCallback<Schema$ListAutomationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAutomationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Automations$List
+        | BodyResponseCallback<Schema$ListAutomationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAutomationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAutomationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAutomationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Automations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/automations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAutomationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAutomationsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of a single Automation resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create
+    extends StandardParameters {
+    /**
+     * Required. ID of the `Automation`.
+     */
+    automationId?: string;
+    /**
+     * Required. The parent collection in which the `Automation` should be created. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Automation;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, then deleting an already deleted or non-existing `Automation` will succeed.
+     */
+    allowMissing?: boolean;
+    /**
+     * Optional. The weak etag of the request. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the `Automation` to delete. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/automations/{automation_name\}`.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set, validate the request and verify whether the resource exists, but do not actually post it.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the `Automation`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/automations/{automation_name\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$List
+    extends StandardParameters {
+    /**
+     * Filter automations to be returned. All fields can be used in the filter.
+     */
+    filter?: string;
+    /**
+     * Field to sort by.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of automations to return. The service may return fewer than this value. If unspecified, at most 50 automations will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAutomations` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of automations. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, updating a `Automation` that does not exist will result in the creation of a new `Automation`.
+     */
+    allowMissing?: boolean;
+    /**
+     * Output only. Name of the `Automation`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automations/{automation\}`.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `Automation` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+    /**
+     * Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Automation;
   }
 
   export class Resource$Projects$Locations$Deliverypipelines$Releases {
@@ -3704,7 +5104,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon
     extends StandardParameters {
     /**
-     * Required. Name of the Release. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}.
+     * Required. Name of the Release. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}`.
      */
     name?: string;
 
@@ -3716,7 +5116,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The parent collection in which the `Release` should be created. Format should be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}.
+     * Required. The parent collection in which the `Release` should be created. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     parent?: string;
     /**
@@ -3740,7 +5140,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get
     extends StandardParameters {
     /**
-     * Required. Name of the `Release`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}.
+     * Required. Name of the `Release`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}`.
      */
     name?: string;
   }
@@ -4508,7 +5908,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance
     extends StandardParameters {
     /**
-     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     name?: string;
 
@@ -4520,7 +5920,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve
     extends StandardParameters {
     /**
-     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     name?: string;
 
@@ -4532,7 +5932,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel
     extends StandardParameters {
     /**
-     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     name?: string;
 
@@ -4544,7 +5944,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create
     extends StandardParameters {
     /**
-     * Required. The parent collection in which the `Rollout` should be created. Format should be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}.
+     * Required. The parent collection in which the `Rollout` should be created. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}`.
      */
     parent?: string;
     /**
@@ -4572,14 +5972,14 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get
     extends StandardParameters {
     /**
-     * Required. Name of the `Rollout`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}.
+     * Required. Name of the `Rollout`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob
     extends StandardParameters {
     /**
-     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     rollout?: string;
 
@@ -4614,7 +6014,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob
     extends StandardParameters {
     /**
-     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     * Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     rollout?: string;
 
@@ -4905,7 +6305,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get
     extends StandardParameters {
     /**
-     * Required. Name of the `JobRun`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}/jobRuns/{job_run_name\}.
+     * Required. Name of the `JobRun`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}/jobRuns/{job_run_name\}`.
      */
     name?: string;
   }
@@ -4935,7 +6335,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate
     extends StandardParameters {
     /**
-     * Required. Name of the `JobRun`. Format must be projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}/jobRuns/{jobRun\}.
+     * Required. Name of the `JobRun`. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}/jobRuns/{jobRun\}`.
      */
     name?: string;
 
@@ -6050,7 +7450,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Targets$Create
     extends StandardParameters {
     /**
-     * Required. The parent collection in which the `Target` should be created. Format should be projects/{project_id\}/locations/{location_name\}.
+     * Required. The parent collection in which the `Target` should be created. Format should be `projects/{project_id\}/locations/{location_name\}`.
      */
     parent?: string;
     /**
@@ -6082,7 +7482,7 @@ export namespace clouddeploy_v1 {
      */
     etag?: string;
     /**
-     * Required. The name of the `Target` to delete. Format should be projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
+     * Required. The name of the `Target` to delete. Format should be `projects/{project_id\}/locations/{location_name\}/targets/{target_name\}`.
      */
     name?: string;
     /**
@@ -6097,7 +7497,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Targets$Get
     extends StandardParameters {
     /**
-     * Required. Name of the `Target`. Format must be projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
+     * Required. Name of the `Target`. Format must be `projects/{project_id\}/locations/{location_name\}/targets/{target_name\}`.
      */
     name?: string;
   }
@@ -6131,7 +7531,7 @@ export namespace clouddeploy_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of targets. Format must be projects/{project_id\}/locations/{location_name\}.
+     * Required. The parent, which owns this collection of targets. Format must be `projects/{project_id\}/locations/{location_name\}`.
      */
     parent?: string;
   }
@@ -6142,7 +7542,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/targets/a-z{0,62\}.
+     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/a-z{0,62\}`.
      */
     name?: string;
     /**
