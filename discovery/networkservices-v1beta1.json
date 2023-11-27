@@ -2483,7 +2483,7 @@
       }
     }
   },
-  "revision": "20230927",
+  "revision": "20231107",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3685,7 +3685,7 @@
           "type": "array"
         },
         "forwardingRules": {
-          "description": "Required. A list of references to the forwarding rules to which this service extension is attach to. At least one forwarding rule is required. There can be only one `LbRouteExtension` resource per forwarding rule.",
+          "description": "Required. A list of references to the forwarding rules to which this service extension is attached to. At least one forwarding rule is required. There can be only one `LbRouteExtension` resource per forwarding rule.",
           "items": {
             "type": "string"
           },
@@ -3699,7 +3699,7 @@
           "type": "object"
         },
         "loadBalancingScheme": {
-          "description": "Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`.",
+          "description": "Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Choosing a load balancer](https://cloud.google.com/load-balancing/docs/backend-service).",
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
@@ -3747,7 +3747,7 @@
           "type": "array"
         },
         "forwardingRules": {
-          "description": "Required. A list of references to the forwarding rules to which this service extension is attach to. At least one forwarding rule is required. There can be only one `LBTrafficExtension` resource per forwarding rule.",
+          "description": "Required. A list of references to the forwarding rules to which this service extension is attached to. At least one forwarding rule is required. There can be only one `LBTrafficExtension` resource per forwarding rule.",
           "items": {
             "type": "string"
           },
