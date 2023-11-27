@@ -964,7 +964,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20231114",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -2465,6 +2465,83 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2alphaConsumerPolicy": {
+      "description": "Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.",
+      "id": "GoogleApiServiceusageV2alphaConsumerPolicy",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "enableRules": {
+          "description": "Enable rules define usable services, groups, and categories. There can currently be at most one `EnableRule`. This restriction will be lifted in later releases.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2alphaEnableRule"
+          },
+          "type": "array"
+        },
+        "etag": {
+          "description": "Output only. An opaque tag indicating the current version of the policy, used for concurrency control.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the policy. Only the `default` policy is supported: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the policy was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2alphaEnableRule": {
+      "description": "The consumer policy rule that defines enabled services, groups, and categories.",
+      "id": "GoogleApiServiceusageV2alphaEnableRule",
+      "properties": {
+        "categories": {
+          "description": "The names of the categories that are enabled. Example: `categories/googleServices`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "groups": {
+          "description": "The names of the service groups that are enabled. Example: `services/container.googleapis.com/groups/dependencies`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "services": {
+          "description": "The names of the services that are enabled. Example: `services/storage.googleapis.com`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata": {
+      "description": "Metadata for the `UpdateConsumerPolicy` method.",
+      "id": "GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata",
+      "properties": {},
       "type": "object"
     },
     "Http": {

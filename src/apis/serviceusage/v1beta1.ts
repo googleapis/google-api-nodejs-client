@@ -1158,6 +1158,56 @@ export namespace serviceusage_v1beta1 {
     usage?: Schema$Usage;
   }
   /**
+   * Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.
+   */
+  export interface Schema$GoogleApiServiceusageV2alphaConsumerPolicy {
+    /**
+     * Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.
+     */
+    createTime?: string | null;
+    /**
+     * Enable rules define usable services, groups, and categories. There can currently be at most one `EnableRule`. This restriction will be lifted in later releases.
+     */
+    enableRules?: Schema$GoogleApiServiceusageV2alphaEnableRule[];
+    /**
+     * Output only. An opaque tag indicating the current version of the policy, used for concurrency control.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name of the policy. Only the `default` policy is supported: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The time the policy was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The consumer policy rule that defines enabled services, groups, and categories.
+   */
+  export interface Schema$GoogleApiServiceusageV2alphaEnableRule {
+    /**
+     * The names of the categories that are enabled. Example: `categories/googleServices`.
+     */
+    categories?: string[] | null;
+    /**
+     * The names of the service groups that are enabled. Example: `services/container.googleapis.com/groups/dependencies`.
+     */
+    groups?: string[] | null;
+    /**
+     * The names of the services that are enabled. Example: `services/storage.googleapis.com`.
+     */
+    services?: string[] | null;
+  }
+  /**
+   * Metadata for the `UpdateConsumerPolicy` method.
+   */
+  export interface Schema$GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata {}
+  /**
    * Settings for Go client libraries.
    */
   export interface Schema$GoSettings {
