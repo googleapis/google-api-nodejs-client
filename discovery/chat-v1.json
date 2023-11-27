@@ -281,14 +281,14 @@
           ]
         },
         "findDirectMessage": {
-          "description": "Returns the existing direct message with the specified user. If no direct message space is found, returns a `404 NOT_FOUND` error. For an example, see [Find a direct message](/chat/api/guides/v1/spaces/find-direct-message). With [user authentication](https://developers.google.com/chat/api/guides/auth/users), returns the direct message space between the specified user and the authenticated user. With [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), returns the direct message space between the specified user and the calling Chat app. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) or [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
+          "description": "Returns the existing direct message with the specified user. If no direct message space is found, returns a `404 NOT_FOUND` error. For an example, see [Find a direct message](/chat/api/guides/v1/spaces/find-direct-message). With [user authentication](https://developers.google.com/chat/api/guides/auth/users), returns the direct message space between the specified user and the authenticated user. With [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), returns the direct message space between the specified user and the calling Chat app. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) or [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
           "flatPath": "v1/spaces:findDirectMessage",
           "httpMethod": "GET",
           "id": "chat.spaces.findDirectMessage",
           "parameterOrder": [],
           "parameters": {
             "name": {
-              "description": "Required. Resource name of the user to find direct message with. Format: `users/{user}`, where `{user}` is either the `{person_id}` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API `Person.resourceName` is `people/123456789`, you can find a direct message with that person by using `users/123456789` as the `name`. When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the email as an alias for `{user}`. For example, `users/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.",
+              "description": "Required. Resource name of the user to find direct message with. Format: `users/{user}`, where `{user}` is either the `id` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API profile ID is `123456789`, you can find a direct message with that person by using `users/123456789` as the `name`. When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the email as an alias for `{user}`. For example, `users/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.",
               "location": "query",
               "type": "string"
             }
@@ -304,7 +304,7 @@
           ]
         },
         "get": {
-          "description": "Returns details about a space. For an example, see [Get a space](https://developers.google.com/chat/api/guides/v1/spaces/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
+          "description": "Returns details about a space. For an example, see [Get a space](https://developers.google.com/chat/api/guides/v1/spaces/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
           "flatPath": "v1/spaces/{spacesId}",
           "httpMethod": "GET",
           "id": "chat.spaces.get",
@@ -331,14 +331,14 @@
           ]
         },
         "list": {
-          "description": "Lists spaces the caller is a member of. Group chats and DMs aren't listed until the first message is sent. For an example, see [List spaces](https://developers.google.com/chat/api/guides/v1/spaces/list). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). Lists spaces visible to the caller or authenticated user. Group chats and DMs aren't listed until the first message is sent.",
+          "description": "Lists spaces the caller is a member of. Group chats and DMs aren't listed until the first message is sent. For an example, see [List spaces](https://developers.google.com/chat/api/guides/v1/spaces/list). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). Lists spaces visible to the caller or authenticated user. Group chats and DMs aren't listed until the first message is sent.",
           "flatPath": "v1/spaces",
           "httpMethod": "GET",
           "id": "chat.spaces.list",
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Optional. A query filter. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). You can filter spaces by the space type ([`space_type`](https://developers.google.com/chat/api/reference/rest/v1/spaces#spacetype)). To filter by space type, you must specify valid enum value, such as `SPACE` or `GROUP_CHAT` (the `space_type` can't be `SPACE_TYPE_UNSPECIFIED`). To query for multiple space types, use the `OR` operator. For example, the following queries are valid: ``` space_type = \"SPACE\" spaceType = \"GROUP_CHAT\" OR spaceType = \"DIRECT_MESSAGE\" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error. With [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), this field is ignored and the query always returns all spaces. But the Chat API still validates the query syntax with service accounts, so invalid queries are still rejected.",
+              "description": "Optional. A query filter. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). You can filter spaces by the space type ([`space_type`](https://developers.google.com/chat/api/reference/rest/v1/spaces#spacetype)). To filter by space type, you must specify valid enum value, such as `SPACE` or `GROUP_CHAT` (the `space_type` can't be `SPACE_TYPE_UNSPECIFIED`). To query for multiple space types, use the `OR` operator. For example, the following queries are valid: ``` space_type = \"SPACE\" spaceType = \"GROUP_CHAT\" OR spaceType = \"DIRECT_MESSAGE\" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error. With [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), this field is ignored and the query always returns all spaces. But the Chat API still validates the query syntax, so invalid queries are still rejected.",
               "location": "query",
               "type": "string"
             },
@@ -400,7 +400,7 @@
           ]
         },
         "setup": {
-          "description": "Creates a space and adds specified users to it. The calling user is automatically added to the space, and shouldn't be specified as a membership in the request. For an example, see [Set up a space](https://developers.google.com/chat/api/guides/v1/spaces/set-up). To specify the human members to add, add memberships with the appropriate `member.name` in the `SetUpSpaceRequest`. To add a human user, use `users/{user}`, where `{user}` can be the email address for the user. For users in the same Workspace organization `{user}` can also be the `{person_id}` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`. For a space or group chat, if the caller blocks or is blocked by some members, then those members aren't added to the created space. To create a direct message (DM) between the calling user and another human user, specify exactly one membership to represent the human user. If one user blocks the other, the request fails and the DM isn't created. To create a DM between the calling user and the calling app, set `Space.singleUserBotDm` to `true` and don't specify any memberships. You can only use this method to set up a DM with the calling app. To add the calling app as a member of a space or an existing DM between two human users, see [create a membership](https://developers.google.com/chat/api/guides/v1/members/create). If a DM already exists between two users, even when one user blocks the other at the time a request is made, then the existing DM is returned. Spaces with threaded replies aren't supported. If you receive the error message `ALREADY_EXISTS` when setting up a space, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
+          "description": "Creates a space and adds specified users to it. The calling user is automatically added to the space, and shouldn't be specified as a membership in the request. For an example, see [Set up a space](https://developers.google.com/chat/api/guides/v1/spaces/set-up). To specify the human members to add, add memberships with the appropriate `member.name` in the `SetUpSpaceRequest`. To add a human user, use `users/{user}`, where `{user}` can be the email address for the user. For users in the same Workspace organization `{user}` can also be the `id` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person profile ID for `user@example.com` is `123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`. For a space or group chat, if the caller blocks or is blocked by some members, then those members aren't added to the created space. To create a direct message (DM) between the calling user and another human user, specify exactly one membership to represent the human user. If one user blocks the other, the request fails and the DM isn't created. To create a DM between the calling user and the calling app, set `Space.singleUserBotDm` to `true` and don't specify any memberships. You can only use this method to set up a DM with the calling app. To add the calling app as a member of a space or an existing DM between two human users, see [create a membership](https://developers.google.com/chat/api/guides/v1/members/create). If a DM already exists between two users, even when one user blocks the other at the time a request is made, then the existing DM is returned. Spaces with threaded replies aren't supported. If you receive the error message `ALREADY_EXISTS` when setting up a space, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
           "flatPath": "v1/spaces:setup",
           "httpMethod": "POST",
           "id": "chat.spaces.setup",
@@ -423,7 +423,7 @@
         "members": {
           "methods": {
             "create": {
-              "description": "Creates a human membership or app membership for the calling app. Creating memberships for other apps isn't supported. For an example, see [ Create a membership](https://developers.google.com/chat/api/guides/v1/members/create). When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). To specify the member to add, set the `membership.member.name` in the `CreateMembershipRequest`: - To add the calling app to a space or a direct message between two human users, use `users/app`. Unable to add other apps to the space. - To add a human user, use `users/{user}`, where `{user}` can be the email address for the user. For users in the same Workspace organization `{user}` can also be the `{person_id}` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`.",
+              "description": "Creates a human membership or app membership for the calling app. Creating memberships for other apps isn't supported. For an example, see [ Create a membership](https://developers.google.com/chat/api/guides/v1/members/create). When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). To specify the member to add, set the `membership.member.name` in the `CreateMembershipRequest`: - To add the calling app to a space or a direct message between two human users, use `users/app`. Unable to add other apps to the space. - To add a human user, use `users/{user}`, where `{user}` can be the email address for the user. For users in the same Workspace organization `{user}` can also be the `id` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person profile ID for `user@example.com` is `123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`.",
               "flatPath": "v1/spaces/{spacesId}/members",
               "httpMethod": "POST",
               "id": "chat.spaces.members.create",
@@ -480,7 +480,7 @@
               ]
             },
             "get": {
-              "description": "Returns details about a membership. For an example, see [Get a membership](https://developers.google.com/chat/api/guides/v1/members/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users).",
+              "description": "Returns details about a membership. For an example, see [Get a membership](https://developers.google.com/chat/api/guides/v1/members/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
               "flatPath": "v1/spaces/{spacesId}/members/{membersId}",
               "httpMethod": "GET",
               "id": "chat.spaces.members.get",
@@ -507,7 +507,7 @@
               ]
             },
             "list": {
-              "description": "Lists memberships in a space. For an example, see [List memberships](https://developers.google.com/chat/api/guides/v1/members/list). Listing memberships with [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) lists memberships in spaces that the Chat app has access to, but excludes Chat app memberships, including its own. Listing memberships with [User authentication](https://developers.google.com/chat/api/guides/auth/users) lists memberships in spaces that the authenticated user has access to. Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users).",
+              "description": "Lists memberships in a space. For an example, see [List memberships](https://developers.google.com/chat/api/guides/v1/members/list). Listing memberships with [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) lists memberships in spaces that the Chat app has access to, but excludes Chat app memberships, including its own. Listing memberships with [User authentication](https://developers.google.com/chat/api/guides/auth/users) lists memberships in spaces that the authenticated user has access to. Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
               "flatPath": "v1/spaces/{spacesId}/members",
               "httpMethod": "GET",
               "id": "chat.spaces.members.list",
@@ -581,9 +581,9 @@
                     "REPLY_MESSAGE_OR_FAIL"
                   ],
                   "enumDescriptions": [
-                    "Default. Starts a thread.",
+                    "Default. Starts a new thread. Using this option ignores any thread ID or `thread_key` that's included.",
                     "Creates the message as a reply to the thread specified by thread ID or `thread_key`. If it fails, the message starts a new thread instead.",
-                    "Creates the message as a reply to the thread specified by thread ID or `thread_key`. If it fails, a `NOT_FOUND` error is returned instead."
+                    "Creates the message as a reply to the thread specified by thread ID or `thread_key`. If a new `thread_key` is used, a new thread is created. If the message creation fails, a `NOT_FOUND` error is returned instead."
                   ],
                   "location": "query",
                   "type": "string"
@@ -602,7 +602,7 @@
                 },
                 "threadKey": {
                   "deprecated": true,
-                  "description": "Optional. Deprecated: Use thread.thread_key instead. ID for the thread. Supports up to 4000 characters. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
+                  "description": "Optional. Deprecated: Use thread.thread_key instead. ID for the thread. Supports up to 4000 characters. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/v1/messages/create#create-message-thread).",
                   "location": "query",
                   "type": "string"
                 }
@@ -622,7 +622,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a message. For an example, see [Delete a message](https://developers.google.com/chat/api/guides/v1/messages/delete). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users). Requests authenticated with service accounts can only delete messages created by the calling Chat app.",
+              "description": "Deletes a message. For an example, see [Delete a message](https://developers.google.com/chat/api/guides/v1/messages/delete). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). When using app authentication, requests can only delete messages created by the calling Chat app.",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "DELETE",
               "id": "chat.spaces.messages.delete",
@@ -631,7 +631,7 @@
               ],
               "parameters": {
                 "force": {
-                  "description": "When `true`, deleting a message also deletes its threaded replies. When `false`, if a message has threaded replies, deletion fails. Only applies when [authenticating as a user](https://developers.google.com/chat/api/guides/auth/users). Has no effect when [authenticating with a service account] (https://developers.google.com/chat/api/guides/auth/service-accounts).",
+                  "description": "When `true`, deleting a message also deletes its threaded replies. When `false`, if a message has threaded replies, deletion fails. Only applies when [authenticating as a user](https://developers.google.com/chat/api/guides/auth/users). Has no effect when [authenticating as a Chat app] (https://developers.google.com/chat/api/guides/auth/service-accounts).",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -654,7 +654,7 @@
               ]
             },
             "get": {
-              "description": "Returns details about a message. For an example, see [Read a message](https://developers.google.com/chat/api/guides/v1/messages/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users). Note: Might return a message from a blocked member or space.",
+              "description": "Returns details about a message. For an example, see [Read a message](https://developers.google.com/chat/api/guides/v1/messages/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). Note: Might return a message from a blocked member or space.",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "GET",
               "id": "chat.spaces.messages.get",
@@ -734,7 +734,7 @@
               ]
             },
             "patch": {
-              "description": "Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users). Requests authenticated with service accounts can only update messages created by the calling Chat app.",
+              "description": "Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). When using app authentication, requests can only update messages created by the calling Chat app.",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "PATCH",
               "id": "chat.spaces.messages.patch",
@@ -755,7 +755,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)",
+                  "description": "Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -775,7 +775,7 @@
               ]
             },
             "update": {
-              "description": "Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users). Requests authenticated with service accounts can only update messages created by the calling Chat app.",
+              "description": "Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). When using app authentication, requests can only update messages created by the calling Chat app.",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "PUT",
               "id": "chat.spaces.messages.update",
@@ -796,7 +796,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)",
+                  "description": "Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -820,7 +820,7 @@
             "attachments": {
               "methods": {
                 "get": {
-                  "description": "Gets the metadata of a message attachment. The attachment data is fetched using the [media API](https://developers.google.com/chat/api/reference/rest/v1/media/download). For an example, see [Get a message attachment](https://developers.google.com/chat/api/guides/v1/media-and-attachments/get). Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
+                  "description": "Gets the metadata of a message attachment. The attachment data is fetched using the [media API](https://developers.google.com/chat/api/reference/rest/v1/media/download). For an example, see [Get a message attachment](https://developers.google.com/chat/api/guides/v1/media-and-attachments/get). Requires [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
                   "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}/attachments/{attachmentsId}",
                   "httpMethod": "GET",
                   "id": "chat.spaces.messages.attachments.get",
@@ -957,7 +957,7 @@
       }
     }
   },
-  "revision": "20231008",
+  "revision": "20231116",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1309,12 +1309,12 @@
       "type": "object"
     },
     "ChatClientDataSourceMarkup": {
-      "description": "Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from Google Chat. For example, a list of Google Chat spaces of which the user is a member. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Chat. The data source populates selection items for the multiselect menu. For example, a user can select Google Chat spaces that they're a member of.",
       "id": "ChatClientDataSourceMarkup",
       "properties": {
         "spaceDataSource": {
           "$ref": "SpaceDataSource",
-          "description": "A data source representing a Google Chat space. Format: spaces/{space} [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Google Chat spaces that the user is a member of."
         }
       },
       "type": "object"
@@ -2339,24 +2339,24 @@
       "type": "object"
     },
     "GoogleAppsCardV1PlatformDataSource": {
-      "description": "Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, the data from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). Used to populate the items in the multi-select menu. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Workspace. Used to populate items in a multiselect menu.",
       "id": "GoogleAppsCardV1PlatformDataSource",
       "properties": {
         "commonDataSource": {
-          "description": "For a `SelectionInput` widget that uses a multi-select menu, a data source shared by all Google Workspace host applications, such as users in a Google Workspace organization. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "A data source shared by all Google Workspace applications, such as users in a Google Workspace organization.",
           "enum": [
             "UNKNOWN",
             "USER"
           ],
           "enumDescriptions": [
-            "Default value. Don't use. [Developer Preview](https://developers.google.com/workspace/preview).",
-            "A list of users provided by the Google Workspace host application. For example, to source users from Google Chat, use the resource name of the [user](https://developers.google.com/chat/api/reference/rest/v1/User). Format: users/{user} [Developer Preview](https://developers.google.com/workspace/preview)."
+            "Default value. Don't use.",
+            "Google Workspace users. The user can only view and select users from their Google Workspace organization."
           ],
           "type": "string"
         },
         "hostAppDataSource": {
           "$ref": "HostAppDataSourceMarkup",
-          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "A data source that's unique to a Google Workspace host application, such spaces in Google Chat."
         }
       },
       "type": "object"
@@ -2394,7 +2394,7 @@
       "properties": {
         "externalDataSource": {
           "$ref": "GoogleAppsCardV1Action",
-          "description": "An external data source, such as a relational data base. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "An external data source, such as a relational data base."
         },
         "items": {
           "description": "An array of selectable items. For example, an array of radio buttons or checkboxes. Supports up to 100 items.",
@@ -2408,12 +2408,12 @@
           "type": "string"
         },
         "multiSelectMaxSelectedItems": {
-          "description": "For multi-select menus, the maximum number of items that a user can select. Minimum value is 1 item. If unspecified, set to 3 items. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "For multiselect menus, the maximum number of items that a user can select. Minimum value is 1 item. If unspecified, defaults to 3 items.",
           "format": "int32",
           "type": "integer"
         },
         "multiSelectMinQueryLength": {
-          "description": "For multi-select menus, the number of text characters that a user inputs before the Chat app queries autocomplete and displays suggested items on the card. If unspecified, set to 0 characters for static data sources and 3 characters for external data sources. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "For multiselect menus, the number of text characters that a user inputs before the Chat app queries autocomplete and displays suggested items in the menu. If unspecified, defaults to 0 characters for static data sources and 3 characters for external data sources.",
           "format": "int32",
           "type": "integer"
         },
@@ -2427,7 +2427,7 @@
         },
         "platformDataSource": {
           "$ref": "GoogleAppsCardV1PlatformDataSource",
-          "description": "A data source from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "A data source from Google Workspace."
         },
         "type": {
           "description": "The type of items that are displayed to users in a `SelectionInput` widget. Selection types support different types of interactions. For example, users can select one or more checkboxes, but they can only select one value from a dropdown menu.",
@@ -2443,7 +2443,7 @@
             "A set of radio buttons. Users can select one radio button.",
             "A set of switches. Users can turn on one or more switches.",
             "A dropdown menu. Users can select one item from the menu.",
-            "Supported by Chat apps, but not Google Workspace Add-ons. A multi-select menu for static or dynamic data. From the menu bar, users select one or more items. Users can also input values to populate dynamic data. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To populate items for a multi-select menu, you can use one of the following types of data sources: * Static data: Items are specified as `SelectionItem` objects in the widget. Up to 100 items. * Google Workspace data: Items are populated using data from a Google Workspace application, such as Google Chat users or spaces. * External data: Items are populated from a dynamic external data source. For examples of how to implement multi-select menus, see the [`SelectionInput` widget page](https://developers.google.com/chat/ui/widgets/selection-input). [Developer Preview](https://developers.google.com/workspace/preview)."
+            "Supported by Chat apps, but not Google Workspace Add-ons. A multiselect menu for static or dynamic data. From the menu bar, users select one or more items. Users can also input values to populate dynamic data. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To populate items for a multiselect menu, you can use one of the following types of data sources: * Static data: Items are specified as `SelectionItem` objects in the widget. Up to 100 items. * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement multiselect menus, see the [`SelectionInput` widget page](https://developers.google.com/chat/ui/widgets/selection-input#multiselect-menu)."
           ],
           "type": "string"
         }
@@ -2455,7 +2455,7 @@
       "id": "GoogleAppsCardV1SelectionItem",
       "properties": {
         "bottomText": {
-          "description": "For multi-select menus, a text description or label that's displayed below the item's `text` field. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "For multiselect menus, a text description or label that's displayed below the item's `text` field.",
           "type": "string"
         },
         "selected": {
@@ -2463,7 +2463,7 @@
           "type": "boolean"
         },
         "startIconUri": {
-          "description": "For multi-select menus, the URL for the icon displayed next to the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS` URL. For example, `https://developers.google.com/chat/images/quickstart-app-avatar.png`. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "For multiselect menus, the URL for the icon displayed next to the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS` URL. For example, `https://developers.google.com/chat/images/quickstart-app-avatar.png`.",
           "type": "string"
         },
         "text": {
@@ -2700,12 +2700,12 @@
       "type": "object"
     },
     "HostAppDataSourceMarkup": {
-      "description": "Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from a Google Workspace host application. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from a Google Workspace application. The data source populates selection items for the multiselect menu.",
       "id": "HostAppDataSourceMarkup",
       "properties": {
         "chatDataSource": {
           "$ref": "ChatClientDataSourceMarkup",
-          "description": "The data source is Google Chat. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "A data source from Google Chat."
         }
       },
       "type": "object"
@@ -2951,7 +2951,7 @@
       "id": "ListMembershipsResponse",
       "properties": {
         "memberships": {
-          "description": "List of memberships in the requested (or first) page.",
+          "description": "Unordered list. List of memberships in the requested (or first) page.",
           "items": {
             "$ref": "Membership"
           },
@@ -3218,7 +3218,7 @@
         },
         "thread": {
           "$ref": "Thread",
-          "description": "The thread the message belongs to. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread)."
+          "description": "The thread the message belongs to. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/v1/messages/create#create-message-thread)."
         },
         "threadReply": {
           "description": "Output only. When `true`, the message is a response in a reply thread. When `false`, the message is visible in the space's top-level conversation as either the first message of a thread or a message with no threaded replies. If the space doesn't support reply in threads, this field is always `false`.",
@@ -3483,11 +3483,11 @@
       "type": "object"
     },
     "SpaceDataSource": {
-      "description": "A data source representing a Google Chat space. Format: spaces/{space} [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "A data source that populates Google Chat spaces as selection items for a multiselect menu. Only populates spaces that the user is a member of.",
       "id": "SpaceDataSource",
       "properties": {
         "defaultToCurrentSpace": {
-          "description": "When `true`, uses the card's Google Chat space as the default selection. The default value is `false`. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "If set to `true`, the multiselect menu selects the current Google Chat space as an item by default.",
           "type": "boolean"
         }
       },
@@ -3661,7 +3661,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Resource name for a Google Chat user. Format: `users/{user}`. `users/app` can be used as an alias for the calling app bot user. For human users, `{user}` is the same user identifier as: - the `{person_id`} for the [Person](https://developers.google.com/people/api/rest/v1/people) in the People API, where the Person `resource_name` is `people/{person_id}`. For example, `users/123456789` in Chat API represents the same person as `people/123456789` in People API. - the `id` for a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. - the user's email address can be used as an alias for `{user}` in API requests. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can use `users/user@example.com` as an alias to reference `users/123456789`. Only the canonical resource name (for example `users/123456789`) will be returned from the API.",
+          "description": "Resource name for a Google Chat user. Format: `users/{user}`. `users/app` can be used as an alias for the calling app bot user. For human users, `{user}` is the same user identifier as: - the `id` for the [Person](https://developers.google.com/people/api/rest/v1/people) in the People API. For example, `users/123456789` in Chat API represents the same person as the `123456789` Person profile ID in People API. - the `id` for a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. - the user's email address can be used as an alias for `{user}` in API requests. For example, if the People API Person profile ID for `user@example.com` is `123456789`, you can use `users/user@example.com` as an alias to reference `users/123456789`. Only the canonical resource name (for example `users/123456789`) will be returned from the API.",
           "type": "string"
         },
         "type": {
