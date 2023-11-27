@@ -851,13 +851,18 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20231120",
   "rootUrl": "https://androiddeviceprovisioning.googleapis.com/",
   "schemas": {
     "ClaimDeviceRequest": {
       "description": "Request message to claim a device on behalf of a customer.",
       "id": "ClaimDeviceRequest",
       "properties": {
+        "configurationId": {
+          "description": "Optional. The ID of the configuration applied to the device section.",
+          "format": "int64",
+          "type": "string"
+        },
         "customerId": {
           "description": "The ID of the customer for whom the device is being claimed.",
           "format": "int64",
@@ -1709,6 +1714,11 @@
       "description": "Identifies one claim request.",
       "id": "PartnerClaim",
       "properties": {
+        "configurationId": {
+          "description": "Optional. The ID of the configuration applied to the device section.",
+          "format": "int64",
+          "type": "string"
+        },
         "customerId": {
           "description": "The ID of the customer for whom the device is being claimed.",
           "format": "int64",

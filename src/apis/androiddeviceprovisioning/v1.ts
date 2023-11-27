@@ -133,6 +133,10 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$ClaimDeviceRequest {
     /**
+     * Optional. The ID of the configuration applied to the device section.
+     */
+    configurationId?: string | null;
+    /**
      * The ID of the customer for whom the device is being claimed.
      */
     customerId?: string | null;
@@ -730,6 +734,10 @@ export namespace androiddeviceprovisioning_v1 {
    * Identifies one claim request.
    */
   export interface Schema$PartnerClaim {
+    /**
+     * Optional. The ID of the configuration applied to the device section.
+     */
+    configurationId?: string | null;
     /**
      * The ID of the customer for whom the device is being claimed.
      */
