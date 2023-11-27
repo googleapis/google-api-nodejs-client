@@ -445,6 +445,15 @@ export namespace dataform_v1beta1 {
     file?: string | null;
   }
   /**
+   * Client-facing representation of a directory entry in search results.
+   */
+  export interface Schema$DirectorySearchResult {
+    /**
+     * File system path relative to the workspace root.
+     */
+    path?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -534,6 +543,15 @@ export namespace dataform_v1beta1 {
      * Represents the write operation.
      */
     writeFile?: Schema$WriteFile;
+  }
+  /**
+   * Client-facing representation of a file entry in search results.
+   */
+  export interface Schema$FileSearchResult {
+    /**
+     * File system path relative to the workspace root.
+     */
+    path?: string | null;
   }
   /**
    * Controls Git remote configuration for a repository.
@@ -1211,6 +1229,32 @@ export namespace dataform_v1beta1 {
     releaseTime?: string | null;
   }
   /**
+   * Client-facing representation of a file search response.
+   */
+  export interface Schema$SearchFilesResponse {
+    /**
+     * Optional. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of matched results.
+     */
+    searchResults?: Schema$SearchResult[];
+  }
+  /**
+   * Client-facing representation of a search result entry.
+   */
+  export interface Schema$SearchResult {
+    /**
+     * Details when search result is a directory.
+     */
+    directory?: Schema$DirectorySearchResult;
+    /**
+     * Details when search result is a file.
+     */
+    file?: Schema$FileSearchResult;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -1346,6 +1390,10 @@ export namespace dataform_v1beta1 {
      * Output only. The workflow invocation's name.
      */
     name?: string | null;
+    /**
+     * Output only. The resolved compilation result that was used to create this invocation. Will be in the format `projects/x/locations/x/repositories/x/compilationResults/x`.
+     */
+    resolvedCompilationResult?: string | null;
     /**
      * Output only. This workflow invocation's current state.
      */
@@ -7361,6 +7409,99 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Finds the contents of a given Workspace directory by filter.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchFiles(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchFiles(
+      params?: Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchFilesResponse>;
+    searchFiles(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchFiles(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchFilesResponse>,
+      callback: BodyResponseCallback<Schema$SearchFilesResponse>
+    ): void;
+    searchFiles(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles,
+      callback: BodyResponseCallback<Schema$SearchFilesResponse>
+    ): void;
+    searchFiles(
+      callback: BodyResponseCallback<Schema$SearchFilesResponse>
+    ): void;
+    searchFiles(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles
+        | BodyResponseCallback<Schema$SearchFilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchFilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+workspace}:searchFiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['workspace'],
+        pathParams: ['workspace'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchFilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchFilesResponse>(parameters);
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -7877,6 +8018,25 @@ export namespace dataform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$ResetWorkspaceChangesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles
+    extends StandardParameters {
+    /**
+     * Optional. Optional filter for the returned list in go/filtering format. Filtering is only currently supported on the `path` field.
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum number of search results to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The workspace's name.
+     */
+    workspace?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Setiampolicy
     extends StandardParameters {

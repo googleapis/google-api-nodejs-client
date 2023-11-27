@@ -1959,6 +1959,47 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "searchFiles": {
+                      "description": "Finds the contents of a given Workspace directory by filter.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:searchFiles",
+                      "httpMethod": "GET",
+                      "id": "dataform.projects.locations.repositories.workspaces.searchFiles",
+                      "parameterOrder": [
+                        "workspace"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Optional filter for the returned list in go/filtering format. Filtering is only currently supported on the `path` field.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Maximum number of search results to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "workspace": {
+                          "description": "Required. The workspace's name.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+workspace}:searchFiles",
+                      "response": {
+                        "$ref": "SearchFilesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "setIamPolicy": {
                       "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:setIamPolicy",
@@ -2052,7 +2093,7 @@
       }
     }
   },
-  "revision": "20230916",
+  "revision": "20231111",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2460,6 +2501,17 @@
       },
       "type": "object"
     },
+    "DirectorySearchResult": {
+      "description": "Client-facing representation of a directory entry in search results.",
+      "id": "DirectorySearchResult",
+      "properties": {
+        "path": {
+          "description": "File system path relative to the workspace root.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -2574,6 +2626,17 @@
         "writeFile": {
           "$ref": "WriteFile",
           "description": "Represents the write operation."
+        }
+      },
+      "type": "object"
+    },
+    "FileSearchResult": {
+      "description": "Client-facing representation of a file entry in search results.",
+      "id": "FileSearchResult",
+      "properties": {
+        "path": {
+          "description": "File system path relative to the workspace root.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3500,6 +3563,39 @@
       },
       "type": "object"
     },
+    "SearchFilesResponse": {
+      "description": "Client-facing representation of a file search response.",
+      "id": "SearchFilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Optional. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "searchResults": {
+          "description": "List of matched results.",
+          "items": {
+            "$ref": "SearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SearchResult": {
+      "description": "Client-facing representation of a search result entry.",
+      "id": "SearchResult",
+      "properties": {
+        "directory": {
+          "$ref": "DirectorySearchResult",
+          "description": "Details when search result is a directory."
+        },
+        "file": {
+          "$ref": "FileSearchResult",
+          "description": "Details when search result is a file."
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -3684,6 +3780,11 @@
         },
         "name": {
           "description": "Output only. The workflow invocation's name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resolvedCompilationResult": {
+          "description": "Output only. The resolved compilation result that was used to create this invocation. Will be in the format `projects/*/locations/*/repositories/*/compilationResults/*`.",
           "readOnly": true,
           "type": "string"
         },
