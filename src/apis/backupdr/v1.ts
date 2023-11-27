@@ -312,6 +312,14 @@ export namespace backupdr_v1 {
      * Output only. The time when the instance was updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. The hostnames of the exposed AGM endpoints for both types of user i.e. 1p and 3p, used to connect AGM/RM UI.
+     */
+    workforceIdentityBasedManagementUri?: Schema$WorkforceIdentityBasedManagementURI;
+    /**
+     * Output only. The OAuth client IDs for both types of user i.e. 1p and 3p.
+     */
+    workforceIdentityBasedOauth2ClientId?: Schema$WorkforceIdentityBasedOAuth2ClientID;
   }
   /**
    * ManagementURI for the Management Server resource.
@@ -469,6 +477,32 @@ export namespace backupdr_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * ManagementURI depending on the Workforce Identity i.e. either 1p or 3p.
+   */
+  export interface Schema$WorkforceIdentityBasedManagementURI {
+    /**
+     * Output only. First party Management URI for Google Identities.
+     */
+    firstPartyManagementUri?: string | null;
+    /**
+     * Output only. Third party Management URI for External Identity Providers.
+     */
+    thirdPartyManagementUri?: string | null;
+  }
+  /**
+   * OAuth Client ID depending on the Workforce Identity i.e. either 1p or 3p,
+   */
+  export interface Schema$WorkforceIdentityBasedOAuth2ClientID {
+    /**
+     * Output only. First party OAuth Client ID for Google Identities.
+     */
+    firstPartyOauth2ClientId?: string | null;
+    /**
+     * Output only. Third party OAuth Client ID for External Identity Providers.
+     */
+    thirdPartyOauth2ClientId?: string | null;
   }
 
   export class Resource$Projects {
