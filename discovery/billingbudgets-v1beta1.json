@@ -269,7 +269,7 @@
       }
     }
   },
-  "revision": "20230915",
+  "revision": "20231119",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1beta1AllUpdatesRule": {
@@ -329,6 +329,19 @@
         "name": {
           "description": "Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.",
           "readOnly": true,
+          "type": "string"
+        },
+        "ownershipScope": {
+          "enum": [
+            "OWNERSHIP_SCOPE_UNSPECIFIED",
+            "ALL_USERS",
+            "BILLING_ACCOUNT"
+          ],
+          "enumDescriptions": [
+            "Unspecified ownership scope, same as ALL_USERS.",
+            "The Budget is fully accessible to both billing account users and resource users, provided that they have the required IAM permissions.",
+            "Only billing account users have full access to the `Budget`, resource-level users have read-only access, provided that they have the required IAM permissions."
+          ],
           "type": "string"
         },
         "thresholdRules": {
