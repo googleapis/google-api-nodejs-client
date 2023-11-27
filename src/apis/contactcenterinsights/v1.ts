@@ -341,6 +341,10 @@ export namespace contactcenterinsights_v1 {
      */
     failedAnalysesCount?: number | null;
     /**
+     * Output only. Partial errors during bulk analyze operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
      * The original request for bulk analyze.
      */
     request?: Schema$GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest;
@@ -383,6 +387,52 @@ export namespace contactcenterinsights_v1 {
      */
     successfulAnalysisCount?: number | null;
   }
+  /**
+   * The metadata for a bulk delete conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsMetadata {
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Partial errors during bulk delete conversations operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * The original request for bulk delete.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsRequest;
+  }
+  /**
+   * The request to delete conversations in bulk.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsRequest {
+    /**
+     * Filter used to select the subset of conversations to delete.
+     */
+    filter?: string | null;
+    /**
+     * If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.
+     */
+    force?: boolean | null;
+    /**
+     * Maximum number of conversations to delete.
+     */
+    maxDeleteCount?: number | null;
+    /**
+     * Required. The parent resource to delete conversations from. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string | null;
+  }
+  /**
+   * The response for a bulk delete conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsResponse {}
   /**
    * A piece of metadata that applies to a window of a call.
    */
@@ -535,7 +585,7 @@ export namespace contactcenterinsights_v1 {
     customerChannel?: number | null;
   }
   /**
-   * The conversation source, which is a combination of transcript and audio.
+   * The conversation source, which is a combination of transcript, audio, and metadata.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource {
     /**
@@ -1054,6 +1104,14 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string | null;
     /**
+     * Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings.
+     */
+    redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig;
+    /**
+     * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
+     */
+    speechConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig;
+    /**
      * Configuration for when `source` contains conversation transcripts.
      */
     transcriptObjectConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfig;
@@ -1063,14 +1121,26 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig {
     /**
+     * Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for audio conversations to be properly displayed and analyzed.
+     */
+    agentChannel?: number | null;
+    /**
      * An opaque, user-specified string representing the human agent who handled the conversations.
      */
     agentId?: string | null;
+    /**
+     * Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the customer. Note that this must be set for audio conversations to be properly displayed and analyzed.
+     */
+    customerChannel?: number | null;
   }
   /**
    * Configuration for Cloud Storage bucket sources.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource {
+    /**
+     * Optional. Specifies the type of the objects in `bucket_uri`.
+     */
+    bucketObjectType?: string | null;
     /**
      * Required. The Cloud Storage bucket containing source objects.
      */
@@ -1692,6 +1762,10 @@ export namespace contactcenterinsights_v1 {
      */
     failedAnalysesCount?: number | null;
     /**
+     * Output only. Partial errors during bulk analyze operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
      * The original request for bulk analyze.
      */
     request?: Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest;
@@ -1734,6 +1808,52 @@ export namespace contactcenterinsights_v1 {
      */
     successfulAnalysisCount?: number | null;
   }
+  /**
+   * The metadata for a bulk delete conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkDeleteConversationsMetadata {
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Partial errors during bulk delete conversations operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * The original request for bulk delete.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest;
+  }
+  /**
+   * The request to delete conversations in bulk.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest {
+    /**
+     * Filter used to select the subset of conversations to delete.
+     */
+    filter?: string | null;
+    /**
+     * If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.
+     */
+    force?: boolean | null;
+    /**
+     * Maximum number of conversations to delete.
+     */
+    maxDeleteCount?: number | null;
+    /**
+     * Required. The parent resource to delete conversations from. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string | null;
+  }
+  /**
+   * The response for a bulk delete conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkDeleteConversationsResponse {}
   /**
    * Response of querying an issue model's statistics.
    */
@@ -1960,7 +2080,7 @@ export namespace contactcenterinsights_v1 {
     customerChannel?: number | null;
   }
   /**
-   * The conversation source, which is a combination of transcript and audio.
+   * The conversation source, which is a combination of transcript, audio, and metadata.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ConversationDataSource {
     /**
@@ -2488,6 +2608,14 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string | null;
     /**
+     * Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings.
+     */
+    redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
+    /**
+     * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
+     */
+    speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
+    /**
      * Configuration for when `source` contains conversation transcripts.
      */
     transcriptObjectConfig?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfig;
@@ -2497,14 +2625,26 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig {
     /**
+     * Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for audio conversations to be properly displayed and analyzed.
+     */
+    agentChannel?: number | null;
+    /**
      * An opaque, user-specified string representing the human agent who handled the conversations.
      */
     agentId?: string | null;
+    /**
+     * Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the customer. Note that this must be set for audio conversations to be properly displayed and analyzed.
+     */
+    customerChannel?: number | null;
   }
   /**
    * Configuration for Cloud Storage bucket sources.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource {
+    /**
+     * Optional. Specifies the type of the objects in `bucket_uri`.
+     */
+    bucketObjectType?: string | null;
     /**
      * Required. The Cloud Storage bucket containing source objects.
      */
@@ -3594,6 +3734,102 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
+     * Deletes multiple conversations in a single request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkDelete(
+      params: Params$Resource$Projects$Locations$Conversations$Bulkdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkDelete(
+      params?: Params$Resource$Projects$Locations$Conversations$Bulkdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    bulkDelete(
+      params: Params$Resource$Projects$Locations$Conversations$Bulkdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkDelete(
+      params: Params$Resource$Projects$Locations$Conversations$Bulkdelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDelete(
+      params: Params$Resource$Projects$Locations$Conversations$Bulkdelete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDelete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Bulkdelete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Bulkdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversations$Bulkdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/conversations:bulkDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Gets conversation statistics.
      *
      * @param params - Parameters for request
@@ -4362,6 +4598,18 @@ export namespace contactcenterinsights_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Bulkdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent resource to delete conversations from. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest;
   }
   export interface Params$Resource$Projects$Locations$Conversations$Calculatestats
     extends StandardParameters {

@@ -200,6 +200,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "bulkDelete": {
+                  "description": "Deletes multiple conversations in a single request.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations:bulkDelete",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.conversations.bulkDelete",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource to delete conversations from. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/conversations:bulkDelete",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "calculateStats": {
                   "description": "Gets conversation statistics.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations:calculateStats",
@@ -1384,7 +1412,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231113",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1571,7 +1599,7 @@
           ],
           "enumDescriptions": [
             "Unspecified summarization model.",
-            "The Insights baseline model."
+            "The CCAI baseline model."
           ],
           "type": "string"
         }
@@ -1668,6 +1696,14 @@
           "format": "int32",
           "type": "integer"
         },
+        "partialErrors": {
+          "description": "Output only. Partial errors during bulk analyze operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "request": {
           "$ref": "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest",
           "description": "The original request for bulk analyze."
@@ -1719,6 +1755,64 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1BulkDeleteConversationsMetadata": {
+      "description": "The metadata for a bulk delete conversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1BulkDeleteConversationsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Partial errors during bulk delete conversations operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest",
+          "description": "The original request for bulk delete."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest": {
+      "description": "The request to delete conversations in bulk.",
+      "id": "GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest",
+      "properties": {
+        "filter": {
+          "description": "Filter used to select the subset of conversations to delete.",
+          "type": "string"
+        },
+        "force": {
+          "description": "If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.",
+          "type": "boolean"
+        },
+        "maxDeleteCount": {
+          "description": "Maximum number of conversations to delete.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "parent": {
+          "description": "Required. The parent resource to delete conversations from. Format: projects/{project}/locations/{location}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1BulkDeleteConversationsResponse": {
+      "description": "The response for a bulk delete conversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1BulkDeleteConversationsResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponse": {
@@ -2018,7 +2112,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1ConversationDataSource": {
-      "description": "The conversation source, which is a combination of transcript and audio.",
+      "description": "The conversation source, which is a combination of transcript, audio, and metadata.",
       "id": "GoogleCloudContactcenterinsightsV1ConversationDataSource",
       "properties": {
         "dialogflowSource": {
@@ -2745,6 +2839,14 @@
           "description": "Required. The parent resource for new conversations.",
           "type": "string"
         },
+        "redactionConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1RedactionConfig",
+          "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
+        },
+        "speechConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SpeechConfig",
+          "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
+        },
         "transcriptObjectConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfig",
           "description": "Configuration for when `source` contains conversation transcripts."
@@ -2756,9 +2858,19 @@
       "description": "Configuration that applies to all conversations.",
       "id": "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig",
       "properties": {
+        "agentChannel": {
+          "description": "Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for audio conversations to be properly displayed and analyzed.",
+          "format": "int32",
+          "type": "integer"
+        },
         "agentId": {
           "description": "An opaque, user-specified string representing the human agent who handled the conversations.",
           "type": "string"
+        },
+        "customerChannel": {
+          "description": "Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the customer. Note that this must be set for audio conversations to be properly displayed and analyzed.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2767,6 +2879,20 @@
       "description": "Configuration for Cloud Storage bucket sources.",
       "id": "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource",
       "properties": {
+        "bucketObjectType": {
+          "description": "Optional. Specifies the type of the objects in `bucket_uri`.",
+          "enum": [
+            "BUCKET_OBJECT_TYPE_UNSPECIFIED",
+            "TRANSCRIPT",
+            "AUDIO"
+          ],
+          "enumDescriptions": [
+            "The object type is unspecified and will default to TRANSCRIPT.",
+            "The object is a transcript.",
+            "The object is an audio file."
+          ],
+          "type": "string"
+        },
         "bucketUri": {
           "description": "Required. The Cloud Storage bucket containing source objects.",
           "type": "string"
@@ -3875,7 +4001,7 @@
           ],
           "enumDescriptions": [
             "Unspecified summarization model.",
-            "The Insights baseline model."
+            "The CCAI baseline model."
           ],
           "type": "string"
         }
@@ -3972,6 +4098,14 @@
           "format": "int32",
           "type": "integer"
         },
+        "partialErrors": {
+          "description": "Output only. Partial errors during bulk analyze operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "request": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest",
           "description": "The original request for bulk analyze."
@@ -4023,6 +4157,64 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsMetadata": {
+      "description": "The metadata for a bulk delete conversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Partial errors during bulk delete conversations operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsRequest",
+          "description": "The original request for bulk delete."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsRequest": {
+      "description": "The request to delete conversations in bulk.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsRequest",
+      "properties": {
+        "filter": {
+          "description": "Filter used to select the subset of conversations to delete.",
+          "type": "string"
+        },
+        "force": {
+          "description": "If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.",
+          "type": "boolean"
+        },
+        "maxDeleteCount": {
+          "description": "Maximum number of conversations to delete.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "parent": {
+          "description": "Required. The parent resource to delete conversations from. Format: projects/{project}/locations/{location}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsResponse": {
+      "description": "The response for a bulk delete conversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1alpha1CallAnnotation": {
@@ -4217,7 +4409,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource": {
-      "description": "The conversation source, which is a combination of transcript and audio.",
+      "description": "The conversation source, which is a combination of transcript, audio, and metadata.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource",
       "properties": {
         "dialogflowSource": {
@@ -4933,6 +5125,14 @@
           "description": "Required. The parent resource for new conversations.",
           "type": "string"
         },
+        "redactionConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1RedactionConfig",
+          "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
+        },
+        "speechConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
+          "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
+        },
         "transcriptObjectConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfig",
           "description": "Configuration for when `source` contains conversation transcripts."
@@ -4944,9 +5144,19 @@
       "description": "Configuration that applies to all conversations.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig",
       "properties": {
+        "agentChannel": {
+          "description": "Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for audio conversations to be properly displayed and analyzed.",
+          "format": "int32",
+          "type": "integer"
+        },
         "agentId": {
           "description": "An opaque, user-specified string representing the human agent who handled the conversations.",
           "type": "string"
+        },
+        "customerChannel": {
+          "description": "Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the customer. Note that this must be set for audio conversations to be properly displayed and analyzed.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4955,6 +5165,20 @@
       "description": "Configuration for Cloud Storage bucket sources.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource",
       "properties": {
+        "bucketObjectType": {
+          "description": "Optional. Specifies the type of the objects in `bucket_uri`.",
+          "enum": [
+            "BUCKET_OBJECT_TYPE_UNSPECIFIED",
+            "TRANSCRIPT",
+            "AUDIO"
+          ],
+          "enumDescriptions": [
+            "The object type is unspecified and will default to TRANSCRIPT.",
+            "The object is a transcript.",
+            "The object is an audio file."
+          ],
+          "type": "string"
+        },
         "bucketUri": {
           "description": "Required. The Cloud Storage bucket containing source objects.",
           "type": "string"
