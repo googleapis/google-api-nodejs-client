@@ -231,6 +231,10 @@ export namespace chromeuxreport_v1 {
    */
   export interface Schema$Metric {
     /**
+     * For enum metrics, provides fractions which add up to approximately 1.0.
+     */
+    fractions?: {[key: string]: number} | null;
+    /**
      * The histogram of user experiences for a metric. The histogram will have at least one bin and the densities of all bins will add up to ~1.
      */
     histogram?: Schema$Bin[];
