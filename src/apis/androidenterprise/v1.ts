@@ -428,7 +428,7 @@ export namespace androidenterprise_v1 {
      */
     autoInstallConstraint?: Schema$AutoInstallConstraint[];
     /**
-     * The auto-install mode. If unset defaults to "doNotAutoInstall".
+     * The auto-install mode. If unset, defaults to "doNotAutoInstall". An app is automatically installed regardless of a set maintenance window.
      */
     autoInstallMode?: string | null;
     /**
@@ -503,7 +503,7 @@ export namespace androidenterprise_v1 {
      */
     report?: Schema$DeviceReport;
     /**
-     * Retail brand for the device, if set. See https://developer.android.com/reference/android/os/Build.html#BRAND
+     * Retail brand for the device, if set. See android.os.Build.BRAND
      */
     retailBrand?: string | null;
     /**
@@ -1007,11 +1007,11 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$Permission {
     /**
-     * A longer description of the Permissions resource, giving more details of what it affects. This field may be absent.
+     * A longer description of the Permissions resource, giving more details of what it affects.
      */
     description?: string | null;
     /**
-     * The name of the permission. This field may be absent.
+     * The name of the permission.
      */
     name?: string | null;
     /**
@@ -1024,7 +1024,7 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$Policy {
     /**
-     * Recommended alternative: autoUpdateMode which is set per app, provides greater flexibility around update frequency. When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect. "choiceToTheUser" allows the device's user to configure the app update policy. "always" enables auto updates. "never" disables auto updates. "wifiOnly" enables auto updates only when the device is connected to wifi.
+     * Controls when automatic app updates on the device can be applied. Recommended alternative: autoUpdateMode which is set per app, provides greater flexibility around update frequency. When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, autoUpdatePolicy has no effect. "choiceToTheUser" allows the device's user to configure the app update policy. "always" enables auto updates. "never" disables auto updates. "wifiOnly" enables auto updates only when the device is connected to wifi.
      */
     autoUpdatePolicy?: string | null;
     /**
@@ -1214,11 +1214,11 @@ export namespace androidenterprise_v1 {
      */
     autoInstallPolicy?: Schema$AutoInstallPolicy;
     /**
-     * The auto-update mode for the product.
+     * The auto-update mode for the product. When autoUpdateMode is used, it always takes precedence over the user's choice. So when a user makes changes to the device settings manually, these changes are ignored.
      */
     autoUpdateMode?: string | null;
     /**
-     * An authentication URL configuration for the authenticator app of an identity provider. This helps to launch the identity provider's authenticator app during the authentication happening in a private app using Android WebView. Authenticator app should already be the [default handler](https://developer.android.com/training/app-links/verify-site-associations) for the authentication url on the device.
+     * An authentication URL configuration for the authenticator app of an identity provider. This helps to launch the identity provider's authenticator app during the authentication happening in a private app using Android WebView. Authenticator app should already be the default handler for the authentication url on the device.
      */
     enterpriseAuthenticationAppLinkConfigs?: Schema$EnterpriseAuthenticationAppLinkConfig[];
     /**

@@ -2649,7 +2649,7 @@
       }
     }
   },
-  "revision": "20231018",
+  "revision": "20231122",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3097,7 +3097,7 @@
           "type": "array"
         },
         "autoInstallMode": {
-          "description": "The auto-install mode. If unset defaults to \"doNotAutoInstall\".",
+          "description": "The auto-install mode. If unset, defaults to \"doNotAutoInstall\". An app is automatically installed regardless of a set maintenance window.",
           "enum": [
             "autoInstallModeUnspecified",
             "doNotAutoInstall",
@@ -3207,7 +3207,7 @@
           "description": "The device report updated with the latest app states."
         },
         "retailBrand": {
-          "description": "Retail brand for the device, if set. See https://developer.android.com/reference/android/os/Build.html#BRAND",
+          "description": "Retail brand for the device, if set. See android.os.Build.BRAND",
           "type": "string"
         },
         "sdkVersion": {
@@ -3990,11 +3990,11 @@
       "id": "Permission",
       "properties": {
         "description": {
-          "description": "A longer description of the Permissions resource, giving more details of what it affects. This field may be absent.",
+          "description": "A longer description of the Permissions resource, giving more details of what it affects.",
           "type": "string"
         },
         "name": {
-          "description": "The name of the permission. This field may be absent.",
+          "description": "The name of the permission.",
           "type": "string"
         },
         "permissionId": {
@@ -4010,7 +4010,7 @@
       "properties": {
         "autoUpdatePolicy": {
           "deprecated": true,
-          "description": "Recommended alternative: autoUpdateMode which is set per app, provides greater flexibility around update frequency. When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect. \"choiceToTheUser\" allows the device's user to configure the app update policy. \"always\" enables auto updates. \"never\" disables auto updates. \"wifiOnly\" enables auto updates only when the device is connected to wifi.",
+          "description": "Controls when automatic app updates on the device can be applied. Recommended alternative: autoUpdateMode which is set per app, provides greater flexibility around update frequency. When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, autoUpdatePolicy has no effect. \"choiceToTheUser\" allows the device's user to configure the app update policy. \"always\" enables auto updates. \"never\" disables auto updates. \"wifiOnly\" enables auto updates only when the device is connected to wifi.",
           "enum": [
             "autoUpdatePolicyUnspecified",
             "choiceToTheUser",
@@ -4361,7 +4361,7 @@
           "description": "The auto-install policy for the product."
         },
         "autoUpdateMode": {
-          "description": "The auto-update mode for the product.",
+          "description": "The auto-update mode for the product. When autoUpdateMode is used, it always takes precedence over the user's choice. So when a user makes changes to the device settings manually, these changes are ignored.",
           "enum": [
             "autoUpdateModeUnspecified",
             "autoUpdateDefault",
@@ -4377,7 +4377,7 @@
           "type": "string"
         },
         "enterpriseAuthenticationAppLinkConfigs": {
-          "description": "An authentication URL configuration for the authenticator app of an identity provider. This helps to launch the identity provider's authenticator app during the authentication happening in a private app using Android WebView. Authenticator app should already be the [default handler](https://developer.android.com/training/app-links/verify-site-associations) for the authentication url on the device.",
+          "description": "An authentication URL configuration for the authenticator app of an identity provider. This helps to launch the identity provider's authenticator app during the authentication happening in a private app using Android WebView. Authenticator app should already be the default handler for the authentication url on the device.",
           "items": {
             "$ref": "EnterpriseAuthenticationAppLinkConfig"
           },
