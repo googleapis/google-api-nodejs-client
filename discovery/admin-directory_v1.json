@@ -4643,7 +4643,7 @@
       }
     }
   },
-  "revision": "20231005",
+  "revision": "20231117",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -7589,7 +7589,7 @@
           "type": "string"
         },
         "emails": {
-          "description": "The list of the user's email addresses. The maximum allowed data size for this field is 10KB.",
+          "description": "The list of the user's email addresses. The maximum allowed data size for this field is 10KB. This excludes `publicKeyEncryptionCertificates`.",
           "type": "any"
         },
         "etag": {
@@ -7895,6 +7895,24 @@
         "primary": {
           "description": "If this is user's primary email. Only one entry could be marked as primary.",
           "type": "boolean"
+        },
+        "public_key_encryption_certificates": {
+          "description": "Public Key Encryption Certificates. Current limit: 1 per email address, and 5 per user.",
+          "properties": {
+            "certificate": {
+              "description": "X.509 encryption certificate in `PEM` format. Must only be an end-entity (leaf) certificate.",
+              "type": "string"
+            },
+            "is_default": {
+              "description": "Whether this is the default certificate for the given email address.",
+              "type": "boolean"
+            },
+            "state": {
+              "description": "Denotes the certificate's state in its lifecycle. Possible values are `not_yet_validated`, `valid`, `invalid`, `expired`, and `revoked`.",
+              "type": "string"
+            }
+          },
+          "type": "object"
         },
         "type": {
           "description": "Each entry can have a type which indicates standard types of that entry. For example email could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value Such types should have the CUSTOM value as type and also have a customType value.",

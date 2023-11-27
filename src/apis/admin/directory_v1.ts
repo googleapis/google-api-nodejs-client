@@ -2073,7 +2073,7 @@ export namespace admin_directory_v1 {
     customSchemas?: {[key: string]: Schema$UserCustomProperties} | null;
     deletionTime?: string | null;
     /**
-     * The list of the user's email addresses. The maximum allowed data size for this field is 10KB.
+     * The list of the user's email addresses. The maximum allowed data size for this field is 10KB. This excludes `publicKeyEncryptionCertificates`.
      */
     emails?: any | null;
     /**
@@ -2336,6 +2336,14 @@ export namespace admin_directory_v1 {
      * If this is user's primary email. Only one entry could be marked as primary.
      */
     primary?: boolean | null;
+    /**
+     * Public Key Encryption Certificates. Current limit: 1 per email address, and 5 per user.
+     */
+    public_key_encryption_certificates?: {
+      certificate?: string;
+      is_default?: boolean;
+      state?: string;
+    } | null;
     /**
      * Each entry can have a type which indicates standard types of that entry. For example email could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value Such types should have the CUSTOM value as type and also have a customType value.
      */
