@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20230818",
+  "revision": "20231106",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -394,6 +394,100 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Common__AssetUsage": {
+      "description": "Contains the usage information of the asset.",
+      "id": "GoogleAdsSearchads360V0Common__AssetUsage",
+      "properties": {
+        "asset": {
+          "description": "Resource name of the asset.",
+          "type": "string"
+        },
+        "servedAssetFieldType": {
+          "description": "The served field type of the asset.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "HEADLINE_1",
+            "HEADLINE_2",
+            "HEADLINE_3",
+            "DESCRIPTION_1",
+            "DESCRIPTION_2",
+            "HEADLINE",
+            "HEADLINE_IN_PORTRAIT",
+            "LONG_HEADLINE",
+            "DESCRIPTION",
+            "DESCRIPTION_IN_PORTRAIT",
+            "BUSINESS_NAME_IN_PORTRAIT",
+            "BUSINESS_NAME",
+            "MARKETING_IMAGE",
+            "MARKETING_IMAGE_IN_PORTRAIT",
+            "SQUARE_MARKETING_IMAGE",
+            "PORTRAIT_MARKETING_IMAGE",
+            "LOGO",
+            "LANDSCAPE_LOGO",
+            "CALL_TO_ACTION",
+            "YOU_TUBE_VIDEO",
+            "SITELINK",
+            "CALL",
+            "MOBILE_APP",
+            "CALLOUT",
+            "STRUCTURED_SNIPPET",
+            "PRICE",
+            "PROMOTION",
+            "AD_IMAGE",
+            "LEAD_FORM",
+            "BUSINESS_LOGO"
+          ],
+          "enumDescriptions": [
+            "No value has been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The asset is used in headline 1.",
+            "The asset is used in headline 2.",
+            "The asset is used in headline 3.",
+            "The asset is used in description 1.",
+            "The asset is used in description 2.",
+            "The asset was used in a headline. Use this only if there is only one headline in the ad. Otherwise, use the HEADLINE_1, HEADLINE_2 or HEADLINE_3 enums",
+            "The asset was used as a headline in portrait image.",
+            "The asset was used in a long headline (used in MultiAssetResponsiveAd).",
+            "The asset was used in a description. Use this only if there is only one description in the ad. Otherwise, use the DESCRIPTION_1 or DESCRIPTION_@ enums",
+            "The asset was used as description in portrait image.",
+            "The asset was used as business name in portrait image.",
+            "The asset was used as business name.",
+            "The asset was used as a marketing image.",
+            "The asset was used as a marketing image in portrait image.",
+            "The asset was used as a square marketing image.",
+            "The asset was used as a portrait marketing image.",
+            "The asset was used as a logo.",
+            "The asset was used as a landscape logo.",
+            "The asset was used as a call-to-action.",
+            "The asset was used as a YouTube video.",
+            "This asset is used as a sitelink.",
+            "This asset is used as a call.",
+            "This asset is used as a mobile app.",
+            "This asset is used as a callout.",
+            "This asset is used as a structured snippet.",
+            "This asset is used as a price.",
+            "This asset is used as a promotion.",
+            "This asset is used as an image.",
+            "The asset is used as a lead form.",
+            "The asset is used as a business logo."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__AudienceInfo": {
+      "description": "An audience criterion.",
+      "id": "GoogleAdsSearchads360V0Common__AudienceInfo",
+      "properties": {
+        "audience": {
+          "description": "The Audience resource name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Common__BusinessProfileLocation": {
       "description": "Business Profile location data synced from the linked Business Profile account.",
       "id": "GoogleAdsSearchads360V0Common__BusinessProfileLocation",
@@ -412,6 +506,59 @@
         },
         "storeCode": {
           "description": "Business Profile store code of this location. This is synced from the Business Profile account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__CallToActionAsset": {
+      "description": "A call to action asset.",
+      "id": "GoogleAdsSearchads360V0Common__CallToActionAsset",
+      "properties": {
+        "callToAction": {
+          "description": "Call to action.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "LEARN_MORE",
+            "GET_QUOTE",
+            "APPLY_NOW",
+            "SIGN_UP",
+            "CONTACT_US",
+            "SUBSCRIBE",
+            "DOWNLOAD",
+            "BOOK_NOW",
+            "SHOP_NOW",
+            "BUY_NOW",
+            "DONATE_NOW",
+            "ORDER_NOW",
+            "PLAY_NOW",
+            "SEE_MORE",
+            "START_NOW",
+            "VISIT_SITE",
+            "WATCH_NOW"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The call to action type is learn more.",
+            "The call to action type is get quote.",
+            "The call to action type is apply now.",
+            "The call to action type is sign up.",
+            "The call to action type is contact us.",
+            "The call to action type is subscribe.",
+            "The call to action type is download.",
+            "The call to action type is book now.",
+            "The call to action type is shop now.",
+            "The call to action type is buy now.",
+            "The call to action type is donate now.",
+            "The call to action type is order now.",
+            "The call to action type is play now.",
+            "The call to action type is see more.",
+            "The call to action type is start now.",
+            "The call to action type is visit site.",
+            "The call to action type is watch now."
+          ],
           "type": "string"
         }
       },
@@ -493,6 +640,79 @@
             "Female.",
             "Undetermined gender."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__ImageAsset": {
+      "description": "An Image asset.",
+      "id": "GoogleAdsSearchads360V0Common__ImageAsset",
+      "properties": {
+        "fileSize": {
+          "description": "File size of the image asset in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "fullSize": {
+          "$ref": "GoogleAdsSearchads360V0Common__ImageDimension",
+          "description": "Metadata for this image at its original size."
+        },
+        "mimeType": {
+          "description": "MIME type of the image asset.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "IMAGE_JPEG",
+            "IMAGE_GIF",
+            "IMAGE_PNG",
+            "FLASH",
+            "TEXT_HTML",
+            "PDF",
+            "MSWORD",
+            "MSEXCEL",
+            "RTF",
+            "AUDIO_WAV",
+            "AUDIO_MP3",
+            "HTML5_AD_ZIP"
+          ],
+          "enumDescriptions": [
+            "The mime type has not been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "MIME type of image/jpeg.",
+            "MIME type of image/gif.",
+            "MIME type of image/png.",
+            "MIME type of application/x-shockwave-flash.",
+            "MIME type of text/html.",
+            "MIME type of application/pdf.",
+            "MIME type of application/msword.",
+            "MIME type of application/vnd.ms-excel.",
+            "MIME type of application/rtf.",
+            "MIME type of audio/wav.",
+            "MIME type of audio/mp3.",
+            "MIME type of application/x-html5-ad-zip."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__ImageDimension": {
+      "description": "Metadata for an image at a certain size, either original or resized.",
+      "id": "GoogleAdsSearchads360V0Common__ImageDimension",
+      "properties": {
+        "heightPixels": {
+          "description": "Height of the image.",
+          "format": "int64",
+          "type": "string"
+        },
+        "url": {
+          "description": "A URL that returns the image with this height and width.",
+          "type": "string"
+        },
+        "widthPixels": {
+          "description": "Width of the image.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -807,6 +1027,46 @@
           "format": "double",
           "type": "number"
         },
+        "clientAccountCrossSellCostOfGoodsSoldMicros": {
+          "description": "Client account cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "clientAccountCrossSellGrossProfitMicros": {
+          "description": "Client account cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "clientAccountCrossSellRevenueMicros": {
+          "description": "Client account cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "clientAccountCrossSellUnitsSold": {
+          "description": "Client account cross-sell units sold is the total number of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell units sold is the total number of cross-sold products from all orders attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat, a shirt and a jacket. The cross-sell units sold in this order is 2. This metric is only available if you report conversions with cart data.",
+          "format": "double",
+          "type": "number"
+        },
+        "clientAccountLeadCostOfGoodsSoldMicros": {
+          "description": "Client account lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "clientAccountLeadGrossProfitMicros": {
+          "description": "Client account lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "clientAccountLeadRevenueMicros": {
+          "description": "Client account lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "clientAccountLeadUnitsSold": {
+          "description": "Client account lead units sold is the total number of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total number of these products sold is shown under lead units sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat, a shirt and a jacket. The lead units sold in this order is 1. This metric is only available if you report conversions with cart data.",
+          "format": "double",
+          "type": "number"
+        },
         "clientAccountViewThroughConversions": {
           "description": "The total number of view-through conversions. These happen when a customer sees an image or rich media ad, then later completes a conversion on your site without interacting with (for example, clicking on) another ad.",
           "format": "int64",
@@ -889,6 +1149,26 @@
         },
         "crossDeviceConversionsValue": {
           "description": "The sum of the value of cross-device conversions.",
+          "format": "double",
+          "type": "number"
+        },
+        "crossSellCostOfGoodsSoldMicros": {
+          "description": "Cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "crossSellGrossProfitMicros": {
+          "description": "Cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "crossSellRevenueMicros": {
+          "description": "Cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "crossSellUnitsSold": {
+          "description": "Cross-sell units sold is the total number of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell units sold is the total number of cross-sold products from all orders attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat, a shirt and a jacket. The cross-sell units sold in this order is 2. This metric is only available if you report conversions with cart data.",
           "format": "double",
           "type": "number"
         },
@@ -1003,6 +1283,26 @@
           "description": "Number of clicks Google considers illegitimate and doesn't charge you for.",
           "format": "int64",
           "type": "string"
+        },
+        "leadCostOfGoodsSoldMicros": {
+          "description": "Lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "leadGrossProfitMicros": {
+          "description": "Lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "leadRevenueMicros": {
+          "description": "Lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "format": "int64",
+          "type": "string"
+        },
+        "leadUnitsSold": {
+          "description": "Lead units sold is the total number of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total number of these products sold is shown under lead units sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat, a shirt and a jacket. The lead units sold in this order is 1. This metric is only available if you report conversions with cart data.",
+          "format": "double",
+          "type": "number"
         },
         "mobileFriendlyClicksPercentage": {
           "description": "The percentage of mobile clicks that go to a mobile-friendly page.",
@@ -1425,6 +1725,234 @@
           "description": "Month as represented by the date of the first day of a month. Formatted as yyyy-MM-dd.",
           "type": "string"
         },
+        "productBiddingCategoryLevel1": {
+          "description": "Bidding category (level 1) of the product.",
+          "type": "string"
+        },
+        "productBiddingCategoryLevel2": {
+          "description": "Bidding category (level 2) of the product.",
+          "type": "string"
+        },
+        "productBiddingCategoryLevel3": {
+          "description": "Bidding category (level 3) of the product.",
+          "type": "string"
+        },
+        "productBiddingCategoryLevel4": {
+          "description": "Bidding category (level 4) of the product.",
+          "type": "string"
+        },
+        "productBiddingCategoryLevel5": {
+          "description": "Bidding category (level 5) of the product.",
+          "type": "string"
+        },
+        "productBrand": {
+          "description": "Brand of the product.",
+          "type": "string"
+        },
+        "productChannel": {
+          "description": "Channel of the product.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ONLINE",
+            "LOCAL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The item is sold online.",
+            "The item is sold in local stores."
+          ],
+          "type": "string"
+        },
+        "productChannelExclusivity": {
+          "description": "Channel exclusivity of the product.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "SINGLE_CHANNEL",
+            "MULTI_CHANNEL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The item is sold through one channel only, either local stores or online as indicated by its ProductChannel.",
+            "The item is matched to its online or local stores counterpart, indicating it is available for purchase in both ShoppingProductChannels."
+          ],
+          "type": "string"
+        },
+        "productCondition": {
+          "description": "Condition of the product.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "OLD",
+            "NEW",
+            "REFURBISHED",
+            "USED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The product condition is old.",
+            "The product condition is new.",
+            "The product condition is refurbished.",
+            "The product condition is used."
+          ],
+          "type": "string"
+        },
+        "productCountry": {
+          "description": "Resource name of the geo target constant for the country of sale of the product.",
+          "type": "string"
+        },
+        "productCustomAttribute0": {
+          "description": "Custom attribute 0 of the product.",
+          "type": "string"
+        },
+        "productCustomAttribute1": {
+          "description": "Custom attribute 1 of the product.",
+          "type": "string"
+        },
+        "productCustomAttribute2": {
+          "description": "Custom attribute 2 of the product.",
+          "type": "string"
+        },
+        "productCustomAttribute3": {
+          "description": "Custom attribute 3 of the product.",
+          "type": "string"
+        },
+        "productCustomAttribute4": {
+          "description": "Custom attribute 4 of the product.",
+          "type": "string"
+        },
+        "productItemId": {
+          "description": "Item ID of the product.",
+          "type": "string"
+        },
+        "productLanguage": {
+          "description": "Resource name of the language constant for the language of the product.",
+          "type": "string"
+        },
+        "productSoldBiddingCategoryLevel1": {
+          "description": "Bidding category (level 1) of the product sold.",
+          "type": "string"
+        },
+        "productSoldBiddingCategoryLevel2": {
+          "description": "Bidding category (level 2) of the product sold.",
+          "type": "string"
+        },
+        "productSoldBiddingCategoryLevel3": {
+          "description": "Bidding category (level 3) of the product sold.",
+          "type": "string"
+        },
+        "productSoldBiddingCategoryLevel4": {
+          "description": "Bidding category (level 4) of the product sold.",
+          "type": "string"
+        },
+        "productSoldBiddingCategoryLevel5": {
+          "description": "Bidding category (level 5) of the product sold.",
+          "type": "string"
+        },
+        "productSoldBrand": {
+          "description": "Brand of the product sold.",
+          "type": "string"
+        },
+        "productSoldCondition": {
+          "description": "Condition of the product sold.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "OLD",
+            "NEW",
+            "REFURBISHED",
+            "USED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The product condition is old.",
+            "The product condition is new.",
+            "The product condition is refurbished.",
+            "The product condition is used."
+          ],
+          "type": "string"
+        },
+        "productSoldCustomAttribute0": {
+          "description": "Custom attribute 0 of the product sold.",
+          "type": "string"
+        },
+        "productSoldCustomAttribute1": {
+          "description": "Custom attribute 1 of the product sold.",
+          "type": "string"
+        },
+        "productSoldCustomAttribute2": {
+          "description": "Custom attribute 2 of the product sold.",
+          "type": "string"
+        },
+        "productSoldCustomAttribute3": {
+          "description": "Custom attribute 3 of the product sold.",
+          "type": "string"
+        },
+        "productSoldCustomAttribute4": {
+          "description": "Custom attribute 4 of the product sold.",
+          "type": "string"
+        },
+        "productSoldItemId": {
+          "description": "Item ID of the product sold.",
+          "type": "string"
+        },
+        "productSoldTitle": {
+          "description": "Title of the product sold.",
+          "type": "string"
+        },
+        "productSoldTypeL1": {
+          "description": "Type (level 1) of the product sold.",
+          "type": "string"
+        },
+        "productSoldTypeL2": {
+          "description": "Type (level 2) of the product sold.",
+          "type": "string"
+        },
+        "productSoldTypeL3": {
+          "description": "Type (level 3) of the product sold.",
+          "type": "string"
+        },
+        "productSoldTypeL4": {
+          "description": "Type (level 4) of the product sold.",
+          "type": "string"
+        },
+        "productSoldTypeL5": {
+          "description": "Type (level 5) of the product sold.",
+          "type": "string"
+        },
+        "productStoreId": {
+          "description": "Store ID of the product.",
+          "type": "string"
+        },
+        "productTitle": {
+          "description": "Title of the product.",
+          "type": "string"
+        },
+        "productTypeL1": {
+          "description": "Type (level 1) of the product.",
+          "type": "string"
+        },
+        "productTypeL2": {
+          "description": "Type (level 2) of the product.",
+          "type": "string"
+        },
+        "productTypeL3": {
+          "description": "Type (level 3) of the product.",
+          "type": "string"
+        },
+        "productTypeL4": {
+          "description": "Type (level 4) of the product.",
+          "type": "string"
+        },
+        "productTypeL5": {
+          "description": "Type (level 5) of the product.",
+          "type": "string"
+        },
         "quarter": {
           "description": "Quarter as represented by the date of the first day of a quarter. Uses the calendar year for quarters, for example, the second quarter of 2018 starts on 2018-04-01. Formatted as yyyy-MM-dd.",
           "type": "string"
@@ -1605,6 +2133,17 @@
             "$ref": "GoogleAdsSearchads360V0Common__TargetRestriction"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__TextAsset": {
+      "description": "A Text asset.",
+      "id": "GoogleAdsSearchads360V0Common__TextAsset",
+      "properties": {
+        "text": {
+          "description": "Text content of the text asset.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1931,6 +2470,21 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Common__YoutubeVideoAsset": {
+      "description": "A YouTube asset.",
+      "id": "GoogleAdsSearchads360V0Common__YoutubeVideoAsset",
+      "properties": {
+        "youtubeVideoId": {
+          "description": "YouTube video id. This is the 11 character string value used in the YouTube video URL.",
+          "type": "string"
+        },
+        "youtubeVideoTitle": {
+          "description": "YouTube video title.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Errors_ErrorLocation_FieldPathElement": {
       "description": "A part of a field path.",
       "id": "GoogleAdsSearchads360V0Errors_ErrorLocation_FieldPathElement",
@@ -1986,7 +2540,7 @@
             "A problem occurred during Google account authentication.",
             "The user in the Google account login token does not match the user ID in the cookie.",
             "Login cookie is required for authentication.",
-            "User in the cookie is not a valid Ads user.",
+            "The Google account that generated the OAuth access token is not associated with a Search Ads 360 account. Create a new account, or add the Google account to an existing Search Ads 360 account.",
             "OAuth token in the header is not valid.",
             "OAuth token in the header has expired.",
             "OAuth token in the header has been disabled.",
@@ -2292,7 +2846,7 @@
           "type": "string"
         },
         "quotaError": {
-          "description": "An error with the amonut of quota remaining.",
+          "description": "An error with the amount of quota remaining.",
           "enum": [
             "UNSPECIFIED",
             "UNKNOWN",
@@ -2783,6 +3337,176 @@
           "description": "The value to use when conversion events for this conversion action are sent with an invalid, disallowed or missing value, or when this conversion action is configured to always use the default value.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory": {
+      "description": "One element of a bidding category at a certain level. Top-level categories are at level 1, their children at level 2, and so on. We currently support up to 5 levels. The user must specify a dimension type that indicates the level of the category. All cases of the same subdivision must have the same dimension type (category level).",
+      "id": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory",
+      "properties": {
+        "id": {
+          "description": "ID of the product bidding category. This ID is equivalent to the google_product_category ID as described in this article: https://support.google.com/merchants/answer/6324436",
+          "format": "int64",
+          "type": "string"
+        },
+        "level": {
+          "description": "Indicates the level of the category in the taxonomy.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "LEVEL1",
+            "LEVEL2",
+            "LEVEL3",
+            "LEVEL4",
+            "LEVEL5"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Level 1.",
+            "Level 2.",
+            "Level 3.",
+            "Level 4.",
+            "Level 5."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBrand": {
+      "description": "Brand of the product.",
+      "id": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBrand",
+      "properties": {
+        "value": {
+          "description": "String value of the product brand.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannel": {
+      "description": "Locality of a product offer.",
+      "id": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannel",
+      "properties": {
+        "channel": {
+          "description": "Value of the locality.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ONLINE",
+            "LOCAL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The item is sold online.",
+            "The item is sold in local stores."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCondition": {
+      "description": "Condition of a product offer.",
+      "id": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCondition",
+      "properties": {
+        "condition": {
+          "description": "Value of the condition.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "NEW",
+            "REFURBISHED",
+            "USED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The product condition is new.",
+            "The product condition is refurbished.",
+            "The product condition is used."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCustomAttribute": {
+      "description": "Custom attribute of a product offer.",
+      "id": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCustomAttribute",
+      "properties": {
+        "index": {
+          "description": "Indicates the index of the custom attribute.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "INDEX0",
+            "INDEX1",
+            "INDEX2",
+            "INDEX3",
+            "INDEX4"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "First listing group filter custom attribute.",
+            "Second listing group filter custom attribute.",
+            "Third listing group filter custom attribute.",
+            "Fourth listing group filter custom attribute.",
+            "Fifth listing group filter custom attribute."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "String value of the product custom attribute.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductItemId": {
+      "description": "Item id of a product offer.",
+      "id": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductItemId",
+      "properties": {
+        "value": {
+          "description": "Value of the id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType": {
+      "description": "Type of a product offer.",
+      "id": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType",
+      "properties": {
+        "level": {
+          "description": "Level of the type.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "LEVEL1",
+            "LEVEL2",
+            "LEVEL3",
+            "LEVEL4",
+            "LEVEL5"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Level 1.",
+            "Level 2.",
+            "Level 3.",
+            "Level 4.",
+            "Level 5."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of the type.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3713,6 +4437,10 @@
           "description": "Output only. A unified call asset.",
           "readOnly": true
         },
+        "callToActionAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__CallToActionAsset",
+          "description": "Immutable. A call to action asset."
+        },
         "calloutAsset": {
           "$ref": "GoogleAdsSearchads360V0Common__UnifiedCalloutAsset",
           "description": "Output only. A unified callout asset.",
@@ -3759,6 +4487,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "imageAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__ImageAsset",
+          "description": "Output only. An image asset.",
+          "readOnly": true
+        },
         "lastModifiedTime": {
           "description": "Output only. The datetime when this asset was last modified. The datetime is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss.ssssss\" format.",
           "readOnly": true,
@@ -3772,6 +4505,10 @@
         "mobileAppAsset": {
           "$ref": "GoogleAdsSearchads360V0Common__MobileAppAsset",
           "description": "A mobile app asset."
+        },
+        "name": {
+          "description": "Optional name of the asset.",
+          "type": "string"
         },
         "pageFeedAsset": {
           "$ref": "GoogleAdsSearchads360V0Common__UnifiedPageFeedAsset",
@@ -3807,6 +4544,11 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "textAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__TextAsset",
+          "description": "Output only. A text asset.",
+          "readOnly": true
         },
         "trackingUrlTemplate": {
           "description": "URL template for constructing a tracking URL.",
@@ -3878,6 +4620,323 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "youtubeVideoAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__YoutubeVideoAsset",
+          "description": "Immutable. A YouTube video asset."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AssetGroup": {
+      "description": "An asset group. AssetGroupAsset is used to link an asset to the asset group. AssetGroupSignal is used to associate a signal to an asset group.",
+      "id": "GoogleAdsSearchads360V0Resources__AssetGroup",
+      "properties": {
+        "adStrength": {
+          "description": "Output only. Overall ad strength of this asset group.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "PENDING",
+            "NO_ADS",
+            "POOR",
+            "AVERAGE",
+            "GOOD",
+            "EXCELLENT"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The ad strength is currently pending.",
+            "No ads could be generated.",
+            "Poor strength.",
+            "Average strength.",
+            "Good strength.",
+            "Excellent strength."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "campaign": {
+          "description": "Immutable. The campaign with which this asset group is associated. The asset which is linked to the asset group.",
+          "type": "string"
+        },
+        "finalMobileUrls": {
+          "description": "A list of final mobile URLs after all cross domain redirects. In performance max, by default, the urls are eligible for expansion unless opted out.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "finalUrls": {
+          "description": "A list of final URLs after all cross domain redirects. In performance max, by default, the urls are eligible for expansion unless opted out.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Output only. The ID of the asset group.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the asset group. Required. It must have a minimum length of 1 and maximum length of 128. It must be unique under a campaign.",
+          "type": "string"
+        },
+        "path1": {
+          "description": "First part of text that may appear appended to the url displayed in the ad.",
+          "type": "string"
+        },
+        "path2": {
+          "description": "Second part of text that may appear appended to the url displayed in the ad. This field can only be set when path1 is set.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the asset group. Asset group resource names have the form: `customers/{customer_id}/assetGroups/{asset_group_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the asset group.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "PAUSED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "The status has not been specified.",
+            "The received value is not known in this version.",
+            "The asset group is enabled.",
+            "The asset group is paused.",
+            "The asset group is removed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AssetGroupAsset": {
+      "description": "AssetGroupAsset is the link between an asset and an asset group. Adding an AssetGroupAsset links an asset with an asset group.",
+      "id": "GoogleAdsSearchads360V0Resources__AssetGroupAsset",
+      "properties": {
+        "asset": {
+          "description": "Immutable. The asset which this asset group asset is linking.",
+          "type": "string"
+        },
+        "assetGroup": {
+          "description": "Immutable. The asset group which this asset group asset is linking.",
+          "type": "string"
+        },
+        "fieldType": {
+          "description": "The description of the placement of the asset within the asset group. For example: HEADLINE, YOUTUBE_VIDEO etc",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "HEADLINE",
+            "DESCRIPTION",
+            "MANDATORY_AD_TEXT",
+            "MARKETING_IMAGE",
+            "MEDIA_BUNDLE",
+            "YOUTUBE_VIDEO",
+            "BOOK_ON_GOOGLE",
+            "LEAD_FORM",
+            "PROMOTION",
+            "CALLOUT",
+            "STRUCTURED_SNIPPET",
+            "SITELINK",
+            "MOBILE_APP",
+            "HOTEL_CALLOUT",
+            "CALL",
+            "PRICE",
+            "LONG_HEADLINE",
+            "BUSINESS_NAME",
+            "SQUARE_MARKETING_IMAGE",
+            "PORTRAIT_MARKETING_IMAGE",
+            "LOGO",
+            "LANDSCAPE_LOGO",
+            "VIDEO",
+            "CALL_TO_ACTION_SELECTION",
+            "AD_IMAGE",
+            "BUSINESS_LOGO",
+            "HOTEL_PROPERTY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The asset is linked for use as a headline.",
+            "The asset is linked for use as a description.",
+            "The asset is linked for use as mandatory ad text.",
+            "The asset is linked for use as a marketing image.",
+            "The asset is linked for use as a media bundle.",
+            "The asset is linked for use as a YouTube video.",
+            "The asset is linked to indicate that a hotels campaign is \"Book on Google\" enabled.",
+            "The asset is linked for use as a Lead Form extension.",
+            "The asset is linked for use as a Promotion extension.",
+            "The asset is linked for use as a Callout extension.",
+            "The asset is linked for use as a Structured Snippet extension.",
+            "The asset is linked for use as a Sitelink.",
+            "The asset is linked for use as a Mobile App extension.",
+            "The asset is linked for use as a Hotel Callout extension.",
+            "The asset is linked for use as a Call extension.",
+            "The asset is linked for use as a Price extension.",
+            "The asset is linked for use as a long headline.",
+            "The asset is linked for use as a business name.",
+            "The asset is linked for use as a square marketing image.",
+            "The asset is linked for use as a portrait marketing image.",
+            "The asset is linked for use as a logo.",
+            "The asset is linked for use as a landscape logo.",
+            "The asset is linked for use as a non YouTube logo.",
+            "The asset is linked for use to select a call-to-action.",
+            "The asset is linked for use to select an ad image.",
+            "The asset is linked for use as a business logo.",
+            "The asset is linked for use as a hotel property in a Performance Max for travel goals campaign."
+          ],
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the asset group asset. Asset group asset resource name have the form: `customers/{customer_id}/assetGroupAssets/{asset_group_id}~{asset_id}~{field_type}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the link between an asset and asset group.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED",
+            "PAUSED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Asset link is enabled.",
+            "Asset link has been removed.",
+            "Asset link is paused."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AssetGroupAssetCombinationData": {
+      "description": "Asset group asset combination data",
+      "id": "GoogleAdsSearchads360V0Resources__AssetGroupAssetCombinationData",
+      "properties": {
+        "assetCombinationServedAssets": {
+          "description": "Output only. Served assets.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__AssetUsage"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter": {
+      "description": "AssetGroupListingGroupFilter represents a listing group filter tree node in an asset group.",
+      "id": "GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter",
+      "properties": {
+        "assetGroup": {
+          "description": "Immutable. The asset group which this asset group listing group filter is part of.",
+          "type": "string"
+        },
+        "caseValue": {
+          "$ref": "GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension",
+          "description": "Dimension value with which this listing group is refining its parent. Undefined for the root group."
+        },
+        "id": {
+          "description": "Output only. The ID of the ListingGroupFilter.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parentListingGroupFilter": {
+          "description": "Immutable. Resource name of the parent listing group subdivision. Null for the root listing group filter node.",
+          "type": "string"
+        },
+        "path": {
+          "$ref": "GoogleAdsSearchads360V0Resources__ListingGroupFilterDimensionPath",
+          "description": "Output only. The path of dimensions defining this listing group filter.",
+          "readOnly": true
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the asset group listing group filter. Asset group listing group filter resource name have the form: `customers/{customer_id}/assetGroupListingGroupFilters/{asset_group_id}~{listing_group_filter_id}`",
+          "type": "string"
+        },
+        "type": {
+          "description": "Immutable. Type of a listing group filter node.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "SUBDIVISION",
+            "UNIT_INCLUDED",
+            "UNIT_EXCLUDED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Subdivision of products along some listing dimensions.",
+            "An included listing group filter leaf node.",
+            "An excluded listing group filter leaf node."
+          ],
+          "type": "string"
+        },
+        "vertical": {
+          "description": "Immutable. The vertical the current node tree represents. All nodes in the same tree must belong to the same vertical.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "SHOPPING"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Represents the shopping vertical."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AssetGroupSignal": {
+      "description": "AssetGroupSignal represents a signal in an asset group. The existence of a signal tells the performance max campaign who's most likely to convert. Performance Max uses the signal to look for new people with similar or stronger intent to find conversions across Search, Display, Video, and more.",
+      "id": "GoogleAdsSearchads360V0Resources__AssetGroupSignal",
+      "properties": {
+        "assetGroup": {
+          "description": "Immutable. The asset group which this asset group signal belongs to.",
+          "type": "string"
+        },
+        "audience": {
+          "$ref": "GoogleAdsSearchads360V0Common__AudienceInfo",
+          "description": "Immutable. The audience signal to be used by the performance max campaign."
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the asset group signal. Asset group signal resource name have the form: `customers/{customer_id}/assetGroupSignals/{asset_group_id}~{signal_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView": {
+      "description": "A view on the usage of ad group ad asset combination.",
+      "id": "GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView",
+      "properties": {
+        "assetGroupTopCombinations": {
+          "description": "Output only. The top combinations of assets that served together.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Resources__AssetGroupAssetCombinationData"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "resourceName": {
+          "description": "Output only. The resource name of the asset group top combination view. AssetGroup Top Combination view resource names have the form: `\"customers/{customer_id}/assetGroupTopCombinationViews/{asset_group_id}~{asset_combination_category}\"",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3930,6 +4989,31 @@
             "The asset set asset is removed."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__Audience": {
+      "description": "Audience is an effective targeting option that lets you intersect different segment attributes, such as detailed demographics and affinities, to create audiences that represent sections of your target segments.",
+      "id": "GoogleAdsSearchads360V0Resources__Audience",
+      "properties": {
+        "description": {
+          "description": "Description of this audience.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. ID of the audience.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the audience. It should be unique across all audiences. It must have a minimum length of 1 and maximum length of 255.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the audience. Audience names have the form: `customers/{customer_id}/audiences/{audience_id}`",
           "type": "string"
         }
       },
@@ -4694,7 +5778,7 @@
             "Used for return value only. Represents value unknown in this version.",
             "Daily budget.",
             "Fixed daily budget.",
-            "Custom budget, added back in V5. Custom bugdet can be used with total_amount to specify lifetime budget limit."
+            "Custom budget can be used with total_amount to specify lifetime budget limit."
           ],
           "type": "string"
         },
@@ -4896,6 +5980,252 @@
         },
         "resourceName": {
           "description": "Immutable. Name of the resource. Campaign label resource names have the form: `customers/{customer_id}/campaignLabels/{campaign_id}~{label_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__CartDataSalesView": {
+      "description": "Cart data sales view.",
+      "id": "GoogleAdsSearchads360V0Resources__CartDataSalesView",
+      "properties": {
+        "resourceName": {
+          "description": "Output only. The resource name of the Cart data sales view. Cart data sales view resource names have the form: `customers/{customer_id}/cartDataSalesView`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__Conversion": {
+      "description": "A conversion.",
+      "id": "GoogleAdsSearchads360V0Resources__Conversion",
+      "properties": {
+        "adId": {
+          "description": "Output only. Ad ID. A value of 0 indicates that the ad is unattributed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "advertiserConversionId": {
+          "description": "Output only. For offline conversions, this is an ID provided by advertisers. If an advertiser doesn't specify such an ID, Search Ads 360 generates one. For online conversions, this is equal to the id column or the floodlight_order_id column depending on the advertiser's Floodlight instructions.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "assetFieldType": {
+          "description": "Output only. Asset field type of the conversion event.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "HEADLINE",
+            "DESCRIPTION",
+            "MANDATORY_AD_TEXT",
+            "MARKETING_IMAGE",
+            "MEDIA_BUNDLE",
+            "YOUTUBE_VIDEO",
+            "BOOK_ON_GOOGLE",
+            "LEAD_FORM",
+            "PROMOTION",
+            "CALLOUT",
+            "STRUCTURED_SNIPPET",
+            "SITELINK",
+            "MOBILE_APP",
+            "HOTEL_CALLOUT",
+            "CALL",
+            "PRICE",
+            "LONG_HEADLINE",
+            "BUSINESS_NAME",
+            "SQUARE_MARKETING_IMAGE",
+            "PORTRAIT_MARKETING_IMAGE",
+            "LOGO",
+            "LANDSCAPE_LOGO",
+            "VIDEO",
+            "CALL_TO_ACTION_SELECTION",
+            "AD_IMAGE",
+            "BUSINESS_LOGO",
+            "HOTEL_PROPERTY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The asset is linked for use as a headline.",
+            "The asset is linked for use as a description.",
+            "The asset is linked for use as mandatory ad text.",
+            "The asset is linked for use as a marketing image.",
+            "The asset is linked for use as a media bundle.",
+            "The asset is linked for use as a YouTube video.",
+            "The asset is linked to indicate that a hotels campaign is \"Book on Google\" enabled.",
+            "The asset is linked for use as a Lead Form extension.",
+            "The asset is linked for use as a Promotion extension.",
+            "The asset is linked for use as a Callout extension.",
+            "The asset is linked for use as a Structured Snippet extension.",
+            "The asset is linked for use as a Sitelink.",
+            "The asset is linked for use as a Mobile App extension.",
+            "The asset is linked for use as a Hotel Callout extension.",
+            "The asset is linked for use as a Call extension.",
+            "The asset is linked for use as a Price extension.",
+            "The asset is linked for use as a long headline.",
+            "The asset is linked for use as a business name.",
+            "The asset is linked for use as a square marketing image.",
+            "The asset is linked for use as a portrait marketing image.",
+            "The asset is linked for use as a logo.",
+            "The asset is linked for use as a landscape logo.",
+            "The asset is linked for use as a non YouTube logo.",
+            "The asset is linked for use to select a call-to-action.",
+            "The asset is linked for use to select an ad image.",
+            "The asset is linked for use as a business logo.",
+            "The asset is linked for use as a hotel property in a Performance Max for travel goals campaign."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "assetId": {
+          "description": "Output only. ID of the asset which was interacted with during the conversion event.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "attributionType": {
+          "description": "Output only. What the conversion is attributed to: Visit or Keyword+Ad.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "VISIT",
+            "CRITERION_AD"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The conversion is attributed to a visit.",
+            "The conversion is attributed to a criterion and ad pair."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "clickId": {
+          "description": "Output only. A unique string, for the visit that the conversion is attributed to, that is passed to the landing page as the click id URL parameter.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "conversionDateTime": {
+          "description": "Output only. The timestamp of the conversion event.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "conversionLastModifiedDateTime": {
+          "description": "Output only. The timestamp of the last time the conversion was modified.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "conversionQuantity": {
+          "description": "Output only. The quantity of items recorded by the conversion, as determined by the qty url parameter. The advertiser is responsible for dynamically populating the parameter (such as number of items sold in the conversion), otherwise it defaults to 1.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "conversionRevenueMicros": {
+          "description": "Output only. The adjusted revenue in micros for the conversion event. This will always be in the currency of the serving account.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "conversionVisitDateTime": {
+          "description": "Output only. The timestamp of the visit that the conversion is attributed to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "criterionId": {
+          "description": "Output only. Search Ads 360 criterion ID. A value of 0 indicates that the criterion is unattributed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "floodlightOrderId": {
+          "description": "Output only. The Floodlight order ID provided by the advertiser for the conversion.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "floodlightOriginalRevenue": {
+          "description": "Output only. The original, unchanged revenue associated with the Floodlight event (in the currency of the current report), before Floodlight currency instruction modifications.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. The ID of the conversion",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "merchantId": {
+          "description": "Output only. The SearchAds360 inventory account ID containing the product that was clicked on. SearchAds360 generates this ID when you link an inventory account in SearchAds360.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productChannel": {
+          "description": "Output only. The sales channel of the product that was clicked on: Online or Local.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ONLINE",
+            "LOCAL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The item is sold online.",
+            "The item is sold in local stores."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "productCountryCode": {
+          "description": "Output only. The country (ISO-3166-format) registered for the inventory feed that contains the product clicked on.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productId": {
+          "description": "Output only. The ID of the product clicked on.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productLanguageCode": {
+          "description": "Output only. The language (ISO-639-1) that has been set for the Merchant Center feed containing data about the product.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productStoreId": {
+          "description": "Output only. The store in the Local Inventory Ad that was clicked on. This should match the store IDs used in your local products feed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Output only. The resource name of the conversion. Conversion resource names have the form: `customers/{customer_id}/conversions/{ad_group_id}~{criterion_id}~{ds_conversion_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The status of the conversion, either ENABLED or REMOVED..",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The conversion is enabled.",
+            "The conversion has been removed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "visitId": {
+          "description": "Output only. The SearchAds360 visit ID that the conversion is attributed to.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5777,12 +7107,173 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__LanguageConstant": {
+      "description": "A language.",
+      "id": "GoogleAdsSearchads360V0Resources__LanguageConstant",
+      "properties": {
+        "code": {
+          "description": "Output only. The language code, for example, \"en_US\", \"en_AU\", \"es\", \"fr\", etc.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. The ID of the language constant.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The full name of the language in English, for example, \"English (US)\", \"Spanish\", etc.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Output only. The resource name of the language constant. Language constant resource names have the form: `languageConstants/{criterion_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetable": {
+          "description": "Output only. Whether the language is targetable.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension": {
+      "description": "Listing dimensions for the asset group listing group filter.",
+      "id": "GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension",
+      "properties": {
+        "productBiddingCategory": {
+          "$ref": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory",
+          "description": "Bidding category of a product offer."
+        },
+        "productBrand": {
+          "$ref": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBrand",
+          "description": "Brand of a product offer."
+        },
+        "productChannel": {
+          "$ref": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannel",
+          "description": "Locality of a product offer."
+        },
+        "productCondition": {
+          "$ref": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCondition",
+          "description": "Condition of a product offer."
+        },
+        "productCustomAttribute": {
+          "$ref": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCustomAttribute",
+          "description": "Custom attribute of a product offer."
+        },
+        "productItemId": {
+          "$ref": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductItemId",
+          "description": "Item id of a product offer."
+        },
+        "productType": {
+          "$ref": "GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType",
+          "description": "Type of a product offer."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__ListingGroupFilterDimensionPath": {
+      "description": "The path defining of dimensions defining a listing group filter.",
+      "id": "GoogleAdsSearchads360V0Resources__ListingGroupFilterDimensionPath",
+      "properties": {
+        "dimensions": {
+          "description": "Output only. The complete path of dimensions through the listing group filter hierarchy (excluding the root node) to this listing group filter.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__LocationView": {
       "description": "A location view summarizes the performance of campaigns by Location criteria.",
       "id": "GoogleAdsSearchads360V0Resources__LocationView",
       "properties": {
         "resourceName": {
           "description": "Output only. The resource name of the location view. Location view resource names have the form: `customers/{customer_id}/locationViews/{campaign_id}~{criterion_id}`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstant": {
+      "description": "A Product Bidding Category.",
+      "id": "GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstant",
+      "properties": {
+        "countryCode": {
+          "description": "Output only. Two-letter upper-case country code of the product bidding category.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. ID of the product bidding category. This ID is equivalent to the google_product_category ID as described in this article: https://support.google.com/merchants/answer/6324436.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Output only. Language code of the product bidding category.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "level": {
+          "description": "Output only. Level of the product bidding category.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "LEVEL1",
+            "LEVEL2",
+            "LEVEL3",
+            "LEVEL4",
+            "LEVEL5"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Level 1.",
+            "Level 2.",
+            "Level 3.",
+            "Level 4.",
+            "Level 5."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "localizedName": {
+          "description": "Output only. Display value of the product bidding category localized according to language_code.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productBiddingCategoryConstantParent": {
+          "description": "Output only. Resource name of the parent product bidding category.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Output only. The resource name of the product bidding category. Product bidding category resource names have the form: `productBiddingCategoryConstants/{country_code}~{level}~{id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. Status of the product bidding category.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ACTIVE",
+            "OBSOLETE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The category is active and can be used for bidding.",
+            "The category is obsolete. Used only for reporting purposes."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -5939,6 +7430,18 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__ShoppingPerformanceView": {
+      "description": "Shopping performance view. Provides Shopping campaign statistics aggregated at several product dimension levels. Product dimension values from Merchant Center such as brand, category, custom attributes, product condition and product type will reflect the state of each dimension as of the date and time when the corresponding event was recorded.",
+      "id": "GoogleAdsSearchads360V0Resources__ShoppingPerformanceView",
+      "properties": {
+        "resourceName": {
+          "description": "Output only. The resource name of the Shopping performance view. Shopping performance view resource names have the form: `customers/{customer_id}/shoppingPerformanceView`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__UserList": {
       "description": "A user list. This is a list of users a customer may target.",
       "id": "GoogleAdsSearchads360V0Resources__UserList",
@@ -5979,6 +7482,162 @@
             "UserList with users similar to users of another UserList.",
             "UserList of first-party CRM data provided by advertiser in the form of emails or other formats."
           ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__Visit": {
+      "description": "A visit.",
+      "id": "GoogleAdsSearchads360V0Resources__Visit",
+      "properties": {
+        "adId": {
+          "description": "Output only. Ad ID. A value of 0 indicates that the ad is unattributed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "assetFieldType": {
+          "description": "Output only. Asset field type of the visit event.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "HEADLINE",
+            "DESCRIPTION",
+            "MANDATORY_AD_TEXT",
+            "MARKETING_IMAGE",
+            "MEDIA_BUNDLE",
+            "YOUTUBE_VIDEO",
+            "BOOK_ON_GOOGLE",
+            "LEAD_FORM",
+            "PROMOTION",
+            "CALLOUT",
+            "STRUCTURED_SNIPPET",
+            "SITELINK",
+            "MOBILE_APP",
+            "HOTEL_CALLOUT",
+            "CALL",
+            "PRICE",
+            "LONG_HEADLINE",
+            "BUSINESS_NAME",
+            "SQUARE_MARKETING_IMAGE",
+            "PORTRAIT_MARKETING_IMAGE",
+            "LOGO",
+            "LANDSCAPE_LOGO",
+            "VIDEO",
+            "CALL_TO_ACTION_SELECTION",
+            "AD_IMAGE",
+            "BUSINESS_LOGO",
+            "HOTEL_PROPERTY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The asset is linked for use as a headline.",
+            "The asset is linked for use as a description.",
+            "The asset is linked for use as mandatory ad text.",
+            "The asset is linked for use as a marketing image.",
+            "The asset is linked for use as a media bundle.",
+            "The asset is linked for use as a YouTube video.",
+            "The asset is linked to indicate that a hotels campaign is \"Book on Google\" enabled.",
+            "The asset is linked for use as a Lead Form extension.",
+            "The asset is linked for use as a Promotion extension.",
+            "The asset is linked for use as a Callout extension.",
+            "The asset is linked for use as a Structured Snippet extension.",
+            "The asset is linked for use as a Sitelink.",
+            "The asset is linked for use as a Mobile App extension.",
+            "The asset is linked for use as a Hotel Callout extension.",
+            "The asset is linked for use as a Call extension.",
+            "The asset is linked for use as a Price extension.",
+            "The asset is linked for use as a long headline.",
+            "The asset is linked for use as a business name.",
+            "The asset is linked for use as a square marketing image.",
+            "The asset is linked for use as a portrait marketing image.",
+            "The asset is linked for use as a logo.",
+            "The asset is linked for use as a landscape logo.",
+            "The asset is linked for use as a non YouTube logo.",
+            "The asset is linked for use to select a call-to-action.",
+            "The asset is linked for use to select an ad image.",
+            "The asset is linked for use as a business logo.",
+            "The asset is linked for use as a hotel property in a Performance Max for travel goals campaign."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "assetId": {
+          "description": "Output only. ID of the asset which was interacted with during the visit event.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clickId": {
+          "description": "Output only. A unique string for each visit that is passed to the landing page as the click id URL parameter.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "criterionId": {
+          "description": "Output only. Search Ads 360 keyword ID. A value of 0 indicates that the keyword is unattributed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. The ID of the visit.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "merchantId": {
+          "description": "Output only. The Search Ads 360 inventory account ID containing the product that was clicked on. Search Ads 360 generates this ID when you link an inventory account in Search Ads 360.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productChannel": {
+          "description": "Output only. The sales channel of the product that was clicked on: Online or Local.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ONLINE",
+            "LOCAL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The item is sold online.",
+            "The item is sold in local stores."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "productCountryCode": {
+          "description": "Output only. The country (ISO-3166 format) registered for the inventory feed that contains the product clicked on.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productId": {
+          "description": "Output only. The ID of the product clicked on.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productLanguageCode": {
+          "description": "Output only. The language (ISO-639-1) that has been set for the Merchant Center feed containing data about the product.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productStoreId": {
+          "description": "Output only. The store in the Local Inventory Ad that was clicked on. This should match the store IDs used in your local products feed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Output only. The resource name of the visit. Visit resource names have the form: `customers/{customer_id}/visits/{ad_group_id}~{criterion_id}~{ds_visit_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "visitDateTime": {
+          "description": "Output only. The timestamp of the visit event. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format.",
           "readOnly": true,
           "type": "string"
         }
@@ -6097,6 +7756,26 @@
           "$ref": "GoogleAdsSearchads360V0Resources__Asset",
           "description": "The asset referenced in the query."
         },
+        "assetGroup": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AssetGroup",
+          "description": "The asset group referenced in the query."
+        },
+        "assetGroupAsset": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AssetGroupAsset",
+          "description": "The asset group asset referenced in the query."
+        },
+        "assetGroupListingGroupFilter": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter",
+          "description": "The asset group listing group filter referenced in the query."
+        },
+        "assetGroupSignal": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AssetGroupSignal",
+          "description": "The asset group signal referenced in the query."
+        },
+        "assetGroupTopCombinationView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView",
+          "description": "The asset group top combination view referenced in the query."
+        },
         "assetSet": {
           "$ref": "GoogleAdsSearchads360V0Resources__AssetSet",
           "description": "The asset set referenced in the query."
@@ -6104,6 +7783,10 @@
         "assetSetAsset": {
           "$ref": "GoogleAdsSearchads360V0Resources__AssetSetAsset",
           "description": "The asset set asset referenced in the query."
+        },
+        "audience": {
+          "$ref": "GoogleAdsSearchads360V0Resources__Audience",
+          "description": "The Audience referenced in the query."
         },
         "biddingStrategy": {
           "$ref": "GoogleAdsSearchads360V0Resources__BiddingStrategy",
@@ -6136,6 +7819,14 @@
         "campaignLabel": {
           "$ref": "GoogleAdsSearchads360V0Resources__CampaignLabel",
           "description": "The campaign label referenced in the query."
+        },
+        "cartDataSalesView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__CartDataSalesView",
+          "description": "The cart data sales view referenced in the query."
+        },
+        "conversion": {
+          "$ref": "GoogleAdsSearchads360V0Resources__Conversion",
+          "description": "The event level conversion referenced in the query."
         },
         "conversionAction": {
           "$ref": "GoogleAdsSearchads360V0Resources__ConversionAction",
@@ -6188,6 +7879,10 @@
           "$ref": "GoogleAdsSearchads360V0Resources__Label",
           "description": "The label referenced in the query."
         },
+        "languageConstant": {
+          "$ref": "GoogleAdsSearchads360V0Resources__LanguageConstant",
+          "description": "The language constant referenced in the query."
+        },
         "locationView": {
           "$ref": "GoogleAdsSearchads360V0Resources__LocationView",
           "description": "The location view referenced in the query."
@@ -6195,6 +7890,10 @@
         "metrics": {
           "$ref": "GoogleAdsSearchads360V0Common__Metrics",
           "description": "The metrics."
+        },
+        "productBiddingCategoryConstant": {
+          "$ref": "GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstant",
+          "description": "The Product Bidding Category referenced in the query."
         },
         "productGroupView": {
           "$ref": "GoogleAdsSearchads360V0Resources__ProductGroupView",
@@ -6204,9 +7903,17 @@
           "$ref": "GoogleAdsSearchads360V0Common__Segments",
           "description": "The segments."
         },
+        "shoppingPerformanceView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__ShoppingPerformanceView",
+          "description": "The shopping performance view referenced in the query."
+        },
         "userList": {
           "$ref": "GoogleAdsSearchads360V0Resources__UserList",
           "description": "The user list referenced in the query."
+        },
+        "visit": {
+          "$ref": "GoogleAdsSearchads360V0Resources__Visit",
+          "description": "The event level visit referenced in the query."
         },
         "webpageView": {
           "$ref": "GoogleAdsSearchads360V0Resources__WebpageView",

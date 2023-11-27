@@ -174,6 +174,28 @@ export namespace searchads360_v0 {
     interactionOnThisAsset?: boolean | null;
   }
   /**
+   * Contains the usage information of the asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__AssetUsage {
+    /**
+     * Resource name of the asset.
+     */
+    asset?: string | null;
+    /**
+     * The served field type of the asset.
+     */
+    servedAssetFieldType?: string | null;
+  }
+  /**
+   * An audience criterion.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__AudienceInfo {
+    /**
+     * The Audience resource name.
+     */
+    audience?: string | null;
+  }
+  /**
    * Business Profile location data synced from the linked Business Profile account.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__BusinessProfileLocation {
@@ -189,6 +211,15 @@ export namespace searchads360_v0 {
      * Business Profile store code of this location. This is synced from the Business Profile account.
      */
     storeCode?: string | null;
+  }
+  /**
+   * A call to action asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__CallToActionAsset {
+    /**
+     * Call to action.
+     */
+    callToAction?: string | null;
   }
   /**
    * A mapping that can be used by custom parameter tags in a `tracking_url_template`, `final_urls`, or `mobile_final_urls`.
@@ -228,6 +259,40 @@ export namespace searchads360_v0 {
      * Type of the gender.
      */
     type?: string | null;
+  }
+  /**
+   * An Image asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__ImageAsset {
+    /**
+     * File size of the image asset in bytes.
+     */
+    fileSize?: string | null;
+    /**
+     * Metadata for this image at its original size.
+     */
+    fullSize?: Schema$GoogleAdsSearchads360V0Common__ImageDimension;
+    /**
+     * MIME type of the image asset.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * Metadata for an image at a certain size, either original or resized.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__ImageDimension {
+    /**
+     * Height of the image.
+     */
+    heightPixels?: string | null;
+    /**
+     * A URL that returns the image with this height and width.
+     */
+    url?: string | null;
+    /**
+     * Width of the image.
+     */
+    widthPixels?: string | null;
   }
   /**
    * A Keyword criterion segment.
@@ -443,6 +508,38 @@ export namespace searchads360_v0 {
      */
     clientAccountConversionsValue?: number | null;
     /**
+     * Client account cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    clientAccountCrossSellCostOfGoodsSoldMicros?: string | null;
+    /**
+     * Client account cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    clientAccountCrossSellGrossProfitMicros?: string | null;
+    /**
+     * Client account cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    clientAccountCrossSellRevenueMicros?: string | null;
+    /**
+     * Client account cross-sell units sold is the total number of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell units sold is the total number of cross-sold products from all orders attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat, a shirt and a jacket. The cross-sell units sold in this order is 2. This metric is only available if you report conversions with cart data.
+     */
+    clientAccountCrossSellUnitsSold?: number | null;
+    /**
+     * Client account lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    clientAccountLeadCostOfGoodsSoldMicros?: string | null;
+    /**
+     * Client account lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    clientAccountLeadGrossProfitMicros?: string | null;
+    /**
+     * Client account lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    clientAccountLeadRevenueMicros?: string | null;
+    /**
+     * Client account lead units sold is the total number of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total number of these products sold is shown under lead units sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat, a shirt and a jacket. The lead units sold in this order is 1. This metric is only available if you report conversions with cart data.
+     */
+    clientAccountLeadUnitsSold?: number | null;
+    /**
      * The total number of view-through conversions. These happen when a customer sees an image or rich media ad, then later completes a conversion on your site without interacting with (for example, clicking on) another ad.
      */
     clientAccountViewThroughConversions?: string | null;
@@ -511,6 +608,22 @@ export namespace searchads360_v0 {
      */
     crossDeviceConversionsValue?: number | null;
     /**
+     * Cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    crossSellCostOfGoodsSoldMicros?: string | null;
+    /**
+     * Cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    crossSellGrossProfitMicros?: string | null;
+    /**
+     * Cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    crossSellRevenueMicros?: string | null;
+    /**
+     * Cross-sell units sold is the total number of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell units sold is the total number of cross-sold products from all orders attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat, a shirt and a jacket. The cross-sell units sold in this order is 2. This metric is only available if you report conversions with cart data.
+     */
+    crossSellUnitsSold?: number | null;
+    /**
      * The number of clicks your ad receives (Clicks) divided by the number of times your ad is shown (Impressions).
      */
     ctr?: number | null;
@@ -554,6 +667,22 @@ export namespace searchads360_v0 {
      * Number of clicks Google considers illegitimate and doesn't charge you for.
      */
     invalidClicks?: string | null;
+    /**
+     * Lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    leadCostOfGoodsSoldMicros?: string | null;
+    /**
+     * Lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    leadGrossProfitMicros?: string | null;
+    /**
+     * Lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
+     */
+    leadRevenueMicros?: string | null;
+    /**
+     * Lead units sold is the total number of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total number of these products sold is shown under lead units sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat, a shirt and a jacket. The lead units sold in this order is 1. This metric is only available if you report conversions with cart data.
+     */
+    leadUnitsSold?: number | null;
     /**
      * The percentage of mobile clicks that go to a mobile-friendly page.
      */
@@ -811,6 +940,178 @@ export namespace searchads360_v0 {
      */
     month?: string | null;
     /**
+     * Bidding category (level 1) of the product.
+     */
+    productBiddingCategoryLevel1?: string | null;
+    /**
+     * Bidding category (level 2) of the product.
+     */
+    productBiddingCategoryLevel2?: string | null;
+    /**
+     * Bidding category (level 3) of the product.
+     */
+    productBiddingCategoryLevel3?: string | null;
+    /**
+     * Bidding category (level 4) of the product.
+     */
+    productBiddingCategoryLevel4?: string | null;
+    /**
+     * Bidding category (level 5) of the product.
+     */
+    productBiddingCategoryLevel5?: string | null;
+    /**
+     * Brand of the product.
+     */
+    productBrand?: string | null;
+    /**
+     * Channel of the product.
+     */
+    productChannel?: string | null;
+    /**
+     * Channel exclusivity of the product.
+     */
+    productChannelExclusivity?: string | null;
+    /**
+     * Condition of the product.
+     */
+    productCondition?: string | null;
+    /**
+     * Resource name of the geo target constant for the country of sale of the product.
+     */
+    productCountry?: string | null;
+    /**
+     * Custom attribute 0 of the product.
+     */
+    productCustomAttribute0?: string | null;
+    /**
+     * Custom attribute 1 of the product.
+     */
+    productCustomAttribute1?: string | null;
+    /**
+     * Custom attribute 2 of the product.
+     */
+    productCustomAttribute2?: string | null;
+    /**
+     * Custom attribute 3 of the product.
+     */
+    productCustomAttribute3?: string | null;
+    /**
+     * Custom attribute 4 of the product.
+     */
+    productCustomAttribute4?: string | null;
+    /**
+     * Item ID of the product.
+     */
+    productItemId?: string | null;
+    /**
+     * Resource name of the language constant for the language of the product.
+     */
+    productLanguage?: string | null;
+    /**
+     * Bidding category (level 1) of the product sold.
+     */
+    productSoldBiddingCategoryLevel1?: string | null;
+    /**
+     * Bidding category (level 2) of the product sold.
+     */
+    productSoldBiddingCategoryLevel2?: string | null;
+    /**
+     * Bidding category (level 3) of the product sold.
+     */
+    productSoldBiddingCategoryLevel3?: string | null;
+    /**
+     * Bidding category (level 4) of the product sold.
+     */
+    productSoldBiddingCategoryLevel4?: string | null;
+    /**
+     * Bidding category (level 5) of the product sold.
+     */
+    productSoldBiddingCategoryLevel5?: string | null;
+    /**
+     * Brand of the product sold.
+     */
+    productSoldBrand?: string | null;
+    /**
+     * Condition of the product sold.
+     */
+    productSoldCondition?: string | null;
+    /**
+     * Custom attribute 0 of the product sold.
+     */
+    productSoldCustomAttribute0?: string | null;
+    /**
+     * Custom attribute 1 of the product sold.
+     */
+    productSoldCustomAttribute1?: string | null;
+    /**
+     * Custom attribute 2 of the product sold.
+     */
+    productSoldCustomAttribute2?: string | null;
+    /**
+     * Custom attribute 3 of the product sold.
+     */
+    productSoldCustomAttribute3?: string | null;
+    /**
+     * Custom attribute 4 of the product sold.
+     */
+    productSoldCustomAttribute4?: string | null;
+    /**
+     * Item ID of the product sold.
+     */
+    productSoldItemId?: string | null;
+    /**
+     * Title of the product sold.
+     */
+    productSoldTitle?: string | null;
+    /**
+     * Type (level 1) of the product sold.
+     */
+    productSoldTypeL1?: string | null;
+    /**
+     * Type (level 2) of the product sold.
+     */
+    productSoldTypeL2?: string | null;
+    /**
+     * Type (level 3) of the product sold.
+     */
+    productSoldTypeL3?: string | null;
+    /**
+     * Type (level 4) of the product sold.
+     */
+    productSoldTypeL4?: string | null;
+    /**
+     * Type (level 5) of the product sold.
+     */
+    productSoldTypeL5?: string | null;
+    /**
+     * Store ID of the product.
+     */
+    productStoreId?: string | null;
+    /**
+     * Title of the product.
+     */
+    productTitle?: string | null;
+    /**
+     * Type (level 1) of the product.
+     */
+    productTypeL1?: string | null;
+    /**
+     * Type (level 2) of the product.
+     */
+    productTypeL2?: string | null;
+    /**
+     * Type (level 3) of the product.
+     */
+    productTypeL3?: string | null;
+    /**
+     * Type (level 4) of the product.
+     */
+    productTypeL4?: string | null;
+    /**
+     * Type (level 5) of the product.
+     */
+    productTypeL5?: string | null;
+    /**
      * Quarter as represented by the date of the first day of a quarter. Uses the calendar year for quarters, for example, the second quarter of 2018 starts on 2018-04-01. Formatted as yyyy-MM-dd.
      */
     quarter?: string | null;
@@ -921,6 +1222,15 @@ export namespace searchads360_v0 {
      * The spend target under which to maximize clicks. A TargetSpend bidder will attempt to spend the smaller of this value or the natural throttling spend amount. If not specified, the budget is used as the spend target. This field is deprecated and should no longer be used. See https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html for details.
      */
     targetSpendMicros?: string | null;
+  }
+  /**
+   * A Text asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__TextAsset {
+    /**
+     * Text content of the text asset.
+     */
+    text?: string | null;
   }
   /**
    * A type of label displaying text on a colored background.
@@ -1145,6 +1455,19 @@ export namespace searchads360_v0 {
     criterionName?: string | null;
   }
   /**
+   * A YouTube asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__YoutubeVideoAsset {
+    /**
+     * YouTube video id. This is the 11 character string value used in the YouTube video URL.
+     */
+    youtubeVideoId?: string | null;
+    /**
+     * YouTube video title.
+     */
+    youtubeVideoTitle?: string | null;
+  }
+  /**
    * A part of a field path.
    */
   export interface Schema$GoogleAdsSearchads360V0Errors_ErrorLocation_FieldPathElement {
@@ -1202,7 +1525,7 @@ export namespace searchads360_v0 {
      */
     queryError?: string | null;
     /**
-     * An error with the amonut of quota remaining.
+     * An error with the amount of quota remaining.
      */
     quotaError?: string | null;
     /**
@@ -1462,6 +1785,81 @@ export namespace searchads360_v0 {
      * The value to use when conversion events for this conversion action are sent with an invalid, disallowed or missing value, or when this conversion action is configured to always use the default value.
      */
     defaultValue?: number | null;
+  }
+  /**
+   * One element of a bidding category at a certain level. Top-level categories are at level 1, their children at level 2, and so on. We currently support up to 5 levels. The user must specify a dimension type that indicates the level of the category. All cases of the same subdivision must have the same dimension type (category level).
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory {
+    /**
+     * ID of the product bidding category. This ID is equivalent to the google_product_category ID as described in this article: https://support.google.com/merchants/answer/6324436
+     */
+    id?: string | null;
+    /**
+     * Indicates the level of the category in the taxonomy.
+     */
+    level?: string | null;
+  }
+  /**
+   * Brand of the product.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBrand {
+    /**
+     * String value of the product brand.
+     */
+    value?: string | null;
+  }
+  /**
+   * Locality of a product offer.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannel {
+    /**
+     * Value of the locality.
+     */
+    channel?: string | null;
+  }
+  /**
+   * Condition of a product offer.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCondition {
+    /**
+     * Value of the condition.
+     */
+    condition?: string | null;
+  }
+  /**
+   * Custom attribute of a product offer.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCustomAttribute {
+    /**
+     * Indicates the index of the custom attribute.
+     */
+    index?: string | null;
+    /**
+     * String value of the product custom attribute.
+     */
+    value?: string | null;
+  }
+  /**
+   * Item id of a product offer.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductItemId {
+    /**
+     * Value of the id.
+     */
+    value?: string | null;
+  }
+  /**
+   * Type of a product offer.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType {
+    /**
+     * Level of the type.
+     */
+    level?: string | null;
+    /**
+     * Value of the type.
+     */
+    value?: string | null;
   }
   /**
    * An ad.
@@ -1868,6 +2266,10 @@ export namespace searchads360_v0 {
      */
     calloutAsset?: Schema$GoogleAdsSearchads360V0Common__UnifiedCalloutAsset;
     /**
+     * Immutable. A call to action asset.
+     */
+    callToActionAsset?: Schema$GoogleAdsSearchads360V0Common__CallToActionAsset;
+    /**
      * Output only. The timestamp when this asset was created. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format.
      */
     creationTime?: string | null;
@@ -1884,6 +2286,10 @@ export namespace searchads360_v0 {
      */
     id?: string | null;
     /**
+     * Output only. An image asset.
+     */
+    imageAsset?: Schema$GoogleAdsSearchads360V0Common__ImageAsset;
+    /**
      * Output only. The datetime when this asset was last modified. The datetime is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss.ssssss" format.
      */
     lastModifiedTime?: string | null;
@@ -1895,6 +2301,10 @@ export namespace searchads360_v0 {
      * A mobile app asset.
      */
     mobileAppAsset?: Schema$GoogleAdsSearchads360V0Common__MobileAppAsset;
+    /**
+     * Optional name of the asset.
+     */
+    name?: string | null;
     /**
      * Output only. A unified page feed asset.
      */
@@ -1912,6 +2322,10 @@ export namespace searchads360_v0 {
      */
     status?: string | null;
     /**
+     * Output only. A text asset.
+     */
+    textAsset?: Schema$GoogleAdsSearchads360V0Common__TextAsset;
+    /**
      * URL template for constructing a tracking URL.
      */
     trackingUrlTemplate?: string | null;
@@ -1919,6 +2333,156 @@ export namespace searchads360_v0 {
      * Output only. Type of the asset.
      */
     type?: string | null;
+    /**
+     * Immutable. A YouTube video asset.
+     */
+    youtubeVideoAsset?: Schema$GoogleAdsSearchads360V0Common__YoutubeVideoAsset;
+  }
+  /**
+   * An asset group. AssetGroupAsset is used to link an asset to the asset group. AssetGroupSignal is used to associate a signal to an asset group.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AssetGroup {
+    /**
+     * Output only. Overall ad strength of this asset group.
+     */
+    adStrength?: string | null;
+    /**
+     * Immutable. The campaign with which this asset group is associated. The asset which is linked to the asset group.
+     */
+    campaign?: string | null;
+    /**
+     * A list of final mobile URLs after all cross domain redirects. In performance max, by default, the urls are eligible for expansion unless opted out.
+     */
+    finalMobileUrls?: string[] | null;
+    /**
+     * A list of final URLs after all cross domain redirects. In performance max, by default, the urls are eligible for expansion unless opted out.
+     */
+    finalUrls?: string[] | null;
+    /**
+     * Output only. The ID of the asset group.
+     */
+    id?: string | null;
+    /**
+     * Required. Name of the asset group. Required. It must have a minimum length of 1 and maximum length of 128. It must be unique under a campaign.
+     */
+    name?: string | null;
+    /**
+     * First part of text that may appear appended to the url displayed in the ad.
+     */
+    path1?: string | null;
+    /**
+     * Second part of text that may appear appended to the url displayed in the ad. This field can only be set when path1 is set.
+     */
+    path2?: string | null;
+    /**
+     * Immutable. The resource name of the asset group. Asset group resource names have the form: `customers/{customer_id\}/assetGroups/{asset_group_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * The status of the asset group.
+     */
+    status?: string | null;
+  }
+  /**
+   * AssetGroupAsset is the link between an asset and an asset group. Adding an AssetGroupAsset links an asset with an asset group.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AssetGroupAsset {
+    /**
+     * Immutable. The asset which this asset group asset is linking.
+     */
+    asset?: string | null;
+    /**
+     * Immutable. The asset group which this asset group asset is linking.
+     */
+    assetGroup?: string | null;
+    /**
+     * The description of the placement of the asset within the asset group. For example: HEADLINE, YOUTUBE_VIDEO etc
+     */
+    fieldType?: string | null;
+    /**
+     * Immutable. The resource name of the asset group asset. Asset group asset resource name have the form: `customers/{customer_id\}/assetGroupAssets/{asset_group_id\}~{asset_id\}~{field_type\}`
+     */
+    resourceName?: string | null;
+    /**
+     * The status of the link between an asset and asset group.
+     */
+    status?: string | null;
+  }
+  /**
+   * Asset group asset combination data
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AssetGroupAssetCombinationData {
+    /**
+     * Output only. Served assets.
+     */
+    assetCombinationServedAssets?: Schema$GoogleAdsSearchads360V0Common__AssetUsage[];
+  }
+  /**
+   * AssetGroupListingGroupFilter represents a listing group filter tree node in an asset group.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter {
+    /**
+     * Immutable. The asset group which this asset group listing group filter is part of.
+     */
+    assetGroup?: string | null;
+    /**
+     * Dimension value with which this listing group is refining its parent. Undefined for the root group.
+     */
+    caseValue?: Schema$GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension;
+    /**
+     * Output only. The ID of the ListingGroupFilter.
+     */
+    id?: string | null;
+    /**
+     * Immutable. Resource name of the parent listing group subdivision. Null for the root listing group filter node.
+     */
+    parentListingGroupFilter?: string | null;
+    /**
+     * Output only. The path of dimensions defining this listing group filter.
+     */
+    path?: Schema$GoogleAdsSearchads360V0Resources__ListingGroupFilterDimensionPath;
+    /**
+     * Immutable. The resource name of the asset group listing group filter. Asset group listing group filter resource name have the form: `customers/{customer_id\}/assetGroupListingGroupFilters/{asset_group_id\}~{listing_group_filter_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Immutable. Type of a listing group filter node.
+     */
+    type?: string | null;
+    /**
+     * Immutable. The vertical the current node tree represents. All nodes in the same tree must belong to the same vertical.
+     */
+    vertical?: string | null;
+  }
+  /**
+   * AssetGroupSignal represents a signal in an asset group. The existence of a signal tells the performance max campaign who's most likely to convert. Performance Max uses the signal to look for new people with similar or stronger intent to find conversions across Search, Display, Video, and more.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AssetGroupSignal {
+    /**
+     * Immutable. The asset group which this asset group signal belongs to.
+     */
+    assetGroup?: string | null;
+    /**
+     * Immutable. The audience signal to be used by the performance max campaign.
+     */
+    audience?: Schema$GoogleAdsSearchads360V0Common__AudienceInfo;
+    /**
+     * Immutable. The resource name of the asset group signal. Asset group signal resource name have the form: `customers/{customer_id\}/assetGroupSignals/{asset_group_id\}~{signal_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * A view on the usage of ad group ad asset combination.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView {
+    /**
+     * Output only. The top combinations of assets that served together.
+     */
+    assetGroupTopCombinations?: Schema$GoogleAdsSearchads360V0Resources__AssetGroupAssetCombinationData[];
+    /**
+     * Output only. The resource name of the asset group top combination view. AssetGroup Top Combination view resource names have the form: `"customers/{customer_id\}/assetGroupTopCombinationViews/{asset_group_id\}~{asset_combination_category\}"
+     */
+    resourceName?: string | null;
   }
   /**
    * An asset set representing a collection of assets. Use AssetSetAsset to link an asset to the asset set.
@@ -1953,6 +2517,27 @@ export namespace searchads360_v0 {
      * Output only. The status of the asset set asset. Read-only.
      */
     status?: string | null;
+  }
+  /**
+   * Audience is an effective targeting option that lets you intersect different segment attributes, such as detailed demographics and affinities, to create audiences that represent sections of your target segments.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__Audience {
+    /**
+     * Description of this audience.
+     */
+    description?: string | null;
+    /**
+     * Output only. ID of the audience.
+     */
+    id?: string | null;
+    /**
+     * Required. Name of the audience. It should be unique across all audiences. It must have a minimum length of 1 and maximum length of 255.
+     */
+    name?: string | null;
+    /**
+     * Immutable. The resource name of the audience. Audience names have the form: `customers/{customer_id\}/audiences/{audience_id\}`
+     */
+    resourceName?: string | null;
   }
   /**
    * A bidding strategy.
@@ -2369,6 +2954,116 @@ export namespace searchads360_v0 {
      * Immutable. Name of the resource. Campaign label resource names have the form: `customers/{customer_id\}/campaignLabels/{campaign_id\}~{label_id\}`
      */
     resourceName?: string | null;
+  }
+  /**
+   * Cart data sales view.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__CartDataSalesView {
+    /**
+     * Output only. The resource name of the Cart data sales view. Cart data sales view resource names have the form: `customers/{customer_id\}/cartDataSalesView`
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * A conversion.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__Conversion {
+    /**
+     * Output only. Ad ID. A value of 0 indicates that the ad is unattributed.
+     */
+    adId?: string | null;
+    /**
+     * Output only. For offline conversions, this is an ID provided by advertisers. If an advertiser doesn't specify such an ID, Search Ads 360 generates one. For online conversions, this is equal to the id column or the floodlight_order_id column depending on the advertiser's Floodlight instructions.
+     */
+    advertiserConversionId?: string | null;
+    /**
+     * Output only. Asset field type of the conversion event.
+     */
+    assetFieldType?: string | null;
+    /**
+     * Output only. ID of the asset which was interacted with during the conversion event.
+     */
+    assetId?: string | null;
+    /**
+     * Output only. What the conversion is attributed to: Visit or Keyword+Ad.
+     */
+    attributionType?: string | null;
+    /**
+     * Output only. A unique string, for the visit that the conversion is attributed to, that is passed to the landing page as the click id URL parameter.
+     */
+    clickId?: string | null;
+    /**
+     * Output only. The timestamp of the conversion event.
+     */
+    conversionDateTime?: string | null;
+    /**
+     * Output only. The timestamp of the last time the conversion was modified.
+     */
+    conversionLastModifiedDateTime?: string | null;
+    /**
+     * Output only. The quantity of items recorded by the conversion, as determined by the qty url parameter. The advertiser is responsible for dynamically populating the parameter (such as number of items sold in the conversion), otherwise it defaults to 1.
+     */
+    conversionQuantity?: string | null;
+    /**
+     * Output only. The adjusted revenue in micros for the conversion event. This will always be in the currency of the serving account.
+     */
+    conversionRevenueMicros?: string | null;
+    /**
+     * Output only. The timestamp of the visit that the conversion is attributed to.
+     */
+    conversionVisitDateTime?: string | null;
+    /**
+     * Output only. Search Ads 360 criterion ID. A value of 0 indicates that the criterion is unattributed.
+     */
+    criterionId?: string | null;
+    /**
+     * Output only. The Floodlight order ID provided by the advertiser for the conversion.
+     */
+    floodlightOrderId?: string | null;
+    /**
+     * Output only. The original, unchanged revenue associated with the Floodlight event (in the currency of the current report), before Floodlight currency instruction modifications.
+     */
+    floodlightOriginalRevenue?: string | null;
+    /**
+     * Output only. The ID of the conversion
+     */
+    id?: string | null;
+    /**
+     * Output only. The SearchAds360 inventory account ID containing the product that was clicked on. SearchAds360 generates this ID when you link an inventory account in SearchAds360.
+     */
+    merchantId?: string | null;
+    /**
+     * Output only. The sales channel of the product that was clicked on: Online or Local.
+     */
+    productChannel?: string | null;
+    /**
+     * Output only. The country (ISO-3166-format) registered for the inventory feed that contains the product clicked on.
+     */
+    productCountryCode?: string | null;
+    /**
+     * Output only. The ID of the product clicked on.
+     */
+    productId?: string | null;
+    /**
+     * Output only. The language (ISO-639-1) that has been set for the Merchant Center feed containing data about the product.
+     */
+    productLanguageCode?: string | null;
+    /**
+     * Output only. The store in the Local Inventory Ad that was clicked on. This should match the store IDs used in your local products feed.
+     */
+    productStoreId?: string | null;
+    /**
+     * Output only. The resource name of the conversion. Conversion resource names have the form: `customers/{customer_id\}/conversions/{ad_group_id\}~{criterion_id\}~{ds_conversion_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. The status of the conversion, either ENABLED or REMOVED..
+     */
+    status?: string | null;
+    /**
+     * Output only. The SearchAds360 visit ID that the conversion is attributed to.
+     */
+    visitId?: string | null;
   }
   /**
    * A conversion action.
@@ -2809,6 +3504,73 @@ export namespace searchads360_v0 {
     textLabel?: Schema$GoogleAdsSearchads360V0Common__TextLabel;
   }
   /**
+   * A language.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__LanguageConstant {
+    /**
+     * Output only. The language code, for example, "en_US", "en_AU", "es", "fr", etc.
+     */
+    code?: string | null;
+    /**
+     * Output only. The ID of the language constant.
+     */
+    id?: string | null;
+    /**
+     * Output only. The full name of the language in English, for example, "English (US)", "Spanish", etc.
+     */
+    name?: string | null;
+    /**
+     * Output only. The resource name of the language constant. Language constant resource names have the form: `languageConstants/{criterion_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. Whether the language is targetable.
+     */
+    targetable?: boolean | null;
+  }
+  /**
+   * Listing dimensions for the asset group listing group filter.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension {
+    /**
+     * Bidding category of a product offer.
+     */
+    productBiddingCategory?: Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory;
+    /**
+     * Brand of a product offer.
+     */
+    productBrand?: Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBrand;
+    /**
+     * Locality of a product offer.
+     */
+    productChannel?: Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannel;
+    /**
+     * Condition of a product offer.
+     */
+    productCondition?: Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCondition;
+    /**
+     * Custom attribute of a product offer.
+     */
+    productCustomAttribute?: Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCustomAttribute;
+    /**
+     * Item id of a product offer.
+     */
+    productItemId?: Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductItemId;
+    /**
+     * Type of a product offer.
+     */
+    productType?: Schema$GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType;
+  }
+  /**
+   * The path defining of dimensions defining a listing group filter.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__ListingGroupFilterDimensionPath {
+    /**
+     * Output only. The complete path of dimensions through the listing group filter hierarchy (excluding the root node) to this listing group filter.
+     */
+    dimensions?: Schema$GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension[];
+  }
+  /**
    * A location view summarizes the performance of campaigns by Location criteria.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__LocationView {
@@ -2816,6 +3578,43 @@ export namespace searchads360_v0 {
      * Output only. The resource name of the location view. Location view resource names have the form: `customers/{customer_id\}/locationViews/{campaign_id\}~{criterion_id\}`
      */
     resourceName?: string | null;
+  }
+  /**
+   * A Product Bidding Category.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstant {
+    /**
+     * Output only. Two-letter upper-case country code of the product bidding category.
+     */
+    countryCode?: string | null;
+    /**
+     * Output only. ID of the product bidding category. This ID is equivalent to the google_product_category ID as described in this article: https://support.google.com/merchants/answer/6324436.
+     */
+    id?: string | null;
+    /**
+     * Output only. Language code of the product bidding category.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. Level of the product bidding category.
+     */
+    level?: string | null;
+    /**
+     * Output only. Display value of the product bidding category localized according to language_code.
+     */
+    localizedName?: string | null;
+    /**
+     * Output only. Resource name of the parent product bidding category.
+     */
+    productBiddingCategoryConstantParent?: string | null;
+    /**
+     * Output only. The resource name of the product bidding category. Product bidding category resource names have the form: `productBiddingCategoryConstants/{country_code\}~{level\}~{id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. Status of the product bidding category.
+     */
+    status?: string | null;
   }
   /**
    * A product group view.
@@ -2888,6 +3687,15 @@ export namespace searchads360_v0 {
     typeUrl?: string | null;
   }
   /**
+   * Shopping performance view. Provides Shopping campaign statistics aggregated at several product dimension levels. Product dimension values from Merchant Center such as brand, category, custom attributes, product condition and product type will reflect the state of each dimension as of the date and time when the corresponding event was recorded.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__ShoppingPerformanceView {
+    /**
+     * Output only. The resource name of the Shopping performance view. Shopping performance view resource names have the form: `customers/{customer_id\}/shoppingPerformanceView`
+     */
+    resourceName?: string | null;
+  }
+  /**
    * A user list. This is a list of users a customer may target.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__UserList {
@@ -2907,6 +3715,67 @@ export namespace searchads360_v0 {
      * Output only. Type of this list. This field is read-only.
      */
     type?: string | null;
+  }
+  /**
+   * A visit.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__Visit {
+    /**
+     * Output only. Ad ID. A value of 0 indicates that the ad is unattributed.
+     */
+    adId?: string | null;
+    /**
+     * Output only. Asset field type of the visit event.
+     */
+    assetFieldType?: string | null;
+    /**
+     * Output only. ID of the asset which was interacted with during the visit event.
+     */
+    assetId?: string | null;
+    /**
+     * Output only. A unique string for each visit that is passed to the landing page as the click id URL parameter.
+     */
+    clickId?: string | null;
+    /**
+     * Output only. Search Ads 360 keyword ID. A value of 0 indicates that the keyword is unattributed.
+     */
+    criterionId?: string | null;
+    /**
+     * Output only. The ID of the visit.
+     */
+    id?: string | null;
+    /**
+     * Output only. The Search Ads 360 inventory account ID containing the product that was clicked on. Search Ads 360 generates this ID when you link an inventory account in Search Ads 360.
+     */
+    merchantId?: string | null;
+    /**
+     * Output only. The sales channel of the product that was clicked on: Online or Local.
+     */
+    productChannel?: string | null;
+    /**
+     * Output only. The country (ISO-3166 format) registered for the inventory feed that contains the product clicked on.
+     */
+    productCountryCode?: string | null;
+    /**
+     * Output only. The ID of the product clicked on.
+     */
+    productId?: string | null;
+    /**
+     * Output only. The language (ISO-639-1) that has been set for the Merchant Center feed containing data about the product.
+     */
+    productLanguageCode?: string | null;
+    /**
+     * Output only. The store in the Local Inventory Ad that was clicked on. This should match the store IDs used in your local products feed.
+     */
+    productStoreId?: string | null;
+    /**
+     * Output only. The resource name of the visit. Visit resource names have the form: `customers/{customer_id\}/visits/{ad_group_id\}~{criterion_id\}~{ds_visit_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. The timestamp of the visit event. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format.
+     */
+    visitDateTime?: string | null;
   }
   /**
    * A webpage view.
@@ -3005,6 +3874,26 @@ export namespace searchads360_v0 {
      */
     asset?: Schema$GoogleAdsSearchads360V0Resources__Asset;
     /**
+     * The asset group referenced in the query.
+     */
+    assetGroup?: Schema$GoogleAdsSearchads360V0Resources__AssetGroup;
+    /**
+     * The asset group asset referenced in the query.
+     */
+    assetGroupAsset?: Schema$GoogleAdsSearchads360V0Resources__AssetGroupAsset;
+    /**
+     * The asset group listing group filter referenced in the query.
+     */
+    assetGroupListingGroupFilter?: Schema$GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter;
+    /**
+     * The asset group signal referenced in the query.
+     */
+    assetGroupSignal?: Schema$GoogleAdsSearchads360V0Resources__AssetGroupSignal;
+    /**
+     * The asset group top combination view referenced in the query.
+     */
+    assetGroupTopCombinationView?: Schema$GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView;
+    /**
      * The asset set referenced in the query.
      */
     assetSet?: Schema$GoogleAdsSearchads360V0Resources__AssetSet;
@@ -3012,6 +3901,10 @@ export namespace searchads360_v0 {
      * The asset set asset referenced in the query.
      */
     assetSetAsset?: Schema$GoogleAdsSearchads360V0Resources__AssetSetAsset;
+    /**
+     * The Audience referenced in the query.
+     */
+    audience?: Schema$GoogleAdsSearchads360V0Resources__Audience;
     /**
      * The bidding strategy referenced in the query.
      */
@@ -3044,6 +3937,14 @@ export namespace searchads360_v0 {
      * The campaign label referenced in the query.
      */
     campaignLabel?: Schema$GoogleAdsSearchads360V0Resources__CampaignLabel;
+    /**
+     * The cart data sales view referenced in the query.
+     */
+    cartDataSalesView?: Schema$GoogleAdsSearchads360V0Resources__CartDataSalesView;
+    /**
+     * The event level conversion referenced in the query.
+     */
+    conversion?: Schema$GoogleAdsSearchads360V0Resources__Conversion;
     /**
      * The conversion action referenced in the query.
      */
@@ -3093,6 +3994,10 @@ export namespace searchads360_v0 {
      */
     label?: Schema$GoogleAdsSearchads360V0Resources__Label;
     /**
+     * The language constant referenced in the query.
+     */
+    languageConstant?: Schema$GoogleAdsSearchads360V0Resources__LanguageConstant;
+    /**
      * The location view referenced in the query.
      */
     locationView?: Schema$GoogleAdsSearchads360V0Resources__LocationView;
@@ -3100,6 +4005,10 @@ export namespace searchads360_v0 {
      * The metrics.
      */
     metrics?: Schema$GoogleAdsSearchads360V0Common__Metrics;
+    /**
+     * The Product Bidding Category referenced in the query.
+     */
+    productBiddingCategoryConstant?: Schema$GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstant;
     /**
      * The product group view referenced in the query.
      */
@@ -3109,9 +4018,17 @@ export namespace searchads360_v0 {
      */
     segments?: Schema$GoogleAdsSearchads360V0Common__Segments;
     /**
+     * The shopping performance view referenced in the query.
+     */
+    shoppingPerformanceView?: Schema$GoogleAdsSearchads360V0Resources__ShoppingPerformanceView;
+    /**
      * The user list referenced in the query.
      */
     userList?: Schema$GoogleAdsSearchads360V0Resources__UserList;
+    /**
+     * The event level visit referenced in the query.
+     */
+    visit?: Schema$GoogleAdsSearchads360V0Resources__Visit;
     /**
      * The webpage view referenced in the query.
      */
