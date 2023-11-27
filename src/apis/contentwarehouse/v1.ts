@@ -3554,6 +3554,10 @@ export namespace contentwarehouse_v1 {
      */
     searchableOnServer?: boolean | null;
     /**
+     * Indicates whether the provider supports playback of 3P(externally hosted) podcasts.
+     */
+    supports3pPodcastPlayback?: boolean | null;
+    /**
      * This provider has an app that supports starting new media playback when there is no screen (e.g. by integrating with the Bisto SDK).
      */
     supportsScreenlessInitiation?: boolean | null;
@@ -3915,7 +3919,7 @@ export namespace contentwarehouse_v1 {
     updateType?: string | null;
   }
   /**
-   * This proto contains the information of a calendar event, including title, start time, end time, etc. IMPORTANT: The definition of CalendarEvent proto is being moved to //assistant/api/core_types/governed/calendar_event_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead. LINT.IfChange(CalendarEvent) NEXT_ID: 26
+   * This proto contains the information of a calendar event, including title, start time, end time, etc. LINT.IfChange(CalendarEvent) NEXT_ID: 26
    */
   export interface Schema$AssistantApiCoreTypesCalendarEvent {
     /**
@@ -4135,7 +4139,7 @@ export namespace contentwarehouse_v1 {
     simpleName?: string | null;
   }
   /**
-   * This empty type allows us to publish sensitive calendar events to go/attentional-entities, while maintaining BUILD visibility protection for their contents. The BUILD-visibility-protected extension to this message is defined at http://google3/assistant/verticals/calendar/proto/multi_account_calendar_event.proto IMPORTANT: The definition of CalendarEventWrapper proto is being moved to //assistant/api/core_types/governed/calendar_event_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead.
+   * This empty type allows us to publish sensitive calendar events to go/attentional-entities, while maintaining BUILD visibility protection for their contents. The BUILD-visibility-protected extension to this message is defined at http://google3/assistant/verticals/calendar/proto/multi_account_calendar_event.proto
    */
   export interface Schema$AssistantApiCoreTypesCalendarEventWrapper {}
   /**
@@ -4283,7 +4287,7 @@ export namespace contentwarehouse_v1 {
     quartzDeviceId?: string | null;
   }
   /**
-   * IMPORTANT: The definition of DeviceUserIdentity is being moved to //assistant/api/core_types/governed/device_user_identity.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new DeviceUserIdentity instead of this one. // LINT.IfChange
+   * LINT.IfChange
    */
   export interface Schema$AssistantApiCoreTypesDeviceUserIdentity {
     /**
@@ -4296,7 +4300,7 @@ export namespace contentwarehouse_v1 {
     gaiaId?: string | null;
   }
   /**
-   * Represents a color in the RGBA color space. This message mirrors google.type.Color.
+   * LINT.IfChange Represents a color in the RGBA color space. This message mirrors google.type.Color. IMPORTANT: The definition of Color proto is being moved to //assistant/api/core_types/color_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead.
    */
   export interface Schema$AssistantApiCoreTypesGovernedColor {
     /**
@@ -4317,7 +4321,7 @@ export namespace contentwarehouse_v1 {
     red?: number | null;
   }
   /**
-   * The identification information for third party devices that integrates with the assistant. All of these fields will be populated by the third party when the query is sent from the third party device. Next Id: 5
+   * The identification information for third party devices that integrates with the assistant. All of these fields will be populated by the third party when the query is sent from the third party device. IMPORTANT: The definition of DeviceConfig proto is being moved to //assistant/api/core_types/device_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead. Next Id: 5
    */
   export interface Schema$AssistantApiCoreTypesGovernedDeviceConfig {
     /**
@@ -4330,7 +4334,7 @@ export namespace contentwarehouse_v1 {
     deviceId?: string | null;
   }
   /**
-   * LINT.IfChange Specifies identifier of a device AKA surface. Note there may be multiple device ids for the same physical device E.g. Allo app and Assistant app on Nexus. Note: DeviceId usage is complicated. Please do not depend on it for surface specific logic. Please use google3/assistant/api/capabilities.proto instead. IMPORTANT: When checking for equality between two `DeviceId`s, you should always use an `isSameDevice{As\}` function to check for equality, as deep equality between `DeviceId`'s is not guaranteed. * C++: http://google3/assistant/assistant_server/util/device_id_util.cc;l=23;rcl=421295740 * Dart: http://google3/assistant/context/util/lib/device_id.dart;l=26;rcl=442126145 * Java: http://google3/java/com/google/assistant/assistantserver/utils/DeviceIdHelper.java;l=9;rcl=390378522 See http://go/deviceid-equality for more details. Next ID: 14
+   * LINT.IfChange Specifies identifier of a device AKA surface. Note there may be multiple device ids for the same physical device E.g. Allo app and Assistant app on Nexus. Note: DeviceId usage is complicated. Please do not depend on it for surface specific logic. Please use google3/assistant/api/capabilities.proto instead. IMPORTANT: When checking for equality between two `DeviceId`s, you should always use an `isSameDevice{As\}` function to check for equality, as deep equality between `DeviceId`'s is not guaranteed. * C++: http://google3/assistant/assistant_server/util/device_id_util.cc;l=23;rcl=421295740 * Dart: http://google3/assistant/context/util/lib/device_id.dart;l=26;rcl=442126145 * Java: http://google3/java/com/google/assistant/assistantserver/utils/DeviceIdHelper.java;l=9;rcl=390378522 See http://go/deviceid-equality for more details. IMPORTANT: The definition of DeviceId proto is being moved to //assistant/api/core_types/device_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead. Next ID: 14
    */
   export interface Schema$AssistantApiCoreTypesGovernedDeviceId {
     /**
@@ -4387,7 +4391,7 @@ export namespace contentwarehouse_v1 {
     quartzDeviceId?: string | null;
   }
   /**
-   * Task metadata information describing the ringtone. Next id: 11
+   * LINT.IfChange Task metadata information describing the ringtone. IMPORTANT: The definition of RingtoneTaskMetadata proto is being moved to //assistant/api/core_types/ringtone_task_metadata.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead. Next id: 11
    */
   export interface Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadata {
     /**
@@ -4503,7 +4507,7 @@ export namespace contentwarehouse_v1 {
     routineId?: string | null;
   }
   /**
-   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. NEXT ID: 6 LINT.IfChange
+   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. IMPORTANT: The partial migration to the SurfaceIdentity and SurfaceVersion protos defined here is being rolled back (b/303012824). All existing references will be updated to point back to //assistant/api/core_types/surface_identity.proto. If you are adding a reference, use the SurfaceIdentity and SurfaceVersion protos defined there. NEXT ID: 6 LINT.IfChange
    */
   export interface Schema$AssistantApiCoreTypesGovernedSurfaceIdentity {
     /**
@@ -4544,7 +4548,7 @@ export namespace contentwarehouse_v1 {
     packageName?: string | null;
   }
   /**
-   * An image represents the data about an image or a photo. IMPORTANT: The definition of the Image message is being moved to //assistant/api/core_types/governed/image_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new Image message instead of this one. LINT.IfChange NextId: 13
+   * An image represents the data about an image or a photo. LINT.IfChange NextId: 13
    */
   export interface Schema$AssistantApiCoreTypesImage {
     /**
@@ -4654,7 +4658,7 @@ export namespace contentwarehouse_v1 {
     lngDegrees?: number | null;
   }
   /**
-   * LINT.IfChange(ungoverned_message_notification) This proto captures the contents of a messaging app notification that is typically part of a conversation thread. Next Id: 20
+   * LINT.IfChange(ungoverned_message_notification) This proto captures the contents of a messaging app notification that is typically part of a conversation thread. Next Id: 21
    */
   export interface Schema$AssistantApiCoreTypesMessageNotification {
     /**
@@ -4690,6 +4694,10 @@ export namespace contentwarehouse_v1 {
      */
     messageLength?: number | null;
     messageRecipientType?: string | null;
+    /**
+     * Word count of the message
+     */
+    messageWordCount?: number | null;
     /**
      * Mime type of the data_uri. e.g. 'audio/wav', 'video/mp4', 'image/png'.
      */
@@ -4851,7 +4859,7 @@ export namespace contentwarehouse_v1 {
     useBirdsongTacl?: boolean | null;
   }
   /**
-   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. NEXT ID: 6 IMPORTANT: The definitions of the SurfaceIdentity and SurfaceVersion protos are being moved to //assistant/api/core_types/governed/surface_identity.proto All existing references will be updated to point to the new location. If you are adding a reference, use the new SurfaceIdentity and SurfaceVersion protos instead of the protos defined here. LINT.IfChange
+   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. NEXT ID: 6 LINT.IfChange
    */
   export interface Schema$AssistantApiCoreTypesSurfaceIdentity {
     /**
@@ -4867,7 +4875,7 @@ export namespace contentwarehouse_v1 {
      */
     surfaceType?: string | null;
     /**
-     * DEPRECATED. assistant.api.core_types.governed.SurfaceIdentity.surface_type field should be used instead. The device's surface type. This is the string version of the assistant.api.core_types.SurfaceType enum. The server should not use this field, rather it should use the SurfaceType value derived from this string.
+     * DEPRECATED. The legacy device's surface type string. NOTE: Prefer using the ontological `surface_type` field. The device's surface type. This is the string version of the assistant.api.core_types.SurfaceType enum. The server should not use this field, rather it should use the SurfaceType value derived from this string.
      */
     surfaceTypeString?: string | null;
     /**
@@ -4933,8 +4941,14 @@ export namespace contentwarehouse_v1 {
      */
     remoteCastMediaEnabled?: boolean | null;
   }
+  export interface Schema$AssistantApiDataValidateCapabilities {
+    /**
+     * If true, data.VALIDATE should be routed to the tethered device (if present) if the tethered device supports data.VALIDATE and the primary device does not.
+     */
+    fallbackToTetheredDevice?: boolean | null;
+  }
   /**
-   * A Gregorian calendar date. IMPORTANT: The definition of Date proto is being moved to //assistant/api/core_types/governed/datetime_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead.
+   * A Gregorian calendar date.
    */
   export interface Schema$AssistantApiDate {
     /**
@@ -4951,7 +4965,7 @@ export namespace contentwarehouse_v1 {
     year?: number | null;
   }
   /**
-   * A date-time specification, combining a date and civil time (relative to a given timezone). IMPORTANT: The definition of DateTime proto is being moved to //assistant/api/core_types/governed/datetime_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead.
+   * A date-time specification, combining a date and civil time (relative to a given timezone).
    */
   export interface Schema$AssistantApiDateTime {
     /**
@@ -4968,7 +4982,20 @@ export namespace contentwarehouse_v1 {
     timeZone?: Schema$AssistantApiTimeZone;
   }
   /**
-   * This message describes roughly what a surface is capable of doing and metadata around those capabilities. These capabilities are determined based on: - device hardware - software - status (e.g. volume level, battery percentage) These capabilities refer to the surface and not the physical device. The list of supported surfaces can be found in the assistant.api.core_types.SurfaceType enum. A surface's capabilities can differ from the device's. An example would be ANDROID_ALLO running on Pixel. Allo does not support AudioInput while the Pixel does. In this case, audio_input will be set to false for Assistant Allo requests while it might be set to true for OPA_NEXUS requests. Next ID: 36
+   * A representation of a range of time with start and end datetime specified.
+   */
+  export interface Schema$AssistantApiDateTimeRange {
+    /**
+     * End date of the range.
+     */
+    endDate?: Schema$AssistantApiDateTime;
+    /**
+     * Start date of the range.
+     */
+    startDate?: Schema$AssistantApiDateTime;
+  }
+  /**
+   * This message describes roughly what a surface is capable of doing and metadata around those capabilities. These capabilities are determined based on: - device hardware - software - status (e.g. volume level, battery percentage) These capabilities refer to the surface and not the physical device. The list of supported surfaces can be found in the assistant.api.core_types.SurfaceType enum. A surface's capabilities can differ from the device's. An example would be ANDROID_ALLO running on Pixel. Allo does not support AudioInput while the Pixel does. In this case, audio_input will be set to false for Assistant Allo requests while it might be set to true for OPA_NEXUS requests. Next ID: 37
    */
   export interface Schema$AssistantApiDeviceCapabilities {
     /**
@@ -5009,6 +5036,7 @@ export namespace contentwarehouse_v1 {
     cast?: Schema$AssistantApiCastCapabilities;
     communicationUiCapabilities?: Schema$AssistantApiCommunicationUiCapabilities;
     contactLookupCapabilities?: Schema$AssistantApiContactLookupCapabilities;
+    dataValidateCapabilities?: Schema$AssistantApiDataValidateCapabilities;
     /**
      * This is the same device id that is specified in the conversation protocol and should be unique to each device/user/model combination. For example, if a request is coming from a watch through AGSA the watch and AGSA should have different device_ids. Note: this field should only be used to determine which device the capabilities belong to and not to access the id of the device. Instead DeviceProperties should be used and accessed through ParamsAccessor.
      */
@@ -5615,7 +5643,7 @@ export namespace contentwarehouse_v1 {
     protobufType?: string | null;
   }
   /**
-   * Date-based recurrences specify repeating events. Conceptually, a recurrence is a (possibly unbounded) sequence of dates on which an event falls, described by a list of constraints. A date is in a recurrence if and only if it satisfies all of the constraints. Note that devices may support some constraints, but not all. IMPORTANT: The definition of Recurrence proto is being moved to //assistant/api/core_types/governed/datetime_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead.
+   * Date-based recurrences specify repeating events. Conceptually, a recurrence is a (possibly unbounded) sequence of dates on which an event falls, described by a list of constraints. A date is in a recurrence if and only if it satisfies all of the constraints. Note that devices may support some constraints, but not all.
    */
   export interface Schema$AssistantApiRecurrence {
     /**
@@ -5625,7 +5653,7 @@ export namespace contentwarehouse_v1 {
     /**
      * A list of blacklisted dates to skip the alarm on.
      */
-    blacklistedRanges?: Schema$AssistantApiRecurrenceDatetimeRange[];
+    blacklistedRanges?: Schema$AssistantApiDateTimeRange[];
     /**
      * Specifies the date in a month. For example, if day_of_month is 15, then it represent the 15th day of the specified month.
      */
@@ -5654,19 +5682,6 @@ export namespace contentwarehouse_v1 {
      * Specifies the index of week in a month. For example, the second Tuesday every month, in this case, week_of_month should be 2.
      */
     weekOfMonth?: number[] | null;
-  }
-  /**
-   * A representation of a range of time with start and end datetime specified.
-   */
-  export interface Schema$AssistantApiRecurrenceDatetimeRange {
-    /**
-     * End date of the range.
-     */
-    endDate?: Schema$AssistantApiDateTime;
-    /**
-     * Start date of the range.
-     */
-    startDate?: Schema$AssistantApiDateTime;
   }
   /**
    * These capabilities represent the tactile features associated with the device. This includes, for example, whether the device has a screen, how big the screen is, and privacy of the screen. Next ID: 11
@@ -7323,7 +7338,7 @@ export namespace contentwarehouse_v1 {
     dataSharingRestrictions?: string | null;
   }
   /**
-   * A civil time relative to a timezone. IMPORTANT: The definition of TimeOfDay proto is being moved to //assistant/api/core_types/governed/datetime_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead.
+   * A civil time relative to a timezone.
    */
   export interface Schema$AssistantApiTimeOfDay {
     /**
@@ -7344,7 +7359,7 @@ export namespace contentwarehouse_v1 {
     second?: number | null;
   }
   /**
-   * An absolute point in time independent of timezone or calendar, based on the proto3 Timestamp (//google/protobuf/timestamp.proto). IMPORTANT: The definition of Timestamp proto is being moved to //assistant/api/core_types/governed/datetime_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead. NOTE: THIS IS NO LONGER RECOMMENDED TO BE USED. It was originally defined separately from google.protobuf.Timestamp due to incompatibility with proto2 syntax. The incompatibility issues have since been resolved and so the Google-wide standard representation of google.protobuf.Timestamp should be preferred. In fact, google.protobuf.* protos in general are now recommended to be used in new APIs.
+   * An absolute point in time independent of timezone or calendar, based on the proto3 Timestamp (//google/protobuf/timestamp.proto). NOTE: THIS IS NO LONGER RECOMMENDED TO BE USED. It was originally defined separately from google.protobuf.Timestamp due to incompatibility with proto2 syntax. The incompatibility issues have since been resolved and so the Google-wide standard representation of google.protobuf.Timestamp should be preferred. In fact, google.protobuf.* protos in general are now recommended to be used in new APIs.
    */
   export interface Schema$AssistantApiTimestamp {
     /**
@@ -7357,7 +7372,7 @@ export namespace contentwarehouse_v1 {
     seconds?: string | null;
   }
   /**
-   * A time zone. Conceptually, a time zone is a set of rules associated with a location that describes a UTC offset and how it changes over time (e.g. Daylight Saving Time). The offset is used to compute the local date and time. IMPORTANT: The definition of TimeZone enum is being moved to //assistant/api/core_types/governed/datetime_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead.
+   * A time zone. Conceptually, a time zone is a set of rules associated with a location that describes a UTC offset and how it changes over time (e.g. Daylight Saving Time). The offset is used to compute the local date and time.
    */
   export interface Schema$AssistantApiTimeZone {
     /**
@@ -7391,7 +7406,7 @@ export namespace contentwarehouse_v1 {
     veryLowVolumePercentage?: number | null;
   }
   /**
-   * LINT.IfChanged Identifier for an application provider. NOTE: AppProviderId contains surface-specific info, such as the Android package name of the application. This was necessary for supporting current use cases that rely on surface-specific info in feature code. Eventually we want to deprecate AppProviderId and fetch surface-specific info in some other way (e.g. in a surface-translation layer). But until then, we may continue extending AppProviderId with other surface-specific info.
+   * LINT.IfChange Identifier for an application provider. NOTE: AppProviderId contains surface-specific info, such as the Android package name of the application. This was necessary for supporting current use cases that rely on surface-specific info in feature code. Eventually we want to deprecate AppProviderId and fetch surface-specific info in some other way (e.g. in a surface-translation layer). But until then, we may continue extending AppProviderId with other surface-specific info.
    */
   export interface Schema$AssistantContextAppProviderId {
     /**
@@ -8211,7 +8226,7 @@ export namespace contentwarehouse_v1 {
     assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
   }
   /**
-   * Features to be passed from Media GP to HGR. Next ID: 20
+   * Features to be passed from Media GP to HGR. Next ID: 21
    */
   export interface Schema$AssistantGroundingRankerMediaGroundingProviderFeatures {
     /**
@@ -8255,6 +8270,10 @@ export namespace contentwarehouse_v1 {
      * True if the user requests seed radio.
      */
     isSeedRadioRequest?: boolean | null;
+    /**
+     * Provider is a self(user) reported subscripted provider https://g3doc.corp.google.com/knowledge/g3doc/ump/development/GetProviderAffinity.md?cl=head
+     */
+    isSelfReportedSvodProvider?: boolean | null;
     /**
      * Indicates whether this is youtube content seeking music.
      */
@@ -9044,7 +9063,7 @@ export namespace contentwarehouse_v1 {
     sortedNameString?: string | null;
   }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 68
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 69
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
     /**
@@ -9123,6 +9142,7 @@ export namespace contentwarehouse_v1 {
      * intent_type differentiates between intents that share the top level intent name. For eg: for TV_FALLBACK_SEARCH_INTENT, the top level intent name must be "Find_media" and the media_object argument within it must be of type "Media_unspecified".
      */
     intentType?: string | null;
+    isDummyIntent?: boolean | null;
     /**
      * Feasibility of fulfilling the binding set. Eg: For PlayMedia, this is equivalent to playability. More details: go/hgr-feasibility-feature.
      */
@@ -13401,7 +13421,7 @@ export namespace contentwarehouse_v1 {
     cellId?: string[] | null;
   }
   /**
-   * CityJsonProto is a custom proto representation of the portion of the CityJSON spec (https://www.cityjson.org/) relevant to internal projects. See go/cityjsonproto-design for more information about the modeling and design decisions implemented here.
+   * CityJsonProto is a custom proto representation of the portion of the CityJSON spec (https://www.cityjson.org/) relevant to internal projects. See go/cityjsonproto-design for more information about the modeling and design decisions implemented here. LINT.IfChange
    */
   export interface Schema$GeostoreCityJsonProto {
     /**
@@ -13435,7 +13455,7 @@ export namespace contentwarehouse_v1 {
     type?: string | null;
   }
   /**
-   * Representation of geometry. Geometries vary both in type and in level-of-detail, enabling representation of any shape at any level of granularity.
+   * Representation of geometry including geometric primitives which are used as building blocks to construct geometries of varying complexity. Geometries vary both in type and in level-of-detail, enabling representation of any shape at any level of granularity. All geometries are ultimately composed of `MultiPoint`s, which reference the actual vertices. Only linear and planar shapes are allowed, no curves or parametric surfaces.
    */
   export interface Schema$GeostoreCityJsonProtoCityObjectGeometry {
     /**
@@ -13867,7 +13887,7 @@ export namespace contentwarehouse_v1 {
      */
     closeReason?: string | null;
     /**
-     * RESERVED
+     * The earliest known date of this feature's "end" (e.g. an establishment's permanent closure), if the actual date is unknown; i.e. the best known upper bound of the day end_date would represent. end_as_of_date must be in local (civil) time and of PRECISION_DAY. For example, given an establishment: * Without any end_as_of_date, the permanent closure definitely isn't now and isn't known to start at any point in the future. * With an end_as_of_date of 2023-04-05 but without any end_date, the permanent closure definitely starts at latest 2023-04-05 but may start before 2023-04-05. * With an end_as_of_date of 2023-04-05 and an end_date of 2023 (at just PRECISION_YEAR), the permanent closure definitely starts at earliest 2023-01-01 (i.e. the first day of 2023) and at latest 2023-04-05, but may start at any day between 2023-01-01 and 2023-04-05. IMPORTANT: Generally for Geo Schema-internal use only. If you believe you need to use this field directly, please go/contact-geo-schema.
      */
     endAsOfDate?: Schema$GeostoreDateTimeProto;
     endDate?: Schema$GeostoreDateTimeProto;
@@ -14040,6 +14060,7 @@ export namespace contentwarehouse_v1 {
      * Represents information about the feature’s anchored geometry.
      */
     anchoredGeometry?: Schema$GeostoreAnchoredGeometryProto;
+    associatedEvChargingStation?: Schema$GeostoreFeatureIdProto[];
     /**
      * The collection of attachments for this feature. Documentation: http://go/geo-attachments
      */
@@ -22095,15 +22116,6 @@ export namespace contentwarehouse_v1 {
     windowName?: string | null;
   }
   /**
-   * Defines a generic attribute. The name field is the name of the attribute (for example beard, glasses, joy). The confidence defines how reliable the given annotation is. For binary attributes it is bounded between 0 and 1 and can be interpreted as the posterior probability. The value field can be used for continuous attributes like age. Information returned or stored in this message may be sensitive from a privacy, policy, or legal point of view. Clients should consult with their p-counsels and the privacy working group (go/pwg) to make sure their use respects Google policies.
-   */
-  export interface Schema$HumanSensingFaceAttribute {
-    confidence?: number | null;
-    name?: string | null;
-    type?: string | null;
-    value?: number | null;
-  }
-  /**
    * The PhoneNumber object that is used by all LibPhoneNumber API's to fully represent a phone number.
    */
   export interface Schema$I18nPhonenumbersPhoneNumber {
@@ -22386,10 +22398,6 @@ export namespace contentwarehouse_v1 {
      */
     extendedExif?: Schema$PhotosImageMetadata;
     /**
-     * Face Detection.
-     */
-    faceDetection?: Schema$ReneFaceResponse;
-    /**
      * Properties used in featured imagesearch project. inspiration_score indicates how well an image is related to products, or how inspirational it is.
      */
     featuredImageProp?: Schema$ImageMonetizationFeaturedImageProperties;
@@ -22537,6 +22545,10 @@ export namespace contentwarehouse_v1 {
      * For an image not explicitly visible on this page, the following url is the one which most closely matches it.
      */
     onPageAlternateUrl?: string | null;
+    /**
+     * Orbit intents. More details on go/orbit-in-image-indexing.
+     */
+    orbitIntents?: Schema$QualityOrbitOrbitImageIntents;
     /**
      * Encodes face number and largest face frac into a small package for storage in mustang. This is calculated directly from FaceDetectionResult.
      */
@@ -25198,7 +25210,14 @@ export namespace contentwarehouse_v1 {
     youtubeAlexandriaYoutubeSignal?: Schema$IndexingDocjoinerDataVersionVersionInfo;
   }
   export interface Schema$IndexingDocjoinerDataVersionVersionInfo {
+    /**
+     * Sometimes, a piece of data may not exist for a document (and we don't want to delete it), so timestamp_micros won't exist. However, consideration_timestamp_micros will be set to indicate we tried to update that piece of data for tracking purposes.
+     */
+    considerationTimestampMicros?: string | null;
     humanReadableVersion?: string | null;
+    /**
+     * The timestamp when a piece of data is updated (or deleted if the data doesn't exist in the update).
+     */
     timestampMicros?: string | null;
   }
   /**
@@ -26726,7 +26745,7 @@ export namespace contentwarehouse_v1 {
     valueIndex?: number | null;
   }
   /**
-   * A message representing the signals associated with an argument. NEXT ID TO USE: 60 For //depot/google3/logs/proto/knowledge/interpretation/intent_query.proto in the "ThenChange", fields under Argument.signals in the serving proto are stored directly under Argument on the logging side. For example, see http://google3/nlp/semantic_parsing/data_management/logs/web_logs/semantic_logging_converters/semantic_logging_request_argument_converter.cc?l=58&rcl=322925428. LINT.IfChange
+   * A message representing the signals associated with an argument. NEXT ID TO USE: 62 For //depot/google3/logs/proto/knowledge/interpretation/intent_query.proto in the "ThenChange", fields under Argument.signals in the serving proto are stored directly under Argument on the logging side. For example, see http://google3/nlp/semantic_parsing/data_management/logs/web_logs/semantic_logging_converters/semantic_logging_request_argument_converter.cc?l=58&rcl=322925428. LINT.IfChange
    */
   export interface Schema$KnowledgeAnswersIntentQueryArgumentSignals {
     /**
@@ -26920,6 +26939,10 @@ export namespace contentwarehouse_v1 {
      */
     shoppingIds?: Schema$KnowledgeAnswersIntentQueryShoppingIds;
     /**
+     * What added this argument.
+     */
+    source?: string | null;
+    /**
      * go/stbr supportthis is an
      */
     supportTransferRules?: Schema$LogsSemanticInterpretationIntentQuerySupportTransferRule[];
@@ -26931,6 +26954,10 @@ export namespace contentwarehouse_v1 {
      * Type of ungrounded argument. It is exclusively used when simple_value.ungrounded_value is populated.
      */
     ungroundedValueType?: Schema$KnowledgeAnswersValueType;
+    /**
+     * What added the argument value.
+     */
+    valueSource?: string | null;
     /**
      * Webref entity index for this argument, necessary for interpreting the relationship structure, and the list to index into. Specifically we need this to understand qref implications since they edges are represented with entity indexes.
      */
@@ -27333,9 +27360,6 @@ export namespace contentwarehouse_v1 {
    * Grounding-related signals to be propagated down stream. Next ID: 14
    */
   export interface Schema$KnowledgeAnswersIntentQueryGroundingSignals {
-    /**
-     * True if the argument was added during grounding. This signal is intended to be used with ArgumentSignals. Note that the added argument's value must be a FunctionCall that only contains resolutions, i.e. grounding cannot add/modify/delete any ungrounded values.
-     */
     addedByGrounding?: boolean | null;
     /**
      * Score indicating how grounded the intent is, populated by the Grounding Box, used by the pre-fulfillment ranker, see http://go/prefulfillment-ranker.
@@ -28282,7 +28306,7 @@ export namespace contentwarehouse_v1 {
     slotNames?: string[] | null;
   }
   /**
-   * Specifies the allowed type(s) that a value can have, e.g. for a Slot. For example, having both entity_type and string_type present in a ValueType field of a Slot means that the Slot can take _either_ an an EntityType _or_ StringType as a value, and nothing else. It may be helpful to think of this proto as being called something like AllAllowedValueTypes. Next tag id: 25 LINT.IfChange
+   * Specifies the allowed type(s) that a value can have, e.g. for a Slot. For example, having both entity_type and string_type present in a ValueType field of a Slot means that the Slot can take _either_ an an EntityType _or_ StringType as a value, and nothing else. It may be helpful to think of this proto as being called something like AllAllowedValueTypes. To enforce a component-specific contract (go/contract-based-conformance) for allowed type(s), we add a repeated field view_specific_${x\} for the type ${x\}. For example, if we want a slot that can hold any type by default, but can only hold an integer when checking against the P2_LWA contract, then the following should be added to MeaningCatalog: slot { name: "integer_only_slot" type { // The default view has no sub_type or other options. number_type {\} // The P2_LWA view specifies INTEGER sub_type. view_specific_number_types { sub_type: INTEGER component_specific_contracts: P2_LWA \} \} \} See go/view-based-options-for-valuetype for more information. Next tag id: 26 LINT.IfChange
    */
   export interface Schema$KnowledgeAnswersValueType {
     /**
@@ -28318,6 +28342,10 @@ export namespace contentwarehouse_v1 {
     stringType?: Schema$KnowledgeAnswersStringType;
     timezoneType?: Schema$KnowledgeAnswersTimeZoneType;
     trackingNumberType?: Schema$KnowledgeAnswersTrackingNumberType;
+    /**
+     * LINT.IfChange Contract-specific typing (go/view-based-options-for-valuetype). NOTE: To facilitate writing macros for view-specific filtering, all view-specific fields should be named with the format "view_specific_${singular_field\}s" -- e.g., for the singular field |number_type|, the view-specific repeated field is |view_specific_number_types|. LINT.ThenChange( //depot/google3/nlp/meaning/remodel/meaning_remodeling_utils.cc:ViewSpecificTypes, //depot/google3/nlp/meaning/analyzer/checks/component_specific_contracts_checks.cc:ViewSpecificTypes)
+     */
+    viewSpecificNumberTypes?: Schema$KnowledgeAnswersNumberType[];
   }
   /**
    * /////////// DATE //////////
@@ -36401,202 +36429,6 @@ export namespace contentwarehouse_v1 {
     yMin?: number | null;
   }
   /**
-   * FaceParams are a collection of parameters of a single face found in an image. WARNING: This message has a jspb target. If you add a new message field inside, either put its definition inside this message as well or add the js file corresponding to the new message to the js_deps and proto_js rules in the BUILD file; otherwise it will break lots of builds. The js file name is the message name all in lowercase letters. Next available id: 40.
-   */
-  export interface Schema$PhotosVisionServiceFaceFaceParams {
-    /**
-     * The age of the face. Range [0.0, 120.0].
-     */
-    age?: number | null;
-    angerProbability?: number | null;
-    /**
-     * Attributes for the detected face. Information returned or stored in this message may be sensitive from a privacy, policy, or legal point of view. Clients should consult with their p-counsels and the privacy working group (go/pwg) to make sure their use respects Google policies.
-     */
-    attribute?: Schema$HumanSensingFaceAttribute[];
-    beardProbability?: number | null;
-    blurredProbability?: number | null;
-    /**
-     * Bounding box around the face. The coordinates of the bounding box are in the original image's scale as returned in ImageParams. The bounding box is computed to "frame" the face as a human would expect, and is typically used in UI (e.g. G+ to show circles around detected faces). It is based on the landmarker results.
-     */
-    boundingBox?: Schema$PhotosVisionServiceFaceFaceParamsBoundingBox;
-    darkGlassesProbability?: number | null;
-    /**
-     * Confidence is in the range [0,1].
-     */
-    detectionConfidence?: number | null;
-    extendedLandmarks?: Schema$PhotosVisionServiceFaceFaceParamsExtendedLandmark[];
-    eyesClosedProbability?: number | null;
-    /**
-     * Attributes of the detected face useful for generating a cartoon version of the face.
-     */
-    face2cartoonResults?: Schema$ResearchVisionFace2cartoonFace2CartoonResults;
-    faceCropV8?: Schema$PhotosVisionServiceFaceFaceParamsFaceCropV8;
-    /**
-     * This other bounding box is tighter than the previous one, and encloses only the skin part of the face. It is typically used to eliminate the face from any image analysis that looks up the "amount of skin" visible in an image (e.g. safesearch content score). It is not based on the landmarker results, just on the initial face detection, hence the 'fd' prefix.
-     */
-    fdBoundingBox?: Schema$PhotosVisionServiceFaceFaceParamsBoundingBox;
-    /**
-     * Probability is in the range [0,1].
-     */
-    femaleProbability?: number | null;
-    frontalGazeProbability?: number | null;
-    glassesProbability?: number | null;
-    headwearProbability?: number | null;
-    /**
-     * A copy of the 'image_params' field that is also returned as part of the ExtractFacesReply. It contains the with and height of the image the face extraction was performed on and provides the original frame of reference for the bounding boxes above.
-     */
-    imageParams?: Schema$PhotosVisionServiceFaceImageParams;
-    joyProbability?: number | null;
-    landmarkingConfidence?: number | null;
-    landmarkPositions?: Schema$PhotosVisionServiceFaceFaceParamsLandmarkPosition[];
-    leftEyeClosedProbability?: number | null;
-    longHairProbability?: number | null;
-    mouthOpenProbability?: number | null;
-    nonHumanProbability?: number | null;
-    /**
-     * Yaw angle. Indicates how much leftward/rightward the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
-     */
-    panAngle?: number | null;
-    poseMatrix?: Schema$PhotosVisionServiceFaceFaceParamsPoseMatrix;
-    pretemplate?: string | null;
-    /**
-     * A score produced by the Face Quality Scoring Module that indicates overall quality of the face and its relative suitability for using it in conjunction with face recognition for instance. As such, the score predicts the likelihood to recognize a given face correctly. A face recognition client could use the score and a threshold to determine whether to use the face in a face model, or whether to even consider it for recognition.
-     */
-    qualityScore?: number | null;
-    rightEyeClosedProbability?: number | null;
-    /**
-     * Roll angle indicates how much clockwise/anti-clockwise the face is rotated relative to the image vertical and about the axis perpendicular to the face. Range [-180,180].
-     */
-    rollAngle?: number | null;
-    /**
-     * Deprecated: signature will continue to be used for the pre-1.7 SDK template format typically created by the converter module CNVprec_461. All newer templates created with CNVprec_465 or later will use the repeated 'versioned_signatures' field to store the templates and version info.
-     */
-    signature?: string | null;
-    skinBrightnessProbability?: number | null;
-    sorrowProbability?: number | null;
-    surpriseProbability?: number | null;
-    /**
-     * Pitch angle. Indicates how much upwards/downwards the face is pointing relative to the image's horizontal plane. Range [-180,180].
-     */
-    tiltAngle?: number | null;
-    underExposedProbability?: number | null;
-    versionedSignatures?: Schema$PhotosVisionServiceFaceVersionedFaceSignature[];
-  }
-  export interface Schema$PhotosVisionServiceFaceFaceParamsBoundingBox {
-    /**
-     * These coordinates are in the same scale as the original image. 0 <= x < width, 0 <= y < height.
-     */
-    x1?: number | null;
-    x2?: number | null;
-    y1?: number | null;
-    y2?: number | null;
-  }
-  /**
-   * Below is the set of extended landmarks added by LMprec_508 and 510. All future additional landmarks should be added to this message.
-   */
-  export interface Schema$PhotosVisionServiceFaceFaceParamsExtendedLandmark {
-    id?: string | null;
-    /**
-     * NOTE that landmark positions may fall outside the bounds of the image when the face is near one or more edges of the image. That is, it is NOT guaranteed that 0 <= x < width or 0 <= y < height. Rounded version of x_f.
-     */
-    x?: number | null;
-    xF?: number | null;
-    /**
-     * Rounded version of y_f.
-     */
-    y?: number | null;
-    yF?: number | null;
-    z?: number | null;
-  }
-  /**
-   * Information defining a FaceCrop for a particular face. See go/on-device-face-grouping-face-crops for more details.
-   */
-  export interface Schema$PhotosVisionServiceFaceFaceParamsFaceCropV8 {
-    /**
-     * The X coordinate of the center of the face crop.
-     */
-    centerX?: number | null;
-    /**
-     * The Y coordinate of the center of the face crop.
-     */
-    centerY?: number | null;
-    /**
-     * Rotation of the face crop, in radians.
-     */
-    rotation?: number | null;
-    /**
-     * Scale to apply to the coordinates of the face crop.
-     */
-    scale?: number | null;
-  }
-  export interface Schema$PhotosVisionServiceFaceFaceParamsLandmarkPosition {
-    /**
-     * Some landmarks are set during face finding and some are set during landmark finding. Only after landmarking will all landmarks be set.
-     */
-    landmark?: string | null;
-    /**
-     * NOTE that landmark positions may fall outside the bounds of the image when the face is near one or more edges of the image. That is, it is NOT guaranteed that 0 <= x < width or 0 <= y < height. Rounded version of x_f.
-     */
-    x?: number | null;
-    xF?: number | null;
-    /**
-     * Rounded version of y_f.
-     */
-    y?: number | null;
-    yF?: number | null;
-    z?: number | null;
-  }
-  /**
-   * Stores the full pose transformation matrix of the detected face. From this the roll, pan, tilt angles can be computed.
-   */
-  export interface Schema$PhotosVisionServiceFaceFaceParamsPoseMatrix {
-    xx?: number | null;
-    xy?: number | null;
-    xz?: number | null;
-    yx?: number | null;
-    yy?: number | null;
-    yz?: number | null;
-    zx?: number | null;
-    zy?: number | null;
-    zz?: number | null;
-  }
-  /**
-   * ImageParams are a collection of parameters of the image on which face detection was performed.
-   */
-  export interface Schema$PhotosVisionServiceFaceImageParams {
-    height?: number | null;
-    width?: number | null;
-  }
-  /**
-   * From newer SDK versions onward (1.7+), each face template (signature) will also store a version # derived from the converter version that created the template.
-   */
-  export interface Schema$PhotosVisionServiceFaceVersionedFaceSignature {
-    /**
-     * Confidence score based on embedding uncertainty. This is populated if fetch_facenet_confidence has been set as true in FaceNetConfig, and FaceNet version satisfies one of the following: 1. FACENET_8. 2. FACENET_9 with confidence model enabled in FaceTemplatesConfig. If face_embedding_confidence module is requested, this will also be populated, and the signature will be empty.
-     */
-    confidence?: number | null;
-    /**
-     * The Confidence version that populated the confidence.
-     */
-    confidenceVersion?: string | null;
-    /**
-     * The converter version that created this template.
-     */
-    converterVersion?: string | null;
-    /**
-     * The face template bytes.
-     */
-    signature?: string | null;
-    /**
-     * Specifies the source of the signature in cases where the bytes are from a lower level of the FaceNet architecture. This is useful in combination with the FaceNetClient when it returns multiple outputs and we need to keep track of their contents. For example, this could contain the string 'avgpool-0' while another instance can use the standard 'normalizing' string.
-     */
-    signatureSource?: string | null;
-    /**
-     * The internal version of the template. This is a copy of the version stored within the template.
-     */
-    version?: number | null;
-  }
-  /**
    * A protocol buffer to store the url, referer and porn flag for a url. and an optional image score. Next available tag id: 51.
    */
   export interface Schema$PornFlagData {
@@ -37828,7 +37660,7 @@ export namespace contentwarehouse_v1 {
     unsquashedLastLongestClicks?: number | null;
   }
   /**
-   * NEXT TAG: 27
+   * NEXT TAG: 28
    */
   export interface Schema$QualityNavboostCrapsCrapsData {
     /**
@@ -37901,6 +37733,10 @@ export namespace contentwarehouse_v1 {
     unsquashed?: Schema$QualityNavboostCrapsCrapsClickSignals;
     unsquashedMobileSignals?: Schema$QualityNavboostCrapsCrapsClickSignals;
     url?: string | null;
+    /**
+     * The number of distinct voter tokens (a lower bound on the number of distinct users that contributed to the entry, used for privacy-related filtering).
+     */
+    voterTokenCount?: number | null;
   }
   /**
    * CrapsDevice has the gws interface, gws tier and operating system for events from QSessions.
@@ -37937,6 +37773,10 @@ export namespace contentwarehouse_v1 {
      * CRAPS Signals for the locale.
      */
     signals?: Schema$QualityNavboostCrapsCrapsClickSignals;
+    /**
+     * The set of voter tokens of the sessions that contributed to this feature's stats. Voter tokens are not unique per user, so it is a lower bound on the number of distinct users. Used for privacy-related filtering.
+     */
+    voterTokenBitmap?: Schema$QualityNavboostGlueVoterTokenBitmapMessage;
   }
   export interface Schema$QualityNavboostCrapsStatsWithWeightsProto {
     hi?: number | null;
@@ -37954,6 +37794,13 @@ export namespace contentwarehouse_v1 {
     variance?: number | null;
     varOfMean?: number | null;
     weightedN?: number | null;
+  }
+  /**
+   * Used for aggregating query unique voter_token during merging. We use 4 uint64(s) as a 256-bit bitmap to aggregate distinct voter_tokens in Glue model pipeline. Number of elements should always be either 0 or 4. As an optimization, we store the voter_token as a single uint64 if only one bit is set. See quality/navboost/speedy_glue/util/voter_token_bitmap.h for the class that manages operations on these bitmaps.
+   */
+  export interface Schema$QualityNavboostGlueVoterTokenBitmapMessage {
+    subRange?: string[] | null;
+    voterToken?: string | null;
   }
   /**
    * Experimental NsrTeam data. This is a proto containing versioned signals which can be used to run live experiments. This proto will not be propagated to MDU shards, but it will be populated at query time by go/web-signal-joins inside the CompressedQualitySignals subproto of PerDocData proto. See go/0DayLEs for the design doc. Note how this is only meant to be used during LEs, it should *not* be used for launches.
@@ -38004,7 +37851,7 @@ export namespace contentwarehouse_v1 {
     siteChunkSource?: string | null;
   }
   /**
-   * NOTE: When adding a new field to be propagated to Raffia check if NsrPatternSignalSpec needs to be updated. Next ID: 54
+   * NOTE: When adding a new field to be propagated to Raffia check if NsrPatternSignalSpec needs to be updated. Next ID: 56
    */
   export interface Schema$QualityNsrNsrData {
     /**
@@ -38127,6 +37974,11 @@ export namespace contentwarehouse_v1 {
      * Estimate of site's PQ rating stddev--spread of the page-level PQ ratings of a site. Note this is different from nsr_variance which predicts error of NSR itself from the aggregated site-level rating.
      */
     siteQualityStddev?: number | null;
+    siteQualityStddevs?: Schema$QualityNsrVersionedFloatSignal[];
+    /**
+     * Score of small personal site promotion go/promoting-personal-blogs-v1
+     */
+    smallPersonalSite?: number | null;
     /**
      * The SpamBrain LAVC score, as of July 2022. See more information at go/cloverfield-lavc-deck.
      */
@@ -38334,6 +38186,41 @@ export namespace contentwarehouse_v1 {
      * The intent scores, scaled to integers between 0 and 100 for compactness.
      */
     scores?: number[] | null;
+  }
+  /**
+   * Stores information for a single image-only orbit intent. See go/orbit-for-images-v2 for more details.
+   */
+  export interface Schema$QualityOrbitOrbitImageIntent {
+    /**
+     * Intent of this proto instance.
+     */
+    imageIntent?: string | null;
+    missingInputs?: string[] | null;
+    /**
+     * Score of the intent.
+     */
+    score?: number | null;
+    /**
+     * Whether the intent triggered with the default threshold or not.
+     */
+    trigger?: boolean | null;
+  }
+  /**
+   * Image-only orbit intents (See: go/orbit-for-images-v2)
+   */
+  export interface Schema$QualityOrbitOrbitImageIntents {
+    /**
+     * Intents with non-trivial scores.
+     */
+    intents?: Schema$QualityOrbitOrbitImageIntent[];
+    /**
+     * Used to control merging behavior: partial protos will always be merged with current, while full protos will completely replace older versions.
+     */
+    isPartial?: boolean | null;
+    /**
+     * Represents the version. Filled in Amarna (main version controller).
+     */
+    version?: string | null;
   }
   /**
    * Information for chosen snippet. Next ID: 8
@@ -39315,10 +39202,6 @@ export namespace contentwarehouse_v1 {
     productBrowseonomyIds?: number[] | null;
     productClusterMid?: string | null;
     /**
-     * Organic product popularity.
-     */
-    productPopularity?: number | null;
-    /**
      * Relevance embedding from ShoppingAnnotation.Product
      */
     relevanceEmbedding?: Schema$QualityRankembedMustangMustangRankEmbedInfo[];
@@ -39733,6 +39616,7 @@ export namespace contentwarehouse_v1 {
      * Timing information that maps sentence boundaries in the punctuated transcript with timing offsets for the start and end of those sentences.
      */
     timingInfo?: Schema$QualityWebanswersVideoYouTubeCaptionTimingInfoAnnotations;
+    transcriptSource?: string | null;
     webrefEntities?: Schema$RepositoryWebrefWebrefEntities;
   }
   /**
@@ -39767,15 +39651,6 @@ export namespace contentwarehouse_v1 {
      * This is the number of days since January 1st 1995 that this domain last expired. This should always fit in 15 bits. Jan 1st 1995 was chosen by the history project as a special epoch date. Both the registrationinfo dates and the linkage dates are measured in days since this epoch.
      */
     expiredDate?: number | null;
-  }
-  /**
-   * The output of the face recognition signal.
-   */
-  export interface Schema$ReneFaceResponse {
-    /**
-     * Recognized faces in the image.
-     */
-    faces?: Schema$PhotosVisionServiceFaceFaceParams[];
   }
   /**
    * GeoTopicality of a document is a set of GeoTopics ordered by their normalized scores.
@@ -41468,10 +41343,6 @@ export namespace contentwarehouse_v1 {
      */
     nameMetadata?: Schema$RepositoryWebrefConceptNameMetadata;
     /**
-     * Whether the mention is a non-locational reference to a geographical entity. Ranges from 0 (locational) to 1 (non-locational).
-     */
-    nonLocationalScore?: number | null;
-    /**
      * Provides concised access to all matched MatchedLightweightToken.
      */
     perMentionLightweightToken?: Schema$RepositoryWebrefLightweightTokensPerMentionLightweightToken;
@@ -41499,14 +41370,6 @@ export namespace contentwarehouse_v1 {
      * Identifies the sub-segment where the annotation occurs. See SubSegmentIndex for details. Not present in QRef, also deprecated for URL segment types.
      */
     subsegmentIndex?: Schema$RepositoryWebrefSubSegmentIndex;
-    /**
-     * Confidence for the time_offset_ms annotation, quantized to values in range 0-127 (see speech::VideoASRServerUtil::ConfidenceQuantize for how the quantization was done). Confidence can be empty for special characters (e.g. spaces).
-     */
-    timeOffsetConfidence?: number | null;
-    /**
-     * Timestamp that this mention appeared in the video. The field is only populated for VIDEO_TRANSCRIPT when the byte offset is the same. It is extracted from cdoc.doc_videos.content_based_metadata.transcript_asr.transcript.timestamp.
-     */
-    timeOffsetMs?: number | null;
     /**
      * Confidence that this name is a trusted name of the entity. This is set only in case the confidence is higher than an internal threshold (see ConceptProbability).
      */
@@ -41991,22 +41854,8 @@ export namespace contentwarehouse_v1 {
    * Information about where the url comes from.
    */
   export interface Schema$RepositoryWebrefPreprocessingUrlSourceInfo {
-    deprecatedOldSchema?: Schema$RepositoryWebrefPreprocessingUrlSourceInfoOldSchema;
-    newSchema?: Schema$RepositoryWebrefPreprocessingUrlSourceInfoNewSchema;
     originalUrl?: string | null;
     source?: string | null;
-  }
-  /**
-   * Source information for the new reference url Freebase schema.
-   */
-  export interface Schema$RepositoryWebrefPreprocessingUrlSourceInfoNewSchema {
-    sourceProperty?: string | null;
-  }
-  /**
-   * Source information for the old reference url Freebase schema.
-   */
-  export interface Schema$RepositoryWebrefPreprocessingUrlSourceInfoOldSchema {
-    isOfficial?: boolean | null;
   }
   /**
    * A single processor counter stored as a pair of the counter name and the value.
@@ -42326,7 +42175,6 @@ export namespace contentwarehouse_v1 {
      */
     url?: string | null;
     webrefOutlinkInfos?: Schema$RepositoryWebrefWebrefOutlinkInfos;
-    webrefOutlinksLegacy?: Schema$Proto2BridgeMessageSet;
   }
   export interface Schema$RepositoryWebrefSimplifiedForwardingDup {
     url?: string | null;
@@ -42561,10 +42409,6 @@ export namespace contentwarehouse_v1 {
      * Optional extensions (e.g. taxonomic classifications).
      */
     extensions?: Schema$Proto2BridgeMessageSet;
-    /**
-     * Information about the outlinks of this document.
-     */
-    outlinkInfos?: Schema$RepositoryWebrefWebrefOutlinkInfos;
     /**
      * The content (CONTENT section 0) as parsed by WebrefParser. Only used by //r/w/postprocessing/idf/idf-pipeline for document ngram idf computation. Populated when the annotator is run with webref_populate_parsed_content Each webref_parsed_content_sentence represents one sentence of the context where saft annotations were used to determine the sentence boundaries. See r/w/universal/processors/saft/saft-sentence-helper.h for details.
      */
@@ -43420,7 +43264,7 @@ export namespace contentwarehouse_v1 {
     originalOrganizationName?: string | null;
   }
   /**
-   * A proto for storing inferred and reconciled metadata for Science Search. Next available tag: 73
+   * A proto for storing inferred and reconciled metadata for Science Search. Next available tag: 74
    */
   export interface Schema$ResearchScienceSearchReconciledMetadata {
     /**
@@ -43561,6 +43405,10 @@ export namespace contentwarehouse_v1 {
      * License for the dataset. DEPRECATED
      */
     licenseDeprecated?: string[] | null;
+    /**
+     * Indicates if the location has been reconciled for the dataset name. This is used by LocationExtender to avoid re-annotating the dataset name.
+     */
+    locationReconciledForName?: boolean | null;
     /**
      * A technique or technology used in a Dataset corresponding to the method used for measuring the corresponding variable(s) (described using variableMeasured). http://schema.org/measurementTechnique
      */
@@ -43802,161 +43650,6 @@ export namespace contentwarehouse_v1 {
      * A fingerprint id of the cluster of versions this dataset belongs to. This is a hash of a dataset_id in the cluster.
      */
     versionClusterId?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonAgeClassifierResults {
-    age?: string | null;
-    predictedAge?: number | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonChinLengthClassifierResults {
-    chinLength?: string | null;
-    confidence?: number | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonEyebrowShapeClassifierResults {
-    confidence?: number | null;
-    eyebrowShape?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonEyebrowThicknessClassifierResults {
-    confidence?: number | null;
-    eyebrowThickness?: string | null;
-  }
-  /**
-   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
-   */
-  export interface Schema$ResearchVisionFace2cartoonEyebrowWidthClassifierResults {
-    confidence?: number | null;
-    eyebrowWidth?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonEyeColorClassifierResults {
-    color?: string | null;
-    confidence?: number | null;
-  }
-  /**
-   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
-   */
-  export interface Schema$ResearchVisionFace2cartoonEyeEyebrowDistanceClassifierResults {
-    confidence?: number | null;
-    eyeEyebrowDistance?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonEyeShapeClassifierResults {
-    confidence?: number | null;
-    shape?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonEyeSlantClassifierResults {
-    confidence?: number | null;
-    eyeSlant?: string | null;
-  }
-  /**
-   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
-   */
-  export interface Schema$ResearchVisionFace2cartoonEyeVerticalPositionClassifierResults {
-    confidence?: number | null;
-    eyeVerticalPosition?: string | null;
-  }
-  /**
-   * Results of the Face2Cartoon pipeline.
-   */
-  export interface Schema$ResearchVisionFace2cartoonFace2CartoonResults {
-    ageClassifierResults?: Schema$ResearchVisionFace2cartoonAgeClassifierResults[];
-    chinLengthClassifierResults?: Schema$ResearchVisionFace2cartoonChinLengthClassifierResults[];
-    eyebrowShapeClassifierResults?: Schema$ResearchVisionFace2cartoonEyebrowShapeClassifierResults[];
-    eyebrowThicknessClassifierResults?: Schema$ResearchVisionFace2cartoonEyebrowThicknessClassifierResults[];
-    eyebrowWidthClassifierResults?: Schema$ResearchVisionFace2cartoonEyebrowWidthClassifierResults[];
-    eyeColorClassifierResults?: Schema$ResearchVisionFace2cartoonEyeColorClassifierResults[];
-    eyeEyebrowDistanceClassifierResults?: Schema$ResearchVisionFace2cartoonEyeEyebrowDistanceClassifierResults[];
-    eyeShapeClassifierResults?: Schema$ResearchVisionFace2cartoonEyeShapeClassifierResults[];
-    eyeSlantClassifierResults?: Schema$ResearchVisionFace2cartoonEyeSlantClassifierResults[];
-    eyeVerticalPositionClassifierResults?: Schema$ResearchVisionFace2cartoonEyeVerticalPositionClassifierResults[];
-    faceWidthClassifierResults?: Schema$ResearchVisionFace2cartoonFaceWidthClassifierResults[];
-    facialHairClassifierResults?: Schema$ResearchVisionFace2cartoonFacialHairClassifierResults[];
-    genderClassifierResults?: Schema$ResearchVisionFace2cartoonGenderClassifierResults[];
-    glassesClassifierResults?: Schema$ResearchVisionFace2cartoonGlassesClassifierResults[];
-    hairColorClassifierResults?: Schema$ResearchVisionFace2cartoonHairColorClassifierResults[];
-    hairStyleClassifierResults?: Schema$ResearchVisionFace2cartoonHairStyleClassifierResults[];
-    interEyeDistanceClassifierResults?: Schema$ResearchVisionFace2cartoonInterEyeDistanceClassifierResults[];
-    jawShapeClassifierResults?: Schema$ResearchVisionFace2cartoonJawShapeClassifierResults[];
-    lipThicknessClassifierResults?: Schema$ResearchVisionFace2cartoonLipThicknessClassifierResults[];
-    mouthVerticalPositionClassifierResults?: Schema$ResearchVisionFace2cartoonMouthVerticalPositionClassifierResults[];
-    mouthWidthClassifierResults?: Schema$ResearchVisionFace2cartoonMouthWidthClassifierResults[];
-    noseVerticalPositionClassifierResults?: Schema$ResearchVisionFace2cartoonNoseVerticalPositionClassifierResults[];
-    noseWidthClassifierResults?: Schema$ResearchVisionFace2cartoonNoseWidthClassifierResults[];
-    skinToneClassifierResults?: Schema$ResearchVisionFace2cartoonSkinToneClassifierResults[];
-  }
-  export interface Schema$ResearchVisionFace2cartoonFaceWidthClassifierResults {
-    confidence?: number | null;
-    faceWidth?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonFacialHairClassifierResults {
-    confidence?: number | null;
-    facialHair?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonGenderClassifierResults {
-    /**
-     * Uses a scaled version of the FaceSDK classifier's probability as the confidence (since the probability for the selected gender is between (0.5, 1] we scale it to be between (0, 1]).
-     */
-    confidence?: number | null;
-    gender?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonGlassesClassifierResults {
-    /**
-     * Uses a scaled version of the FaceSDK classifier's probability as the confidence (since the probability for the selected glasses is between (0.5, 1] we scale it to be between (0, 1]).
-     */
-    confidence?: number | null;
-    glassesType?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonHairColorClassifierResults {
-    confidence?: number | null;
-    hairColor?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonHairStyleClassifierResults {
-    confidence?: number | null;
-    hairStyle?: string | null;
-  }
-  /**
-   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
-   */
-  export interface Schema$ResearchVisionFace2cartoonInterEyeDistanceClassifierResults {
-    confidence?: number | null;
-    interEyeDistance?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonJawShapeClassifierResults {
-    confidence?: number | null;
-    jawShape?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonLipThicknessClassifierResults {
-    confidence?: number | null;
-    lipThickness?: string | null;
-  }
-  /**
-   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
-   */
-  export interface Schema$ResearchVisionFace2cartoonMouthVerticalPositionClassifierResults {
-    confidence?: number | null;
-    mouthVerticalPosition?: string | null;
-  }
-  /**
-   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
-   */
-  export interface Schema$ResearchVisionFace2cartoonMouthWidthClassifierResults {
-    confidence?: number | null;
-    mouthWidth?: string | null;
-  }
-  /**
-   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
-   */
-  export interface Schema$ResearchVisionFace2cartoonNoseVerticalPositionClassifierResults {
-    confidence?: number | null;
-    noseVerticalPosition?: string | null;
-  }
-  /**
-   * The measurement underlying this assumes fixed ear positions, so applying this combined with the FaceWidthClassifierResults may have an unintended outcome.
-   */
-  export interface Schema$ResearchVisionFace2cartoonNoseWidthClassifierResults {
-    confidence?: number | null;
-    noseWidth?: string | null;
-  }
-  export interface Schema$ResearchVisionFace2cartoonSkinToneClassifierResults {
-    confidence?: number | null;
-    skinToneType?: string | null;
   }
   /**
    * Next ID: 11
@@ -47840,7 +47533,7 @@ export namespace contentwarehouse_v1 {
     uncompressedSize?: string | null;
   }
   /**
-   * Fetcher -\> FetchClient FetchReplyData is the metadata for a reply from a FetchRequest. For metadata + document body, FetchReply is further below. NOTE: FetchReplyData (and FetchReply) is the output interface from Multiverse. Teams outside Multiverse/Trawler should not create fake FetchReplies. Trawler: When adding new fields here, it is recommended that at least the following be rebuilt and pushed: - cron_fetcher_index mapreduces: so that UrlReplyIndex, etc. retain the new fields - tlookup, tlookup_server: want to be able to return the new fields - logviewer, fetchutil: annoying to get back 'tag88:' in results -------------------------- Next Tag: 124 -----------------------
+   * Fetcher -\> FetchClient FetchReplyData is the metadata for a reply from a FetchRequest. For metadata + document body, FetchReply is further below. NOTE: FetchReplyData (and FetchReply) is the output interface from Multiverse. Teams outside Multiverse/Trawler should not create fake FetchReplies. Trawler: When adding new fields here, it is recommended that at least the following be rebuilt and pushed: - cron_fetcher_index mapreduces: so that UrlReplyIndex, etc. retain the new fields - tlookup, tlookup_server: want to be able to return the new fields - logviewer, fetchutil: annoying to get back 'tag88:' in results -------------------------- Next Tag: 125 -----------------------
    */
   export interface Schema$TrawlerFetchReplyData {
     /**
@@ -48051,6 +47744,7 @@ export namespace contentwarehouse_v1 {
      * Use the special compression dictionary for uncompressing this. (trawler::kHtmlCompressionDict. Use trawler::FetchReplyUncompressor to uncompress; crawler/trawler/public/fetchreply-util.h)
      */
     UseHtmlCompressDictionary?: boolean | null;
+    webioInfo?: Schema$TrawlerFetchReplyDataWebIOInfo;
   }
   /**
    * Reuse information returned if UrlState == CRAWLED, specifying when we may have reused from cache. See also ReuseInfo below. NOTE: Please use the CrawlTimes below. CrawlDates is deprecated. use CrawlTimes instead!
@@ -48297,6 +47991,13 @@ export namespace contentwarehouse_v1 {
      * URL and redirect type
      */
     Type?: string | null;
+  }
+  /**
+   * WebIO is the new hostload model introduced in 2023. It measures the occupancy of 1 outgoing fetch connection for 1 minute.
+   */
+  export interface Schema$TrawlerFetchReplyDataWebIOInfo {
+    webio?: number | null;
+    webioPercentageTier?: string | null;
   }
   export interface Schema$TrawlerFetchStatus {
     /**
@@ -53930,7 +53631,7 @@ export namespace contentwarehouse_v1 {
      */
     postId?: string | null;
     /**
-     * The language code stored in the KV pair ranking:post_language. This should usually be the same as language_code but is not guaranteed to be identical. The KV pair is needed because ranking can't consume user_content.
+     * The language code stored in the KV pair ranking:post_language. This should usually be the same as language_code but is not guaranteed to be identical. The KV pair is needed because SBE ranking can't consume user_content. Still populated, but deprecated.
      */
     rankingPostLanguage?: string | null;
     /**
