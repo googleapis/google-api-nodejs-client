@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20231017",
+  "revision": "20231102",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "CertChain": {
@@ -1288,6 +1288,11 @@
         "reservedIpRange": {
           "description": "Optional. For DIRECT_PEERING mode, the CIDR range of internal addresses that are reserved for this instance. Range must be unique and non-overlapping with existing subnets in an authorized network. For PRIVATE_SERVICE_ACCESS mode, the name of one allocated IP address ranges associated with this private service access connection. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. For READ_REPLICAS_ENABLED the default block size is /28.",
           "type": "string"
+        },
+        "satisfiesPzs": {
+          "description": "Optional. Output only. Reserved for future use. Zone Separation compliance state of the instance. Field name and documentation is obfuscated according to go/zs-resource-status.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "secondaryIpRange": {
           "description": "Optional. Additional IP range for node placement. Required when enabling read replicas on an existing instance. For DIRECT_PEERING mode value must be a CIDR range of size /28, or \"auto\". For PRIVATE_SERVICE_ACCESS mode value must be the name of an allocated address range associated with the private service access connection, or \"auto\".",
