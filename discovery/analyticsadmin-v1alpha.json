@@ -4298,7 +4298,7 @@
       }
     }
   },
-  "revision": "20231018",
+  "revision": "20231114",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -4884,20 +4884,12 @@
             "REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED",
             "PAID_AND_ORGANIC_CHANNELS_DATA_DRIVEN",
             "PAID_AND_ORGANIC_CHANNELS_LAST_CLICK",
-            "PAID_AND_ORGANIC_CHANNELS_FIRST_CLICK",
-            "PAID_AND_ORGANIC_CHANNELS_LINEAR",
-            "PAID_AND_ORGANIC_CHANNELS_POSITION_BASED",
-            "PAID_AND_ORGANIC_CHANNELS_TIME_DECAY",
             "GOOGLE_PAID_CHANNELS_LAST_CLICK"
           ],
           "enumDescriptions": [
             "Reporting attribution model unspecified.",
             "Data-driven attribution distributes credit for the conversion based on data for each conversion event. Each Data-driven model is specific to each advertiser and each conversion event. Previously CROSS_CHANNEL_DATA_DRIVEN",
             "Ignores direct traffic and attributes 100% of the conversion value to the last channel that the customer clicked through (or engaged view through for YouTube) before converting. Previously CROSS_CHANNEL_LAST_CLICK",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting. Previously CROSS_CHANNEL_FIRST_CLICK",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting. Previously CROSS_CHANNEL_LINEAR",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions. Previously CROSS_CHANNEL_POSITION_BASED",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives more credit to the touchpoints that happened closer in time to the conversion. Previously CROSS_CHANNEL_TIME_DECAY",
             "Attributes 100% of the conversion value to the last Google Paid channel that the customer clicked through before converting. Previously ADS_PREFERRED_LAST_CLICK"
           ],
           "type": "string"
@@ -5656,7 +5648,7 @@
           "type": "string"
         },
         "groupingRule": {
-          "description": "Required. The grouping rules of channels. Maximum number of rules is 25.",
+          "description": "Required. The grouping rules of channels. Maximum number of rules is 50.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaGroupingRule"
           },
@@ -5822,6 +5814,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "defaultConversionValue": {
+          "$ref": "GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue",
+          "description": "Optional. Defines a default value/currency for a conversion event."
+        },
         "deletable": {
           "description": "Output only. If set, this event can currently be deleted with DeleteConversionEvent.",
           "readOnly": true,
@@ -5835,6 +5831,22 @@
           "description": "Output only. Resource name of this conversion event. Format: properties/{property}/conversionEvents/{conversion_event}",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue": {
+      "description": "Defines a default value/currency for a conversion event. Both value and currency must be provided.",
+      "id": "GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue",
+      "properties": {
+        "currencyCode": {
+          "description": "When a conversion event for this event_name has no set currency, this currency will be applied as the default. Must be in ISO 4217 currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for more.",
+          "type": "string"
+        },
+        "value": {
+          "description": "This value will be used to populate the value for all conversions of the specified event_name where the event \"value\" parameter is unset.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"

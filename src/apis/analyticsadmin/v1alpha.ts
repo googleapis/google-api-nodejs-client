@@ -1069,7 +1069,7 @@ export namespace analyticsadmin_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Required. The grouping rules of channels. Maximum number of rules is 25.
+     * Required. The grouping rules of channels. Maximum number of rules is 50.
      */
     groupingRule?: Schema$GoogleAnalyticsAdminV1alphaGroupingRule[];
     /**
@@ -1180,6 +1180,10 @@ export namespace analyticsadmin_v1alpha {
      */
     custom?: boolean | null;
     /**
+     * Optional. Defines a default value/currency for a conversion event.
+     */
+    defaultConversionValue?: Schema$GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue;
+    /**
      * Output only. If set, this event can currently be deleted with DeleteConversionEvent.
      */
     deletable?: boolean | null;
@@ -1191,6 +1195,19 @@ export namespace analyticsadmin_v1alpha {
      * Output only. Resource name of this conversion event. Format: properties/{property\}/conversionEvents/{conversion_event\}
      */
     name?: string | null;
+  }
+  /**
+   * Defines a default value/currency for a conversion event. Both value and currency must be provided.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue {
+    /**
+     * When a conversion event for this event_name has no set currency, this currency will be applied as the default. Must be in ISO 4217 currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for more.
+     */
+    currencyCode?: string | null;
+    /**
+     * This value will be used to populate the value for all conversions of the specified event_name where the event "value" parameter is unset.
+     */
+    value?: number | null;
   }
   /**
    * Conversion value settings for a postback window for SKAdNetwork conversion value schema.
