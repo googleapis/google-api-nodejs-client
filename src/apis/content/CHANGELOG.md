@@ -1,5 +1,17 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v16.0.0...content-v17.0.0) (2023-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **content:** update the API ([9330380](https://github.com/googleapis/google-api-nodejs-client/commit/93303805486d19402dd56a97432e10f06dd56d17))
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v15.0.0...content-v16.0.0) (2023-10-19)
 
 

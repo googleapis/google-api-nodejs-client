@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v5.1.0...manufacturers-v5.2.0) (2023-11-27)
+
+
+### Features
+
+* **manufacturers:** update the API ([a39d751](https://github.com/googleapis/google-api-nodejs-client/commit/a39d7515ac760d2688a87a990bc970669bd19317))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v5.0.4...manufacturers-v5.1.0) (2023-10-11)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v6.0.0...gmail-v6.1.0) (2023-11-27)
+
+
+### Features
+
+* **gmail:** update the API ([1fe47cf](https://github.com/googleapis/google-api-nodejs-client/commit/1fe47cf81e9656a15f085ad859b0968f0ae24569))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v5.0.4...gmail-v6.0.0) (2023-10-11)
 
 

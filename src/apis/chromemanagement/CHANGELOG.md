@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v10.1.0...chromemanagement-v10.2.0) (2023-11-27)
+
+
+### Features
+
+* **chromemanagement:** update the API ([1414b5c](https://github.com/googleapis/google-api-nodejs-client/commit/1414b5c0164f00058a28016aca3caaf750983357))
+
 ## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v10.0.4...chromemanagement-v10.1.0) (2023-10-11)
 
 

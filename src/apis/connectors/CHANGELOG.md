@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v7.1.0...connectors-v7.2.0) (2023-11-27)
+
+
+### Features
+
+* **connectors:** update the API ([863f64f](https://github.com/googleapis/google-api-nodejs-client/commit/863f64ff009635ad2fa4c79216a4b82b22e6235e))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v7.0.0...connectors-v7.1.0) (2023-10-19)
 
 

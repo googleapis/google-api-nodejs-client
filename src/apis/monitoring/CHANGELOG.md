@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v3.0.0...monitoring-v4.0.0) (2023-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **monitoring:** This release has breaking changes.
+
+### Features
+
+* **monitoring:** update the API ([905f3c0](https://github.com/googleapis/google-api-nodejs-client/commit/905f3c0f625322e85dc414270064fd63c8980bc1))
+* **monitoring:** update the API ([300fa23](https://github.com/googleapis/google-api-nodejs-client/commit/300fa23a5fd7b192a91fbc6916b37f46ef2444c8))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v2.1.0...monitoring-v3.0.0) (2023-10-11)
 
 
