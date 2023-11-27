@@ -852,8 +852,10 @@ export namespace ondemandscanning_v1beta1 {
     version?: Schema$Version;
   }
   export interface Schema$Maintainer {
+    email?: string | null;
     kind?: string | null;
     name?: string | null;
+    url?: string | null;
   }
   export interface Schema$Material {
     digest?: {[key: string]: string} | null;
