@@ -1382,325 +1382,9 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
+                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/scopes/{scope}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+/rbacrolebindings/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "updateMask": {
-                          "description": "Required. The fields to be updated.",
-                          "format": "google-fieldmask",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+name}",
-                      "request": {
-                        "$ref": "RBACRoleBinding"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "namespaces": {
-              "methods": {
-                "create": {
-                  "description": "Creates a fleet namespace.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces",
-                  "httpMethod": "POST",
-                  "id": "gkehub.projects.locations.namespaces.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "namespaceId": {
-                      "description": "Required. Client chosen ID for the Namespace. `namespace_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The parent (project and location) where the Namespace will be created. Specified in the format `projects/*/locations/*`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/namespaces",
-                  "request": {
-                    "$ref": "Namespace"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "delete": {
-                  "description": "Deletes a fleet namespace.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
-                  "httpMethod": "DELETE",
-                  "id": "gkehub.projects.locations.namespaces.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The Namespace resource name in the format `projects/*/locations/*/namespaces/*`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "get": {
-                  "description": "Returns the details of a fleet namespace.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
-                  "httpMethod": "GET",
-                  "id": "gkehub.projects.locations.namespaces.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The Namespace resource name in the format `projects/*/locations/*/namespaces/*`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "Namespace"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "list": {
-                  "description": "Lists fleet namespaces.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces",
-                  "httpMethod": "GET",
-                  "id": "gkehub.projects.locations.namespaces.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "pageSize": {
-                      "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "Optional. Token returned by previous call to `ListFeatures` which specifies the position in the list from where to continue listing the resources.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/*/locations/*`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/namespaces",
-                  "response": {
-                    "$ref": "ListNamespacesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "patch": {
-                  "description": "Updates a fleet namespace.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
-                  "httpMethod": "PATCH",
-                  "id": "gkehub.projects.locations.namespaces.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "The resource name for the namespace `projects/{project}/locations/{location}/namespaces/{namespace}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. The fields to be updated.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "request": {
-                    "$ref": "Namespace"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              },
-              "resources": {
-                "rbacrolebindings": {
-                  "methods": {
-                    "create": {
-                      "description": "Creates a RBACRoleBinding.",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings",
-                      "httpMethod": "POST",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.create",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/*/locations/*/namespaces/*`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "rbacrolebindingId": {
-                          "description": "Required. Client chosen ID for the RBACRoleBinding. `rbacrolebinding_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+parent}/rbacrolebindings",
-                      "request": {
-                        "$ref": "RBACRoleBinding"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "delete": {
-                      "description": "Deletes a RBACRoleBinding.",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings/{rbacrolebindingsId}",
-                      "httpMethod": "DELETE",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.delete",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The RBACRoleBinding resource name in the format `projects/*/locations/*/namespaces/*/rbacrolebindings/*`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/rbacrolebindings/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+name}",
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "get": {
-                      "description": "Returns the details of a RBACRoleBinding.",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings/{rbacrolebindingsId}",
-                      "httpMethod": "GET",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The RBACRoleBinding resource name in the format `projects/*/locations/*/namespaces/*/rbacrolebindings/*`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/rbacrolebindings/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+name}",
-                      "response": {
-                        "$ref": "RBACRoleBinding"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "list": {
-                      "description": "Lists RBACRoleBinding.",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings",
-                      "httpMethod": "GET",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.list",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "pageSize": {
-                          "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "Optional. Token returned by previous call to `ListRBACRoleBindings` which specifies the position in the list from where to continue listing the resources.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/*/locations/*/namespaces/*`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+parent}/rbacrolebindings",
-                      "response": {
-                        "$ref": "ListRBACRoleBindingsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "patch": {
-                      "description": "Updates a RBACRoleBinding.",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings/{rbacrolebindingsId}",
-                      "httpMethod": "PATCH",
-                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.patch",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/rbacrolebindings/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
@@ -2381,7 +2065,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
+                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/scopes/{scope}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/scopes/[^/]+/rbacrolebindings/[^/]+$",
                           "required": true,
@@ -2414,7 +2098,7 @@
       }
     }
   },
-  "revision": "20231013",
+  "revision": "20231114",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2545,6 +2229,34 @@
           "description": "Output only. The name of the workload identity pool in which `issuer` will be recognized. There is a single Workload Identity Pool per Hub that is shared between all Memberships that belong to that Hub. For a Hub hosted in {PROJECT_ID}, the workload pool format is `{PROJECT_ID}.hub.id.goog`, although this is subject to change in newer versions of this API.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BinaryAuthorizationConfig": {
+      "description": "BinaryAuthorizationConfig defines the fleet level configuration of binary authorization feature.",
+      "id": "BinaryAuthorizationConfig",
+      "properties": {
+        "evaluationMode": {
+          "description": "Optional. Mode of operation for binauthz policy evaluation.",
+          "enum": [
+            "EVALUATION_MODE_UNSPECIFIED",
+            "DISABLED",
+            "POLICY_BINDINGS"
+          ],
+          "enumDescriptions": [
+            "Default value",
+            "Disable BinaryAuthorization",
+            "Use Binary Authorization with the policies specified in policy_bindings."
+          ],
+          "type": "string"
+        },
+        "policyBindings": {
+          "description": "Optional. Binauthz policies that apply to this cluster.",
+          "items": {
+            "$ref": "PolicyBinding"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2952,6 +2664,10 @@
           "$ref": "MultiClusterIngressFeatureSpec",
           "description": "Multicluster Ingress-specific spec."
         },
+        "namespaceactuation": {
+          "$ref": "NamespaceActuationFeatureSpec",
+          "description": "Namespace Actuation feature spec"
+        },
         "workloadcertificate": {
           "$ref": "FeatureSpec",
           "description": "Workload Certificate spec."
@@ -2974,6 +2690,10 @@
         "fleetobservability": {
           "$ref": "FleetObservabilityFeatureState",
           "description": "FleetObservability feature state."
+        },
+        "namespaceactuation": {
+          "$ref": "NamespaceActuationFeatureState",
+          "description": "Namespace Actuation feature state."
         },
         "servicemesh": {
           "$ref": "ServiceMeshFeatureState",
@@ -2998,6 +2718,10 @@
         "identityservice": {
           "$ref": "IdentityServiceMembershipSpec",
           "description": "Identity Service-specific spec."
+        },
+        "mesh": {
+          "$ref": "ServiceMeshMembershipSpec",
+          "description": "Anthos Service Mesh-specific spec"
         },
         "policycontroller": {
           "$ref": "PolicyControllerMembershipSpec",
@@ -3031,13 +2755,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         }
@@ -3087,10 +2813,6 @@
         "sourceFormat": {
           "description": "Specifies whether the Config Sync Repo is in \"hierarchical\" or \"unstructured\" mode.",
           "type": "string"
-        },
-        "stopSyncing": {
-          "description": "Set to true to stop syncing configs for a single cluster when automatic Feature management is enabled. Default to false. The field will be ignored when automatic Feature management is disabled.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -3105,13 +2827,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3121,13 +2845,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3137,13 +2863,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3153,13 +2881,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3169,13 +2899,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3185,13 +2917,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3201,13 +2935,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         }
@@ -3319,13 +3055,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3335,13 +3073,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3351,13 +3091,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         }
@@ -3452,13 +3194,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3468,13 +3212,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         }
@@ -3542,20 +3288,6 @@
         "hierarchyController": {
           "$ref": "ConfigManagementHierarchyControllerConfig",
           "description": "Hierarchy Controller configuration for the cluster."
-        },
-        "management": {
-          "description": "Enables automatic Feature management.",
-          "enum": [
-            "MANAGEMENT_UNSPECIFIED",
-            "MANAGEMENT_AUTOMATIC",
-            "MANAGEMENT_MANUAL"
-          ],
-          "enumDescriptions": [
-            "Unspecified",
-            "Google will manage the Feature for the cluster.",
-            "User will manually manage the Feature for the cluster."
-          ],
-          "type": "string"
         },
         "policyController": {
           "$ref": "ConfigManagementPolicyController",
@@ -3641,13 +3373,15 @@
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
             "INSTALLED",
-            "ERROR"
+            "ERROR",
+            "PENDING"
           ],
           "enumDescriptions": [
             "Deployment's state cannot be determined",
             "Deployment is not installed",
             "Deployment is installed",
-            "Deployment was attempted to be installed, but has errors"
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
           ],
           "type": "string"
         },
@@ -3891,6 +3625,21 @@
       },
       "type": "object"
     },
+    "DefaultClusterConfig": {
+      "description": "DefaultClusterConfig describes the default cluster configurations to be applied to all clusters born-in-fleet.",
+      "id": "DefaultClusterConfig",
+      "properties": {
+        "binaryAuthorizationConfig": {
+          "$ref": "BinaryAuthorizationConfig",
+          "description": "Optional. Enable/Disable binary authorization features for the cluster."
+        },
+        "securityPostureConfig": {
+          "$ref": "SecurityPostureConfig",
+          "description": "Enable/Disable Security Posture features for the cluster."
+        }
+      },
+      "type": "object"
+    },
     "EdgeCluster": {
       "description": "EdgeCluster contains information specific to Google Edge Clusters.",
       "id": "EdgeCluster",
@@ -4113,6 +3862,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "defaultClusterConfig": {
+          "$ref": "DefaultClusterConfig",
+          "description": "Optional. The default cluster configurations to apply across the fleet."
         },
         "deleteTime": {
           "description": "Output only. When the Fleet was deleted.",
@@ -4783,24 +4536,6 @@
       },
       "type": "object"
     },
-    "ListNamespacesResponse": {
-      "description": "List of fleet namespaces.",
-      "id": "ListNamespacesResponse",
-      "properties": {
-        "namespaces": {
-          "description": "The list of fleet namespaces",
-          "items": {
-            "$ref": "Namespace"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A token to request the next page of resources from the `ListNamespaces` method. The value of an empty string means that there are no more resources to return.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "ListOperationsResponse",
@@ -4813,24 +4548,6 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ListRBACRoleBindingsResponse": {
-      "description": "List of RBACRoleBindings.",
-      "id": "ListRBACRoleBindingsResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "A token to request the next page of resources from the `ListRBACRoleBindings` method. The value of an empty string means that there are no more resources to return.",
-          "type": "string"
-        },
-        "rbacrolebindings": {
-          "description": "The list of RBACRoleBindings",
-          "items": {
-            "$ref": "RBACRoleBinding"
           },
           "type": "array"
         }
@@ -5144,6 +4861,10 @@
           "$ref": "ServiceMeshMembershipSpec",
           "description": "Anthos Service Mesh-specific spec"
         },
+        "namespaceactuation": {
+          "$ref": "NamespaceActuationMembershipSpec",
+          "description": "FNS Actuation membership spec"
+        },
         "origin": {
           "$ref": "Origin",
           "description": "Whether this per-Membership spec was inherited from a fleet-level default. This field can be updated by users by either overriding a Membership config (updated to USER implicitly) or setting to FLEET explicitly."
@@ -5186,6 +4907,10 @@
         "metering": {
           "$ref": "MeteringMembershipState",
           "description": "Metering-specific state."
+        },
+        "namespaceactuation": {
+          "$ref": "NamespaceActuationMembershipState",
+          "description": "FNS Actuation membership state"
         },
         "policycontroller": {
           "$ref": "PolicyControllerMembershipState",
@@ -5394,6 +5119,45 @@
       },
       "type": "object"
     },
+    "NamespaceActuationFeatureSpec": {
+      "description": "An empty spec for actuation feature. This is required since Feature proto requires a spec.",
+      "id": "NamespaceActuationFeatureSpec",
+      "properties": {
+        "actuationMode": {
+          "description": "actuation_mode controls the behavior of the controller",
+          "enum": [
+            "ACTUATION_MODE_UNSPECIFIED",
+            "ACTUATION_MODE_CREATE_AND_DELETE_IF_CREATED",
+            "ACTUATION_MODE_ADD_AND_REMOVE_FLEET_LABELS"
+          ],
+          "enumDescriptions": [
+            "ACTUATION_MODE_UNSPECIFIED is similar to CREATE_AND_DELETE_IF_CREATED in the default controller behavior.",
+            "ACTUATION_MODE_CREATE_AND_DELETE_IF_CREATED has the controller create cluster namespaces for each fleet namespace and it deletes only the ones it created, which are identified by a label.",
+            "ACTUATION_MODE_ADD_AND_REMOVE_FLEET_LABELS has the controller only apply labels to cluster namespaces to signal fleet namespace enablement. It doesn't create or delete cluster namespaces."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NamespaceActuationFeatureState": {
+      "description": "NamespaceActuation Feature State.",
+      "id": "NamespaceActuationFeatureState",
+      "properties": {},
+      "type": "object"
+    },
+    "NamespaceActuationMembershipSpec": {
+      "description": "**Namespace Actuation**: The membership-specific input for NamespaceActuation feature.",
+      "id": "NamespaceActuationMembershipSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "NamespaceActuationMembershipState": {
+      "description": "**Namespace Actuation**: An empty state left as an example membership-specific Feature state.",
+      "id": "NamespaceActuationMembershipState",
+      "properties": {},
+      "type": "object"
+    },
     "NamespaceLifecycleState": {
       "description": "NamespaceLifecycleState describes the state of a Namespace resource.",
       "id": "NamespaceLifecycleState",
@@ -5587,6 +5351,17 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyBinding": {
+      "description": "Binauthz policy that applies to this cluster.",
+      "id": "PolicyBinding",
+      "properties": {
+        "name": {
+          "description": "The relative resource name of the binauthz platform policy to audit. GKE platform policies have the following format: `projects/{project_number}/platforms/gke/policies/{policy_id}`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5981,7 +5756,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
+          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/scopes/{scope}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
           "type": "string"
         },
         "role": {
@@ -6197,6 +5972,43 @@
             "The scope is being updated."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPostureConfig": {
+      "description": "SecurityPostureConfig defines the flags needed to enable/disable features for the Security Posture API.",
+      "id": "SecurityPostureConfig",
+      "properties": {
+        "mode": {
+          "description": "Sets which mode to use for Security Posture features.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "BASIC"
+          ],
+          "enumDescriptions": [
+            "Default value not specified.",
+            "Disables Security Posture features on the cluster.",
+            "Applies Security Posture features on the cluster."
+          ],
+          "type": "string"
+        },
+        "vulnerabilityMode": {
+          "description": "Sets which mode to use for vulnerability scanning.",
+          "enum": [
+            "VULNERABILITY_MODE_UNSPECIFIED",
+            "VULNERABILITY_DISABLED",
+            "VULNERABILITY_BASIC",
+            "VULNERABILITY_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Default value not specified.",
+            "Disables vulnerability scanning on the cluster.",
+            "Applies basic vulnerability scanning on the cluster.",
+            "Applies the Security Posture's vulnerability on cluster Enterprise level features."
+          ],
           "type": "string"
         }
       },

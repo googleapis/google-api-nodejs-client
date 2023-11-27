@@ -222,6 +222,19 @@ export namespace gkehub_v1beta {
     workloadIdentityPool?: string | null;
   }
   /**
+   * BinaryAuthorizationConfig defines the fleet level configuration of binary authorization feature.
+   */
+  export interface Schema$BinaryAuthorizationConfig {
+    /**
+     * Optional. Mode of operation for binauthz policy evaluation.
+     */
+    evaluationMode?: string | null;
+    /**
+     * Optional. Binauthz policies that apply to this cluster.
+     */
+    policyBindings?: Schema$PolicyBinding[];
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -243,6 +256,190 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * **ClusterUpgrade**: The configuration for the fleet-level ClusterUpgrade feature.
+   */
+  export interface Schema$ClusterUpgradeFleetSpec {
+    /**
+     * Allow users to override some properties of each GKE upgrade.
+     */
+    gkeUpgradeOverrides?: Schema$ClusterUpgradeGKEUpgradeOverride[];
+    /**
+     * Required. Post conditions to evaluate to mark an upgrade COMPLETE. Required.
+     */
+    postConditions?: Schema$ClusterUpgradePostConditions;
+    /**
+     * This fleet consumes upgrades that have COMPLETE status code in the upstream fleets. See UpgradeStatus.Code for code definitions. The fleet name should be either fleet project number or id. This is defined as repeated for future proof reasons. Initial implementation will enforce at most one upstream fleet.
+     */
+    upstreamFleets?: string[] | null;
+  }
+  /**
+   * **ClusterUpgrade**: The state for the fleet-level ClusterUpgrade feature.
+   */
+  export interface Schema$ClusterUpgradeFleetState {
+    /**
+     * This fleets whose upstream_fleets contain the current fleet. The fleet name should be either fleet project number or id.
+     */
+    downstreamFleets?: string[] | null;
+    /**
+     * Feature state for GKE clusters.
+     */
+    gkeState?: Schema$ClusterUpgradeGKEUpgradeFeatureState;
+    /**
+     * A list of memberships ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel. The membership resource is in the format: `projects/{p\}/locations/{l\}/membership/{m\}`.
+     */
+    ignored?: {[key: string]: Schema$ClusterUpgradeIgnoredMembership} | null;
+  }
+  /**
+   * GKEUpgrade represents a GKE provided upgrade, e.g., control plane upgrade.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgrade {
+    /**
+     * Name of the upgrade, e.g., "k8s_control_plane". It should be a valid upgrade name. It must not exceet 99 characters.
+     */
+    name?: string | null;
+    /**
+     * Version of the upgrade, e.g., "1.22.1-gke.100". It should be a valid version. It must not exceet 99 characters.
+     */
+    version?: string | null;
+  }
+  /**
+   * GKEUpgradeFeatureCondition describes the condition of the feature for GKE clusters at a certain point of time.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgradeFeatureCondition {
+    /**
+     * Reason why the feature is in this status.
+     */
+    reason?: string | null;
+    /**
+     * Status of the condition, one of True, False, Unknown.
+     */
+    status?: string | null;
+    /**
+     * Type of the condition, for example, "ready".
+     */
+    type?: string | null;
+    /**
+     * Last timestamp the condition was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * GKEUpgradeFeatureState contains feature states for GKE clusters in the scope.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgradeFeatureState {
+    /**
+     * Current conditions of the feature.
+     */
+    conditions?: Schema$ClusterUpgradeGKEUpgradeFeatureCondition[];
+    /**
+     * Upgrade state. It will eventually replace `state`.
+     */
+    upgradeState?: Schema$ClusterUpgradeGKEUpgradeState[];
+  }
+  /**
+   * Properties of a GKE upgrade that can be overridden by the user. For example, a user can skip soaking by overriding the soaking to 0.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgradeOverride {
+    /**
+     * Required. Post conditions to override for the specified upgrade (name + version). Required.
+     */
+    postConditions?: Schema$ClusterUpgradePostConditions;
+    /**
+     * Required. Which upgrade to override. Required.
+     */
+    upgrade?: Schema$ClusterUpgradeGKEUpgrade;
+  }
+  /**
+   * GKEUpgradeState is a GKEUpgrade and its state at the scope and fleet level.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgradeState {
+    /**
+     * Number of GKE clusters in each status code.
+     */
+    stats?: {[key: string]: string} | null;
+    /**
+     * Status of the upgrade.
+     */
+    status?: Schema$ClusterUpgradeUpgradeStatus;
+    /**
+     * Which upgrade to track the state.
+     */
+    upgrade?: Schema$ClusterUpgradeGKEUpgrade;
+  }
+  /**
+   * IgnoredMembership represents a membership ignored by the feature. A membership can be ignored because it was manually upgraded to a newer version than RC default.
+   */
+  export interface Schema$ClusterUpgradeIgnoredMembership {
+    /**
+     * Time when the membership was first set to ignored.
+     */
+    ignoredTime?: string | null;
+    /**
+     * Reason why the membership is ignored.
+     */
+    reason?: string | null;
+  }
+  /**
+   * ScopeGKEUpgradeState is a GKEUpgrade and its state per-membership.
+   */
+  export interface Schema$ClusterUpgradeMembershipGKEUpgradeState {
+    /**
+     * Status of the upgrade.
+     */
+    status?: Schema$ClusterUpgradeUpgradeStatus;
+    /**
+     * Which upgrade to track the state.
+     */
+    upgrade?: Schema$ClusterUpgradeGKEUpgrade;
+  }
+  /**
+   * Per-membership state for this feature.
+   */
+  export interface Schema$ClusterUpgradeMembershipState {
+    /**
+     * Project number or id of the fleet. It is set only for Memberships that are part of fleet-based Rollout Sequencing.
+     */
+    fleet?: string | null;
+    /**
+     * Whether this membership is ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel.
+     */
+    ignored?: Schema$ClusterUpgradeIgnoredMembership;
+    /**
+     * Fully qualified scope names that this clusters is bound to which also have rollout sequencing enabled.
+     */
+    scopes?: string[] | null;
+    /**
+     * Actual upgrade state against desired.
+     */
+    upgrades?: Schema$ClusterUpgradeMembershipGKEUpgradeState[];
+  }
+  /**
+   * Post conditional checks after an upgrade has been applied on all eligible clusters.
+   */
+  export interface Schema$ClusterUpgradePostConditions {
+    /**
+     * Required. Amount of time to "soak" after a rollout has been finished before marking it COMPLETE. Cannot exceed 30 days. Required.
+     */
+    soaking?: string | null;
+  }
+  /**
+   * UpgradeStatus provides status information for each upgrade.
+   */
+  export interface Schema$ClusterUpgradeUpgradeStatus {
+    /**
+     * Status code of the upgrade.
+     */
+    code?: string | null;
+    /**
+     * Reason for this status.
+     */
+    reason?: string | null;
+    /**
+     * Last timestamp the status was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * CommonFeatureSpec contains Hub-wide configuration information
    */
   export interface Schema$CommonFeatureSpec {
@@ -254,6 +451,10 @@ export namespace gkehub_v1beta {
      * Appdevexperience specific spec.
      */
     appdevexperience?: Schema$AppDevExperienceFeatureSpec;
+    /**
+     * ClusterUpgrade (fleet-based) feature spec.
+     */
+    clusterupgrade?: Schema$ClusterUpgradeFleetSpec;
     /**
      * FleetObservability feature spec.
      */
@@ -271,6 +472,10 @@ export namespace gkehub_v1beta {
      * Appdevexperience specific state.
      */
     appdevexperience?: Schema$AppDevExperienceFeatureState;
+    /**
+     * ClusterUpgrade fleet-level state.
+     */
+    clusterupgrade?: Schema$ClusterUpgradeFleetState;
     /**
      * FleetObservability feature state.
      */
@@ -292,6 +497,10 @@ export namespace gkehub_v1beta {
      * Identity Service-specific spec.
      */
     identityservice?: Schema$IdentityServiceMembershipSpec;
+    /**
+     * Anthos Service Mesh-specific spec
+     */
+    mesh?: Schema$ServiceMeshMembershipSpec;
     /**
      * Policy Controller spec.
      */
@@ -360,10 +569,6 @@ export namespace gkehub_v1beta {
      * Specifies whether the Config Sync Repo is in "hierarchical" or "unstructured" mode.
      */
     sourceFormat?: string | null;
-    /**
-     * Set to true to stop syncing configs for a single cluster when automatic Feature management is enabled. Default to false. The field will be ignored when automatic Feature management is disabled.
-     */
-    stopSyncing?: boolean | null;
   }
   /**
    * The state of ConfigSync's deployment on a cluster
@@ -639,10 +844,6 @@ export namespace gkehub_v1beta {
      */
     hierarchyController?: Schema$ConfigManagementHierarchyControllerConfig;
     /**
-     * Enables automatic Feature management.
-     */
-    management?: string | null;
-    /**
      * Policy Controller configuration for the cluster.
      */
     policyController?: Schema$ConfigManagementPolicyController;
@@ -879,6 +1080,19 @@ export namespace gkehub_v1beta {
     type?: Schema$TypeMeta;
   }
   /**
+   * DefaultClusterConfig describes the default cluster configurations to be applied to all clusters born-in-fleet.
+   */
+  export interface Schema$DefaultClusterConfig {
+    /**
+     * Optional. Enable/Disable binary authorization features for the cluster.
+     */
+    binaryAuthorizationConfig?: Schema$BinaryAuthorizationConfig;
+    /**
+     * Enable/Disable Security Posture features for the cluster.
+     */
+    securityPostureConfig?: Schema$SecurityPostureConfig;
+  }
+  /**
    * EdgeCluster contains information specific to Google Edge Clusters.
    */
   export interface Schema$EdgeCluster {
@@ -1003,6 +1217,10 @@ export namespace gkehub_v1beta {
      * Output only. When the Fleet was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. The default cluster configurations to apply across the fleet.
+     */
+    defaultClusterConfig?: Schema$DefaultClusterConfig;
     /**
      * Output only. When the Fleet was deleted.
      */
@@ -1472,19 +1690,6 @@ export namespace gkehub_v1beta {
     unreachable?: string[] | null;
   }
   /**
-   * List of fleet namespaces.
-   */
-  export interface Schema$ListNamespacesResponse {
-    /**
-     * The list of fleet namespaces
-     */
-    namespaces?: Schema$Namespace[];
-    /**
-     * A token to request the next page of resources from the `ListNamespaces` method. The value of an empty string means that there are no more resources to return.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1496,19 +1701,6 @@ export namespace gkehub_v1beta {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
-  }
-  /**
-   * List of RBACRoleBindings.
-   */
-  export interface Schema$ListRBACRoleBindingsResponse {
-    /**
-     * A token to request the next page of resources from the `ListRBACRoleBindings` method. The value of an empty string means that there are no more resources to return.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The list of RBACRoleBindings
-     */
-    rbacrolebindings?: Schema$RBACRoleBinding[];
   }
   /**
    * List of fleet namespaces.
@@ -1759,6 +1951,10 @@ export namespace gkehub_v1beta {
      * Appdevexperience specific state.
      */
     appdevexperience?: Schema$AppDevExperienceFeatureState;
+    /**
+     * ClusterUpgrade state.
+     */
+    clusterupgrade?: Schema$ClusterUpgradeMembershipState;
     /**
      * Config Management-specific state.
      */
@@ -2034,6 +2230,15 @@ export namespace gkehub_v1beta {
     version?: number | null;
   }
   /**
+   * Binauthz policy that applies to this cluster.
+   */
+  export interface Schema$PolicyBinding {
+    /**
+     * The relative resource name of the binauthz platform policy to audit. GKE platform policies have the following format: `projects/{project_number\}/platforms/gke/policies/{policy_id\}`.
+     */
+    name?: string | null;
+  }
+  /**
    * BundleInstallSpec is the specification configuration for a single managed bundle.
    */
   export interface Schema$PolicyControllerBundleInstallSpec {
@@ -2277,7 +2482,7 @@ export namespace gkehub_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/namespaces/{namespace\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
+     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/scopes/{scope\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
      */
     name?: string | null;
     /**
@@ -2407,6 +2612,19 @@ export namespace gkehub_v1beta {
      * Output only. The current state of the scope resource.
      */
     code?: string | null;
+  }
+  /**
+   * SecurityPostureConfig defines the flags needed to enable/disable features for the Security Posture API.
+   */
+  export interface Schema$SecurityPostureConfig {
+    /**
+     * Sets which mode to use for Security Posture features.
+     */
+    mode?: string | null;
+    /**
+     * Sets which mode to use for vulnerability scanning.
+     */
+    vulnerabilityMode?: string | null;
   }
   /**
    * Status of control plane management.
@@ -2676,7 +2894,6 @@ export namespace gkehub_v1beta {
     features: Resource$Projects$Locations$Features;
     fleets: Resource$Projects$Locations$Fleets;
     memberships: Resource$Projects$Locations$Memberships;
-    namespaces: Resource$Projects$Locations$Namespaces;
     operations: Resource$Projects$Locations$Operations;
     scopes: Resource$Projects$Locations$Scopes;
     constructor(context: APIRequestContext) {
@@ -2684,9 +2901,6 @@ export namespace gkehub_v1beta {
       this.features = new Resource$Projects$Locations$Features(this.context);
       this.fleets = new Resource$Projects$Locations$Fleets(this.context);
       this.memberships = new Resource$Projects$Locations$Memberships(
-        this.context
-      );
-      this.namespaces = new Resource$Projects$Locations$Namespaces(
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
@@ -6312,1021 +6526,7 @@ export namespace gkehub_v1beta {
   export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch
     extends StandardParameters {
     /**
-     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/namespaces/{namespace\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
-     */
-    name?: string;
-    /**
-     * Required. The fields to be updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RBACRoleBinding;
-  }
-
-  export class Resource$Projects$Locations$Namespaces {
-    context: APIRequestContext;
-    rbacrolebindings: Resource$Projects$Locations$Namespaces$Rbacrolebindings;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.rbacrolebindings =
-        new Resource$Projects$Locations$Namespaces$Rbacrolebindings(
-          this.context
-        );
-    }
-
-    /**
-     * Creates a fleet namespace.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Namespaces$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Namespaces$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    create(
-      params: Params$Resource$Projects$Locations$Namespaces$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Namespaces$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Namespaces$Create,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$Create
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+parent}/namespaces').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a fleet namespace.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Namespaces$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Namespaces$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    delete(
-      params: Params$Resource$Projects$Locations$Namespaces$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Namespaces$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Namespaces$Delete,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$Delete
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Returns the details of a fleet namespace.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Namespaces$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Namespaces$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Namespace>;
-    get(
-      params: Params$Resource$Projects$Locations$Namespaces$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Namespaces$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Namespace>,
-      callback: BodyResponseCallback<Schema$Namespace>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Namespaces$Get,
-      callback: BodyResponseCallback<Schema$Namespace>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Namespace>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$Get
-        | BodyResponseCallback<Schema$Namespace>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Namespace>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Namespace>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Namespace> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Namespace>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Namespace>(parameters);
-      }
-    }
-
-    /**
-     * Lists fleet namespaces.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Namespaces$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Namespaces$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNamespacesResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Namespaces$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Namespaces$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListNamespacesResponse>,
-      callback: BodyResponseCallback<Schema$ListNamespacesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Namespaces$List,
-      callback: BodyResponseCallback<Schema$ListNamespacesResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$List
-        | BodyResponseCallback<Schema$ListNamespacesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListNamespacesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListNamespacesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListNamespacesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+parent}/namespaces').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListNamespacesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListNamespacesResponse>(parameters);
-      }
-    }
-
-    /**
-     * Updates a fleet namespace.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Namespaces$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Namespaces$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    patch(
-      params: Params$Resource$Projects$Locations$Namespaces$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Namespaces$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Namespaces$Patch,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Operation>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$Patch
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Namespaces$Create
-    extends StandardParameters {
-    /**
-     * Required. Client chosen ID for the Namespace. `namespace_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
-     */
-    namespaceId?: string;
-    /**
-     * Required. The parent (project and location) where the Namespace will be created. Specified in the format `projects/x/locations/x`.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Namespace;
-  }
-  export interface Params$Resource$Projects$Locations$Namespaces$Delete
-    extends StandardParameters {
-    /**
-     * Required. The Namespace resource name in the format `projects/x/locations/x/namespaces/x`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Namespaces$Get
-    extends StandardParameters {
-    /**
-     * Required. The Namespace resource name in the format `projects/x/locations/x/namespaces/x`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Namespaces$List
-    extends StandardParameters {
-    /**
-     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
-     */
-    pageSize?: number;
-    /**
-     * Optional. Token returned by previous call to `ListFeatures` which specifies the position in the list from where to continue listing the resources.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x`.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Namespaces$Patch
-    extends StandardParameters {
-    /**
-     * The resource name for the namespace `projects/{project\}/locations/{location\}/namespaces/{namespace\}`
-     */
-    name?: string;
-    /**
-     * Required. The fields to be updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Namespace;
-  }
-
-  export class Resource$Projects$Locations$Namespaces$Rbacrolebindings {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a RBACRoleBinding.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    create(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Create,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Create
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a RBACRoleBinding.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    delete(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Delete,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Delete
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Returns the details of a RBACRoleBinding.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$RBACRoleBinding>;
-    get(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$RBACRoleBinding>,
-      callback: BodyResponseCallback<Schema$RBACRoleBinding>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Get,
-      callback: BodyResponseCallback<Schema$RBACRoleBinding>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$RBACRoleBinding>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Get
-        | BodyResponseCallback<Schema$RBACRoleBinding>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$RBACRoleBinding>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$RBACRoleBinding>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RBACRoleBinding> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$RBACRoleBinding>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$RBACRoleBinding>(parameters);
-      }
-    }
-
-    /**
-     * Lists RBACRoleBinding.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRBACRoleBindingsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRBACRoleBindingsResponse>,
-      callback: BodyResponseCallback<Schema$ListRBACRoleBindingsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$List,
-      callback: BodyResponseCallback<Schema$ListRBACRoleBindingsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListRBACRoleBindingsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$List
-        | BodyResponseCallback<Schema$ListRBACRoleBindingsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListRBACRoleBindingsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListRBACRoleBindingsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListRBACRoleBindingsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+parent}/rbacrolebindings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListRBACRoleBindingsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListRBACRoleBindingsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates a RBACRoleBinding.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    patch(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Patch,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Operation>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Patch
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Create
-    extends StandardParameters {
-    /**
-     * Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/x/locations/x/namespaces/x`.
-     */
-    parent?: string;
-    /**
-     * Required. Client chosen ID for the RBACRoleBinding. `rbacrolebinding_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
-     */
-    rbacrolebindingId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RBACRoleBinding;
-  }
-  export interface Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Delete
-    extends StandardParameters {
-    /**
-     * Required. The RBACRoleBinding resource name in the format `projects/x/locations/x/namespaces/x/rbacrolebindings/x`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Get
-    extends StandardParameters {
-    /**
-     * Required. The RBACRoleBinding resource name in the format `projects/x/locations/x/namespaces/x/rbacrolebindings/x`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$List
-    extends StandardParameters {
-    /**
-     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
-     */
-    pageSize?: number;
-    /**
-     * Optional. Token returned by previous call to `ListRBACRoleBindings` which specifies the position in the list from where to continue listing the resources.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x/namespaces/x`.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Namespaces$Rbacrolebindings$Patch
-    extends StandardParameters {
-    /**
-     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/namespaces/{namespace\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
+     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/scopes/{scope\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
      */
     name?: string;
     /**
@@ -9550,7 +8750,7 @@ export namespace gkehub_v1beta {
   export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Patch
     extends StandardParameters {
     /**
-     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/namespaces/{namespace\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
+     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/scopes/{scope\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
      */
     name?: string;
     /**

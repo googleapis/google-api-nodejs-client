@@ -196,6 +196,19 @@ export namespace gkehub_v1 {
     workloadIdentityPool?: string | null;
   }
   /**
+   * BinaryAuthorizationConfig defines the fleet level configuration of binary authorization feature.
+   */
+  export interface Schema$BinaryAuthorizationConfig {
+    /**
+     * Optional. Mode of operation for binauthz policy evaluation.
+     */
+    evaluationMode?: string | null;
+    /**
+     * Optional. Binauthz policies that apply to this cluster.
+     */
+    policyBindings?: Schema$PolicyBinding[];
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -217,6 +230,190 @@ export namespace gkehub_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * **ClusterUpgrade**: The configuration for the fleet-level ClusterUpgrade feature.
+   */
+  export interface Schema$ClusterUpgradeFleetSpec {
+    /**
+     * Allow users to override some properties of each GKE upgrade.
+     */
+    gkeUpgradeOverrides?: Schema$ClusterUpgradeGKEUpgradeOverride[];
+    /**
+     * Required. Post conditions to evaluate to mark an upgrade COMPLETE. Required.
+     */
+    postConditions?: Schema$ClusterUpgradePostConditions;
+    /**
+     * This fleet consumes upgrades that have COMPLETE status code in the upstream fleets. See UpgradeStatus.Code for code definitions. The fleet name should be either fleet project number or id. This is defined as repeated for future proof reasons. Initial implementation will enforce at most one upstream fleet.
+     */
+    upstreamFleets?: string[] | null;
+  }
+  /**
+   * **ClusterUpgrade**: The state for the fleet-level ClusterUpgrade feature.
+   */
+  export interface Schema$ClusterUpgradeFleetState {
+    /**
+     * This fleets whose upstream_fleets contain the current fleet. The fleet name should be either fleet project number or id.
+     */
+    downstreamFleets?: string[] | null;
+    /**
+     * Feature state for GKE clusters.
+     */
+    gkeState?: Schema$ClusterUpgradeGKEUpgradeFeatureState;
+    /**
+     * A list of memberships ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel. The membership resource is in the format: `projects/{p\}/locations/{l\}/membership/{m\}`.
+     */
+    ignored?: {[key: string]: Schema$ClusterUpgradeIgnoredMembership} | null;
+  }
+  /**
+   * GKEUpgrade represents a GKE provided upgrade, e.g., control plane upgrade.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgrade {
+    /**
+     * Name of the upgrade, e.g., "k8s_control_plane". It should be a valid upgrade name. It must not exceet 99 characters.
+     */
+    name?: string | null;
+    /**
+     * Version of the upgrade, e.g., "1.22.1-gke.100". It should be a valid version. It must not exceet 99 characters.
+     */
+    version?: string | null;
+  }
+  /**
+   * GKEUpgradeFeatureCondition describes the condition of the feature for GKE clusters at a certain point of time.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgradeFeatureCondition {
+    /**
+     * Reason why the feature is in this status.
+     */
+    reason?: string | null;
+    /**
+     * Status of the condition, one of True, False, Unknown.
+     */
+    status?: string | null;
+    /**
+     * Type of the condition, for example, "ready".
+     */
+    type?: string | null;
+    /**
+     * Last timestamp the condition was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * GKEUpgradeFeatureState contains feature states for GKE clusters in the scope.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgradeFeatureState {
+    /**
+     * Current conditions of the feature.
+     */
+    conditions?: Schema$ClusterUpgradeGKEUpgradeFeatureCondition[];
+    /**
+     * Upgrade state. It will eventually replace `state`.
+     */
+    upgradeState?: Schema$ClusterUpgradeGKEUpgradeState[];
+  }
+  /**
+   * Properties of a GKE upgrade that can be overridden by the user. For example, a user can skip soaking by overriding the soaking to 0.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgradeOverride {
+    /**
+     * Required. Post conditions to override for the specified upgrade (name + version). Required.
+     */
+    postConditions?: Schema$ClusterUpgradePostConditions;
+    /**
+     * Required. Which upgrade to override. Required.
+     */
+    upgrade?: Schema$ClusterUpgradeGKEUpgrade;
+  }
+  /**
+   * GKEUpgradeState is a GKEUpgrade and its state at the scope and fleet level.
+   */
+  export interface Schema$ClusterUpgradeGKEUpgradeState {
+    /**
+     * Number of GKE clusters in each status code.
+     */
+    stats?: {[key: string]: string} | null;
+    /**
+     * Status of the upgrade.
+     */
+    status?: Schema$ClusterUpgradeUpgradeStatus;
+    /**
+     * Which upgrade to track the state.
+     */
+    upgrade?: Schema$ClusterUpgradeGKEUpgrade;
+  }
+  /**
+   * IgnoredMembership represents a membership ignored by the feature. A membership can be ignored because it was manually upgraded to a newer version than RC default.
+   */
+  export interface Schema$ClusterUpgradeIgnoredMembership {
+    /**
+     * Time when the membership was first set to ignored.
+     */
+    ignoredTime?: string | null;
+    /**
+     * Reason why the membership is ignored.
+     */
+    reason?: string | null;
+  }
+  /**
+   * ScopeGKEUpgradeState is a GKEUpgrade and its state per-membership.
+   */
+  export interface Schema$ClusterUpgradeMembershipGKEUpgradeState {
+    /**
+     * Status of the upgrade.
+     */
+    status?: Schema$ClusterUpgradeUpgradeStatus;
+    /**
+     * Which upgrade to track the state.
+     */
+    upgrade?: Schema$ClusterUpgradeGKEUpgrade;
+  }
+  /**
+   * Per-membership state for this feature.
+   */
+  export interface Schema$ClusterUpgradeMembershipState {
+    /**
+     * Project number or id of the fleet. It is set only for Memberships that are part of fleet-based Rollout Sequencing.
+     */
+    fleet?: string | null;
+    /**
+     * Whether this membership is ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel.
+     */
+    ignored?: Schema$ClusterUpgradeIgnoredMembership;
+    /**
+     * Fully qualified scope names that this clusters is bound to which also have rollout sequencing enabled.
+     */
+    scopes?: string[] | null;
+    /**
+     * Actual upgrade state against desired.
+     */
+    upgrades?: Schema$ClusterUpgradeMembershipGKEUpgradeState[];
+  }
+  /**
+   * Post conditional checks after an upgrade has been applied on all eligible clusters.
+   */
+  export interface Schema$ClusterUpgradePostConditions {
+    /**
+     * Required. Amount of time to "soak" after a rollout has been finished before marking it COMPLETE. Cannot exceed 30 days. Required.
+     */
+    soaking?: string | null;
+  }
+  /**
+   * UpgradeStatus provides status information for each upgrade.
+   */
+  export interface Schema$ClusterUpgradeUpgradeStatus {
+    /**
+     * Status code of the upgrade.
+     */
+    code?: string | null;
+    /**
+     * Reason for this status.
+     */
+    reason?: string | null;
+    /**
+     * Last timestamp the status was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * CommonFeatureSpec contains Hub-wide configuration information
    */
   export interface Schema$CommonFeatureSpec {
@@ -224,6 +421,10 @@ export namespace gkehub_v1 {
      * Appdevexperience specific spec.
      */
     appdevexperience?: Schema$AppDevExperienceFeatureSpec;
+    /**
+     * ClusterUpgrade (fleet-based) feature spec.
+     */
+    clusterupgrade?: Schema$ClusterUpgradeFleetSpec;
     /**
      * FleetObservability feature spec.
      */
@@ -242,6 +443,10 @@ export namespace gkehub_v1 {
      */
     appdevexperience?: Schema$AppDevExperienceFeatureState;
     /**
+     * ClusterUpgrade fleet-level state.
+     */
+    clusterupgrade?: Schema$ClusterUpgradeFleetState;
+    /**
      * FleetObservability feature state.
      */
     fleetobservability?: Schema$FleetObservabilityFeatureState;
@@ -258,6 +463,14 @@ export namespace gkehub_v1 {
      * Config Management-specific spec.
      */
     configmanagement?: Schema$ConfigManagementMembershipSpec;
+    /**
+     * Identity Service-specific spec.
+     */
+    identityservice?: Schema$IdentityServiceMembershipSpec;
+    /**
+     * Anthos Service Mesh-specific spec
+     */
+    mesh?: Schema$ServiceMeshMembershipSpec;
     /**
      * Policy Controller spec.
      */
@@ -295,10 +508,6 @@ export namespace gkehub_v1 {
      * Specifies whether the Config Sync Repo is in "hierarchical" or "unstructured" mode.
      */
     sourceFormat?: string | null;
-    /**
-     * Set to true to stop syncing configs for a single cluster when automatic Feature management is enabled. Default to false. The field will be ignored when automatic Feature management is disabled.
-     */
-    stopSyncing?: boolean | null;
   }
   /**
    * The state of ConfigSync's deployment on a cluster
@@ -570,10 +779,6 @@ export namespace gkehub_v1 {
      */
     hierarchyController?: Schema$ConfigManagementHierarchyControllerConfig;
     /**
-     * Enables automatic Feature management.
-     */
-    management?: string | null;
-    /**
      * Policy Controller configuration for the cluster.
      */
     policyController?: Schema$ConfigManagementPolicyController;
@@ -806,6 +1011,19 @@ export namespace gkehub_v1 {
     type?: Schema$TypeMeta;
   }
   /**
+   * DefaultClusterConfig describes the default cluster configurations to be applied to all clusters born-in-fleet.
+   */
+  export interface Schema$DefaultClusterConfig {
+    /**
+     * Optional. Enable/Disable binary authorization features for the cluster.
+     */
+    binaryAuthorizationConfig?: Schema$BinaryAuthorizationConfig;
+    /**
+     * Enable/Disable Security Posture features for the cluster.
+     */
+    securityPostureConfig?: Schema$SecurityPostureConfig;
+  }
+  /**
    * EdgeCluster contains information specific to Google Edge Clusters.
    */
   export interface Schema$EdgeCluster {
@@ -930,6 +1148,10 @@ export namespace gkehub_v1 {
      * Output only. When the Fleet was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. The default cluster configurations to apply across the fleet.
+     */
+    defaultClusterConfig?: Schema$DefaultClusterConfig;
     /**
      * Output only. When the Fleet was deleted.
      */
@@ -1631,6 +1853,10 @@ export namespace gkehub_v1 {
      */
     appdevexperience?: Schema$AppDevExperienceFeatureState;
     /**
+     * ClusterUpgrade state.
+     */
+    clusterupgrade?: Schema$ClusterUpgradeMembershipState;
+    /**
      * Config Management-specific state.
      */
     configmanagement?: Schema$ConfigManagementMembershipState;
@@ -1869,6 +2095,15 @@ export namespace gkehub_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Binauthz policy that applies to this cluster.
+   */
+  export interface Schema$PolicyBinding {
+    /**
+     * The relative resource name of the binauthz platform policy to audit. GKE platform policies have the following format: `projects/{project_number\}/platforms/gke/policies/{policy_id\}`.
+     */
+    name?: string | null;
   }
   /**
    * BundleInstallSpec is the specification configuration for a single managed bundle.
@@ -2114,7 +2349,7 @@ export namespace gkehub_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/namespaces/{namespace\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
+     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/scopes/{scope\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
      */
     name?: string | null;
     /**
@@ -2244,6 +2479,19 @@ export namespace gkehub_v1 {
      * Output only. The current state of the scope resource.
      */
     code?: string | null;
+  }
+  /**
+   * SecurityPostureConfig defines the flags needed to enable/disable features for the Security Posture API.
+   */
+  export interface Schema$SecurityPostureConfig {
+    /**
+     * Sets which mode to use for Security Posture features.
+     */
+    mode?: string | null;
+    /**
+     * Sets which mode to use for vulnerability scanning.
+     */
+    vulnerabilityMode?: string | null;
   }
   /**
    * Status of control plane management.
@@ -7739,7 +7987,7 @@ export namespace gkehub_v1 {
   export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Patch
     extends StandardParameters {
     /**
-     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/namespaces/{namespace\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
+     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/scopes/{scope\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
      */
     name?: string;
     /**
