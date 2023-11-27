@@ -1075,7 +1075,7 @@ export namespace artifactregistry_v1 {
      */
     mode?: string | null;
     /**
-     * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
      */
     name?: string | null;
     /**
@@ -1299,7 +1299,7 @@ export namespace artifactregistry_v1 {
      */
     priority?: number | null;
     /**
-     * A reference to the repository resource, for example: "projects/p1/locations/us-central1/repositories/repo1".
+     * A reference to the repository resource, for example: `projects/p1/locations/us-central1/repositories/repo1`.
      */
     repository?: string | null;
   }
@@ -2936,7 +2936,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Patch
     extends StandardParameters {
     /**
-     * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
      */
     name?: string;
     /**

@@ -399,7 +399,7 @@ export namespace artifactregistry_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
      */
     name?: string | null;
     /**
@@ -1611,7 +1611,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Patch
     extends StandardParameters {
     /**
-     * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
      */
     name?: string;
     /**
