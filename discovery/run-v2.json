@@ -1115,7 +1115,7 @@
       }
     }
   },
-  "revision": "20231008",
+  "revision": "20231112",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2661,6 +2661,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "scaling": {
+          "$ref": "GoogleCloudRunV2ServiceScaling",
+          "description": "Optional. Specifies service-level scaling settings"
+        },
         "template": {
           "$ref": "GoogleCloudRunV2RevisionTemplate",
           "description": "Required. The template used to create revisions for this Service."
@@ -2700,6 +2704,18 @@
           "description": "Output only. The main URI in which this Service is serving traffic.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2ServiceScaling": {
+      "description": "Scaling settings applied at the service level rather than at the revision level.",
+      "id": "GoogleCloudRunV2ServiceScaling",
+      "properties": {
+        "minInstanceCount": {
+          "description": "total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (ALPHA)",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
