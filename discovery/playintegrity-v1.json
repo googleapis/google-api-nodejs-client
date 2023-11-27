@@ -138,7 +138,7 @@
       }
     }
   },
-  "revision": "20231018",
+  "revision": "20231123",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -189,6 +189,53 @@
             "The app and certificate match the versions distributed by Play.",
             "The certificate or package name does not match Google Play records.",
             "Licensing details were not evaluated since a necessary requirement was missed. For example DeviceIntegrity did not meet the minimum bar or the application was not a known Play version."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppAccessRiskVerdict": {
+      "description": "Contains signals about others apps on the device which could be used to access or control the requesting app.",
+      "id": "AppAccessRiskVerdict",
+      "properties": {
+        "otherApps": {
+          "description": "Required. App access risk verdict related to apps that are not installed by Google Play, and are not preloaded on the system image by the device manufacturer.",
+          "enum": [
+            "UNKNOWN",
+            "UNEVALUATED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "CAPTURING",
+            "CONTROLLING"
+          ],
+          "enumDescriptions": [
+            "Risk type is unknown.",
+            "App access risk was not evaluated because a requirement was missed, such as the device not being trusted enough.",
+            "No apps under this field are installed on the device. This is only valid for the other apps field.",
+            "One or more apps under this field are installed on the device.",
+            "Apps under this field are running that could be used to read or capture inputs and outputs of the requesting app, such as screen recording apps.",
+            "Apps under this field are running that could be used to control the device and inputs and outputs of the requesting app, such as remote controlling apps."
+          ],
+          "type": "string"
+        },
+        "playOrSystemApps": {
+          "description": "Required. App access risk verdict related to apps that are not installed by the Google Play Store, and are not preloaded on the system image by the device manufacturer.",
+          "enum": [
+            "UNKNOWN",
+            "UNEVALUATED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "CAPTURING",
+            "CONTROLLING"
+          ],
+          "enumDescriptions": [
+            "Risk type is unknown.",
+            "App access risk was not evaluated because a requirement was missed, such as the device not being trusted enough.",
+            "No apps under this field are installed on the device. This is only valid for the other apps field.",
+            "One or more apps under this field are installed on the device.",
+            "Apps under this field are running that could be used to read or capture inputs and outputs of the requesting app, such as screen recording apps.",
+            "Apps under this field are running that could be used to control the device and inputs and outputs of the requesting app, such as remote controlling apps."
           ],
           "type": "string"
         }
@@ -271,13 +318,21 @@
               "MEETS_VIRTUAL_INTEGRITY",
               "MEETS_WEAK_INTEGRITY"
             ],
+            "enumDeprecated": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              true
+            ],
             "enumDescriptions": [
               "Play does not have sufficient information to evaluate device integrity",
               "App is running on a device that passes basic system integrity checks, but may not meet Android platform compatibility requirements and may not be approved to run Google Play services.",
               "App is running on GMS Android device with Google Play services.",
               "App is running on GMS Android device with Google Play services and has a strong guarantee of system integrity such as a hardware-backed keystore.",
               "App is running on an Android emulator with Google Play services which meets core Android compatibility requirements.",
-              "App is running on a device that passes only weak integrity checks (is a physical device)."
+              "Deprecated: this enum value will be removed. App is running on a device that passes only weak integrity checks (is a physical device)."
             ],
             "type": "string"
           },
@@ -286,16 +341,35 @@
       },
       "type": "object"
     },
-    "GuidanceDetails": {
-      "description": "Contains guidance details about the Integrity API response, providing additional context to the integrity verdicts.",
-      "id": "GuidanceDetails",
+    "EnvironmentDetails": {
+      "description": "Contains information about the environment Play Integrity API runs in, e.g. Play Protect verdict.",
+      "id": "EnvironmentDetails",
       "properties": {
-        "userRemediationDetails": {
-          "description": "This shows when there is an issue with at least one of the integrity verdicts, which can be remedied by the user and provides additional details.",
-          "items": {
-            "$ref": "UserRemediationDetails"
-          },
-          "type": "array"
+        "appAccessRiskVerdict": {
+          "$ref": "AppAccessRiskVerdict",
+          "description": "The evaluation of the App Access Risk verdicts."
+        },
+        "playProtectVerdict": {
+          "description": "The evaluation of Play Protect verdict.",
+          "enum": [
+            "PLAY_PROTECT_VERDICT_UNSPECIFIED",
+            "UNEVALUATED",
+            "NO_ISSUES",
+            "NO_DATA",
+            "MEDIUM_RISK",
+            "HIGH_RISK",
+            "POSSIBLE_RISK"
+          ],
+          "enumDescriptions": [
+            "Play Protect verdict has not been set.",
+            "Play Protect state was not evaluated. Device may not be trusted.",
+            "Play Protect is on and no issues found.",
+            "Play Protect is on but no scan has been performed yet. The device or Play Store app may have been reset.",
+            "Play Protect is on and warnings found.",
+            "Play Protect is on and high severity issues found.",
+            "Play Protect is turned off. Turn on Play Protect."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -351,9 +425,9 @@
           "$ref": "DeviceIntegrity",
           "description": "Required. Details about the device integrity."
         },
-        "guidanceDetails": {
-          "$ref": "GuidanceDetails",
-          "description": "Additional guidance related to the integrity API response."
+        "environmentDetails": {
+          "$ref": "EnvironmentDetails",
+          "description": "Details of the environment Play Integrity API runs in."
         },
         "requestDetails": {
           "$ref": "RequestDetails",
@@ -362,33 +436,6 @@
         "testingDetails": {
           "$ref": "TestingDetails",
           "description": "Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status."
-        }
-      },
-      "type": "object"
-    },
-    "UserRemediationDetails": {
-      "description": "Contains details of remediation guidance that the user can perform.",
-      "id": "UserRemediationDetails",
-      "properties": {
-        "remediation": {
-          "description": "Description of the user remediation action.",
-          "enum": [
-            "UNKNOWN_USER_REMEDIATION",
-            "RESTORE_FACTORY_ROM",
-            "LOCK_BOOTLOADER",
-            "GET_UNMODIFIED_APP",
-            "SIGN_INTO_GOOGLE_ACCOUNT",
-            "INSTALL_APP_FROM_PLAY"
-          ],
-          "enumDescriptions": [
-            "User remediation is unknown.",
-            "The user has installed a custom ROM, and should restore the device to a clean factory ROM.",
-            "The device bootloader has been unlocked, the user should lock the bootloader.",
-            "The app is unrecognized. The user should get an unmodified version of the app.",
-            "The user has not signed into their Google account.",
-            "The user has no license. They should install or purchase the app on the Google Play Store to add it to their library."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
