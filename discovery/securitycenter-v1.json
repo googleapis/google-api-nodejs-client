@@ -434,6 +434,98 @@
             }
           }
         },
+        "locations": {
+          "resources": {
+            "muteConfigs": {
+              "methods": {
+                "delete": {
+                  "description": "Deletes an existing mute config.",
+                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "securitycenter.folders.locations.muteConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a mute config.",
+                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.folders.locations.muteConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a mute config.",
+                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "securitycenter.folders.locations.muteConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "muteConfigs": {
           "methods": {
             "create": {
@@ -479,7 +571,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
                   "location": "path",
                   "pattern": "^folders/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -504,7 +596,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
                   "location": "path",
                   "pattern": "^folders/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -565,7 +657,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
                   "location": "path",
                   "pattern": "^folders/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -931,6 +1023,34 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "simulate": {
+                  "description": "Simulates a given SecurityHealthAnalyticsCustomModule and Resource.",
+                  "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/customModules:simulate",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.folders.securityHealthAnalyticsSettings.customModules.simulate",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The relative resource name of the organization, project, or folder. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name An example is: \"organizations/{organization_id}\".",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules:simulate",
+                  "request": {
+                    "$ref": "SimulateSecurityHealthAnalyticsCustomModuleRequest"
+                  },
+                  "response": {
+                    "$ref": "SimulateSecurityHealthAnalyticsCustomModuleResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1920,6 +2040,98 @@
             }
           }
         },
+        "locations": {
+          "resources": {
+            "muteConfigs": {
+              "methods": {
+                "delete": {
+                  "description": "Deletes an existing mute config.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "securitycenter.organizations.locations.muteConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a mute config.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.locations.muteConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a mute config.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "securitycenter.organizations.locations.muteConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "muteConfigs": {
           "methods": {
             "create": {
@@ -1965,7 +2177,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -1990,7 +2202,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -2051,7 +2263,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -2689,6 +2901,34 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "simulate": {
+                  "description": "Simulates a given SecurityHealthAnalyticsCustomModule and Resource.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/customModules:simulate",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.simulate",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The relative resource name of the organization, project, or folder. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name An example is: \"organizations/{organization_id}\".",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules:simulate",
+                  "request": {
+                    "$ref": "SimulateSecurityHealthAnalyticsCustomModuleRequest"
+                  },
+                  "response": {
+                    "$ref": "SimulateSecurityHealthAnalyticsCustomModuleResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3868,6 +4108,98 @@
             }
           }
         },
+        "locations": {
+          "resources": {
+            "muteConfigs": {
+              "methods": {
+                "delete": {
+                  "description": "Deletes an existing mute config.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "securitycenter.projects.locations.muteConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a mute config.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.projects.locations.muteConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a mute config.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "securitycenter.projects.locations.muteConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "muteConfigs": {
           "methods": {
             "create": {
@@ -3913,7 +4245,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -3938,7 +4270,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -3999,7 +4331,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
                   "location": "path",
                   "pattern": "^projects/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -4365,6 +4697,34 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "simulate": {
+                  "description": "Simulates a given SecurityHealthAnalyticsCustomModule and Resource.",
+                  "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/customModules:simulate",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.projects.securityHealthAnalyticsSettings.customModules.simulate",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The relative resource name of the organization, project, or folder. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name An example is: \"organizations/{organization_id}\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules:simulate",
+                  "request": {
+                    "$ref": "SimulateSecurityHealthAnalyticsCustomModuleRequest"
+                  },
+                  "response": {
+                    "$ref": "SimulateSecurityHealthAnalyticsCustomModuleResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -4750,7 +5110,7 @@
       }
     }
   },
-  "revision": "20231005",
+  "revision": "20231102",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -5250,6 +5610,30 @@
         },
         "inspectJob": {
           "description": "Name of the inspection job, for example, `projects/123/locations/europe/dlpJobs/i-8383929`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudLoggingEntry": {
+      "description": "Metadata taken from a [Cloud Logging LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)",
+      "id": "CloudLoggingEntry",
+      "properties": {
+        "insertId": {
+          "description": "A unique identifier for the log entry.",
+          "type": "string"
+        },
+        "logId": {
+          "description": "The type of the log (part of `log_name`. `log_name` is the resource name of the log to which this log entry belongs). For example: `cloudresourcemanager.googleapis.com/activity`. Note that this field is not URL-encoded, unlike the `LOG_ID` field in `LogEntry`.",
+          "type": "string"
+        },
+        "resourceContainer": {
+          "description": "The organization, folder, or project of the monitored resource that produced this log entry.",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "The time the event described by the log entry occurred.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -5964,6 +6348,13 @@
           },
           "type": "array"
         },
+        "logEntries": {
+          "description": "Log entries that are relevant to the finding.",
+          "items": {
+            "$ref": "LogEntry"
+          },
+          "type": "array"
+        },
         "mitreAttack": {
           "$ref": "MitreAttack",
           "description": "MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org"
@@ -6005,6 +6396,13 @@
         "nextSteps": {
           "description": "Steps to address the finding.",
           "type": "string"
+        },
+        "orgPolicies": {
+          "description": "Contains information about the org policies associated with the finding.",
+          "items": {
+            "$ref": "OrgPolicy"
+          },
+          "type": "array"
         },
         "parent": {
           "description": "The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: \"organizations/{organization_id}/sources/{source_id}\"",
@@ -6363,7 +6761,7 @@
           "type": "string"
         },
         "name": {
-          "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+          "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
           "type": "string"
         },
         "updateTime": {
@@ -7525,6 +7923,17 @@
       },
       "type": "object"
     },
+    "LogEntry": {
+      "description": "An individual entry in a log.",
+      "id": "LogEntry",
+      "properties": {
+        "cloudLoggingEntry": {
+          "$ref": "CloudLoggingEntry",
+          "description": "An individual entry in a log stored in Cloud Logging."
+        }
+      },
+      "type": "object"
+    },
     "MemoryHashSignature": {
       "description": "A signature corresponding to memory page hashes.",
       "id": "MemoryHashSignature",
@@ -7864,6 +8273,13 @@
       "description": "Kubernetes object related to the finding, uniquely identified by GKNN. Used if the object Kind is not one of Pod, Node, NodePool, Binding, or AccessReview.",
       "id": "Object",
       "properties": {
+        "containers": {
+          "description": "Pod containers associated with this finding, if any.",
+          "items": {
+            "$ref": "Container"
+          },
+          "type": "array"
+        },
         "group": {
           "description": "Kubernetes object group, such as \"policy.k8s.io/v1\".",
           "type": "string"
@@ -7914,6 +8330,17 @@
           },
           "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OrgPolicy": {
+      "description": "Contains information about the org policies associated with the finding.",
+      "id": "OrgPolicy",
+      "properties": {
+        "name": {
+          "description": "The resource name of the org policy. Example: \"organizations/{organization_id}/policies/{constraint_name}\"",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8381,6 +8808,74 @@
             "Finding has never been muted/unmuted."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SimulateSecurityHealthAnalyticsCustomModuleRequest": {
+      "description": "Request message to simulate a CustomConfig against a given test resource. Maximum size of the request is 4 MB by default.",
+      "id": "SimulateSecurityHealthAnalyticsCustomModuleRequest",
+      "properties": {
+        "customConfig": {
+          "$ref": "GoogleCloudSecuritycenterV1CustomConfig",
+          "description": "Required. The user specified custom configuration to test."
+        },
+        "resource": {
+          "$ref": "SimulatedResource",
+          "description": "Required. Resource data to simulate custom module against."
+        }
+      },
+      "type": "object"
+    },
+    "SimulateSecurityHealthAnalyticsCustomModuleResponse": {
+      "description": "Response message for simulating a SecurityHealthAnalyticsCustomModule against a given resource.",
+      "id": "SimulateSecurityHealthAnalyticsCustomModuleResponse",
+      "properties": {
+        "result": {
+          "$ref": "SimulatedResult",
+          "description": "Result for test case in the corresponding request."
+        }
+      },
+      "type": "object"
+    },
+    "SimulatedResource": {
+      "description": "Manually constructed resource. If the custom module only evaluates against the resource data, the iam_policy_data field can be omitted, and vice versa.",
+      "id": "SimulatedResource",
+      "properties": {
+        "iamPolicyData": {
+          "$ref": "Policy",
+          "description": "Optional. A representation of the IAM policy."
+        },
+        "resourceData": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. A representation of the GCP resource. Should match the GCP resource JSON format.",
+          "type": "object"
+        },
+        "resourceType": {
+          "description": "Required. The type of the resource, e.g. `compute.googleapis.com/Disk`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SimulatedResult": {
+      "description": "Possible test result.",
+      "id": "SimulatedResult",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "Error encountered during the test."
+        },
+        "finding": {
+          "$ref": "Finding",
+          "description": "Finding that would be published for the test case, if a violation is detected."
+        },
+        "noViolation": {
+          "$ref": "Empty",
+          "description": "Indicates that the test case does not trigger any violation."
         }
       },
       "type": "object"
