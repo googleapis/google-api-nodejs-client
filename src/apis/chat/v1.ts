@@ -346,11 +346,11 @@ export namespace chat_v1 {
     error?: Schema$Status;
   }
   /**
-   * Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from Google Chat. For example, a list of Google Chat spaces of which the user is a member. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Chat. The data source populates selection items for the multiselect menu. For example, a user can select Google Chat spaces that they're a member of.
    */
   export interface Schema$ChatClientDataSourceMarkup {
     /**
-     * A data source representing a Google Chat space. Format: spaces/{space\} [Developer Preview](https://developers.google.com/workspace/preview).
+     * Google Chat spaces that the user is a member of.
      */
     spaceDataSource?: Schema$SpaceDataSource;
   }
@@ -1029,15 +1029,15 @@ export namespace chat_v1 {
     url?: string | null;
   }
   /**
-   * Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, the data from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). Used to populate the items in the multi-select menu. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Workspace. Used to populate items in a multiselect menu.
    */
   export interface Schema$GoogleAppsCardV1PlatformDataSource {
     /**
-     * For a `SelectionInput` widget that uses a multi-select menu, a data source shared by all Google Workspace host applications, such as users in a Google Workspace organization. [Developer Preview](https://developers.google.com/workspace/preview).
+     * A data source shared by all Google Workspace applications, such as users in a Google Workspace organization.
      */
     commonDataSource?: string | null;
     /**
-     * A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. [Developer Preview](https://developers.google.com/workspace/preview).
+     * A data source that's unique to a Google Workspace host application, such spaces in Google Chat.
      */
     hostAppDataSource?: Schema$HostAppDataSourceMarkup;
   }
@@ -1067,7 +1067,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
-     * An external data source, such as a relational data base. [Developer Preview](https://developers.google.com/workspace/preview).
+     * An external data source, such as a relational data base.
      */
     externalDataSource?: Schema$GoogleAppsCardV1Action;
     /**
@@ -1079,11 +1079,11 @@ export namespace chat_v1 {
      */
     label?: string | null;
     /**
-     * For multi-select menus, the maximum number of items that a user can select. Minimum value is 1 item. If unspecified, set to 3 items. [Developer Preview](https://developers.google.com/workspace/preview).
+     * For multiselect menus, the maximum number of items that a user can select. Minimum value is 1 item. If unspecified, defaults to 3 items.
      */
     multiSelectMaxSelectedItems?: number | null;
     /**
-     * For multi-select menus, the number of text characters that a user inputs before the Chat app queries autocomplete and displays suggested items on the card. If unspecified, set to 0 characters for static data sources and 3 characters for external data sources. [Developer Preview](https://developers.google.com/workspace/preview).
+     * For multiselect menus, the number of text characters that a user inputs before the Chat app queries autocomplete and displays suggested items in the menu. If unspecified, defaults to 0 characters for static data sources and 3 characters for external data sources.
      */
     multiSelectMinQueryLength?: number | null;
     /**
@@ -1095,7 +1095,7 @@ export namespace chat_v1 {
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * A data source from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). [Developer Preview](https://developers.google.com/workspace/preview).
+     * A data source from Google Workspace.
      */
     platformDataSource?: Schema$GoogleAppsCardV1PlatformDataSource;
     /**
@@ -1108,7 +1108,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1SelectionItem {
     /**
-     * For multi-select menus, a text description or label that's displayed below the item's `text` field. [Developer Preview](https://developers.google.com/workspace/preview).
+     * For multiselect menus, a text description or label that's displayed below the item's `text` field.
      */
     bottomText?: string | null;
     /**
@@ -1116,7 +1116,7 @@ export namespace chat_v1 {
      */
     selected?: boolean | null;
     /**
-     * For multi-select menus, the URL for the icon displayed next to the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS` URL. For example, `https://developers.google.com/chat/images/quickstart-app-avatar.png`. [Developer Preview](https://developers.google.com/workspace/preview).
+     * For multiselect menus, the URL for the icon displayed next to the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS` URL. For example, `https://developers.google.com/chat/images/quickstart-app-avatar.png`.
      */
     startIconUri?: string | null;
     /**
@@ -1304,11 +1304,11 @@ export namespace chat_v1 {
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
   }
   /**
-   * Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from a Google Workspace host application. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from a Google Workspace application. The data source populates selection items for the multiselect menu.
    */
   export interface Schema$HostAppDataSourceMarkup {
     /**
-     * The data source is Google Chat. [Developer Preview](https://developers.google.com/workspace/preview).
+     * A data source from Google Chat.
      */
     chatDataSource?: Schema$ChatClientDataSourceMarkup;
   }
@@ -1410,7 +1410,7 @@ export namespace chat_v1 {
   }
   export interface Schema$ListMembershipsResponse {
     /**
-     * List of memberships in the requested (or first) page.
+     * Unordered list. List of memberships in the requested (or first) page.
      */
     memberships?: Schema$Membership[];
     /**
@@ -1584,7 +1584,7 @@ export namespace chat_v1 {
      */
     text?: string | null;
     /**
-     * The thread the message belongs to. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
+     * The thread the message belongs to. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/v1/messages/create#create-message-thread).
      */
     thread?: Schema$Thread;
     /**
@@ -1755,11 +1755,11 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * A data source representing a Google Chat space. Format: spaces/{space\} [Developer Preview](https://developers.google.com/workspace/preview).
+   * A data source that populates Google Chat spaces as selection items for a multiselect menu. Only populates spaces that the user is a member of.
    */
   export interface Schema$SpaceDataSource {
     /**
-     * When `true`, uses the card's Google Chat space as the default selection. The default value is `false`. [Developer Preview](https://developers.google.com/workspace/preview).
+     * If set to `true`, the multiselect menu selects the current Google Chat space as an item by default.
      */
     defaultToCurrentSpace?: boolean | null;
   }
@@ -1889,7 +1889,7 @@ export namespace chat_v1 {
      */
     isAnonymous?: boolean | null;
     /**
-     * Resource name for a Google Chat user. Format: `users/{user\}`. `users/app` can be used as an alias for the calling app bot user. For human users, `{user\}` is the same user identifier as: - the `{person_id`\} for the [Person](https://developers.google.com/people/api/rest/v1/people) in the People API, where the Person `resource_name` is `people/{person_id\}`. For example, `users/123456789` in Chat API represents the same person as `people/123456789` in People API. - the `id` for a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. - the user's email address can be used as an alias for `{user\}` in API requests. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can use `users/user@example.com` as an alias to reference `users/123456789`. Only the canonical resource name (for example `users/123456789`) will be returned from the API.
+     * Resource name for a Google Chat user. Format: `users/{user\}`. `users/app` can be used as an alias for the calling app bot user. For human users, `{user\}` is the same user identifier as: - the `id` for the [Person](https://developers.google.com/people/api/rest/v1/people) in the People API. For example, `users/123456789` in Chat API represents the same person as the `123456789` Person profile ID in People API. - the `id` for a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. - the user's email address can be used as an alias for `{user\}` in API requests. For example, if the People API Person profile ID for `user@example.com` is `123456789`, you can use `users/user@example.com` as an alias to reference `users/123456789`. Only the canonical resource name (for example `users/123456789`) will be returned from the API.
      */
     name?: string | null;
     /**
@@ -2332,7 +2332,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns the existing direct message with the specified user. If no direct message space is found, returns a `404 NOT_FOUND` error. For an example, see [Find a direct message](/chat/api/guides/v1/spaces/find-direct-message). With [user authentication](https://developers.google.com/chat/api/guides/auth/users), returns the direct message space between the specified user and the authenticated user. With [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), returns the direct message space between the specified user and the calling Chat app. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) or [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Returns the existing direct message with the specified user. If no direct message space is found, returns a `404 NOT_FOUND` error. For an example, see [Find a direct message](/chat/api/guides/v1/spaces/find-direct-message). With [user authentication](https://developers.google.com/chat/api/guides/auth/users), returns the direct message space between the specified user and the authenticated user. With [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), returns the direct message space between the specified user and the calling Chat app. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) or [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2419,7 +2419,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns details about a space. For an example, see [Get a space](https://developers.google.com/chat/api/guides/v1/spaces/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users).
+     * Returns details about a space. For an example, see [Get a space](https://developers.google.com/chat/api/guides/v1/spaces/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2502,7 +2502,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists spaces the caller is a member of. Group chats and DMs aren't listed until the first message is sent. For an example, see [List spaces](https://developers.google.com/chat/api/guides/v1/spaces/list). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). Lists spaces visible to the caller or authenticated user. Group chats and DMs aren't listed until the first message is sent.
+     * Lists spaces the caller is a member of. Group chats and DMs aren't listed until the first message is sent. For an example, see [List spaces](https://developers.google.com/chat/api/guides/v1/spaces/list). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). Lists spaces visible to the caller or authenticated user. Group chats and DMs aren't listed until the first message is sent.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2671,7 +2671,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a space and adds specified users to it. The calling user is automatically added to the space, and shouldn't be specified as a membership in the request. For an example, see [Set up a space](https://developers.google.com/chat/api/guides/v1/spaces/set-up). To specify the human members to add, add memberships with the appropriate `member.name` in the `SetUpSpaceRequest`. To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `{person_id\}` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`. For a space or group chat, if the caller blocks or is blocked by some members, then those members aren't added to the created space. To create a direct message (DM) between the calling user and another human user, specify exactly one membership to represent the human user. If one user blocks the other, the request fails and the DM isn't created. To create a DM between the calling user and the calling app, set `Space.singleUserBotDm` to `true` and don't specify any memberships. You can only use this method to set up a DM with the calling app. To add the calling app as a member of a space or an existing DM between two human users, see [create a membership](https://developers.google.com/chat/api/guides/v1/members/create). If a DM already exists between two users, even when one user blocks the other at the time a request is made, then the existing DM is returned. Spaces with threaded replies aren't supported. If you receive the error message `ALREADY_EXISTS` when setting up a space, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users).
+     * Creates a space and adds specified users to it. The calling user is automatically added to the space, and shouldn't be specified as a membership in the request. For an example, see [Set up a space](https://developers.google.com/chat/api/guides/v1/spaces/set-up). To specify the human members to add, add memberships with the appropriate `member.name` in the `SetUpSpaceRequest`. To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `id` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person profile ID for `user@example.com` is `123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`. For a space or group chat, if the caller blocks or is blocked by some members, then those members aren't added to the created space. To create a direct message (DM) between the calling user and another human user, specify exactly one membership to represent the human user. If one user blocks the other, the request fails and the DM isn't created. To create a DM between the calling user and the calling app, set `Space.singleUserBotDm` to `true` and don't specify any memberships. You can only use this method to set up a DM with the calling app. To add the calling app as a member of a space or an existing DM between two human users, see [create a membership](https://developers.google.com/chat/api/guides/v1/members/create). If a DM already exists between two users, even when one user blocks the other at the time a request is made, then the existing DM is returned. Spaces with threaded replies aren't supported. If you receive the error message `ALREADY_EXISTS` when setting up a space, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2774,7 +2774,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Finddirectmessage
     extends StandardParameters {
     /**
-     * Required. Resource name of the user to find direct message with. Format: `users/{user\}`, where `{user\}` is either the `{person_id\}` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API `Person.resourceName` is `people/123456789`, you can find a direct message with that person by using `users/123456789` as the `name`. When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the email as an alias for `{user\}`. For example, `users/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
+     * Required. Resource name of the user to find direct message with. Format: `users/{user\}`, where `{user\}` is either the `id` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API profile ID is `123456789`, you can find a direct message with that person by using `users/123456789` as the `name`. When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the email as an alias for `{user\}`. For example, `users/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
      */
     name?: string;
   }
@@ -2786,7 +2786,7 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Spaces$List extends StandardParameters {
     /**
-     * Optional. A query filter. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). You can filter spaces by the space type ([`space_type`](https://developers.google.com/chat/api/reference/rest/v1/spaces#spacetype)). To filter by space type, you must specify valid enum value, such as `SPACE` or `GROUP_CHAT` (the `space_type` can't be `SPACE_TYPE_UNSPECIFIED`). To query for multiple space types, use the `OR` operator. For example, the following queries are valid: ``` space_type = "SPACE" spaceType = "GROUP_CHAT" OR spaceType = "DIRECT_MESSAGE" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error. With [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), this field is ignored and the query always returns all spaces. But the Chat API still validates the query syntax with service accounts, so invalid queries are still rejected.
+     * Optional. A query filter. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). You can filter spaces by the space type ([`space_type`](https://developers.google.com/chat/api/reference/rest/v1/spaces#spacetype)). To filter by space type, you must specify valid enum value, such as `SPACE` or `GROUP_CHAT` (the `space_type` can't be `SPACE_TYPE_UNSPECIFIED`). To query for multiple space types, use the `OR` operator. For example, the following queries are valid: ``` space_type = "SPACE" spaceType = "GROUP_CHAT" OR spaceType = "DIRECT_MESSAGE" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error. With [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), this field is ignored and the query always returns all spaces. But the Chat API still validates the query syntax, so invalid queries are still rejected.
      */
     filter?: string;
     /**
@@ -2827,7 +2827,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a human membership or app membership for the calling app. Creating memberships for other apps isn't supported. For an example, see [ Create a membership](https://developers.google.com/chat/api/guides/v1/members/create). When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). To specify the member to add, set the `membership.member.name` in the `CreateMembershipRequest`: - To add the calling app to a space or a direct message between two human users, use `users/app`. Unable to add other apps to the space. - To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `{person_id\}` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`.
+     * Creates a human membership or app membership for the calling app. Creating memberships for other apps isn't supported. For an example, see [ Create a membership](https://developers.google.com/chat/api/guides/v1/members/create). When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). To specify the member to add, set the `membership.member.name` in the `CreateMembershipRequest`: - To add the calling app to a space or a direct message between two human users, use `users/app`. Unable to add other apps to the space. - To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `id` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person profile ID for `user@example.com` is `123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2998,7 +2998,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns details about a membership. For an example, see [Get a membership](https://developers.google.com/chat/api/guides/v1/members/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users).
+     * Returns details about a membership. For an example, see [Get a membership](https://developers.google.com/chat/api/guides/v1/members/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3082,7 +3082,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists memberships in a space. For an example, see [List memberships](https://developers.google.com/chat/api/guides/v1/members/list). Listing memberships with [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) lists memberships in spaces that the Chat app has access to, but excludes Chat app memberships, including its own. Listing memberships with [User authentication](https://developers.google.com/chat/api/guides/auth/users) lists memberships in spaces that the authenticated user has access to. Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users).
+     * Lists memberships in a space. For an example, see [List memberships](https://developers.google.com/chat/api/guides/v1/members/list). Listing memberships with [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) lists memberships in spaces that the Chat app has access to, but excludes Chat app memberships, including its own. Listing memberships with [User authentication](https://developers.google.com/chat/api/guides/auth/users) lists memberships in spaces that the authenticated user has access to. Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3322,7 +3322,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Deletes a message. For an example, see [Delete a message](https://developers.google.com/chat/api/guides/v1/messages/delete). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users). Requests authenticated with service accounts can only delete messages created by the calling Chat app.
+     * Deletes a message. For an example, see [Delete a message](https://developers.google.com/chat/api/guides/v1/messages/delete). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). When using app authentication, requests can only delete messages created by the calling Chat app.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3406,7 +3406,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns details about a message. For an example, see [Read a message](https://developers.google.com/chat/api/guides/v1/messages/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users). Note: Might return a message from a blocked member or space.
+     * Returns details about a message. For an example, see [Read a message](https://developers.google.com/chat/api/guides/v1/messages/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). Note: Might return a message from a blocked member or space.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3582,7 +3582,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users). Requests authenticated with service accounts can only update messages created by the calling Chat app.
+     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). When using app authentication, requests can only update messages created by the calling Chat app.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3666,7 +3666,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users). Requests authenticated with service accounts can only update messages created by the calling Chat app.
+     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Supports [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). When using app authentication, requests can only update messages created by the calling Chat app.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3769,7 +3769,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Deprecated: Use thread.thread_key instead. ID for the thread. Supports up to 4000 characters. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
+     * Optional. Deprecated: Use thread.thread_key instead. ID for the thread. Supports up to 4000 characters. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/v1/messages/create#create-message-thread).
      */
     threadKey?: string;
 
@@ -3781,7 +3781,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Delete
     extends StandardParameters {
     /**
-     * When `true`, deleting a message also deletes its threaded replies. When `false`, if a message has threaded replies, deletion fails. Only applies when [authenticating as a user](https://developers.google.com/chat/api/guides/auth/users). Has no effect when [authenticating with a service account] (https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * When `true`, deleting a message also deletes its threaded replies. When `false`, if a message has threaded replies, deletion fails. Only applies when [authenticating as a user](https://developers.google.com/chat/api/guides/auth/users). Has no effect when [authenticating as a Chat app] (https://developers.google.com/chat/api/guides/auth/service-accounts).
      */
     force?: boolean;
     /**
@@ -3834,7 +3834,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)
+     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)
      */
     updateMask?: string;
 
@@ -3854,7 +3854,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)
+     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)
      */
     updateMask?: string;
 
@@ -3871,7 +3871,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Gets the metadata of a message attachment. The attachment data is fetched using the [media API](https://developers.google.com/chat/api/reference/rest/v1/media/download). For an example, see [Get a message attachment](https://developers.google.com/chat/api/guides/v1/media-and-attachments/get). Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Gets the metadata of a message attachment. The attachment data is fetched using the [media API](https://developers.google.com/chat/api/reference/rest/v1/media/download). For an example, see [Get a message attachment](https://developers.google.com/chat/api/guides/v1/media-and-attachments/get). Requires [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
