@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v3.0.1...retail-v3.0.2) (2023-11-27)
+
+
+### Bug Fixes
+
+* **retail:** update the API ([943be6c](https://github.com/googleapis/google-api-nodejs-client/commit/943be6c22ebbc9ba4e17f45bb2ba58e6193a126e))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v3.0.0...retail-v3.0.1) (2023-10-19)
 
 

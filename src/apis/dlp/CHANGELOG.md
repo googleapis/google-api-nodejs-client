@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v3.0.0...dlp-v4.0.0) (2023-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **dlp:** update the API ([029d391](https://github.com/googleapis/google-api-nodejs-client/commit/029d391a743f7e30a89496dfe3b38e7df0dce3c8))
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v2.0.0...dlp-v3.0.0) (2023-10-19)
 
 

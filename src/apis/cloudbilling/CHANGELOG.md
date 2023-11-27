@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbilling-v2.0.0...cloudbilling-v2.1.0) (2023-11-27)
+
+
+### Features
+
+* **cloudbilling:** update the API ([f90c297](https://github.com/googleapis/google-api-nodejs-client/commit/f90c297eff5855478de524999b4d01c49ad47220))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbilling-v1.1.1...cloudbilling-v2.0.0) (2023-10-11)
 
 

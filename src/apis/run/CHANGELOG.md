@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v13.0.0...run-v13.1.0) (2023-11-27)
+
+
+### Features
+
+* **run:** update the API ([5c8c879](https://github.com/googleapis/google-api-nodejs-client/commit/5c8c8796e7107dca1b7ebca8856b5a94ad15bc33))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v12.0.0...run-v13.0.0) (2023-10-19)
 
 

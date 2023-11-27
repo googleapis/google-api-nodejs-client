@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v2.0.1...metastore-v2.1.0) (2023-11-27)
+
+
+### Features
+
+* **metastore:** update the API ([1a19ff2](https://github.com/googleapis/google-api-nodejs-client/commit/1a19ff2987dd9ec5aa071fc475fb2d8033efa2d7))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v2.0.0...metastore-v2.0.1) (2023-10-19)
 
 
