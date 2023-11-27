@@ -429,7 +429,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the repository, for example: \"projects/p1/locations/us-central1/repositories/repo1\".",
+                      "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                       "required": true,
@@ -981,7 +981,7 @@
       }
     }
   },
-  "revision": "20231006",
+  "revision": "20231114",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1376,7 +1376,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The name of the repository, for example: \"projects/p1/locations/us-central1/repositories/repo1\".",
+          "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.",
           "type": "string"
         },
         "satisfiesPzs": {
