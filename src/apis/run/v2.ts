@@ -1118,6 +1118,10 @@ export namespace run_v2 {
      */
     satisfiesPzs?: boolean | null;
     /**
+     * Optional. Specifies service-level scaling settings
+     */
+    scaling?: Schema$GoogleCloudRunV2ServiceScaling;
+    /**
      * Required. The template used to create revisions for this Service.
      */
     template?: Schema$GoogleCloudRunV2RevisionTemplate;
@@ -1145,6 +1149,15 @@ export namespace run_v2 {
      * Output only. The main URI in which this Service is serving traffic.
      */
     uri?: string | null;
+  }
+  /**
+   * Scaling settings applied at the service level rather than at the revision level.
+   */
+  export interface Schema$GoogleCloudRunV2ServiceScaling {
+    /**
+     * total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (ALPHA)
+     */
+    minInstanceCount?: number | null;
   }
   /**
    * Task represents a single run of a container to completion.
