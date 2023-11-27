@@ -2358,34 +2358,6 @@
             },
             "spokes": {
               "methods": {
-                "accept": {
-                  "description": "Accepts a proposal to attach a Network Connectivity Center spoke to the hub.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}:accept",
-                  "httpMethod": "POST",
-                  "id": "networkconnectivity.projects.locations.spokes.accept",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the spoke to accept.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/spokes/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}:accept",
-                  "request": {
-                    "$ref": "AcceptSpokeRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "create": {
                   "description": "Creates a Network Connectivity Center spoke.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes",
@@ -2595,34 +2567,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "reject": {
-                  "description": "Rejects a Network Connectivity Center spoke from being attached to the hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}:reject",
-                  "httpMethod": "POST",
-                  "id": "networkconnectivity.projects.locations.spokes.reject",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the spoke to reject.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/spokes/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}:reject",
-                  "request": {
-                    "$ref": "RejectSpokeRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}:setIamPolicy",
@@ -2686,7 +2630,7 @@
       }
     }
   },
-  "revision": "20230921",
+  "revision": "20231109",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2711,17 +2655,6 @@
         "spoke": {
           "$ref": "Spoke",
           "description": "The spoke that was operated on."
-        }
-      },
-      "type": "object"
-    },
-    "AcceptSpokeRequest": {
-      "description": "The request for HubService.AcceptSpoke.",
-      "id": "AcceptSpokeRequest",
-      "properties": {
-        "requestId": {
-          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-          "type": "string"
         }
       },
       "type": "object"
@@ -4113,21 +4046,6 @@
         "spoke": {
           "$ref": "Spoke",
           "description": "The spoke that was operated on."
-        }
-      },
-      "type": "object"
-    },
-    "RejectSpokeRequest": {
-      "description": "The request for HubService.RejectSpoke.",
-      "id": "RejectSpokeRequest",
-      "properties": {
-        "details": {
-          "description": "Optional. Additional information provided by the hub administrator in the `RejectSpoke` call.",
-          "type": "string"
-        },
-        "requestId": {
-          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-          "type": "string"
         }
       },
       "type": "object"

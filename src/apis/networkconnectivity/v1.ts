@@ -147,15 +147,6 @@ export namespace networkconnectivity_v1 {
     spoke?: Schema$Spoke;
   }
   /**
-   * The request for HubService.AcceptSpoke.
-   */
-  export interface Schema$AcceptSpokeRequest {
-    /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string | null;
-  }
-  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -1062,19 +1053,6 @@ export namespace networkconnectivity_v1 {
      * The spoke that was operated on.
      */
     spoke?: Schema$Spoke;
-  }
-  /**
-   * The request for HubService.RejectSpoke.
-   */
-  export interface Schema$RejectSpokeRequest {
-    /**
-     * Optional. Additional information provided by the hub administrator in the `RejectSpoke` call.
-     */
-    details?: string | null;
-    /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string | null;
   }
   /**
    * A route defines a path from VM instances within a spoke to a specific destination resource. Only VPC spokes have routes.
@@ -8638,98 +8616,6 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Accepts a proposal to attach a Network Connectivity Center spoke to the hub.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    accept(
-      params: Params$Resource$Projects$Locations$Spokes$Accept,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    accept(
-      params?: Params$Resource$Projects$Locations$Spokes$Accept,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    accept(
-      params: Params$Resource$Projects$Locations$Spokes$Accept,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    accept(
-      params: Params$Resource$Projects$Locations$Spokes$Accept,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    accept(
-      params: Params$Resource$Projects$Locations$Spokes$Accept,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    accept(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    accept(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Spokes$Accept
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Spokes$Accept;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Spokes$Accept;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:accept').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
      * Creates a Network Connectivity Center spoke.
      *
      * @param params - Parameters for request
@@ -9273,98 +9159,6 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Rejects a Network Connectivity Center spoke from being attached to the hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    reject(
-      params: Params$Resource$Projects$Locations$Spokes$Reject,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    reject(
-      params?: Params$Resource$Projects$Locations$Spokes$Reject,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    reject(
-      params: Params$Resource$Projects$Locations$Spokes$Reject,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    reject(
-      params: Params$Resource$Projects$Locations$Spokes$Reject,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    reject(
-      params: Params$Resource$Projects$Locations$Spokes$Reject,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    reject(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    reject(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Spokes$Reject
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Spokes$Reject;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Spokes$Reject;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:reject').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -9549,18 +9343,6 @@ export namespace networkconnectivity_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Spokes$Accept
-    extends StandardParameters {
-    /**
-     * Required. The name of the spoke to accept.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AcceptSpokeRequest;
-  }
   export interface Params$Resource$Projects$Locations$Spokes$Create
     extends StandardParameters {
     /**
@@ -9652,18 +9434,6 @@ export namespace networkconnectivity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Spoke;
-  }
-  export interface Params$Resource$Projects$Locations$Spokes$Reject
-    extends StandardParameters {
-    /**
-     * Required. The name of the spoke to reject.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RejectSpokeRequest;
   }
   export interface Params$Resource$Projects$Locations$Spokes$Setiampolicy
     extends StandardParameters {
