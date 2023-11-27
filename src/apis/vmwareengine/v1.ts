@@ -192,6 +192,10 @@ export namespace vmwareengine_v1 {
      */
     state?: string | null;
     /**
+     * Optional. Configuration of a stretched cluster. Required for clusters that belong to a STRETCHED private cloud.
+     */
+    stretchedClusterConfig?: Schema$StretchedClusterConfig;
+    /**
      * Output only. System-generated unique identifier for the resource.
      */
     uid?: string | null;
@@ -212,6 +216,40 @@ export namespace vmwareengine_v1 {
      * Initial username.
      */
     username?: string | null;
+  }
+  /**
+   * DnsBindPermission resource that contains the accounts having the consumer DNS bind permission on the corresponding intranet VPC of the consumer project.
+   */
+  export interface Schema$DnsBindPermission {
+    /**
+     * Required. Output only. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`
+     */
+    name?: string | null;
+    /**
+     * Output only. Users/Service accounts which have access for binding on the intranet VPC project corresponding to the consumer project.
+     */
+    principals?: Schema$Principal[];
+  }
+  /**
+   * DNS forwarding config. This config defines a list of domain to name server mappings, and is attached to the private cloud for custom domain resolution.
+   */
+  export interface Schema$DnsForwarding {
+    /**
+     * Output only. Creation time of this resource.
+     */
+    createTime?: string | null;
+    /**
+     * Required. List of domain mappings to configure
+     */
+    forwardingRules?: Schema$ForwardingRule[];
+    /**
+     * Output only. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
+     */
+    name?: string | null;
+    /**
+     * Output only. Last update time of this resource.
+     */
+    updateTime?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -237,6 +275,139 @@ export namespace vmwareengine_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * External access firewall rules for filtering incoming traffic destined to `ExternalAddress` resources.
+   */
+  export interface Schema$ExternalAccessRule {
+    /**
+     * The action that the external access rule performs.
+     */
+    action?: string | null;
+    /**
+     * Output only. Creation time of this resource.
+     */
+    createTime?: string | null;
+    /**
+     * User-provided description for this external access rule.
+     */
+    description?: string | null;
+    /**
+     * If destination ranges are specified, the external access rule applies only to the traffic that has a destination IP address in these ranges. The specified IP addresses must have reserved external IP addresses in the scope of the parent network policy. To match all external IP addresses in the scope of the parent network policy, specify `0.0.0.0/0`. To match a specific external IP address, specify it using the `IpRange.external_address` property.
+     */
+    destinationIpRanges?: Schema$IpRange[];
+    /**
+     * A list of destination ports to which the external access rule applies. This field is only applicable for the UDP or TCP protocol. Each entry must be either an integer or a range. For example: `["22"]`, `["80","443"]`, or `["12345-12349"]`. To match all destination ports, specify `["0-65535"]`.
+     */
+    destinationPorts?: string[] | null;
+    /**
+     * The IP protocol to which the external access rule applies. This value can be one of the following three protocol strings (not case-sensitive): `tcp`, `udp`, or `icmp`.
+     */
+    ipProtocol?: string | null;
+    /**
+     * Output only. The resource name of this external access rule. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy/externalAccessRules/my-rule`
+     */
+    name?: string | null;
+    /**
+     * External access rule priority, which determines the external access rule to use when multiple rules apply. If multiple rules have the same priority, their ordering is non-deterministic. If specific ordering is required, assign unique priorities to enforce such ordering. The external access rule priority is an integer from 100 to 4096, both inclusive. Lower integers indicate higher precedence. For example, a rule with priority `100` has higher precedence than a rule with priority `101`.
+     */
+    priority?: number | null;
+    /**
+     * If source ranges are specified, the external access rule applies only to traffic that has a source IP address in these ranges. These ranges can either be expressed in the CIDR format or as an IP address. As only inbound rules are supported, `ExternalAddress` resources cannot be the source IP addresses of an external access rule. To match all source addresses, specify `0.0.0.0/0`.
+     */
+    sourceIpRanges?: Schema$IpRange[];
+    /**
+     * A list of source ports to which the external access rule applies. This field is only applicable for the UDP or TCP protocol. Each entry must be either an integer or a range. For example: `["22"]`, `["80","443"]`, or `["12345-12349"]`. To match all source ports, specify `["0-65535"]`.
+     */
+    sourcePorts?: string[] | null;
+    /**
+     * Output only. The state of the resource.
+     */
+    state?: string | null;
+    /**
+     * Output only. System-generated unique identifier for the resource.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Last update time of this resource.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents an allocated external IP address and its corresponding internal IP address in a private cloud.
+   */
+  export interface Schema$ExternalAddress {
+    /**
+     * Output only. Creation time of this resource.
+     */
+    createTime?: string | null;
+    /**
+     * User-provided description for this resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. The external IP address of a workload VM.
+     */
+    externalIp?: string | null;
+    /**
+     * The internal IP address of a workload VM.
+     */
+    internalIp?: string | null;
+    /**
+     * Output only. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the resource.
+     */
+    state?: string | null;
+    /**
+     * Output only. System-generated unique identifier for the resource.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Last update time of this resource.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for VmwareEngine.FetchNetworkPolicyExternalAddresses
+   */
+  export interface Schema$FetchNetworkPolicyExternalAddressesResponse {
+    /**
+     * A list of external IP addresses assigned to VMware workload VMs within the scope of the given network policy.
+     */
+    externalAddresses?: Schema$ExternalAddress[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * A forwarding rule is a mapping of a `domain` to `name_servers`. This mapping allows VMware Engine to resolve domains for attached private clouds by forwarding DNS requests for a given domain to the specified nameservers.
+   */
+  export interface Schema$ForwardingRule {
+    /**
+     * Required. Domain used to resolve a `name_servers` list.
+     */
+    domain?: string | null;
+    /**
+     * Required. List of DNS servers to use for domain resolution
+     */
+    nameServers?: string[] | null;
+  }
+  /**
+   * Request message for VmwareEngine.GrantDnsBindPermission
+   */
+  export interface Schema$GrantDnsBindPermissionRequest {
+    /**
+     * Required. The consumer provided user/service account which needs to be granted permission to bind with the intranet VPC corresponding to the consumer project.
+     */
+    principal?: Schema$Principal;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
   }
   /**
    * Details about a HCX Cloud Manager appliance.
@@ -285,6 +456,23 @@ export namespace vmwareengine_v1 {
     uid?: string | null;
   }
   /**
+   * An IP range provided in any one of the supported formats.
+   */
+  export interface Schema$IpRange {
+    /**
+     * The name of an `ExternalAddress` resource. The external address must have been reserved in the scope of this external access rule's parent network policy. Provide the external address name in the form of `projects/{project\}/locations/{location\}/privateClouds/{private_cloud\}/externalAddresses/{external_address\}`. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`.
+     */
+    externalAddress?: string | null;
+    /**
+     * A single IP address. For example: `10.0.0.5`.
+     */
+    ipAddress?: string | null;
+    /**
+     * An IP address range in the CIDR format. For example: `10.0.0.0/24`.
+     */
+    ipAddressRange?: string | null;
+  }
+  /**
    * Response message for VmwareEngine.ListClusters
    */
   export interface Schema$ListClustersResponse {
@@ -292,6 +480,40 @@ export namespace vmwareengine_v1 {
      * A list of private cloud clusters.
      */
     clusters?: Schema$Cluster[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached when making an aggregated query using wildcards.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for VmwareEngine.ListExternalAccessRules
+   */
+  export interface Schema$ListExternalAccessRulesResponse {
+    /**
+     * A list of external access firewall rules.
+     */
+    externalAccessRules?: Schema$ExternalAccessRule[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached when making an aggregated query using wildcards.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for VmwareEngine.ListExternalAddresses
+   */
+  export interface Schema$ListExternalAddressesResponse {
+    /**
+     * A list of external IP addresses.
+     */
+    externalAddresses?: Schema$ExternalAddress[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -332,6 +554,57 @@ export namespace vmwareengine_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for VmwareEngine.ListLoggingServers
+   */
+  export interface Schema$ListLoggingServersResponse {
+    /**
+     * A list of Logging Servers.
+     */
+    loggingServers?: Schema$LoggingServer[];
+    /**
+     * A token, which can be send as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached when making an aggregated query using wildcards.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for VmwareEngine.ListManagementDnsZoneBindings
+   */
+  export interface Schema$ListManagementDnsZoneBindingsResponse {
+    /**
+     * A list of management DNS zone bindings.
+     */
+    managementDnsZoneBindings?: Schema$ManagementDnsZoneBinding[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached when making an aggregated query using wildcards.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for VmwareEngine.ListNetworkPeerings
+   */
+  export interface Schema$ListNetworkPeeringsResponse {
+    /**
+     * A list of network peerings.
+     */
+    networkPeerings?: Schema$NetworkPeering[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unreachable resources.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response message for VmwareEngine.ListNetworkPolicies
    */
   export interface Schema$ListNetworkPoliciesResponse {
@@ -347,6 +620,19 @@ export namespace vmwareengine_v1 {
      * Locations that could not be reached when making an aggregated query using wildcards.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Response message for VmwareEngine.ListNodes
+   */
+  export interface Schema$ListNodesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The nodes.
+     */
+    nodes?: Schema$Node[];
   }
   /**
    * Response message for VmwareEngine.ListNodeTypes
@@ -377,6 +663,19 @@ export namespace vmwareengine_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * Response message for VmwareEngine.ListPeeringRoutes
+   */
+  export interface Schema$ListPeeringRoutesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of peering routes.
+     */
+    peeringRoutes?: Schema$PeeringRoute[];
   }
   /**
    * Response message for VmwareEngine.ListPrivateClouds
@@ -485,6 +784,52 @@ export namespace vmwareengine_v1 {
     name?: string | null;
   }
   /**
+   * VmwareEngine specific metadata for the given google.cloud.location.Location. It is returned as a content of the `google.cloud.location.Location.metadata` field.
+   */
+  export interface Schema$LocationMetadata {
+    /**
+     * Output only. Capabilities of this location.
+     */
+    capabilities?: string[] | null;
+  }
+  /**
+   * Logging server to receive vCenter or ESXi logs.
+   */
+  export interface Schema$LoggingServer {
+    /**
+     * Output only. Creation time of this resource.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Fully-qualified domain name (FQDN) or IP Address of the logging server.
+     */
+    hostname?: string | null;
+    /**
+     * Output only. The resource name of this logging server. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/loggingServers/my-logging-server`
+     */
+    name?: string | null;
+    /**
+     * Required. Port number at which the logging server receives logs.
+     */
+    port?: number | null;
+    /**
+     * Required. Protocol used by vCenter to send logs to a logging server.
+     */
+    protocol?: string | null;
+    /**
+     * Required. The type of component that produces logs that will be forwarded to this logging server.
+     */
+    sourceType?: string | null;
+    /**
+     * Output only. System-generated unique identifier for the resource.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Last update time of this resource.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Management cluster configuration.
    */
   export interface Schema$ManagementCluster {
@@ -496,11 +841,56 @@ export namespace vmwareengine_v1 {
      * Required. The map of cluster node types in this cluster, where the key is canonical identifier of the node type (corresponds to the `NodeType`).
      */
     nodeTypeConfigs?: {[key: string]: Schema$NodeTypeConfig} | null;
+    /**
+     * Optional. Configuration of a stretched cluster. Required for STRETCHED private clouds.
+     */
+    stretchedClusterConfig?: Schema$StretchedClusterConfig;
+  }
+  /**
+   * Represents a binding between a network and the management DNS zone. A management DNS zone is the Cloud DNS cross-project binding zone that VMware Engine creates for each private cloud. It contains FQDNs and corresponding IP addresses for the private cloud's ESXi hosts and management VM appliances like vCenter and NSX Manager.
+   */
+  export interface Schema$ManagementDnsZoneBinding {
+    /**
+     * Output only. Creation time of this resource.
+     */
+    createTime?: string | null;
+    /**
+     * User-provided description for this resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. The resource name of this binding. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the resource.
+     */
+    state?: string | null;
+    /**
+     * Output only. System-generated unique identifier for the resource.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Last update time of this resource.
+     */
+    updateTime?: string | null;
+    /**
+     * Network to bind is a VMware Engine network. Specify the name in the following form for VMware engine network: `projects/{project\}/locations/global/vmwareEngineNetworks/{vmware_engine_network_id\}`. `{project\}` can either be a project number or a project ID.
+     */
+    vmwareEngineNetwork?: string | null;
+    /**
+     * Network to bind is a standard consumer VPC. Specify the name in the following form for consumer VPC network: `projects/{project\}/global/networks/{network_id\}`. `{project\}` can either be a project number or a project ID.
+     */
+    vpcNetwork?: string | null;
   }
   /**
    * Network configuration in the consumer project with which the peering has to be done.
    */
   export interface Schema$NetworkConfig {
+    /**
+     * Output only. DNS Server IP of the Private Cloud. All DNS queries can be forwarded to this address for name resolution of Private Cloud's management entities like vCenter, NSX-T Manager and ESXi hosts.
+     */
+    dnsServerIp?: string | null;
     /**
      * Required. Management CIDR used by VMware management appliances.
      */
@@ -517,6 +907,75 @@ export namespace vmwareengine_v1 {
      * Output only. The canonical name of the VMware Engine network in the form: `projects/{project_number\}/locations/{location\}/vmwareEngineNetworks/{vmware_engine_network_id\}`
      */
     vmwareEngineNetworkCanonical?: string | null;
+  }
+  /**
+   * Details of a network peering.
+   */
+  export interface Schema$NetworkPeering {
+    /**
+     * Output only. Creation time of this resource.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-provided description for this network peering.
+     */
+    description?: string | null;
+    /**
+     * Optional. True if full mesh connectivity is created and managed automatically between peered networks; false otherwise. Currently this field is always true because Google Compute Engine automatically creates and manages subnetwork routes between two VPC networks when peering state is 'ACTIVE'.
+     */
+    exchangeSubnetRoutes?: boolean | null;
+    /**
+     * Optional. True if custom routes are exported to the peered network; false otherwise. The default value is true.
+     */
+    exportCustomRoutes?: boolean | null;
+    /**
+     * Optional. True if all subnet routes with a public IP address range are exported; false otherwise. The default value is true. IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always exported to peers and are not controlled by this field.
+     */
+    exportCustomRoutesWithPublicIp?: boolean | null;
+    /**
+     * Optional. True if custom routes are imported from the peered network; false otherwise. The default value is true.
+     */
+    importCustomRoutes?: boolean | null;
+    /**
+     * Optional. True if all subnet routes with public IP address range are imported; false otherwise. The default value is true. IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always imported to peers and are not controlled by this field.
+     */
+    importCustomRoutesWithPublicIp?: boolean | null;
+    /**
+     * Output only. The resource name of the network peering. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
+     */
+    name?: string | null;
+    /**
+     * Optional. Maximum transmission unit (MTU) in bytes. The default value is `1500`. If a value of `0` is provided for this field, VMware Engine uses the default value instead.
+     */
+    peerMtu?: number | null;
+    /**
+     * Required. The relative resource name of the network to peer with a standard VMware Engine network. The provided network can be a consumer VPC network or another standard VMware Engine network. If the `peer_network_type` is VMWARE_ENGINE_NETWORK, specify the name in the form: `projects/{project\}/locations/global/vmwareEngineNetworks/{vmware_engine_network_id\}`. Otherwise specify the name in the form: `projects/{project\}/global/networks/{network_id\}`, where `{project\}` can either be a project number or a project ID.
+     */
+    peerNetwork?: string | null;
+    /**
+     * Required. The type of the network to peer with the VMware Engine network.
+     */
+    peerNetworkType?: string | null;
+    /**
+     * Output only. State of the network peering. This field has a value of 'ACTIVE' when there's a matching configuration in the peer network. New values may be added to this enum when appropriate.
+     */
+    state?: string | null;
+    /**
+     * Output only. Output Only. Details about the current state of the network peering.
+     */
+    stateDetails?: string | null;
+    /**
+     * Output only. System-generated unique identifier for the resource.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Last update time of this resource.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. The relative resource name of the VMware Engine network. Specify the name in the following form: `projects/{project\}/locations/{location\}/vmwareEngineNetworks/{vmware_engine_network_id\}` where `{project\}` can either be a project number or a project ID.
+     */
+    vmwareEngineNetwork?: string | null;
   }
   /**
    * Represents a network policy resource. Network policies are regional resources. You can use a network policy to enable or disable internet access and external IP access. Network policies are associated with a VMware Engine network, which might span across regions. For a given region, a network policy applies to all private clouds in the VMware Engine network associated with the policy.
@@ -577,6 +1036,39 @@ export namespace vmwareengine_v1 {
     state?: string | null;
   }
   /**
+   * Node in a cluster.
+   */
+  export interface Schema$Node {
+    /**
+     * Output only. Customized number of cores
+     */
+    customCoreCount?: string | null;
+    /**
+     * Output only. Fully qualified domain name of the node.
+     */
+    fqdn?: string | null;
+    /**
+     * Output only. Internal IP address of the node.
+     */
+    internalIp?: string | null;
+    /**
+     * Output only. The resource name of this node. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster/nodes/my-node
+     */
+    name?: string | null;
+    /**
+     * Output only. The canonical identifier of the node type (corresponds to the `NodeType`). For example: standard-72.
+     */
+    nodeTypeId?: string | null;
+    /**
+     * Output only. The state of the appliance.
+     */
+    state?: string | null;
+    /**
+     * Output only. The version number of the VMware ESXi management component in this cluster.
+     */
+    version?: string | null;
+  }
+  /**
    * Describes node type.
    */
   export interface Schema$NodeType {
@@ -584,6 +1076,10 @@ export namespace vmwareengine_v1 {
      * Output only. List of possible values of custom core count.
      */
     availableCustomCoreCounts?: number[] | null;
+    /**
+     * Output only. Capabilities of this node type.
+     */
+    capabilities?: string[] | null;
     /**
      * Output only. The amount of storage available, defined in GB.
      */
@@ -756,6 +1252,19 @@ export namespace vmwareengine_v1 {
     version?: number | null;
   }
   /**
+   * Users/Service accounts which have access for DNS binding on the intranet VPC corresponding to the consumer project.
+   */
+  export interface Schema$Principal {
+    /**
+     * The service account which needs to be granted the permission.
+     */
+    serviceAccount?: string | null;
+    /**
+     * The user who needs to be granted permission.
+     */
+    user?: string | null;
+  }
+  /**
    * Represents a private cloud resource. Private clouds of type `STANDARD` and `TIME_LIMITED` are zonal resources, `STRETCHED` private clouds are regional.
    */
   export interface Schema$PrivateCloud {
@@ -874,6 +1383,15 @@ export namespace vmwareengine_v1 {
     vmwareEngineNetworkCanonical?: string | null;
   }
   /**
+   * Request message for VmwareEngine.RepairManagementDnsZoneBindings
+   */
+  export interface Schema$RepairManagementDnsZoneBindingRequest {
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
    * Request message for VmwareEngine.ResetNsxCredentials
    */
   export interface Schema$ResetNsxCredentialsRequest {
@@ -886,6 +1404,23 @@ export namespace vmwareengine_v1 {
    * Request message for VmwareEngine.ResetVcenterCredentials
    */
   export interface Schema$ResetVcenterCredentialsRequest {
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Optional. The username of the user to be to reset the credentials. The default value of this field is CloudOwner@gve.local. The provided value should be one of the following: solution-user-01@gve.local, solution-user-02@gve.local, solution-user-03@gve.local, solution-user-04@gve.local, solution-user-05@gve.local, zertoadmin@gve.local.
+     */
+    username?: string | null;
+  }
+  /**
+   * Request message for VmwareEngine.RevokeDnsBindPermission
+   */
+  export interface Schema$RevokeDnsBindPermissionRequest {
+    /**
+     * Required. The consumer provided user/service account which needs to be granted permission to bind with the intranet VPC corresponding to the consumer project.
+     */
+    principal?: Schema$Principal;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
@@ -922,6 +1457,19 @@ export namespace vmwareengine_v1 {
     message?: string | null;
   }
   /**
+   * Configuration of a stretched cluster.
+   */
+  export interface Schema$StretchedClusterConfig {
+    /**
+     * Required. Zone that will remain operational when connection between the two zones is lost. Specify the resource name of a zone that belongs to the region of the private cloud. For example: `projects/{project\}/locations/europe-west3-a` where `{project\}` can either be a project number or a project ID.
+     */
+    preferredLocation?: string | null;
+    /**
+     * Required. Additional zone for a higher level of availability and load balancing. Specify the resource name of a zone that belongs to the region of the private cloud. For example: `projects/{project\}/locations/europe-west3-b` where `{project\}` can either be a project number or a project ID.
+     */
+    secondaryLocation?: string | null;
+  }
+  /**
    * Subnet in a private cloud. Either `management` subnets (such as vMotion) that are read-only, or `userDefined`, which can also be updated.
    */
   export interface Schema$Subnet {
@@ -945,6 +1493,10 @@ export namespace vmwareengine_v1 {
      * Output only. The type of the subnet. For example "management" or "userDefined".
      */
     type?: string | null;
+    /**
+     * Output only. VLAN ID of the VLAN on which the subnet is configured
+     */
+    vlanId?: number | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1060,6 +1612,7 @@ export namespace vmwareengine_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    global: Resource$Projects$Locations$Global;
     networkPolicies: Resource$Projects$Locations$Networkpolicies;
     nodeTypes: Resource$Projects$Locations$Nodetypes;
     operations: Resource$Projects$Locations$Operations;
@@ -1068,6 +1621,7 @@ export namespace vmwareengine_v1 {
     vmwareEngineNetworks: Resource$Projects$Locations$Vmwareenginenetworks;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.global = new Resource$Projects$Locations$Global(this.context);
       this.networkPolicies = new Resource$Projects$Locations$Networkpolicies(
         this.context
       );
@@ -1288,10 +1842,982 @@ export namespace vmwareengine_v1 {
     pageToken?: string;
   }
 
-  export class Resource$Projects$Locations$Networkpolicies {
+  export class Resource$Projects$Locations$Global {
+    context: APIRequestContext;
+    dnsBindPermission: Resource$Projects$Locations$Global$Dnsbindpermission;
+    networkPeerings: Resource$Projects$Locations$Global$Networkpeerings;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.dnsBindPermission =
+        new Resource$Projects$Locations$Global$Dnsbindpermission(this.context);
+      this.networkPeerings =
+        new Resource$Projects$Locations$Global$Networkpeerings(this.context);
+    }
+
+    /**
+     * Gets all the principals having bind permission on the intranet VPC associated with the consumer project granted by the Grant API.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDnsBindPermission(
+      params: Params$Resource$Projects$Locations$Global$Getdnsbindpermission,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDnsBindPermission(
+      params?: Params$Resource$Projects$Locations$Global$Getdnsbindpermission,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DnsBindPermission>;
+    getDnsBindPermission(
+      params: Params$Resource$Projects$Locations$Global$Getdnsbindpermission,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDnsBindPermission(
+      params: Params$Resource$Projects$Locations$Global$Getdnsbindpermission,
+      options: MethodOptions | BodyResponseCallback<Schema$DnsBindPermission>,
+      callback: BodyResponseCallback<Schema$DnsBindPermission>
+    ): void;
+    getDnsBindPermission(
+      params: Params$Resource$Projects$Locations$Global$Getdnsbindpermission,
+      callback: BodyResponseCallback<Schema$DnsBindPermission>
+    ): void;
+    getDnsBindPermission(
+      callback: BodyResponseCallback<Schema$DnsBindPermission>
+    ): void;
+    getDnsBindPermission(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Getdnsbindpermission
+        | BodyResponseCallback<Schema$DnsBindPermission>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DnsBindPermission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DnsBindPermission>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DnsBindPermission>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Getdnsbindpermission;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Getdnsbindpermission;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DnsBindPermission>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DnsBindPermission>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Getdnsbindpermission
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects$Locations$Global$Dnsbindpermission {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Grants the bind permission to the customer provided principal(user / service account) to bind their DNS zone with the intranet VPC associated with the project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    grant(
+      params: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Grant,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    grant(
+      params?: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Grant,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    grant(
+      params: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Grant,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    grant(
+      params: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Grant,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    grant(
+      params: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Grant,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    grant(callback: BodyResponseCallback<Schema$Operation>): void;
+    grant(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Dnsbindpermission$Grant
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Dnsbindpermission$Grant;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Dnsbindpermission$Grant;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:grant').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Revokes the bind permission from the customer provided principal(user / service account) on the intranet VPC associated with the consumer project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    revoke(
+      params: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Revoke,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revoke(
+      params?: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Revoke,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    revoke(
+      params: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Revoke,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    revoke(
+      params: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Revoke,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    revoke(
+      params: Params$Resource$Projects$Locations$Global$Dnsbindpermission$Revoke,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    revoke(callback: BodyResponseCallback<Schema$Operation>): void;
+    revoke(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Dnsbindpermission$Revoke
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Dnsbindpermission$Revoke;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Dnsbindpermission$Revoke;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:revoke').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Dnsbindpermission$Grant
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GrantDnsBindPermissionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Dnsbindpermission$Revoke
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RevokeDnsBindPermissionRequest;
+  }
+
+  export class Resource$Projects$Locations$Global$Networkpeerings {
+    context: APIRequestContext;
+    peeringRoutes: Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.peeringRoutes =
+        new Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new network peering between the peer network and VMware Engine network provided in a `NetworkPeering` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Global$Networkpeerings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Networkpeerings$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Networkpeerings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Networkpeerings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/networkPeerings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a `NetworkPeering` resource. When a network peering is deleted for a VMware Engine network, the peer network becomes inaccessible to that VMware Engine network.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Global$Networkpeerings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Networkpeerings$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Networkpeerings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Networkpeerings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a `NetworkPeering` resource by its resource name. The resource contains details of the network peering, such as peered networks, import and export custom route configurations, and peering state.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Global$Networkpeerings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NetworkPeering>;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$NetworkPeering>,
+      callback: BodyResponseCallback<Schema$NetworkPeering>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Get,
+      callback: BodyResponseCallback<Schema$NetworkPeering>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NetworkPeering>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Networkpeerings$Get
+        | BodyResponseCallback<Schema$NetworkPeering>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NetworkPeering>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NetworkPeering>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$NetworkPeering> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Networkpeerings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Networkpeerings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkPeering>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NetworkPeering>(parameters);
+      }
+    }
+
+    /**
+     * Lists `NetworkPeering` resources in a given project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Global$Networkpeerings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNetworkPeeringsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNetworkPeeringsResponse>,
+      callback: BodyResponseCallback<Schema$ListNetworkPeeringsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$List,
+      callback: BodyResponseCallback<Schema$ListNetworkPeeringsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListNetworkPeeringsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Networkpeerings$List
+        | BodyResponseCallback<Schema$ListNetworkPeeringsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNetworkPeeringsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNetworkPeeringsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNetworkPeeringsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Networkpeerings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Networkpeerings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/networkPeerings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNetworkPeeringsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNetworkPeeringsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Modifies a `NetworkPeering` resource. Only the `description` field can be updated. Only fields specified in `updateMask` are applied.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Global$Networkpeerings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Networkpeerings$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Networkpeerings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Networkpeerings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Networkpeerings$Create
+    extends StandardParameters {
+    /**
+     * Required. The user-provided identifier of the new `NetworkPeering`. This identifier must be unique among `NetworkPeering` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
+     */
+    networkPeeringId?: string;
+    /**
+     * Required. The resource name of the location to create the new network peering in. This value is always `global`, because `NetworkPeering` is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global`
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworkPeering;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Networkpeerings$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the network peering to be deleted. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Networkpeerings$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the network peering to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Networkpeerings$List
+    extends StandardParameters {
+    /**
+     * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of network peerings, you can exclude the ones named `example-peering` by specifying `name != "example-peering"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-peering") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-peering-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-peering-2") ```
+     */
+    filter?: string;
+    /**
+     * Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of network peerings to return in one page. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListNetworkPeerings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListNetworkPeerings` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the location (global) to query for network peerings. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Networkpeerings$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the network peering. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `NetworkPeering` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworkPeering;
+  }
+
+  export class Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the network peering routes exchanged over a peering connection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPeeringRoutesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPeeringRoutesResponse>,
+      callback: BodyResponseCallback<Schema$ListPeeringRoutesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes$List,
+      callback: BodyResponseCallback<Schema$ListPeeringRoutesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPeeringRoutesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes$List
+        | BodyResponseCallback<Schema$ListPeeringRoutesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPeeringRoutesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPeeringRoutesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPeeringRoutesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/peeringRoutes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPeeringRoutesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPeeringRoutesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Networkpeerings$Peeringroutes$List
+    extends StandardParameters {
+    /**
+     * A filter expression that matches resources returned in the response. Currently, only filtering on the `direction` field is supported. To return routes imported from the peer network, provide "direction=INCOMING". To return routes exported from the VMware Engine network, provide "direction=OUTGOING". Other filter expressions return an error.
+     */
+    filter?: string;
+    /**
+     * The maximum number of peering routes to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListPeeringRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPeeringRoutes` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the network peering to retrieve peering routes from. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Networkpolicies {
+    context: APIRequestContext;
+    externalAccessRules: Resource$Projects$Locations$Networkpolicies$Externalaccessrules;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.externalAccessRules =
+        new Resource$Projects$Locations$Networkpolicies$Externalaccessrules(
+          this.context
+        );
     }
 
     /**
@@ -1464,6 +2990,102 @@ export namespace vmwareengine_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists external IP addresses assigned to VMware workload VMs within the scope of the given network policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchExternalAddresses(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchExternalAddresses(
+      params?: Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchNetworkPolicyExternalAddressesResponse>;
+    fetchExternalAddresses(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchExternalAddresses(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchNetworkPolicyExternalAddressesResponse>,
+      callback: BodyResponseCallback<Schema$FetchNetworkPolicyExternalAddressesResponse>
+    ): void;
+    fetchExternalAddresses(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses,
+      callback: BodyResponseCallback<Schema$FetchNetworkPolicyExternalAddressesResponse>
+    ): void;
+    fetchExternalAddresses(
+      callback: BodyResponseCallback<Schema$FetchNetworkPolicyExternalAddressesResponse>
+    ): void;
+    fetchExternalAddresses(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses
+        | BodyResponseCallback<Schema$FetchNetworkPolicyExternalAddressesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchNetworkPolicyExternalAddressesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchNetworkPolicyExternalAddressesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchNetworkPolicyExternalAddressesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+networkPolicy}:fetchExternalAddresses'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['networkPolicy'],
+        pathParams: ['networkPolicy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchNetworkPolicyExternalAddressesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchNetworkPolicyExternalAddressesResponse>(
+          parameters
+        );
       }
     }
 
@@ -1761,6 +3383,21 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
   }
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Fetchexternaladdresses
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the network policy to query for assigned external IP addresses. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy`
+     */
+    networkPolicy?: string;
+    /**
+     * The maximum number of external IP addresses to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `FetchNetworkPolicyExternalAddresses` call. Provide this to retrieve the subsequent page. When paginating, all parameters provided to `FetchNetworkPolicyExternalAddresses`, except for `page_size` and `page_token`, must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
   export interface Params$Resource$Projects$Locations$Networkpolicies$Get
     extends StandardParameters {
     /**
@@ -1810,6 +3447,538 @@ export namespace vmwareengine_v1 {
      * Request body metadata
      */
     requestBody?: Schema$NetworkPolicy;
+  }
+
+  export class Resource$Projects$Locations$Networkpolicies$Externalaccessrules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new external access rule in a given network policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/externalAccessRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single external access rule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single external access rule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExternalAccessRule>;
+    get(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ExternalAccessRule>,
+      callback: BodyResponseCallback<Schema$ExternalAccessRule>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get,
+      callback: BodyResponseCallback<Schema$ExternalAccessRule>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ExternalAccessRule>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get
+        | BodyResponseCallback<Schema$ExternalAccessRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExternalAccessRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExternalAccessRule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExternalAccessRule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExternalAccessRule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExternalAccessRule>(parameters);
+      }
+    }
+
+    /**
+     * Lists `ExternalAccessRule` resources in the specified network policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExternalAccessRulesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExternalAccessRulesResponse>,
+      callback: BodyResponseCallback<Schema$ListExternalAccessRulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List,
+      callback: BodyResponseCallback<Schema$ListExternalAccessRulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListExternalAccessRulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List
+        | BodyResponseCallback<Schema$ListExternalAccessRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExternalAccessRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExternalAccessRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExternalAccessRulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/externalAccessRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListExternalAccessRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListExternalAccessRulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single external access rule. Only fields specified in `update_mask` are applied.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Create
+    extends StandardParameters {
+    /**
+     * Required. The user-provided identifier of the `ExternalAccessRule` to be created. This identifier must be unique among `ExternalAccessRule` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
+     */
+    externalAccessRuleId?: string;
+    /**
+     * Required. The resource name of the network policy to create a new external access firewall rule in. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy`
+     */
+    parent?: string;
+    /**
+     * A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExternalAccessRule;
+  }
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the external access firewall rule to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy/externalAccessRules/my-rule`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the external access firewall rule to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy/externalAccessRules/my-rule`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$List
+    extends StandardParameters {
+    /**
+     * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of external access rules, you can exclude the ones named `example-rule` by specifying `name != "example-rule"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-rule") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-rule-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-rule-2") ```
+     */
+    filter?: string;
+    /**
+     * Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of external access rules to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListExternalAccessRulesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExternalAccessRulesRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the network policy to query for external access firewall rules. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkpolicies$Externalaccessrules$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of this external access rule. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-policy/externalAccessRules/my-rule`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `ExternalAccessRule` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExternalAccessRule;
   }
 
   export class Resource$Projects$Locations$Nodetypes {
@@ -2326,15 +4495,30 @@ export namespace vmwareengine_v1 {
   export class Resource$Projects$Locations$Privateclouds {
     context: APIRequestContext;
     clusters: Resource$Projects$Locations$Privateclouds$Clusters;
+    externalAddresses: Resource$Projects$Locations$Privateclouds$Externaladdresses;
     hcxActivationKeys: Resource$Projects$Locations$Privateclouds$Hcxactivationkeys;
+    loggingServers: Resource$Projects$Locations$Privateclouds$Loggingservers;
+    managementDnsZoneBindings: Resource$Projects$Locations$Privateclouds$Managementdnszonebindings;
     subnets: Resource$Projects$Locations$Privateclouds$Subnets;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.clusters = new Resource$Projects$Locations$Privateclouds$Clusters(
         this.context
       );
+      this.externalAddresses =
+        new Resource$Projects$Locations$Privateclouds$Externaladdresses(
+          this.context
+        );
       this.hcxActivationKeys =
         new Resource$Projects$Locations$Privateclouds$Hcxactivationkeys(
+          this.context
+        );
+      this.loggingServers =
+        new Resource$Projects$Locations$Privateclouds$Loggingservers(
+          this.context
+        );
+      this.managementDnsZoneBindings =
+        new Resource$Projects$Locations$Privateclouds$Managementdnszonebindings(
           this.context
         );
       this.subnets = new Resource$Projects$Locations$Privateclouds$Subnets(
@@ -2594,6 +4778,93 @@ export namespace vmwareengine_v1 {
         );
       } else {
         return createAPIRequest<Schema$PrivateCloud>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the `DnsForwarding` config.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDnsForwarding(
+      params: Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDnsForwarding(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DnsForwarding>;
+    getDnsForwarding(
+      params: Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDnsForwarding(
+      params: Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding,
+      options: MethodOptions | BodyResponseCallback<Schema$DnsForwarding>,
+      callback: BodyResponseCallback<Schema$DnsForwarding>
+    ): void;
+    getDnsForwarding(
+      params: Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding,
+      callback: BodyResponseCallback<Schema$DnsForwarding>
+    ): void;
+    getDnsForwarding(
+      callback: BodyResponseCallback<Schema$DnsForwarding>
+    ): void;
+    getDnsForwarding(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding
+        | BodyResponseCallback<Schema$DnsForwarding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DnsForwarding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DnsForwarding>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DnsForwarding> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DnsForwarding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DnsForwarding>(parameters);
       }
     }
 
@@ -3489,6 +5760,91 @@ export namespace vmwareengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Updates the parameters of the `DnsForwarding` config, like associated domains. Only fields specified in `update_mask` are applied.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateDnsForwarding(
+      params: Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateDnsForwarding(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateDnsForwarding(
+      params: Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateDnsForwarding(
+      params: Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateDnsForwarding(
+      params: Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateDnsForwarding(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateDnsForwarding(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Privateclouds$Create
@@ -3538,6 +5894,13 @@ export namespace vmwareengine_v1 {
     extends StandardParameters {
     /**
      * Required. The resource name of the private cloud to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Getdnsforwarding
+    extends StandardParameters {
+    /**
+     * Required. The resource name of a `DnsForwarding` to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
      */
     name?: string;
   }
@@ -3644,6 +6007,10 @@ export namespace vmwareengine_v1 {
      * Required. The resource name of the private cloud to be queried for credentials. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
     privateCloud?: string;
+    /**
+     * Optional. The username of the user to be queried for credentials. The default value of this field is CloudOwner@gve.local. The provided value must be one of the following: CloudOwner@gve.local, solution-user-01@gve.local, solution-user-02@gve.local, solution-user-03@gve.local, solution-user-04@gve.local, solution-user-05@gve.local, zertoadmin@gve.local.
+     */
+    username?: string;
   }
   export interface Params$Resource$Projects$Locations$Privateclouds$Testiampermissions
     extends StandardParameters {
@@ -3669,11 +6036,35 @@ export namespace vmwareengine_v1 {
      */
     requestBody?: Schema$UndeletePrivateCloudRequest;
   }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `DnsForwarding` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DnsForwarding;
+  }
 
   export class Resource$Projects$Locations$Privateclouds$Clusters {
     context: APIRequestContext;
+    nodes: Resource$Projects$Locations$Privateclouds$Clusters$Nodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.nodes = new Resource$Projects$Locations$Privateclouds$Clusters$Nodes(
+        this.context
+      );
     }
 
     /**
@@ -4509,6 +6900,741 @@ export namespace vmwareengine_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
+  export class Resource$Projects$Locations$Privateclouds$Clusters$Nodes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single node.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Node>;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Node>,
+      callback: BodyResponseCallback<Schema$Node>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get,
+      callback: BodyResponseCallback<Schema$Node>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Node>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get
+        | BodyResponseCallback<Schema$Node>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Node>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Node>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Node> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Node>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Node>(parameters);
+      }
+    }
+
+    /**
+     * Lists nodes in a given cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNodesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListNodesResponse>,
+      callback: BodyResponseCallback<Schema$ListNodesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List,
+      callback: BodyResponseCallback<Schema$ListNodesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List
+        | BodyResponseCallback<Schema$ListNodesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNodesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNodesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNodesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/nodes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNodesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNodesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the node to retrieve. For example: `projects/{project\}/locations/{location\}/privateClouds/{private_cloud\}/clusters/{cluster\}/nodes/{node\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Nodes$List
+    extends StandardParameters {
+    /**
+     * The maximum number of nodes to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListNodes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListNodes` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the cluster to be queried for nodes. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Privateclouds$Externaladdresses {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `ExternalAddress` resource in a given private cloud. The network policy that corresponds to the private cloud must have the external IP address network service enabled (`NetworkPolicy.external_ip`).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/externalAddresses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single external IP address. When you delete an external IP address, connectivity between the external IP address and the corresponding internal IP address is lost.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single external IP address.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExternalAddress>;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ExternalAddress>,
+      callback: BodyResponseCallback<Schema$ExternalAddress>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get,
+      callback: BodyResponseCallback<Schema$ExternalAddress>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ExternalAddress>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get
+        | BodyResponseCallback<Schema$ExternalAddress>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExternalAddress>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExternalAddress>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ExternalAddress> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExternalAddress>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExternalAddress>(parameters);
+      }
+    }
+
+    /**
+     * Lists external IP addresses assigned to VMware workload VMs in a given private cloud.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExternalAddressesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExternalAddressesResponse>,
+      callback: BodyResponseCallback<Schema$ListExternalAddressesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List,
+      callback: BodyResponseCallback<Schema$ListExternalAddressesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListExternalAddressesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List
+        | BodyResponseCallback<Schema$ListExternalAddressesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExternalAddressesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExternalAddressesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExternalAddressesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/externalAddresses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListExternalAddressesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListExternalAddressesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single external IP address. Only fields specified in `update_mask` are applied. During operation processing, the resource is temporarily in the `ACTIVE` state before the operation fully completes. For that period of time, you can't update the resource. Use the operation status to determine when the processing fully completes.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Create
+    extends StandardParameters {
+    /**
+     * Required. The user-provided identifier of the `ExternalAddress` to be created. This identifier must be unique among `ExternalAddress` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
+     */
+    externalAddressId?: string;
+    /**
+     * Required. The resource name of the private cloud to create a new external IP address in. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExternalAddress;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the external IP address to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-ip`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the external IP address to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-ip`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$List
+    extends StandardParameters {
+    /**
+     * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of IP addresses, you can exclude the ones named `example-ip` by specifying `name != "example-ip"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-ip") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-ip-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-ip-2") ```
+     */
+    filter?: string;
+    /**
+     * Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of external IP addresses to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListExternalAddresses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExternalAddresses` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the private cloud to be queried for external IP addresses. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `ExternalAddress` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExternalAddress;
+  }
+
   export class Resource$Projects$Locations$Privateclouds$Hcxactivationkeys {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5133,6 +8259,1164 @@ export namespace vmwareengine_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Privateclouds$Loggingservers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a new logging server for a given private cloud.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/loggingServers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single logging server.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a logging server.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LoggingServer>;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LoggingServer>,
+      callback: BodyResponseCallback<Schema$LoggingServer>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get,
+      callback: BodyResponseCallback<Schema$LoggingServer>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LoggingServer>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get
+        | BodyResponseCallback<Schema$LoggingServer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LoggingServer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LoggingServer>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LoggingServer> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LoggingServer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LoggingServer>(parameters);
+      }
+    }
+
+    /**
+     * Lists logging servers configured for a given private cloud.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLoggingServersResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLoggingServersResponse>,
+      callback: BodyResponseCallback<Schema$ListLoggingServersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List,
+      callback: BodyResponseCallback<Schema$ListLoggingServersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListLoggingServersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List
+        | BodyResponseCallback<Schema$ListLoggingServersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLoggingServersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLoggingServersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLoggingServersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/loggingServers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLoggingServersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLoggingServersResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of a single logging server. Only fields specified in `update_mask` are applied.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Create
+    extends StandardParameters {
+    /**
+     * Required. The user-provided identifier of the `LoggingServer` to be created. This identifier must be unique among `LoggingServer` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
+     */
+    loggingServerId?: string;
+    /**
+     * Required. The resource name of the private cloud to create a new Logging Server in. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LoggingServer;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the logging server to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/loggingServers/my-logging-server`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Logging Server to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/loggingServers/my-logging-server`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List
+    extends StandardParameters {
+    /**
+     * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of logging servers, you can exclude the ones named `example-server` by specifying `name != "example-server"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-server") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-server-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-server-2") ```
+     */
+    filter?: string;
+    /**
+     * Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of logging servers to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListLoggingServersRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListLoggingServersRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the private cloud to be queried for logging servers. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Loggingservers$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of this logging server. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/loggingServers/my-logging-server`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `LoggingServer` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LoggingServer;
+  }
+
+  export class Resource$Projects$Locations$Privateclouds$Managementdnszonebindings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `ManagementDnsZoneBinding` resource in a private cloud. This RPC creates the DNS binding and the resource that represents the DNS binding of the consumer VPC network to the management DNS zone. A management DNS zone is the Cloud DNS cross-project binding zone that VMware Engine creates for each private cloud. It contains FQDNs and corresponding IP addresses for the private cloud's ESXi hosts and management VM appliances like vCenter and NSX Manager.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/managementDnsZoneBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a `ManagementDnsZoneBinding` resource. When a management DNS zone binding is deleted, the corresponding consumer VPC network is no longer bound to the management DNS zone.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a 'ManagementDnsZoneBinding' resource by its resource name.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagementDnsZoneBinding>;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagementDnsZoneBinding>,
+      callback: BodyResponseCallback<Schema$ManagementDnsZoneBinding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get,
+      callback: BodyResponseCallback<Schema$ManagementDnsZoneBinding>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ManagementDnsZoneBinding>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get
+        | BodyResponseCallback<Schema$ManagementDnsZoneBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagementDnsZoneBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagementDnsZoneBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ManagementDnsZoneBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManagementDnsZoneBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManagementDnsZoneBinding>(parameters);
+      }
+    }
+
+    /**
+     * Lists Consumer VPCs bound to Management DNS Zone of a given private cloud.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListManagementDnsZoneBindingsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListManagementDnsZoneBindingsResponse>,
+      callback: BodyResponseCallback<Schema$ListManagementDnsZoneBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List,
+      callback: BodyResponseCallback<Schema$ListManagementDnsZoneBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListManagementDnsZoneBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List
+        | BodyResponseCallback<Schema$ListManagementDnsZoneBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListManagementDnsZoneBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListManagementDnsZoneBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListManagementDnsZoneBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/managementDnsZoneBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListManagementDnsZoneBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListManagementDnsZoneBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a `ManagementDnsZoneBinding` resource. Only fields specified in `update_mask` are applied.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retries to create a `ManagementDnsZoneBinding` resource that is in failed state.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    repair(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    repair(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    repair(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    repair(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    repair(
+      params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    repair(callback: BodyResponseCallback<Schema$Operation>): void;
+    repair(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:repair').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Create
+    extends StandardParameters {
+    /**
+     * Required. The user-provided identifier of the `ManagementDnsZoneBinding` resource to be created. This identifier must be unique among `ManagementDnsZoneBinding` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
+     */
+    managementDnsZoneBindingId?: string;
+    /**
+     * Required. The resource name of the private cloud to create a new management DNS zone binding for. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ManagementDnsZoneBinding;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the management DNS zone binding to delete. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the management DNS zone binding to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$List
+    extends StandardParameters {
+    /**
+     * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of Management DNS Zone Bindings, you can exclude the ones named `example-management-dns-zone-binding` by specifying `name != "example-management-dns-zone-binding"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-management-dns-zone-binding") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-management-dns-zone-binding-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-management-dns-zone-binding-2") ```
+     */
+    filter?: string;
+    /**
+     * Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of management DNS zone bindings to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListManagementDnsZoneBindings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListManagementDnsZoneBindings` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the private cloud to be queried for management DNS zone bindings. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of this binding. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `ManagementDnsZoneBinding` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ManagementDnsZoneBinding;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Repair
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the management DNS zone binding to repair. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RepairManagementDnsZoneBindingRequest;
   }
 
   export class Resource$Projects$Locations$Privateclouds$Subnets {
