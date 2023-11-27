@@ -294,7 +294,7 @@ export namespace metastore_v1beta {
    */
   export interface Schema$DataCatalogConfig {
     /**
-     * Defines whether the metastore metadata should be synced to Data Catalog. The default value is to disable syncing metastore metadata to Data Catalog.
+     * Optional. Defines whether the metastore metadata should be synced to Data Catalog. The default value is to disable syncing metastore metadata to Data Catalog.
      */
     enabled?: boolean | null;
   }
@@ -684,7 +684,7 @@ export namespace metastore_v1beta {
    */
   export interface Schema$MetadataIntegration {
     /**
-     * The integration config for the Data Catalog service.
+     * Optional. The integration config for the Data Catalog service.
      */
     dataCatalogConfig?: Schema$DataCatalogConfig;
     /**
@@ -872,6 +872,10 @@ export namespace metastore_v1beta {
      */
     backup?: string | null;
     /**
+     * Optional. A Cloud Storage URI specifying where the backup artifacts are stored, in the format gs:///.
+     */
+    backupLocation?: string | null;
+    /**
      * Output only. The restore details containing the revision of the service to be restored to, in format of JSON.
      */
     details?: string | null;
@@ -968,7 +972,7 @@ export namespace metastore_v1beta {
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
-     * The setting that defines how metastore metadata should be integrated with external services and systems.
+     * Optional. The setting that defines how metastore metadata should be integrated with external services and systems.
      */
     metadataIntegration?: Schema$MetadataIntegration;
     /**

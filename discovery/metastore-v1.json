@@ -1339,7 +1339,7 @@
       }
     }
   },
-  "revision": "20231010",
+  "revision": "20231102",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -1565,6 +1565,17 @@
         "subnetwork": {
           "description": "Immutable. The subnetwork of the customer project from which an IP address is reserved and used as the Dataproc Metastore service's endpoint. It is accessible to hosts in the subnet and to all hosts in a subnet in the same region and same network. There must be at least one IP address available in the subnet's primary range. The subnet is specified in the following form:projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataCatalogConfig": {
+      "description": "Specifies how metastore metadata should be integrated with the Data Catalog service.",
+      "id": "DataCatalogConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Defines whether the metastore metadata should be synced to Data Catalog. The default value is to disable syncing metastore metadata to Data Catalog.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2187,6 +2198,17 @@
       },
       "type": "object"
     },
+    "MetadataIntegration": {
+      "description": "Specifies how metastore metadata should be integrated with external services.",
+      "id": "MetadataIntegration",
+      "properties": {
+        "dataCatalogConfig": {
+          "$ref": "DataCatalogConfig",
+          "description": "Optional. The integration config for the Data Catalog service."
+        }
+      },
+      "type": "object"
+    },
     "MetadataManagementActivity": {
       "description": "The metadata management activities of the metastore service.",
       "id": "MetadataManagementActivity",
@@ -2404,6 +2426,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "backupLocation": {
+          "description": "Optional. A Cloud Storage URI specifying where the backup artifacts are stored, in the format gs:///.",
+          "type": "string"
+        },
         "details": {
           "description": "Output only. The restore details containing the revision of the service to be restored to, in format of JSON.",
           "readOnly": true,
@@ -2582,6 +2608,10 @@
         "maintenanceWindow": {
           "$ref": "MaintenanceWindow",
           "description": "The one hour maintenance window of the metastore service. This specifies when the service can be restarted for maintenance purposes in UTC time. Maintenance window is not needed for services with the SPANNER database type."
+        },
+        "metadataIntegration": {
+          "$ref": "MetadataIntegration",
+          "description": "Optional. The setting that defines how metastore metadata should be integrated with external services and systems."
         },
         "metadataManagementActivity": {
           "$ref": "MetadataManagementActivity",
