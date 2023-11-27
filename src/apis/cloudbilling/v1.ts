@@ -113,6 +113,7 @@ export namespace cloudbilling_v1 {
   export class Cloudbilling {
     context: APIRequestContext;
     billingAccounts: Resource$Billingaccounts;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
     services: Resource$Services;
 
@@ -123,6 +124,7 @@ export namespace cloudbilling_v1 {
       };
 
       this.billingAccounts = new Resource$Billingaccounts(this.context);
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
       this.services = new Resource$Services(this.context);
     }
@@ -185,6 +187,10 @@ export namespace cloudbilling_v1 {
      * Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services.
      */
     open?: boolean | null;
+    /**
+     * Output only. The billing account's parent resource identifier. Use the `MoveBillingAccount` method to update the account's parent resource if it is a organization. Format: - organizations/{organization_id\}, for example: organizations/12345678 - billingAccounts/{billing_account_id\}, for example: `billingAccounts/012345-567890-ABCDEF`
+     */
+    parent?: string | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -326,6 +332,15 @@ export namespace cloudbilling_v1 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * Request message for `MoveBillingAccount` RPC.
+   */
+  export interface Schema$MoveBillingAccountRequest {
+    /**
+     * Required. The resource name of the Organization to reparent the billing account under. Must be of the form `organizations/{organization_id\}`.
+     */
+    destinationParent?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -533,9 +548,11 @@ export namespace cloudbilling_v1 {
   export class Resource$Billingaccounts {
     context: APIRequestContext;
     projects: Resource$Billingaccounts$Projects;
+    subAccounts: Resource$Billingaccounts$Subaccounts;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.projects = new Resource$Billingaccounts$Projects(this.context);
+      this.subAccounts = new Resource$Billingaccounts$Subaccounts(this.context);
     }
 
     /**
@@ -891,6 +908,90 @@ export namespace cloudbilling_v1 {
     }
 
     /**
+     * Changes which parent organization a billing account belongs to.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    move(
+      params: Params$Resource$Billingaccounts$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
+      params?: Params$Resource$Billingaccounts$Move,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingAccount>;
+    move(
+      params: Params$Resource$Billingaccounts$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    move(
+      params: Params$Resource$Billingaccounts$Move,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
+    move(
+      params: Params$Resource$Billingaccounts$Move,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
+    move(callback: BodyResponseCallback<Schema$BillingAccount>): void;
+    move(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Move
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Move;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingAccount>(parameters);
+      }
+    }
+
+    /**
      * Updates a billing account's fields. Currently the only field that can be edited is `display_name`. The current authenticated user must have the `billing.accounts.update` IAM permission, which is typically given to the [administrator](https://cloud.google.com/billing/docs/how-to/billing-access) of the billing account.
      *
      * @param params - Parameters for request
@@ -1159,6 +1260,11 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Create
     extends StandardParameters {
     /**
+     * Optional. The parent to create a billing account from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     */
+    parent?: string;
+
+    /**
      * Request body metadata
      */
     requestBody?: Schema$BillingAccount;
@@ -1195,6 +1301,22 @@ export namespace cloudbilling_v1 {
      * A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
+    /**
+     * Optional. The parent resource to list billing accounts from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Move
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the billing account to move. Must be of the form `billingAccounts/{billing_account_id\}`. The specified billing account cannot be a subaccount, since a subaccount always belongs to the same organization as its parent account.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MoveBillingAccountRequest;
   }
   export interface Params$Resource$Billingaccounts$Patch
     extends StandardParameters {
@@ -1354,6 +1476,555 @@ export namespace cloudbilling_v1 {
      * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous `ListProjectBillingInfo` call. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Billingaccounts$Subaccounts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * This method creates [billing subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts). Google Cloud resellers should use the Channel Services APIs, [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create) and [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create). When creating a subaccount, the current authenticated user must have the `billing.accounts.update` IAM permission on the parent account, which is typically given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access). This method will return an error if the parent account has not been provisioned for subaccounts.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Billingaccounts$Subaccounts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Billingaccounts$Subaccounts$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingAccount>;
+    create(
+      params: Params$Resource$Billingaccounts$Subaccounts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Billingaccounts$Subaccounts$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
+    create(
+      params: Params$Resource$Billingaccounts$Subaccounts$Create,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$BillingAccount>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Subaccounts$Create
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Subaccounts$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Subaccounts$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/subAccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingAccount>(parameters);
+      }
+    }
+
+    /**
+     * Lists the billing accounts that the current authenticated user has permission to [view](https://cloud.google.com/billing/docs/how-to/billing-access).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Subaccounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Subaccounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBillingAccountsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Subaccounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Subaccounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>,
+      callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Subaccounts$List,
+      callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Subaccounts$List
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBillingAccountsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Subaccounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Subaccounts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/subAccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBillingAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBillingAccountsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Subaccounts$Create
+    extends StandardParameters {
+    /**
+     * Optional. The parent to create a billing account from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BillingAccount;
+  }
+  export interface Params$Resource$Billingaccounts$Subaccounts$List
+    extends StandardParameters {
+    /**
+     * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
+     */
+    filter?: string;
+    /**
+     * Requested page size. The maximum page size is 100; this is also the default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The parent resource to list billing accounts from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    billingAccounts: Resource$Organizations$Billingaccounts;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.billingAccounts = new Resource$Organizations$Billingaccounts(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Organizations$Billingaccounts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * This method creates [billing subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts). Google Cloud resellers should use the Channel Services APIs, [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create) and [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create). When creating a subaccount, the current authenticated user must have the `billing.accounts.update` IAM permission on the parent account, which is typically given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access). This method will return an error if the parent account has not been provisioned for subaccounts.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Billingaccounts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Billingaccounts$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingAccount>;
+    create(
+      params: Params$Resource$Organizations$Billingaccounts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Billingaccounts$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Billingaccounts$Create,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$BillingAccount>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Billingaccounts$Create
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Billingaccounts$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Billingaccounts$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/billingAccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingAccount>(parameters);
+      }
+    }
+
+    /**
+     * Lists the billing accounts that the current authenticated user has permission to [view](https://cloud.google.com/billing/docs/how-to/billing-access).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Billingaccounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Billingaccounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBillingAccountsResponse>;
+    list(
+      params: Params$Resource$Organizations$Billingaccounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Billingaccounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>,
+      callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Billingaccounts$List,
+      callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Billingaccounts$List
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBillingAccountsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Billingaccounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Billingaccounts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/billingAccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBillingAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBillingAccountsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Changes which parent organization a billing account belongs to.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    move(
+      params: Params$Resource$Organizations$Billingaccounts$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
+      params?: Params$Resource$Organizations$Billingaccounts$Move,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingAccount>;
+    move(
+      params: Params$Resource$Organizations$Billingaccounts$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    move(
+      params: Params$Resource$Organizations$Billingaccounts$Move,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
+    move(
+      params: Params$Resource$Organizations$Billingaccounts$Move,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
+    move(callback: BodyResponseCallback<Schema$BillingAccount>): void;
+    move(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Billingaccounts$Move
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Billingaccounts$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Billingaccounts$Move;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+destinationParent}/{+name}:move').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['destinationParent', 'name'],
+        pathParams: ['destinationParent', 'name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingAccount>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Billingaccounts$Create
+    extends StandardParameters {
+    /**
+     * Optional. The parent to create a billing account from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BillingAccount;
+  }
+  export interface Params$Resource$Organizations$Billingaccounts$List
+    extends StandardParameters {
+    /**
+     * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
+     */
+    filter?: string;
+    /**
+     * Requested page size. The maximum page size is 100; this is also the default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The parent resource to list billing accounts from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Billingaccounts$Move
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Organization to reparent the billing account under. Must be of the form `organizations/{organization_id\}`.
+     */
+    destinationParent?: string;
+    /**
+     * Required. The resource name of the billing account to move. Must be of the form `billingAccounts/{billing_account_id\}`. The specified billing account cannot be a subaccount, since a subaccount always belongs to the same organization as its parent account.
+     */
+    name?: string;
   }
 
   export class Resource$Projects {

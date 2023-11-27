@@ -119,7 +119,13 @@
           "httpMethod": "POST",
           "id": "cloudbilling.billingAccounts.create",
           "parameterOrder": [],
-          "parameters": {},
+          "parameters": {
+            "parent": {
+              "description": "Optional. The parent to create a billing account from. Format: - organizations/{organization_id} eg organizations/12345678 - billingAccounts/{billing_account_id} eg `billingAccounts/012345-567890-ABCDEF`",
+              "location": "query",
+              "type": "string"
+            }
+          },
           "path": "v1/billingAccounts",
           "request": {
             "$ref": "BillingAccount"
@@ -214,6 +220,11 @@
               "description": "A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.",
               "location": "query",
               "type": "string"
+            },
+            "parent": {
+              "description": "Optional. The parent resource to list billing accounts from. Format: - organizations/{organization_id} eg organizations/12345678 - billingAccounts/{billing_account_id} eg `billingAccounts/012345-567890-ABCDEF`",
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "v1/billingAccounts",
@@ -223,6 +234,35 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-billing",
             "https://www.googleapis.com/auth/cloud-billing.readonly",
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "move": {
+          "description": "Changes which parent organization a billing account belongs to.",
+          "flatPath": "v1/billingAccounts/{billingAccountsId}:move",
+          "httpMethod": "POST",
+          "id": "cloudbilling.billingAccounts.move",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the billing account to move. Must be of the form `billingAccounts/{billing_account_id}`. The specified billing account cannot be a subaccount, since a subaccount always belongs to the same organization as its parent account.",
+              "location": "path",
+              "pattern": "^billingAccounts/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:move",
+          "request": {
+            "$ref": "MoveBillingAccountRequest"
+          },
+          "response": {
+            "$ref": "BillingAccount"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-billing",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
@@ -359,6 +399,196 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-billing",
                 "https://www.googleapis.com/auth/cloud-billing.readonly",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "subAccounts": {
+          "methods": {
+            "create": {
+              "description": "This method creates [billing subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts). Google Cloud resellers should use the Channel Services APIs, [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create) and [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create). When creating a subaccount, the current authenticated user must have the `billing.accounts.update` IAM permission on the parent account, which is typically given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access). This method will return an error if the parent account has not been provisioned for subaccounts.",
+              "flatPath": "v1/billingAccounts/{billingAccountsId}/subAccounts",
+              "httpMethod": "POST",
+              "id": "cloudbilling.billingAccounts.subAccounts.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Optional. The parent to create a billing account from. Format: - organizations/{organization_id} eg organizations/12345678 - billingAccounts/{billing_account_id} eg `billingAccounts/012345-567890-ABCDEF`",
+                  "location": "path",
+                  "pattern": "^billingAccounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/subAccounts",
+              "request": {
+                "$ref": "BillingAccount"
+              },
+              "response": {
+                "$ref": "BillingAccount"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-billing",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists the billing accounts that the current authenticated user has permission to [view](https://cloud.google.com/billing/docs/how-to/billing-access).",
+              "flatPath": "v1/billingAccounts/{billingAccountsId}/subAccounts",
+              "httpMethod": "GET",
+              "id": "cloudbilling.billingAccounts.subAccounts.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (e.g. \"master_billing_account=billingAccounts/012345-678901-ABCDEF\"). Boolean algebra and other fields are not currently supported.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. The maximum page size is 100; this is also the default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Optional. The parent resource to list billing accounts from. Format: - organizations/{organization_id} eg organizations/12345678 - billingAccounts/{billing_account_id} eg `billingAccounts/012345-567890-ABCDEF`",
+                  "location": "path",
+                  "pattern": "^billingAccounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/subAccounts",
+              "response": {
+                "$ref": "ListBillingAccountsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-billing",
+                "https://www.googleapis.com/auth/cloud-billing.readonly",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "organizations": {
+      "resources": {
+        "billingAccounts": {
+          "methods": {
+            "create": {
+              "description": "This method creates [billing subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts). Google Cloud resellers should use the Channel Services APIs, [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create) and [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create). When creating a subaccount, the current authenticated user must have the `billing.accounts.update` IAM permission on the parent account, which is typically given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access). This method will return an error if the parent account has not been provisioned for subaccounts.",
+              "flatPath": "v1/organizations/{organizationsId}/billingAccounts",
+              "httpMethod": "POST",
+              "id": "cloudbilling.organizations.billingAccounts.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Optional. The parent to create a billing account from. Format: - organizations/{organization_id} eg organizations/12345678 - billingAccounts/{billing_account_id} eg `billingAccounts/012345-567890-ABCDEF`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/billingAccounts",
+              "request": {
+                "$ref": "BillingAccount"
+              },
+              "response": {
+                "$ref": "BillingAccount"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-billing",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists the billing accounts that the current authenticated user has permission to [view](https://cloud.google.com/billing/docs/how-to/billing-access).",
+              "flatPath": "v1/organizations/{organizationsId}/billingAccounts",
+              "httpMethod": "GET",
+              "id": "cloudbilling.organizations.billingAccounts.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (e.g. \"master_billing_account=billingAccounts/012345-678901-ABCDEF\"). Boolean algebra and other fields are not currently supported.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. The maximum page size is 100; this is also the default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Optional. The parent resource to list billing accounts from. Format: - organizations/{organization_id} eg organizations/12345678 - billingAccounts/{billing_account_id} eg `billingAccounts/012345-567890-ABCDEF`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/billingAccounts",
+              "response": {
+                "$ref": "ListBillingAccountsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-billing",
+                "https://www.googleapis.com/auth/cloud-billing.readonly",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "move": {
+              "description": "Changes which parent organization a billing account belongs to.",
+              "flatPath": "v1/organizations/{organizationsId}/billingAccounts/{billingAccountsId}:move",
+              "httpMethod": "GET",
+              "id": "cloudbilling.organizations.billingAccounts.move",
+              "parameterOrder": [
+                "destinationParent",
+                "name"
+              ],
+              "parameters": {
+                "destinationParent": {
+                  "description": "Required. The resource name of the Organization to reparent the billing account under. Must be of the form `organizations/{organization_id}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The resource name of the billing account to move. Must be of the form `billingAccounts/{billing_account_id}`. The specified billing account cannot be a subaccount, since a subaccount always belongs to the same organization as its parent account.",
+                  "location": "path",
+                  "pattern": "^billingAccounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+destinationParent}/{+name}:move",
+              "response": {
+                "$ref": "BillingAccount"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-billing",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
@@ -521,7 +751,7 @@
       }
     }
   },
-  "revision": "20230811",
+  "revision": "20231120",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "AggregationInfo": {
@@ -631,6 +861,11 @@
           "description": "Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "parent": {
+          "description": "Output only. The billing account's parent resource identifier. Use the `MoveBillingAccount` method to update the account's parent resource if it is a organization. Format: - organizations/{organization_id}, for example: organizations/12345678 - billingAccounts/{billing_account_id}, for example: `billingAccounts/012345-567890-ABCDEF`",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -821,6 +1056,17 @@
         "units": {
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MoveBillingAccountRequest": {
+      "description": "Request message for `MoveBillingAccount` RPC.",
+      "id": "MoveBillingAccountRequest",
+      "properties": {
+        "destinationParent": {
+          "description": "Required. The resource name of the Organization to reparent the billing account under. Must be of the form `organizations/{organization_id}`.",
           "type": "string"
         }
       },

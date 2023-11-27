@@ -431,7 +431,7 @@
             "price": {
               "methods": {
                 "get": {
-                  "description": "Gets the latest price for the given billing account SKU.",
+                  "description": "Gets the latest price for SKUs available to your Cloud Billing account.",
                   "flatPath": "v1beta/billingAccounts/{billingAccountsId}/skus/{skusId}/price",
                   "httpMethod": "GET",
                   "id": "cloudbilling.billingAccounts.skus.price.get",
@@ -440,12 +440,12 @@
                   ],
                   "parameters": {
                     "currencyCode": {
-                      "description": "Optional. ISO-4217 currency code for the price. If not specified, currency of billing account will be used.",
+                      "description": "Optional. ISO-4217 currency code for the price. If not specified, the currency of the billing account is used.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. Name of the latest billing account price to retrieve. Format: billingAccounts/{billing_account}/skus/{sku}/price",
+                      "description": "Required. Name of the billing account price to retrieve. Format: billingAccounts/{billing_account}/skus/{sku}/price",
                       "location": "path",
                       "pattern": "^billingAccounts/[^/]+/skus/[^/]+/price$",
                       "required": true,
@@ -664,7 +664,7 @@
       }
     }
   },
-  "revision": "20230915",
+  "revision": "20231120",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "CacheFillRegions": {
@@ -1261,7 +1261,7 @@
       "type": "object"
     },
     "GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice": {
-      "description": "Encapsulates the latest price for the given billing account SKU.",
+      "description": "Encapsulates the latest price for a billing account SKU.",
       "id": "GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice",
       "properties": {
         "currencyCode": {
@@ -1281,7 +1281,7 @@
           "description": "Rate price metadata. Billing account SKUs with `Rate` price are offered by pricing tiers. The price can have 1 or more rate pricing tiers."
         },
         "valueType": {
-          "description": "Type of the price. It can have values: [\"unspecified\", \"rate\"].",
+          "description": "Type of the price. The possible values are: [\"unspecified\", \"rate\"].",
           "type": "string"
         }
       },
@@ -1876,7 +1876,7 @@
       "type": "object"
     },
     "GoogleCloudBillingPricesV1betaPrice": {
-      "description": "Encapsulates the latest price for the given SKU.",
+      "description": "Encapsulates the latest price for a SKU.",
       "id": "GoogleCloudBillingPricesV1betaPrice",
       "properties": {
         "currencyCode": {
