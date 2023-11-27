@@ -142,6 +142,10 @@ export namespace datamigration_v1 {
    */
   export interface Schema$AlloyDbSettings {
     /**
+     * Optional. The database engine major version. This is an optional field. If a database version is not supplied at cluster creation time, then a default database version will be used.
+     */
+    databaseVersion?: string | null;
+    /**
      * Optional. The encryption config can be specified to encrypt the data disks and other persistent data resources of a cluster with a customer-managed encryption key (CMEK). When this field is not specified, the cluster will then use default encryption scheme to protect the user data.
      */
     encryptionConfig?: Schema$EncryptionConfig;
@@ -828,6 +832,10 @@ export namespace datamigration_v1 {
      */
     dataCacheEnabled?: boolean | null;
   }
+  /**
+   * Request message for 'DemoteDestination' request.
+   */
+  export interface Schema$DemoteDestinationRequest {}
   /**
    * Response message for 'DescribeConversionWorkspaceRevisions' request.
    */
@@ -1846,6 +1854,10 @@ export namespace datamigration_v1 {
    * Specifies connection parameters required specifically for PostgreSQL databases.
    */
   export interface Schema$PostgreSqlConnectionProfile {
+    /**
+     * Optional. If the destination is an AlloyDB database, use this field to provide the AlloyDB cluster ID.
+     */
+    alloydbClusterId?: string | null;
     /**
      * If the source is a Cloud SQL database, use this field to provide the Cloud SQL instance ID of the source.
      */
@@ -6283,6 +6295,95 @@ export namespace datamigration_v1 {
     }
 
     /**
+     * Demotes the destination database to become a read replica of the source. This is applicable for the following migrations: 1. MySQL to Cloud SQL (for MySQL) 2. PostgreSQL to Cloud SQL (for PostgreSQL) 3. PostgreSQL to AlloyDB.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    demoteDestination(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Demotedestination,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    demoteDestination(
+      params?: Params$Resource$Projects$Locations$Migrationjobs$Demotedestination,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    demoteDestination(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Demotedestination,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    demoteDestination(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Demotedestination,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    demoteDestination(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Demotedestination,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    demoteDestination(callback: BodyResponseCallback<Schema$Operation>): void;
+    demoteDestination(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Migrationjobs$Demotedestination
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Migrationjobs$Demotedestination;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Demotedestination;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:demoteDestination').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Generate a SSH configuration script to configure the reverse SSH connectivity.
      *
      * @param params - Parameters for request
@@ -7551,6 +7652,18 @@ export namespace datamigration_v1 {
      * A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Demotedestination
+    extends StandardParameters {
+    /**
+     * Name of the migration job resource to demote its destination.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DemoteDestinationRequest;
   }
   export interface Params$Resource$Projects$Locations$Migrationjobs$Generatesshscript
     extends StandardParameters {
