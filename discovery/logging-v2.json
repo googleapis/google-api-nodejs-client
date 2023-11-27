@@ -1139,6 +1139,152 @@
                   ]
                 }
               }
+            },
+            "recentQueries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the RecentQueries that were created by the user making the request.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/recentQueries",
+                  "httpMethod": "GET",
+                  "id": "logging.billingAccounts.locations.recentQueries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource to which the listed queries belong. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:projects/my-project/locations/us-central1Note: The location portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all recent queries.",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/recentQueries",
+                  "response": {
+                    "$ref": "ListRecentQueriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                }
+              }
+            },
+            "savedQueries": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new SavedQuery for the user making the request.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/savedQueries",
+                  "httpMethod": "POST",
+                  "id": "logging.billingAccounts.locations.savedQueries.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource in which to create the saved query: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example: \"projects/my-project/locations/global\" \"organizations/123456789/locations/us-central1\" ",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "savedQueryId": {
+                      "description": "Optional. The ID to use for the saved query, which will become the final component of the saved query's resource name.If the saved_query_id is not provided, the system will generate an alphanumeric ID.The saved_query_id is limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods. First character has to be alphanumeric.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/savedQueries",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an existing SavedQuery that was created by the user making the request.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "DELETE",
+                  "id": "logging.billingAccounts.locations.savedQueries.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the saved query to delete. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the SavedQueries that were created by the user making the request.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/savedQueries",
+                  "httpMethod": "GET",
+                  "id": "logging.billingAccounts.locations.savedQueries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource to which the listed queries belong. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example: \"projects/my-project/locations/us-central1\" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: \"projects/my-project/locations/-\" ",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/savedQueries",
+                  "response": {
+                    "$ref": "ListSavedQueriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                }
+              }
             }
           }
         },
@@ -2732,6 +2878,152 @@
                   "path": "v2/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                }
+              }
+            },
+            "recentQueries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the RecentQueries that were created by the user making the request.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/recentQueries",
+                  "httpMethod": "GET",
+                  "id": "logging.folders.locations.recentQueries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource to which the listed queries belong. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:projects/my-project/locations/us-central1Note: The location portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all recent queries.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/recentQueries",
+                  "response": {
+                    "$ref": "ListRecentQueriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                }
+              }
+            },
+            "savedQueries": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new SavedQuery for the user making the request.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/savedQueries",
+                  "httpMethod": "POST",
+                  "id": "logging.folders.locations.savedQueries.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource in which to create the saved query: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example: \"projects/my-project/locations/global\" \"organizations/123456789/locations/us-central1\" ",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "savedQueryId": {
+                      "description": "Optional. The ID to use for the saved query, which will become the final component of the saved query's resource name.If the saved_query_id is not provided, the system will generate an alphanumeric ID.The saved_query_id is limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods. First character has to be alphanumeric.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/savedQueries",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an existing SavedQuery that was created by the user making the request.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "DELETE",
+                  "id": "logging.folders.locations.savedQueries.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the saved query to delete. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the SavedQueries that were created by the user making the request.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/savedQueries",
+                  "httpMethod": "GET",
+                  "id": "logging.folders.locations.savedQueries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource to which the listed queries belong. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example: \"projects/my-project/locations/us-central1\" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: \"projects/my-project/locations/-\" ",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/savedQueries",
+                  "response": {
+                    "$ref": "ListSavedQueriesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -4987,6 +5279,152 @@
                   ]
                 }
               }
+            },
+            "recentQueries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the RecentQueries that were created by the user making the request.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/recentQueries",
+                  "httpMethod": "GET",
+                  "id": "logging.organizations.locations.recentQueries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource to which the listed queries belong. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:projects/my-project/locations/us-central1Note: The location portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all recent queries.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/recentQueries",
+                  "response": {
+                    "$ref": "ListRecentQueriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                }
+              }
+            },
+            "savedQueries": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new SavedQuery for the user making the request.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/savedQueries",
+                  "httpMethod": "POST",
+                  "id": "logging.organizations.locations.savedQueries.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource in which to create the saved query: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example: \"projects/my-project/locations/global\" \"organizations/123456789/locations/us-central1\" ",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "savedQueryId": {
+                      "description": "Optional. The ID to use for the saved query, which will become the final component of the saved query's resource name.If the saved_query_id is not provided, the system will generate an alphanumeric ID.The saved_query_id is limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods. First character has to be alphanumeric.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/savedQueries",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an existing SavedQuery that was created by the user making the request.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "DELETE",
+                  "id": "logging.organizations.locations.savedQueries.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the saved query to delete. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the SavedQueries that were created by the user making the request.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/savedQueries",
+                  "httpMethod": "GET",
+                  "id": "logging.organizations.locations.savedQueries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource to which the listed queries belong. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example: \"projects/my-project/locations/us-central1\" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: \"projects/my-project/locations/-\" ",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/savedQueries",
+                  "response": {
+                    "$ref": "ListSavedQueriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                }
+              }
             }
           }
         },
@@ -6308,6 +6746,152 @@
                   ]
                 }
               }
+            },
+            "recentQueries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the RecentQueries that were created by the user making the request.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/recentQueries",
+                  "httpMethod": "GET",
+                  "id": "logging.projects.locations.recentQueries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource to which the listed queries belong. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example:projects/my-project/locations/us-central1Note: The location portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all recent queries.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/recentQueries",
+                  "response": {
+                    "$ref": "ListRecentQueriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                }
+              }
+            },
+            "savedQueries": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new SavedQuery for the user making the request.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/savedQueries",
+                  "httpMethod": "POST",
+                  "id": "logging.projects.locations.savedQueries.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource in which to create the saved query: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example: \"projects/my-project/locations/global\" \"organizations/123456789/locations/us-central1\" ",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "savedQueryId": {
+                      "description": "Optional. The ID to use for the saved query, which will become the final component of the saved query's resource name.If the saved_query_id is not provided, the system will generate an alphanumeric ID.The saved_query_id is limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods. First character has to be alphanumeric.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/savedQueries",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an existing SavedQuery that was created by the user making the request.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "DELETE",
+                  "id": "logging.projects.locations.savedQueries.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the saved query to delete. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the SavedQueries that were created by the user making the request.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/savedQueries",
+                  "httpMethod": "GET",
+                  "id": "logging.projects.locations.savedQueries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource to which the listed queries belong. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]\" For example: \"projects/my-project/locations/us-central1\" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: \"projects/my-project/locations/-\" ",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/savedQueries",
+                  "response": {
+                    "$ref": "ListSavedQueriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                }
+              }
             }
           }
         },
@@ -7084,7 +7668,7 @@
       }
     }
   },
-  "revision": "20231006",
+  "revision": "20231110",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryDataset": {
@@ -7332,6 +7916,38 @@
         },
         "parent": {
           "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DefaultSinkConfig": {
+      "description": "Describes the custom _Default sink configuration that is used to override the built-in _Default sink configuration in newly created resource containers, such as projects or folders.",
+      "id": "DefaultSinkConfig",
+      "properties": {
+        "exclusions": {
+          "description": "Optional. Specifies the set of exclusions to be added to the _Default sink in newly created resource containers.",
+          "items": {
+            "$ref": "LogExclusion"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "description": "Optional. An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-queries). The only exported log entries are those that are in the resource owning the sink and that match the filter.For example:logName=\"projects/[PROJECT_ID]/logs/[LOG_ID]\" AND severity>=ERRORCannot be empty or unset if mode == OVERWRITE. In order to match all logs, use the following line as the value of filter and do not use exclusions:logName:*",
+          "type": "string"
+        },
+        "mode": {
+          "description": "Required. Determines the behavior to apply to the built-in _Default sink inclusion filter.Exclusions are always appended, as built-in _Default sinks have no exclusions.",
+          "enum": [
+            "FILTER_WRITE_MODE_UNSPECIFIED",
+            "APPEND",
+            "OVERWRITE"
+          ],
+          "enumDescriptions": [
+            "The filter's write mode is unspecified. This mode must not be used.",
+            "The contents of filter will be appended to the built-in _Default sink filter. Using the append mode with an empty filter will keep the sink inclusion filter unchanged.",
+            "The contents of filter will overwrite the built-in _Default sink filter."
+          ],
           "type": "string"
         }
       },
@@ -7839,6 +8455,56 @@
       },
       "type": "object"
     },
+    "ListRecentQueriesResponse": {
+      "description": "The response from ListRecentQueries.",
+      "id": "ListRecentQueriesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.",
+          "type": "string"
+        },
+        "recentQueries": {
+          "description": "A list of recent queries.",
+          "items": {
+            "$ref": "RecentQuery"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "The unreachable resources. Each resource can be either 1) a saved query if a specific query is unreachable or 2) a location if a specific location is unreachable. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]\" \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global/recentQueries/12345678\" \"projects/my-project/locations/global\"If there are unreachable resources, the response will first return pages that contain recent queries, and then return pages that contain the unreachable resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSavedQueriesResponse": {
+      "description": "The response from ListSavedQueries.",
+      "id": "ListSavedQueriesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.",
+          "type": "string"
+        },
+        "savedQueries": {
+          "description": "A list of saved queries.",
+          "items": {
+            "$ref": "SavedQuery"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "The unreachable resources. It can be either 1) a saved query if a specific query is unreachable or 2) a location if a specific location is unreachabe. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example: \"projects/my-project/locations/global/savedQueries/12345678\" \"projects/my-project/locations/global\" If there are unreachable resources, the response will first return pages that contain saved queries, and then return pages that contain the unreachable resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSinksResponse": {
       "description": "Result returned from ListSinks.",
       "id": "ListSinksResponse",
@@ -8004,6 +8670,14 @@
       "description": "An individual entry in a log.",
       "id": "LogEntry",
       "properties": {
+        "errorGroups": {
+          "description": "Output only. The Error Reporting (https://cloud.google.com/error-reporting) error groups associated with this LogEntry. Error Reporting sets the values for this field during error group creation.For more information, see View error details( https://cloud.google.com/error-reporting/docs/viewing-errors#view_error_details)This field isn't available during log routing (https://cloud.google.com/logging/docs/routing/overview)",
+          "items": {
+            "$ref": "LogErrorGroup"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "httpRequest": {
           "$ref": "HttpRequest",
           "description": "Optional. Information about the HTTP request associated with this log entry, if applicable."
@@ -8155,6 +8829,17 @@
         "line": {
           "description": "Optional. Line within the source file. 1-based; 0 indicates no line number available.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LogErrorGroup": {
+      "description": "Contains metadata that associates the LogEntry to Error Reporting error groups.",
+      "id": "LogErrorGroup",
+      "properties": {
+        "id": {
+          "description": "The id is a unique identifier for a particular error group; it is the last part of the error group resource name: /projects//errors/. Example: COShysOX0r_51QE The id is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see Google Cloud Privacy Notice (https://cloud.google.com/terms/cloud-privacy-notice).",
           "type": "string"
         }
       },
@@ -8438,6 +9123,34 @@
       },
       "type": "object"
     },
+    "LoggingQuery": {
+      "description": "Describes a Cloud Logging query that can be run in Logs Explorer UI or via the logging API.In addition to the query itself, additional information may be stored to capture the display configuration and other UI state used in association with analysis of query results.",
+      "id": "LoggingQuery",
+      "properties": {
+        "filter": {
+          "description": "An advanced query using the Logging Query Language (https://cloud.google.com/logging/docs/view/logging-query-language). The maximum length of the filter is 20000 characters.",
+          "type": "string"
+        },
+        "summaryFieldEnd": {
+          "description": "Characters will be counted from the end of the string.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "summaryFieldStart": {
+          "description": "Characters will be counted from the start of the string.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "summaryFields": {
+          "description": "The set of summary fields to display for this saved query.",
+          "items": {
+            "$ref": "SummaryField"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "MetricDescriptor": {
       "description": "Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.",
       "id": "MetricDescriptor",
@@ -8716,6 +9429,42 @@
       },
       "type": "object"
     },
+    "OpsAnalyticsQuery": {
+      "description": "Describes an analytics query that can be run in the Log Analytics page of Google Cloud console.Preview: This is a preview feature and may be subject to change before final release.",
+      "id": "OpsAnalyticsQuery",
+      "properties": {
+        "sqlQueryText": {
+          "description": "Required. A logs analytics SQL query, which generally follows BigQuery format.This is the SQL query that appears in the Log Analytics UI's query editor.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecentQuery": {
+      "description": "Describes a recent query executed on the Logs Explorer or Log Analytics page within the last ~ 30 days.",
+      "id": "RecentQuery",
+      "properties": {
+        "lastRunTime": {
+          "description": "The timestamp when this query was last run.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "loggingQuery": {
+          "$ref": "LoggingQuery",
+          "description": "Logging query that can be executed in Logs Explorer or via Logging API."
+        },
+        "name": {
+          "description": "Output only. Resource name of the recent query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "opsAnalyticsQuery": {
+          "$ref": "OpsAnalyticsQuery",
+          "description": "Analytics query that can be executed in Log Analytics."
+        }
+      },
+      "type": "object"
+    },
     "RequestLog": {
       "description": "Complete log information about a single HTTP request to an App Engine application.",
       "id": "RequestLog",
@@ -8874,10 +9623,54 @@
       },
       "type": "object"
     },
+    "SavedQuery": {
+      "description": "Describes a query that has been saved by a user.",
+      "id": "SavedQuery",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the saved query was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A human readable description of the saved query.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The user specified title for the SavedQuery.",
+          "type": "string"
+        },
+        "loggingQuery": {
+          "$ref": "LoggingQuery",
+          "description": "Logging query that can be executed in Logs Explorer or via Logging API."
+        },
+        "name": {
+          "description": "Output only. Resource name of the saved query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "opsAnalyticsQuery": {
+          "$ref": "OpsAnalyticsQuery",
+          "description": "Analytics query that can be executed in Log Analytics."
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the saved query was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Settings": {
       "description": "Describes the settings associated with a project, folder, organization, billing account, or flexible resource.",
       "id": "Settings",
       "properties": {
+        "defaultSinkConfig": {
+          "$ref": "DefaultSinkConfig",
+          "description": "Optional. Overrides the built-in configuration for _Default sink."
+        },
         "disableDefaultSink": {
           "description": "Optional. If set to true, the _Default sink in newly created projects and folders will created in a disabled state. This can be used to automatically disable log storage if there is already an aggregated sink configured in the hierarchy. The _Default sink can be re-enabled manually if needed.",
           "type": "boolean"
@@ -8892,7 +9685,7 @@
           "type": "string"
         },
         "loggingServiceAccountId": {
-          "description": "Output only. The service account for the given container. Sinks use this service account as their writer_identity if no custom service account is provided.",
+          "description": "Output only. The service account for the given resource container, such as project or folder. Log sinks use this service account as their writer_identity if no custom service account is provided in the request when calling the create sink method.",
           "readOnly": true,
           "type": "string"
         },
@@ -8965,6 +9758,17 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SummaryField": {
+      "description": "A field from the LogEntry that is added to the summary line (https://cloud.google.com/logging/docs/view/logs-explorer-interface#add-summary-fields) for a query in the Logs Explorer.",
+      "id": "SummaryField",
+      "properties": {
+        "field": {
+          "description": "The field from the LogEntry to include in the summary line, for example resource.type or jsonPayload.name.",
           "type": "string"
         }
       },

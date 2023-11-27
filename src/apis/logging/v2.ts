@@ -328,6 +328,23 @@ export namespace logging_v2 {
     parent?: string | null;
   }
   /**
+   * Describes the custom _Default sink configuration that is used to override the built-in _Default sink configuration in newly created resource containers, such as projects or folders.
+   */
+  export interface Schema$DefaultSinkConfig {
+    /**
+     * Optional. Specifies the set of exclusions to be added to the _Default sink in newly created resource containers.
+     */
+    exclusions?: Schema$LogExclusion[];
+    /**
+     * Optional. An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-queries). The only exported log entries are those that are in the resource owning the sink and that match the filter.For example:logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity\>=ERRORCannot be empty or unset if mode == OVERWRITE. In order to match all logs, use the following line as the value of filter and do not use exclusions:logName:*
+     */
+    filter?: string | null;
+    /**
+     * Required. Determines the behavior to apply to the built-in _Default sink inclusion filter.Exclusions are always appended, as built-in _Default sinks have no exclusions.
+     */
+    mode?: string | null;
+  }
+  /**
    * The parameters to DeleteLink.
    */
   export interface Schema$DeleteLinkRequest {
@@ -679,6 +696,40 @@ export namespace logging_v2 {
     operations?: Schema$Operation[];
   }
   /**
+   * The response from ListRecentQueries.
+   */
+  export interface Schema$ListRecentQueriesResponse {
+    /**
+     * If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of recent queries.
+     */
+    recentQueries?: Schema$RecentQuery[];
+    /**
+     * The unreachable resources. Each resource can be either 1) a saved query if a specific query is unreachable or 2) a location if a specific location is unreachable. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]" "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/recentQueries/12345678" "projects/my-project/locations/global"If there are unreachable resources, the response will first return pages that contain recent queries, and then return pages that contain the unreachable resources.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * The response from ListSavedQueries.
+   */
+  export interface Schema$ListSavedQueriesResponse {
+    /**
+     * If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of saved queries.
+     */
+    savedQueries?: Schema$SavedQuery[];
+    /**
+     * The unreachable resources. It can be either 1) a saved query if a specific query is unreachable or 2) a location if a specific location is unreachabe. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/global/savedQueries/12345678" "projects/my-project/locations/global" If there are unreachable resources, the response will first return pages that contain saved queries, and then return pages that contain the unreachable resources.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Result returned from ListSinks.
    */
   export interface Schema$ListSinksResponse {
@@ -792,6 +843,10 @@ export namespace logging_v2 {
    */
   export interface Schema$LogEntry {
     /**
+     * Output only. The Error Reporting (https://cloud.google.com/error-reporting) error groups associated with this LogEntry. Error Reporting sets the values for this field during error group creation.For more information, see View error details( https://cloud.google.com/error-reporting/docs/viewing-errors#view_error_details)This field isn't available during log routing (https://cloud.google.com/logging/docs/routing/overview)
+     */
+    errorGroups?: Schema$LogErrorGroup[];
+    /**
      * Optional. Information about the HTTP request associated with this log entry, if applicable.
      */
     httpRequest?: Schema$HttpRequest;
@@ -903,6 +958,15 @@ export namespace logging_v2 {
     line?: string | null;
   }
   /**
+   * Contains metadata that associates the LogEntry to Error Reporting error groups.
+   */
+  export interface Schema$LogErrorGroup {
+    /**
+     * The id is a unique identifier for a particular error group; it is the last part of the error group resource name: /projects//errors/. Example: COShysOX0r_51QE The id is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see Google Cloud Privacy Notice (https://cloud.google.com/terms/cloud-privacy-notice).
+     */
+    id?: string | null;
+  }
+  /**
    * Specifies a set of log entries that are filtered out by a sink. If your Google Cloud resource receives a large volume of log entries, you can use exclusions to reduce your chargeable logs. Note that exclusions on organization-level and folder-level sinks don't apply to child resources. Note also that you cannot modify the _Required sink or exclude logs from it.
    */
   export interface Schema$LogExclusion {
@@ -930,6 +994,27 @@ export namespace logging_v2 {
      * Output only. The last update timestamp of the exclusion.This field may not be present for older exclusions.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Describes a Cloud Logging query that can be run in Logs Explorer UI or via the logging API.In addition to the query itself, additional information may be stored to capture the display configuration and other UI state used in association with analysis of query results.
+   */
+  export interface Schema$LoggingQuery {
+    /**
+     * An advanced query using the Logging Query Language (https://cloud.google.com/logging/docs/view/logging-query-language). The maximum length of the filter is 20000 characters.
+     */
+    filter?: string | null;
+    /**
+     * Characters will be counted from the end of the string.
+     */
+    summaryFieldEnd?: number | null;
+    /**
+     * The set of summary fields to display for this saved query.
+     */
+    summaryFields?: Schema$SummaryField[];
+    /**
+     * Characters will be counted from the start of the string.
+     */
+    summaryFieldStart?: number | null;
   }
   /**
    * Application log line emitted while processing a request.
@@ -1247,6 +1332,36 @@ export namespace logging_v2 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Describes an analytics query that can be run in the Log Analytics page of Google Cloud console.Preview: This is a preview feature and may be subject to change before final release.
+   */
+  export interface Schema$OpsAnalyticsQuery {
+    /**
+     * Required. A logs analytics SQL query, which generally follows BigQuery format.This is the SQL query that appears in the Log Analytics UI's query editor.
+     */
+    sqlQueryText?: string | null;
+  }
+  /**
+   * Describes a recent query executed on the Logs Explorer or Log Analytics page within the last ~ 30 days.
+   */
+  export interface Schema$RecentQuery {
+    /**
+     * The timestamp when this query was last run.
+     */
+    lastRunTime?: string | null;
+    /**
+     * Logging query that can be executed in Logs Explorer or via Logging API.
+     */
+    loggingQuery?: Schema$LoggingQuery;
+    /**
+     * Output only. Resource name of the recent query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.
+     */
+    name?: string | null;
+    /**
+     * Analytics query that can be executed in Log Analytics.
+     */
+    opsAnalyticsQuery?: Schema$OpsAnalyticsQuery;
+  }
+  /**
    * Complete log information about a single HTTP request to an App Engine application.
    */
   export interface Schema$RequestLog {
@@ -1388,9 +1503,46 @@ export namespace logging_v2 {
     wasLoadingRequest?: boolean | null;
   }
   /**
+   * Describes a query that has been saved by a user.
+   */
+  export interface Schema$SavedQuery {
+    /**
+     * Output only. The timestamp when the saved query was created.
+     */
+    createTime?: string | null;
+    /**
+     * A human readable description of the saved query.
+     */
+    description?: string | null;
+    /**
+     * The user specified title for the SavedQuery.
+     */
+    displayName?: string | null;
+    /**
+     * Logging query that can be executed in Logs Explorer or via Logging API.
+     */
+    loggingQuery?: Schema$LoggingQuery;
+    /**
+     * Output only. Resource name of the saved query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.
+     */
+    name?: string | null;
+    /**
+     * Analytics query that can be executed in Log Analytics.
+     */
+    opsAnalyticsQuery?: Schema$OpsAnalyticsQuery;
+    /**
+     * Output only. The timestamp when the saved query was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Describes the settings associated with a project, folder, organization, billing account, or flexible resource.
    */
   export interface Schema$Settings {
+    /**
+     * Optional. Overrides the built-in configuration for _Default sink.
+     */
+    defaultSinkConfig?: Schema$DefaultSinkConfig;
     /**
      * Optional. If set to true, the _Default sink in newly created projects and folders will created in a disabled state. This can be used to automatically disable log storage if there is already an aggregated sink configured in the hierarchy. The _Default sink can be re-enabled manually if needed.
      */
@@ -1404,7 +1556,7 @@ export namespace logging_v2 {
      */
     kmsServiceAccountId?: string | null;
     /**
-     * Output only. The service account for the given container. Sinks use this service account as their writer_identity if no custom service account is provided.
+     * Output only. The service account for the given resource container, such as project or folder. Log sinks use this service account as their writer_identity if no custom service account is provided in the request when calling the create sink method.
      */
     loggingServiceAccountId?: string | null;
     /**
@@ -1462,6 +1614,15 @@ export namespace logging_v2 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * A field from the LogEntry that is added to the summary line (https://cloud.google.com/logging/docs/view/logs-explorer-interface#add-summary-fields) for a query in the Logs Explorer.
+   */
+  export interface Schema$SummaryField {
+    /**
+     * The field from the LogEntry to include in the summary line, for example resource.type or jsonPayload.name.
+     */
+    field?: string | null;
   }
   /**
    * Information about entries that were omitted from the session.
@@ -2265,12 +2426,20 @@ export namespace logging_v2 {
     context: APIRequestContext;
     buckets: Resource$Billingaccounts$Locations$Buckets;
     operations: Resource$Billingaccounts$Locations$Operations;
+    recentQueries: Resource$Billingaccounts$Locations$Recentqueries;
+    savedQueries: Resource$Billingaccounts$Locations$Savedqueries;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.buckets = new Resource$Billingaccounts$Locations$Buckets(
         this.context
       );
       this.operations = new Resource$Billingaccounts$Locations$Operations(
+        this.context
+      );
+      this.recentQueries = new Resource$Billingaccounts$Locations$Recentqueries(
+        this.context
+      );
+      this.savedQueries = new Resource$Billingaccounts$Locations$Savedqueries(
         this.context
       );
     }
@@ -4620,6 +4789,436 @@ export namespace logging_v2 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Billingaccounts$Locations$Recentqueries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the RecentQueries that were created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Recentqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Locations$Recentqueries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRecentQueriesResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Recentqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Recentqueries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Recentqueries$List,
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Recentqueries$List
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRecentQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Recentqueries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Recentqueries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/recentQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRecentQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRecentQueriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Locations$Recentqueries$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:projects/my-project/locations/us-central1Note: The location portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all recent queries.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Billingaccounts$Locations$Savedqueries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new SavedQuery for the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Billingaccounts$Locations$Savedqueries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    create(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    create(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Create,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Savedqueries$Create
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Savedqueries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing SavedQuery that was created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Billingaccounts$Locations$Savedqueries$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Savedqueries$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Savedqueries$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Lists the SavedQueries that were created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Locations$Savedqueries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSavedQueriesResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$List,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Savedqueries$List
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSavedQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Savedqueries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSavedQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource in which to create the saved query: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/global" "organizations/123456789/locations/us-central1"
+     */
+    parent?: string;
+    /**
+     * Optional. The ID to use for the saved query, which will become the final component of the saved query's resource name.If the saved_query_id is not provided, the system will generate an alphanumeric ID.The saved_query_id is limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods. First character has to be alphanumeric.
+     */
+    savedQueryId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SavedQuery;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the saved query to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/us-central1" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: "projects/my-project/locations/-"
+     */
+    parent?: string;
   }
 
   export class Resource$Billingaccounts$Logs {
@@ -7118,10 +7717,18 @@ export namespace logging_v2 {
     context: APIRequestContext;
     buckets: Resource$Folders$Locations$Buckets;
     operations: Resource$Folders$Locations$Operations;
+    recentQueries: Resource$Folders$Locations$Recentqueries;
+    savedQueries: Resource$Folders$Locations$Savedqueries;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.buckets = new Resource$Folders$Locations$Buckets(this.context);
       this.operations = new Resource$Folders$Locations$Operations(this.context);
+      this.recentQueries = new Resource$Folders$Locations$Recentqueries(
+        this.context
+      );
+      this.savedQueries = new Resource$Folders$Locations$Savedqueries(
+        this.context
+      );
     }
 
     /**
@@ -9451,6 +10058,432 @@ export namespace logging_v2 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Folders$Locations$Recentqueries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the RecentQueries that were created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Locations$Recentqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Locations$Recentqueries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRecentQueriesResponse>;
+    list(
+      params: Params$Resource$Folders$Locations$Recentqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Recentqueries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Recentqueries$List,
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Recentqueries$List
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRecentQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Recentqueries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Recentqueries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/recentQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRecentQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRecentQueriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Recentqueries$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:projects/my-project/locations/us-central1Note: The location portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all recent queries.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Folders$Locations$Savedqueries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new SavedQuery for the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Folders$Locations$Savedqueries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Folders$Locations$Savedqueries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    create(
+      params: Params$Resource$Folders$Locations$Savedqueries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Savedqueries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Savedqueries$Create,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Savedqueries$Create
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Savedqueries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Savedqueries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing SavedQuery that was created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Folders$Locations$Savedqueries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Folders$Locations$Savedqueries$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Locations$Savedqueries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Locations$Savedqueries$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Locations$Savedqueries$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Savedqueries$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Savedqueries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Savedqueries$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Lists the SavedQueries that were created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Locations$Savedqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Locations$Savedqueries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSavedQueriesResponse>;
+    list(
+      params: Params$Resource$Folders$Locations$Savedqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Savedqueries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Savedqueries$List,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Savedqueries$List
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSavedQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Savedqueries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Savedqueries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSavedQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Savedqueries$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource in which to create the saved query: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/global" "organizations/123456789/locations/us-central1"
+     */
+    parent?: string;
+    /**
+     * Optional. The ID to use for the saved query, which will become the final component of the saved query's resource name.If the saved_query_id is not provided, the system will generate an alphanumeric ID.The saved_query_id is limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods. First character has to be alphanumeric.
+     */
+    savedQueryId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SavedQuery;
+  }
+  export interface Params$Resource$Folders$Locations$Savedqueries$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the saved query to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Savedqueries$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/us-central1" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: "projects/my-project/locations/-"
+     */
+    parent?: string;
   }
 
   export class Resource$Folders$Logs {
@@ -13717,10 +14750,18 @@ export namespace logging_v2 {
     context: APIRequestContext;
     buckets: Resource$Organizations$Locations$Buckets;
     operations: Resource$Organizations$Locations$Operations;
+    recentQueries: Resource$Organizations$Locations$Recentqueries;
+    savedQueries: Resource$Organizations$Locations$Savedqueries;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.buckets = new Resource$Organizations$Locations$Buckets(this.context);
       this.operations = new Resource$Organizations$Locations$Operations(
+        this.context
+      );
+      this.recentQueries = new Resource$Organizations$Locations$Recentqueries(
+        this.context
+      );
+      this.savedQueries = new Resource$Organizations$Locations$Savedqueries(
         this.context
       );
     }
@@ -16070,6 +17111,436 @@ export namespace logging_v2 {
     pageToken?: string;
   }
 
+  export class Resource$Organizations$Locations$Recentqueries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the RecentQueries that were created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Recentqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Recentqueries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRecentQueriesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Recentqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Recentqueries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Recentqueries$List,
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Recentqueries$List
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRecentQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Recentqueries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Recentqueries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/recentQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRecentQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRecentQueriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Recentqueries$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:projects/my-project/locations/us-central1Note: The location portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all recent queries.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations$Locations$Savedqueries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new SavedQuery for the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Savedqueries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    create(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Create,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Savedqueries$Create
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Savedqueries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Savedqueries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing SavedQuery that was created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Savedqueries$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Savedqueries$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Savedqueries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Savedqueries$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Lists the SavedQueries that were created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Savedqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Savedqueries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSavedQueriesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Savedqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Savedqueries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Savedqueries$List,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Savedqueries$List
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSavedQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Savedqueries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Savedqueries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSavedQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Savedqueries$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource in which to create the saved query: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/global" "organizations/123456789/locations/us-central1"
+     */
+    parent?: string;
+    /**
+     * Optional. The ID to use for the saved query, which will become the final component of the saved query's resource name.If the saved_query_id is not provided, the system will generate an alphanumeric ID.The saved_query_id is limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods. First character has to be alphanumeric.
+     */
+    savedQueryId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SavedQuery;
+  }
+  export interface Params$Resource$Organizations$Locations$Savedqueries$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the saved query to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Savedqueries$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/us-central1" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: "projects/my-project/locations/-"
+     */
+    parent?: string;
+  }
+
   export class Resource$Organizations$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -17596,10 +19067,18 @@ export namespace logging_v2 {
     context: APIRequestContext;
     buckets: Resource$Projects$Locations$Buckets;
     operations: Resource$Projects$Locations$Operations;
+    recentQueries: Resource$Projects$Locations$Recentqueries;
+    savedQueries: Resource$Projects$Locations$Savedqueries;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.buckets = new Resource$Projects$Locations$Buckets(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.recentQueries = new Resource$Projects$Locations$Recentqueries(
+        this.context
+      );
+      this.savedQueries = new Resource$Projects$Locations$Savedqueries(
         this.context
       );
     }
@@ -19931,6 +21410,432 @@ export namespace logging_v2 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Recentqueries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the RecentQueries that were created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Recentqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Recentqueries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRecentQueriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Recentqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Recentqueries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Recentqueries$List,
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRecentQueriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Recentqueries$List
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRecentQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRecentQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Recentqueries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Recentqueries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/recentQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRecentQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRecentQueriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Recentqueries$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:projects/my-project/locations/us-central1Note: The location portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all recent queries.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Savedqueries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new SavedQuery for the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Savedqueries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Savedqueries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    create(
+      params: Params$Resource$Projects$Locations$Savedqueries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Savedqueries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Savedqueries$Create,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Savedqueries$Create
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Savedqueries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Savedqueries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing SavedQuery that was created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Savedqueries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Savedqueries$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Savedqueries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Savedqueries$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Savedqueries$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Savedqueries$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Savedqueries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Savedqueries$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Lists the SavedQueries that were created by the user making the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Savedqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Savedqueries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSavedQueriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Savedqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Savedqueries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Savedqueries$List,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Savedqueries$List
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSavedQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Savedqueries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Savedqueries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSavedQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Savedqueries$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource in which to create the saved query: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/global" "organizations/123456789/locations/us-central1"
+     */
+    parent?: string;
+    /**
+     * Optional. The ID to use for the saved query, which will become the final component of the saved query's resource name.If the saved_query_id is not provided, the system will generate an alphanumeric ID.The saved_query_id is limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods. First character has to be alphanumeric.
+     */
+    savedQueryId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SavedQuery;
+  }
+  export interface Params$Resource$Projects$Locations$Savedqueries$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the saved query to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Savedqueries$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/us-central1" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: "projects/my-project/locations/-"
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Logs {
