@@ -167,6 +167,15 @@ export namespace workflowexecutions_v1 {
     stackTrace?: Schema$StackTrace;
   }
   /**
+   * Exception describes why the step entry failed.
+   */
+  export interface Schema$Exception {
+    /**
+     * Error message represented as a JSON string.
+     */
+    payload?: string | null;
+  }
+  /**
    * A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows).
    */
   export interface Schema$Execution {
@@ -257,6 +266,44 @@ export namespace workflowexecutions_v1 {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ExecutionHistory.ListStepEntries.
+   */
+  export interface Schema$ListStepEntriesResponse {
+    /**
+     * A token to retrieve next page of results. Pass this value in the ListStepEntriesRequest.page_token field in the subsequent call to `ListStepEntries` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of entries.
+     */
+    stepEntries?: Schema$StepEntry[];
+    /**
+     * Indicates the total number of StepEntries that matched the request filter. For running executions, this number shows the number of StepEntries that are executed thus far.
+     */
+    totalSize?: number | null;
+  }
+  /**
+   * NavigationInfo describes what steps if any come before or after this step, or what steps are parents or children of this step.
+   */
+  export interface Schema$NavigationInfo {
+    /**
+     * Step entries that can be reached by "stepping into" e.g. a subworkflow call.
+     */
+    children?: string[] | null;
+    /**
+     * The index of the next step in the current workflow, if any.
+     */
+    next?: string | null;
+    /**
+     * The step entry, if any, that can be reached by "stepping out" of the current workflow being executed.
+     */
+    parent?: string | null;
+    /**
+     * The index of the previous step in the current workflow, if any.
+     */
+    previous?: string | null;
   }
   /**
    * Position contains source position information about the stack trace element such as line number, column number and length of the code block in bytes.
@@ -360,6 +407,72 @@ export namespace workflowexecutions_v1 {
      * Name of a step within the routine.
      */
     step?: string | null;
+  }
+  /**
+   * An StepEntry contains debugging information for a step transition in a workflow execution.
+   */
+  export interface Schema$StepEntry {
+    /**
+     * Output only. The creation time of the step entry.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The numeric ID of this step entry, used for navigation.
+     */
+    entryId?: string | null;
+    /**
+     * Output only. The exception thrown by the step entry.
+     */
+    exception?: Schema$Exception;
+    /**
+     * Output only. The full resource name of the step entry. Each step entry has a unique entry ID, which is a monotonically increasing counter. Step entry names have the format: `projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}/stepEntries/{step_entry\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The NavigationInfo associated to this step.
+     */
+    navigationInfo?: Schema$NavigationInfo;
+    /**
+     * Output only. The name of the routine this step entry belongs to. A routine name is the subworkflow name defined in the YAML source code. The top level routine name is `main`.
+     */
+    routine?: string | null;
+    /**
+     * Output only. The state of the step entry.
+     */
+    state?: string | null;
+    /**
+     * Output only. The name of the step this step entry belongs to.
+     */
+    step?: string | null;
+    /**
+     * Output only. The StepEntryMetadata associated to this step.
+     */
+    stepEntryMetadata?: Schema$StepEntryMetadata;
+    /**
+     * Output only. The type of the step this step entry belongs to.
+     */
+    stepType?: string | null;
+    /**
+     * Output only. The most recently updated time of the step entry.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * StepEntryMetadata contains metadata information about this step.
+   */
+  export interface Schema$StepEntryMetadata {
+    /**
+     * Progress number represents the current state of the current progress. eg: A step entry represents the 4th iteration in a progress of PROGRESS_TYPE_FOR.
+     */
+    progressNumber?: string | null;
+    /**
+     * Progress type of this step entry.
+     */
+    progressType?: string | null;
+    /**
+     * Child thread id that this step entry belongs to.
+     */
+    threadId?: string | null;
   }
   /**
    * Request for the TriggerPubsubExecution method.
@@ -519,10 +632,15 @@ export namespace workflowexecutions_v1 {
   export class Resource$Projects$Locations$Workflows$Executions {
     context: APIRequestContext;
     callbacks: Resource$Projects$Locations$Workflows$Executions$Callbacks;
+    stepEntries: Resource$Projects$Locations$Workflows$Executions$Stepentries;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.callbacks =
         new Resource$Projects$Locations$Workflows$Executions$Callbacks(
+          this.context
+        );
+      this.stepEntries =
+        new Resource$Projects$Locations$Workflows$Executions$Stepentries(
           this.context
         );
     }
@@ -1160,5 +1278,227 @@ export namespace workflowexecutions_v1 {
      * Required. Name of the execution for which the callbacks should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Workflows$Executions$Stepentries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a step entry.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StepEntry>;
+    get(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$StepEntry>,
+      callback: BodyResponseCallback<Schema$StepEntry>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get,
+      callback: BodyResponseCallback<Schema$StepEntry>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$StepEntry>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get
+        | BodyResponseCallback<Schema$StepEntry>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StepEntry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StepEntry>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$StepEntry> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workflowexecutions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StepEntry>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StepEntry>(parameters);
+      }
+    }
+
+    /**
+     * Lists step entries for the corresponding workflow execution. Returned entries are ordered by their create_time.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListStepEntriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStepEntriesResponse>,
+      callback: BodyResponseCallback<Schema$ListStepEntriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List,
+      callback: BodyResponseCallback<Schema$ListStepEntriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListStepEntriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List
+        | BodyResponseCallback<Schema$ListStepEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListStepEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListStepEntriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListStepEntriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workflowexecutions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/stepEntries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListStepEntriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListStepEntriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the step entry to retrieve. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}/stepEntries/{step_entry\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List
+    extends StandardParameters {
+    /**
+     * Optional. Filters applied to the `[StepEntries.ListStepEntries]` results. The following fields are supported for filtering: `entryId`, `createTime`, `updateTime`, `routine`, `step`, `stepType`, `state`. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `createTime\>"2023-08-01" AND state="FAILED"`
+     */
+    filter?: string;
+    /**
+     * Optional. Comma-separated list of fields that specify the ordering applied to the `[StepEntries.ListStepEntries]` results. By default the ordering is based on ascending `entryId`. The following fields are supported for ordering: `entryId`, `createTime`, `updateTime`, `routine`, `step`, `stepType`, `state`. For details, see AIP-132.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Number of step entries to return per call. The default max is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListStepEntries` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStepEntries` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the workflow execution to list entries for. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}/stepEntries/
+     */
+    parent?: string;
+    /**
+     * Optional. The number of step entries to skip. It can be used with or without a pageToken. If used with a pageToken, then it indicates the number of step entries to skip starting from the requested page.
+     */
+    skip?: number;
   }
 }
