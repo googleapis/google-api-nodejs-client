@@ -147,6 +147,19 @@ export namespace playintegrity_v1 {
     appLicensingVerdict?: string | null;
   }
   /**
+   * Contains signals about others apps on the device which could be used to access or control the requesting app.
+   */
+  export interface Schema$AppAccessRiskVerdict {
+    /**
+     * Required. App access risk verdict related to apps that are not installed by Google Play, and are not preloaded on the system image by the device manufacturer.
+     */
+    otherApps?: string | null;
+    /**
+     * Required. App access risk verdict related to apps that are not installed by the Google Play Store, and are not preloaded on the system image by the device manufacturer.
+     */
+    playOrSystemApps?: string | null;
+  }
+  /**
    * Contains the application integrity information.
    */
   export interface Schema$AppIntegrity {
@@ -195,13 +208,17 @@ export namespace playintegrity_v1 {
     deviceRecognitionVerdict?: string[] | null;
   }
   /**
-   * Contains guidance details about the Integrity API response, providing additional context to the integrity verdicts.
+   * Contains information about the environment Play Integrity API runs in, e.g. Play Protect verdict.
    */
-  export interface Schema$GuidanceDetails {
+  export interface Schema$EnvironmentDetails {
     /**
-     * This shows when there is an issue with at least one of the integrity verdicts, which can be remedied by the user and provides additional details.
+     * The evaluation of the App Access Risk verdicts.
      */
-    userRemediationDetails?: Schema$UserRemediationDetails[];
+    appAccessRiskVerdict?: Schema$AppAccessRiskVerdict;
+    /**
+     * The evaluation of Play Protect verdict.
+     */
+    playProtectVerdict?: string | null;
   }
   /**
    * Contains the integrity request information.
@@ -250,9 +267,9 @@ export namespace playintegrity_v1 {
      */
     deviceIntegrity?: Schema$DeviceIntegrity;
     /**
-     * Additional guidance related to the integrity API response.
+     * Details of the environment Play Integrity API runs in.
      */
-    guidanceDetails?: Schema$GuidanceDetails;
+    environmentDetails?: Schema$EnvironmentDetails;
     /**
      * Required. Details about the integrity request.
      */
@@ -261,15 +278,6 @@ export namespace playintegrity_v1 {
      * Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status.
      */
     testingDetails?: Schema$TestingDetails;
-  }
-  /**
-   * Contains details of remediation guidance that the user can perform.
-   */
-  export interface Schema$UserRemediationDetails {
-    /**
-     * Description of the user remediation action.
-     */
-    remediation?: string | null;
   }
 
   export class Resource$V1 {
