@@ -100,6 +100,7 @@ export namespace storage_v1 {
    */
   export class Storage {
     context: APIRequestContext;
+    anywhereCache: Resource$Anywherecache;
     bucketAccessControls: Resource$Bucketaccesscontrols;
     buckets: Resource$Buckets;
     channels: Resource$Channels;
@@ -117,6 +118,7 @@ export namespace storage_v1 {
         google,
       };
 
+      this.anywhereCache = new Resource$Anywherecache(this.context);
       this.bucketAccessControls = new Resource$Bucketaccesscontrols(
         this.context
       );
@@ -135,6 +137,72 @@ export namespace storage_v1 {
     }
   }
 
+  /**
+   * An Anywhere Cache instance.
+   */
+  export interface Schema$AnywhereCache {
+    /**
+     * The cache-level entry admission policy.
+     */
+    admissionPolicy?: string | null;
+    /**
+     * The ID of the Anywhere cache instance.
+     */
+    anywhereCacheId?: string | null;
+    /**
+     * The name of the bucket containing this cache instance.
+     */
+    bucket?: string | null;
+    /**
+     * The creation time of the cache instance in RFC 3339 format.
+     */
+    createTime?: string | null;
+    /**
+     * The ID of the resource, including the project number, bucket name and anywhere cache ID.
+     */
+    id?: string | null;
+    /**
+     * The kind of item this is. For Anywhere Cache, this is always storage#anywhereCache.
+     */
+    kind?: string | null;
+    /**
+     * True if the cache instance has an active Update long-running operation.
+     */
+    pendingUpdate?: boolean | null;
+    /**
+     * The link to this cache instance.
+     */
+    selfLink?: string | null;
+    /**
+     * The current state of the cache instance.
+     */
+    state?: string | null;
+    /**
+     * The TTL of all cache entries in whole seconds. e.g., "7200s".
+     */
+    ttl?: string | null;
+    /**
+     * The modification time of the cache instance metadata in RFC 3339 format.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A list of Anywhere Caches.
+   */
+  export interface Schema$AnywhereCaches {
+    /**
+     * The list of items.
+     */
+    items?: Schema$AnywhereCache[];
+    /**
+     * The kind of item this is. For lists of Anywhere Caches, this is always storage#anywhereCaches.
+     */
+    kind?: string | null;
+    /**
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
   /**
    * A bucket.
    */
@@ -1104,6 +1172,724 @@ export namespace storage_v1 {
      * - storage.managedFolders.setIamPolicy — Update managed folder IAM policy.
      */
     permissions?: string[] | null;
+  }
+
+  export class Resource$Anywherecache {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Disables an Anywhere Cache instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disable(
+      params: Params$Resource$Anywherecache$Disable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    disable(
+      params?: Params$Resource$Anywherecache$Disable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnywhereCache>;
+    disable(
+      params: Params$Resource$Anywherecache$Disable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disable(
+      params: Params$Resource$Anywherecache$Disable,
+      options: MethodOptions | BodyResponseCallback<Schema$AnywhereCache>,
+      callback: BodyResponseCallback<Schema$AnywhereCache>
+    ): void;
+    disable(
+      params: Params$Resource$Anywherecache$Disable,
+      callback: BodyResponseCallback<Schema$AnywhereCache>
+    ): void;
+    disable(callback: BodyResponseCallback<Schema$AnywhereCache>): void;
+    disable(
+      paramsOrCallback?:
+        | Params$Resource$Anywherecache$Disable
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Anywherecache$Disable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Anywherecache$Disable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/disable'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'anywhereCacheId'],
+        pathParams: ['anywhereCacheId', 'bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnywhereCache>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnywhereCache>(parameters);
+      }
+    }
+
+    /**
+     * Returns the metadata of an Anywhere Cache instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Anywherecache$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Anywherecache$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnywhereCache>;
+    get(
+      params: Params$Resource$Anywherecache$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Anywherecache$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AnywhereCache>,
+      callback: BodyResponseCallback<Schema$AnywhereCache>
+    ): void;
+    get(
+      params: Params$Resource$Anywherecache$Get,
+      callback: BodyResponseCallback<Schema$AnywhereCache>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AnywhereCache>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Anywherecache$Get
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Anywherecache$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Anywherecache$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'anywhereCacheId'],
+        pathParams: ['anywhereCacheId', 'bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnywhereCache>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnywhereCache>(parameters);
+      }
+    }
+
+    /**
+     * Creates an Anywhere Cache instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Anywherecache$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Anywherecache$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    insert(
+      params: Params$Resource$Anywherecache$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Anywherecache$Insert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    insert(
+      params: Params$Resource$Anywherecache$Insert,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    insert(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Anywherecache$Insert
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Anywherecache$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Anywherecache$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/anywhereCaches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Returns a list of Anywhere Cache instances of the bucket matching the criteria.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Anywherecache$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Anywherecache$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnywhereCaches>;
+    list(
+      params: Params$Resource$Anywherecache$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Anywherecache$List,
+      options: MethodOptions | BodyResponseCallback<Schema$AnywhereCaches>,
+      callback: BodyResponseCallback<Schema$AnywhereCaches>
+    ): void;
+    list(
+      params: Params$Resource$Anywherecache$List,
+      callback: BodyResponseCallback<Schema$AnywhereCaches>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$AnywhereCaches>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Anywherecache$List
+        | BodyResponseCallback<Schema$AnywhereCaches>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnywhereCaches>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnywhereCaches>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AnywhereCaches> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Anywherecache$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Anywherecache$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/anywhereCache').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnywhereCaches>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnywhereCaches>(parameters);
+      }
+    }
+
+    /**
+     * Pauses an Anywhere Cache instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Anywherecache$Pause,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pause(
+      params?: Params$Resource$Anywherecache$Pause,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnywhereCache>;
+    pause(
+      params: Params$Resource$Anywherecache$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Anywherecache$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$AnywhereCache>,
+      callback: BodyResponseCallback<Schema$AnywhereCache>
+    ): void;
+    pause(
+      params: Params$Resource$Anywherecache$Pause,
+      callback: BodyResponseCallback<Schema$AnywhereCache>
+    ): void;
+    pause(callback: BodyResponseCallback<Schema$AnywhereCache>): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Anywherecache$Pause
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Anywherecache$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Anywherecache$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/pause'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'anywhereCacheId'],
+        pathParams: ['anywhereCacheId', 'bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnywhereCache>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnywhereCache>(parameters);
+      }
+    }
+
+    /**
+     * Resumes a paused or disabled Anywhere Cache instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Anywherecache$Resume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resume(
+      params?: Params$Resource$Anywherecache$Resume,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnywhereCache>;
+    resume(
+      params: Params$Resource$Anywherecache$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Anywherecache$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$AnywhereCache>,
+      callback: BodyResponseCallback<Schema$AnywhereCache>
+    ): void;
+    resume(
+      params: Params$Resource$Anywherecache$Resume,
+      callback: BodyResponseCallback<Schema$AnywhereCache>
+    ): void;
+    resume(callback: BodyResponseCallback<Schema$AnywhereCache>): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Anywherecache$Resume
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnywhereCache>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Anywherecache$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Anywherecache$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/resume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'anywhereCacheId'],
+        pathParams: ['anywhereCacheId', 'bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnywhereCache>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnywhereCache>(parameters);
+      }
+    }
+
+    /**
+     * Updates the config(ttl and admissionPolicy) of an Anywhere Cache instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Anywherecache$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Anywherecache$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    update(
+      params: Params$Resource$Anywherecache$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Anywherecache$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    update(
+      params: Params$Resource$Anywherecache$Update,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    update(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Anywherecache$Update
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Anywherecache$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Anywherecache$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'anywhereCacheId'],
+        pathParams: ['anywhereCacheId', 'bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Anywherecache$Disable
+    extends StandardParameters {
+    /**
+     * The ID of requested Anywhere Cache instance.
+     */
+    anywhereCacheId?: string;
+    /**
+     * Name of the partent bucket
+     */
+    bucket?: string;
+  }
+  export interface Params$Resource$Anywherecache$Get
+    extends StandardParameters {
+    /**
+     * The ID of requested Anywhere Cache instance.
+     */
+    anywhereCacheId?: string;
+    /**
+     * Name of the partent bucket
+     */
+    bucket?: string;
+  }
+  export interface Params$Resource$Anywherecache$Insert
+    extends StandardParameters {
+    /**
+     * Name of the partent bucket
+     */
+    bucket?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AnywhereCache;
+  }
+  export interface Params$Resource$Anywherecache$List
+    extends StandardParameters {
+    /**
+     * Name of the partent bucket
+     */
+    bucket?: string;
+    /**
+     * Maximum number of items return in a single page of responses. Maximum 1000.
+     */
+    pageSize?: number;
+    /**
+     * A previously-returned page token representing part of the larger set of results to view.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Anywherecache$Pause
+    extends StandardParameters {
+    /**
+     * The ID of requested Anywhere Cache instance.
+     */
+    anywhereCacheId?: string;
+    /**
+     * Name of the partent bucket
+     */
+    bucket?: string;
+  }
+  export interface Params$Resource$Anywherecache$Resume
+    extends StandardParameters {
+    /**
+     * The ID of requested Anywhere Cache instance.
+     */
+    anywhereCacheId?: string;
+    /**
+     * Name of the partent bucket
+     */
+    bucket?: string;
+  }
+  export interface Params$Resource$Anywherecache$Update
+    extends StandardParameters {
+    /**
+     * The ID of requested Anywhere Cache instance.
+     */
+    anywhereCacheId?: string;
+    /**
+     * Name of the partent bucket
+     */
+    bucket?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AnywhereCache;
   }
 
   export class Resource$Bucketaccesscontrols {
