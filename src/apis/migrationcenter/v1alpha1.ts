@@ -153,6 +153,10 @@ export namespace migrationcenter_v1alpha1 {
      * The aggregation will be performed on assets that match the provided filter.
      */
     filter?: string | null;
+    /**
+     * Optional. When this value is set to 'true' the response will include all assets, including those that are hidden.
+     */
+    showHidden?: boolean | null;
   }
   /**
    * A response to a request to aggregated assets values.
@@ -279,6 +283,18 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. The timestamp when the asset was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. Indicates if the asset is hidden.
+     */
+    hidden?: boolean | null;
+    /**
+     * Optional. An optional reason for marking this asset as hidden.
+     */
+    hideReason?: string | null;
+    /**
+     * Output only. The timestamp when the asset was marked as hidden.
+     */
+    hideTime?: string | null;
     /**
      * Output only. The list of insights associated with the asset.
      */
@@ -2798,7 +2814,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     networkCostParameters?: Schema$VirtualMachinePreferencesNetworkCostParameters;
     /**
-     * Region preferences for assets using this preference set. If you are unsure which value to set, the migration service API region is often a good value to start with.
+     * Region preferences for assets using this preference set. If you are unsure which value to set, the migration service API region is often a good value to start with. If PreferenceSet.RegionPreferences is specified, it overrides this field.
      */
     regionPreferences?: Schema$RegionPreferences;
     /**
@@ -4164,6 +4180,10 @@ export namespace migrationcenter_v1alpha1 {
      * Required. Parent value for `ListAssetsRequest`.
      */
     parent?: string;
+    /**
+     * Optional. When this value is set to 'true' the response will include all assets, including those that are hidden.
+     */
+    showHidden?: boolean;
     /**
      * View of the assets. Defaults to BASIC.
      */
