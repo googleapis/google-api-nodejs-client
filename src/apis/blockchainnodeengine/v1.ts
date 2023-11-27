@@ -153,6 +153,10 @@ export namespace blockchainnodeengine_v1 {
      */
     name?: string | null;
     /**
+     * Optional. When true, the node is only accessible via Private Service Connect; no public endpoints are exposed. Otherwise, the node is only accessible via public endpoints. See https://cloud.google.com/vpc/docs/private-service-connect.
+     */
+    privateServiceConnectEnabled?: boolean | null;
+    /**
      * Output only. A status representing the state of the node.
      */
     state?: string | null;
