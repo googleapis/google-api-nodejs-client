@@ -487,7 +487,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20231108",
   "rootUrl": "https://blockchainnodeengine.googleapis.com/",
   "schemas": {
     "BlockchainNode": {
@@ -532,6 +532,10 @@
           "description": "Output only. The fully qualified name of the blockchain node. e.g. `projects/my-project/locations/us-central1/blockchainNodes/my-node`.",
           "readOnly": true,
           "type": "string"
+        },
+        "privateServiceConnectEnabled": {
+          "description": "Optional. When true, the node is only accessible via Private Service Connect; no public endpoints are exposed. Otherwise, the node is only accessible via public endpoints. See https://cloud.google.com/vpc/docs/private-service-connect.",
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. A status representing the state of the node.",
@@ -671,13 +675,15 @@
             "NETWORK_UNSPECIFIED",
             "MAINNET",
             "TESTNET_GOERLI_PRATER",
-            "TESTNET_SEPOLIA"
+            "TESTNET_SEPOLIA",
+            "TESTNET_HOLESKY"
           ],
           "enumDescriptions": [
             "The network has not been specified, but should be.",
             "The Ethereum Mainnet.",
             "The Ethereum Testnet based on Goerli protocol.",
-            "The Ethereum Testnet based on Sepolia/Bepolia protocol. See https://github.com/eth-clients/sepolia."
+            "The Ethereum Testnet based on Sepolia/Bepolia protocol. See https://github.com/eth-clients/sepolia.",
+            "The Ethereum Testnet based on Holesky specification. See https://github.com/eth-clients/holesky."
           ],
           "type": "string"
         },
