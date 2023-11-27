@@ -150,10 +150,6 @@ export namespace documentai_v1beta3 {
      */
     documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
     /**
-     * The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.
-     */
-    gcsUri?: string | null;
-    /**
      * The status of the document auto-labeling.
      */
     status?: Schema$GoogleRpcStatus;
@@ -563,7 +559,7 @@ export namespace documentai_v1beta3 {
     processorVersion?: string | null;
   }
   /**
-   * The metadata proto of ResyncDataset method.
+   * The metadata proto of `ResyncDataset` method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadata {
     /**
@@ -571,7 +567,7 @@ export namespace documentai_v1beta3 {
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
-     * The list of dataset resync statuses. Not checked when `dataset_documents` is specified in ResyncRequest.
+     * The list of dataset resync statuses. Not checked when ResyncDatasetRequest.dataset_documents is specified.
      */
     datasetResyncStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataDatasetResyncStatus[];
     /**
@@ -588,7 +584,7 @@ export namespace documentai_v1beta3 {
      */
     datasetInconsistencyType?: string | null;
     /**
-     * The status of resyncing the dataset with regards to the detected inconsistency. Empty if `validate_only` is true in the request.
+     * The status of resyncing the dataset with regards to the detected inconsistency. Empty if ResyncDatasetRequest.validate_only is `true`.
      */
     status?: Schema$GoogleRpcStatus;
   }
@@ -605,7 +601,7 @@ export namespace documentai_v1beta3 {
      */
     documentInconsistencyType?: string | null;
     /**
-     * The status of resyncing the document with regards to the detected inconsistency. Empty if `validate_only` is true in the request.
+     * The status of resyncing the document with regards to the detected inconsistency. Empty if ResyncDatasetRequest.validate_only is `true`.
      */
     status?: Schema$GoogleRpcStatus;
   }
@@ -3071,7 +3067,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**
-     * Optional. Document AI Warehouse-based dataset configuration.
+     * Optional. Derepcated. Warehouse-based dataset configuration is not supported today.
      */
     documentWarehouseConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig;
     /**
@@ -3402,7 +3398,7 @@ export namespace documentai_v1beta3 {
      */
     documentId?: Schema$GoogleCloudDocumentaiV1beta3DocumentId;
     /**
-     * Labelling state of the document.
+     * Labeling state of the document.
      */
     labelingState?: string | null;
     /**
@@ -4696,11 +4692,11 @@ export namespace documentai_v1beta3 {
      */
     pageToken?: string | null;
     /**
-     * Optional. Controls if the ListDocuments request requires a total size of matched documents. See ListDocumentsResponse.total_size. Enabling this flag may adversely impact performance. Defaults to false.
+     * Optional. Controls if the request requires a total size of matched documents. See ListDocumentsResponse.total_size. Enabling this flag may adversely impact performance. Defaults to false.
      */
     returnTotalSize?: boolean | null;
     /**
-     * Optional. Number of results to skip beginning from the `page_token` if provided. https://google.aip.dev/158#skipping-results. It must be a non-negative integer. Negative values wil be rejected. Note that this is not the number of pages to skip. If this value causes the cursor to move past the end of results, `ListDocumentsResponse.document_metadata` and `ListDocumentsResponse.next_page_token` will be empty.
+     * Optional. Number of results to skip beginning from the `page_token` if provided. https://google.aip.dev/158#skipping-results. It must be a non-negative integer. Negative values will be rejected. Note that this is not the number of pages to skip. If this value causes the cursor to move past the end of results, ListDocumentsResponse.document_metadata and ListDocumentsResponse.next_page_token will be empty.
      */
     skip?: number | null;
   }
@@ -4710,7 +4706,7 @@ export namespace documentai_v1beta3 {
      */
     documentMetadata?: Schema$GoogleCloudDocumentaiV1beta3DocumentMetadata[];
     /**
-     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     * A token, which can be sent as ListDocumentsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**

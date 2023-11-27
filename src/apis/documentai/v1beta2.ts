@@ -150,10 +150,6 @@ export namespace documentai_v1beta2 {
      */
     documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
     /**
-     * The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.
-     */
-    gcsUri?: string | null;
-    /**
      * The status of the document auto-labeling.
      */
     status?: Schema$GoogleRpcStatus;
@@ -563,7 +559,7 @@ export namespace documentai_v1beta2 {
     processorVersion?: string | null;
   }
   /**
-   * The metadata proto of ResyncDataset method.
+   * The metadata proto of `ResyncDataset` method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadata {
     /**
@@ -571,7 +567,7 @@ export namespace documentai_v1beta2 {
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
-     * The list of dataset resync statuses. Not checked when `dataset_documents` is specified in ResyncRequest.
+     * The list of dataset resync statuses. Not checked when ResyncDatasetRequest.dataset_documents is specified.
      */
     datasetResyncStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataDatasetResyncStatus[];
     /**
@@ -588,7 +584,7 @@ export namespace documentai_v1beta2 {
      */
     datasetInconsistencyType?: string | null;
     /**
-     * The status of resyncing the dataset with regards to the detected inconsistency. Empty if `validate_only` is true in the request.
+     * The status of resyncing the dataset with regards to the detected inconsistency. Empty if ResyncDatasetRequest.validate_only is `true`.
      */
     status?: Schema$GoogleRpcStatus;
   }
@@ -605,7 +601,7 @@ export namespace documentai_v1beta2 {
      */
     documentInconsistencyType?: string | null;
     /**
-     * The status of resyncing the document with regards to the detected inconsistency. Empty if `validate_only` is true in the request.
+     * The status of resyncing the document with regards to the detected inconsistency. Empty if ResyncDatasetRequest.validate_only is `true`.
      */
     status?: Schema$GoogleRpcStatus;
   }
@@ -3094,7 +3090,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**
-     * Optional. Document AI Warehouse-based dataset configuration.
+     * Optional. Derepcated. Warehouse-based dataset configuration is not supported today.
      */
     documentWarehouseConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig;
     /**
