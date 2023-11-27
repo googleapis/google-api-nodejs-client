@@ -582,13 +582,25 @@ export namespace admob_v1beta {
      */
     displayName?: string | null;
     /**
+     * Output only. The time at which the experiment was ended or target to end (in UTC).
+     */
+    endTime?: string | null;
+    /**
      * Output only. Unique identifier for the mediation A/B experiment. It is an output only property.
      */
     experimentId?: string | null;
     /**
+     * Output only. The mediation group id this experiment belongs to. This can be used for filtering the experiments in the list experiments API.
+     */
+    mediationGroupId?: string | null;
+    /**
      * Resource name for this experiment. The format is accounts/{publisher_id\}/ mediationGroups/{mediation_group_id\}/mediationAbExperiment/ {mediation_group_experiment_id\}. For example: accounts/pub-9876543210987654/mediationGroups/0123456789/ mediationAbExperiment/12345
      */
     name?: string | null;
+    /**
+     * Output only. The time at which the experiment was started (in UTC).
+     */
+    startTime?: string | null;
     /**
      * Output only. The state of the experiment. It is an output only field.
      */
@@ -601,6 +613,10 @@ export namespace admob_v1beta {
      * The percentage of the mediation A/B experiment traffic that will be send to the treatment (variant B). The remainder is sent to the control (variant A). The percentage is expressed as an integer in the inclusive range of [1,99]. See https://support.google.com/admob/answer/9572326 for details.
      */
     treatmentTrafficPercentage?: string | null;
+    /**
+     * Output only. The variant leader for the experiment according to some key metrics.
+     */
+    variantLeader?: string | null;
   }
   /**
    * The mediation group line for the experiment. It will be used for serving during the run of the experiment.
