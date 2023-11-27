@@ -416,7 +416,7 @@
       }
     }
   },
-  "revision": "20230831",
+  "revision": "20231113",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -441,6 +441,13 @@
         "capacity": {
           "$ref": "Capacity",
           "description": "The capacity of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#capacity."
+        },
+        "certification": {
+          "description": "Optional. List of certifications claimed by this product.",
+          "items": {
+            "$ref": "GoogleShoppingManufacturersV1ProductCertification"
+          },
+          "type": "array"
         },
         "color": {
           "description": "The color of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#color.",
@@ -749,6 +756,25 @@
         },
         "unit": {
           "description": "unit.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleShoppingManufacturersV1ProductCertification": {
+      "description": "Description of a certification.",
+      "id": "GoogleShoppingManufacturersV1ProductCertification",
+      "properties": {
+        "authority": {
+          "description": "Required. Name of the certification body.",
+          "type": "string"
+        },
+        "code": {
+          "description": "Required. A unique code to identify the certification.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the certification.",
           "type": "string"
         }
       },

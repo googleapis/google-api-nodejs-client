@@ -145,6 +145,10 @@ export namespace manufacturers_v1 {
      */
     capacity?: Schema$Capacity;
     /**
+     * Optional. List of certifications claimed by this product.
+     */
+    certification?: Schema$GoogleShoppingManufacturersV1ProductCertification[];
+    /**
      * The color of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#color.
      */
     color?: string | null;
@@ -394,6 +398,23 @@ export namespace manufacturers_v1 {
      * unit.
      */
     unit?: string | null;
+  }
+  /**
+   * Description of a certification.
+   */
+  export interface Schema$GoogleShoppingManufacturersV1ProductCertification {
+    /**
+     * Required. Name of the certification body.
+     */
+    authority?: string | null;
+    /**
+     * Required. A unique code to identify the certification.
+     */
+    code?: string | null;
+    /**
+     * Required. Name of the certification.
+     */
+    name?: string | null;
   }
   export interface Schema$Grocery {
     /**
