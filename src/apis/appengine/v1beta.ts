@@ -1736,7 +1736,7 @@ export namespace appengine_v1beta {
      */
     handlers?: Schema$UrlMap[];
     /**
-     * Configures health checking for instances. Unhealthy instances are stopped and replaced with new instances. Only applicable in the App Engine flexible environment.Only returned in GET requests if view=FULL is set.
+     * Configures health checking for instances. Unhealthy instances are stopped and replaced with new instances. Only applicable in the App Engine flexible environment.
      */
     healthCheck?: Schema$HealthCheck;
     /**
@@ -1756,7 +1756,7 @@ export namespace appengine_v1beta {
      */
     libraries?: Schema$Library[];
     /**
-     * Configures liveness health checking for instances. Unhealthy instances are stopped and replaced with new instancesOnly returned in GET requests if view=FULL is set.
+     * Configures liveness health checking for instances. Unhealthy instances are stopped and replaced with new instances
      */
     livenessCheck?: Schema$LivenessCheck;
     /**
@@ -1776,7 +1776,7 @@ export namespace appengine_v1beta {
      */
     nobuildFilesRegex?: string | null;
     /**
-     * Configures readiness health checking for instances. Unhealthy instances are not put into the backend traffic rotation.Only returned in GET requests if view=FULL is set.
+     * Configures readiness health checking for instances. Unhealthy instances are not put into the backend traffic rotation.
      */
     readinessCheck?: Schema$ReadinessCheck;
     /**
