@@ -1597,6 +1597,19 @@ export namespace displayvideo_v2 {
     video?: Schema$YoutubeVideoDetails;
   }
   /**
+   * User consent status.
+   */
+  export interface Schema$Consent {
+    /**
+     * Represents consent for ad personalization.
+     */
+    adPersonalization?: string | null;
+    /**
+     * Represents consent for ad user data.
+     */
+    adUserData?: string | null;
+  }
+  /**
    * Contact information defining a Customer Match audience member.
    */
   export interface Schema$ContactInfo {
@@ -1629,6 +1642,10 @@ export namespace displayvideo_v2 {
    * Wrapper message for a list of contact information defining Customer Match audience members.
    */
   export interface Schema$ContactInfoList {
+    /**
+     * Input only. User consent status.
+     */
+    consent?: Schema$Consent;
     /**
      * A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.
      */
@@ -4329,6 +4346,10 @@ export namespace displayvideo_v2 {
    * Wrapper message for a list of mobile device IDs defining Customer Match audience members.
    */
   export interface Schema$MobileDeviceIdList {
+    /**
+     * Input only. User consent status.
+     */
+    consent?: Schema$Consent;
     /**
      * A list of mobile device IDs defining Customer Match audience members. The size of mobile_device_ids mustn't be greater than 500,000.
      */
