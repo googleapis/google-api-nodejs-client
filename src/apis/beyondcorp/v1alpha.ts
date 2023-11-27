@@ -1130,6 +1130,10 @@ export namespace beyondcorp_v1alpha {
    */
   export interface Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse {
     /**
+     * A token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
      * The list of PartnerTenant objects.
      */
     partnerTenants?: Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant[];
@@ -1138,6 +1142,10 @@ export namespace beyondcorp_v1alpha {
    * Message for response to listing ProxyConfigs.
    */
   export interface Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListProxyConfigsResponse {
+    /**
+     * A token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
     /**
      * The list of ProxyConfig objects.
      */
@@ -1542,7 +1550,7 @@ export namespace beyondcorp_v1alpha {
      */
     name?: string | null;
     /**
-     * Output only. Number of seats in the subscription.
+     * Optional. Number of seats in the subscription.
      */
     seatCount?: string | null;
     /**
@@ -2836,6 +2844,22 @@ export namespace beyondcorp_v1alpha {
   }
   export interface Params$Resource$Organizations$Locations$Global$Partnertenants$List
     extends StandardParameters {
+    /**
+     * Optional. A filter specifying constraints of a list operation. All fields in the PartnerTenant message are supported. For example, the following query will return the PartnerTenants with displayName "test-tenant" organizations/${ORG_ID\}/locations/${LOCATION\}/partnerTenants?filter=displayName="test-tenant" Nested fields are also supported. The follow query will return PartnerTenants with internal_tenant_id "1234" organizations/${ORG_ID\}/locations/${LOCATION\}/partnerTenants?filter=partnerMetadata.internalTenantId="1234" For more information, please refer to https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. Specifies the ordering of results. See [Sorting order](https://cloud.google.com/apis/design/design_patterns#sorting_order) for more information.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If not specified, a default value of 50 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous ListPartnerTenantsResponse, if any.
+     */
+    pageToken?: string;
     /**
      * Required. The parent organization to which the PartnerTenants belong. Format: `organizations/{organization_id\}/locations/global`
      */
@@ -4550,6 +4574,22 @@ export namespace beyondcorp_v1alpha {
   }
   export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$List
     extends StandardParameters {
+    /**
+     * Optional. A filter specifying constraints of a list operation. All fields in the ProxyConfig message are supported. For example, the following query will return the ProxyConfigs with displayName "test-config" organizations/${ORG_ID\}/locations/global/partnerTenants/${PARTNER_TENANT_ID\}/proxyConfigs?filter=displayName="test-config" Nested fields are also supported. The follow query will return ProxyConfigs with pacUri "example.com/pac.pac" organizations/${ORG_ID\}/locations/global/partnerTenants/${PARTNER_TENANT_ID\}/proxyConfigs?filter=routingInfo.pacUri="example.com/pac.pac" For more information, please refer to https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. Specifies the ordering of results. See [Sorting order](https://cloud.google.com/apis/design/design_patterns#sorting_order) for more information.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If not specified, a default value of 50 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous ListProxyConfigsRequest, if any.
+     */
+    pageToken?: string;
     /**
      * Required. The parent organization to which the ProxyConfigs belong. Format: `organizations/{organization_id\}/locations/global/partnerTenants/{partner_tenant_id\}`
      */
