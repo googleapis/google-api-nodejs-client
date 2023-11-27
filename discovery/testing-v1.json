@@ -442,7 +442,7 @@
       }
     }
   },
-  "revision": "20231017",
+  "revision": "20231113",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1161,11 +1161,6 @@
           "$ref": "AndroidDevice",
           "description": "Required. The requested device"
         },
-        "androidDeviceList": {
-          "$ref": "AndroidDeviceList",
-          "deprecated": true,
-          "description": "Optional. The list of requested devices. At most two devices may be simultaneously requested."
-        },
         "createTime": {
           "description": "Output only. The time that the Session was created.",
           "format": "google-datetime",
@@ -1226,7 +1221,7 @@
           "type": "array"
         },
         "ttl": {
-          "description": "Optional. The amount of time that a device will be initially allocated for. This can eventually be extended with the ExtendDeviceSession RPC. Default: 30 minutes.",
+          "description": "Optional. The amount of time that a device will be initially allocated for. This can eventually be extended with the UpdateDeviceSession RPC. Default: 30 minutes.",
           "format": "google-duration",
           "type": "string"
         }
@@ -2566,6 +2561,13 @@
           "description": "List of files to push to the device before starting the test.",
           "items": {
             "$ref": "DeviceFile"
+          },
+          "type": "array"
+        },
+        "initialSetupApks": {
+          "description": "Optional. Initial setup APKs to install before the app under test is installed. Currently capped at 100.",
+          "items": {
+            "$ref": "Apk"
           },
           "type": "array"
         },
