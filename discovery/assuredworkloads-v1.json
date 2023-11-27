@@ -191,7 +191,7 @@
                   ],
                   "parameters": {
                     "assetTypes": {
-                      "description": "Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).",
+                      "description": "Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).",
                       "location": "query",
                       "repeated": true,
                       "type": "string"
@@ -566,13 +566,27 @@
       }
     }
   },
-  "revision": "20231017",
+  "revision": "20231110",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
       "description": "Request for acknowledging the violation Next Id: 5",
       "id": "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest",
       "properties": {
+        "acknowledgeType": {
+          "description": "Optional. Acknowledge type of specified violation.",
+          "enum": [
+            "ACKNOWLEDGE_TYPE_UNSPECIFIED",
+            "SINGLE_VIOLATION",
+            "EXISTING_CHILD_RESOURCE_VIOLATIONS"
+          ],
+          "enumDescriptions": [
+            "Acknowledge type unspecified.",
+            "Acknowledge only the specific violation.",
+            "Acknowledge specified orgPolicy violation and also associated resource violations."
+          ],
+          "type": "string"
+        },
         "comment": {
           "description": "Required. Business justification explaining the need for violation acknowledgement",
           "type": "string"
@@ -625,7 +639,7 @@
           "type": "string"
         },
         "assetType": {
-          "description": "Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).",
+          "description": "Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).",
           "type": "string"
         }
       },
@@ -670,7 +684,7 @@
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
+            "Assured Workloads for Australia Regions and Support controls",
             "Assured Workloads for Partners;",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
@@ -834,7 +848,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1Violation": {
-      "description": "Workload monitoring Violation. Next Id: 28",
+      "description": "Workload monitoring Violation.",
       "id": "GoogleCloudAssuredworkloadsV1Violation",
       "properties": {
         "acknowledged": {
@@ -844,6 +858,11 @@
         "acknowledgementTime": {
           "description": "Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "associatedOrgPolicyViolationId": {
+          "description": "Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations.",
+          "readOnly": true,
           "type": "string"
         },
         "auditLogLink": {
@@ -896,6 +915,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "parentProjectNumber": {
+          "description": "Optional. Output only. Parent project number where resource is present. Empty for org-policy violations.",
+          "readOnly": true,
+          "type": "string"
+        },
         "remediation": {
           "$ref": "GoogleCloudAssuredworkloadsV1ViolationRemediation",
           "description": "Output only. Compliance violation remediation",
@@ -904,6 +928,16 @@
         "resolveTime": {
           "description": "Output only. Time of the event which fixed the Violation. If the violation is ACTIVE this will be empty.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Optional. Output only. Name of the resource like //storage.googleapis.com/myprojectxyz-testbucket. Empty for org-policy violations.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "Optional. Output only. Type of the resource like compute.googleapis.com/Disk, etc. Empty for org-policy violations.",
           "readOnly": true,
           "type": "string"
         },
@@ -929,12 +963,27 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "violationType": {
+          "description": "Output only. Type of the violation",
+          "enum": [
+            "VIOLATION_TYPE_UNSPECIFIED",
+            "ORG_POLICY",
+            "RESOURCE"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Org Policy Violation.",
+            "Resource Violation."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1ViolationExceptionContext": {
-      "description": "Violation exception detail. Next Id: 6",
+      "description": "Violation exception detail.",
       "id": "GoogleCloudAssuredworkloadsV1ViolationExceptionContext",
       "properties": {
         "acknowledgementTime": {
@@ -975,14 +1024,16 @@
             "REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION",
             "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION",
             "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
-            "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION"
+            "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
+            "REMEDIATION_RESOURCE_VIOLATION"
           ],
           "enumDescriptions": [
             "Unspecified remediation type",
             "Remediation type for boolean org policy",
             "Remediation type for list org policy which have allowed values in the monitoring rule",
             "Remediation type for list org policy which have denied values in the monitoring rule",
-            "Remediation type for gcp.restrictCmekCryptoKeyProjects"
+            "Remediation type for gcp.restrictCmekCryptoKeyProjects",
+            "Remediation type for resource violation."
           ],
           "readOnly": true,
           "type": "string"
@@ -1104,7 +1155,7 @@
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
+            "Assured Workloads for Australia Regions and Support controls",
             "Assured Workloads for Partners;",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
@@ -1121,7 +1172,7 @@
           "readOnly": true
         },
         "compliantButDisallowedServices": {
-          "description": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.\"",
+          "description": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.",
           "items": {
             "type": "string"
           },
@@ -1140,7 +1191,8 @@
         },
         "ekmProvisioningResponse": {
           "$ref": "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse",
-          "description": "Optional. Represents the Ekm Provisioning State of the given workload."
+          "description": "Output only. Represents the Ekm Provisioning State of the given workload.",
+          "readOnly": true
         },
         "enableSovereignControls": {
           "description": "Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.",
@@ -1243,8 +1295,18 @@
       "description": "Represents the Compliance Status of this workload",
       "id": "GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus",
       "properties": {
+        "acknowledgedResourceViolationCount": {
+          "description": "Number of current resource violations which are not acknowledged.",
+          "format": "int32",
+          "type": "integer"
+        },
         "acknowledgedViolationCount": {
           "description": "Number of current orgPolicy violations which are acknowledged.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "activeResourceViolationCount": {
+          "description": "Number of current resource violations which are acknowledged.",
           "format": "int32",
           "type": "integer"
         },
