@@ -1024,17 +1024,6 @@
                     "name"
                   ],
                   "parameters": {
-                    "cdcStrategy.specificStartPosition.mysqlLogPosition.logFile": {
-                      "description": "Required. The binary log file name.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "cdcStrategy.specificStartPosition.mysqlLogPosition.logPosition": {
-                      "description": "Optional. The position within the binary log file. Default is head of file.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
                     "force": {
                       "description": "Optional. Update the stream without validating it.",
                       "location": "query",
@@ -1261,7 +1250,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20231108",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
