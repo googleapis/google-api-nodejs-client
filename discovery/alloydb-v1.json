@@ -1489,7 +1489,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20231109",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AutomatedBackupPolicy": {
@@ -1566,17 +1566,20 @@
           "enum": [
             "DATABASE_VERSION_UNSPECIFIED",
             "POSTGRES_13",
-            "POSTGRES_14"
+            "POSTGRES_14",
+            "POSTGRES_15"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false
           ],
           "enumDescriptions": [
             "This is an unknown database version.",
             "DEPRECATED - The database version is Postgres 13.",
-            "The database version is Postgres 14."
+            "The database version is Postgres 14.",
+            "The database version is Postgres 15."
           ],
           "readOnly": true,
           "type": "string"
@@ -1814,17 +1817,20 @@
           "enum": [
             "DATABASE_VERSION_UNSPECIFIED",
             "POSTGRES_13",
-            "POSTGRES_14"
+            "POSTGRES_14",
+            "POSTGRES_15"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false
           ],
           "enumDescriptions": [
             "This is an unknown database version.",
             "DEPRECATED - The database version is Postgres 13.",
-            "The database version is Postgres 14."
+            "The database version is Postgres 14.",
+            "The database version is Postgres 15."
           ],
           "type": "string"
         },
@@ -2129,6 +2135,10 @@
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
+        },
+        "useMetadataExchange": {
+          "description": "Optional. An optional hint to the endpoint to generate a client ceritificate that can be used by AlloyDB connectors to exchange additional metadata with the server after TLS handshake.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2626,7 +2636,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project_number}/global/networks/{network_id}\". This is required to create a cluster.",
+          "description": "Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project_number}/global/networks/{network_id}\". This is required to create a cluster.",
           "type": "string"
         }
       },
@@ -3200,6 +3210,8 @@
           "description": "Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.",
           "enum": [
             "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
+            "SIGNAL_TYPE_GROUP_NOT_REPLICATING_ACROSS_REGIONS",
             "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_ZONES",
             "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_REGIONS",
             "SIGNAL_TYPE_NO_PROMOTABLE_REPLICA",
@@ -3245,10 +3257,65 @@
             "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
             "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
             "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
-            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED"
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+            "SIGNAL_TYPE_PUBLIC_IP_ENABLED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unspecified.",
+            "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+            "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
             "Represents if the resource is available in multiple zones or not.",
             "Represents if a resource is available in multiple regions.",
             "Represents if a resource has a promotable replica.",
@@ -3294,7 +3361,8 @@
             "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
             "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
             "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
-            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on. LINT.ThenChange(//depot/google3/storage/databasecenter/ingestion/borgjob/message_adapter/health_signal_feed/health_signal_mapping.h)"
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+            "Represents if public IP is enabled. LINT.ThenChange(//depot/google3/storage/databasecenter/ingestion/borgjob/message_adapter/health_signal_feed/health_signal_mapping.h)"
           ],
           "type": "string"
         },
@@ -3629,17 +3697,20 @@
             "enum": [
               "DATABASE_VERSION_UNSPECIFIED",
               "POSTGRES_13",
-              "POSTGRES_14"
+              "POSTGRES_14",
+              "POSTGRES_15"
             ],
             "enumDeprecated": [
               false,
               true,
+              false,
               false
             ],
             "enumDescriptions": [
               "This is an unknown database version.",
               "DEPRECATED - The database version is Postgres 13.",
-              "The database version is Postgres 14."
+              "The database version is Postgres 14.",
+              "The database version is Postgres 15."
             ],
             "type": "string"
           },

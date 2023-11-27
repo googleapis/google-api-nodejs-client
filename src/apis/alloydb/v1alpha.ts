@@ -379,6 +379,10 @@ export namespace alloydb_v1alpha {
      */
     primaryConfig?: Schema$PrimaryConfig;
     /**
+     * Optional. The configuration for Private Service Connect (PSC) for the cluster.
+     */
+    pscConfig?: Schema$PscConfig;
+    /**
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Cluster does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
     reconciling?: boolean | null;
@@ -879,7 +883,7 @@ export namespace alloydb_v1alpha {
      */
     allocatedIpRange?: string | null;
     /**
-     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
+     * Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
      */
     network?: string | null;
   }
@@ -987,6 +991,15 @@ export namespace alloydb_v1alpha {
      * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
      */
     validateOnly?: boolean | null;
+  }
+  /**
+   * PscConfig contains PSC related configuration at a cluster level. NEXT ID: 2
+   */
+  export interface Schema$PscConfig {
+    /**
+     * Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.
+     */
+    pscEnabled?: boolean | null;
   }
   /**
    * A backup's position in a quantity-based retention queue, of backups with the same source cluster and type, with length, retention, specified by the backup's retention policy. Once the position is greater than the retention, the backup is eligible to be garbage collected. Example: 5 backups from the same source cluster and type with a quantity-based retention of 3 and denoted by backup_id (position, retention). Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3). Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3)
