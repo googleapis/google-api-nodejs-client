@@ -646,6 +646,10 @@ export namespace dataproc_v1 {
      */
     jobs?: string[] | null;
     /**
+     * Optional. (Optional) The access type to the diagnostic tarball. If not specified, falls back to default access of the bucket
+     */
+    tarballAccess?: string | null;
+    /**
      * Optional. (Optional) The output Cloud Storage directory for the diagnostic tarball. If not specified, a task-specific directory in the cluster's staging bucket will be used.
      */
     tarballGcsDir?: string | null;
@@ -713,6 +717,10 @@ export namespace dataproc_v1 {
      * Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster.
      */
     gcePdKmsKeyName?: string | null;
+    /**
+     * Optional. The Cloud KMS key name to use for encrypting customer core content in spanner and cluster PD disk for all instances in the cluster.
+     */
+    kmsKey?: string | null;
   }
   /**
    * Endpoint config for this cluster
@@ -1019,6 +1027,15 @@ export namespace dataproc_v1 {
      * Required. The roles associated with the GKE node pool.
      */
     roles?: string[] | null;
+  }
+  /**
+   * Encryption settings for the encrypting customer core content. NEXT ID: 2
+   */
+  export interface Schema$GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig {
+    /**
+     * Optional. The Cloud KMS key name to use for encrypting customer core content.
+     */
+    kmsKey?: string | null;
   }
   /**
    * A Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
@@ -1634,6 +1651,10 @@ export namespace dataproc_v1 {
      * Optional. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListJobsRequest.
      */
     nextPageToken?: string | null;
+    /**
+     * Output only. List of jobs that could not be included in the response. Attempting to get one of these resources may indicate why it was not included in the list response.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1686,6 +1707,10 @@ export namespace dataproc_v1 {
      * Output only. WorkflowTemplates list.
      */
     templates?: Schema$WorkflowTemplate[];
+    /**
+     * Output only. List of workflow templates that could not be included in the response. Attempting to get one of these resources may indicate why it was not included in the list response.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The runtime logging config of the job.
@@ -2856,6 +2881,14 @@ export namespace dataproc_v1 {
    */
   export interface Schema$UsageMetrics {
     /**
+     * Optional. Accelerator type being used, if any
+     */
+    acceleratorType?: string | null;
+    /**
+     * Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+     */
+    milliAcceleratorSeconds?: string | null;
+    /**
      * Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
     milliDcuSeconds?: string | null;
@@ -2868,6 +2901,14 @@ export namespace dataproc_v1 {
    * The usage snapshot represents the resources consumed by a workload at a specified time.
    */
   export interface Schema$UsageSnapshot {
+    /**
+     * Optional. Accelerator type being used, if any
+     */
+    acceleratorType?: string | null;
+    /**
+     * Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+     */
+    milliAccelerator?: string | null;
     /**
      * Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
@@ -3022,6 +3063,10 @@ export namespace dataproc_v1 {
      * Optional. Timeout duration for the DAG of jobs, expressed in seconds (see JSON representation of duration (https://developers.google.com/protocol-buffers/docs/proto3#json)). The timeout duration must be from 10 minutes ("600s") to 24 hours ("86400s"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is ended, and if the workflow was running on a managed cluster, the cluster is deleted.
      */
     dagTimeout?: string | null;
+    /**
+     * Optional. Encryption settings for the encrypting customer core content.
+     */
+    encryptionConfig?: Schema$GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig;
     id?: string | null;
     /**
      * Required. The Directed Acyclic Graph of Jobs to submit.

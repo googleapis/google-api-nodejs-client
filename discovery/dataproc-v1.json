@@ -3006,7 +3006,7 @@
       }
     }
   },
-  "revision": "20231012",
+  "revision": "20231109",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3757,6 +3757,20 @@
           },
           "type": "array"
         },
+        "tarballAccess": {
+          "description": "Optional. (Optional) The access type to the diagnostic tarball. If not specified, falls back to default access of the bucket",
+          "enum": [
+            "TARBALL_ACCESS_UNSPECIFIED",
+            "GOOGLE_CLOUD_SUPPORT",
+            "GOOGLE_DATAPROC_DIAGNOSE"
+          ],
+          "enumDescriptions": [
+            "Tarball Access unspecified. Falls back to default access of the bucket",
+            "Google Cloud Support group has read access to the diagnostic tarball",
+            "Google Cloud Dataproc Diagnose service account has read access to the diagnostic tarball"
+          ],
+          "type": "string"
+        },
         "tarballGcsDir": {
           "description": "Optional. (Optional) The output Cloud Storage directory for the diagnostic tarball. If not specified, a task-specific directory in the cluster's staging bucket will be used.",
           "type": "string"
@@ -3842,6 +3856,10 @@
       "properties": {
         "gcePdKmsKeyName": {
           "description": "Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster.",
+          "type": "string"
+        },
+        "kmsKey": {
+          "description": "Optional. The Cloud KMS key name to use for encrypting customer core content in spanner and cluster PD disk for all instances in the cluster.",
           "type": "string"
         }
       },
@@ -4248,6 +4266,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig": {
+      "description": "Encryption settings for the encrypting customer core content. NEXT ID: 2",
+      "id": "GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig",
+      "properties": {
+        "kmsKey": {
+          "description": "Optional. The Cloud KMS key name to use for encrypting customer core content.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5102,6 +5131,14 @@
         "nextPageToken": {
           "description": "Optional. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListJobsRequest.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Output only. List of jobs that could not be included in the response. Attempting to get one of these resources may indicate why it was not included in the list response.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -5175,6 +5212,14 @@
           "description": "Output only. WorkflowTemplates list.",
           "items": {
             "$ref": "WorkflowTemplate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Output only. List of workflow templates that could not be included in the response. Attempting to get one of these resources may indicate why it was not included in the list response.",
+          "items": {
+            "type": "string"
           },
           "readOnly": true,
           "type": "array"
@@ -5411,14 +5456,16 @@
             "CREATE",
             "UPDATE",
             "DELETE",
-            "RESIZE"
+            "RESIZE",
+            "REPAIR"
           ],
           "enumDescriptions": [
             "Node group operation type is unknown.",
             "Create node group operation type.",
             "Update node group operation type.",
             "Delete node group operation type.",
-            "Resize node group operation type."
+            "Resize node group operation type.",
+            "Repair node group operation type."
           ],
           "type": "string"
         },
@@ -6915,6 +6962,15 @@
       "description": "Usage metrics represent approximate total resources consumed by a workload.",
       "id": "UsageMetrics",
       "properties": {
+        "acceleratorType": {
+          "description": "Optional. Accelerator type being used, if any",
+          "type": "string"
+        },
+        "milliAcceleratorSeconds": {
+          "description": "Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
+          "format": "int64",
+          "type": "string"
+        },
         "milliDcuSeconds": {
           "description": "Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
           "format": "int64",
@@ -6932,6 +6988,15 @@
       "description": "The usage snapshot represents the resources consumed by a workload at a specified time.",
       "id": "UsageSnapshot",
       "properties": {
+        "acceleratorType": {
+          "description": "Optional. Accelerator type being used, if any",
+          "type": "string"
+        },
+        "milliAccelerator": {
+          "description": "Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))",
+          "format": "int64",
+          "type": "string"
+        },
         "milliDcu": {
           "description": "Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
           "format": "int64",
@@ -7170,6 +7235,10 @@
           "description": "Optional. Timeout duration for the DAG of jobs, expressed in seconds (see JSON representation of duration (https://developers.google.com/protocol-buffers/docs/proto3#json)). The timeout duration must be from 10 minutes (\"600s\") to 24 hours (\"86400s\"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is ended, and if the workflow was running on a managed cluster, the cluster is deleted.",
           "format": "google-duration",
           "type": "string"
+        },
+        "encryptionConfig": {
+          "$ref": "GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig",
+          "description": "Optional. Encryption settings for the encrypting customer core content."
         },
         "id": {
           "type": "string"
