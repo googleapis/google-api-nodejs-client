@@ -406,7 +406,7 @@ export namespace firebasedynamiclinks_v1 {
     visualStyle?: string | null;
   }
   /**
-   * Response for iSDK to execute strong match flow for post-install attribution.
+   * Response for iSDK to execute strong match flow for post-install attribution. Information of the resolved FDL link.
    */
   export interface Schema$GetIosPostInstallAttributionResponse {
     /**

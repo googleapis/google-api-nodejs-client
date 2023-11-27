@@ -224,7 +224,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20231122",
   "rootUrl": "https://firebasedynamiclinks.googleapis.com/",
   "schemas": {
     "AnalyticsInfo": {
@@ -668,7 +668,7 @@
       "type": "object"
     },
     "GetIosPostInstallAttributionResponse": {
-      "description": "Response for iSDK to execute strong match flow for post-install attribution.",
+      "description": "Response for iSDK to execute strong match flow for post-install attribution. Information of the resolved FDL link.",
       "id": "GetIosPostInstallAttributionResponse",
       "properties": {
         "appMinimumVersion": {
