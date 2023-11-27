@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20231010",
+  "revision": "20231122",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdSource": {
@@ -1429,13 +1429,30 @@
           "description": "The display name for the mediation A/B experiment.",
           "type": "string"
         },
+        "endTime": {
+          "description": "Output only. The time at which the experiment was ended or target to end (in UTC).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "experimentId": {
           "description": "Output only. Unique identifier for the mediation A/B experiment. It is an output only property.",
           "readOnly": true,
           "type": "string"
         },
+        "mediationGroupId": {
+          "description": "Output only. The mediation group id this experiment belongs to. This can be used for filtering the experiments in the list experiments API.",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Resource name for this experiment. The format is accounts/{publisher_id}/ mediationGroups/{mediation_group_id}/mediationAbExperiment/ {mediation_group_experiment_id}. For example: accounts/pub-9876543210987654/mediationGroups/0123456789/ mediationAbExperiment/12345",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The time at which the experiment was started (in UTC).",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -1465,6 +1482,21 @@
         "treatmentTrafficPercentage": {
           "description": "The percentage of the mediation A/B experiment traffic that will be send to the treatment (variant B). The remainder is sent to the control (variant A). The percentage is expressed as an integer in the inclusive range of [1,99]. See https://support.google.com/admob/answer/9572326 for details.",
           "format": "int64",
+          "type": "string"
+        },
+        "variantLeader": {
+          "description": "Output only. The variant leader for the experiment according to some key metrics.",
+          "enum": [
+            "VARIANT_LEADER_UNSPECIFIED",
+            "CONTROL",
+            "TREATMENT"
+          ],
+          "enumDescriptions": [
+            "Default value of the enum. Do not use.",
+            "The control leading the experiment.",
+            "The treatment leading the experiment."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
