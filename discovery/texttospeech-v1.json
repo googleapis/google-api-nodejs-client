@@ -318,7 +318,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20231113",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -390,7 +390,8 @@
           "type": "string"
         },
         "reportedUsage": {
-          "description": "Optional. The usage of the synthesized audio to be reported.",
+          "deprecated": true,
+          "description": "Optional. Deprecated. The usage of the synthesized audio to be reported.",
           "enum": [
             "REPORTED_USAGE_UNSPECIFIED",
             "REALTIME",

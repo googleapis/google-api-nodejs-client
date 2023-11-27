@@ -166,7 +166,7 @@ export namespace texttospeech_v1beta1 {
      */
     model?: string | null;
     /**
-     * Optional. The usage of the synthesized audio to be reported.
+     * Optional. Deprecated. The usage of the synthesized audio to be reported.
      */
     reportedUsage?: string | null;
   }
