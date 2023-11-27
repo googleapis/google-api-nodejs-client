@@ -201,6 +201,23 @@ export namespace notebooks_v2 {
     upgradeVersion?: string | null;
   }
   /**
+   * Response for getting WbI configurations in a location
+   */
+  export interface Schema$Config {
+    /**
+     * Output only. The list of available images to create a WbI.
+     */
+    availableImages?: Schema$ImageRelease[];
+    /**
+     * Output only. The default values for configuration.
+     */
+    defaultValues?: Schema$DefaultValues;
+    /**
+     * Output only. The supported values for configuration.
+     */
+    supportedValues?: Schema$SupportedValues;
+  }
+  /**
    * Definition of a container image for starting a notebook instance with the environment installed in a container.
    */
   export interface Schema$ContainerImage {
@@ -233,6 +250,15 @@ export namespace notebooks_v2 {
      * Optional. Input only. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id\}/locations/{location\}/keyRings/{key_ring_id\}/cryptoKeys/{key_id\}` Learn more about using your own encryption keys.
      */
     kmsKey?: string | null;
+  }
+  /**
+   * DefaultValues represents the default configuration values.
+   */
+  export interface Schema$DefaultValues {
+    /**
+     * Output only. The default machine type used by the backend if not provided by the user.
+     */
+    machineType?: string | null;
   }
   /**
    * Request for creating a notebook instance diagnostic file.
@@ -387,6 +413,19 @@ export namespace notebooks_v2 {
      * Optional. Whether the end user authorizes Google Cloud to install GPU driver on this VM instance. If this field is empty or set to false, the GPU driver won't be installed. Only applicable to instances with GPUs.
      */
     enableGpuDriver?: boolean | null;
+  }
+  /**
+   * ConfigImage represents an image release available to create a WbI
+   */
+  export interface Schema$ImageRelease {
+    /**
+     * Output only. The name of the image of the form workbench-instances-vYYYYmmdd--
+     */
+    imageName?: string | null;
+    /**
+     * Output only. The release of the image of the form m123
+     */
+    releaseName?: string | null;
   }
   /**
    * The definition of a notebook instance.
@@ -707,6 +746,19 @@ export namespace notebooks_v2 {
    * Request for stopping a notebook instance
    */
   export interface Schema$StopInstanceRequest {}
+  /**
+   * SupportedValues represents the values supported by the configuration.
+   */
+  export interface Schema$SupportedValues {
+    /**
+     * Output only. The accelerator types supported by WbI.
+     */
+    acceleratorTypes?: string[] | null;
+    /**
+     * Output only. The machine types supported by WbI.
+     */
+    machineTypes?: string[] | null;
+  }
   /**
    * Request message for `TestIamPermissions` method.
    */
@@ -1463,6 +1515,93 @@ export namespace notebooks_v2 {
         );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
+      }
+    }
+
+    /**
+     * Gets general backend configurations that might also affect the frontend. Location is required by CCFE. Although we could bypass it to send location- less request directly to the backend job, we would need CPE (go/cloud-cpe). Having the location might also be useful depending on the query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConfig(
+      params: Params$Resource$Projects$Locations$Instances$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
+      params?: Params$Resource$Projects$Locations$Instances$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Config>;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Instances$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Instances$Getconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Config>,
+      callback: BodyResponseCallback<Schema$Config>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Instances$Getconfig,
+      callback: BodyResponseCallback<Schema$Config>
+    ): void;
+    getConfig(callback: BodyResponseCallback<Schema$Config>): void;
+    getConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Getconfig
+        | BodyResponseCallback<Schema$Config>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Config>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Config>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Config> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Getconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/instances:getConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Config>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Config>(parameters);
       }
     }
 
@@ -2570,6 +2709,13 @@ export namespace notebooks_v2 {
     extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Getconfig
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}`
      */
     name?: string;
   }
