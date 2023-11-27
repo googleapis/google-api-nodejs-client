@@ -4371,14 +4371,6 @@ export namespace datastream_v1 {
   export interface Params$Resource$Projects$Locations$Streams$Patch
     extends StandardParameters {
     /**
-     * Required. The binary log file name.
-     */
-    'cdcStrategy.specificStartPosition.mysqlLogPosition.logFile'?: string;
-    /**
-     * Optional. The position within the binary log file. Default is head of file.
-     */
-    'cdcStrategy.specificStartPosition.mysqlLogPosition.logPosition'?: number;
-    /**
      * Optional. Update the stream without validating it.
      */
     force?: boolean;
