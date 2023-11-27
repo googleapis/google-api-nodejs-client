@@ -135,6 +135,19 @@ export namespace iam_v1 {
   }
 
   /**
+   * Access related restrictions on the workforce pool.
+   */
+  export interface Schema$AccessRestrictions {
+    /**
+     * Optional. Immutable. Services allowed for web sign-in with the workforce pool. If not set by default there are no restrictions.
+     */
+    allowedServices?: Schema$ServiceConfig[];
+    /**
+     * Optional. Disable programmatic sign-in by disabling token issue via the Security Token API endpoint. See [Security Token Service API] (https://cloud.google.com/iam/docs/reference/sts/rest).
+     */
+    disableProgrammaticSignin?: boolean | null;
+  }
+  /**
    * Audit log information specific to Cloud IAM admin APIs. This message is serialized as an `Any` type in the `ServiceData` message of an `AuditLog` message.
    */
   export interface Schema$AdminAuditData {
@@ -961,6 +974,15 @@ export namespace iam_v1 {
     validBeforeTime?: string | null;
   }
   /**
+   * Configuration for a service.
+   */
+  export interface Schema$ServiceConfig {
+    /**
+     * Optional. Domain name of the service. Example: console.cloud.google
+     */
+    domain?: string | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -1112,6 +1134,10 @@ export namespace iam_v1 {
    * Represents a collection of external workforces. Provides namespaces for federated users that can be referenced in IAM policies.
    */
   export interface Schema$WorkforcePool {
+    /**
+     * Optional. Configure access restrictions on the workforce pool users. This is an optional field. If specified web sign-in can be restricted to given set of services or programmatic sign-in can be disabled for pool users.
+     */
+    accessRestrictions?: Schema$AccessRestrictions;
     /**
      * A user-specified description of the pool. Cannot exceed 256 characters.
      */
