@@ -281,6 +281,9 @@
     "src/apis/playgrouping": {},
     "src/apis/alloydb": {},
     "src/apis/backupdr": {},
-    "src/apis/vmwareengine": {}
+    "src/apis/vmwareengine": {},
+    "src/apis/biglake": {},
+    "src/apis/looker": {},
+    "src/apis/bigquerydatapolicy": {}
   }
 }
