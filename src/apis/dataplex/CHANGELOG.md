@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v2.0.0...dataplex-v2.1.0) (2023-11-27)
+
+
+### Features
+
+* **dataplex:** update the API ([e44128d](https://github.com/googleapis/google-api-nodejs-client/commit/e44128d2c38bcf549e7097cbd5460b6841aac549))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v1.1.1...dataplex-v2.0.0) (2023-10-11)
 
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contentwarehouse-v5.0.0...contentwarehouse-v6.0.0) (2023-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **contentwarehouse:** This release has breaking changes.
+
+### Features
+
+* **contentwarehouse:** update the API ([0f7b040](https://github.com/googleapis/google-api-nodejs-client/commit/0f7b04008ed2cf4e2a697656d51cf470b57bc295))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contentwarehouse-v4.0.0...contentwarehouse-v5.0.0) (2023-10-19)
 
 

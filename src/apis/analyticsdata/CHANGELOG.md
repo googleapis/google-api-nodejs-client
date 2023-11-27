@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsdata-v1.1.2...analyticsdata-v1.2.0) (2023-11-27)
+
+
+### Features
+
+* **analyticsdata:** update the API ([a4be20b](https://github.com/googleapis/google-api-nodejs-client/commit/a4be20b2c8b7c490cfb56532b1604d11283b8634))
+
 ## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsdata-v1.1.1...analyticsdata-v1.1.2) (2023-10-11)
 
 

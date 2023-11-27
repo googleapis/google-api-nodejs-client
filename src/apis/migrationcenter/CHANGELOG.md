@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v2.0.0...migrationcenter-v2.1.0) (2023-11-27)
+
+
+### Features
+
+* **migrationcenter:** update the API ([57ae0b7](https://github.com/googleapis/google-api-nodejs-client/commit/57ae0b7940985f388d4c2e3c355b1f3eb6530e37))
+* **migrationcenter:** update the API ([51cc57b](https://github.com/googleapis/google-api-nodejs-client/commit/51cc57bce7a7d645b68927668da1a26f9feb3bd9))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v1.1.1...migrationcenter-v2.0.0) (2023-10-11)
 
 

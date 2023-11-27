@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v2.0.0...recaptchaenterprise-v2.1.0) (2023-11-27)
+
+
+### Features
+
+* **recaptchaenterprise:** update the API ([8f175c8](https://github.com/googleapis/google-api-nodejs-client/commit/8f175c821c51b280e41f663cb9e0a006231d0b09))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+
+
+### Bug Fixes
+
+* **recaptchaenterprise:** update the API ([9e8c431](https://github.com/googleapis/google-api-nodejs-client/commit/9e8c431276b550871e772b3ff02a0263f434da41))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v1.1.0...recaptchaenterprise-v2.0.0) (2023-10-19)
 
 

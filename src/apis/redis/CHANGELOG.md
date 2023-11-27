@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v2.0.0...redis-v3.0.0) (2023-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **redis:** update the API ([c893e66](https://github.com/googleapis/google-api-nodejs-client/commit/c893e6640a1672de58feca85b385836aca67db17))
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v1.2.0...redis-v2.0.0) (2023-10-11)
 
 

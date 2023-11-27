@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v1.1.3...managedidentities-v2.0.0) (2023-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+
+
+### Bug Fixes
+
+* **managedidentities:** update the API ([7ea644f](https://github.com/googleapis/google-api-nodejs-client/commit/7ea644fe4e0b7b3478fe024ebf94460429fcc9f6))
+
 ## [1.1.3](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v1.1.2...managedidentities-v1.1.3) (2023-10-19)
 
 

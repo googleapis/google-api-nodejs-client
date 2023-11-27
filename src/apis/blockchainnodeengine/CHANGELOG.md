@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v2.0.0...blockchainnodeengine-v2.1.0) (2023-11-27)
+
+
+### Features
+
+* **blockchainnodeengine:** update the API ([58c2f27](https://github.com/googleapis/google-api-nodejs-client/commit/58c2f2716e57da451119e6938ea29194856067db))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v1.0.2...blockchainnodeengine-v2.0.0) (2023-10-11)
 
 

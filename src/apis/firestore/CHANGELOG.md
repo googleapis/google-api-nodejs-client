@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v3.0.0...firestore-v3.1.0) (2023-11-27)
+
+
+### Features
+
+* **firestore:** update the API ([1068dd8](https://github.com/googleapis/google-api-nodejs-client/commit/1068dd8275af65b68d066c3cc549e0c5b0110053))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v2.0.1...firestore-v3.0.0) (2023-10-11)
 
 
