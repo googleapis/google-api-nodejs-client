@@ -409,6 +409,19 @@ export namespace tpu_v2alpha1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response for ListReservations.
+   */
+  export interface Schema$ListReservationsResponse {
+    /**
+     * The next page token or empty if none.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The listed reservations.
+     */
+    reservations?: Schema$Reservation[];
+  }
+  /**
    * Response for ListRuntimeVersions.
    */
   export interface Schema$ListRuntimeVersionsResponse {
@@ -517,6 +530,10 @@ export namespace tpu_v2alpha1 {
      * Output only. The API version that created this Node.
      */
     apiVersion?: string | null;
+    /**
+     * Optional. Whether Autocheckpoint is enabled.
+     */
+    autocheckpointEnabled?: boolean | null;
     /**
      * Optional. Boot disk configuration.
      */
@@ -698,6 +715,10 @@ export namespace tpu_v2alpha1 {
      */
     bestEffort?: Schema$BestEffort;
     /**
+     * Output only. The time when the QueuedResource was created.
+     */
+    createTime?: string | null;
+    /**
      * The Guaranteed tier.
      */
     guaranteed?: Schema$Guaranteed;
@@ -797,6 +818,16 @@ export namespace tpu_v2alpha1 {
     validUntilTime?: string | null;
   }
   /**
+   * A reservation describes the amount of a resource 'allotted' for a defined period of time.
+   */
+  export interface Schema$Reservation {
+    /**
+     * The reservation name with the format: projects/{projectID\}/locations/{location\}/reservations/{reservationID\}
+     */
+    name?: string | null;
+    standard?: Schema$Standard;
+  }
+  /**
    * Request for ResetQueuedResource.
    */
   export interface Schema$ResetQueuedResourceRequest {}
@@ -870,6 +901,22 @@ export namespace tpu_v2alpha1 {
    * Spot tier definition.
    */
   export interface Schema$Spot {}
+  export interface Schema$Standard {
+    capacityUnits?: string | null;
+    /**
+     * The start and end time of the reservation.
+     */
+    interval?: Schema$Interval;
+    /**
+     * The resource type of the reservation.
+     */
+    resourceType?: string | null;
+    /**
+     * The size of the reservation, in the units specified in the 'capacity_units' field.
+     */
+    size?: number | null;
+    usage?: Schema$Usage;
+  }
   /**
    * Request for StartNode.
    */
@@ -933,6 +980,12 @@ export namespace tpu_v2alpha1 {
      */
     nodeSpec?: Schema$NodeSpec[];
   }
+  export interface Schema$Usage {
+    /**
+     * The real-time value of usage within the reservation, with the unit specified in field capacity_units.
+     */
+    total?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -949,6 +1002,7 @@ export namespace tpu_v2alpha1 {
     nodes: Resource$Projects$Locations$Nodes;
     operations: Resource$Projects$Locations$Operations;
     queuedResources: Resource$Projects$Locations$Queuedresources;
+    reservations: Resource$Projects$Locations$Reservations;
     runtimeVersions: Resource$Projects$Locations$Runtimeversions;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -960,6 +1014,9 @@ export namespace tpu_v2alpha1 {
         this.context
       );
       this.queuedResources = new Resource$Projects$Locations$Queuedresources(
+        this.context
+      );
+      this.reservations = new Resource$Projects$Locations$Reservations(
         this.context
       );
       this.runtimeVersions = new Resource$Projects$Locations$Runtimeversions(
@@ -3317,6 +3374,121 @@ export namespace tpu_v2alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$ResetQueuedResourceRequest;
+  }
+
+  export class Resource$Projects$Locations$Reservations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the reservations for the given project in the given location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Reservations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Reservations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReservationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Reservations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Reservations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReservationsResponse>,
+      callback: BodyResponseCallback<Schema$ListReservationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Reservations$List,
+      callback: BodyResponseCallback<Schema$ListReservationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListReservationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reservations$List
+        | BodyResponseCallback<Schema$ListReservationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReservationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReservationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReservationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reservations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Reservations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha1/{+parent}/reservations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReservationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReservationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Reservations$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent for reservations.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Runtimeversions {

@@ -845,6 +845,46 @@
                 }
               }
             },
+            "reservations": {
+              "methods": {
+                "list": {
+                  "description": "Retrieves the reservations for the given project in the given location.",
+                  "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/reservations",
+                  "httpMethod": "GET",
+                  "id": "tpu.projects.locations.reservations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of items to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The next_page_token value returned from a previous List request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent for reservations.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha1/{+parent}/reservations",
+                  "response": {
+                    "$ref": "ListReservationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "runtimeVersions": {
               "methods": {
                 "get": {
@@ -925,7 +965,7 @@
       }
     }
   },
-  "revision": "20230907",
+  "revision": "20231113",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1328,6 +1368,24 @@
       },
       "type": "object"
     },
+    "ListReservationsResponse": {
+      "description": "Response for ListReservations.",
+      "id": "ListReservationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next page token or empty if none.",
+          "type": "string"
+        },
+        "reservations": {
+          "description": "The listed reservations.",
+          "items": {
+            "$ref": "Reservation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListRuntimeVersionsResponse": {
       "description": "Response for ListRuntimeVersions.",
       "id": "ListRuntimeVersionsResponse",
@@ -1474,6 +1532,10 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "autocheckpointEnabled": {
+          "description": "Optional. Whether Autocheckpoint is enabled.",
+          "type": "boolean"
         },
         "bootDiskConfig": {
           "$ref": "BootDiskConfig",
@@ -1752,6 +1814,12 @@
           "$ref": "BestEffort",
           "description": "The BestEffort tier."
         },
+        "createTime": {
+          "description": "Output only. The time when the QueuedResource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "guaranteed": {
           "$ref": "Guaranteed",
           "description": "The Guaranteed tier."
@@ -1898,6 +1966,20 @@
       },
       "type": "object"
     },
+    "Reservation": {
+      "description": "A reservation describes the amount of a resource 'allotted' for a defined period of time.",
+      "id": "Reservation",
+      "properties": {
+        "name": {
+          "description": "The reservation name with the format: projects/{projectID}/locations/{location}/reservations/{reservationID}",
+          "type": "string"
+        },
+        "standard": {
+          "$ref": "Standard"
+        }
+      },
+      "type": "object"
+    },
     "ResetQueuedResourceRequest": {
       "description": "Request for ResetQueuedResource.",
       "id": "ResetQueuedResourceRequest",
@@ -1992,6 +2074,41 @@
       "description": "Spot tier definition.",
       "id": "Spot",
       "properties": {},
+      "type": "object"
+    },
+    "Standard": {
+      "id": "Standard",
+      "properties": {
+        "capacityUnits": {
+          "enum": [
+            "CAPACITY_UNITS_UNSPECIFIED",
+            "CORES",
+            "CHIPS"
+          ],
+          "enumDescriptions": [
+            "The capacity units is not known/set.",
+            "The capacity unit is set to CORES.",
+            "The capacity unit is set to CHIPS."
+          ],
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "Interval",
+          "description": "The start and end time of the reservation."
+        },
+        "resourceType": {
+          "description": "The resource type of the reservation.",
+          "type": "string"
+        },
+        "size": {
+          "description": "The size of the reservation, in the units specified in the 'capacity_units' field.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "usage": {
+          "$ref": "Usage"
+        }
+      },
       "type": "object"
     },
     "StartNodeRequest": {
@@ -2097,6 +2214,17 @@
             "$ref": "NodeSpec"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Usage": {
+      "id": "Usage",
+      "properties": {
+        "total": {
+          "description": "The real-time value of usage within the reservation, with the unit specified in field capacity_units.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
