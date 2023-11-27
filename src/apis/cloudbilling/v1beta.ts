@@ -494,7 +494,7 @@ export namespace cloudbilling_v1beta {
     level?: string | null;
   }
   /**
-   * Encapsulates the latest price for the given billing account SKU.
+   * Encapsulates the latest price for a billing account SKU.
    */
   export interface Schema$GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice {
     /**
@@ -514,7 +514,7 @@ export namespace cloudbilling_v1beta {
      */
     rate?: Schema$GoogleCloudBillingBillingaccountpricesV1betaRate;
     /**
-     * Type of the price. It can have values: ["unspecified", "rate"].
+     * Type of the price. The possible values are: ["unspecified", "rate"].
      */
     valueType?: string | null;
   }
@@ -967,7 +967,7 @@ export namespace cloudbilling_v1beta {
     level?: string | null;
   }
   /**
-   * Encapsulates the latest price for the given SKU.
+   * Encapsulates the latest price for a SKU.
    */
   export interface Schema$GoogleCloudBillingPricesV1betaPrice {
     /**
@@ -2591,7 +2591,7 @@ export namespace cloudbilling_v1beta {
     }
 
     /**
-     * Gets the latest price for the given billing account SKU.
+     * Gets the latest price for SKUs available to your Cloud Billing account.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2687,11 +2687,11 @@ export namespace cloudbilling_v1beta {
   export interface Params$Resource$Billingaccounts$Skus$Price$Get
     extends StandardParameters {
     /**
-     * Optional. ISO-4217 currency code for the price. If not specified, currency of billing account will be used.
+     * Optional. ISO-4217 currency code for the price. If not specified, the currency of the billing account is used.
      */
     currencyCode?: string;
     /**
-     * Required. Name of the latest billing account price to retrieve. Format: billingAccounts/{billing_account\}/skus/{sku\}/price
+     * Required. Name of the billing account price to retrieve. Format: billingAccounts/{billing_account\}/skus/{sku\}/price
      */
     name?: string;
   }
