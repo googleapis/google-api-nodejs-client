@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20231108",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -962,7 +962,8 @@
             "PSC_PUBLISHED_SERVICE",
             "PSC_GOOGLE_API",
             "PSC_VPC_SC",
-            "SERVERLESS_NEG"
+            "SERVERLESS_NEG",
+            "STORAGE_BUCKET"
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -974,7 +975,8 @@
             "Target is a published service that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
             "Target is all Google APIs that use [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
             "Target is a VPC-SC that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
-            "Target is a serverless network endpoint group."
+            "Target is a serverless network endpoint group.",
+            "Target is a Cloud Storage bucket."
           ],
           "type": "string"
         }
@@ -1036,7 +1038,7 @@
             "Dropped due to a firewall rule, unless allowed due to connection tracking.",
             "Dropped due to no routes.",
             "Dropped due to invalid route. Route's next hop is a blackhole.",
-            "Packet is sent to a wrong (unintended) network. Example: you trace a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP addresss to Network3.",
+            "Packet is sent to a wrong (unintended) network. Example: you trace a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP address to Network3.",
             "Packet with internal destination address sent to the internet gateway.",
             "Instance with only an internal IP address tries to access Google API and services, but private Google access is not enabled.",
             "Instance with only an internal IP address tries to access external hosts, but Cloud NAT is not enabled in the subnet, unless special configurations on a VM allow this connection.",
@@ -1307,7 +1309,8 @@
             "IMPLIED_VPC_FIREWALL_RULE",
             "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
             "NETWORK_FIREWALL_POLICY_RULE",
-            "NETWORK_REGIONAL_FIREWALL_POLICY_RULE"
+            "NETWORK_REGIONAL_FIREWALL_POLICY_RULE",
+            "UNSUPPORTED_FIREWALL_POLICY_RULE"
           ],
           "enumDescriptions": [
             "Unspecified type.",
@@ -1316,7 +1319,8 @@
             "Implied VPC firewall rule. For details, see [Implied rules](https://cloud.google.com/vpc/docs/firewalls#default_firewall_rules).",
             "Implicit firewall rules that are managed by serverless VPC access to allow ingress access. They are not visible in the Google Cloud console. For details, see [VPC connector's implicit rules](https://cloud.google.com/functions/docs/networking/connecting-vpc#restrict-access).",
             "Global network firewall policy rule. For details, see [Network firewall policies](https://cloud.google.com/vpc/docs/network-firewall-policies).",
-            "Regional network firewall policy rule. For details, see [Regional network firewall policies](https://cloud.google.com/firewall/docs/regional-firewall-policies)."
+            "Regional network firewall policy rule. For details, see [Regional network firewall policies](https://cloud.google.com/firewall/docs/regional-firewall-policies).",
+            "Firewall policy rule containing attributes not yet supported in Connectivity tests. Firewall analysis is skipped if such a rule can potentially be matched. Please see the [list of unsupported configurations](https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/concepts/overview#unsupported-configs)."
           ],
           "type": "string"
         },
@@ -1686,7 +1690,8 @@
           "type": "array"
         },
         "healthCheckUri": {
-          "description": "URI of the health check for the load balancer.",
+          "deprecated": true,
+          "description": "URI of the health check for the load balancer. Deprecated and no longer populated as different load balancer backends might have different health checks.",
           "type": "string"
         },
         "loadBalancerType": {

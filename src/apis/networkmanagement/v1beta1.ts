@@ -795,7 +795,7 @@ export namespace networkmanagement_v1beta1 {
      */
     backendUri?: string | null;
     /**
-     * URI of the health check for the load balancer.
+     * URI of the health check for the load balancer. Deprecated and no longer populated as different load balancer backends might have different health checks.
      */
     healthCheckUri?: string | null;
     /**
