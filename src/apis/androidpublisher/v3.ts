@@ -1021,6 +1021,10 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$ExternalTransactionAddress {
     /**
+     * Optional. Top-level administrative subdivision of the country/region. Only required for transactions in India. Valid values are "ANDAMAN AND NICOBAR ISLANDS", "ANDHRA PRADESH", "ARUNACHAL PRADESH", "ASSAM", "BIHAR", "CHANDIGARH", "CHHATTISGARH", "DADRA AND NAGAR HAVELI", "DADRA AND NAGAR HAVELI AND DAMAN AND DIU", "DAMAN AND DIU", "DELHI", "GOA", "GUJARAT", "HARYANA", "HIMACHAL PRADESH", "JAMMU AND KASHMIR", "JHARKHAND", "KARNATAKA", "KERALA", "LADAKH", "LAKSHADWEEP", "MADHYA PRADESH", "MAHARASHTRA", "MANIPUR", "MEGHALAYA", "MIZORAM", "NAGALAND", "ODISHA", "PUDUCHERRY", "PUNJAB", "RAJASTHAN", "SIKKIM", "TAMIL NADU", "TELANGANA", "TRIPURA", "UTTAR PRADESH", "UTTARAKHAND", and "WEST BENGAL".
+     */
+    administrativeArea?: string | null;
+    /**
      * Required. Two letter region code based on ISO-3166-1 Alpha-2 (UN region codes).
      */
     regionCode?: string | null;
@@ -1817,6 +1821,10 @@ export namespace androidpublisher_v3 {
      * The external transaction id of the first transaction of this recurring series of transactions. For example, for a subscription this would be the transaction id of the first payment. Required when creating recurring external transactions.
      */
     initialExternalTransactionId?: string | null;
+    /**
+     * Input only. Provided during the call to Create. Must only be used when migrating a subscription from manual monthly reporting to automated reporting.
+     */
+    migratedTransactionProgram?: string | null;
   }
   /**
    * A request to refund an existing external transaction.
@@ -1921,11 +1929,11 @@ export namespace androidpublisher_v3 {
     taxTier?: string | null;
   }
   /**
-   * The version of the available regions being used for the specified resource. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353).
+   * The version of the available regions being used for the specified resource.
    */
   export interface Schema$RegionsVersion {
     /**
-     * Required. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
      */
     version?: string | null;
   }
@@ -2687,6 +2695,23 @@ export namespace androidpublisher_v3 {
      * Identifier of the track. Form factor tracks have a special prefix as an identifier, for example `wear:production`, `automotive:production`. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      */
     track?: string | null;
+  }
+  /**
+   * Configurations of the new track.
+   */
+  export interface Schema$TrackConfig {
+    /**
+     * Required. Form factor of the new track. Defaults to the default track.
+     */
+    formFactor?: string | null;
+    /**
+     * Required. Identifier of the new track. For default tracks, this field consists of the track alias only. Form factor tracks have a special prefix as an identifier, for example `wear:production`, `automotive:production`. This prefix must match the value of the `form_factor` field, if it is not a default track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
+     */
+    track?: string | null;
+    /**
+     * Required. Type of the new track. Currently, the only supported value is closedTesting.
+     */
+    type?: string | null;
   }
   /**
    * Resource for per-track country availability information.
@@ -7000,6 +7025,94 @@ export namespace androidpublisher_v3 {
     }
 
     /**
+     * Creates a new track.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Edits$Tracks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Edits$Tracks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Track>;
+    create(
+      params: Params$Resource$Edits$Tracks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Edits$Tracks$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Track>,
+      callback: BodyResponseCallback<Schema$Track>
+    ): void;
+    create(
+      params: Params$Resource$Edits$Tracks$Create,
+      callback: BodyResponseCallback<Schema$Track>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Track>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Tracks$Create
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Track> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Tracks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Edits$Tracks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'editId'],
+        pathParams: ['editId', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Track>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Track>(parameters);
+      }
+    }
+
+    /**
      * Gets a track.
      *
      * @param params - Parameters for request
@@ -7354,6 +7467,22 @@ export namespace androidpublisher_v3 {
     }
   }
 
+  export interface Params$Resource$Edits$Tracks$Create
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the edit.
+     */
+    editId?: string;
+    /**
+     * Required. Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TrackConfig;
+  }
   export interface Params$Resource$Edits$Tracks$Get extends StandardParameters {
     /**
      * Identifier of the edit.
@@ -9850,7 +9979,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
      */
     'regionsVersion.version'?: string;
 
@@ -9911,7 +10040,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
      */
     'regionsVersion.version'?: string;
     /**
@@ -11070,7 +11199,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
      */
     'regionsVersion.version'?: string;
 
@@ -11183,7 +11312,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. The latest version is 2022/02.
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
      */
     'regionsVersion.version'?: string;
     /**

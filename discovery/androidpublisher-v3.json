@@ -1689,6 +1689,40 @@
         },
         "tracks": {
           "methods": {
+            "create": {
+              "description": "Creates a new track.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks",
+              "httpMethod": "POST",
+              "id": "androidpublisher.edits.tracks.create",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Required. Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Required. Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks",
+              "request": {
+                "$ref": "TrackConfig"
+              },
+              "response": {
+                "$ref": "Track"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
             "get": {
               "description": "Gets a track.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}",
@@ -2492,7 +2526,7 @@
                   "type": "string"
                 },
                 "regionsVersion.version": {
-                  "description": "Required. The latest version is 2022/02.",
+                  "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
                   "location": "query",
                   "type": "string"
                 }
@@ -2630,7 +2664,7 @@
                   "type": "string"
                 },
                 "regionsVersion.version": {
-                  "description": "Required. The latest version is 2022/02.",
+                  "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2901,7 +2935,7 @@
                           "type": "string"
                         },
                         "regionsVersion.version": {
-                          "description": "Required. The latest version is 2022/02.",
+                          "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
                           "location": "query",
                           "type": "string"
                         }
@@ -3138,7 +3172,7 @@
                           "type": "string"
                         },
                         "regionsVersion.version": {
-                          "description": "Required. The latest version is 2022/02.",
+                          "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
                           "location": "query",
                           "type": "string"
                         },
@@ -4047,7 +4081,7 @@
       }
     }
   },
-  "revision": "20231012",
+  "revision": "20231123",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -5161,6 +5195,10 @@
       "description": "User's address for the external transaction.",
       "id": "ExternalTransactionAddress",
       "properties": {
+        "administrativeArea": {
+          "description": "Optional. Top-level administrative subdivision of the country/region. Only required for transactions in India. Valid values are \"ANDAMAN AND NICOBAR ISLANDS\", \"ANDHRA PRADESH\", \"ARUNACHAL PRADESH\", \"ASSAM\", \"BIHAR\", \"CHANDIGARH\", \"CHHATTISGARH\", \"DADRA AND NAGAR HAVELI\", \"DADRA AND NAGAR HAVELI AND DAMAN AND DIU\", \"DAMAN AND DIU\", \"DELHI\", \"GOA\", \"GUJARAT\", \"HARYANA\", \"HIMACHAL PRADESH\", \"JAMMU AND KASHMIR\", \"JHARKHAND\", \"KARNATAKA\", \"KERALA\", \"LADAKH\", \"LAKSHADWEEP\", \"MADHYA PRADESH\", \"MAHARASHTRA\", \"MANIPUR\", \"MEGHALAYA\", \"MIZORAM\", \"NAGALAND\", \"ODISHA\", \"PUDUCHERRY\", \"PUNJAB\", \"RAJASTHAN\", \"SIKKIM\", \"TAMIL NADU\", \"TELANGANA\", \"TRIPURA\", \"UTTAR PRADESH\", \"UTTARAKHAND\", and \"WEST BENGAL\".",
+          "type": "string"
+        },
         "regionCode": {
           "description": "Required. Two letter region code based on ISO-3166-1 Alpha-2 (UN region codes).",
           "type": "string"
@@ -5413,13 +5451,11 @@
               "CAN_MANAGE_ORDERS",
               "CAN_MANAGE_APP_CONTENT",
               "CAN_VIEW_NON_FINANCIAL_DATA",
-              "CAN_VIEW_APP_QUALITY",
-              "CAN_MANAGE_DEEPLINKS"
+              "CAN_VIEW_APP_QUALITY"
             ],
             "enumDeprecated": [
               false,
               true,
-              false,
               false,
               false,
               false,
@@ -5447,8 +5483,7 @@
               "Manage orders and subscriptions.",
               "Manage policy related pages.",
               "View app information (read-only).",
-              "View app quality data such as Vitals, Crashes etc.",
-              "Manage the deep links setup of an app."
+              "View app quality data such as Vitals, Crashes etc."
             ],
             "type": "string"
           },
@@ -6347,6 +6382,20 @@
         "initialExternalTransactionId": {
           "description": "The external transaction id of the first transaction of this recurring series of transactions. For example, for a subscription this would be the transaction id of the first payment. Required when creating recurring external transactions.",
           "type": "string"
+        },
+        "migratedTransactionProgram": {
+          "description": "Input only. Provided during the call to Create. Must only be used when migrating a subscription from manual monthly reporting to automated reporting.",
+          "enum": [
+            "EXTERNAL_TRANSACTION_PROGRAM_UNSPECIFIED",
+            "USER_CHOICE_BILLING",
+            "ALTERTNATIVE_BILLING_ONLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified transaction program. Not used.",
+            "User choice billing, where a user may choose between Google Play Billing developer-managed billing.",
+            "Alternatively billing only, where users may only use developer-manager billing."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -6513,11 +6562,11 @@
       "type": "object"
     },
     "RegionsVersion": {
-      "description": "The version of the available regions being used for the specified resource. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353).",
+      "description": "The version of the available regions being used for the specified resource.",
       "id": "RegionsVersion",
       "properties": {
         "version": {
-          "description": "Required. The latest version is 2022/02.",
+          "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
           "type": "string"
         }
       },
@@ -7590,6 +7639,45 @@
       },
       "type": "object"
     },
+    "TrackConfig": {
+      "description": "Configurations of the new track.",
+      "id": "TrackConfig",
+      "properties": {
+        "formFactor": {
+          "description": "Required. Form factor of the new track. Defaults to the default track.",
+          "enum": [
+            "FORM_FACTOR_UNSPECIFIED",
+            "DEFAULT",
+            "WEAR",
+            "AUTOMOTIVE"
+          ],
+          "enumDescriptions": [
+            "Fallback value, do not use.",
+            "Default track.",
+            "Wear form factor track.",
+            "Automotive form factor track."
+          ],
+          "type": "string"
+        },
+        "track": {
+          "description": "Required. Identifier of the new track. For default tracks, this field consists of the track alias only. Form factor tracks have a special prefix as an identifier, for example `wear:production`, `automotive:production`. This prefix must match the value of the `form_factor` field, if it is not a default track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of the new track. Currently, the only supported value is closedTesting.",
+          "enum": [
+            "TRACK_TYPE_UNSPECIFIED",
+            "CLOSED_TESTING"
+          ],
+          "enumDescriptions": [
+            "Fallback value, do not use.",
+            "Closed testing track."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TrackCountryAvailability": {
       "description": "Resource for per-track country availability information.",
       "id": "TrackCountryAvailability",
@@ -7762,12 +7850,31 @@
               "CAN_MANAGE_ORDERS_GLOBAL",
               "CAN_MANAGE_APP_CONTENT_GLOBAL",
               "CAN_VIEW_NON_FINANCIAL_DATA_GLOBAL",
-              "CAN_VIEW_APP_QUALITY_GLOBAL",
-              "CAN_MANAGE_DEEPLINKS_GLOBAL"
+              "CAN_VIEW_APP_QUALITY_GLOBAL"
+            ],
+            "enumDeprecated": [
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
             ],
             "enumDescriptions": [
               "Unknown or unspecified permission.",
-              "View app information and download bulk reports (read-only).",
+              "View app information and download bulk reports (read-only). Deprecated: Check CAN_VIEW_NON_FINANCIAL_DATA_GLOBAL.",
               "View financial data, orders, and cancellation survey responses.",
               "Admin (all permissions).",
               "Edit Play Games Services projects.",
@@ -7783,8 +7890,7 @@
               "Manage orders and subscriptions.",
               "Manage policy related pages on all apps for the developer.",
               "View app information and download bulk reports (read-only).",
-              "View app quality information for all apps for the developer.",
-              "Manage the deep links setup for all apps for the developer."
+              "View app quality information for all apps for the developer."
             ],
             "type": "string"
           },
