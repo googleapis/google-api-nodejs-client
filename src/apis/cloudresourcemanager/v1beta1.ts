@@ -428,7 +428,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     creationTime?: string | null;
     /**
-     * A human-readable string that refers to the Organization in the GCP Console UI. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, "google.com") of the G Suite customer that owns the organization.
+     * A human-readable string that refers to the Organization in the Google Cloud console. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, "google.com") of the G Suite customer that owns the organization.
      */
     displayName?: string | null;
     /**
