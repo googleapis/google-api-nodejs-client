@@ -131,7 +131,7 @@
       }
     }
   },
-  "revision": "20230207",
+  "revision": "20231116",
   "rootUrl": "https://chromeuxreport.googleapis.com/",
   "schemas": {
     "Bin": {
@@ -286,6 +286,14 @@
       "description": "A `metric` is a set of user experience data for a single web performance metric, like \"first contentful paint\". It contains a summary histogram of real world Chrome usage as a series of `bins`.",
       "id": "Metric",
       "properties": {
+        "fractions": {
+          "additionalProperties": {
+            "format": "double",
+            "type": "number"
+          },
+          "description": "For enum metrics, provides fractions which add up to approximately 1.0.",
+          "type": "object"
+        },
         "histogram": {
           "description": "The histogram of user experiences for a metric. The histogram will have at least one bin and the densities of all bins will add up to ~1.",
           "items": {
