@@ -369,7 +369,7 @@ export namespace mybusinesslodging_v1 {
     wifiAvailableException?: string | null;
   }
   /**
-   * An eco certificate awarded to the hotel.
+   * An eco certificate awarded to the hotel. Deprecated: this message is no longer populated. All certification data is now provided by BeCause.
    */
   export interface Schema$EcoCertification {
     /**
@@ -430,7 +430,7 @@ export namespace mybusinesslodging_v1 {
      */
     energySavingThermostatsException?: string | null;
     /**
-     * Output only. Green building design. True if BREEAM-* or LEED-* certified.
+     * Output only. Green building design. True if the property has been awarded a relevant certification.
      */
     greenBuildingDesign?: boolean | null;
     /**
@@ -2163,7 +2163,7 @@ export namespace mybusinesslodging_v1 {
      */
     energyEfficiency?: Schema$EnergyEfficiency;
     /**
-     * Sustainability certifications the hotel has been awarded.
+     * Sustainability certifications the hotel has been awarded. Deprecated: this field is no longer populated. All certification data is now provided by BeCause.
      */
     sustainabilityCertifications?: Schema$SustainabilityCertifications;
     /**
@@ -2180,7 +2180,7 @@ export namespace mybusinesslodging_v1 {
     waterConservation?: Schema$WaterConservation;
   }
   /**
-   * Sustainability certifications the hotel has been awarded.
+   * Sustainability certifications the hotel has been awarded. Deprecated: this message is no longer populated. All certification data is now provided by BeCause.
    */
   export interface Schema$SustainabilityCertifications {
     /**
@@ -2196,11 +2196,11 @@ export namespace mybusinesslodging_v1 {
      */
     ecoCertifications?: Schema$EcoCertification[];
     /**
-     * LEED certification. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.
+     * LEED certification.
      */
     leedCertification?: string | null;
     /**
-     * LEED certification exception. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.
+     * LEED certification exception.
      */
     leedCertificationException?: string | null;
   }

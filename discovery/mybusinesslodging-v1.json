@@ -194,7 +194,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20231114",
   "rootUrl": "https://mybusinesslodging.googleapis.com/",
   "schemas": {
     "Accessibility": {
@@ -787,7 +787,8 @@
       "type": "object"
     },
     "EcoCertification": {
-      "description": "An eco certificate awarded to the hotel.",
+      "deprecated": true,
+      "description": "An eco certificate awarded to the hotel. Deprecated: this message is no longer populated. All certification data is now provided by BeCause.",
       "id": "EcoCertification",
       "properties": {
         "awarded": {
@@ -982,7 +983,7 @@
           "type": "string"
         },
         "greenBuildingDesign": {
-          "description": "Output only. Green building design. True if BREEAM-* or LEED-* certified.",
+          "description": "Output only. Green building design. True if the property has been awarded a relevant certification.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -4935,7 +4936,8 @@
         },
         "sustainabilityCertifications": {
           "$ref": "SustainabilityCertifications",
-          "description": "Sustainability certifications the hotel has been awarded."
+          "deprecated": true,
+          "description": "Sustainability certifications the hotel has been awarded. Deprecated: this field is no longer populated. All certification data is now provided by BeCause."
         },
         "sustainableSourcing": {
           "$ref": "SustainableSourcing",
@@ -4953,7 +4955,8 @@
       "type": "object"
     },
     "SustainabilityCertifications": {
-      "description": "Sustainability certifications the hotel has been awarded.",
+      "deprecated": true,
+      "description": "Sustainability certifications the hotel has been awarded. Deprecated: this message is no longer populated. All certification data is now provided by BeCause.",
       "id": "SustainabilityCertifications",
       "properties": {
         "breeamCertification": {
@@ -5002,8 +5005,7 @@
           "type": "array"
         },
         "leedCertification": {
-          "deprecated": true,
-          "description": "LEED certification. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.",
+          "description": "LEED certification.",
           "enum": [
             "LEED_CERTIFICATION_UNSPECIFIED",
             "NO_LEED_CERTIFICATION",
@@ -5023,8 +5025,7 @@
           "type": "string"
         },
         "leedCertificationException": {
-          "deprecated": true,
-          "description": "LEED certification exception. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.",
+          "description": "LEED certification exception.",
           "enum": [
             "EXCEPTION_UNSPECIFIED",
             "UNDER_CONSTRUCTION",
