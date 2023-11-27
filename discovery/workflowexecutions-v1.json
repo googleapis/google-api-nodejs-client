@@ -366,6 +366,87 @@
                           ]
                         }
                       }
+                    },
+                    "stepEntries": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets a step entry.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}/executions/{executionsId}/stepEntries/{stepEntriesId}",
+                          "httpMethod": "GET",
+                          "id": "workflowexecutions.projects.locations.workflows.executions.stepEntries.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the step entry to retrieve. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}/stepEntries/{step_entry}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+/executions/[^/]+/stepEntries/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "StepEntry"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists step entries for the corresponding workflow execution. Returned entries are ordered by their create_time.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}/executions/{executionsId}/stepEntries",
+                          "httpMethod": "GET",
+                          "id": "workflowexecutions.projects.locations.workflows.executions.stepEntries.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. Filters applied to the `[StepEntries.ListStepEntries]` results. The following fields are supported for filtering: `entryId`, `createTime`, `updateTime`, `routine`, `step`, `stepType`, `state`. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state=\"SUCCEEDED\"` or `createTime>\"2023-08-01\" AND state=\"FAILED\"`",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Optional. Comma-separated list of fields that specify the ordering applied to the `[StepEntries.ListStepEntries]` results. By default the ordering is based on ascending `entryId`. The following fields are supported for ordering: `entryId`, `createTime`, `updateTime`, `routine`, `step`, `stepType`, `state`. For details, see AIP-132.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. Number of step entries to return per call. The default max is 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A page token, received from a previous `ListStepEntries` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStepEntries` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Name of the workflow execution to list entries for. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}/stepEntries/",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+/executions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "skip": {
+                              "description": "Optional. The number of step entries to skip. It can be used with or without a pageToken. If used with a pageToken, then it indicates the number of step entries to skip starting from the requested page.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            }
+                          },
+                          "path": "v1/{+parent}/stepEntries",
+                          "response": {
+                            "$ref": "ListStepEntriesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 }
@@ -376,7 +457,7 @@
       }
     }
   },
-  "revision": "20231016",
+  "revision": "20231107",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "Callback": {
@@ -431,6 +512,17 @@
         "stackTrace": {
           "$ref": "StackTrace",
           "description": "Stack trace with detailed information of where error was generated."
+        }
+      },
+      "type": "object"
+    },
+    "Exception": {
+      "description": "Exception describes why the step entry failed.",
+      "id": "Exception",
+      "properties": {
+        "payload": {
+          "description": "Error message represented as a JSON string.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -587,6 +679,59 @@
       },
       "type": "object"
     },
+    "ListStepEntriesResponse": {
+      "description": "Response message for ExecutionHistory.ListStepEntries.",
+      "id": "ListStepEntriesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass this value in the ListStepEntriesRequest.page_token field in the subsequent call to `ListStepEntries` method to retrieve the next page of results.",
+          "type": "string"
+        },
+        "stepEntries": {
+          "description": "The list of entries.",
+          "items": {
+            "$ref": "StepEntry"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Indicates the total number of StepEntries that matched the request filter. For running executions, this number shows the number of StepEntries that are executed thus far.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "NavigationInfo": {
+      "description": "NavigationInfo describes what steps if any come before or after this step, or what steps are parents or children of this step.",
+      "id": "NavigationInfo",
+      "properties": {
+        "children": {
+          "description": "Step entries that can be reached by \"stepping into\" e.g. a subworkflow call.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "next": {
+          "description": "The index of the next step in the current workflow, if any.",
+          "format": "int64",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The step entry, if any, that can be reached by \"stepping out\" of the current workflow being executed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "previous": {
+          "description": "The index of the previous step in the current workflow, if any.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Position": {
       "description": "Position contains source position information about the stack trace element such as line number, column number and length of the code block in bytes.",
       "id": "Position",
@@ -721,6 +866,163 @@
         },
         "step": {
           "description": "Name of a step within the routine.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StepEntry": {
+      "description": "An StepEntry contains debugging information for a step transition in a workflow execution.",
+      "id": "StepEntry",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The creation time of the step entry.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "entryId": {
+          "description": "Output only. The numeric ID of this step entry, used for navigation.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "exception": {
+          "$ref": "Exception",
+          "description": "Output only. The exception thrown by the step entry.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Output only. The full resource name of the step entry. Each step entry has a unique entry ID, which is a monotonically increasing counter. Step entry names have the format: `projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}/stepEntries/{step_entry}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "navigationInfo": {
+          "$ref": "NavigationInfo",
+          "description": "Output only. The NavigationInfo associated to this step.",
+          "readOnly": true
+        },
+        "routine": {
+          "description": "Output only. The name of the routine this step entry belongs to. A routine name is the subworkflow name defined in the YAML source code. The top level routine name is `main`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the step entry.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STATE_IN_PROGRESS",
+            "STATE_SUCCEEDED",
+            "STATE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Invalid state.",
+            "The step entry is in progress.",
+            "The step entry finished successfully.",
+            "The step entry failed with an error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "step": {
+          "description": "Output only. The name of the step this step entry belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "stepEntryMetadata": {
+          "$ref": "StepEntryMetadata",
+          "description": "Output only. The StepEntryMetadata associated to this step.",
+          "readOnly": true
+        },
+        "stepType": {
+          "description": "Output only. The type of the step this step entry belongs to.",
+          "enum": [
+            "STEP_TYPE_UNSPECIFIED",
+            "STEP_ASSIGN",
+            "STEP_STD_LIB_CALL",
+            "STEP_CONNECTOR_CALL",
+            "STEP_SUBWORKFLOW_CALL",
+            "STEP_CALL",
+            "STEP_SWITCH",
+            "STEP_CONDITION",
+            "STEP_FOR",
+            "STEP_FOR_ITERATION",
+            "STEP_PARALLEL_FOR",
+            "STEP_PARALLEL_BRANCH",
+            "STEP_PARALLEL_BRANCH_ENTRY",
+            "STEP_TRY_RETRY_EXCEPT",
+            "STEP_TRY",
+            "STEP_RETRY",
+            "STEP_EXCEPT",
+            "STEP_RETURN",
+            "STEP_RAISE",
+            "STEP_GOTO"
+          ],
+          "enumDescriptions": [
+            "Invalid step type.",
+            "The step entry assigns new variable(s).",
+            "The step entry calls a standard library routine.",
+            "The step entry calls a connector.",
+            "The step entry calls a subworklfow.",
+            "The step entry calls a subworkflow/stdlib.",
+            "The step entry executes a switch-case block.",
+            "The step entry executes a condition inside a switch.",
+            "The step entry executes a for loop.",
+            "The step entry executes a iteration of a for loop.",
+            "The step entry executes a parallel for loop.",
+            "The step entry executes a series of parallel branch(es).",
+            "The step entry executes a branch of a parallel branch.",
+            "The step entry executes a try/retry/except block.",
+            "The step entry executes the try part of a try/retry/except block.",
+            "The step entry executes the retry part of a try/retry/except block.",
+            "The step entry executes the except part of a try/retry/except block.",
+            "The step entry returns.",
+            "The step entry raises an error.",
+            "The step entry jumps to another step."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recently updated time of the step entry.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StepEntryMetadata": {
+      "description": "StepEntryMetadata contains metadata information about this step.",
+      "id": "StepEntryMetadata",
+      "properties": {
+        "progressNumber": {
+          "description": "Progress number represents the current state of the current progress. eg: A step entry represents the 4th iteration in a progress of PROGRESS_TYPE_FOR.",
+          "format": "int64",
+          "type": "string"
+        },
+        "progressType": {
+          "description": "Progress type of this step entry.",
+          "enum": [
+            "PROGRESS_TYPE_UNSPECIFIED",
+            "PROGRESS_TYPE_FOR",
+            "PROGRESS_TYPE_SWITCH",
+            "PROGRESS_TYPE_RETRY",
+            "PROGRESS_TYPE_PARALLEL_FOR",
+            "PROGRESS_TYPE_PARALLEL_BRANCH"
+          ],
+          "enumDescriptions": [
+            "Current step entry does not have any progress data.",
+            "Current step entry is in progress of a FOR step.",
+            "Current step entry is in progress of a SWITCH step.",
+            "Current step entry is in progress of a RETRY step.",
+            "Current step entry is in progress of a PARALLEL FOR step.",
+            "Current step entry is in progress of a PARALLEL BRANCH step."
+          ],
+          "type": "string"
+        },
+        "threadId": {
+          "description": "Child thread id that this step entry belongs to.",
           "type": "string"
         }
       },
