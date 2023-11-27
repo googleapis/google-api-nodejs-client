@@ -621,10 +621,6 @@ export namespace testing_v1 {
      */
     androidDevice?: Schema$AndroidDevice;
     /**
-     * Optional. The list of requested devices. At most two devices may be simultaneously requested.
-     */
-    androidDeviceList?: Schema$AndroidDeviceList;
-    /**
      * Output only. The time that the Session was created.
      */
     createTime?: string | null;
@@ -653,7 +649,7 @@ export namespace testing_v1 {
      */
     stateHistories?: Schema$SessionStateEvent[];
     /**
-     * Optional. The amount of time that a device will be initially allocated for. This can eventually be extended with the ExtendDeviceSession RPC. Default: 30 minutes.
+     * Optional. The amount of time that a device will be initially allocated for. This can eventually be extended with the UpdateDeviceSession RPC. Default: 30 minutes.
      */
     ttl?: string | null;
   }
@@ -1503,6 +1499,10 @@ export namespace testing_v1 {
      * List of files to push to the device before starting the test.
      */
     filesToPush?: Schema$DeviceFile[];
+    /**
+     * Optional. Initial setup APKs to install before the app under test is installed. Currently capped at 100.
+     */
+    initialSetupApks?: Schema$Apk[];
     /**
      * The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
      */
