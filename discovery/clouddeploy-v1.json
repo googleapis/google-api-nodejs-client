@@ -219,7 +219,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent collection in which the `DeliveryPipeline` should be created. Format should be projects/{project_id}/locations/{location_name}.",
+                      "description": "Required. The parent collection in which the `DeliveryPipeline` should be created. Format should be `projects/{project_id}/locations/{location_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -272,7 +272,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Required. The name of the `DeliveryPipeline` to delete. Format should be projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.",
+                      "description": "Required. The name of the `DeliveryPipeline` to delete. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                       "required": true,
@@ -307,7 +307,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the `DeliveryPipeline`. Format must be projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.",
+                      "description": "Required. Name of the `DeliveryPipeline`. Format must be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                       "required": true,
@@ -384,7 +384,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent, which owns this collection of pipelines. Format must be projects/{project_id}/locations/{location_name}.",
+                      "description": "Required. The parent, which owns this collection of pipelines. Format must be `projects/{project_id}/locations/{location_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -414,7 +414,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/ locations/{location}/deliveryPipelines/a-z{0,62}.",
+                      "description": "Optional. Name of the `DeliveryPipeline`. Format is `projects/{project}/locations/{location}/deliveryPipelines/a-z{0,62}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                       "required": true,
@@ -458,7 +458,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The `DeliveryPipeline` for which the rollback `Rollout` should be created. Format should be projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.",
+                      "description": "Required. The `DeliveryPipeline` for which the rollback `Rollout` should be created. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                       "required": true,
@@ -534,6 +534,321 @@
                 }
               },
               "resources": {
+                "automationRuns": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Cancels an AutomationRun. The `state` of the `AutomationRun` after cancelling is `CANCELLED`. `CancelAutomationRun` can be called on AutomationRun in the state `IN_PROGRESS` and `PENDING`; AutomationRun in a different state returns an `FAILED_PRECONDITION` error.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/automationRuns/{automationRunsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "clouddeploy.projects.locations.deliveryPipelines.automationRuns.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the `AutomationRun`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/automationRuns/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancel",
+                      "request": {
+                        "$ref": "CancelAutomationRunRequest"
+                      },
+                      "response": {
+                        "$ref": "CancelAutomationRunResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single AutomationRun.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/automationRuns/{automationRunsId}",
+                      "httpMethod": "GET",
+                      "id": "clouddeploy.projects.locations.deliveryPipelines.automationRuns.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the `AutomationRun`. Format must be `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/automationRuns/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "AutomationRun"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists AutomationRuns in a given project and location.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/automationRuns",
+                      "httpMethod": "GET",
+                      "id": "clouddeploy.projects.locations.deliveryPipelines.automationRuns.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Filter automationRuns to be returned. All fields can be used in the filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Field to sort by.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of automationRuns to return. The service may return fewer than this value. If unspecified, at most 50 automationRuns will be returned. The maximum value is 1000; values above 1000 will be set to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous `ListAutomationRuns` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent, which owns this collection of automationRuns. Format must be `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/automationRuns",
+                      "response": {
+                        "$ref": "ListAutomationRunsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "automations": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new Automation in a given project and location.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/automations",
+                      "httpMethod": "POST",
+                      "id": "clouddeploy.projects.locations.deliveryPipelines.automations.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "automationId": {
+                          "description": "Required. ID of the `Automation`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent collection in which the `Automation` should be created. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+parent}/automations",
+                      "request": {
+                        "$ref": "Automation"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single Automation resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/automations/{automationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "clouddeploy.projects.locations.deliveryPipelines.automations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "allowMissing": {
+                          "description": "Optional. If set to true, then deleting an already deleted or non-existing `Automation` will succeed.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "etag": {
+                          "description": "Optional. The weak etag of the request. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The name of the `Automation` to delete. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/automations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. If set, validate the request and verify whether the resource exists, but do not actually post it.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single Automation.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/automations/{automationsId}",
+                      "httpMethod": "GET",
+                      "id": "clouddeploy.projects.locations.deliveryPipelines.automations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the `Automation`. Format must be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/automations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Automation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Automations in a given project and location.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/automations",
+                      "httpMethod": "GET",
+                      "id": "clouddeploy.projects.locations.deliveryPipelines.automations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Filter automations to be returned. All fields can be used in the filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Field to sort by.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of automations to return. The service may return fewer than this value. If unspecified, at most 50 automations will be returned. The maximum value is 1000; values above 1000 will be set to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous `ListAutomations` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent, which owns this collection of automations. Format must be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/automations",
+                      "response": {
+                        "$ref": "ListAutomationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the parameters of a single Automation resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/automations/{automationsId}",
+                      "httpMethod": "PATCH",
+                      "id": "clouddeploy.projects.locations.deliveryPipelines.automations.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "allowMissing": {
+                          "description": "Optional. If set to true, updating a `Automation` that does not exist will result in the creation of a new `Automation`.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Output only. Name of the `Automation`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automations/{automation}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/automations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Field mask is used to specify the fields to be overwritten in the `Automation` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "Automation"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "releases": {
                   "methods": {
                     "abandon": {
@@ -546,7 +861,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the Release. Format is projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}.",
+                          "description": "Required. Name of the Release. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+$",
                           "required": true,
@@ -574,7 +889,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The parent collection in which the `Release` should be created. Format should be projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.",
+                          "description": "Required. The parent collection in which the `Release` should be created. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                           "required": true,
@@ -617,7 +932,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the `Release`. Format must be projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}.",
+                          "description": "Required. Name of the `Release`. Format must be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+$",
                           "required": true,
@@ -692,7 +1007,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Name of the Rollout. Format is projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/{rollout}.",
+                              "description": "Required. Name of the Rollout. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+/rollouts/[^/]+$",
                               "required": true,
@@ -720,7 +1035,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Name of the Rollout. Format is projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/{rollout}.",
+                              "description": "Required. Name of the Rollout. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+/rollouts/[^/]+$",
                               "required": true,
@@ -748,7 +1063,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Name of the Rollout. Format is projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/{rollout}.",
+                              "description": "Required. Name of the Rollout. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+/rollouts/[^/]+$",
                               "required": true,
@@ -776,7 +1091,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The parent collection in which the `Rollout` should be created. Format should be projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}.",
+                              "description": "Required. The parent collection in which the `Rollout` should be created. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+$",
                               "required": true,
@@ -824,7 +1139,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Name of the `Rollout`. Format must be projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}.",
+                              "description": "Required. Name of the `Rollout`. Format must be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+/rollouts/[^/]+$",
                               "required": true,
@@ -849,7 +1164,7 @@
                           ],
                           "parameters": {
                             "rollout": {
-                              "description": "Required. Name of the Rollout. Format is projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/{rollout}.",
+                              "description": "Required. Name of the Rollout. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+/rollouts/[^/]+$",
                               "required": true,
@@ -923,7 +1238,7 @@
                           ],
                           "parameters": {
                             "rollout": {
-                              "description": "Required. Name of the Rollout. Format is projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/{rollout}.",
+                              "description": "Required. Name of the Rollout. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+/rollouts/[^/]+$",
                               "required": true,
@@ -955,7 +1270,7 @@
                               ],
                               "parameters": {
                                 "name": {
-                                  "description": "Required. Name of the `JobRun`. Format must be projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}.",
+                                  "description": "Required. Name of the `JobRun`. Format must be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}`.",
                                   "location": "path",
                                   "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+/rollouts/[^/]+/jobRuns/[^/]+$",
                                   "required": true,
@@ -1026,7 +1341,7 @@
                               ],
                               "parameters": {
                                 "name": {
-                                  "description": "Required. Name of the `JobRun`. Format must be projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}.",
+                                  "description": "Required. Name of the `JobRun`. Format must be `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`.",
                                   "location": "path",
                                   "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+/rollouts/[^/]+/jobRuns/[^/]+$",
                                   "required": true,
@@ -1187,7 +1502,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent collection in which the `Target` should be created. Format should be projects/{project_id}/locations/{location_name}.",
+                      "description": "Required. The parent collection in which the `Target` should be created. Format should be `projects/{project_id}/locations/{location_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1240,7 +1555,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the `Target` to delete. Format should be projects/{project_id}/locations/{location_name}/targets/{target_name}.",
+                      "description": "Required. The name of the `Target` to delete. Format should be `projects/{project_id}/locations/{location_name}/targets/{target_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/targets/[^/]+$",
                       "required": true,
@@ -1275,7 +1590,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the `Target`. Format must be projects/{project_id}/locations/{location_name}/targets/{target_name}.",
+                      "description": "Required. Name of the `Target`. Format must be `projects/{project_id}/locations/{location_name}/targets/{target_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/targets/[^/]+$",
                       "required": true,
@@ -1352,7 +1667,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent, which owns this collection of targets. Format must be projects/{project_id}/locations/{location_name}.",
+                      "description": "Required. The parent, which owns this collection of targets. Format must be `projects/{project_id}/locations/{location_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1382,7 +1697,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Optional. Name of the `Target`. Format is projects/{project}/locations/{location}/targets/a-z{0,62}.",
+                      "description": "Optional. Name of the `Target`. Format is `projects/{project}/locations/{location}/targets/a-z{0,62}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/targets/[^/]+$",
                       "required": true,
@@ -1479,7 +1794,7 @@
       }
     }
   },
-  "revision": "20231015",
+  "revision": "20231110",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -1505,12 +1820,40 @@
       "id": "AdvanceChildRolloutJobRun",
       "properties": {
         "rollout": {
-          "description": "Output only. Name of the `ChildRollout`. Format is projects/{project}/ locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/a-z{0,62}.",
+          "description": "Output only. Name of the `ChildRollout`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/a-z{0,62}`.",
           "readOnly": true,
           "type": "string"
         },
         "rolloutPhaseId": {
           "description": "Output only. the ID of the ChildRollout's Phase.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdvanceRolloutOperation": {
+      "description": "Contains the information of an automated advance-rollout operation.",
+      "id": "AdvanceRolloutOperation",
+      "properties": {
+        "destinationPhase": {
+          "description": "Output only. The phase to which the rollout will be advanced to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rollout": {
+          "description": "Output only. The name of the rollout that initiates the `AutomationRun`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourcePhase": {
+          "description": "Output only. The phase of a deployment that initiated the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "wait": {
+          "description": "Output only. How long the operation will be paused.",
+          "format": "google-duration",
           "readOnly": true,
           "type": "string"
         }
@@ -1532,6 +1875,34 @@
       "description": "The response object from `AdvanceRollout`.",
       "id": "AdvanceRolloutResponse",
       "properties": {},
+      "type": "object"
+    },
+    "AdvanceRolloutRule": {
+      "description": "The `AdvanceRollout` automation rule will automatically advance a successful Rollout to the next phase.",
+      "id": "AdvanceRolloutRule",
+      "properties": {
+        "condition": {
+          "$ref": "AutomationRuleCondition",
+          "description": "Output only. Information around the state of the Automation rule.",
+          "readOnly": true
+        },
+        "id": {
+          "description": "Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62}`.",
+          "type": "string"
+        },
+        "sourcePhases": {
+          "description": "Optional. Proceeds only after phase name matched any one in the list. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "wait": {
+          "description": "Optional. How long to wait after a rollout is finished.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "AnthosCluster": {
@@ -1610,6 +1981,76 @@
       },
       "type": "object"
     },
+    "Automation": {
+      "description": "An `Automation` resource in the Cloud Deploy API. An `Automation` enables the automation of manually driven actions for a Delivery Pipeline, which includes Release promotion amongst Targets, Rollout repair and Rollout deployment strategy advancement. The intention of Automation is to reduce manual intervention in the continuous delivery process.",
+      "id": "Automation",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. Annotations must meet the following constraints: * Annotations are key/value pairs. * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (`/`). * The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. * The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots(`.`), not longer than 253 characters in total, followed by a slash (`/`). See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set for more details.",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. Time at which the automation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the `Automation`. Max length is 255 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. The weak etag of the `Automation` resource. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 63 characters.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Name of the `Automation`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automations/{automation}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rules": {
+          "description": "Required. List of Automation rules associated with the Automation resource. Must have at least one rule and limited to 250 rules per Delivery Pipeline. Note: the order of the rules here is not the same as the order of execution.",
+          "items": {
+            "$ref": "AutomationRule"
+          },
+          "type": "array"
+        },
+        "selector": {
+          "$ref": "AutomationResourceSelector",
+          "description": "Required. Selected resources to which the automation will be applied."
+        },
+        "serviceAccount": {
+          "description": "Required. Email address of the user-managed IAM service account that creates Cloud Deploy release and rollout resources.",
+          "type": "string"
+        },
+        "suspended": {
+          "description": "Optional. When Suspended, automation is deactivated from execution.",
+          "type": "boolean"
+        },
+        "uid": {
+          "description": "Output only. Unique identifier of the `Automation`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time at which the automation was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AutomationEvent": {
       "description": "Payload proto for \"clouddeploy.googleapis.com/automation\" Platform Log event that describes the Automation related events.",
       "id": "AutomationEvent",
@@ -1658,6 +2099,185 @@
             "Rollout updated.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutomationResourceSelector": {
+      "description": "AutomationResourceSelector contains the information to select the resources to which an Automation is going to be applied.",
+      "id": "AutomationResourceSelector",
+      "properties": {
+        "targets": {
+          "description": "Contains attributes about a target.",
+          "items": {
+            "$ref": "TargetAttribute"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AutomationRolloutMetadata": {
+      "description": "AutomationRolloutMetadata contains Automation-related actions that were performed on a rollout.",
+      "id": "AutomationRolloutMetadata",
+      "properties": {
+        "advanceAutomationRuns": {
+          "description": "Output only. The IDs of the AutomationRuns initiated by an advance rollout rule.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "promoteAutomationRun": {
+          "description": "Output only. The ID of the AutomationRun initiated by a promote release rule.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "repairAutomationRuns": {
+          "description": "Output only. The IDs of the AutomationRuns initiated by a repair rollout rule.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AutomationRule": {
+      "description": "`AutomationRule` defines the automation activities.",
+      "id": "AutomationRule",
+      "properties": {
+        "advanceRolloutRule": {
+          "$ref": "AdvanceRolloutRule",
+          "description": "Optional. The `AdvanceRolloutRule` will automatically advance a successful Rollout."
+        },
+        "promoteReleaseRule": {
+          "$ref": "PromoteReleaseRule",
+          "description": "Optional. `PromoteReleaseRule` will automatically promote a release from the current target to a specified target."
+        },
+        "repairRolloutRule": {
+          "$ref": "RepairRolloutRule",
+          "description": "Optional. The `RepairRolloutRule` will automatically repair a failed rollout."
+        }
+      },
+      "type": "object"
+    },
+    "AutomationRuleCondition": {
+      "description": "`AutomationRuleCondition` contains conditions relevant to an `Automation` rule.",
+      "id": "AutomationRuleCondition",
+      "properties": {
+        "targetsPresentCondition": {
+          "$ref": "TargetsPresentCondition",
+          "description": "Optional. Details around targets enumerated in the rule."
+        }
+      },
+      "type": "object"
+    },
+    "AutomationRun": {
+      "description": "An `AutomationRun` resource in the Cloud Deploy API. An `AutomationRun` represents an automation execution instance of an automation rule.",
+      "id": "AutomationRun",
+      "properties": {
+        "advanceRolloutOperation": {
+          "$ref": "AdvanceRolloutOperation",
+          "description": "Output only. Advances a rollout to the next phase.",
+          "readOnly": true
+        },
+        "automationId": {
+          "description": "Output only. The ID of the automation that initiated the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "automationSnapshot": {
+          "$ref": "Automation",
+          "description": "Output only. Snapshot of the Automation taken at AutomationRun creation time.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. Time at which the `AutomationRun` was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. The weak etag of the `AutomationRun` resource. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. Time the `AutomationRun` will expire. An `AutomationRun` will expire after 14 days from its creation date.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the `AutomationRun`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "promoteReleaseOperation": {
+          "$ref": "PromoteReleaseOperation",
+          "description": "Output only. Promotes a release to a specified 'Target'.",
+          "readOnly": true
+        },
+        "repairRolloutOperation": {
+          "$ref": "RepairRolloutOperation",
+          "description": "Output only. Repairs a failed 'Rollout'.",
+          "readOnly": true
+        },
+        "ruleId": {
+          "description": "Output only. The ID of the automation rule that initiated the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Output only. Email address of the user-managed IAM service account that performs the operations against Cloud Deploy resources.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Current state of the `AutomationRun`.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "CANCELLED",
+            "FAILED",
+            "IN_PROGRESS",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "The `AutomationRun` has an unspecified state.",
+            "The `AutomationRun` has succeeded.",
+            "The `AutomationRun` was cancelled.",
+            "The `AutomationRun` has failed.",
+            "The `AutomationRun` is in progress.",
+            "The `AutomationRun` is pending."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateDescription": {
+          "description": "Output only. Explains the current state of the `AutomationRun`. Present only an explanation is needed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetId": {
+          "description": "Output only. The ID of the target that represents the promotion stage that initiates the `AutomationRun`. The value of this field is the last segment of a target name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time at which the automationRun was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "waitUntilTime": {
+          "description": "Output only. Earliest time the `AutomationRun` will attempt to resume. Wait-time is configured by `wait` in automation rule.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1811,6 +2431,18 @@
       },
       "type": "object"
     },
+    "CancelAutomationRunRequest": {
+      "description": "The request object used by `CancelAutomationRun`.",
+      "id": "CancelAutomationRunRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CancelAutomationRunResponse": {
+      "description": "The response object from `CancelAutomationRun`.",
+      "id": "CancelAutomationRunResponse",
+      "properties": {},
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -1879,7 +2511,7 @@
       "id": "CloudRunMetadata",
       "properties": {
         "job": {
-          "description": "Output only. The name of the Cloud Run job that is associated with a `Rollout`. Format is projects/{project}/locations/{location}/jobs/{job_name}.",
+          "description": "Output only. The name of the Cloud Run job that is associated with a `Rollout`. Format is `projects/{project}/locations/{location}/jobs/{job_name}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -1889,7 +2521,7 @@
           "type": "string"
         },
         "service": {
-          "description": "Output only. The name of the Cloud Run Service that is associated with a `Rollout`. Format is projects/{project}/locations/{location}/services/{service}.",
+          "description": "Output only. The name of the Cloud Run Service that is associated with a `Rollout`. Format is `projects/{project}/locations/{location}/services/{service}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -1909,7 +2541,7 @@
       "id": "CloudRunRenderMetadata",
       "properties": {
         "service": {
-          "description": "Output only. The name of the Cloud Run Service in the rendered manifest. Format is projects/{project}/locations/{location}/services/{service}.",
+          "description": "Output only. The name of the Cloud Run Service in the rendered manifest. Format is `projects/{project}/locations/{location}/services/{service}`.",
           "readOnly": true,
           "type": "string"
         }
@@ -1949,7 +2581,7 @@
       "id": "CreateChildRolloutJobRun",
       "properties": {
         "rollout": {
-          "description": "Output only. Name of the `ChildRollout`. Format is projects/{project}/ locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/a-z{0,62}.",
+          "description": "Output only. Name of the `ChildRollout`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/a-z{0,62}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -2050,7 +2682,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/ locations/{location}/deliveryPipelines/a-z{0,62}.",
+          "description": "Optional. Name of the `DeliveryPipeline`. Format is `projects/{project}/locations/{location}/deliveryPipelines/a-z{0,62}`.",
           "type": "string"
         },
         "serialPipeline": {
@@ -2160,7 +2792,7 @@
           "readOnly": true
         },
         "build": {
-          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to deploy. Format is projects/{project}/locations/{location}/builds/{build}.",
+          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to deploy. Format is `projects/{project}/locations/{location}/builds/{build}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -2371,7 +3003,7 @@
       "id": "GkeCluster",
       "properties": {
         "cluster": {
-          "description": "Information specifying a GKE Cluster. Format is `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}.",
+          "description": "Information specifying a GKE Cluster. Format is `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`.",
           "type": "string"
         },
         "internalIp": {
@@ -2523,7 +3155,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. Name of the `JobRun`. Format is projects/{project}/locations/{location}/ deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/ {rollouts}/jobRuns/{uuid}.",
+          "description": "Optional. Name of the `JobRun`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.",
           "type": "string"
         },
         "phaseId": {
@@ -2657,6 +3289,56 @@
         "serviceNetworking": {
           "$ref": "ServiceNetworking",
           "description": "Kubernetes Service networking configuration."
+        }
+      },
+      "type": "object"
+    },
+    "ListAutomationRunsResponse": {
+      "description": "The response object from `ListAutomationRuns`.",
+      "id": "ListAutomationRunsResponse",
+      "properties": {
+        "automationRuns": {
+          "description": "The `AutomationRuns` objects.",
+          "items": {
+            "$ref": "AutomationRun"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListAutomationsResponse": {
+      "description": "The response object from `ListAutomations`.",
+      "id": "ListAutomationsResponse",
+      "properties": {
+        "automations": {
+          "description": "The `Automations` objects.",
+          "items": {
+            "$ref": "Automation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2860,6 +3542,11 @@
       "description": "Metadata includes information associated with a `Rollout`.",
       "id": "Metadata",
       "properties": {
+        "automation": {
+          "$ref": "AutomationRolloutMetadata",
+          "description": "Output only. AutomationRolloutMetadata contains the information about the interactions between Automation service and this rollout.",
+          "readOnly": true
+        },
         "cloudRun": {
           "$ref": "CloudRunMetadata",
           "description": "Output only. The name of the Cloud Run Service that is associated with a `Rollout`.",
@@ -3168,7 +3855,7 @@
       "id": "PostdeployJobRun",
       "properties": {
         "build": {
-          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the postdeploy Job. Format is projects/{project}/locations/{location}/builds/{build}.",
+          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the postdeploy Job. Format is `projects/{project}/locations/{location}/builds/{build}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -3233,7 +3920,7 @@
       "id": "PredeployJobRun",
       "properties": {
         "build": {
-          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the predeploy Job. Format is projects/{project}/locations/{location}/builds/{build}.",
+          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the predeploy Job. Format is `projects/{project}/locations/{location}/builds/{build}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -3278,6 +3965,63 @@
         },
         "workerPool": {
           "description": "Required. Resource name of the Cloud Build worker pool to use. The format is `projects/{project}/locations/{location}/workerPools/{pool}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PromoteReleaseOperation": {
+      "description": "Contains the information of an automated promote-release operation.",
+      "id": "PromoteReleaseOperation",
+      "properties": {
+        "phase": {
+          "description": "Output only. The starting phase of the rollout created by this operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rollout": {
+          "description": "Output only. The name of the rollout that initiates the `AutomationRun`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetId": {
+          "description": "Output only. The ID of the target that represents the promotion stage to which the release will be promoted. The value of this field is the last segment of a target name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "wait": {
+          "description": "Output only. How long the operation will be paused.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PromoteReleaseRule": {
+      "description": "`PromoteRelease` rule will automatically promote a release from the current target to a specified target.",
+      "id": "PromoteReleaseRule",
+      "properties": {
+        "condition": {
+          "$ref": "AutomationRuleCondition",
+          "description": "Output only. Information around the state of the Automation rule.",
+          "readOnly": true
+        },
+        "destinationPhase": {
+          "description": "Optional. The starting phase of the rollout created by this operation. Default to the first phase.",
+          "type": "string"
+        },
+        "destinationTargetId": {
+          "description": "Optional. The ID of the stage in the pipeline to which this `Release` is deploying. If unspecified, default it to the next stage in the promotion flow. The value of this field could be one of the following: * The last segment of a target name. It only needs the ID to determine if the target is one of the stages in the promotion sequence defined in the pipeline. * \"@next\", the next target in the promotion sequence.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62}`.",
+          "type": "string"
+        },
+        "wait": {
+          "description": "Optional. How long the release need to be paused until being promoted to the next target.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -3345,7 +4089,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Optional. Name of the `Release`. Format is projects/{project}/ locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/a-z{0,62}.",
+          "description": "Optional. Name of the `Release`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/a-z{0,62}`.",
           "type": "string"
         },
         "renderEndTime": {
@@ -3505,7 +4249,23 @@
           "type": "string"
         },
         "release": {
-          "description": "The name of the `Release`.",
+          "description": "The name of the release.",
+          "type": "string"
+        },
+        "releaseRenderState": {
+          "description": "The state of the release render.",
+          "enum": [
+            "RENDER_STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "IN_PROGRESS"
+          ],
+          "enumDescriptions": [
+            "The render state is unspecified.",
+            "All rendering operations have completed successfully.",
+            "All rendering operations have completed, and one or more have failed.",
+            "Rendering has started and is not complete."
+          ],
           "type": "string"
         }
       },
@@ -3519,6 +4279,179 @@
           "$ref": "CloudRunRenderMetadata",
           "description": "Output only. Metadata associated with rendering for Cloud Run.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "RepairMode": {
+      "description": "Configuration of the repair action.",
+      "id": "RepairMode",
+      "properties": {
+        "retry": {
+          "$ref": "Retry",
+          "description": "Optional. Retries a failed job."
+        },
+        "rollback": {
+          "$ref": "Rollback",
+          "description": "Optional. Rolls back a `Rollout`."
+        }
+      },
+      "type": "object"
+    },
+    "RepairPhase": {
+      "description": "RepairPhase tracks the repair attempts that have been made for each `RepairMode` specified in the `Automation` resource.",
+      "id": "RepairPhase",
+      "properties": {
+        "retry": {
+          "$ref": "RetryPhase",
+          "description": "Output only. Records of the retry attempts for retry repair mode.",
+          "readOnly": true
+        },
+        "rollback": {
+          "$ref": "RollbackAttempt",
+          "description": "Output only. Rollback attempt for rollback repair mode .",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "RepairRolloutOperation": {
+      "description": "Contains the information for an automated `repair rollout` operation.",
+      "id": "RepairRolloutOperation",
+      "properties": {
+        "currentRepairModeIndex": {
+          "description": "Output only. The index of the current repair action in the repair sequence.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "repairPhases": {
+          "description": "Output only. Records of the repair attempts. Each repair phase may have multiple retry attempts or single rollback attempt.",
+          "items": {
+            "$ref": "RepairPhase"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "rollout": {
+          "description": "Output only. The name of the rollout that initiates the `AutomationRun`.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RepairRolloutRule": {
+      "description": "The `RepairRolloutRule` automation rule will automatically repair a failed `Rollout`.",
+      "id": "RepairRolloutRule",
+      "properties": {
+        "condition": {
+          "$ref": "AutomationRuleCondition",
+          "description": "Output only. Information around the state of the 'Automation' rule.",
+          "readOnly": true
+        },
+        "id": {
+          "description": "Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62}`.",
+          "type": "string"
+        },
+        "jobs": {
+          "description": "Optional. Jobs to repair. Proceeds only after job name matched any one in the list, or for all jobs if unspecified or empty. The phase that includes the job must match the phase ID specified in `source_phase`. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "repairModes": {
+          "description": "Required. Defines the types of automatic repair actions for failed jobs.",
+          "items": {
+            "$ref": "RepairMode"
+          },
+          "type": "array"
+        },
+        "sourcePhases": {
+          "description": "Optional. Phases within which jobs are subject to automatic repair actions on failure. Proceeds only after phase name matched any one in the list, or for all phases if unspecified. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Retry": {
+      "description": "Retries the failed job.",
+      "id": "Retry",
+      "properties": {
+        "attempts": {
+          "description": "Required. Total number of retries. Retry will skipped if set to 0; The minimum value is 1, and the maximum value is 10.",
+          "format": "int64",
+          "type": "string"
+        },
+        "backoffMode": {
+          "description": "Optional. The pattern of how wait time will be increased. Default is linear. Backoff mode will be ignored if `wait` is 0.",
+          "enum": [
+            "BACKOFF_MODE_UNSPECIFIED",
+            "BACKOFF_MODE_LINEAR",
+            "BACKOFF_MODE_EXPONENTIAL"
+          ],
+          "enumDescriptions": [
+            "No WaitMode is specified.",
+            "Increases the wait time linearly.",
+            "Increases the wait time exponentially."
+          ],
+          "type": "string"
+        },
+        "wait": {
+          "description": "Optional. How long to wait for the first retry. Default is 0, and the maximum value is 14d.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RetryAttempt": {
+      "description": "RetryAttempt represents an action of retrying the failed Cloud Deploy job.",
+      "id": "RetryAttempt",
+      "properties": {
+        "attempt": {
+          "description": "Output only. The index of this retry attempt.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Valid state of this retry action.",
+          "enum": [
+            "REPAIR_STATE_UNSPECIFIED",
+            "REPAIR_STATE_SUCCEEDED",
+            "REPAIR_STATE_CANCELLED",
+            "REPAIR_STATE_FAILED",
+            "REPAIR_STATE_IN_PROGRESS",
+            "REPAIR_STATE_PENDING",
+            "REPAIR_STATE_SKIPPED"
+          ],
+          "enumDescriptions": [
+            "The `repair` has an unspecified state.",
+            "The `repair` action has succeeded.",
+            "The `repair` action was cancelled.",
+            "The `repair` action has failed.",
+            "The `repair` action is in progress.",
+            "The `repair` action is pending.",
+            "The `repair` action was skipped."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateDesc": {
+          "description": "Output only. Description of the state of the Retry.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "wait": {
+          "description": "Output only. How long the operation will be paused.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3542,6 +4475,108 @@
       "description": "The response object from 'RetryJob'.",
       "id": "RetryJobResponse",
       "properties": {},
+      "type": "object"
+    },
+    "RetryPhase": {
+      "description": "RetryPhase contains the retry attempts and the metadata for initiating a new attempt.",
+      "id": "RetryPhase",
+      "properties": {
+        "attempts": {
+          "description": "Output only. Detail of a retry action.",
+          "items": {
+            "$ref": "RetryAttempt"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "backoffMode": {
+          "description": "Output only. The pattern of how the wait time of the retry attempt is calculated.",
+          "enum": [
+            "BACKOFF_MODE_UNSPECIFIED",
+            "BACKOFF_MODE_LINEAR",
+            "BACKOFF_MODE_EXPONENTIAL"
+          ],
+          "enumDescriptions": [
+            "No WaitMode is specified.",
+            "Increases the wait time linearly.",
+            "Increases the wait time exponentially."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "jobId": {
+          "description": "Output only. The job ID for the Job to retry.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "phaseId": {
+          "description": "Output only. The phase ID of the phase that includes the job being retried.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalAttempts": {
+          "description": "Output only. The number of attempts that have been made.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Rollback": {
+      "description": "Rolls back a `Rollout`.",
+      "id": "Rollback",
+      "properties": {
+        "destinationPhase": {
+          "description": "Optional. The starting phase ID for the `Rollout`. If unspecified, the `Rollout` will start in the stable phase.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackAttempt": {
+      "description": "RollbackAttempt represents an action of rolling back a Cloud Deploy 'Target'.",
+      "id": "RollbackAttempt",
+      "properties": {
+        "destinationPhase": {
+          "description": "Output only. The phase to which the rollout will be rolled back to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rolloutId": {
+          "description": "Output only. ID of the rollback `Rollout` to create.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Valid state of this rollback action.",
+          "enum": [
+            "REPAIR_STATE_UNSPECIFIED",
+            "REPAIR_STATE_SUCCEEDED",
+            "REPAIR_STATE_CANCELLED",
+            "REPAIR_STATE_FAILED",
+            "REPAIR_STATE_IN_PROGRESS",
+            "REPAIR_STATE_PENDING",
+            "REPAIR_STATE_SKIPPED"
+          ],
+          "enumDescriptions": [
+            "The `repair` has an unspecified state.",
+            "The `repair` action has succeeded.",
+            "The `repair` action was cancelled.",
+            "The `repair` action has failed.",
+            "The `repair` action is in progress.",
+            "The `repair` action is pending.",
+            "The `repair` action was skipped."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateDesc": {
+          "description": "Output only. Description of the state of the Rollback.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RollbackTargetConfig": {
@@ -3638,7 +4673,7 @@
           "type": "string"
         },
         "controllerRollout": {
-          "description": "Output only. Name of the `ControllerRollout`. Format is projects/{project}/ locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/a-z{0,62}.",
+          "description": "Output only. Name of the `ControllerRollout`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/a-z{0,62}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -3722,7 +4757,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "Optional. Name of the `Rollout`. Format is projects/{project}/ locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/a-z{0,62}.",
+          "description": "Optional. Name of the `Rollout`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/a-z{0,62}`.",
           "type": "string"
         },
         "phases": {
@@ -3815,6 +4850,103 @@
         },
         "type": {
           "description": "Type of this notification, e.g. for a Pub/Sub failure.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+            "TYPE_RESOURCE_STATE_CHANGE",
+            "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
+            "TYPE_ROLLOUT_UPDATE",
+            "TYPE_RENDER_STATUES_CHANGE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "A Pub/Sub notification failed to be sent.",
+            "Resource state changed.",
+            "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
+            "Rollout updated.",
+            "Deprecated: This field is never used. Use release_render log type instead."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutUpdateEvent": {
+      "description": "Payload proto for \"clouddeploy.googleapis.com/rollout_update\" Platform Log event that describes the rollout update event.",
+      "id": "RolloutUpdateEvent",
+      "properties": {
+        "message": {
+          "description": "Debug message for when a rollout update event occurs.",
+          "type": "string"
+        },
+        "pipelineUid": {
+          "description": "Unique identifier of the pipeline.",
+          "type": "string"
+        },
+        "releaseUid": {
+          "description": "Unique identifier of the release.",
+          "type": "string"
+        },
+        "rollout": {
+          "description": "The name of the rollout.",
+          "type": "string"
+        },
+        "rolloutUpdateType": {
+          "description": "The type of the rollout update.",
+          "enum": [
+            "ROLLOUT_UPDATE_TYPE_UNSPECIFIED",
+            "PENDING",
+            "PENDING_RELEASE",
+            "IN_PROGRESS",
+            "CANCELLING",
+            "CANCELLED",
+            "HALTED",
+            "SUCCEEDED",
+            "FAILED",
+            "APPROVAL_REQUIRED",
+            "APPROVED",
+            "REJECTED",
+            "ADVANCE_REQUIRED",
+            "ADVANCED"
+          ],
+          "enumDescriptions": [
+            "Rollout update type unspecified.",
+            "rollout state updated to pending.",
+            "Rollout state updated to pending release.",
+            "Rollout state updated to in progress.",
+            "Rollout state updated to cancelling.",
+            "Rollout state updated to cancelled.",
+            "Rollout state updated to halted.",
+            "Rollout state updated to succeeded.",
+            "Rollout state updated to failed.",
+            "Rollout requires approval.",
+            "Rollout has been approved.",
+            "Rollout has been rejected.",
+            "Rollout requires advance to the next phase.",
+            "Rollout has been advanced."
+          ],
+          "type": "string"
+        },
+        "targetId": {
+          "description": "ID of the target.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of this notification, e.g. for a rollout update event.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "TYPE_PUBSUB_NOTIFICATION_FAILURE",
@@ -4125,7 +5257,7 @@
           "description": "Optional. Information specifying a multiTarget."
         },
         "name": {
-          "description": "Optional. Name of the `Target`. Format is projects/{project}/locations/{location}/targets/a-z{0,62}.",
+          "description": "Optional. Name of the `Target`. Format is `projects/{project}/locations/{location}/targets/a-z{0,62}`.",
           "type": "string"
         },
         "requireApproval": {
@@ -4181,6 +5313,24 @@
           "description": "Output only. File path of the resolved Skaffold configuration relative to the URI.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TargetAttribute": {
+      "description": "Contains criteria for selecting Targets. Attributes provided must match the target resource in order for policy restrictions to apply. E.g. if id \"prod\" and labels \"foo: bar\" are given the target resource must match both that id and have that label in order to be selected.",
+      "id": "TargetAttribute",
+      "properties": {
+        "id": {
+          "description": "ID of the `Target`. The value of this field could be one of the following: * The last segment of a target name. It only needs the ID to determine which target is being referred to * \"*\", all targets in a location.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Target labels.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -4246,7 +5396,8 @@
             "EXECUTION_FAILED",
             "CLOUD_BUILD_REQUEST_FAILED",
             "VERIFICATION_CONFIG_NOT_FOUND",
-            "CUSTOM_ACTION_NOT_FOUND"
+            "CUSTOM_ACTION_NOT_FOUND",
+            "DEPLOYMENT_STRATEGY_NOT_SUPPORTED"
           ],
           "enumDescriptions": [
             "No reason for failure is specified.",
@@ -4254,7 +5405,8 @@
             "The render operation did not complete successfully; check Cloud Build logs.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details.",
             "The render operation did not complete successfully because the verification stanza required for verify was not found on the skaffold configuration.",
-            "The render operation did not complete successfully because the custom action required for predeploy or postdeploy was not found in the skaffold configuration. See failure_message for additional details."
+            "The render operation did not complete successfully because the custom action required for predeploy or postdeploy was not found in the skaffold configuration. See failure_message for additional details.",
+            "Release failed during rendering because the release configuration is not supported with the specified deployment strategy."
           ],
           "readOnly": true,
           "type": "string"
@@ -4299,7 +5451,7 @@
       "id": "TargetsPresentCondition",
       "properties": {
         "missingTargets": {
-          "description": "The list of Target names that do not exist. For example, projects/{project_id}/locations/{location_name}/targets/{target_name}.",
+          "description": "The list of Target names that do not exist. For example, `projects/{project_id}/locations/{location_name}/targets/{target_name}`.",
           "items": {
             "type": "string"
           },
@@ -4388,7 +5540,7 @@
           "type": "string"
         },
         "build": {
-          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to verify. Format is projects/{project}/locations/{location}/builds/{build}.",
+          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to verify. Format is `projects/{project}/locations/{location}/builds/{build}`.",
           "readOnly": true,
           "type": "string"
         },
