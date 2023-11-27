@@ -2008,7 +2008,7 @@
       }
     }
   },
-  "revision": "20231003",
+  "revision": "20231024",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2707,7 +2707,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Custom metadata to apply to this instance.",
+          "description": "Custom metadata to apply to this instance. For example, to specify a Cloud Storage bucket for automatic backup, you can use the `gcs-data-bucket` metadata tag. Format: `\"--metadata=gcs-data-bucket=``BUCKET''\"`.",
           "type": "object"
         },
         "migrated": {

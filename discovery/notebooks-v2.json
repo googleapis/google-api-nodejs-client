@@ -325,6 +325,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getConfig": {
+                  "description": "Gets general backend configurations that might also affect the frontend. Location is required by CCFE. Although we could bypass it to send location- less request directly to the backend job, we would need CPE (go/cloud-cpe). Having the location might also be useful depending on the query.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances:getConfig",
+                  "httpMethod": "GET",
+                  "id": "notebooks.projects.locations.instances.getConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}/instances:getConfig",
+                  "response": {
+                    "$ref": "Config"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:getIamPolicy",
@@ -823,7 +848,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20231024",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -967,6 +992,31 @@
       },
       "type": "object"
     },
+    "Config": {
+      "description": "Response for getting WbI configurations in a location",
+      "id": "Config",
+      "properties": {
+        "availableImages": {
+          "description": "Output only. The list of available images to create a WbI.",
+          "items": {
+            "$ref": "ImageRelease"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "defaultValues": {
+          "$ref": "DefaultValues",
+          "description": "Output only. The default values for configuration.",
+          "readOnly": true
+        },
+        "supportedValues": {
+          "$ref": "SupportedValues",
+          "description": "Output only. The supported values for configuration.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "ContainerImage": {
       "description": "Definition of a container image for starting a notebook instance with the environment installed in a container.",
       "id": "ContainerImage",
@@ -1025,6 +1075,18 @@
         },
         "kmsKey": {
           "description": "Optional. Input only. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}` Learn more about using your own encryption keys.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DefaultValues": {
+      "description": "DefaultValues represents the default configuration values.",
+      "id": "DefaultValues",
+      "properties": {
+        "machineType": {
+          "description": "Output only. The default machine type used by the backend if not provided by the user.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1233,6 +1295,23 @@
         "vmImage": {
           "$ref": "VmImage",
           "description": "Optional. Use a Compute Engine VM image to start the notebook instance."
+        }
+      },
+      "type": "object"
+    },
+    "ImageRelease": {
+      "description": "ConfigImage represents an image release available to create a WbI",
+      "id": "ImageRelease",
+      "properties": {
+        "imageName": {
+          "description": "Output only. The name of the image of the form workbench-instances-vYYYYmmdd--",
+          "readOnly": true,
+          "type": "string"
+        },
+        "releaseName": {
+          "description": "Output only. The release of the image of the form m123",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1711,6 +1790,29 @@
       "description": "Request for stopping a notebook instance",
       "id": "StopInstanceRequest",
       "properties": {},
+      "type": "object"
+    },
+    "SupportedValues": {
+      "description": "SupportedValues represents the values supported by the configuration.",
+      "id": "SupportedValues",
+      "properties": {
+        "acceleratorTypes": {
+          "description": "Output only. The accelerator types supported by WbI.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "machineTypes": {
+          "description": "Output only. The machine types supported by WbI.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "TestIamPermissionsRequest": {
