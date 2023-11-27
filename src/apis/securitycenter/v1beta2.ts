@@ -278,6 +278,27 @@ export namespace securitycenter_v1beta2 {
     inspectJob?: string | null;
   }
   /**
+   * Metadata taken from a [Cloud Logging LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)
+   */
+  export interface Schema$CloudLoggingEntry {
+    /**
+     * A unique identifier for the log entry.
+     */
+    insertId?: string | null;
+    /**
+     * The type of the log (part of `log_name`. `log_name` is the resource name of the log to which this log entry belongs). For example: `cloudresourcemanager.googleapis.com/activity`. Note that this field is not URL-encoded, unlike the `LOG_ID` field in `LogEntry`.
+     */
+    logId?: string | null;
+    /**
+     * The organization, folder, or project of the monitored resource that produced this log entry.
+     */
+    resourceContainer?: string | null;
+    /**
+     * The time the event described by the log entry occurred.
+     */
+    timestamp?: string | null;
+  }
+  /**
    * Contains compliance information about a security standard indicating unmet recommendations.
    */
   export interface Schema$Compliance {
@@ -738,6 +759,10 @@ export namespace securitycenter_v1beta2 {
      */
     loadBalancers?: Schema$LoadBalancer[];
     /**
+     * Log entries that are relevant to the finding.
+     */
+    logEntries?: Schema$LogEntry[];
+    /**
      * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
      */
     mitreAttack?: Schema$MitreAttack;
@@ -765,6 +790,10 @@ export namespace securitycenter_v1beta2 {
      * Steps to address the finding.
      */
     nextSteps?: string | null;
+    /**
+     * Contains information about the org policies associated with the finding.
+     */
+    orgPolicies?: Schema$OrgPolicy[];
     /**
      * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: "organizations/{organization_id\}/sources/{source_id\}"
      */
@@ -1012,7 +1041,7 @@ export namespace securitycenter_v1beta2 {
      */
     mostRecentEditor?: string | null;
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
      */
     name?: string | null;
     /**
@@ -1460,6 +1489,15 @@ export namespace securitycenter_v1beta2 {
     name?: string | null;
   }
   /**
+   * An individual entry in a log.
+   */
+  export interface Schema$LogEntry {
+    /**
+     * An individual entry in a log stored in Cloud Logging.
+     */
+    cloudLoggingEntry?: Schema$CloudLoggingEntry;
+  }
+  /**
    * A signature corresponding to memory page hashes.
    */
   export interface Schema$MemoryHashSignature {
@@ -1524,6 +1562,10 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$Object {
     /**
+     * Pod containers associated with this finding, if any.
+     */
+    containers?: Schema$Container[];
+    /**
      * Kubernetes object group, such as "policy.k8s.io/v1".
      */
     group?: string | null;
@@ -1539,6 +1581,15 @@ export namespace securitycenter_v1beta2 {
      * Kubernetes object namespace. Must be a valid DNS label. Named "ns" to avoid collision with C++ namespace keyword. For details see https://kubernetes.io/docs/tasks/administer-cluster/namespaces/.
      */
     ns?: string | null;
+  }
+  /**
+   * Contains information about the org policies associated with the finding.
+   */
+  export interface Schema$OrgPolicy {
+    /**
+     * The resource name of the org policy. Example: "organizations/{organization_id\}/policies/{constraint_name\}"
+     */
+    name?: string | null;
   }
   /**
    * A Kubernetes Pod.
@@ -1671,7 +1722,7 @@ export namespace securitycenter_v1beta2 {
     ns?: string | null;
   }
   /**
-   * Resource capturing the settings for Security Center.
+   * Resource capturing the settings for Security Center. Next ID: 12
    */
   export interface Schema$SecurityCenterSettings {
     /**

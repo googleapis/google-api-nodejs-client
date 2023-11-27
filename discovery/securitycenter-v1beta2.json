@@ -1906,7 +1906,7 @@
       }
     }
   },
-  "revision": "20231005",
+  "revision": "20231102",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2092,6 +2092,30 @@
         },
         "inspectJob": {
           "description": "Name of the inspection job, for example, `projects/123/locations/europe/dlpJobs/i-8383929`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudLoggingEntry": {
+      "description": "Metadata taken from a [Cloud Logging LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)",
+      "id": "CloudLoggingEntry",
+      "properties": {
+        "insertId": {
+          "description": "A unique identifier for the log entry.",
+          "type": "string"
+        },
+        "logId": {
+          "description": "The type of the log (part of `log_name`. `log_name` is the resource name of the log to which this log entry belongs). For example: `cloudresourcemanager.googleapis.com/activity`. Note that this field is not URL-encoded, unlike the `LOG_ID` field in `LogEntry`.",
+          "type": "string"
+        },
+        "resourceContainer": {
+          "description": "The organization, folder, or project of the monitored resource that produced this log entry.",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "The time the event described by the log entry occurred.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -2846,6 +2870,13 @@
           },
           "type": "array"
         },
+        "logEntries": {
+          "description": "Log entries that are relevant to the finding.",
+          "items": {
+            "$ref": "LogEntry"
+          },
+          "type": "array"
+        },
         "mitreAttack": {
           "$ref": "MitreAttack",
           "description": "MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org"
@@ -2887,6 +2918,13 @@
         "nextSteps": {
           "description": "Steps to address the finding.",
           "type": "string"
+        },
+        "orgPolicies": {
+          "description": "Contains information about the org policies associated with the finding.",
+          "items": {
+            "$ref": "OrgPolicy"
+          },
+          "type": "array"
         },
         "parent": {
           "description": "The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: \"organizations/{organization_id}/sources/{source_id}\"",
@@ -3222,7 +3260,7 @@
           "type": "string"
         },
         "name": {
-          "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+          "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
           "type": "string"
         },
         "updateTime": {
@@ -3892,6 +3930,17 @@
       },
       "type": "object"
     },
+    "LogEntry": {
+      "description": "An individual entry in a log.",
+      "id": "LogEntry",
+      "properties": {
+        "cloudLoggingEntry": {
+          "$ref": "CloudLoggingEntry",
+          "description": "An individual entry in a log stored in Cloud Logging."
+        }
+      },
+      "type": "object"
+    },
     "MemoryHashSignature": {
       "description": "A signature corresponding to memory page hashes.",
       "id": "MemoryHashSignature",
@@ -4203,6 +4252,13 @@
       "description": "Kubernetes object related to the finding, uniquely identified by GKNN. Used if the object Kind is not one of Pod, Node, NodePool, Binding, or AccessReview.",
       "id": "Object",
       "properties": {
+        "containers": {
+          "description": "Pod containers associated with this finding, if any.",
+          "items": {
+            "$ref": "Container"
+          },
+          "type": "array"
+        },
         "group": {
           "description": "Kubernetes object group, such as \"policy.k8s.io/v1\".",
           "type": "string"
@@ -4217,6 +4273,17 @@
         },
         "ns": {
           "description": "Kubernetes object namespace. Must be a valid DNS label. Named \"ns\" to avoid collision with C++ namespace keyword. For details see https://kubernetes.io/docs/tasks/administer-cluster/namespaces/.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrgPolicy": {
+      "description": "Contains information about the org policies associated with the finding.",
+      "id": "OrgPolicy",
+      "properties": {
+        "name": {
+          "description": "The resource name of the org policy. Example: \"organizations/{organization_id}/policies/{constraint_name}\"",
           "type": "string"
         }
       },
@@ -4409,7 +4476,7 @@
       "type": "object"
     },
     "SecurityCenterSettings": {
-      "description": "Resource capturing the settings for Security Center.",
+      "description": "Resource capturing the settings for Security Center. Next ID: 12",
       "id": "SecurityCenterSettings",
       "properties": {
         "logSinkProject": {
