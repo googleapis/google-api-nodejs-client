@@ -20,59 +20,59 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
-      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
       "location": "asia-east1",
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
-      "location": "asia-east2",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
+      "location": "asia-east2"
     },
     {
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
-      "location": "asia-northeast1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-northeast1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
-      "location": "asia-northeast2",
-      "description": "Locational Endpoint"
+      "location": "asia-northeast2"
     },
     {
-      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
       "location": "asia-northeast3",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
+      "location": "asia-south1",
       "description": "Locational Endpoint",
-      "location": "asia-south1"
+      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "asia-southeast1"
     },
     {
       "description": "Locational Endpoint",
-      "location": "asia-southeast2",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
+      "location": "asia-southeast2"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
-      "location": "australia-southeast1"
-    },
-    {
-      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "australia-southeast2"
+      "location": "australia-southeast1",
+      "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
+      "location": "australia-southeast2",
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
       "location": "europe-central2",
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
@@ -81,18 +81,18 @@
     },
     {
       "location": "europe-southwest1",
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "location": "europe-west1",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "location": "europe-west1",
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/"
-    },
-    {
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
-      "location": "europe-west2"
+      "location": "europe-west2",
+      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/"
     },
     {
       "location": "europe-west3",
@@ -100,19 +100,19 @@
       "description": "Locational Endpoint"
     },
     {
-      "location": "europe-west4",
       "description": "Locational Endpoint",
+      "location": "europe-west4",
       "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/"
     },
     {
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "europe-west6",
-      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
+      "location": "europe-west6"
     },
     {
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "europe-west8",
-      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/"
+      "location": "europe-west8"
     },
     {
       "location": "europe-west9",
@@ -120,39 +120,39 @@
       "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
       "location": "me-west1",
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
-      "location": "northamerica-northeast1",
       "description": "Locational Endpoint",
+      "location": "northamerica-northeast1",
       "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "northamerica-northeast2",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
       "location": "southamerica-east1"
     },
     {
-      "location": "southamerica-west1",
       "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
+      "location": "southamerica-west1",
       "description": "Locational Endpoint"
     },
     {
-      "location": "us-central1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
+      "location": "us-central1"
     },
     {
-      "location": "us-central2",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "us-central2"
     },
     {
       "description": "Locational Endpoint",
@@ -160,34 +160,34 @@
       "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
+      "location": "us-east4",
       "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
-      "location": "us-east4"
+      "description": "Locational Endpoint"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
-      "location": "us-south1",
-      "description": "Locational Endpoint"
+      "location": "us-south1"
     },
     {
       "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
-      "location": "us-west1",
-      "description": "Locational Endpoint"
-    },
-    {
-      "location": "us-west2",
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
-      "location": "us-west3",
-      "description": "Locational Endpoint"
-    },
-    {
       "description": "Locational Endpoint",
+      "location": "us-west1"
+    },
+    {
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "us-west2"
+    },
+    {
+      "location": "us-west3",
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
       "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
-      "location": "us-west4"
+      "location": "us-west4",
+      "description": "Locational Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3083,6 +3083,34 @@
             },
             "endpoints": {
               "methods": {
+                "computeTokens": {
+                  "description": "Return a list of tokens based on the input text.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:computeTokens",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.endpoints.computeTokens",
+                  "parameterOrder": [
+                    "endpoint"
+                  ],
+                  "parameters": {
+                    "endpoint": {
+                      "description": "Required. The name of the Endpoint requested to get lists of tokens and token ids.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+endpoint}:computeTokens",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ComputeTokensRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ComputeTokensResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "countTokens": {
                   "description": "Perform a token counting.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:countTokens",
@@ -12089,6 +12117,34 @@
             },
             "pipelineJobs": {
               "methods": {
+                "batchDelete": {
+                  "description": "Batch deletes PipelineJobs The Operation is atomic. If it fails, none of the PipelineJobs are deleted. If it succeeds, all of the PipelineJobs are deleted.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/pipelineJobs:batchDelete",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.pipelineJobs.batchDelete",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the PipelineJobs' parent resource. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/pipelineJobs:batchDelete",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1BatchDeletePipelineJobsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "cancel": {
                   "description": "Cancels a PipelineJob. Starts asynchronous cancellation on the PipelineJob. The server makes a best effort to cancel the pipeline, but success is not guaranteed. Clients can use PipelineService.GetPipelineJob or other methods to check whether the cancellation succeeded or whether the pipeline completed despite cancellation. On successful cancellation, the PipelineJob is not deleted; instead it becomes a pipeline with a PipelineJob.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`, and PipelineJob.state is set to `CANCELLED`.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/pipelineJobs/{pipelineJobsId}:cancel",
@@ -12411,6 +12467,34 @@
               "resources": {
                 "models": {
                   "methods": {
+                    "computeTokens": {
+                      "description": "Return a list of tokens based on the input text.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:computeTokens",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.publishers.models.computeTokens",
+                      "parameterOrder": [
+                        "endpoint"
+                      ],
+                      "parameters": {
+                        "endpoint": {
+                          "description": "Required. The name of the Endpoint requested to get lists of tokens and token ids.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+endpoint}:computeTokens",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1ComputeTokensRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1ComputeTokensResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "countTokens": {
                       "description": "Perform a token counting.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:countTokens",
@@ -16094,7 +16178,7 @@
       }
     }
   },
-  "revision": "20231012",
+  "revision": "20231111",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -16623,6 +16707,20 @@
           "description": "Immutable. The number of machine replicas used at the start of the batch operation. If not set, Vertex AI decides starting number, not greater than max_replica_count",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1BatchDeletePipelineJobsRequest": {
+      "description": "Request message for PipelineService.BatchDeletePipelineJobs.",
+      "id": "GoogleCloudAiplatformV1beta1BatchDeletePipelineJobsRequest",
+      "properties": {
+        "names": {
+          "description": "Required. The names of the PipelineJobs to delete. A maximum of 32 PipelineJobs can be deleted in a batch. Format: `projects/{project}/locations/{location}/pipelineJobs/{pipelineJob}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -17296,6 +17394,34 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ComputeTokensRequest": {
+      "description": "Request message for ComputeTokens RPC call.",
+      "id": "GoogleCloudAiplatformV1beta1ComputeTokensRequest",
+      "properties": {
+        "instances": {
+          "description": "Required. The instances that are the input to token computing API call. Schema is identical to the prediction schema of the text model, even for the non-text models, like chat models, or Codey models.",
+          "items": {
+            "type": "any"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ComputeTokensResponse": {
+      "description": "Response message for ComputeTokens RPC call.",
+      "id": "GoogleCloudAiplatformV1beta1ComputeTokensResponse",
+      "properties": {
+        "tokensInfo": {
+          "description": "Lists of tokens info from the input. A ComputeTokensRequest could have multiple instances with a prompt in each instance. We also need to return lists of tokens info for the request with multiple instances.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1TokensInfo"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -17987,7 +18113,7 @@
           "type": "string"
         },
         "protectedArtifactLocationId": {
-          "description": "The ID of the location to store protected artifacts. e.g. us-central1. Populate only when the location is different than CustomJob location. For unprotected artifacts, the value of this field is ignored. List of supported locations: https://cloud.google.com/vertex-ai/docs/general/locations",
+          "description": "The ID of the location to store protected artifacts. e.g. us-central1. Populate only when the location is different than CustomJob location. List of supported locations: https://cloud.google.com/vertex-ai/docs/general/locations",
           "type": "string"
         },
         "reservedIpRanges": {
@@ -18581,7 +18707,7 @@
         },
         "dedicatedResources": {
           "$ref": "GoogleCloudAiplatformV1beta1DedicatedResources",
-          "description": "Optional. A description of resources that are dedicated to the DeployedIndex, and that need a higher degree of manual configuration. If min_replica_count is not set, the default value is 2 (we don't provide SLA when min_replica_count=1). If max_replica_count is not set, the default value is min_replica_count. The max allowed replica count is 1000. Available machine types for SMALL shard: e2-standard-2 and all machine types available for MEDIUM and LARGE shard. Available machine types for MEDIUM shard: e2-standard-16 and all machine types available for LARGE shard. Available machine types for LARGE shard: e2-highmem-16, n2d-standard-32. n1-standard-16 and n1-standard-32 are still available, but we recommend e2-standard-16 and e2-highmem-16 for cost efficiency."
+          "description": "Optional. A description of resources that are dedicated to the DeployedIndex, and that need a higher degree of manual configuration. The field min_replica_count must be set to a value strictly greater than 0, or else validation will fail. We don't provide SLA when min_replica_count=1. If max_replica_count is not set, the default value is min_replica_count. The max allowed replica count is 1000. Available machine types for SMALL shard: e2-standard-2 and all machine types available for MEDIUM and LARGE shard. Available machine types for MEDIUM shard: e2-standard-16 and all machine types available for LARGE shard. Available machine types for LARGE shard: e2-highmem-16, n2d-standard-32. n1-standard-16 and n1-standard-32 are still available, but we recommend e2-standard-16 and e2-highmem-16 for cost efficiency."
         },
         "deployedIndexAuthConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1DeployedIndexAuthConfig",
@@ -19373,6 +19499,13 @@
       "description": "Request message for PredictionService.Explain.",
       "id": "GoogleCloudAiplatformV1beta1ExplainRequest",
       "properties": {
+        "concurrentExplanationSpecOverride": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1ExplanationSpecOverride"
+          },
+          "description": "Optional. This field is the same as the one above, but supports multiple explanations to occur in parallel. The key can be any string. Each override will be run against the model, then its explanations will be grouped together. Note - these explanations are run **In Addition** to the default Explanation in the deployed model.",
+          "type": "object"
+        },
         "deployedModelId": {
           "description": "If specified, this ExplainRequest will be served by the chosen DeployedModel, overriding Endpoint.traffic_split.",
           "type": "string"
@@ -19399,6 +19532,13 @@
       "description": "Response message for PredictionService.Explain.",
       "id": "GoogleCloudAiplatformV1beta1ExplainResponse",
       "properties": {
+        "concurrentExplanations": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1ExplainResponseConcurrentExplanation"
+          },
+          "description": "This field stores the results of the explanations run in parallel with The default explanation strategy/method.",
+          "type": "object"
+        },
         "deployedModelId": {
           "description": "ID of the Endpoint's DeployedModel that served this explanation.",
           "type": "string"
@@ -19414,6 +19554,20 @@
           "description": "The predictions that are the output of the predictions call. Same as PredictResponse.predictions.",
           "items": {
             "type": "any"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ExplainResponseConcurrentExplanation": {
+      "description": "This message is a wrapper grouping Concurrent Explanations.",
+      "id": "GoogleCloudAiplatformV1beta1ExplainResponseConcurrentExplanation",
+      "properties": {
+        "explanations": {
+          "description": "The explanations of the Model's PredictResponse.predictions. It has the same number of elements as instances to be explained.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Explanation"
           },
           "type": "array"
         }
@@ -20177,6 +20331,10 @@
             "Used for Feature that is bytes."
           ],
           "type": "string"
+        },
+        "versionColumnName": {
+          "description": "Only applicable for Vertex AI Feature Store. The name of the BigQuery Table/View columnn hosting data for this version. If no value is provided, will use feature_id.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -20337,6 +20495,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "optimized": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreOptimized",
+          "description": "Contains settings for the Optimized store that will be created to serve featureValues for all FeatureViews under this FeatureOnlineStore. When choose Optimized storage type, need to set PrivateServiceConnectConfig.enable_private_service_connect to use private endpoint. Otherwise will use public endpoint by default."
+        },
         "state": {
           "description": "Output only. State of the featureOnlineStore.",
           "enum": [
@@ -20393,11 +20555,20 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1FeatureOnlineStoreDedicatedServingEndpoint": {
-      "description": "The dedicated serving endpoint for this FeatureOnlineStore.",
+      "description": "The dedicated serving endpoint for this FeatureOnlineStore. Only need to set when you choose Optimized storage type or enable EmbeddingManagement. Will use public endpoint by default.",
       "id": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreDedicatedServingEndpoint",
       "properties": {
+        "privateServiceConnectConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1PrivateServiceConnectConfig",
+          "description": "Optional. Private service connect config. If PrivateServiceConnectConfig.enable_private_service_connect set to true, customers will use private service connection to send request. Otherwise, the connection will set to public endpoint."
+        },
         "publicEndpointDomainName": {
           "description": "Output only. This field will be populated with the domain name to use for this FeatureOnlineStore",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAttachment": {
+          "description": "Output only. The name of the service attachment resource. Populated if private service connect is enabled and after FeatureViewSync is created.",
           "readOnly": true,
           "type": "string"
         }
@@ -20413,6 +20584,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureOnlineStoreOptimized": {
+      "description": "Optimized storage type",
+      "id": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreOptimized",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1FeatureSelector": {
@@ -20624,6 +20801,17 @@
         },
         "uri": {
           "description": "Required. The BigQuery view URI that will be materialized on each sync trigger based on FeatureView.SyncConfig.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureViewDataKey": {
+      "description": "Lookup key for a feature view.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureViewDataKey",
+      "properties": {
+        "key": {
+          "description": "String key to use for lookup.",
           "type": "string"
         }
       },
@@ -20972,8 +21160,27 @@
       "description": "Request message for FeatureOnlineStoreService.FetchFeatureValues. All the features under the requested feature view will be returned.",
       "id": "GoogleCloudAiplatformV1beta1FetchFeatureValuesRequest",
       "properties": {
+        "dataFormat": {
+          "description": "Optional. Response data format. If not set, FeatureViewDataFormat.KEY_VALUE will be used.",
+          "enum": [
+            "FEATURE_VIEW_DATA_FORMAT_UNSPECIFIED",
+            "KEY_VALUE",
+            "PROTO_STRUCT"
+          ],
+          "enumDescriptions": [
+            "Not set. Will be treated as the KeyValue format.",
+            "Return response data in key-value format.",
+            "Return response data in proto Struct format."
+          ],
+          "type": "string"
+        },
+        "dataKey": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureViewDataKey",
+          "description": "Optional. The request key to fetch feature values for."
+        },
         "format": {
-          "description": "Specify response data format. If not set, KeyValue format will be used.",
+          "deprecated": true,
+          "description": "Specify response data format. If not set, KeyValue format will be used. Deprecated. Use FetchFeatureValuesRequest.data_format.",
           "enum": [
             "FORMAT_UNSPECIFIED",
             "KEY_VALUE",
@@ -20987,6 +21194,7 @@
           "type": "string"
         },
         "id": {
+          "deprecated": true,
           "description": "Simple ID. The whole string will be used as is to identify Entity to fetch feature values for.",
           "type": "string"
         }
@@ -21265,17 +21473,6 @@
           "description": "Output only. Time when the operation was updated for the last time. If the operation has finished (successfully or not), this is the finish time.",
           "format": "google-datetime",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1beta1GenieSource": {
-      "description": "Contains information about the source of the models generated from Generative AI Studio.",
-      "id": "GoogleCloudAiplatformV1beta1GenieSource",
-      "properties": {
-        "baseModelUri": {
-          "description": "Required. The public base model URI.",
           "type": "string"
         }
       },
@@ -21736,6 +21933,13 @@
           },
           "type": "array"
         },
+        "numericRestricts": {
+          "description": "Optional. List of Restrict of the datapoint, used to perform \"restricted searches\" where boolean rule are used to filter the subset of the database eligible for matching. This uses numeric comparisons.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1IndexDatapointNumericRestriction"
+          },
+          "type": "array"
+        },
         "restricts": {
           "description": "Optional. List of Restrict of the datapoint, used to perform \"restricted searches\" where boolean rule are used to filter the subset of the database eligible for matching. This uses categorical tokens. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering",
           "items": {
@@ -21752,6 +21956,52 @@
       "properties": {
         "crowdingAttribute": {
           "description": "The attribute value used for crowding. The maximum number of neighbors to return per crowding attribute value (per_crowding_attribute_num_neighbors) is configured per-query. This field is ignored if per_crowding_attribute_num_neighbors is larger than the total number of neighbors to return for a given query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1IndexDatapointNumericRestriction": {
+      "description": "This field allows restricts to be based on numeric comparisons rather than categorical tokens.",
+      "id": "GoogleCloudAiplatformV1beta1IndexDatapointNumericRestriction",
+      "properties": {
+        "namespace": {
+          "description": "The namespace of this restriction. e.g.: cost.",
+          "type": "string"
+        },
+        "op": {
+          "description": "This MUST be specified for queries and must NOT be specified for datapoints.",
+          "enum": [
+            "OPERATOR_UNSPECIFIED",
+            "LESS",
+            "LESS_EQUAL",
+            "EQUAL",
+            "GREATER_EQUAL",
+            "GREATER"
+          ],
+          "enumDescriptions": [
+            "Default value of the enum.",
+            "Datapoints are eligible iff their value is < the query's.",
+            "Datapoints are eligible iff their value is <= the query's.",
+            "Datapoints are eligible iff their value is == the query's.",
+            "Datapoints are eligible iff their value is >= the query's.",
+            "Datapoints are eligible iff their value is > the query's."
+          ],
+          "type": "string"
+        },
+        "valueDouble": {
+          "description": "Represents 64 bit float.",
+          "format": "double",
+          "type": "number"
+        },
+        "valueFloat": {
+          "description": "Represents 32 bit float.",
+          "format": "float",
+          "type": "number"
+        },
+        "valueInt": {
+          "description": "Represents 64 bit integer.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -23395,10 +23645,6 @@
           "$ref": "GoogleCloudAiplatformV1beta1ExplanationSpec",
           "description": "The default explanation specification for this Model. The Model can be used for requesting explanation after being deployed if it is populated. The Model can be used for batch explanation if it is populated. All fields of the explanation_spec can be overridden by explanation_spec of DeployModelRequest.deployed_model, or explanation_spec of BatchPredictionJob. If the default explanation specification is not set for this Model, this Model can still be used for requesting explanation by setting explanation_spec of DeployModelRequest.deployed_model and for batch explanation by setting explanation_spec of BatchPredictionJob."
         },
-        "generatedModelSource": {
-          "$ref": "GoogleCloudAiplatformV1beta1ModelGeneratedModelSource",
-          "description": "Optional. Used to specify the source of the Model Garden model or Genie models. Only present for models created or tuned from Model Garden and Genie."
-        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -23541,12 +23787,21 @@
           },
           "type": "array"
         },
+        "deploymentTimeout": {
+          "description": "Immutable. Deployment timeout. TODO (b/306244185): Revise documentation before exposing.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "env": {
           "description": "Immutable. List of environment variables to set in the container. After the container starts running, code running in the container can read these environment variables. Additionally, the command and args fields can reference these variables. Later entries in this list can also reference earlier entries. For example, the following example sets the variable `VAR_2` to have the value `foo bar`: ```json [ { \"name\": \"VAR_1\", \"value\": \"foo\" }, { \"name\": \"VAR_2\", \"value\": \"$(VAR_1) bar\" } ] ``` If you switch the order of the variables in the example, then the expansion does not occur. This field corresponds to the `env` field of the Kubernetes Containers [v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1EnvVar"
           },
           "type": "array"
+        },
+        "healthProbe": {
+          "$ref": "GoogleCloudAiplatformV1beta1Probe",
+          "description": "Immutable. Specification for Kubernetes readiness probe. TODO (b/306244185): Revise documentation before exposing."
         },
         "healthRoute": {
           "description": "Immutable. HTTP path on the container to send health checks to. Vertex AI intermittently sends GET requests to this path on the container's IP address and port to check that the container is healthy. Read more about [health checks](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#health). For example, if you set this field to `/bar`, then Vertex AI intermittently sends a GET request to the `/bar` path on the port of your container specified by the first value of this `ModelContainerSpec`'s ports field. If you don't specify this field, it defaults to the following value when you deploy this Model to an Endpoint: /v1/endpoints/ENDPOINT/deployedModels/ DEPLOYED_MODEL:predict The placeholders in this value are replaced as follows: * ENDPOINT: The last segment (following `endpoints/`)of the Endpoint.name][] field of the Endpoint where this Model has been deployed. (Vertex AI makes this value available to your container code as the [`AIP_ENDPOINT_ID` environment variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).) * DEPLOYED_MODEL: DeployedModel.id of the `DeployedModel`. (Vertex AI makes this value available to your container code as the [`AIP_DEPLOYED_MODEL_ID` environment variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).)",
@@ -23566,6 +23821,15 @@
         "predictRoute": {
           "description": "Immutable. HTTP path on the container to send prediction requests to. Vertex AI forwards requests sent using projects.locations.endpoints.predict to this path on the container's IP address and port. Vertex AI then returns the container's response in the API response. For example, if you set this field to `/foo`, then when Vertex AI receives a prediction request, it forwards the request body in a POST request to the `/foo` path on the port of your container specified by the first value of this `ModelContainerSpec`'s ports field. If you don't specify this field, it defaults to the following value when you deploy this Model to an Endpoint: /v1/endpoints/ENDPOINT/deployedModels/DEPLOYED_MODEL:predict The placeholders in this value are replaced as follows: * ENDPOINT: The last segment (following `endpoints/`)of the Endpoint.name][] field of the Endpoint where this Model has been deployed. (Vertex AI makes this value available to your container code as the [`AIP_ENDPOINT_ID` environment variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).) * DEPLOYED_MODEL: DeployedModel.id of the `DeployedModel`. (Vertex AI makes this value available to your container code as the [`AIP_DEPLOYED_MODEL_ID` environment variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).)",
           "type": "string"
+        },
+        "sharedMemorySizeMb": {
+          "description": "Immutable. The amount of the VM memory to reserve as the shared memory for the model in megabytes. TODO (b/306244185): Revise documentation before exposing.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startupProbe": {
+          "$ref": "GoogleCloudAiplatformV1beta1Probe",
+          "description": "Immutable. Specification for Kubernetes startup probe. TODO (b/306244185): Revise documentation before exposing."
         }
       },
       "type": "object"
@@ -24073,32 +24337,6 @@
           "description": "Output only. The ID of the export format. The possible format IDs are: * `tflite` Used for Android mobile devices. * `edgetpu-tflite` Used for [Edge TPU](https://cloud.google.com/edge-tpu/) devices. * `tf-saved-model` A tensorflow model in SavedModel format. * `tf-js` A [TensorFlow.js](https://www.tensorflow.org/js) model that can be used in the browser and in Node.js using JavaScript. * `core-ml` Used for iOS mobile devices. * `custom-trained` A Model that was uploaded or trained by custom code.",
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1beta1ModelGardenSource": {
-      "description": "Contains information about the source of the models generated from Model Garden.",
-      "id": "GoogleCloudAiplatformV1beta1ModelGardenSource",
-      "properties": {
-        "publicModelName": {
-          "description": "Required. The model garden source model resource name.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1beta1ModelGeneratedModelSource": {
-      "description": "Used to specify the source of the Model Garden model or Genie models. Only present for models created or tuned from Model Garden and Genie.",
-      "id": "GoogleCloudAiplatformV1beta1ModelGeneratedModelSource",
-      "properties": {
-        "genieSource": {
-          "$ref": "GoogleCloudAiplatformV1beta1GenieSource",
-          "description": "Information about the base model of Genie models."
-        },
-        "modelGardenSource": {
-          "$ref": "GoogleCloudAiplatformV1beta1ModelGardenSource",
-          "description": "Source information of Model Garden models."
         }
       },
       "type": "object"
@@ -26132,6 +26370,41 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1Probe": {
+      "description": "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
+      "id": "GoogleCloudAiplatformV1beta1Probe",
+      "properties": {
+        "exec": {
+          "$ref": "GoogleCloudAiplatformV1beta1ProbeExecAction",
+          "description": "Exec specifies the action to take."
+        },
+        "periodSeconds": {
+          "description": "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Must be less than timeout_seconds. Maps to Kubernetes probe argument 'periodSeconds'.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "timeoutSeconds": {
+          "description": "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Must be greater or equal to period_seconds. Maps to Kubernetes probe argument 'timeoutSeconds'.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ProbeExecAction": {
+      "description": "ExecAction specifies a command to execute.",
+      "id": "GoogleCloudAiplatformV1beta1ProbeExecAction",
+      "properties": {
+        "command": {
+          "description": "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1PublisherModel": {
       "description": "A Model Garden Publisher Model.",
       "id": "GoogleCloudAiplatformV1beta1PublisherModel",
@@ -26823,6 +27096,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1RebootPersistentResourceOperationMetadata": {
+      "description": "Details of operations that perform reboot PersistentResource.",
+      "id": "GoogleCloudAiplatformV1beta1RebootPersistentResourceOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for PersistentResource."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1RemoveContextChildrenRequest": {
       "description": "Request message for MetadataService.DeleteContextChildrenRequest.",
       "id": "GoogleCloudAiplatformV1beta1RemoveContextChildrenRequest",
@@ -26882,6 +27166,10 @@
             "Notebook execution process has failed. Expect this message within timeout."
           ],
           "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Optional. The error details of the event."
         },
         "vmToken": {
           "description": "Required. The VM identity token (a JWT) for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity",
@@ -31426,6 +31714,10 @@
           },
           "type": "array"
         },
+        "studyStoppingConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1StudySpecStudyStoppingConfig",
+          "description": "Conditions for automated stopping of a Study. Enable automated stopping by configuring at least one condition."
+        },
         "transferLearningConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1StudySpecTransferLearningConfig",
           "description": "The configuration info/options for transfer learning. Currently supported for Vertex AI Vizier service, not HyperParameterTuningJob"
@@ -31765,6 +32057,45 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1StudySpecStudyStoppingConfig": {
+      "description": "The configuration (stopping conditions) for automated stopping of a Study. Conditions include trial budgets, time budgets, and convergence detection.",
+      "id": "GoogleCloudAiplatformV1beta1StudySpecStudyStoppingConfig",
+      "properties": {
+        "maxDurationNoProgress": {
+          "description": "If the objective value has not improved for this much time, stop the study. WARNING: Effective only for single-objective studies.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "maxNumTrials": {
+          "description": "If there are more than this many trials, stop the study.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxNumTrialsNoProgress": {
+          "description": "If the objective value has not improved for this many consecutive trials, stop the study. WARNING: Effective only for single-objective studies.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maximumRuntimeConstraint": {
+          "$ref": "GoogleCloudAiplatformV1beta1StudyTimeConstraint",
+          "description": "If the specified time or duration has passed, stop the study."
+        },
+        "minNumTrials": {
+          "description": "If there are fewer than this many COMPLETED trials, do not stop the study.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minimumRuntimeConstraint": {
+          "$ref": "GoogleCloudAiplatformV1beta1StudyTimeConstraint",
+          "description": "Each \"stopping rule\" in this proto specifies an \"if\" condition. Before Vizier would generate a new suggestion, it first checks each specified stopping rule, from top to bottom in this list. Note that the first few rules (e.g. minimum_runtime_constraint, min_num_trials) will prevent other stopping rules from being evaluated until they are met. For example, setting `min_num_trials=5` and `always_stop_after= 1 hour` means that the Study will ONLY stop after it has 5 COMPLETED trials, even if more than an hour has passed since its creation. It follows the first applicable rule (whose \"if\" condition is satisfied) to make a stopping decision. If none of the specified rules are applicable, then Vizier decides that the study should not stop. If Vizier decides that the study should stop, the study enters STOPPING state (or STOPPING_ASAP if should_stop_asap = true). IMPORTANT: The automatic study state transition happens precisely as described above; that is, deleting trials or updating StudyConfig NEVER automatically moves the study state back to ACTIVE. If you want to _resume_ a Study that was stopped, 1) change the stopping conditions if necessary, 2) activate the study, and then 3) ask for suggestions. If the specified time or duration has not passed, do not stop the study."
+        },
+        "shouldStopAsap": {
+          "description": "If true, a Study enters STOPPING_ASAP whenever it would normally enters STOPPING state. The bottom line is: set to true if you want to interrupt on-going evaluations of Trials as soon as the study stopping condition is met. (Please see Study.State documentation for the source of truth).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1StudySpecTransferLearningConfig": {
       "description": "This contains flag for manually disabling transfer learning for a study. The names of prior studies being used for transfer learning (if any) are also listed here.",
       "id": "GoogleCloudAiplatformV1beta1StudySpecTransferLearningConfig",
@@ -31780,6 +32111,23 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1StudyTimeConstraint": {
+      "description": "Time-based Constraint for Study",
+      "id": "GoogleCloudAiplatformV1beta1StudyTimeConstraint",
+      "properties": {
+        "endTime": {
+          "description": "Compares the wallclock time to this time. Must use UTC timezone.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "maxDuration": {
+          "description": "Counts the wallclock time passed since the creation of this Study.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -32420,6 +32768,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1TokensInfo": {
+      "description": "Tokens info with a list of tokens and the corresponding list of token ids.",
+      "id": "GoogleCloudAiplatformV1beta1TokensInfo",
+      "properties": {
+        "tokenIds": {
+          "description": "A list of token ids from the input.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tokens": {
+          "description": "A list of tokens from the input.",
+          "items": {
+            "format": "byte",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1TrainingConfig": {
       "description": "CMLE training config. For every active learning labeling iteration, system will train a machine learning model on CMLE. The trained model will be used by data sampling algorithm to select DataItems.",
       "id": "GoogleCloudAiplatformV1beta1TrainingConfig",
@@ -32953,7 +33324,7 @@
           "type": "string"
         },
         "serviceAccount": {
-          "description": "Optional. The user-provided custom service account to use to do the model upload. If empty, [Vertex AI Service Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) will be used. Users uploading the Model must have the `iam.serviceAccounts.actAs` permission on this service account. Also, this account must belong to the project specified in the `parent` field and have all necessary read permissions.",
+          "description": "Optional. The user-provided custom service account to use to do the model upload. If empty, [Vertex AI Service Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) will be used to access resources needed to upload the model. This account must belong to the target project where the model is uploaded to, i.e., the project specified in the `parent` field of this request and have necessary read permissions (to Google Cloud Storage, Artifact Registry, etc.).",
           "type": "string"
         }
       },
