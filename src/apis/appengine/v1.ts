@@ -456,6 +456,23 @@ export namespace appengine_v1 {
     cloudBuildId?: string | null;
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values. A month and day, with a zero year (for example, an anniversary). A year on its own, with a zero month and a zero day. A year and month, with a zero day (for example, a credit card expiration date).Related types: google.type.TimeOfDay google.type.DateTime google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * Request message for Instances.DebugInstance.
    */
   export interface Schema$DebugInstanceRequest {
@@ -889,6 +906,19 @@ export namespace appengine_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * Response message for Applications.ListRuntimes.
+   */
+  export interface Schema$ListRuntimesResponse {
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The runtimes available to the requested application.
+     */
+    runtimes?: Schema$Runtime[];
   }
   /**
    * Response message for Services.ListServices.
@@ -1356,6 +1386,39 @@ export namespace appengine_v1 {
     volumes?: Schema$Volume[];
   }
   /**
+   * Runtime versions for App Engine.
+   */
+  export interface Schema$Runtime {
+    /**
+     * Date when Runtime is decommissioned.
+     */
+    decommissionedDate?: Schema$Date;
+    /**
+     * Date when Runtime is deprecated.
+     */
+    deprecationDate?: Schema$Date;
+    /**
+     * Date when Runtime is end of support.
+     */
+    endOfSupportDate?: Schema$Date;
+    /**
+     * The environment of the runtime.
+     */
+    environment?: string | null;
+    /**
+     * The name of the runtime, e.g., 'go113', 'nodejs12', etc.
+     */
+    name?: string | null;
+    /**
+     * The stage of life this runtime is in, e.g., BETA, GA, etc.
+     */
+    stage?: string | null;
+    /**
+     * Warning messages, e.g., a deprecation warning.
+     */
+    warnings?: string[] | null;
+  }
+  /**
    * Executes a script to handle the request that matches the URL pattern.
    */
   export interface Schema$ScriptHandler {
@@ -1621,11 +1684,15 @@ export namespace appengine_v1 {
      */
     flexibleRuntimeSettings?: Schema$FlexibleRuntimeSettings;
     /**
+     * Additional Google Generated Customer Metadata, this field won't be provided by default and can be requested by setting the IncludeExtraData field in GetVersionRequest
+     */
+    generatedCustomerMetadata?: {[key: string]: any} | null;
+    /**
      * An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the request and other request handlers are not attempted.Only returned in GET requests if view=FULL is set.
      */
     handlers?: Schema$UrlMap[];
     /**
-     * Configures health checking for instances. Unhealthy instances are stopped and replaced with new instances. Only applicable in the App Engine flexible environment.Only returned in GET requests if view=FULL is set.
+     * Configures health checking for instances. Unhealthy instances are stopped and replaced with new instances. Only applicable in the App Engine flexible environment.
      */
     healthCheck?: Schema$HealthCheck;
     /**
@@ -1645,7 +1712,7 @@ export namespace appengine_v1 {
      */
     libraries?: Schema$Library[];
     /**
-     * Configures liveness health checking for instances. Unhealthy instances are stopped and replaced with new instancesOnly returned in GET requests if view=FULL is set.
+     * Configures liveness health checking for instances. Unhealthy instances are stopped and replaced with new instances
      */
     livenessCheck?: Schema$LivenessCheck;
     /**
@@ -1665,7 +1732,7 @@ export namespace appengine_v1 {
      */
     nobuildFilesRegex?: string | null;
     /**
-     * Configures readiness health checking for instances. Unhealthy instances are not put into the backend traffic rotation.Only returned in GET requests if view=FULL is set.
+     * Configures readiness health checking for instances. Unhealthy instances are not put into the backend traffic rotation.
      */
     readinessCheck?: Schema$ReadinessCheck;
     /**
@@ -1952,6 +2019,100 @@ export namespace appengine_v1 {
     }
 
     /**
+     * Lists all the available runtimes for the application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listRuntimes(
+      params: Params$Resource$Apps$Listruntimes,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listRuntimes(
+      params?: Params$Resource$Apps$Listruntimes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRuntimesResponse>;
+    listRuntimes(
+      params: Params$Resource$Apps$Listruntimes,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listRuntimes(
+      params: Params$Resource$Apps$Listruntimes,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    listRuntimes(
+      params: Params$Resource$Apps$Listruntimes,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    listRuntimes(
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    listRuntimes(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Listruntimes
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRuntimesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Listruntimes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Listruntimes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/apps/{appsId}:listRuntimes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appsId'],
+        pathParams: ['appsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRuntimesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRuntimesResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates the specified Application resource. You can update the following fields: auth_domain - Google authentication domain for controlling user access to the application. default_cookie_expiration - Cookie expiration policy for the application. iap - Identity-Aware Proxy properties for the application.
      *
      * @param params - Parameters for request
@@ -2136,6 +2297,17 @@ export namespace appengine_v1 {
      * Options to include extra data
      */
     includeExtraData?: string;
+  }
+  export interface Params$Resource$Apps$Listruntimes
+    extends StandardParameters {
+    /**
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Optional. The environment of the Application.
+     */
+    environment?: string;
   }
   export interface Params$Resource$Apps$Patch extends StandardParameters {
     /**

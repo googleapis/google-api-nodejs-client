@@ -1859,7 +1859,7 @@
       }
     }
   },
-  "revision": "20231016",
+  "revision": "20231109",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -4250,7 +4250,7 @@
         },
         "healthCheck": {
           "$ref": "HealthCheck",
-          "description": "Configures health checking for instances. Unhealthy instances are stopped and replaced with new instances. Only applicable in the App Engine flexible environment.Only returned in GET requests if view=FULL is set."
+          "description": "Configures health checking for instances. Unhealthy instances are stopped and replaced with new instances. Only applicable in the App Engine flexible environment."
         },
         "id": {
           "description": "Relative name of the version within the service. Example: v1. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names: \"default\", \"latest\", and any name with the prefix \"ah-\".",
@@ -4298,7 +4298,7 @@
         },
         "livenessCheck": {
           "$ref": "LivenessCheck",
-          "description": "Configures liveness health checking for instances. Unhealthy instances are stopped and replaced with new instancesOnly returned in GET requests if view=FULL is set."
+          "description": "Configures liveness health checking for instances. Unhealthy instances are stopped and replaced with new instances"
         },
         "manualScaling": {
           "$ref": "ManualScaling",
@@ -4318,7 +4318,7 @@
         },
         "readinessCheck": {
           "$ref": "ReadinessCheck",
-          "description": "Configures readiness health checking for instances. Unhealthy instances are not put into the backend traffic rotation.Only returned in GET requests if view=FULL is set."
+          "description": "Configures readiness health checking for instances. Unhealthy instances are not put into the backend traffic rotation."
         },
         "resources": {
           "$ref": "Resources",
