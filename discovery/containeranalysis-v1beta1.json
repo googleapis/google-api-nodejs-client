@@ -12,7 +12,7 @@
   "baseUrl": "https://containeranalysis.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Container Analysis",
-  "description": "An implementation of the Grafeas API, which stores, and enables querying and retrieval of critical metadata about all of your software artifacts.",
+  "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in both Artifact Registry and with Advanced Vulnerability Insights (runtime scanning) in GKE. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/container-analysis/api/reference/rest/",
   "fullyEncodeReservedExpansion": true,
@@ -815,7 +815,7 @@
       }
     }
   },
-  "revision": "20231006",
+  "revision": "20231103",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
