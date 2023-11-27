@@ -1966,7 +1966,7 @@
       }
     }
   },
-  "revision": "20231005",
+  "revision": "20231110",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -1989,9 +1989,30 @@
           "description": "The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.",
           "type": "string"
         },
+        "priority": {
+          "deprecated": true,
+          "description": "This field has been deprecated in favor of `standard_isolation.priority`. If you set this field, `standard_isolation.priority` will be set instead. The priority of requests sent using this app profile.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "PRIORITY_LOW",
+            "PRIORITY_MEDIUM",
+            "PRIORITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. Mapped to PRIORITY_HIGH (the legacy behavior) on creation.",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "singleClusterRouting": {
           "$ref": "SingleClusterRouting",
           "description": "Use a single-cluster routing policy."
+        },
+        "standardIsolation": {
+          "$ref": "StandardIsolation",
+          "description": "The standard options used for isolating this app profile's traffic from other use cases."
         }
       },
       "type": "object"
@@ -2216,6 +2237,10 @@
         "consistencyToken": {
           "description": "Required. The token created using GenerateConsistencyToken for the Table.",
           "type": "string"
+        },
+        "standardReadRemoteWrites": {
+          "$ref": "StandardReadRemoteWrites",
+          "description": "Checks that reads using an app profile with `StandardIsolation` can see all writes committed before the token was created, even if the read and write target different clusters."
         }
       },
       "type": "object"
@@ -2364,7 +2389,8 @@
         },
         "stats": {
           "$ref": "ColumnFamilyStats",
-          "description": "Only available with STATS_VIEW, this includes summary statistics about column family contents. For statistics over an entire table, see TableStats above."
+          "description": "Output only. Only available with STATS_VIEW, this includes summary statistics about column family contents. For statistics over an entire table, see TableStats above.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3067,10 +3093,6 @@
       "description": "Request message for google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies",
       "id": "ModifyColumnFamiliesRequest",
       "properties": {
-        "ignoreWarnings": {
-          "description": "If true, ignore safety checks when modifying the column families.",
-          "type": "boolean"
-        },
         "modifications": {
           "description": "Required. Modifications to be atomically applied to the specified table's families. Entries are applied in order, meaning that earlier modifications can be masked by later ones (in the case of repeated updates to the same family, for example).",
           "items": {
@@ -3366,6 +3388,35 @@
       },
       "type": "object"
     },
+    "StandardIsolation": {
+      "description": "Standard options for isolating this app profile's traffic from other use cases.",
+      "id": "StandardIsolation",
+      "properties": {
+        "priority": {
+          "description": "The priority of requests sent using this app profile.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "PRIORITY_LOW",
+            "PRIORITY_MEDIUM",
+            "PRIORITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. Mapped to PRIORITY_HIGH (the legacy behavior) on creation.",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StandardReadRemoteWrites": {
+      "description": "Checks that all writes before the consistency token was generated is replicated in every cluster and readable.",
+      "id": "StandardReadRemoteWrites",
+      "properties": {},
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -3443,7 +3494,8 @@
         },
         "stats": {
           "$ref": "TableStats",
-          "description": "Only available with STATS_VIEW, this includes summary statistics about the entire table contents. For statistics about a specific column family, see ColumnFamilyStats in the mapped ColumnFamily collection above."
+          "description": "Output only. Only available with STATS_VIEW, this includes summary statistics about the entire table contents. For statistics about a specific column family, see ColumnFamilyStats in the mapped ColumnFamily collection above.",
+          "readOnly": true
         }
       },
       "type": "object"
