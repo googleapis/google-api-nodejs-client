@@ -600,6 +600,174 @@
               "resources": {
                 "connectionSchemaMetadata": {
                   "methods": {
+                    "getAction": {
+                      "description": "Get action.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/connectionSchemaMetadata:getAction",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.connectionSchemaMetadata.getAction",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "actionId": {
+                          "description": "Required. Id of the action.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}/connectionSchemaMetadata",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/connectionSchemaMetadata$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:getAction",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "getEntityType": {
+                      "description": "Get entity type.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/connectionSchemaMetadata:getEntityType",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.connectionSchemaMetadata.getEntityType",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "entityId": {
+                          "description": "Required. Id of the entity type.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}/connectionSchemaMetadata",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/connectionSchemaMetadata$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:getEntityType",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "listActions": {
+                      "description": "List actions.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/connectionSchemaMetadata:listActions",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.connectionSchemaMetadata.listActions",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Required. Filter Wildcards are not supported in the filter currently.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. Resource name format. projects/{project}/locations/{location}/connections/{connection}/connectionSchemaMetadata",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/connectionSchemaMetadata$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Page size. If unspecified, at most 50 actions will be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Specifies which fields are returned in response. Defaults to BASIC view.",
+                          "enum": [
+                            "VIEW_UNSPECIFIED",
+                            "BASIC"
+                          ],
+                          "enumDescriptions": [
+                            "",
+                            ""
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:listActions",
+                      "response": {
+                        "$ref": "ListActionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "listEntityTypes": {
+                      "description": "List entity types.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/connectionSchemaMetadata:listEntityTypes",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.connectionSchemaMetadata.listEntityTypes",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Required. Filter Wildcards are not supported in the filter currently.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}/connectionSchemaMetadata",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/connectionSchemaMetadata$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Page size. If unspecified, at most 50 entity types will be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Specifies which fields are returned in response. Defaults to BASIC view.",
+                          "enum": [
+                            "VIEW_UNSPECIFIED",
+                            "BASIC"
+                          ],
+                          "enumDescriptions": [
+                            "",
+                            ""
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:listEntityTypes",
+                      "response": {
+                        "$ref": "ListEntityTypesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "refresh": {
                       "description": "Refresh runtime schema of a connection.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/connectionSchemaMetadata:refresh",
@@ -1147,6 +1315,327 @@
                 }
               },
               "resources": {
+                "customConnectors": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new CustomConnector in a given project and location.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors",
+                      "httpMethod": "POST",
+                      "id": "connectors.projects.locations.global.customConnectors.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "customConnectorId": {
+                          "description": "Required. Identifier to assign to the CreateCustomConnector. Must be unique within scope of the parent resource.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent resource of the CreateCustomConnector, of the form: `projects/{project}/locations/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/customConnectors",
+                      "request": {
+                        "$ref": "CustomConnector"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single CustomConnector.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}",
+                      "httpMethod": "DELETE",
+                      "id": "connectors.projects.locations.global.customConnectors.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/{project}/locations/{location}/customConnectors/{connector}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single CustomConnector.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.global.customConnectors.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/*/locations/*/customConnectors/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "CustomConnector"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List CustomConnectorVersions in a given project",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.global.customConnectors.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Filter string.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent resource of the custom connectors, of the form: `projects/*/locations/*` Only global location is supported for CustomConnector resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/customConnectors",
+                      "response": {
+                        "$ref": "ListCustomConnectorsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the parameters of a CustomConnector.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}",
+                      "httpMethod": "PATCH",
+                      "id": "connectors.projects.locations.global.customConnectors.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. Resource name of the CustomConnector. Format: projects/{project}/locations/{location}/customConnectors/{connector}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Field mask is used to specify the fields to be overwritten in the Connector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. Set the mask as \"*\" for full replacement, which means all fields will be overwritten.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "CustomConnector"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "customConnectorVersions": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a new CustomConnectorVersion in a given project and location.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}/customConnectorVersions",
+                          "httpMethod": "POST",
+                          "id": "connectors.projects.locations.global.customConnectors.customConnectorVersions.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "customConnectorVersionId": {
+                              "description": "Required. Identifier to assign to the CreateCustomConnectorVersion. Must be unique within scope of the parent resource.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Parent resource of the CreateCustomConnector, of the form: `projects/{project}/locations/{location}/customConnectors/{custom_connector}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/customConnectorVersions",
+                          "request": {
+                            "$ref": "CustomConnectorVersion"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a single CustomConnectorVersion.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}/customConnectorVersions/{customConnectorVersionsId}",
+                          "httpMethod": "DELETE",
+                          "id": "connectors.projects.locations.global.customConnectors.customConnectorVersions.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Resource name of the form: `projects/{project}/locations/{location}/customConnectors/{custom_connector}/customConnectorVersions/{custom_connector_version}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+/customConnectorVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets details of a single CustomConnectorVersion.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}/customConnectorVersions/{customConnectorVersionsId}",
+                          "httpMethod": "GET",
+                          "id": "connectors.projects.locations.global.customConnectors.customConnectorVersions.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Resource name of the form: `projects/*/locations/{location}/customConnectors/*/customConnectorVersions/*`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+/customConnectorVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "CustomConnectorVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "List CustomConnectorVersions in a given project",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}/customConnectorVersions",
+                          "httpMethod": "GET",
+                          "id": "connectors.projects.locations.global.customConnectors.customConnectorVersions.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Parent resource of the connectors, of the form: `projects/*/locations/{location}/customConnectors/*/customConnectorVersions/*`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/customConnectorVersions",
+                          "response": {
+                            "$ref": "ListCustomConnectorVersionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates the parameters of a CustomConnectorVersion.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}/customConnectorVersions/{customConnectorVersionsId}",
+                          "httpMethod": "PATCH",
+                          "id": "connectors.projects.locations.global.customConnectors.customConnectorVersions.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Output only. Identifier. Resource name of the Version. Format: projects/{project}/locations/{location}/customConnectors/{custom_connector}/customConnectorVersions/{custom_connector_version}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+/customConnectorVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Required. Field mask is used to specify the fields to be overwritten in the Connector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. Set the mask as \"*\" for full replacement, which means all fields will be overwritten.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "CustomConnectorVersion"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
                 "managedZones": {
                   "methods": {
                     "create": {
@@ -1832,7 +2321,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20231106",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2371,12 +2860,22 @@
           "enum": [
             "STATE_UNSPECIFIED",
             "REFRESHING",
-            "UPDATED"
+            "UPDATED",
+            "REFRESHING_SCHEMA_METADATA",
+            "UPDATED_SCHEMA_METADATA",
+            "REFRESH_SCHEMA_METADATA_FAILED",
+            "REFRESHING_FULL_SCHEMA",
+            "UPDATED_FULL_SCHEMA"
           ],
           "enumDescriptions": [
             "Default state.",
             "Schema refresh is in progress.",
-            "Schema has been updated."
+            "Schema has been updated.",
+            "Schema refresh for metadata is in progress.",
+            "Schema metadata has been updated.",
+            "Failed to refresh schema metadata",
+            "Triggered full schema refresh",
+            "Updated full schema"
           ],
           "readOnly": true,
           "type": "string"
@@ -2741,6 +3240,142 @@
       },
       "type": "object"
     },
+    "CustomConnector": {
+      "description": "CustomConnector represents the custom connector defined by the customer as part of byoc.",
+      "id": "CustomConnector",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Created time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customConnectorType": {
+          "description": "Required. Type of the custom connector.",
+          "enum": [
+            "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED",
+            "OPEN_API",
+            "PROTO"
+          ],
+          "enumDescriptions": [
+            "Connector type is not specified.",
+            "OpenAPI connector.",
+            "Proto connector."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the resource.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources",
+          "type": "object"
+        },
+        "launchStage": {
+          "description": "Output only. Launch stage.",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "PREVIEW",
+            "GA",
+            "DEPRECATED",
+            "PRIVATE_PREVIEW"
+          ],
+          "enumDescriptions": [
+            "LAUNCH_STAGE_UNSPECIFIED.",
+            "PREVIEW.",
+            "GA.",
+            "DEPRECATED.",
+            "PRIVATE_PREVIEW."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "logo": {
+          "description": "Optional. Logo of the resource.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the CustomConnector. Format: projects/{project}/locations/{location}/customConnectors/{connector}",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomConnectorVersion": {
+      "description": "CustomConnectorVersion indicates a specific version of a connector.",
+      "id": "CustomConnectorVersion",
+      "properties": {
+        "authConfig": {
+          "$ref": "AuthConfig",
+          "description": "Required. Configuration for establishing the authentication to the connector destination."
+        },
+        "createTime": {
+          "description": "Output only. Created time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "destinationConfig": {
+          "$ref": "DestinationConfig",
+          "description": "Required. Configuration of the customConnector's destination."
+        },
+        "enableBackendDestinationConfig": {
+          "description": "Optional. Whether to enable backend destination config. This is the backend server that the connector connects to.",
+          "type": "boolean"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Identifier. Resource name of the Version. Format: projects/{project}/locations/{location}/customConnectors/{custom_connector}/customConnectorVersions/{custom_connector_version}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "specLocation": {
+          "description": "Optional. Location of the custom connector spec.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of the customConnector.",
+          "enum": [
+            "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED",
+            "OPEN_API",
+            "PROTO"
+          ],
+          "enumDescriptions": [
+            "Connector type is not specified.",
+            "OpenAPI connector.",
+            "Proto connector."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Destination": {
       "id": "Destination",
       "properties": {
@@ -2856,6 +3491,31 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionConfig": {
+      "description": "Regional encryption config for CMEK details.",
+      "id": "EncryptionConfig",
+      "properties": {
+        "encryptionType": {
+          "description": "Optional. Encryption type for the region.",
+          "enum": [
+            "ENCRYPTION_TYPE_UNSPECIFIED",
+            "GMEK",
+            "CMEK"
+          ],
+          "enumDescriptions": [
+            "Egress mode unspecified.",
+            "Network egress through auto assigned IPs.",
+            "Network egress through static IPs."
+          ],
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "Optional. KMS crypto key. This field accepts identifiers of the form `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/ {crypto_key}`",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "EncryptionKey": {
@@ -2977,6 +3637,10 @@
         "eventTypeId": {
           "description": "Optional. Event type id of the event of current EventSubscription.",
           "type": "string"
+        },
+        "jms": {
+          "$ref": "JMS",
+          "description": "Optional. JMS is the source for the event listener."
         },
         "name": {
           "description": "Required. Resource name of the EventSubscription. Format: projects/{project}/locations/{location}/connections/{connection}/eventSubscriptions/{event_subscription}",
@@ -3184,6 +3848,20 @@
           "description": "Enrichment Supported.",
           "type": "boolean"
         },
+        "eventListenerType": {
+          "description": "The type of the event listener for a specific connector.",
+          "enum": [
+            "EVENT_LISTENER_TYPE_UNSPECIFIED",
+            "WEBHOOK_LISTENER",
+            "JMS_LISTENER"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Webhook listener. e.g. Jira, Zendesk, Servicenow etc.,",
+            "JMS Listener. e.g. IBM MQ, Rabbit MQ etc.,"
+          ],
+          "type": "string"
+        },
         "isEventingSupported": {
           "description": "Is Eventing Supported.",
           "type": "boolean"
@@ -3250,6 +3928,21 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "type": {
+          "description": "Output only. The type of the event listener for a specific connector.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "WEBHOOK",
+            "JMS"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Webhook listener. e.g. Jira, Zendesk, Servicenow etc.,",
+            "JMS Listener. e.g. IBM MQ, Rabbit MQ etc.,"
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3789,6 +4482,31 @@
       },
       "type": "object"
     },
+    "JMS": {
+      "description": "JMS message denotes the source of the event",
+      "id": "JMS",
+      "properties": {
+        "name": {
+          "description": "Optional. Name of the JMS source. i.e. queueName or topicName",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Type of the JMS Source. i.e. Queue or Topic",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "QUEUE",
+            "TOPIC"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "JMS Queue.",
+            "JMS Topic."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "JsonSchema": {
       "description": "JsonSchema representation of schema metadata",
       "id": "JsonSchema",
@@ -4004,6 +4722,24 @@
       },
       "type": "object"
     },
+    "ListActionsResponse": {
+      "description": "Response message for ListActions API",
+      "id": "ListActionsResponse",
+      "properties": {
+        "actions": {
+          "description": "list of actions",
+          "items": {
+            "$ref": "RuntimeActionSchema"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "token for next page",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListConnectionsResponse": {
       "description": "Response message for ConnectorsService.ListConnections",
       "id": "ListConnectionsResponse",
@@ -4079,6 +4815,56 @@
       },
       "type": "object"
     },
+    "ListCustomConnectorVersionsResponse": {
+      "description": "Response message for Connectors.ListCustomConnectorVersions.",
+      "id": "ListCustomConnectorVersionsResponse",
+      "properties": {
+        "customConnectorVersions": {
+          "description": "A list of connector versions.",
+          "items": {
+            "$ref": "CustomConnectorVersion"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListCustomConnectorsResponse": {
+      "description": "Response message for Connectors.ListCustomConnectors.",
+      "id": "ListCustomConnectorsResponse",
+      "properties": {
+        "customConnectors": {
+          "description": "A list of customConnectors.",
+          "items": {
+            "$ref": "CustomConnector"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListEndpointAttachmentsResponse": {
       "description": "Response message for ConnectorsService.ListEndpointAttachments",
       "id": "ListEndpointAttachmentsResponse",
@@ -4100,6 +4886,24 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListEntityTypesResponse": {
+      "description": "Response message for ListEntityTypes API",
+      "id": "ListEntityTypesResponse",
+      "properties": {
+        "entityTypes": {
+          "description": "list of entity types",
+          "items": {
+            "$ref": "RuntimeEntitySchema"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "token for next page",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4707,6 +5511,10 @@
       "description": "Regional Settings details.",
       "id": "RegionalSettings",
       "properties": {
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig",
+          "description": "Optional. Regional encryption config to hold CMEK details."
+        },
         "name": {
           "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/{location}/regionalSettings",
           "readOnly": true,
