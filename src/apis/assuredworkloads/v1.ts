@@ -129,6 +129,10 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest {
     /**
+     * Optional. Acknowledge type of specified violation.
+     */
+    acknowledgeType?: string | null;
+    /**
      * Required. Business justification explaining the need for violation acknowledgement
      */
     comment?: string | null;
@@ -167,7 +171,7 @@ export namespace assuredworkloads_v1 {
      */
     asset?: string | null;
     /**
-     * Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     * Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      */
     assetType?: string | null;
   }
@@ -288,7 +292,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse {}
   /**
-   * Workload monitoring Violation. Next Id: 28
+   * Workload monitoring Violation.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1Violation {
     /**
@@ -299,6 +303,10 @@ export namespace assuredworkloads_v1 {
      * Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.
      */
     acknowledgementTime?: string | null;
+    /**
+     * Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations.
+     */
+    associatedOrgPolicyViolationId?: string | null;
     /**
      * Output only. Immutable. Audit Log Link for violated resource Format: https://console.cloud.google.com/logs/query;query={logName\}{protoPayload.resourceName\}{timeRange\}{folder\}
      */
@@ -336,6 +344,10 @@ export namespace assuredworkloads_v1 {
      */
     orgPolicyConstraint?: string | null;
     /**
+     * Optional. Output only. Parent project number where resource is present. Empty for org-policy violations.
+     */
+    parentProjectNumber?: string | null;
+    /**
      * Output only. Compliance violation remediation
      */
     remediation?: Schema$GoogleCloudAssuredworkloadsV1ViolationRemediation;
@@ -344,6 +356,14 @@ export namespace assuredworkloads_v1 {
      */
     resolveTime?: string | null;
     /**
+     * Optional. Output only. Name of the resource like //storage.googleapis.com/myprojectxyz-testbucket. Empty for org-policy violations.
+     */
+    resourceName?: string | null;
+    /**
+     * Optional. Output only. Type of the resource like compute.googleapis.com/Disk, etc. Empty for org-policy violations.
+     */
+    resourceType?: string | null;
+    /**
      * Output only. State of the violation
      */
     state?: string | null;
@@ -351,9 +371,13 @@ export namespace assuredworkloads_v1 {
      * Output only. The last time when the Violation record was updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Type of the violation
+     */
+    violationType?: string | null;
   }
   /**
-   * Violation exception detail. Next Id: 6
+   * Violation exception detail.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1ViolationExceptionContext {
     /**
@@ -450,7 +474,7 @@ export namespace assuredworkloads_v1 {
      */
     complianceStatus?: Schema$GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus;
     /**
-     * Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment."
+     * Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.
      */
     compliantButDisallowedServices?: string[] | null;
     /**
@@ -462,7 +486,7 @@ export namespace assuredworkloads_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Represents the Ekm Provisioning State of the given workload.
+     * Output only. Represents the Ekm Provisioning State of the given workload.
      */
     ekmProvisioningResponse?: Schema$GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse;
     /**
@@ -527,9 +551,17 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus {
     /**
+     * Number of current resource violations which are not acknowledged.
+     */
+    acknowledgedResourceViolationCount?: number | null;
+    /**
      * Number of current orgPolicy violations which are acknowledged.
      */
     acknowledgedViolationCount?: number | null;
+    /**
+     * Number of current resource violations which are acknowledged.
+     */
+    activeResourceViolationCount?: number | null;
     /**
      * Number of current orgPolicy violations which are not acknowledged.
      */
@@ -1707,7 +1739,7 @@ export namespace assuredworkloads_v1 {
   export interface Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove
     extends StandardParameters {
     /**
-     * Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     * Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      */
     assetTypes?: string[];
     /**

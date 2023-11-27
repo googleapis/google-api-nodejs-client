@@ -171,7 +171,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     asset?: string | null;
     /**
-     * Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     * Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      */
     assetType?: string | null;
   }
@@ -283,7 +283,7 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse {}
   /**
-   * Workload monitoring Violation. Next Id: 28
+   * Workload monitoring Violation.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1Violation {
     /**
@@ -368,7 +368,7 @@ export namespace assuredworkloads_v1beta1 {
     violationType?: string | null;
   }
   /**
-   * Violation exception detail. Next Id: 6
+   * Violation exception detail.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext {
     /**
@@ -469,7 +469,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     complianceStatus?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus;
     /**
-     * Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment."
+     * Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.
      */
     compliantButDisallowedServices?: string[] | null;
     /**
@@ -481,7 +481,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Represents the Ekm Provisioning State of the given workload.
+     * Output only. Represents the Ekm Provisioning State of the given workload.
      */
     ekmProvisioningResponse?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadEkmProvisioningResponse;
     /**
@@ -1780,7 +1780,7 @@ export namespace assuredworkloads_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove
     extends StandardParameters {
     /**
-     * Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     * Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      */
     assetTypes?: string[];
     /**

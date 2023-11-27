@@ -191,7 +191,7 @@
                   ],
                   "parameters": {
                     "assetTypes": {
-                      "description": "Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).",
+                      "description": "Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).",
                       "location": "query",
                       "repeated": true,
                       "type": "string"
@@ -563,7 +563,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231110",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -636,7 +636,7 @@
           "type": "string"
         },
         "assetType": {
-          "description": "Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).",
+          "description": "Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).",
           "type": "string"
         }
       },
@@ -681,7 +681,7 @@
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
+            "Assured Workloads for Australia Regions and Support controls",
             "Assured Workloads for Partners;",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
@@ -838,7 +838,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1Violation": {
-      "description": "Workload monitoring Violation. Next Id: 28",
+      "description": "Workload monitoring Violation.",
       "id": "GoogleCloudAssuredworkloadsV1beta1Violation",
       "properties": {
         "acknowledged": {
@@ -973,7 +973,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext": {
-      "description": "Violation exception detail. Next Id: 6",
+      "description": "Violation exception detail.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext",
       "properties": {
         "acknowledgementTime": {
@@ -1150,7 +1150,7 @@
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
+            "Assured Workloads for Australia Regions and Support controls",
             "Assured Workloads for Partners;",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
@@ -1167,7 +1167,7 @@
           "readOnly": true
         },
         "compliantButDisallowedServices": {
-          "description": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.\"",
+          "description": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.",
           "items": {
             "type": "string"
           },
@@ -1186,7 +1186,8 @@
         },
         "ekmProvisioningResponse": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadEkmProvisioningResponse",
-          "description": "Optional. Represents the Ekm Provisioning State of the given workload."
+          "description": "Output only. Represents the Ekm Provisioning State of the given workload.",
+          "readOnly": true
         },
         "enableSovereignControls": {
           "description": "Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.",
