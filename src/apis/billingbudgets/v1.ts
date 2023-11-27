@@ -152,6 +152,7 @@ export namespace billingbudgets_v1 {
      * Optional. Rules to apply to notifications sent based on budget spend and thresholds.
      */
     notificationsRule?: Schema$GoogleCloudBillingBudgetsV1NotificationsRule;
+    ownershipScope?: string | null;
     /**
      * Optional. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget. Optional for `pubsubTopic` notifications. Required if using email notifications.
      */

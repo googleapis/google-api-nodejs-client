@@ -275,7 +275,7 @@
       }
     }
   },
-  "revision": "20230915",
+  "revision": "20231119",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1Budget": {
@@ -306,6 +306,19 @@
         "notificationsRule": {
           "$ref": "GoogleCloudBillingBudgetsV1NotificationsRule",
           "description": "Optional. Rules to apply to notifications sent based on budget spend and thresholds."
+        },
+        "ownershipScope": {
+          "enum": [
+            "OWNERSHIP_SCOPE_UNSPECIFIED",
+            "ALL_USERS",
+            "BILLING_ACCOUNT"
+          ],
+          "enumDescriptions": [
+            "Unspecified ownership scope, same as ALL_USERS.",
+            "Both billing account-level users and project-level users have full access to the budget, if the users have the required IAM permissions.",
+            "Only billing account-level users have full access to the budget. Project-level users have read-only access, even if they have the required IAM permissions."
+          ],
+          "type": "string"
         },
         "thresholdRules": {
           "description": "Optional. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget. Optional for `pubsubTopic` notifications. Required if using email notifications.",
