@@ -798,6 +798,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "biglake:v1",
+      "name": "biglake",
+      "version": "v1",
+      "title": "BigLake API",
+      "description": "The BigLake API provides access to BigLake Metastore, a serverless, fully managed, and highly available metastore for open-source data that can be used for querying Apache Iceberg tables in BigQuery.",
+      "discoveryRestUrl": "https://biglake.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/bigquery/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "bigquery:v2",
       "name": "bigquery",
       "version": "v2",
@@ -824,6 +839,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/bigquery/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "bigquerydatapolicy:v1",
+      "name": "bigquerydatapolicy",
+      "version": "v1",
+      "title": "BigQuery Data Policy API",
+      "description": "Allows users to manage BigQuery data policies.",
+      "discoveryRestUrl": "https://bigquerydatapolicy.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/bigquery/docs/column-data-masking",
       "preferred": true
     },
     {
@@ -1870,7 +1900,7 @@
       "name": "containeranalysis",
       "version": "v1alpha1",
       "title": "Container Analysis API",
-      "description": "An implementation of the Grafeas API, which stores, and enables querying and retrieval of critical metadata about all of your software artifacts.",
+      "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in both Artifact Registry and with Advanced Vulnerability Insights (runtime scanning) in GKE. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
       "discoveryRestUrl": "https://containeranalysis.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1885,7 +1915,7 @@
       "name": "containeranalysis",
       "version": "v1beta1",
       "title": "Container Analysis API",
-      "description": "An implementation of the Grafeas API, which stores, and enables querying and retrieval of critical metadata about all of your software artifacts.",
+      "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in both Artifact Registry and with Advanced Vulnerability Insights (runtime scanning) in GKE. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
       "discoveryRestUrl": "https://containeranalysis.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1900,7 +1930,7 @@
       "name": "containeranalysis",
       "version": "v1",
       "title": "Container Analysis API",
-      "description": "An implementation of the Grafeas API, which stores, and enables querying and retrieval of critical metadata about all of your software artifacts.",
+      "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in both Artifact Registry and with Advanced Vulnerability Insights (runtime scanning) in GKE. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
       "discoveryRestUrl": "https://containeranalysis.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3784,6 +3814,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/logging/docs/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "looker:v1",
+      "name": "looker",
+      "version": "v1",
+      "title": "Looker (Google Cloud core) API",
+      "description": "",
+      "discoveryRestUrl": "https://looker.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/looker/docs/reference/rest/",
       "preferred": true
     },
     {
@@ -5820,6 +5865,21 @@
       "title": "Traffic Director API",
       "description": "",
       "discoveryRestUrl": "https://trafficdirector.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/traffic-director",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "trafficdirector:v3",
+      "name": "trafficdirector",
+      "version": "v3",
+      "title": "Traffic Director API",
+      "description": "",
+      "discoveryRestUrl": "https://trafficdirector.googleapis.com/$discovery/rest?version=v3",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

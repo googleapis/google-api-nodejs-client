@@ -3524,7 +3524,7 @@
       }
     }
   },
-  "revision": "20231017",
+  "revision": "20231117",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -3844,6 +3844,10 @@
         "logSettings": {
           "$ref": "EnterpriseCrmEventbusProtoLogSettings",
           "description": "See"
+        },
+        "readOnly": {
+          "description": "Used to indicate if the ParameterEntry is a read only field or not.",
+          "type": "boolean"
         },
         "searchable": {
           "enum": [
@@ -4586,6 +4590,20 @@
     "EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata": {
       "id": "EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata",
       "properties": {
+        "ancestorIterationNumbers": {
+          "description": "Ancestor iteration number for the task(it will only be non-empty if the task is under 'private workflow')",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ancestorTaskNumbers": {
+          "description": "Ancestor task number for the task(it will only be non-empty if the task is under 'private workflow')",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "eventAttemptNum": {
           "description": "the event attempt number this snapshot belongs to.",
           "format": "int32",
@@ -7816,9 +7834,11 @@
             "SFDC_CDC_CHANNEL",
             "SFDC_PLATFORM_EVENTS_CHANNEL",
             "CLOUD_SCHEDULER",
-            "INTEGRATION_CONNECTOR_TRIGGER"
+            "INTEGRATION_CONNECTOR_TRIGGER",
+            "PRIVATE_TRIGGER"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -9284,6 +9304,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaCloudLoggingDetails": {
+      "description": "Cloud Logging details for execution info",
+      "id": "GoogleCloudIntegrationsV1alphaCloudLoggingDetails",
+      "properties": {
+        "cloudLoggingSeverity": {
+          "description": "Optional. Severity selected by the customer for the logs to be sent to Cloud Logging, for the integration version getting executed.",
+          "enum": [
+            "CLOUD_LOGGING_SEVERITY_UNSPECIFIED",
+            "DEFAULT",
+            "INFO",
+            "ERROR",
+            "WARNING"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "If Severity selected is `DEFAULT`, then all the Integration Execution States will be sent to Cloud Logging.",
+            "If Severity selected is `INFO`, then only the following Integration Execution States (`IN_PROCESS`, `ON_HOLD`, `SUCCEEDED` and `SUSPENDED`) will be sent to Cloud Logging.",
+            "If Severity selected is `ERROR`, then only the following Integration Execution States (`ERROR`, `CANCELLED`) will be sent to Cloud Logging.",
+            "If Severity selected is `WARNING`, then only the following Integration Execution States (`RETRY_ON_HOLD`) will be sent to Cloud Logging."
+          ],
+          "type": "string"
+        },
+        "enableCloudLogging": {
+          "description": "Optional. Status of whether Cloud Logging is enabled or not for the integration version getting executed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaCloudSchedulerConfig": {
       "description": "Cloud Scheduler Trigger configuration",
       "id": "GoogleCloudIntegrationsV1alphaCloudSchedulerConfig",
@@ -9660,6 +9709,10 @@
       "description": "The Execution resource contains detailed information of an individual integration execution.",
       "id": "GoogleCloudIntegrationsV1alphaExecution",
       "properties": {
+        "cloudLoggingDetails": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCloudLoggingDetails",
+          "description": "Cloud Logging details for the integration version"
+        },
         "createTime": {
           "description": "Output only. Created time of the execution.",
           "format": "google-datetime",
@@ -9696,6 +9749,25 @@
             "Async post.",
             "Async post with schedule time."
           ],
+          "type": "string"
+        },
+        "integrationVersionState": {
+          "description": "Output only. State of the integration version",
+          "enum": [
+            "INTEGRATION_STATE_UNSPECIFIED",
+            "DRAFT",
+            "ACTIVE",
+            "ARCHIVED",
+            "SNAPSHOT"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "Draft.",
+            "Active.",
+            "Archived.",
+            "Snapshot."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -9823,6 +9895,20 @@
       "description": "Metadata of the execution snapshot.",
       "id": "GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata",
       "properties": {
+        "ancestorIterationNumbers": {
+          "description": "Ancestor iteration number for the task(it will only be non-empty if the task is under 'private workflow')",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ancestorTaskNumbers": {
+          "description": "Ancestor task number for the task(it will only be non-empty if the task is under 'private workflow')",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "executionAttempt": {
           "description": "the execution attempt number this snapshot belongs to.",
           "format": "int32",
@@ -10232,6 +10318,10 @@
       "description": "The integration version definition.",
       "id": "GoogleCloudIntegrationsV1alphaIntegrationVersion",
       "properties": {
+        "cloudLoggingDetails": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCloudLoggingDetails",
+          "description": "Optional. Cloud Logging details for the integration version"
+        },
         "createTime": {
           "description": "Output only. Auto-generated.",
           "format": "google-datetime",
@@ -10296,12 +10386,14 @@
             "UI",
             "PIPER_V2",
             "PIPER_V3",
-            "APPLICATION_IP_PROVISIONING"
+            "APPLICATION_IP_PROVISIONING",
+            "TEST_CASE"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
             false,
             false
           ],
@@ -10310,7 +10402,8 @@
             "Workflow is being created via event bus UI.",
             "User checked in this workflow in Piper as v2 textproto format and we synced it into spanner.",
             "User checked in this workflow in piper as v3 textproto format and we synced it into spanner.",
-            "Workflow is being created via Standalone IP Provisioning"
+            "Workflow is being created via Standalone IP Provisioning",
+            "Workflow is being created via Test Case."
           ],
           "type": "string"
         },
@@ -11879,7 +11972,8 @@
             "CLOUD_PUBSUB_EXTERNAL",
             "SFDC_CDC_CHANNEL",
             "CLOUD_SCHEDULER",
-            "INTEGRATION_CONNECTOR_TRIGGER"
+            "INTEGRATION_CONNECTOR_TRIGGER",
+            "PRIVATE_TRIGGER"
           ],
           "enumDescriptions": [
             "Unknown.",
@@ -11889,7 +11983,8 @@
             "Trigger by Pub/Sub external.",
             "SFDC Channel Trigger for CDC.",
             "Trigger by Cloud Scheduler job.",
-            "Trigger by Connector Event"
+            "Trigger by Connector Event",
+            "Trigger for private workflow"
           ],
           "type": "string"
         }

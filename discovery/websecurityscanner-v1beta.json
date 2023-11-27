@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20230701",
+  "revision": "20231112",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -1052,7 +1052,8 @@
             "UNSUPPORTED_BLACKLIST_PATTERN_FORMAT",
             "UNSUPPORTED_FILTER",
             "UNSUPPORTED_FINDING_TYPE",
-            "UNSUPPORTED_URL_SCHEME"
+            "UNSUPPORTED_URL_SCHEME",
+            "CLOUD_ASSET_INVENTORY_ASSET_NOT_FOUND"
           ],
           "enumDescriptions": [
             "There is no error.",
@@ -1096,7 +1097,8 @@
             "One or more blacklist patterns were in the wrong format.",
             "The supplied filter is not supported.",
             "The supplied finding type is not supported. For example, we do not provide findings of the given finding type.",
-            "The URL scheme of one or more of the supplied URLs is not supported."
+            "The URL scheme of one or more of the supplied URLs is not supported.",
+            "CAI is not able to list assets."
           ],
           "type": "string"
         },

@@ -113,11 +113,16 @@ import {
 } from './baremetalsolution';
 import {VERSIONS as batchVersions, batch} from './batch';
 import {VERSIONS as beyondcorpVersions, beyondcorp} from './beyondcorp';
+import {VERSIONS as biglakeVersions, biglake} from './biglake';
 import {VERSIONS as bigqueryVersions, bigquery} from './bigquery';
 import {
   VERSIONS as bigqueryconnectionVersions,
   bigqueryconnection,
 } from './bigqueryconnection';
+import {
+  VERSIONS as bigquerydatapolicyVersions,
+  bigquerydatapolicy,
+} from './bigquerydatapolicy';
 import {
   VERSIONS as bigquerydatatransferVersions,
   bigquerydatatransfer,
@@ -382,6 +387,7 @@ import {
   localservices,
 } from './localservices';
 import {VERSIONS as loggingVersions, logging} from './logging';
+import {VERSIONS as lookerVersions, looker} from './looker';
 import {
   VERSIONS as managedidentitiesVersions,
   managedidentities,
@@ -708,8 +714,10 @@ export const APIS: APIList = {
   baremetalsolution: baremetalsolutionVersions,
   batch: batchVersions,
   beyondcorp: beyondcorpVersions,
+  biglake: biglakeVersions,
   bigquery: bigqueryVersions,
   bigqueryconnection: bigqueryconnectionVersions,
+  bigquerydatapolicy: bigquerydatapolicyVersions,
   bigquerydatatransfer: bigquerydatatransferVersions,
   bigqueryreservation: bigqueryreservationVersions,
   bigtableadmin: bigtableadminVersions,
@@ -836,6 +844,7 @@ export const APIS: APIList = {
   lifesciences: lifesciencesVersions,
   localservices: localservicesVersions,
   logging: loggingVersions,
+  looker: lookerVersions,
   managedidentities: managedidentitiesVersions,
   manufacturers: manufacturersVersions,
   memcache: memcacheVersions,
@@ -990,8 +999,10 @@ export class GeneratedAPIs {
   baremetalsolution = baremetalsolution;
   batch = batch;
   beyondcorp = beyondcorp;
+  biglake = biglake;
   bigquery = bigquery;
   bigqueryconnection = bigqueryconnection;
+  bigquerydatapolicy = bigquerydatapolicy;
   bigquerydatatransfer = bigquerydatatransfer;
   bigqueryreservation = bigqueryreservation;
   bigtableadmin = bigtableadmin;
@@ -1118,6 +1129,7 @@ export class GeneratedAPIs {
   lifesciences = lifesciences;
   localservices = localservices;
   logging = logging;
+  looker = looker;
   managedidentities = managedidentities;
   manufacturers = manufacturers;
   memcache = memcache;

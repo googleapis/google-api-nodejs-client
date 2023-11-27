@@ -77,6 +77,7 @@
   "description": "The Fitness API for managing users' fitness tracking data.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/fit/rest/v1/get-started",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -831,7 +832,7 @@
       }
     }
   },
-  "revision": "20230704",
+  "revision": "20231121",
   "rootUrl": "https://fitness.googleapis.com/",
   "schemas": {
     "AggregateBucket": {

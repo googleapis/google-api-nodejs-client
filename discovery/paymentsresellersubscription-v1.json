@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20231017",
+  "revision": "20231114",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -479,12 +479,14 @@
           "enum": [
             "UNIT_UNSPECIFIED",
             "MONTH",
-            "DAY"
+            "DAY",
+            "HOUR"
           ],
           "enumDescriptions": [
-            "Default value.",
+            "Default value, reserved as an invalid or an unexpected value.",
             "Unit of a calendar month.",
-            "Unit of a day."
+            "Unit of a day.",
+            "Unit of an hour. It is used for testing."
           ],
           "type": "string"
         }

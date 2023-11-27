@@ -1041,7 +1041,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20231019",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1109,7 +1109,8 @@
             "BASIC_SSD",
             "HIGH_SCALE_SSD",
             "ENTERPRISE",
-            "ZONAL"
+            "ZONAL",
+            "REGIONAL"
           ],
           "enumDescriptions": [
             "Not set.",
@@ -1119,7 +1120,8 @@
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
             "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities.",
             "ENTERPRISE instances offer the features and availability needed for mission-critical workloads.",
-            "ZONAL instances offer expanded capacity and performance scaling capabilities."
+            "ZONAL instances offer expanded capacity and performance scaling capabilities.",
+            "REGIONAL instances offer the features and availability needed for mission-critical workloads."
           ],
           "readOnly": true,
           "type": "string"
@@ -1695,7 +1697,8 @@
             "BASIC_SSD",
             "HIGH_SCALE_SSD",
             "ENTERPRISE",
-            "ZONAL"
+            "ZONAL",
+            "REGIONAL"
           ],
           "enumDescriptions": [
             "Not set.",
@@ -1705,7 +1708,8 @@
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
             "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities.",
             "ENTERPRISE instances offer the features and availability needed for mission-critical workloads.",
-            "ZONAL instances offer expanded capacity and performance scaling capabilities."
+            "ZONAL instances offer expanded capacity and performance scaling capabilities.",
+            "REGIONAL instances offer the features and availability needed for mission-critical workloads."
           ],
           "type": "string"
         }
