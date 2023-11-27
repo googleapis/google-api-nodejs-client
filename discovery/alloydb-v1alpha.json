@@ -1489,7 +1489,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20231109",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AutomatedBackupPolicy": {
@@ -1895,6 +1895,10 @@
           "$ref": "PrimaryConfig",
           "description": "Output only. Cross Region replication config specific to PRIMARY cluster.",
           "readOnly": true
+        },
+        "pscConfig": {
+          "$ref": "PscConfig",
+          "description": "Optional. The configuration for Private Service Connect (PSC) for the cluster."
         },
         "reconciling": {
           "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Cluster does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.",
@@ -2675,7 +2679,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project_number}/global/networks/{network_id}\". This is required to create a cluster.",
+          "description": "Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project_number}/global/networks/{network_id}\". This is required to create a cluster.",
           "type": "string"
         }
       },
@@ -2812,6 +2816,17 @@
         },
         "validateOnly": {
           "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PscConfig": {
+      "description": "PscConfig contains PSC related configuration at a cluster level. NEXT ID: 2",
+      "id": "PscConfig",
+      "properties": {
+        "pscEnabled": {
+          "description": "Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.",
           "type": "boolean"
         }
       },
@@ -3249,6 +3264,8 @@
           "description": "Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.",
           "enum": [
             "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
+            "SIGNAL_TYPE_GROUP_NOT_REPLICATING_ACROSS_REGIONS",
             "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_ZONES",
             "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_REGIONS",
             "SIGNAL_TYPE_NO_PROMOTABLE_REPLICA",
@@ -3294,10 +3311,65 @@
             "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
             "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
             "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
-            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED"
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+            "SIGNAL_TYPE_PUBLIC_IP_ENABLED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unspecified.",
+            "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+            "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
             "Represents if the resource is available in multiple zones or not.",
             "Represents if a resource is available in multiple regions.",
             "Represents if a resource has a promotable replica.",
@@ -3343,7 +3415,8 @@
             "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
             "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
             "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
-            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on. LINT.ThenChange(//depot/google3/storage/databasecenter/ingestion/borgjob/message_adapter/health_signal_feed/health_signal_mapping.h)"
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+            "Represents if public IP is enabled. LINT.ThenChange(//depot/google3/storage/databasecenter/ingestion/borgjob/message_adapter/health_signal_feed/health_signal_mapping.h)"
           ],
           "type": "string"
         },
