@@ -190,6 +190,19 @@ export namespace cloudbuild_v2 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Capabilities adds and removes POSIX capabilities from running containers.
+   */
+  export interface Schema$Capabilities {
+    /**
+     * Optional. Added capabilities +optional
+     */
+    add?: string[] | null;
+    /**
+     * Optional. Removed capabilities +optional
+     */
+    drop?: string[] | null;
+  }
+  /**
    * ChildStatusReference is used to point to the statuses of individual TaskRuns and Runs within this PipelineRun.
    */
   export interface Schema$ChildStatusReference {
@@ -211,7 +224,7 @@ export namespace cloudbuild_v2 {
     whenExpressions?: Schema$WhenExpression[];
   }
   /**
-   * A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Server or GitLab.
+   * A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data Center or GitLab.
    */
   export interface Schema$Connection {
     /**
@@ -309,6 +322,15 @@ export namespace cloudbuild_v2 {
      * Value of the environment variable.
      */
     value?: string | null;
+  }
+  /**
+   * ExecAction describes a "run in container" action.
+   */
+  export interface Schema$ExecAction {
+    /**
+     * Optional. Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. +optional
+     */
+    command?: string[] | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -819,6 +841,10 @@ export namespace cloudbuild_v2 {
      */
     etag?: string | null;
     /**
+     * Output only. FinallyStartTime is when all non-finally tasks have been completed and only finally tasks are being executed. +optional
+     */
+    finallyStartTime?: string | null;
+    /**
      * Output only. The `PipelineRun` name with format `projects/{project\}/locations/{location\}/pipelineRuns/{pipeline_run\}`
      */
     name?: string | null;
@@ -831,7 +857,7 @@ export namespace cloudbuild_v2 {
      */
     pipelineRef?: Schema$PipelineRef;
     /**
-     * Status of the PipelineRun.
+     * Pipelinerun status the user can provide. Used for cancellation.
      */
     pipelineRunStatus?: string | null;
     /**
@@ -984,6 +1010,19 @@ export namespace cloudbuild_v2 {
     version?: number | null;
   }
   /**
+   * Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
+   */
+  export interface Schema$Probe {
+    /**
+     * Optional. Exec specifies the action to take. +optional
+     */
+    exec?: Schema$ExecAction;
+    /**
+     * Optional. How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. +optional
+     */
+    periodSeconds?: number | null;
+  }
+  /**
    * PropertySpec holds information about a property in an object.
    */
   export interface Schema$PropertySpec {
@@ -1076,9 +1115,29 @@ export namespace cloudbuild_v2 {
    */
   export interface Schema$SecurityContext {
     /**
+     * Optional. AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows. +optional
+     */
+    allowPrivilegeEscalation?: boolean | null;
+    /**
+     * Optional. Adds and removes POSIX capabilities from running containers.
+     */
+    capabilities?: Schema$Capabilities;
+    /**
      * Run container in privileged mode.
      */
     privileged?: boolean | null;
+    /**
+     * Optional. The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. +optional
+     */
+    runAsGroup?: string | null;
+    /**
+     * Optional. Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. +optional
+     */
+    runAsNonRoot?: boolean | null;
+    /**
+     * Optional. The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. +optional
+     */
+    runAsUser?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1118,11 +1177,15 @@ export namespace cloudbuild_v2 {
      */
     name?: string | null;
     /**
+     * Optional. Periodic probe of Sidecar service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes +optional
+     */
+    readinessProbe?: Schema$Probe;
+    /**
      * The contents of an executable file to execute.
      */
     script?: string | null;
     /**
-     * Security options the container should be run with.
+     * Optional. Security options the container should be run with.
      */
     securityContext?: Schema$SecurityContext;
     /**
@@ -1197,6 +1260,10 @@ export namespace cloudbuild_v2 {
      */
     script?: string | null;
     /**
+     * Optional. SecurityContext defines the security options the Step should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ +optional
+     */
+    securityContext?: Schema$SecurityContext;
+    /**
      * Time after which the Step times out. Defaults to never.
      */
     timeout?: string | null;
@@ -1208,6 +1275,15 @@ export namespace cloudbuild_v2 {
      * Container's working directory.
      */
     workingDir?: string | null;
+  }
+  /**
+   * StepTemplate can be used as the basis for all step containers within the Task, so that the steps inherit settings on the base container.
+   */
+  export interface Schema$StepTemplate {
+    /**
+     * Optional. List of environment variables to set in the Step. Cannot be updated.
+     */
+    env?: Schema$EnvVar[];
   }
   /**
    * TaskRef can be used to refer to a specific instance of a task. PipelineRef can be used to refer to a specific instance of a Pipeline.
@@ -1275,6 +1351,10 @@ export namespace cloudbuild_v2 {
      * Steps of the task.
      */
     steps?: Schema$Step[];
+    /**
+     * Optional. StepTemplate can be used as the basis for all step containers within the Task, so that the steps inherit settings on the base container.
+     */
+    stepTemplate?: Schema$StepTemplate[];
     /**
      * A collection of volumes that are available to mount into steps.
      */
@@ -1409,6 +1489,10 @@ export namespace cloudbuild_v2 {
      */
     secret?: Schema$SecretVolumeSource;
     /**
+     * Optional. SubPath is optionally a directory on the volume which should be used for this binding (i.e. the volume will be mounted at this sub directory). +optional
+     */
+    subPath?: string | null;
+    /**
      * Volume claim that will be created in the same namespace.
      */
     volumeClaim?: Schema$VolumeClaim;
@@ -1430,6 +1514,10 @@ export namespace cloudbuild_v2 {
      */
     name?: string | null;
     /**
+     * Optional. Optional marks a Workspace as not being required in TaskRuns. By default this field is false and so declared workspaces are required.
+     */
+    optional?: boolean | null;
+    /**
      * ReadOnly dictates whether a mounted volume is writable.
      */
     readOnly?: boolean | null;
@@ -1442,6 +1530,10 @@ export namespace cloudbuild_v2 {
      * Name of the workspace as declared by the task.
      */
     name?: string | null;
+    /**
+     * Optional. SubPath is optionally a directory on the volume which should be used for this binding (i.e. the volume will be mounted at this sub directory). +optional
+     */
+    subPath?: string | null;
     /**
      * Name of the workspace declared by the pipeline.
      */

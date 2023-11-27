@@ -2319,7 +2319,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20231109",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -4753,13 +4753,15 @@
             "REPOSITORY_TYPE_UNSPECIFIED",
             "GITHUB",
             "GITHUB_ENTERPRISE",
-            "GITLAB_ENTERPRISE"
+            "GITLAB_ENTERPRISE",
+            "BITBUCKET_DATA_CENTER"
           ],
           "enumDescriptions": [
             "If unspecified, RepositoryType defaults to GITHUB.",
             "The SCM repo is GITHUB.",
             "The SCM repo is GITHUB Enterprise.",
-            "The SCM repo is GITLAB Enterprise."
+            "The SCM repo is GITLAB Enterprise.",
+            "The SCM repo is BITBUCKET Data Center."
           ],
           "readOnly": true,
           "type": "string"
@@ -5040,6 +5042,20 @@
         },
         "object": {
           "description": "Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
+          "type": "string"
+        },
+        "sourceFetcher": {
+          "description": "Optional. Option to specify the tool to fetch the source file for the build.",
+          "enum": [
+            "SOURCE_FETCHER_UNSPECIFIED",
+            "GSUTIL",
+            "GCS_FETCHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified defaults to GSUTIL.",
+            "Use the \"gsutil\" tool to download the source file.",
+            "Use the Cloud Storage Fetcher tool to download the source file."
+          ],
           "type": "string"
         }
       },
