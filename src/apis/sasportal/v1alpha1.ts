@@ -499,10 +499,6 @@ export namespace sasportal_v1alpha1 {
      */
     antennaGain?: number | null;
     /**
-     * As above, but as a DoubleValue.
-     */
-    antennaGainNewField?: number | null;
-    /**
      * If an external antenna is used, the antenna model is optionally provided in this field. The string has a maximum length of 128 octets.
      */
     antennaModel?: string | null;
@@ -514,10 +510,6 @@ export namespace sasportal_v1alpha1 {
      * This parameter is the maximum device EIRP in units of dBm/10MHz and is an integer with a value between -127 and +47 (dBm/10 MHz) inclusive. If not included, SAS interprets it as maximum allowable EIRP in units of dBm/10MHz for device category.
      */
     eirpCapability?: number | null;
-    /**
-     * As above, but as a DoubleValue.
-     */
-    eirpCapabilityNewField?: number | null;
     /**
      * Device antenna height in meters. When the `heightType` parameter value is "AGL", the antenna height should be given relative to ground level. When the `heightType` parameter value is "AMSL", it is given with respect to WGS84 datum.
      */
