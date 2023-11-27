@@ -742,23 +742,6 @@ export namespace identitytoolkit_v2 {
     token?: boolean | null;
   }
   /**
-   * Configuration for signing in users using passkeys.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig {
-    /**
-     * Required. The website or app origins associated with the customer's sites or apps. Only challenges signed from these origins will be allowed to sign in with passkeys.
-     */
-    expectedOrigins?: string[] | null;
-    /**
-     * Required. The name of the PasskeyConfig resource.
-     */
-    name?: string | null;
-    /**
-     * Required. The relying party ID for the purpose of passkeys verifications. This cannot be changed once created.
-     */
-    rpId?: string | null;
-  }
-  /**
    * The configuration for the password policy on the project.
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig {
@@ -2636,100 +2619,6 @@ export namespace identitytoolkit_v2 {
     }
 
     /**
-     * Retrieve a passkey configuration for an Identity Toolkit project.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getPasskeyConfig(
-      params: Params$Resource$Projects$Getpasskeyconfig,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getPasskeyConfig(
-      params?: Params$Resource$Projects$Getpasskeyconfig,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>;
-    getPasskeyConfig(
-      params: Params$Resource$Projects$Getpasskeyconfig,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getPasskeyConfig(
-      params: Params$Resource$Projects$Getpasskeyconfig,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    getPasskeyConfig(
-      params: Params$Resource$Projects$Getpasskeyconfig,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    getPasskeyConfig(
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    getPasskeyConfig(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Getpasskeyconfig
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Getpasskeyconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Getpasskeyconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Update an Identity Toolkit project configuration.
      *
      * @param params - Parameters for request
@@ -2822,113 +2711,12 @@ export namespace identitytoolkit_v2 {
         );
       }
     }
-
-    /**
-     * Update a passkey configuration for an Identity Toolkit project.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updatePasskeyConfig(
-      params: Params$Resource$Projects$Updatepasskeyconfig,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updatePasskeyConfig(
-      params?: Params$Resource$Projects$Updatepasskeyconfig,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>;
-    updatePasskeyConfig(
-      params: Params$Resource$Projects$Updatepasskeyconfig,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updatePasskeyConfig(
-      params: Params$Resource$Projects$Updatepasskeyconfig,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    updatePasskeyConfig(
-      params: Params$Resource$Projects$Updatepasskeyconfig,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    updatePasskeyConfig(
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    updatePasskeyConfig(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Updatepasskeyconfig
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Updatepasskeyconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Updatepasskeyconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Getconfig
     extends StandardParameters {
     /**
      * The resource name of the config, for example: "projects/my-awesome-project/config"
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Getpasskeyconfig
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the config, for example: 'projects/my-awesome-project/passkeyConfig'.
      */
     name?: string;
   }
@@ -2947,22 +2735,6 @@ export namespace identitytoolkit_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2Config;
-  }
-  export interface Params$Resource$Projects$Updatepasskeyconfig
-    extends StandardParameters {
-    /**
-     * Required. The name of the PasskeyConfig resource.
-     */
-    name?: string;
-    /**
-     * Optional. The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig;
   }
 
   export class Resource$Projects$Defaultsupportedidpconfigs {
@@ -5090,100 +4862,6 @@ export namespace identitytoolkit_v2 {
     }
 
     /**
-     * Retrieve a passkey configuration for an Identity Toolkit project.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getPasskeyConfig(
-      params: Params$Resource$Projects$Tenants$Getpasskeyconfig,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getPasskeyConfig(
-      params?: Params$Resource$Projects$Tenants$Getpasskeyconfig,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>;
-    getPasskeyConfig(
-      params: Params$Resource$Projects$Tenants$Getpasskeyconfig,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getPasskeyConfig(
-      params: Params$Resource$Projects$Tenants$Getpasskeyconfig,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    getPasskeyConfig(
-      params: Params$Resource$Projects$Tenants$Getpasskeyconfig,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    getPasskeyConfig(
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    getPasskeyConfig(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Tenants$Getpasskeyconfig
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Tenants$Getpasskeyconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Tenants$Getpasskeyconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * List tenants under the given agent project. Requires read permission on the Agent project.
      *
      * @param params - Parameters for request
@@ -5563,100 +5241,6 @@ export namespace identitytoolkit_v2 {
         );
       }
     }
-
-    /**
-     * Update a passkey configuration for an Identity Toolkit project.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updatePasskeyConfig(
-      params: Params$Resource$Projects$Tenants$Updatepasskeyconfig,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updatePasskeyConfig(
-      params?: Params$Resource$Projects$Tenants$Updatepasskeyconfig,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>;
-    updatePasskeyConfig(
-      params: Params$Resource$Projects$Tenants$Updatepasskeyconfig,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updatePasskeyConfig(
-      params: Params$Resource$Projects$Tenants$Updatepasskeyconfig,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    updatePasskeyConfig(
-      params: Params$Resource$Projects$Tenants$Updatepasskeyconfig,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    updatePasskeyConfig(
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-    ): void;
-    updatePasskeyConfig(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Tenants$Updatepasskeyconfig
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Tenants$Updatepasskeyconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Tenants$Updatepasskeyconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Tenants$Create
@@ -5696,13 +5280,6 @@ export namespace identitytoolkit_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1GetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Tenants$Getpasskeyconfig
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the config, for example: 'projects/my-awesome-project/passkeyConfig'.
-     */
-    name?: string;
   }
   export interface Params$Resource$Projects$Tenants$List
     extends StandardParameters {
@@ -5758,22 +5335,6 @@ export namespace identitytoolkit_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
-  }
-  export interface Params$Resource$Projects$Tenants$Updatepasskeyconfig
-    extends StandardParameters {
-    /**
-     * Required. The name of the PasskeyConfig resource.
-     */
-    name?: string;
-    /**
-     * Optional. The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2PasskeyConfig;
   }
 
   export class Resource$Projects$Tenants$Defaultsupportedidpconfigs {
