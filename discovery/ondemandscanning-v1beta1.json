@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20231016",
+  "revision": "20231113",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1607,10 +1607,16 @@
     "Maintainer": {
       "id": "Maintainer",
       "properties": {
+        "email": {
+          "type": "string"
+        },
         "kind": {
           "type": "string"
         },
         "name": {
+          "type": "string"
+        },
+        "url": {
           "type": "string"
         }
       },
