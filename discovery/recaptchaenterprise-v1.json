@@ -293,7 +293,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name for the FirewallPolicy in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
+                  "description": "Identifier. The resource name for the FirewallPolicy in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/firewallpolicies/[^/]+$",
                   "required": true,
@@ -498,7 +498,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name for the Key in the format `projects/{project}/keys/{key}`.",
+                  "description": "Identifier. The resource name for the Key in the format `projects/{project}/keys/{key}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/keys/[^/]+$",
                   "required": true,
@@ -666,7 +666,7 @@
       }
     }
   },
-  "revision": "20231015",
+  "revision": "20231112",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -776,6 +776,10 @@
       "description": "The request message to annotate an Assessment.",
       "id": "GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest",
       "properties": {
+        "accountId": {
+          "description": "Optional. A stable account identifier to apply to the assessment. This is an alternative to setting `account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request.",
+          "type": "string"
+        },
         "annotation": {
           "description": "Optional. The annotation that will be assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.",
           "enum": [
@@ -802,7 +806,7 @@
           "type": "string"
         },
         "hashedAccountId": {
-          "description": "Optional. Unique stable hashed user identifier to apply to the assessment. This is an alternative to setting the hashed_account_id in CreateAssessment, for example when the account identifier is not yet known in the initial request. It is recommended that the identifier is hashed using hmac-sha256 with stable secret.",
+          "description": "Optional. A stable hashed account identifier to apply to the assessment. This is an alternative to setting `hashed_account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request.",
           "format": "byte",
           "type": "string"
         },
@@ -885,7 +889,7 @@
       "properties": {
         "accountDefenderAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
-          "description": "Output only. Assessment returned by account defender when a hashed_account_id is provided.",
+          "description": "Output only. Assessment returned by account defender when an account identifier is provided.",
           "readOnly": true
         },
         "accountVerification": {
@@ -912,7 +916,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "Output only. The resource name for the Assessment in the format `projects/{project}/assessments/{assessment}`.",
+          "description": "Output only. Identifier. The resource name for the Assessment in the format `projects/{project}/assessments/{assessment}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -1003,7 +1007,8 @@
           "type": "boolean"
         },
         "hashedAccountId": {
-          "description": "Optional. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: use `user_info.account_id` instead. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.",
           "format": "byte",
           "type": "string"
         },
@@ -1037,6 +1042,10 @@
         "userAgent": {
           "description": "Optional. The user agent present in the request from the user's device related to this event.",
           "type": "string"
+        },
+        "userInfo": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1UserInfo",
+          "description": "Optional. Information about the user that generates this event, when they can be identified. They are often identified through the use of an account for logged-in requests or login/registration requests, or by providing user identifiers for guest actions like checkout."
         },
         "userIpAddress": {
           "description": "Optional. The IP address in the request from the user's device related to this event.",
@@ -1140,7 +1149,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name for the FirewallPolicy in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
+          "description": "Identifier. The resource name for the FirewallPolicy in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
           "type": "string"
         },
         "path": {
@@ -1349,7 +1358,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The resource name for the Key in the format `projects/{project}/keys/{key}`.",
+          "description": "Identifier. The resource name for the Key in the format `projects/{project}/keys/{key}`.",
           "type": "string"
         },
         "testingOptions": {
@@ -1451,7 +1460,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. The name of the metrics, in the format `projects/{project}/keys/{key}/metrics`.",
+          "description": "Output only. Identifier. The name of the metrics, in the format `projects/{project}/keys/{key}/metrics`.",
           "readOnly": true,
           "type": "string"
         },
@@ -1518,7 +1527,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup",
       "properties": {
         "name": {
-          "description": "Required. The resource name for the related account group in the format `projects/{project}/relatedaccountgroups/{related_account_group}`.",
+          "description": "Required. Identifier. The resource name for the related account group in the format `projects/{project}/relatedaccountgroups/{related_account_group}`.",
           "type": "string"
         }
       },
@@ -1534,7 +1543,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The resource name for this membership in the format `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.",
+          "description": "Required. Identifier. The resource name for this membership in the format `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.",
           "type": "string"
         }
       },
@@ -2003,6 +2012,48 @@
           "description": "Optional. The value that corresponds with this transaction event, if one exists. For example, a refund event where $5.00 was refunded. Currency is obtained from the original transaction data.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1UserId": {
+      "description": "An identifier associated with a user.",
+      "id": "GoogleCloudRecaptchaenterpriseV1UserId",
+      "properties": {
+        "email": {
+          "description": "Optional. An email address.",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Optional. A phone number. Should use the E.164 format.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. A unique username, if different from all the other identifiers and `account_id` that are provided. Can be a unique login handle or display name for a user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1UserInfo": {
+      "description": "User information associated with a request protected by reCAPTCHA Enterprise.",
+      "id": "GoogleCloudRecaptchaenterpriseV1UserInfo",
+      "properties": {
+        "accountId": {
+          "description": "Optional. For logged-in requests or login/registration requests, the unique account identifier associated with this user. You can use the username if it is stable (meaning it is the same for every request associated with the same user), or any stable user ID of your choice. Leave blank for non logged-in actions or guest checkout.",
+          "type": "string"
+        },
+        "createAccountTime": {
+          "description": "Optional. Creation time for this account associated with this user. Leave blank for non logged-in actions, guest checkout, or when there is no account associated with the current user.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "userIds": {
+          "description": "Optional. Identifiers associated with this user or request.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1UserId"
+          },
+          "type": "array"
         }
       },
       "type": "object"

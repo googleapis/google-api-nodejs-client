@@ -176,11 +176,15 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest {
     /**
+     * Optional. A stable account identifier to apply to the assessment. This is an alternative to setting `account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request.
+     */
+    accountId?: string | null;
+    /**
      * Optional. The annotation that will be assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.
      */
     annotation?: string | null;
     /**
-     * Optional. Unique stable hashed user identifier to apply to the assessment. This is an alternative to setting the hashed_account_id in CreateAssessment, for example when the account identifier is not yet known in the initial request. It is recommended that the identifier is hashed using hmac-sha256 with stable secret.
+     * Optional. A stable hashed account identifier to apply to the assessment. This is an alternative to setting `hashed_account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request.
      */
     hashedAccountId?: string | null;
     /**
@@ -218,7 +222,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Assessment {
     /**
-     * Output only. Assessment returned by account defender when a hashed_account_id is provided.
+     * Output only. Assessment returned by account defender when an account identifier is provided.
      */
     accountDefenderAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment;
     /**
@@ -242,7 +246,7 @@ export namespace recaptchaenterprise_v1 {
      */
     fraudSignals?: Schema$GoogleCloudRecaptchaenterpriseV1FraudSignals;
     /**
-     * Output only. The resource name for the Assessment in the format `projects/{project\}/assessments/{assessment\}`.
+     * Output only. Identifier. The resource name for the Assessment in the format `projects/{project\}/assessments/{assessment\}`.
      */
     name?: string | null;
     /**
@@ -317,7 +321,7 @@ export namespace recaptchaenterprise_v1 {
      */
     firewallPolicyEvaluation?: boolean | null;
     /**
-     * Optional. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.
+     * Optional. Deprecated: use `user_info.account_id` instead. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.
      */
     hashedAccountId?: string | null;
     /**
@@ -348,6 +352,10 @@ export namespace recaptchaenterprise_v1 {
      * Optional. The user agent present in the request from the user's device related to this event.
      */
     userAgent?: string | null;
+    /**
+     * Optional. Information about the user that generates this event, when they can be identified. They are often identified through the use of an account for logged-in requests or login/registration requests, or by providing user identifiers for guest actions like checkout.
+     */
+    userInfo?: Schema$GoogleCloudRecaptchaenterpriseV1UserInfo;
     /**
      * Optional. The IP address in the request from the user's device related to this event.
      */
@@ -433,7 +441,7 @@ export namespace recaptchaenterprise_v1 {
      */
     description?: string | null;
     /**
-     * The resource name for the FirewallPolicy in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
+     * Identifier. The resource name for the FirewallPolicy in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
      */
     name?: string | null;
     /**
@@ -579,7 +587,7 @@ export namespace recaptchaenterprise_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name for the Key in the format `projects/{project\}/keys/{key\}`.
+     * Identifier. The resource name for the Key in the format `projects/{project\}/keys/{key\}`.
      */
     name?: string | null;
     /**
@@ -656,7 +664,7 @@ export namespace recaptchaenterprise_v1 {
      */
     challengeMetrics?: Schema$GoogleCloudRecaptchaenterpriseV1ChallengeMetrics[];
     /**
-     * Output only. The name of the metrics, in the format `projects/{project\}/keys/{key\}/metrics`.
+     * Output only. Identifier. The name of the metrics, in the format `projects/{project\}/keys/{key\}/metrics`.
      */
     name?: string | null;
     /**
@@ -703,7 +711,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup {
     /**
-     * Required. The resource name for the related account group in the format `projects/{project\}/relatedaccountgroups/{related_account_group\}`.
+     * Required. Identifier. The resource name for the related account group in the format `projects/{project\}/relatedaccountgroups/{related_account_group\}`.
      */
     name?: string | null;
   }
@@ -716,7 +724,7 @@ export namespace recaptchaenterprise_v1 {
      */
     hashedAccountId?: string | null;
     /**
-     * Required. The resource name for this membership in the format `projects/{project\}/relatedaccountgroups/{relatedaccountgroup\}/memberships/{membership\}`.
+     * Required. Identifier. The resource name for this membership in the format `projects/{project\}/relatedaccountgroups/{relatedaccountgroup\}/memberships/{membership\}`.
      */
     name?: string | null;
   }
@@ -1023,6 +1031,40 @@ export namespace recaptchaenterprise_v1 {
      * Optional. The value that corresponds with this transaction event, if one exists. For example, a refund event where $5.00 was refunded. Currency is obtained from the original transaction data.
      */
     value?: number | null;
+  }
+  /**
+   * An identifier associated with a user.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1UserId {
+    /**
+     * Optional. An email address.
+     */
+    email?: string | null;
+    /**
+     * Optional. A phone number. Should use the E.164 format.
+     */
+    phoneNumber?: string | null;
+    /**
+     * Optional. A unique username, if different from all the other identifiers and `account_id` that are provided. Can be a unique login handle or display name for a user.
+     */
+    username?: string | null;
+  }
+  /**
+   * User information associated with a request protected by reCAPTCHA Enterprise.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1UserInfo {
+    /**
+     * Optional. For logged-in requests or login/registration requests, the unique account identifier associated with this user. You can use the username if it is stable (meaning it is the same for every request associated with the same user), or any stable user ID of your choice. Leave blank for non logged-in actions or guest checkout.
+     */
+    accountId?: string | null;
+    /**
+     * Optional. Creation time for this account associated with this user. Leave blank for non logged-in actions, guest checkout, or when there is no account associated with the current user.
+     */
+    createAccountTime?: string | null;
+    /**
+     * Optional. Identifiers associated with this user or request.
+     */
+    userIds?: Schema$GoogleCloudRecaptchaenterpriseV1UserId[];
   }
   /**
    * Settings specific to keys that can be used for WAF (Web Application Firewall).
@@ -1853,7 +1895,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Firewallpolicies$Patch
     extends StandardParameters {
     /**
-     * The resource name for the FirewallPolicy in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
+     * Identifier. The resource name for the FirewallPolicy in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
      */
     name?: string;
     /**
@@ -2689,7 +2731,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Keys$Patch
     extends StandardParameters {
     /**
-     * The resource name for the Key in the format `projects/{project\}/keys/{key\}`.
+     * Identifier. The resource name for the Key in the format `projects/{project\}/keys/{key\}`.
      */
     name?: string;
     /**
