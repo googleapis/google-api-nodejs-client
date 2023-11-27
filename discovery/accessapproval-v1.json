@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20230915",
+  "revision": "20231110",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -1054,8 +1054,13 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "requestedDuration": {
+          "description": "The requested access duration.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "requestedExpiration": {
-          "description": "The requested expiration for the approval. If the request is approved, access will be granted from the time of approval until the expiration time.",
+          "description": "The original requested expiration for the approval. Calculated by adding the requested_duration to the request_time.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1214,8 +1219,91 @@
           "description": "The resource name of the customer CryptoKeyVersion used for signing.",
           "type": "string"
         },
+        "googleKeyAlgorithm": {
+          "description": "The hashing algorithm used for signature verification. It will only be present in the case of Google managed keys.",
+          "enum": [
+            "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
+            "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
+            "AES_128_CBC",
+            "AES_256_CBC",
+            "AES_128_CTR",
+            "AES_256_CTR",
+            "RSA_SIGN_PSS_2048_SHA256",
+            "RSA_SIGN_PSS_3072_SHA256",
+            "RSA_SIGN_PSS_4096_SHA256",
+            "RSA_SIGN_PSS_4096_SHA512",
+            "RSA_SIGN_PKCS1_2048_SHA256",
+            "RSA_SIGN_PKCS1_3072_SHA256",
+            "RSA_SIGN_PKCS1_4096_SHA256",
+            "RSA_SIGN_PKCS1_4096_SHA512",
+            "RSA_SIGN_RAW_PKCS1_2048",
+            "RSA_SIGN_RAW_PKCS1_3072",
+            "RSA_SIGN_RAW_PKCS1_4096",
+            "RSA_DECRYPT_OAEP_2048_SHA256",
+            "RSA_DECRYPT_OAEP_3072_SHA256",
+            "RSA_DECRYPT_OAEP_4096_SHA256",
+            "RSA_DECRYPT_OAEP_4096_SHA512",
+            "RSA_DECRYPT_OAEP_2048_SHA1",
+            "RSA_DECRYPT_OAEP_3072_SHA1",
+            "RSA_DECRYPT_OAEP_4096_SHA1",
+            "EC_SIGN_P256_SHA256",
+            "EC_SIGN_P384_SHA384",
+            "EC_SIGN_SECP256K1_SHA256",
+            "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
+            "EXTERNAL_SYMMETRIC_ENCRYPTION"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 128-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 256-bit keys.",
+            "AES-CTR (Counter Mode) using 128-bit keys.",
+            "AES-CTR (Counter Mode) using 256-bit keys.",
+            "RSASSA-PSS 2048 bit key with a SHA256 digest.",
+            "RSASSA-PSS 3072 bit key with a SHA256 digest.",
+            "RSASSA-PSS 4096 bit key with a SHA256 digest.",
+            "RSASSA-PSS 4096 bit key with a SHA512 digest.",
+            "RSASSA-PKCS1-v1_5 with a 2048 bit key and a SHA256 digest.",
+            "RSASSA-PKCS1-v1_5 with a 3072 bit key and a SHA256 digest.",
+            "RSASSA-PKCS1-v1_5 with a 4096 bit key and a SHA256 digest.",
+            "RSASSA-PKCS1-v1_5 with a 4096 bit key and a SHA512 digest.",
+            "RSASSA-PKCS1-v1_5 signing without encoding, with a 2048 bit key.",
+            "RSASSA-PKCS1-v1_5 signing without encoding, with a 3072 bit key.",
+            "RSASSA-PKCS1-v1_5 signing without encoding, with a 4096 bit key.",
+            "RSAES-OAEP 2048 bit key with a SHA256 digest.",
+            "RSAES-OAEP 3072 bit key with a SHA256 digest.",
+            "RSAES-OAEP 4096 bit key with a SHA256 digest.",
+            "RSAES-OAEP 4096 bit key with a SHA512 digest.",
+            "RSAES-OAEP 2048 bit key with a SHA1 digest.",
+            "RSAES-OAEP 3072 bit key with a SHA1 digest.",
+            "RSAES-OAEP 4096 bit key with a SHA1 digest.",
+            "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
+            "Algorithm representing symmetric encryption by an external key manager."
+          ],
+          "type": "string"
+        },
         "googlePublicKeyPem": {
           "description": "The public key for the Google default signing, encoded in PEM format. The signature was created using a private key which may be verified using this public key.",
+          "type": "string"
+        },
+        "serializedApprovalRequest": {
+          "description": "The serialized ApprovalRequest message without the approve.signature_info field. This to allow the customer to verify signatures if they want to.",
+          "format": "byte",
           "type": "string"
         },
         "signature": {

@@ -226,7 +226,11 @@ export namespace accessapproval_v1 {
      */
     name?: string | null;
     /**
-     * The requested expiration for the approval. If the request is approved, access will be granted from the time of approval until the expiration time.
+     * The requested access duration.
+     */
+    requestedDuration?: string | null;
+    /**
+     * The original requested expiration for the approval. Calculated by adding the requested_duration to the request_time.
      */
     requestedExpiration?: string | null;
     /**
@@ -353,9 +357,17 @@ export namespace accessapproval_v1 {
      */
     customerKmsKeyVersion?: string | null;
     /**
+     * The hashing algorithm used for signature verification. It will only be present in the case of Google managed keys.
+     */
+    googleKeyAlgorithm?: string | null;
+    /**
      * The public key for the Google default signing, encoded in PEM format. The signature was created using a private key which may be verified using this public key.
      */
     googlePublicKeyPem?: string | null;
+    /**
+     * The serialized ApprovalRequest message without the approve.signature_info field. This to allow the customer to verify signatures if they want to.
+     */
+    serializedApprovalRequest?: string | null;
     /**
      * The digital signature.
      */
