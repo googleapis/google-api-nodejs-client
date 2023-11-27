@@ -334,7 +334,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a `Registration` resource. This method works on any `Registration` resource using [Subscription or Commitment billing](/domains/pricing#billing-models), provided that the resource was created at least 1 day in the past. For `Registration` resources using [Monthly billing](/domains/pricing#billing-models), this method works if: * `state` is `EXPORTED` with `expire_time` in the past * `state` is `REGISTRATION_FAILED` * `state` is `TRANSFER_FAILED` When an active registration is successfully deleted, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain does not renew automatically unless the new owner sets up billing in Google Domains.",
+                  "description": "Deletes a `Registration` resource. This method works on any `Registration` resource using [Subscription or Commitment billing](/domains/pricing#billing-models), provided that the resource was created at least 1 day in the past. When an active registration is successfully deleted, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain does not renew automatically unless the new owner sets up billing in Google Domains. After January 2024 you will only be able to delete `Registration` resources when `state` is one of: `EXPORTED`, `EXPIRED`,`REGISTRATION_FAILED` or `TRANSFER_FAILED`. See [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) for more details.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}",
                   "httpMethod": "DELETE",
                   "id": "domains.projects.locations.registrations.delete",
@@ -359,7 +359,8 @@
                   ]
                 },
                 "export": {
-                  "description": "Exports a `Registration` resource, such that it is no longer managed by Cloud Domains. When an active domain is successfully exported, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain does not renew automatically unless the new owner sets up billing in Google Domains.",
+                  "deprecated": true,
+                  "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Exports a `Registration` resource, such that it is no longer managed by Cloud Domains. When an active domain is successfully exported, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain does not renew automatically unless the new owner sets up billing in Google Domains.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:export",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.export",
@@ -443,7 +444,8 @@
                   ]
                 },
                 "import": {
-                  "description": "Imports a domain name from [Google Domains](https://domains.google/) for use in Cloud Domains. To transfer a domain from another registrar, use the `TransferDomain` method instead. Since individual users can own domains in Google Domains, the calling user must have ownership permission on the domain.",
+                  "deprecated": true,
+                  "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Imports a domain name from [Google Domains](https://domains.google/) for use in Cloud Domains. To transfer a domain from another registrar, use the `TransferDomain` method instead. Since individual users can own domains in Google Domains, the calling user must have ownership permission on the domain.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/registrations:import",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.import",
@@ -627,7 +629,8 @@
                   ]
                 },
                 "retrieveImportableDomains": {
-                  "description": "Lists domain names from [Google Domains](https://domains.google/) that can be imported to Cloud Domains using the `ImportDomain` method. Since individual users can own domains in Google Domains, the list of domains returned depends on the individual user making the call. Domains already managed by Cloud Domains are not returned.",
+                  "deprecated": true,
+                  "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Lists domain names from [Google Domains](https://domains.google/) that can be imported to Cloud Domains using the `ImportDomain` method. Since individual users can own domains in Google Domains, the list of domains returned depends on the individual user making the call. Domains already managed by Cloud Domains are not returned.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/registrations:retrieveImportableDomains",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.retrieveImportableDomains",
@@ -693,7 +696,8 @@
                   ]
                 },
                 "retrieveTransferParameters": {
-                  "description": "Gets parameters needed to transfer a domain name from another registrar to Cloud Domains. For domains already managed by [Google Domains](https://domains.google/), use `ImportDomain` instead. Use the returned values to call `TransferDomain`.",
+                  "deprecated": true,
+                  "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Gets parameters needed to transfer a domain name from another registrar to Cloud Domains. For domains already managed by [Google Domains](https://domains.google/), use `ImportDomain` instead. Use the returned values to call `TransferDomain`.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/registrations:retrieveTransferParameters",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.retrieveTransferParameters",
@@ -809,7 +813,8 @@
                   ]
                 },
                 "transfer": {
-                  "description": "Transfers a domain name from another registrar to Cloud Domains. For domains already managed by [Google Domains](https://domains.google/), use `ImportDomain` instead. Before calling this method, go to the domain's current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to this method. A successful call creates a `Registration` resource in state `TRANSFER_PENDING`. It can take several days to complete the transfer process. The registrant can often speed up this process by approving the transfer through the current registrar, either by clicking a link in an email from the registrar or by visiting the registrar's website. A few minutes after transfer approval, the resource transitions to state `ACTIVE`, indicating that the transfer was successful. If the transfer is rejected or the request expires without being approved, the resource can end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete the resource and retry the transfer.",
+                  "deprecated": true,
+                  "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Transfers a domain name from another registrar to Cloud Domains. For domains already managed by [Google Domains](https://domains.google/), use `ImportDomain` instead. Before calling this method, go to the domain's current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to this method. A successful call creates a `Registration` resource in state `TRANSFER_PENDING`. It can take several days to complete the transfer process. The registrant can often speed up this process by approving the transfer through the current registrar, either by clicking a link in an email from the registrar or by visiting the registrar's website. A few minutes after transfer approval, the resource transitions to state `ACTIVE`, indicating that the transfer was successful. If the transfer is rejected or the request expires without being approved, the resource can end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete the resource and retry the transfer.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/registrations:transfer",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.transfer",
@@ -843,7 +848,7 @@
       }
     }
   },
-  "revision": "20230904",
+  "revision": "20231108",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1037,11 +1042,17 @@
             "PRIVATE_CONTACT_DATA",
             "REDACTED_CONTACT_DATA"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
+          ],
           "enumDescriptions": [
             "The contact privacy settings are undefined.",
             "All the data from `ContactSettings` is publicly available. When setting this option, you must also provide a `PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT` in the `contact_notices` field of the request.",
-            "None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
-            "Some data from `ContactSettings` is publicly available. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
+            "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
+            "The organization name (if provided) and limited non-identifying data from `ContactSettings` is available to the public (e.g. country and state). The remaining data is marked as `REDACTED FOR PRIVACY` in the WHOIS database. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
           ],
           "type": "string"
         },
@@ -1094,7 +1105,8 @@
         },
         "googleDomainsDns": {
           "$ref": "GoogleDomainsDns",
-          "description": "The free DNS zone provided by [Google Domains](https://domains.google/)."
+          "deprecated": true,
+          "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) The free DNS zone provided by [Google Domains](https://domains.google/)."
         }
       },
       "type": "object"
@@ -1213,7 +1225,8 @@
       "type": "object"
     },
     "ExportRegistrationRequest": {
-      "description": "Request for the `ExportRegistration` method.",
+      "deprecated": true,
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Request for the `ExportRegistration` method.",
       "id": "ExportRegistrationRequest",
       "properties": {},
       "type": "object"
@@ -1267,7 +1280,8 @@
       "type": "object"
     },
     "GoogleDomainsDns": {
-      "description": "Configuration for using the free DNS zone provided by Google Domains as a `Registration`'s `dns_provider`. You cannot configure the DNS zone itself using the API. To configure the DNS zone, go to [Google Domains](https://domains.google/).",
+      "deprecated": true,
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Configuration for using the free DNS zone provided by Google Domains as a `Registration`'s `dns_provider`. You cannot configure the DNS zone itself using the API. To configure the DNS zone, go to [Google Domains](https://domains.google/).",
       "id": "GoogleDomainsDns",
       "properties": {
         "dsRecords": {
@@ -1304,7 +1318,8 @@
       "type": "object"
     },
     "ImportDomainRequest": {
-      "description": "Request for the `ImportDomain` method.",
+      "deprecated": true,
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Request for the `ImportDomain` method.",
       "id": "ImportDomainRequest",
       "properties": {
         "domainName": {
@@ -1413,17 +1428,47 @@
       "description": "Defines renewal, billing, and transfer settings for a `Registration`.",
       "id": "ManagementSettings",
       "properties": {
-        "renewalMethod": {
-          "description": "Output only. The renewal method for this `Registration`.",
+        "preferredRenewalMethod": {
+          "description": "Optional. The desired renewal method for this `Registration`. The actual `renewal_method` is automatically updated to reflect this choice. If unset or equal to `RENEWAL_METHOD_UNSPECIFIED`, it will be treated as if it were set to `AUTOMATIC_RENEWAL`. Can't be set to `RENEWAL_DISABLED` during resource creation and can only be updated when the `Registration` resource has state `ACTIVE` or `SUSPENDED`. When `preferred_renewal_method` is set to `AUTOMATIC_RENEWAL` the actual `renewal_method` can be set to `RENEWAL_DISABLED` in case of e.g. problems with the Billing Account or reported domain abuse. In such cases check the `issues` field on the `Registration`. After the problem is resolved the `renewal_method` will be automatically updated to `preferred_renewal_method` in a few hours.",
           "enum": [
             "RENEWAL_METHOD_UNSPECIFIED",
             "AUTOMATIC_RENEWAL",
-            "MANUAL_RENEWAL"
+            "MANUAL_RENEWAL",
+            "RENEWAL_DISABLED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "The renewal method is undefined.",
-            "The domain is automatically renewed each year . To disable automatic renewals, delete the resource by calling `DeleteRegistration` or export it by calling `ExportRegistration`.",
-            "The domain must be explicitly renewed each year before its `expire_time`. This option is only available when the `Registration` is in state `EXPORTED`. To manage the domain's current billing and renewal settings, go to [Google Domains](https://domains.google/)."
+            "The domain is automatically renewed each year.",
+            "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) This option was never used. Use RENEWAL_DISABLED instead.",
+            "The domain won't be renewed and will expire at its expiration time."
+          ],
+          "type": "string"
+        },
+        "renewalMethod": {
+          "description": "Output only. The actual renewal method for this `Registration`. When `preferred_renewal_method` is set to `AUTOMATIC_RENEWAL` the actual `renewal_method` can be equal to `RENEWAL_DISABLED` in case of e.g. problems with the Billing Account or reported domain abuse. In such cases check the `issues` field on the `Registration`. After the problem is resolved the `renewal_method` will be automatically updated to `preferred_renewal_method` in a few hours.",
+          "enum": [
+            "RENEWAL_METHOD_UNSPECIFIED",
+            "AUTOMATIC_RENEWAL",
+            "MANUAL_RENEWAL",
+            "RENEWAL_DISABLED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "The renewal method is undefined.",
+            "The domain is automatically renewed each year.",
+            "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) This option was never used. Use RENEWAL_DISABLED instead.",
+            "The domain won't be renewed and will expire at its expiration time."
           ],
           "readOnly": true,
           "type": "string"
@@ -1722,11 +1767,17 @@
               "PRIVATE_CONTACT_DATA",
               "REDACTED_CONTACT_DATA"
             ],
+            "enumDeprecated": [
+              false,
+              false,
+              true,
+              false
+            ],
             "enumDescriptions": [
               "The contact privacy settings are undefined.",
               "All the data from `ContactSettings` is publicly available. When setting this option, you must also provide a `PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT` in the `contact_notices` field of the request.",
-              "None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
-              "Some data from `ContactSettings` is publicly available. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
+              "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
+              "The organization name (if provided) and limited non-identifying data from `ContactSettings` is available to the public (e.g. country and state). The remaining data is marked as `REDACTED FOR PRIVACY` in the WHOIS database. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
             ],
             "type": "string"
           },
@@ -1740,7 +1791,7 @@
       "type": "object"
     },
     "Registration": {
-      "description": "The `Registration` resource facilitates managing and configuring domain name registrations. There are several ways to create a new `Registration` resource: To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. Another way to create a new `Registration` is to transfer an existing domain from another registrar. First, go to the current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to `TransferDomain`. Finally, you can create a new `Registration` by importing an existing domain managed with [Google Domains](https://domains.google/). First, call `RetrieveImportableDomains` to list domains to which the calling user has sufficient access. Then call `ImportDomain` on any domain names you want to use with Cloud Domains.",
+      "description": "The `Registration` resource facilitates managing and configuring domain name registrations. There are several ways to create a new `Registration` resource: To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. Another way to create a new `Registration` is to transfer an existing domain from another registrar (Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations)). First, go to the current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to `TransferDomain`. Finally, you can create a new `Registration` by importing an existing domain managed with [Google Domains](https://domains.google/) (Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations)). First, call `RetrieveImportableDomains` to list domains to which the calling user has sufficient access. Then call `ImportDomain` on any domain names you want to use with Cloud Domains.",
       "id": "Registration",
       "properties": {
         "contactSettings": {
@@ -1773,12 +1824,14 @@
             "enum": [
               "ISSUE_UNSPECIFIED",
               "CONTACT_SUPPORT",
-              "UNVERIFIED_EMAIL"
+              "UNVERIFIED_EMAIL",
+              "PROBLEM_WITH_BILLING"
             ],
             "enumDescriptions": [
               "The issue is undefined.",
               "Contact the Cloud Support team to resolve a problem with this domain.",
-              "[ICANN](https://icann.org/) requires verification of the email address in the `Registration`'s `contact_settings.registrant_contact` field. To verify the email address, follow the instructions in the email the `registrant_contact` receives following registration. If you do not complete email verification within 15 days of registration, the domain is suspended. To resend the verification email, call ConfigureContactSettings and provide the current `registrant_contact.email`."
+              "[ICANN](https://icann.org/) requires verification of the email address in the `Registration`'s `contact_settings.registrant_contact` field. To verify the email address, follow the instructions in the email the `registrant_contact` receives following registration. If you do not complete email verification within 15 days of registration, the domain is suspended. To resend the verification email, call ConfigureContactSettings and provide the current `registrant_contact.email`.",
+              "Billing account is not in good standing. The domain will not automatically renew at its expiration time unless you resolve problems with your billing account."
             ],
             "type": "string"
           },
@@ -1834,7 +1887,20 @@
             "IMPORT_PENDING",
             "ACTIVE",
             "SUSPENDED",
-            "EXPORTED"
+            "EXPORTED",
+            "EXPIRED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "The state is undefined.",
@@ -1843,9 +1909,10 @@
             "The domain is being transferred from another registrar to Cloud Domains.",
             "The attempt to transfer the domain from another registrar to Cloud Domains failed. You can delete resources in this state and retry the transfer.",
             "The domain is being imported from Google Domains to Cloud Domains.",
-            "The domain is registered and operational. The domain renews automatically as long as it remains in this state.",
+            "The domain is registered and operational. The domain renews automatically as long as it remains in this state and the RenewalMethod is set to AUTOMATIC_RENEWAL.",
             "The domain is suspended and inoperative. For more details, see the `issues` field.",
-            "The domain is no longer managed with Cloud Domains. It may have been transferred to another registrar or exported for management in [Google Domains](https://domains.google/). You can no longer update it with this API, and information shown about it may be stale. Domains in this state are not automatically renewed by Cloud Domains."
+            "The domain is no longer managed with Cloud Domains. It may have been transferred to another registrar or exported for management in [Google Domains](https://domains.google/). You can no longer update it with this API, and information shown about it may be stale. Domains in this state are not automatically renewed by Cloud Domains.",
+            "The domain is expired."
           ],
           "readOnly": true,
           "type": "string"
@@ -1859,11 +1926,17 @@
               "PRIVATE_CONTACT_DATA",
               "REDACTED_CONTACT_DATA"
             ],
+            "enumDeprecated": [
+              false,
+              false,
+              true,
+              false
+            ],
             "enumDescriptions": [
               "The contact privacy settings are undefined.",
               "All the data from `ContactSettings` is publicly available. When setting this option, you must also provide a `PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT` in the `contact_notices` field of the request.",
-              "None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
-              "Some data from `ContactSettings` is publicly available. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
+              "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
+              "The organization name (if provided) and limited non-identifying data from `ContactSettings` is available to the public (e.g. country and state). The remaining data is marked as `REDACTED FOR PRIVACY` in the WHOIS database. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
             ],
             "type": "string"
           },
@@ -1871,7 +1944,8 @@
           "type": "array"
         },
         "transferFailureReason": {
-          "description": "Output only. The reason the domain transfer failed. Only set for domains in TRANSFER_FAILED state.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) The reason the domain transfer failed. Only set for domains in TRANSFER_FAILED state.",
           "enum": [
             "TRANSFER_FAILURE_REASON_UNSPECIFIED",
             "TRANSFER_FAILURE_REASON_UNKNOWN",
@@ -1911,7 +1985,8 @@
       "type": "object"
     },
     "RetrieveImportableDomainsResponse": {
-      "description": "Response for the `RetrieveImportableDomains` method.",
+      "deprecated": true,
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Response for the `RetrieveImportableDomains` method.",
       "id": "RetrieveImportableDomainsResponse",
       "properties": {
         "domains": {
@@ -1940,7 +2015,8 @@
       "type": "object"
     },
     "RetrieveTransferParametersResponse": {
-      "description": "Response for the `RetrieveTransferParameters` method.",
+      "deprecated": true,
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Response for the `RetrieveTransferParameters` method.",
       "id": "RetrieveTransferParametersResponse",
       "properties": {
         "transferParameters": {
@@ -2036,7 +2112,8 @@
       "type": "object"
     },
     "TransferDomainRequest": {
-      "description": "Request for the `TransferDomain` method.",
+      "deprecated": true,
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Request for the `TransferDomain` method.",
       "id": "TransferDomainRequest",
       "properties": {
         "authorizationCode": {
@@ -2074,7 +2151,8 @@
       "type": "object"
     },
     "TransferParameters": {
-      "description": "Parameters required to transfer a domain from another registrar.",
+      "deprecated": true,
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Parameters required to transfer a domain from another registrar.",
       "id": "TransferParameters",
       "properties": {
         "currentRegistrar": {
@@ -2105,11 +2183,17 @@
               "PRIVATE_CONTACT_DATA",
               "REDACTED_CONTACT_DATA"
             ],
+            "enumDeprecated": [
+              false,
+              false,
+              true,
+              false
+            ],
             "enumDescriptions": [
               "The contact privacy settings are undefined.",
               "All the data from `ContactSettings` is publicly available. When setting this option, you must also provide a `PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT` in the `contact_notices` field of the request.",
-              "None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
-              "Some data from `ContactSettings` is publicly available. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
+              "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
+              "The organization name (if provided) and limited non-identifying data from `ContactSettings` is available to the public (e.g. country and state). The remaining data is marked as `REDACTED FOR PRIVACY` in the WHOIS database. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
             ],
             "type": "string"
           },
