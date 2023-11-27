@@ -8146,7 +8146,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231114",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -10325,6 +10325,41 @@
       },
       "type": "object"
     },
+    "Consent": {
+      "description": "User consent status.",
+      "id": "Consent",
+      "properties": {
+        "adPersonalization": {
+          "description": "Represents consent for ad personalization.",
+          "enum": [
+            "CONSENT_STATUS_UNSPECIFIED",
+            "CONSENT_STATUS_GRANTED",
+            "CONSENT_STATUS_DENIED"
+          ],
+          "enumDescriptions": [
+            "Consent is not specified.",
+            "Consent is granted.",
+            "Consent is denied."
+          ],
+          "type": "string"
+        },
+        "adUserData": {
+          "description": "Represents consent for ad user data.",
+          "enum": [
+            "CONSENT_STATUS_UNSPECIFIED",
+            "CONSENT_STATUS_GRANTED",
+            "CONSENT_STATUS_DENIED"
+          ],
+          "enumDescriptions": [
+            "Consent is not specified.",
+            "Consent is granted.",
+            "Consent is denied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ContactInfo": {
       "description": "Contact information defining a Customer Match audience member.",
       "id": "ContactInfo",
@@ -10369,6 +10404,10 @@
       "description": "Wrapper message for a list of contact information defining Customer Match audience members.",
       "id": "ContactInfoList",
       "properties": {
+        "consent": {
+          "$ref": "Consent",
+          "description": "Input only. User consent status."
+        },
         "contactInfos": {
           "description": "A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.",
           "items": {
@@ -10885,7 +10924,8 @@
             "SDF_VERSION_5_3",
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
-            "SDF_VERSION_6"
+            "SDF_VERSION_6",
+            "SDF_VERSION_7"
           ],
           "enumDeprecated": [
             false,
@@ -10897,6 +10937,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -10913,7 +10954,8 @@
             "SDF version 5.3",
             "SDF version 5.4",
             "SDF version 5.5",
-            "SDF version 6"
+            "SDF version 6",
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version. Currently in beta. Only available for use by a subset of users."
           ],
           "type": "string"
         }
@@ -16362,6 +16404,10 @@
       "description": "Wrapper message for a list of mobile device IDs defining Customer Match audience members.",
       "id": "MobileDeviceIdList",
       "properties": {
+        "consent": {
+          "$ref": "Consent",
+          "description": "Input only. User consent status."
+        },
         "mobileDeviceIds": {
           "description": "A list of mobile device IDs defining Customer Match audience members. The size of mobile_device_ids mustn't be greater than 500,000.",
           "items": {
@@ -17706,7 +17752,8 @@
             "SDF_VERSION_5_3",
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
-            "SDF_VERSION_6"
+            "SDF_VERSION_6",
+            "SDF_VERSION_7"
           ],
           "enumDeprecated": [
             false,
@@ -17718,6 +17765,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -17734,7 +17782,8 @@
             "SDF version 5.3",
             "SDF version 5.4",
             "SDF version 5.5",
-            "SDF version 6"
+            "SDF version 6",
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version. Currently in beta. Only available for use by a subset of users."
           ],
           "type": "string"
         }
@@ -17780,7 +17829,8 @@
             "SDF_VERSION_5_3",
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
-            "SDF_VERSION_6"
+            "SDF_VERSION_6",
+            "SDF_VERSION_7"
           ],
           "enumDeprecated": [
             false,
@@ -17792,6 +17842,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -17808,7 +17859,8 @@
             "SDF version 5.3",
             "SDF version 5.4",
             "SDF version 5.5",
-            "SDF version 6"
+            "SDF version 6",
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version. Currently in beta. Only available for use by a subset of users."
           ],
           "type": "string"
         }
