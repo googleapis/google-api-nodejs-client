@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20231113",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1568,7 +1568,7 @@
           ],
           "enumDescriptions": [
             "Unspecified. Defaults to AUTO_UPDATE_DEFAULT.",
-            "The app is automatically updated with low priority to minimize the impact on the user.The app is updated when all of the following constraints are met: The device is not actively used. The device is connected to an unmetered network. The device is charging.The device is notified about a new update within 24 hours after it is published by the developer, after which the app is updated the next time the constraints above are met.",
+            "The default update mode.The app is automatically updated with low priority to minimize the impact on the user.The app is updated when all of the following constraints are met: The device is not actively used. The device is connected to an unmetered network. The device is charging. The app to be updated is not running in the foreground.The device is notified about a new update within 24 hours after it is published by the developer, after which the app is updated the next time the constraints above are met.",
             "The app is not automatically updated for a maximum of 90 days after the app becomes out of date.90 days after the app becomes out of date, the latest available version is installed automatically with low priority (see AUTO_UPDATE_DEFAULT). After the app is updated it is not automatically updated again until 90 days after it becomes out of date again.The user can still manually update the app from the Play Store at any time.",
             "The app is updated as soon as possible. No constraints are applied.The device is notified immediately about a new update after it becomes available."
           ],
@@ -1657,7 +1657,7 @@
           "enumDescriptions": [
             "Unspecified. Defaults to AVAILABLE.",
             "The app is automatically installed and can be removed by the user.",
-            "The app is automatically installed and can't be removed by the user.",
+            "The app is automatically installed regardless of a set maintenance window and can't be removed by the user.",
             "The app is blocked and can't be installed. If the app was installed under a previous policy, it will be uninstalled. This also blocks its instant app functionality.",
             "The app is available to install.",
             "The app is automatically installed and can't be removed by the user and will prevent setup from completion until installation is complete.",
@@ -2021,7 +2021,7 @@
           "type": "string"
         },
         "newPassword": {
-          "description": "For commands of type RESET_PASSWORD, optionally specifies the new password.",
+          "description": "For commands of type RESET_PASSWORD, optionally specifies the new password. Note: The new password must be at least 6 characters long if it is numeric in case of Android 14 devices. Else the command will fail with INVALID_VALUE.",
           "type": "string"
         },
         "resetPasswordFlags": {
@@ -3031,7 +3031,7 @@
       "type": "object"
     },
     "FreezePeriod": {
-      "description": "A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.Note: For Freeze Periods to take effect, SystemUpdateType cannot be specified as SYSTEM_UPDATE_TYPE_UNSPECIFIED, because freeze periods require a defined policy to be specified.",
+      "description": "A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed.When the device is outside any set freeze periods, the normal policy behavior (automatic, windowed, or postponed) applies.Leap years are ignored in freeze period calculations, in particular: If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.Note: For Freeze Periods to take effect, SystemUpdateType cannot be specified as SYSTEM_UPDATE_TYPE_UNSPECIFIED, because freeze periods require a defined policy to be specified.",
       "id": "FreezePeriod",
       "properties": {
         "endDate": {
@@ -3850,7 +3850,9 @@
             "NOT_AVAILABLE_IN_COUNTRY",
             "NO_LICENSES_REMAINING",
             "NOT_ENROLLED",
-            "USER_INVALID"
+            "USER_INVALID",
+            "NETWORK_ERROR_UNRELIABLE_CONNECTION",
+            "INSUFFICIENT_STORAGE"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -3863,7 +3865,9 @@
             "The app is not available in the user's country.",
             "There are no licenses available to assign to the user.",
             "The enterprise is no longer enrolled with Managed Google Play or the admin has not accepted the latest Managed Google Play Terms of Service.",
-            "The user is no longer valid. The user may have been deleted or disabled."
+            "The user is no longer valid. The user may have been deleted or disabled.",
+            "A network error on the user's device has prevented the install from succeeding. This usually happens when the device's internet connectivity is degraded, unavailable or there's a network configuration issue. Please ensure the device has access to full internet connectivity on a network that meets Android Enterprise Network Requirements (https://support.google.com/work/android/answer/10513641). App install or update will automatically resume once this is the case.",
+            "The user's device does not have sufficient storage space to install the app. This can be resolved by clearing up storage space on the device. App install or update will automatically resume once the device has sufficient storage."
           ],
           "type": "string"
         },
@@ -4375,7 +4379,7 @@
           "type": "boolean"
         },
         "maxDaysWithWorkOff": {
-          "description": "Controls how long the work profile can stay off. The minimum duration must be at least 3 days. Other details are as follows: - If the duration is set to 0, the feature is turned off. - If the duration is set to any value between 1-2 days, the feature is automatically set to 3 days. *Note:* If you want to avoid personal profiles being suspended during long periods of off-time, you can temporarily set a large value for this parameter.",
+          "description": "Controls how long the work profile can stay off. The minimum duration must be at least 3 days. Other details are as follows: - If the duration is set to 0, the feature is turned off. - If the duration is set to a value smaller than the minimum duration, the feature returns an error. *Note:* If you want to avoid personal profiles being suspended during long periods of off-time, you can temporarily set a large value for this parameter.",
           "format": "int32",
           "type": "integer"
         },
@@ -5591,7 +5595,7 @@
             "Follow the default update behavior for the device, which typically requires the user to accept system updates.",
             "Install automatically as soon as an update is available.",
             "Install automatically within a daily maintenance window. This also configures Play apps to be updated within the window. This is strongly recommended for kiosk devices because this is the only way apps persistently pinned to the foreground can be updated by Play.If autoUpdateMode is set to AUTO_UPDATE_HIGH_PRIORITY for an app, then the maintenance window is ignored for that app and it is updated as soon as possible even outside of the maintenance window.",
-            "Postpone automatic install up to a maximum of 30 days."
+            "Postpone automatic install up to a maximum of 30 days. This policy does not affect security updates (e.g. monthly security patches)."
           ],
           "type": "string"
         }
