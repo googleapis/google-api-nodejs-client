@@ -2540,7 +2540,7 @@
       }
     }
   },
-  "revision": "20230919",
+  "revision": "20231030",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3173,6 +3173,10 @@
           "description": "[Output only] The IP address of this cluster's master endpoint. The endpoint can be accessed from the internet at `https://username:password@endpoint/`. See the `masterAuth` property of this resource for username and password information.",
           "type": "string"
         },
+        "enterpriseConfig": {
+          "$ref": "EnterpriseConfig",
+          "description": "GKE Enterprise Configuration."
+        },
         "etag": {
           "description": "This checksum is computed by the server based on the value of cluster fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.",
           "type": "string"
@@ -3605,6 +3609,10 @@
           "$ref": "NetworkTags",
           "description": "The desired network tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters."
         },
+        "desiredNodePoolAutoConfigResourceManagerTags": {
+          "$ref": "ResourceManagerTags",
+          "description": "The desired resource manager tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters."
+        },
         "desiredNodePoolAutoscaling": {
           "$ref": "NodePoolAutoscaling",
           "description": "Autoscaler configuration for the node pool specified in desired_node_pool_id. If there is only one pool in the cluster and desired_node_pool_id is not provided then the change applies to that single node pool."
@@ -3946,6 +3954,28 @@
       "properties": {},
       "type": "object"
     },
+    "EnterpriseConfig": {
+      "description": "EnterpriseConfig is the cluster enterprise configuration.",
+      "id": "EnterpriseConfig",
+      "properties": {
+        "clusterTier": {
+          "description": "Output only. [Output only] cluster_tier specifies the premium tier of the cluster.",
+          "enum": [
+            "CLUSTER_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "CLUSTER_TIER_UNSPECIFIED is when cluster_tier is not set.",
+            "STANDARD indicates a standard GKE cluster.",
+            "ENTERPRISE indicates a GKE Enterprise cluster."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EphemeralStorageLocalSsdConfig": {
       "description": "EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.",
       "id": "EphemeralStorageLocalSsdConfig",
@@ -4070,11 +4100,13 @@
           "enum": [
             "CHANNEL_UNSPECIFIED",
             "CHANNEL_DISABLED",
+            "CHANNEL_EXPERIMENTAL",
             "CHANNEL_STANDARD"
           ],
           "enumDescriptions": [
             "Default value.",
             "Gateway API support is disabled",
+            "Gateway API support is enabled, experimental CRDs are installed",
             "Gateway API support is enabled, standard CRDs are installed"
           ],
           "type": "string"
@@ -5186,6 +5218,10 @@
           "description": "The resource labels for the node pool to use to annotate any related Google Compute Engine resources.",
           "type": "object"
         },
+        "resourceManagerTags": {
+          "$ref": "ResourceManagerTags",
+          "description": "A map of resource manager tag keys and values to be attached to the nodes."
+        },
         "sandboxConfig": {
           "$ref": "SandboxConfig",
           "description": "Sandbox configuration for this node."
@@ -5429,6 +5465,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "queuedProvisioning": {
+          "$ref": "QueuedProvisioning",
+          "description": "Specifies the configuration of queued provisioning."
+        },
         "selfLink": {
           "description": "[Output only] Server-defined URL for the resource.",
           "type": "string"
@@ -5483,6 +5523,10 @@
         "networkTags": {
           "$ref": "NetworkTags",
           "description": "The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035."
+        },
+        "resourceManagerTags": {
+          "$ref": "ResourceManagerTags",
+          "description": "Resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies."
         }
       },
       "type": "object"
@@ -5674,7 +5718,8 @@
             "SET_NODE_POOL_SIZE",
             "SET_NETWORK_POLICY",
             "SET_MAINTENANCE_POLICY",
-            "RESIZE_CLUSTER"
+            "RESIZE_CLUSTER",
+            "FLEET_FEATURE_UPGRADE"
           ],
           "enumDeprecated": [
             false,
@@ -5694,6 +5739,7 @@
             false,
             true,
             true,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -5714,7 +5760,8 @@
             "The node pool is being resized. With the exception of resizing to or from size zero, the node pool is generally usable during this operation.",
             "Unused. Updating network policy uses UPDATE_CLUSTER.",
             "Unused. Updating maintenance policy uses UPDATE_CLUSTER.",
-            "The control plane is being resized. This operation type is initiated by GKE. These operations are often performed preemptively to ensure that the control plane has sufficient resources and is not typically an indication of issues. For more details, see [documentation on resizes](https://cloud.google.com/kubernetes-engine/docs/concepts/maintenance-windows-and-exclusions#repairs)."
+            "The control plane is being resized. This operation type is initiated by GKE. These operations are often performed preemptively to ensure that the control plane has sufficient resources and is not typically an indication of issues. For more details, see [documentation on resizes](https://cloud.google.com/kubernetes-engine/docs/concepts/maintenance-windows-and-exclusions#repairs).",
+            "Fleet features of GKE Enterprise are being upgraded. The cluster should be assumed to be blocked for other upgrades until the operation finishes."
           ],
           "type": "string"
         },
@@ -5935,6 +5982,17 @@
       },
       "type": "object"
     },
+    "QueuedProvisioning": {
+      "description": "QueuedProvisioning defines the queued provisioning used by the node pool.",
+      "id": "QueuedProvisioning",
+      "properties": {
+        "enabled": {
+          "description": "Denotes that this nodepool is QRM specific, meaning nodes can be only obtained through queuing via the Cluster Autoscaler ProvisioningRequest API.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "RangeInfo": {
       "description": "RangeInfo contains the range name and the range utilization by this cluster.",
       "id": "RangeInfo",
@@ -6090,6 +6148,20 @@
         "resourceType": {
           "description": "Resource name \"cpu\", \"memory\" or gpu-specific string.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceManagerTags": {
+      "description": "A map of resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies. Tags must be according to specifications in https://cloud.google.com/vpc/docs/tags-firewalls-overview#specifications. A maximum of 5 tag key-value pairs can be specified. Existing tags will be replaced with new values.",
+      "id": "ResourceManagerTags",
+      "properties": {
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "TagKeyValue must be in one of the following formats ([KEY]=[VALUE]) 1. `tagKeys/{tag_key_id}=tagValues/{tag_value_id}` 2. `{org_id}/{tag_key_name}={tag_value_name}` 3. `{project_id}/{tag_key_name}={tag_value_name}`",
+          "type": "object"
         }
       },
       "type": "object"
@@ -7092,6 +7164,10 @@
         "resourceLabels": {
           "$ref": "ResourceLabels",
           "description": "The resource labels for the node pool to use to annotate any related Google Compute Engine resources."
+        },
+        "resourceManagerTags": {
+          "$ref": "ResourceManagerTags",
+          "description": "Desired resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies. Existing tags will be replaced with new values."
         },
         "tags": {
           "$ref": "NetworkTags",

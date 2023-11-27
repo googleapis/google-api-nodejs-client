@@ -607,6 +607,10 @@ export namespace container_v1 {
      */
     endpoint?: string | null;
     /**
+     * GKE Enterprise Configuration.
+     */
+    enterpriseConfig?: Schema$EnterpriseConfig;
+    /**
      * This checksum is computed by the server based on the value of cluster fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
@@ -958,6 +962,10 @@ export namespace container_v1 {
      */
     desiredNodePoolAutoConfigNetworkTags?: Schema$NetworkTags;
     /**
+     * The desired resource manager tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
+     */
+    desiredNodePoolAutoConfigResourceManagerTags?: Schema$ResourceManagerTags;
+    /**
      * Autoscaler configuration for the node pool specified in desired_node_pool_id. If there is only one pool in the cluster and desired_node_pool_id is not provided then the change applies to that single node pool.
      */
     desiredNodePoolAutoscaling?: Schema$NodePoolAutoscaling;
@@ -1206,6 +1214,15 @@ export namespace container_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * EnterpriseConfig is the cluster enterprise configuration.
+   */
+  export interface Schema$EnterpriseConfig {
+    /**
+     * Output only. [Output only] cluster_tier specifies the premium tier of the cluster.
+     */
+    clusterTier?: string | null;
+  }
   /**
    * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.
    */
@@ -2066,6 +2083,10 @@ export namespace container_v1 {
      */
     resourceLabels?: {[key: string]: string} | null;
     /**
+     * A map of resource manager tag keys and values to be attached to the nodes.
+     */
+    resourceManagerTags?: Schema$ResourceManagerTags;
+    /**
      * Sandbox configuration for this node.
      */
     sandboxConfig?: Schema$SandboxConfig;
@@ -2268,6 +2289,10 @@ export namespace container_v1 {
      */
     podIpv4CidrSize?: number | null;
     /**
+     * Specifies the configuration of queued provisioning.
+     */
+    queuedProvisioning?: Schema$QueuedProvisioning;
+    /**
      * [Output only] Server-defined URL for the resource.
      */
     selfLink?: string | null;
@@ -2300,6 +2325,10 @@ export namespace container_v1 {
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035.
      */
     networkTags?: Schema$NetworkTags;
+    /**
+     * Resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies.
+     */
+    resourceManagerTags?: Schema$ResourceManagerTags;
   }
   /**
    * NodePoolAutoscaling contains information required by cluster autoscaler to adjust the size of the node pool to the current cluster usage.
@@ -2576,6 +2605,15 @@ export namespace container_v1 {
     topic?: string | null;
   }
   /**
+   * QueuedProvisioning defines the queued provisioning used by the node pool.
+   */
+  export interface Schema$QueuedProvisioning {
+    /**
+     * Denotes that this nodepool is QRM specific, meaning nodes can be only obtained through queuing via the Cluster Autoscaler ProvisioningRequest API.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * RangeInfo contains the range name and the range utilization by this cluster.
    */
   export interface Schema$RangeInfo {
@@ -2669,6 +2707,15 @@ export namespace container_v1 {
      * Resource name "cpu", "memory" or gpu-specific string.
      */
     resourceType?: string | null;
+  }
+  /**
+   * A map of resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies. Tags must be according to specifications in https://cloud.google.com/vpc/docs/tags-firewalls-overview#specifications. A maximum of 5 tag key-value pairs can be specified. Existing tags will be replaced with new values.
+   */
+  export interface Schema$ResourceManagerTags {
+    /**
+     * TagKeyValue must be in one of the following formats ([KEY]=[VALUE]) 1. `tagKeys/{tag_key_id\}=tagValues/{tag_value_id\}` 2. `{org_id\}/{tag_key_name\}={tag_value_name\}` 3. `{project_id\}/{tag_key_name\}={tag_value_name\}`
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * Configuration for exporting cluster resource usages.
@@ -3412,6 +3459,10 @@ export namespace container_v1 {
      * The resource labels for the node pool to use to annotate any related Google Compute Engine resources.
      */
     resourceLabels?: Schema$ResourceLabels;
+    /**
+     * Desired resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies. Existing tags will be replaced with new values.
+     */
+    resourceManagerTags?: Schema$ResourceManagerTags;
     /**
      * The desired network tags to be applied to all nodes in the node pool. If this field is not present, the tags will not be changed. Otherwise, the existing network tags will be *replaced* with the provided tags.
      */

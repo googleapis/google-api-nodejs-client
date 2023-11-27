@@ -293,6 +293,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Autopilot {
     /**
+     * ConversionStatus shows conversion status.
+     */
+    conversionStatus?: Schema$AutopilotConversionStatus;
+    /**
      * Enable Autopilot
      */
     enabled?: boolean | null;
@@ -329,6 +333,15 @@ export namespace container_v1beta1 {
      * The name of the resources which are subject to this issue.
      */
     subjects?: string[] | null;
+  }
+  /**
+   * AutopilotConversionStatus represents conversion status.
+   */
+  export interface Schema$AutopilotConversionStatus {
+    /**
+     * Output only. The current state of the conversion.
+     */
+    state?: string | null;
   }
   /**
    * AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.
@@ -639,6 +652,10 @@ export namespace container_v1beta1 {
      * [Output only] The IP address of this cluster's master endpoint. The endpoint can be accessed from the internet at `https://username:password@endpoint/`. See the `masterAuth` property of this resource for username and password information.
      */
     endpoint?: string | null;
+    /**
+     * GKE Enterprise Configuration.
+     */
+    enterpriseConfig?: Schema$EnterpriseConfig;
     /**
      * This checksum is computed by the server based on the value of cluster fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.
      */
@@ -1048,6 +1065,10 @@ export namespace container_v1beta1 {
      */
     desiredNodePoolAutoConfigNetworkTags?: Schema$NetworkTags;
     /**
+     * The desired resource manager tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
+     */
+    desiredNodePoolAutoConfigResourceManagerTags?: Schema$ResourceManagerTags;
+    /**
      * Autoscaler configuration for the node pool specified in desired_node_pool_id. If there is only one pool in the cluster and desired_node_pool_id is not provided then the change applies to that single node pool.
      */
     desiredNodePoolAutoscaling?: Schema$NodePoolAutoscaling;
@@ -1334,6 +1355,15 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
+   * EnterpriseConfig is the cluster enterprise configuration.
+   */
+  export interface Schema$EnterpriseConfig {
+    /**
+     * Output only. [Output only] cluster_tier specifies the premium tier of the cluster.
+     */
+    clusterTier?: string | null;
+  }
+  /**
    * EphemeralStorageConfig contains configuration for the ephemeral storage filesystem.
    */
   export interface Schema$EphemeralStorageConfig {
@@ -1529,6 +1559,10 @@ export namespace container_v1beta1 {
      * Specifies the frequency of planned maintenance events.
      */
     maintenanceInterval?: string | null;
+    /**
+     * Strategy that will trigger maintenance on behalf of the customer.
+     */
+    opportunisticMaintenanceStrategy?: Schema$OpportunisticMaintenanceStrategy;
   }
   /**
    * RFC-2616: cache control support
@@ -2288,6 +2322,10 @@ export namespace container_v1beta1 {
      */
     resourceLabels?: {[key: string]: string} | null;
     /**
+     * A map of resource manager tag keys and values to be attached to the nodes.
+     */
+    resourceManagerTags?: Schema$ResourceManagerTags;
+    /**
      * Sandbox configuration for this node.
      */
     sandboxConfig?: Schema$SandboxConfig;
@@ -2434,7 +2472,7 @@ export namespace container_v1beta1 {
     podRange?: string | null;
   }
   /**
-   * NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload. These upgrade settings control the level of parallelism and the level of disruption caused by an upgrade. maxUnavailable controls the number of nodes that can be simultaneously unavailable. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). Note: upgrades inevitably introduce some disruption since workloads need to be moved from old nodes to new, upgraded ones. Even if maxUnavailable=0, this holds true. (Disruption stays within the limits of PodDisruptionBudget, if it is configured.) Consider a hypothetical node pool with 5 nodes having maxSurge=2, maxUnavailable=1. This means the upgrade process upgrades 3 nodes simultaneously. It creates 2 additional (upgraded) nodes, then it brings down 3 old (not yet upgraded) nodes at the same time. This ensures that there are always at least 4 nodes available.
+   * NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload.
    */
   export interface Schema$NodePool {
     /**
@@ -2494,6 +2532,10 @@ export namespace container_v1beta1 {
      */
     podIpv4CidrSize?: number | null;
     /**
+     * Specifies the configuration of queued provisioning.
+     */
+    queuedProvisioning?: Schema$QueuedProvisioning;
+    /**
      * [Output only] Server-defined URL for the resource.
      */
     selfLink?: string | null;
@@ -2526,6 +2568,10 @@ export namespace container_v1beta1 {
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035.
      */
     networkTags?: Schema$NetworkTags;
+    /**
+     * Resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies.
+     */
+    resourceManagerTags?: Schema$ResourceManagerTags;
   }
   /**
    * NodePoolAutoscaling contains information required by cluster autoscaler to adjust the size of the node pool to the current cluster usage.
@@ -2700,6 +2746,23 @@ export namespace container_v1beta1 {
     status?: string | null;
   }
   /**
+   * Strategy that will trigger maintenance on behalf of the customer.
+   */
+  export interface Schema$OpportunisticMaintenanceStrategy {
+    /**
+     * The window of time that opportunistic maintenance can run. Example: A setting of 14 days implies that opportunistic maintenance can only be ran in the 2 weeks leading up to the scheduled maintenance date. Setting 28 days allows opportunistic maintenance to run at any time in the scheduled maintenance window (all `PERIODIC` maintenance is set 28 days in advance).
+     */
+    maintenanceAvailabilityWindow?: string | null;
+    /**
+     * The minimum nodes required to be available in a pool. Blocks maintenance if it would cause the number of running nodes to dip below this value.
+     */
+    minNodesPerPool?: string | null;
+    /**
+     * The amount of time that a node can remain idle (no customer owned workloads running), before triggering maintenance.
+     */
+    nodeIdleTimeWindow?: string | null;
+  }
+  /**
    * ParentProductConfig is the configuration of the parent product of the cluster. This field is used by Google internal products that are built on top of a GKE cluster and take the ownership of the cluster.
    */
   export interface Schema$ParentProductConfig {
@@ -2833,6 +2896,15 @@ export namespace container_v1beta1 {
     topic?: string | null;
   }
   /**
+   * QueuedProvisioning defines the queued provisioning used by the node pool.
+   */
+  export interface Schema$QueuedProvisioning {
+    /**
+     * Denotes that this nodepool is QRM specific, meaning nodes can be only obtained through queuing via the Cluster Autoscaler ProvisioningRequest API.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * RangeInfo contains the range name and the range utilization by this cluster.
    */
   export interface Schema$RangeInfo {
@@ -2930,6 +3002,15 @@ export namespace container_v1beta1 {
      * Resource name "cpu", "memory" or gpu-specific string.
      */
     resourceType?: string | null;
+  }
+  /**
+   * A map of resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies. Tags must be according to specifications in https://cloud.google.com/vpc/docs/tags-firewalls-overview#specifications. A maximum of 5 tag key-value pairs can be specified. Existing tags will be replaced with new values.
+   */
+  export interface Schema$ResourceManagerTags {
+    /**
+     * Tags must be in one of the following formats ([KEY]=[VALUE]) 1. `tagKeys/{tag_key_id\}=tagValues/{tag_value_id\}` 2. `{org_id\}/{tag_key_name\}={tag_value_name\}` 3. `{project_id\}/{tag_key_name\}={tag_value_name\}`
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * Configuration for exporting cluster resource usages.
@@ -3699,6 +3780,10 @@ export namespace container_v1beta1 {
      */
     resourceLabels?: Schema$ResourceLabels;
     /**
+     * Desired resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies. Existing tags will be replaced with new values.
+     */
+    resourceManagerTags?: Schema$ResourceManagerTags;
+    /**
      * The desired network tags to be applied to all nodes in the node pool. If this field is not present, the tags will not be changed. Otherwise, the existing network tags will be *replaced* with the provided tags.
      */
     tags?: Schema$NetworkTags;
@@ -3778,7 +3863,7 @@ export namespace container_v1beta1 {
     targetVersion?: string | null;
   }
   /**
-   * These upgrade settings configure the upgrade strategy for the node pool. Use strategy to switch between the strategies applied to the node pool. If the strategy is SURGE, use max_surge and max_unavailable to control the level of parallelism and the level of disruption caused by upgrade. 1. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. 2. maxUnavailable controls the number of nodes that can be simultaneously unavailable. 3. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). If the strategy is BLUE_GREEN, use blue_green_settings to configure the blue-green upgrade related settings. 1. standard_rollout_policy is the default policy. The policy is used to control the way blue pool gets drained. The draining is executed in the batch mode. The batch size could be specified as either percentage of the node pool size or the number of nodes. batch_soak_duration is the soak time after each batch gets drained. 2. node_pool_soak_duration is the soak time after all blue nodes are drained. After this period, the blue pool nodes will be deleted.
+   * These upgrade settings control the level of parallelism and the level of disruption caused by an upgrade. maxUnavailable controls the number of nodes that can be simultaneously unavailable. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). Note: upgrades inevitably introduce some disruption since workloads need to be moved from old nodes to new, upgraded ones. Even if maxUnavailable=0, this holds true. (Disruption stays within the limits of PodDisruptionBudget, if it is configured.) Consider a hypothetical node pool with 5 nodes having maxSurge=2, maxUnavailable=1. This means the upgrade process upgrades 3 nodes simultaneously. It creates 2 additional (upgraded) nodes, then it brings down 3 old (not yet upgraded) nodes at the same time. This ensures that there are always at least 4 nodes available. These upgrade settings configure the upgrade strategy for the node pool. Use strategy to switch between the strategies applied to the node pool. If the strategy is SURGE, use max_surge and max_unavailable to control the level of parallelism and the level of disruption caused by upgrade. 1. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. 2. maxUnavailable controls the number of nodes that can be simultaneously unavailable. 3. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). If the strategy is BLUE_GREEN, use blue_green_settings to configure the blue-green upgrade related settings. 1. standard_rollout_policy is the default policy. The policy is used to control the way blue pool gets drained. The draining is executed in the batch mode. The batch size could be specified as either percentage of the node pool size or the number of nodes. batch_soak_duration is the soak time after each batch gets drained. 2. node_pool_soak_duration is the soak time after all blue nodes are drained. After this period, the blue pool nodes will be deleted.
    */
   export interface Schema$UpgradeSettings {
     /**
