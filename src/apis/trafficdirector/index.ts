@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {trafficdirector_v2} from './v2';
+import {trafficdirector_v3} from './v3';
 
 export const VERSIONS = {
   v2: trafficdirector_v2.Trafficdirector,
+  v3: trafficdirector_v3.Trafficdirector,
 };
 
 export function trafficdirector(
@@ -26,9 +28,21 @@ export function trafficdirector(
 export function trafficdirector(
   options: trafficdirector_v2.Options
 ): trafficdirector_v2.Trafficdirector;
-export function trafficdirector<T = trafficdirector_v2.Trafficdirector>(
+export function trafficdirector(
+  version: 'v3'
+): trafficdirector_v3.Trafficdirector;
+export function trafficdirector(
+  options: trafficdirector_v3.Options
+): trafficdirector_v3.Trafficdirector;
+export function trafficdirector<
+  T = trafficdirector_v2.Trafficdirector | trafficdirector_v3.Trafficdirector,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v2' | trafficdirector_v2.Options
+  versionOrOptions:
+    | 'v2'
+    | trafficdirector_v2.Options
+    | 'v3'
+    | trafficdirector_v3.Options
 ) {
   return getAPI<T>('trafficdirector', versionOrOptions, VERSIONS, this);
 }
@@ -36,6 +50,7 @@ export function trafficdirector<T = trafficdirector_v2.Trafficdirector>(
 const auth = new AuthPlus();
 export {auth};
 export {trafficdirector_v2};
+export {trafficdirector_v3};
 export {
   AuthPlus,
   GlobalOptions,
