@@ -1,5 +1,16 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v7.0.0...identitytoolkit-v8.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **identitytoolkit:** This release has breaking changes.
+
+### Features
+
+* **identitytoolkit:** update the API ([4ee26fb](https://github.com/googleapis/google-api-nodejs-client/commit/4ee26fb2106c28e96094fb378a941f396012d0d5))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v6.3.0...identitytoolkit-v7.0.0) (2023-11-27)
 
 
