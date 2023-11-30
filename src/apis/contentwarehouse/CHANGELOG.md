@@ -1,5 +1,22 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contentwarehouse-v6.0.0...contentwarehouse-v7.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **contentwarehouse:** This release has breaking changes.
+* **contentwarehouse:** This release has breaking changes.
+* This release has breaking changes.
+* **contentwarehouse:** This release has breaking changes.
+
+### Features
+
+* **contentwarehouse:** update the API ([0f7b040](https://github.com/googleapis/google-api-nodejs-client/commit/0f7b04008ed2cf4e2a697656d51cf470b57bc295))
+* **contentwarehouse:** update the API ([994f0f7](https://github.com/googleapis/google-api-nodejs-client/commit/994f0f7c0a79e6bc84febabd14d10c975110e104))
+* **contentwarehouse:** update the API ([16be148](https://github.com/googleapis/google-api-nodejs-client/commit/16be148bb346865b375629bef20c3e4541aa59b2))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contentwarehouse-v5.0.0...contentwarehouse-v6.0.0) (2023-11-27)
 
 
