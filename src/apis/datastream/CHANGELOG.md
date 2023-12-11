@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v2.0.0...datastream-v3.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datastream:** This release has breaking changes.
+
+### Features
+
+* **datastream:** update the API ([79e2484](https://github.com/googleapis/google-api-nodejs-client/commit/79e2484ab92984816c9000ad673adfe919cfdf09))
+* **datastream:** update the API ([52168de](https://github.com/googleapis/google-api-nodejs-client/commit/52168de4af8683bfbad9c72107422c1c724deda1))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v1.2.0...datastream-v2.0.0) (2023-11-27)
 
 

@@ -1,5 +1,25 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v3.0.0...batch-v4.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **batch:** update the API ([049653c](https://github.com/googleapis/google-api-nodejs-client/commit/049653cc4591570233e3df70c6b06f5c920f4e3c))
+* **batch:** update the API ([6b95651](https://github.com/googleapis/google-api-nodejs-client/commit/6b95651b4450570acc66255f467f915f12d52115))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+
+
+### Bug Fixes
+
+* **batch:** update the API ([2960f5b](https://github.com/googleapis/google-api-nodejs-client/commit/2960f5b8b48ee7d40c668a3dc4a5ffe8b873a4dd))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v2.0.0...batch-v3.0.0) (2023-11-27)
 
 

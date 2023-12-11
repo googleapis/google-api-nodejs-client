@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v3.0.0...documentai-v4.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **documentai:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **documentai:** update the API ([26935fe](https://github.com/googleapis/google-api-nodejs-client/commit/26935fee4a69ca73a42aa3a4ebb12c79fdc97455))
+* **documentai:** update the API ([3b23065](https://github.com/googleapis/google-api-nodejs-client/commit/3b230652ca9dab2bdad1b88f9dc759e30b91aa32))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v2.0.0...documentai-v3.0.0) (2023-11-27)
 
 

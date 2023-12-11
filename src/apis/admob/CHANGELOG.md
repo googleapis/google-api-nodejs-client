@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v2.4.0...admob-v2.5.0) (2023-11-30)
+
+
+### Features
+
+* **admob:** update the API ([85a30b8](https://github.com/googleapis/google-api-nodejs-client/commit/85a30b8e54ae64630dce7d6611c41d27e7ca1395))
+* **admob:** update the API ([d366fa5](https://github.com/googleapis/google-api-nodejs-client/commit/d366fa5c155eb392c27382e649c05fd443cf5b7a))
+
 ## [2.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v2.3.0...admob-v2.4.0) (2023-11-27)
 
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v4.1.0...appengine-v5.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **appengine:** This release has breaking changes.
+* **appengine:** This release has breaking changes.
+
+### Features
+
+* **appengine:** update the API ([8308a3e](https://github.com/googleapis/google-api-nodejs-client/commit/8308a3e1e77fd9346fec8ca42fa1654dd2be66f7))
+* **appengine:** update the API ([9c72d20](https://github.com/googleapis/google-api-nodejs-client/commit/9c72d2016c33f2fec83a09cf17211f931bf5f36f))
+* **appengine:** update the API ([7150925](https://github.com/googleapis/google-api-nodejs-client/commit/71509251f46560bdc3808f6d567b54a3f361864d))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v4.0.0...appengine-v4.1.0) (2023-11-27)
 
 

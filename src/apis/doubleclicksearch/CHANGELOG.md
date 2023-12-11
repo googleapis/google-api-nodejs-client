@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v3.0.0...doubleclicksearch-v4.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **doubleclicksearch:** update the API ([0e42b21](https://github.com/googleapis/google-api-nodejs-client/commit/0e42b214dd6098c821357bcb8071a0d4a3f8cd39))
+* **doubleclicksearch:** update the API ([4c400b6](https://github.com/googleapis/google-api-nodejs-client/commit/4c400b69964edcfe5035d38adae096d0799bf099))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v2.0.5...doubleclicksearch-v3.0.0) (2023-11-27)
 
 
