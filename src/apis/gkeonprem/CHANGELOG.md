@@ -1,5 +1,32 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v5.0.0...gkeonprem-v6.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **gkeonprem:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **gkeonprem:** This release has breaking changes.
+
+### Features
+
+* **gkeonprem:** update the API ([f47bbad](https://github.com/googleapis/google-api-nodejs-client/commit/f47bbadf0a1846d4be590efe1c2602d3067cacd9))
+* **gkeonprem:** update the API ([79b5c9c](https://github.com/googleapis/google-api-nodejs-client/commit/79b5c9c0c259916164ff8a8d3afd6c2c9d0c47f1))
+* **gkeonprem:** update the API ([26188f7](https://github.com/googleapis/google-api-nodejs-client/commit/26188f73ed1ef87e216b3fd0773a6db23e69f662))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+* run the generator ([#3362](https://github.com/googleapis/google-api-nodejs-client/issues/3362)) ([24846e8](https://github.com/googleapis/google-api-nodejs-client/commit/24846e81aa8f487b8d30b4d1b31c945e9968ec42))
+* run the generator ([#3364](https://github.com/googleapis/google-api-nodejs-client/issues/3364)) ([8a012d1](https://github.com/googleapis/google-api-nodejs-client/commit/8a012d18c1dd5499a087b114eda0f2c22baef203))
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+
+
+### Bug Fixes
+
+* **gkeonprem:** update the API ([77c0ea4](https://github.com/googleapis/google-api-nodejs-client/commit/77c0ea49777150108e8cdf914450176a952d9660))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v4.0.0...gkeonprem-v5.0.0) (2023-11-27)
 
 

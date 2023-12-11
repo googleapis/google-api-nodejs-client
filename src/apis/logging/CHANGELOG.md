@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v1.3.0...logging-v1.4.0) (2023-11-30)
+
+
+### Features
+
+* **logging:** update the API ([7df359a](https://github.com/googleapis/google-api-nodejs-client/commit/7df359a58be46fd8d77afb4594c5fcba4580e667))
+* **logging:** update the API ([c43f8c0](https://github.com/googleapis/google-api-nodejs-client/commit/c43f8c0963a7feab455e10590508dbf4ac28e572))
+
+
+### Bug Fixes
+
+* **logging:** update the API ([28f4df7](https://github.com/googleapis/google-api-nodejs-client/commit/28f4df70c4c94ac8d8b3a6f4ccb4264246e8277f))
+
 ## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v1.2.1...logging-v1.3.0) (2023-11-27)
 
 

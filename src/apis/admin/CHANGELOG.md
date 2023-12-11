@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v13.1.0...admin-v14.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **admin:** update the API ([c484af2](https://github.com/googleapis/google-api-nodejs-client/commit/c484af27cbd6d57adda1a293b4486d53d38ae85b))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
 ## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v13.0.0...admin-v13.1.0) (2023-11-27)
 
 

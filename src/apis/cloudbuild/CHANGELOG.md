@@ -1,5 +1,26 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v3.0.0...cloudbuild-v4.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudbuild:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **cloudbuild:** update the API ([547e115](https://github.com/googleapis/google-api-nodejs-client/commit/547e115e5479857c4d82dc006084b11af9bc9f79))
+* **cloudbuild:** update the API ([b537726](https://github.com/googleapis/google-api-nodejs-client/commit/b5377264f3b791865dca8dbc45568669afa63a39))
+* **cloudbuild:** update the API ([09ea509](https://github.com/googleapis/google-api-nodejs-client/commit/09ea5095f64c44aad1b907ad568541f8f8e60f7f))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **cloudbuild:** update the API ([8d999f5](https://github.com/googleapis/google-api-nodejs-client/commit/8d999f52ba7b0892be953d7ffa41d0ea43f4fdbc))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v2.1.0...cloudbuild-v3.0.0) (2023-11-27)
 
 

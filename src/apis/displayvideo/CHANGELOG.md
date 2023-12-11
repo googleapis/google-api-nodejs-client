@@ -1,5 +1,19 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v13.1.0...displayvideo-v14.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **displayvideo:** This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([d57965b](https://github.com/googleapis/google-api-nodejs-client/commit/d57965b4372afbdfc374aca0c64d26fc0beb7e16))
+* **displayvideo:** update the API ([0a7b6d4](https://github.com/googleapis/google-api-nodejs-client/commit/0a7b6d46e6e1201dd7c807d0180674e4df2ff309))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
 ## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v13.0.0...displayvideo-v13.1.0) (2023-11-27)
 
 

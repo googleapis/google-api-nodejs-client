@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v3.1.0...firestore-v4.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **firestore:** This release has breaking changes.
+
+### Features
+
+* **firestore:** update the API ([1068dd8](https://github.com/googleapis/google-api-nodejs-client/commit/1068dd8275af65b68d066c3cc549e0c5b0110053))
+* **firestore:** update the API ([13d1762](https://github.com/googleapis/google-api-nodejs-client/commit/13d176259ba9f091386f83b7d8275e8199368f62))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **firestore:** update the API ([6ff716b](https://github.com/googleapis/google-api-nodejs-client/commit/6ff716b72e465f73b9f180a753b695929643de00))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v3.0.0...firestore-v3.1.0) (2023-11-27)
 
 
