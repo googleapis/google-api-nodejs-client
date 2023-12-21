@@ -29,6 +29,7 @@ const samples = {
   export: {path: '../drive/export'},
   list: {path: '../drive/list'},
   upload: {path: '../drive/upload'},
+  createPermission: {path: '../drive/create-permission'},
 };
 
 for (const sample of Object.values(samples)) {
@@ -84,6 +85,16 @@ describe('Drive samples', () => {
       .post('/upload/drive/v3/files?uploadType=multipart')
       .reply(200, {});
     const data = await samples.upload.runSample(someFile);
+    assert(data);
+    scope.done();
+  });
+
+  it('should create a permission', async () => {
+    const fileId = '0B7l5uajXUzaFa0x6cjJfZEkzZVE';
+    const scope = nock(baseUrl)
+      .post(`/drive/v3/files/${fileId}/permissions`)
+      .reply(200, {});
+    const data = await samples.createPermission.runSample(fileId);
     assert(data);
     scope.done();
   });
