@@ -26,7 +26,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
+    "chai": "^5.0.0",
     "execa": "^5.0.0",
     "mocha": "^9.0.0",
     "nock": "^13.0.0",
