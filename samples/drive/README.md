@@ -1,6 +1,6 @@
 # Drive v3 API Samples
 
-These samples allow you to list, download, and upload files from Google Drive.
+These samples allow you to list, download, upload, and change the permissions of files from Google Drive.
 
 ## Running the samples
 
@@ -66,4 +66,18 @@ Example:
 
 ```
 node export.js 0B_Klegupc5gUcXhFZjZVUV9NeE0 ./file.pdf
+```
+
+__Run the `create-permission.js` sample:__
+
+```
+node create-permission.js <fileId>
+```
+
+where `<fileId>` is the id of any file in Google Drive.
+
+Example:
+
+```
+node create-permission.js 0B_Klegupc5gUcXhFZjZVUV9NeE0
 ```
