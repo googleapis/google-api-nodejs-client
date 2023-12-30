@@ -46,3 +46,4 @@ if (module === require.main) {
   const fileId = process.argv[2];
   runSample(fileId).catch(console.error);
 }
+module.exports = runSample;
