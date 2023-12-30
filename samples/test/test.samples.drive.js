@@ -90,7 +90,7 @@ describe('Drive samples', () => {
   });
 
   it('should create a permission', async () => {
-    const fileId = '0B7l5uajXUzaFa0x6cjJfZEkzZVE';
+    const fileId = '1EkgdLY3T-_9hWml0VssdDWQZLEc8qqpMB77Nvsx6khA';
     const scope = nock(baseUrl)
       .post(`/drive/v3/files/${fileId}/permissions`)
       .reply(200, {});
