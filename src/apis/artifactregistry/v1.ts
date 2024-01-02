@@ -247,10 +247,6 @@ export namespace artifactregistry_v1 {
      */
     tagState?: string | null;
     /**
-     * DEPRECATED: Use older_than.
-     */
-    versionAge?: string | null;
-    /**
      * Match versions by version name prefix. Applied on any prefix match.
      */
     versionNamePrefixes?: string[] | null;

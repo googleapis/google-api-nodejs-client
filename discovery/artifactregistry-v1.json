@@ -1713,7 +1713,7 @@
       }
     }
   },
-  "revision": "20231114",
+  "revision": "20231208",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1904,12 +1904,6 @@
             "Applies to untagged versions only.",
             "Applies to all versions."
           ],
-          "type": "string"
-        },
-        "versionAge": {
-          "deprecated": true,
-          "description": "DEPRECATED: Use older_than.",
-          "format": "google-duration",
           "type": "string"
         },
         "versionNamePrefixes": {
