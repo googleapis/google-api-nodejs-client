@@ -1034,6 +1034,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$GuestInstalledApplication {
     /**
+     * License strings associated with the installed application.
+     */
+    licenses?: string[] | null;
+    /**
      * Installed application name.
      */
     name?: string | null;
@@ -2041,7 +2045,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     operatingSystem?: Schema$ReportSummaryChartData;
     /**
-     * Histogram showing a distribution of memory sizes.
+     * Histogram showing a distribution of storage sizes.
      */
     storageBytesHistogram?: Schema$ReportSummaryHistogramChartData;
     /**

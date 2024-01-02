@@ -2107,7 +2107,7 @@
       }
     }
   },
-  "revision": "20231101",
+  "revision": "20231215",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3376,6 +3376,13 @@
       "description": "Guest installed application information.",
       "id": "GuestInstalledApplication",
       "properties": {
+        "licenses": {
+          "description": "License strings associated with the installed application.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "Installed application name.",
           "type": "string"
@@ -4813,7 +4820,7 @@
         },
         "storageBytesHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
-          "description": "Histogram showing a distribution of memory sizes."
+          "description": "Histogram showing a distribution of storage sizes."
         },
         "storageUtilization": {
           "$ref": "ReportSummaryChartData",
