@@ -1,4 +1,13 @@
 {
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "openid": {
+          "description": "Associate you with your personal info on Google"
+        }
+      }
+    }
+  },
   "basePath": "",
   "baseUrl": "https://paymentsresellersubscription.googleapis.com/",
   "batchPath": "batch",
@@ -136,14 +145,17 @@
               "path": "v1/{+parent}/products",
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             }
           }
         },
         "promotions": {
           "methods": {
             "findEligible": {
-              "description": "To find eligible promotions for the current user. The API requires user authorization via OAuth. The user is inferred from the authenticated OAuth credential.",
+              "description": "To find eligible promotions for the current user. The API requires user authorization via OAuth. The bare minimum oauth scope `openid` is sufficient, which will skip the consent screen.",
               "flatPath": "v1/partners/{partnersId}/promotions:findEligible",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.promotions.findEligible",
@@ -165,7 +177,10 @@
               },
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             },
             "list": {
               "description": "To retrieve the promotions, such as free trial, that can be used by the partner. It should be autenticated with a service account.",
@@ -203,7 +218,10 @@
               "path": "v1/{+parent}/promotions",
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             }
           }
         },
@@ -232,7 +250,10 @@
               },
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             },
             "create": {
               "description": "Used by partners to create a subscription for their customers. The created subscription is associated with the end user inferred from the end user credentials. This API must be authorized by the end user using OAuth.",
@@ -262,7 +283,10 @@
               },
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Subscription"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             },
             "entitle": {
               "description": "Used by partners to entitle a previously provisioned subscription to the current end user. The end user identity is inferred from the authorized credential of the request. This API must be authorized by the end user using OAuth.",
@@ -287,7 +311,10 @@
               },
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             },
             "extend": {
               "description": "[Opt-in only] Most partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.",
@@ -312,7 +339,10 @@
               },
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             },
             "get": {
               "description": "Used by partners to get a subscription by id. It should be called directly by the partner using service accounts.",
@@ -334,7 +364,10 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Subscription"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             },
             "provision": {
               "description": "Used by partners to provision a subscription for their customers. This creates a subscription without associating it with the end user account. EntitleSubscription must be called separately using OAuth in order for the end user account to be associated with the subscription. It should be called directly by the partner using service accounts.",
@@ -364,7 +397,10 @@
               },
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Subscription"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             },
             "undoCancel": {
               "description": "Used by partners to revoke the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. It should be called directly by the partner using service accounts.",
@@ -389,14 +425,17 @@
               },
               "response": {
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse"
-              }
+              },
+              "scopes": [
+                "openid"
+              ]
             }
           }
         }
       }
     }
   },
-  "revision": "20231114",
+  "revision": "20231212",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -443,11 +482,11 @@
             "Buyer's remorse.",
             "Accidential purchase.",
             "Payment is past due.",
-            "User account closed.",
+            "Used for notification only, do not use in Cancel API. User account closed.",
             "Used for notification only, do not use in Cancel API. Cancellation due to upgrade or downgrade.",
             "Cancellation due to user delinquency",
-            "Cancellation due to an unrecoverable system error.",
-            "Cancellation by a system.",
+            "Used for notification only, do not use in Cancel API. Cancellation due to an unrecoverable system error.",
+            "Used for notification only, do not use in Cancel API. The subscription is cancelled by Google automatically since it is no longer valid.",
             "Other reason."
           ],
           "type": "string"
@@ -545,7 +584,7 @@
           "description": "Required. Specifies details of the extension. Currently, the duration of the extension must be exactly one billing cycle of the original subscription."
         },
         "requestId": {
-          "description": "Required. Restricted to 36 ASCII characters. A random UUID is recommended. The idempotency key for the request. The ID generation logic is controlled by the partner. request_id should be the same as on retries of the same request. A different request_id must be used for a extension of a different cycle. A random UUID is recommended.",
+          "description": "Required. Restricted to 36 ASCII characters. A random UUID is recommended. The idempotency key for the request. The ID generation logic is controlled by the partner. request_id should be the same as on retries of the same request. A different request_id must be used for a extension of a different cycle.",
           "type": "string"
         }
       },
@@ -1137,11 +1176,11 @@
             "Buyer's remorse.",
             "Accidential purchase.",
             "Payment is past due.",
-            "User account closed.",
+            "Used for notification only, do not use in Cancel API. User account closed.",
             "Used for notification only, do not use in Cancel API. Cancellation due to upgrade or downgrade.",
             "Cancellation due to user delinquency",
-            "Cancellation due to an unrecoverable system error.",
-            "Cancellation by a system.",
+            "Used for notification only, do not use in Cancel API. Cancellation due to an unrecoverable system error.",
+            "Used for notification only, do not use in Cancel API. The subscription is cancelled by Google automatically since it is no longer valid.",
             "Other reason."
           ],
           "type": "string"
