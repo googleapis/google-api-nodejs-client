@@ -20,24 +20,24 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
+      "description": "Locational Endpoint",
       "location": "asia-east1",
-      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "location": "asia-east2"
+      "location": "asia-east2",
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
       "location": "asia-northeast1"
     },
     {
+      "location": "asia-northeast2",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
-      "location": "asia-northeast2"
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/"
     },
     {
       "location": "asia-northeast3",
@@ -45,19 +45,19 @@
       "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/"
     },
     {
-      "location": "asia-south1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
+      "location": "asia-south1"
     },
     {
       "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "asia-southeast1"
+      "location": "asia-southeast1",
+      "description": "Locational Endpoint"
     },
     {
+      "location": "asia-southeast2",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
-      "location": "asia-southeast2"
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
@@ -65,23 +65,23 @@
       "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "location": "australia-southeast2",
-      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
-    },
-    {
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
-      "location": "europe-central2",
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
+      "location": "europe-central2",
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
+    },
+    {
       "location": "europe-north1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-southwest1",
       "description": "Locational Endpoint",
+      "location": "europe-southwest1",
       "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/"
     },
     {
@@ -95,64 +95,64 @@
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-west3",
       "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "europe-west3"
     },
     {
-      "description": "Locational Endpoint",
       "location": "europe-west4",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
+      "location": "europe-west6",
       "description": "Locational Endpoint",
-      "location": "europe-west6"
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "europe-west8"
+      "location": "europe-west8",
+      "description": "Locational Endpoint"
     },
     {
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
       "location": "europe-west9",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "location": "me-west1",
-      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
       "location": "northamerica-northeast1",
-      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
-    },
-    {
-      "description": "Locational Endpoint",
-      "location": "northamerica-northeast2",
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
-    },
-    {
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
-      "location": "southamerica-east1"
-    },
-    {
-      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
-      "location": "southamerica-west1",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
-      "location": "us-central1"
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
+      "location": "northamerica-northeast2"
     },
     {
-      "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
+      "location": "southamerica-east1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "southamerica-west1",
+      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "us-central1",
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "us-central2",
       "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
-      "location": "us-central2"
+      "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
@@ -160,9 +160,9 @@
       "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
     },
     {
-      "location": "us-east4",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "us-east4"
     },
     {
       "description": "Locational Endpoint",
@@ -171,12 +171,12 @@
     },
     {
       "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "us-west1"
+      "location": "us-west1",
+      "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
       "location": "us-west2"
     },
     {
@@ -185,9 +185,9 @@
       "description": "Locational Endpoint"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
-      "location": "us-west4",
-      "description": "Locational Endpoint"
+      "location": "us-west4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3225,6 +3225,62 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "directPredict": {
+                  "description": "Perform an unary online prediction request for Vertex first-party products and frameworks.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:directPredict",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.endpoints.directPredict",
+                  "parameterOrder": [
+                    "endpoint"
+                  ],
+                  "parameters": {
+                    "endpoint": {
+                      "description": "Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+endpoint}:directPredict",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1DirectPredictRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1DirectPredictResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "directRawPredict": {
+                  "description": "Perform an online prediction request through gRPC.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:directRawPredict",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.endpoints.directRawPredict",
+                  "parameterOrder": [
+                    "endpoint"
+                  ],
+                  "parameters": {
+                    "endpoint": {
+                      "description": "Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+endpoint}:directRawPredict",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1DirectRawPredictRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1DirectRawPredictResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "explain": {
                   "description": "Perform an online explanation. If deployed_model_id is specified, the corresponding DeployModel must have explanation_spec populated. If deployed_model_id is not specified, all DeployedModels must have explanation_spec populated.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:explain",
@@ -3530,6 +3586,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "streamGenerateContent": {
+                  "description": "Generate content with multimodal inputs with streaming support.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:streamGenerateContent",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.endpoints.streamGenerateContent",
+                  "parameterOrder": [
+                    "model"
+                  ],
+                  "parameters": {
+                    "model": {
+                      "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+model}:streamGenerateContent",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1GenerateContentRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:testIamPermissions",
@@ -3722,6 +3806,161 @@
                           "description": "The name of the operation resource to wait on.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "timeout": {
+                          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                          "format": "google-duration",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:wait",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "exampleStores": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/exampleStores/{exampleStoresId}/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.exampleStores.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/exampleStores/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:cancel",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/exampleStores/{exampleStoresId}/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.exampleStores.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/exampleStores/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/exampleStores/{exampleStoresId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.exampleStores.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/exampleStores/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/exampleStores/{exampleStoresId}/operations",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.exampleStores.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/exampleStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}/operations",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "wait": {
+                      "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/exampleStores/{exampleStoresId}/operations/{operationsId}:wait",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.exampleStores.operations.wait",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to wait on.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/exampleStores/[^/]+/operations/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
@@ -4355,7 +4594,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Name of the FeatureGroup. Format: `projects/{project}/locations/{location}/featureGroups/{featureGroup}`",
+                      "description": "Identifier. Name of the FeatureGroup. Format: `projects/{project}/locations/{location}/featureGroups/{featureGroup}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+$",
                       "required": true,
@@ -4498,7 +4737,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "A page token, received from a previous FeaturestoreService.ListFeatures call or FeatureRegistryService.ListFeatures call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeaturestoreService.ListFeatures or or FeatureRegistryService.ListFeatures must match the call that provided the page token.",
+                          "description": "A page token, received from a previous FeaturestoreService.ListFeatures call or FeatureRegistryService.ListFeatures call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeaturestoreService.ListFeatures or FeatureRegistryService.ListFeatures must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -4962,7 +5201,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Name of the FeatureOnlineStore. Format: `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`",
+                      "description": "Identifier. Name of the FeatureOnlineStore. Format: `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
                       "required": true,
@@ -5162,7 +5401,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Name of the FeatureView. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
+                          "description": "Identifier. Name of the FeatureView. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
                           "required": true,
@@ -6487,7 +6726,7 @@
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "A page token, received from a previous FeaturestoreService.ListFeatures call or FeatureRegistryService.ListFeatures call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeaturestoreService.ListFeatures or or FeatureRegistryService.ListFeatures must match the call that provided the page token.",
+                              "description": "A page token, received from a previous FeaturestoreService.ListFeatures call or FeatureRegistryService.ListFeatures call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeaturestoreService.ListFeatures or FeatureRegistryService.ListFeatures must match the call that provided the page token.",
                               "location": "query",
                               "type": "string"
                             },
@@ -11651,6 +11890,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "upgrade": {
+                  "description": "Upgrades a NotebookRuntime.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes/{notebookRuntimesId}:upgrade",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookRuntimes.upgrade",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookRuntime resource to be upgrade. Instead of checking whether the name is in valid NotebookRuntime resource name format, directly throw NotFound exception if there is no such NotebookRuntime in spanner.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:upgrade",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1UpgradeNotebookRuntimeRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -12117,6 +12384,34 @@
             },
             "pipelineJobs": {
               "methods": {
+                "batchCancel": {
+                  "description": "Batch cancel PipelineJobs. Firstly the server will check if all the jobs are in non-terminal states, and skip the jobs that are already terminated. If the operation failed, none of the pipeline jobs are cancelled. The server will poll the states of all the pipeline jobs periodically to check the cancellation status. This operation will return an LRO.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/pipelineJobs:batchCancel",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.pipelineJobs.batchCancel",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the PipelineJobs' parent resource. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/pipelineJobs:batchCancel",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1BatchCancelPipelineJobsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "batchDelete": {
                   "description": "Batch deletes PipelineJobs The Operation is atomic. If it fails, none of the PipelineJobs are deleted. If it succeeds, all of the PipelineJobs are deleted.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/pipelineJobs:batchDelete",
@@ -12523,6 +12818,37 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.publishers.models.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "predict": {
                       "description": "Perform an online prediction.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:predict",
@@ -12602,6 +12928,34 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudAiplatformV1beta1StreamingPredictResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "streamGenerateContent": {
+                      "description": "Generate content with multimodal inputs with streaming support.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:streamGenerateContent",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.publishers.models.streamGenerateContent",
+                      "parameterOrder": [
+                        "model"
+                      ],
+                      "parameters": {
+                        "model": {
+                          "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+model}:streamGenerateContent",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1GenerateContentRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -14137,6 +14491,37 @@
             },
             "tensorboards": {
               "methods": {
+                "batchRead": {
+                  "description": "Reads multiple TensorboardTimeSeries' data. The data point number limit is 1000 for scalars, 100 for tensors and blob references. If the number of data points stored is less than the limit, all data is returned. Otherwise, the number limit of data points is randomly selected from this time series and returned.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tensorboards/{tensorboardsId}:batchRead",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.tensorboards.batchRead",
+                  "parameterOrder": [
+                    "tensorboard"
+                  ],
+                  "parameters": {
+                    "tensorboard": {
+                      "description": "Required. The resource name of the Tensorboard containing TensorboardTimeSeries to read data from. Format: `projects/{project}/locations/{location}/tensorboards/{tensorboard}`. The TensorboardTimeSeries referenced by time_series must be sub resources of this Tensorboard.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/tensorboards/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "timeSeries": {
+                      "description": "Required. The resource names of the TensorboardTimeSeries to read data from. Format: `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+tensorboard}:batchRead",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1BatchReadTensorboardTimeSeriesDataResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a Tensorboard.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tensorboards",
@@ -14355,6 +14740,34 @@
               "resources": {
                 "experiments": {
                   "methods": {
+                    "batchCreate": {
+                      "description": "Batch create TensorboardTimeSeries that belong to a TensorboardExperiment.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tensorboards/{tensorboardsId}/experiments/{experimentsId}:batchCreate",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.tensorboards.experiments.batchCreate",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the TensorboardExperiment to create the TensorboardTimeSeries in. Format: `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}` The TensorboardRuns referenced by the parent fields in the CreateTensorboardTimeSeriesRequest messages must be sub resources of this TensorboardExperiment.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/tensorboards/[^/]+/experiments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}:batchCreate",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1BatchCreateTensorboardTimeSeriesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1BatchCreateTensorboardTimeSeriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a TensorboardExperiment.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tensorboards/{tensorboardsId}/experiments",
@@ -15087,83 +15500,6 @@
                         },
                         "timeSeries": {
                           "methods": {
-                            "batchCreate": {
-                              "description": "Batch create TensorboardTimeSeries that belong to a TensorboardExperiment.",
-                              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tensorboards/{tensorboardsId}/experiments/{experimentsId}/runs/{runsId}/timeSeries:batchCreate",
-                              "httpMethod": "POST",
-                              "id": "aiplatform.projects.locations.tensorboards.experiments.runs.timeSeries.batchCreate",
-                              "parameterOrder": [
-                                "parent",
-                                "runsId"
-                              ],
-                              "parameters": {
-                                "parent": {
-                                  "description": "Required. The resource name of the TensorboardExperiment to create the TensorboardTimeSeries in. Format: `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}` The TensorboardRuns referenced by the parent fields in the CreateTensorboardTimeSeriesRequest messages must be sub resources of this TensorboardExperiment.",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+/locations/[^/]+/tensorboards/[^/]+/experiments/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                },
-                                "runsId": {
-                                  "location": "path",
-                                  "required": true,
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1beta1/{+parent}/runs/{runsId}/timeSeries:batchCreate",
-                              "request": {
-                                "$ref": "GoogleCloudAiplatformV1beta1BatchCreateTensorboardTimeSeriesRequest"
-                              },
-                              "response": {
-                                "$ref": "GoogleCloudAiplatformV1beta1BatchCreateTensorboardTimeSeriesResponse"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
-                              ]
-                            },
-                            "batchRead": {
-                              "description": "Reads multiple TensorboardTimeSeries' data. The data point number limit is 1000 for scalars, 100 for tensors and blob references. If the number of data points stored is less than the limit, all data is returned. Otherwise, the number limit of data points is randomly selected from this time series and returned.",
-                              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tensorboards/{tensorboardsId}/experiments/{experimentsId}/runs/{runsId}/timeSeries:batchRead",
-                              "httpMethod": "GET",
-                              "id": "aiplatform.projects.locations.tensorboards.experiments.runs.timeSeries.batchRead",
-                              "parameterOrder": [
-                                "tensorboard",
-                                "experimentsId",
-                                "runsId"
-                              ],
-                              "parameters": {
-                                "experimentsId": {
-                                  "location": "path",
-                                  "required": true,
-                                  "type": "string"
-                                },
-                                "runsId": {
-                                  "location": "path",
-                                  "required": true,
-                                  "type": "string"
-                                },
-                                "tensorboard": {
-                                  "description": "Required. The resource name of the Tensorboard containing TensorboardTimeSeries to read data from. Format: `projects/{project}/locations/{location}/tensorboards/{tensorboard}`. The TensorboardTimeSeries referenced by time_series must be sub resources of this Tensorboard.",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+/locations/[^/]+/tensorboards/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                },
-                                "timeSeries": {
-                                  "description": "Required. The resource names of the TensorboardTimeSeries to read data from. Format: `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`",
-                                  "location": "query",
-                                  "repeated": true,
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1beta1/{+tensorboard}/experiments/{experimentsId}/runs/{runsId}/timeSeries:batchRead",
-                              "response": {
-                                "$ref": "GoogleCloudAiplatformV1beta1BatchReadTensorboardTimeSeriesDataResponse"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
-                              ]
-                            },
                             "create": {
                               "description": "Creates a TensorboardTimeSeries.",
                               "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tensorboards/{tensorboardsId}/experiments/{experimentsId}/runs/{runsId}/timeSeries",
@@ -16178,9 +16514,733 @@
       }
     }
   },
-  "revision": "20231111",
+  "revision": "20231218",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
+    "CloudAiLargeModelsVisionEmbedVideoResponse": {
+      "description": "Video embedding response.",
+      "id": "CloudAiLargeModelsVisionEmbedVideoResponse",
+      "properties": {
+        "videoEmbeddings": {
+          "description": "The embedding vector for the video.",
+          "items": {
+            "type": "any"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionFilteredText": {
+      "description": "Details for filtered input text.",
+      "id": "CloudAiLargeModelsVisionFilteredText",
+      "properties": {
+        "category": {
+          "description": "Confidence level",
+          "enum": [
+            "RAI_CATEGORY_UNSPECIFIED",
+            "OBSCENE",
+            "SEXUALLY_EXPLICIT",
+            "IDENTITY_ATTACK",
+            "VIOLENCE_ABUSE",
+            "CSAI",
+            "SPII",
+            "CELEBRITY",
+            "FACE_IMG",
+            "WATERMARK_IMG",
+            "MEMORIZATION_IMG",
+            "CSAI_IMG",
+            "PORN_IMG",
+            "VIOLENCE_IMG",
+            "CHILD_IMG",
+            "TOXIC",
+            "SENSITIVE_WORD",
+            "PERSON_IMG",
+            "ICA_IMG",
+            "SEXUAL_IMG",
+            "IU_IMG",
+            "RACY_IMG",
+            "PEDO_IMG",
+            "DEATH_HARM_TRAGEDY",
+            "HEALTH",
+            "FIREARMS_WEAPONS",
+            "RELIGIOUS_BELIEF",
+            "ILLICIT_DRUGS",
+            "WAR_CONFLICT",
+            "POLITICS",
+            "HATE_SYMBOL_IMG",
+            "CHILD_TEXT",
+            "DANGEROUS_CONTENT",
+            "RECITATION_TEXT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "Porn",
+            "Hate",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "SafetyAttributes returned but not filtered on",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "End of list",
+            "",
+            "Text category from SafetyCat v3",
+            ""
+          ],
+          "type": "string"
+        },
+        "confidence": {
+          "description": "Filtered category",
+          "enum": [
+            "CONFIDENCE_UNSPECIFIED",
+            "CONFIDENCE_LOW",
+            "CONFIDENCE_MEDIUM",
+            "CONFIDENCE_HIGH"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "prompt": {
+          "description": "Input prompt",
+          "type": "string"
+        },
+        "score": {
+          "description": "Score for category",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionGenerateVideoResponse": {
+      "description": "Generate video response.",
+      "id": "CloudAiLargeModelsVisionGenerateVideoResponse",
+      "properties": {
+        "generatedSamples": {
+          "description": "The generates samples.",
+          "items": {
+            "$ref": "CloudAiLargeModelsVisionMedia"
+          },
+          "type": "array"
+        },
+        "raiMediaFilteredCount": {
+          "description": "Returns if any videos were filtered due to RAI policies.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "raiMediaFilteredReasons": {
+          "description": "Returns rai failure reasons if any.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "raiTextFilteredReason": {
+          "$ref": "CloudAiLargeModelsVisionFilteredText",
+          "description": "Returns filtered text rai info."
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionImage": {
+      "description": "Image.",
+      "id": "CloudAiLargeModelsVisionImage",
+      "properties": {
+        "encoding": {
+          "description": "Image encoding, encoded as \"image/png\" or \"image/jpg\".",
+          "type": "string"
+        },
+        "image": {
+          "description": "Raw bytes.",
+          "format": "byte",
+          "type": "string"
+        },
+        "imageRaiScores": {
+          "$ref": "CloudAiLargeModelsVisionImageRAIScores",
+          "description": "RAI scores for generated image."
+        },
+        "raiInfo": {
+          "$ref": "CloudAiLargeModelsVisionRaiInfo",
+          "description": "RAI info for image"
+        },
+        "semanticFilterResponse": {
+          "$ref": "CloudAiLargeModelsVisionSemanticFilterResponse",
+          "description": "Semantic filter info for image."
+        },
+        "uri": {
+          "description": "Path to another storage (typically Google Cloud Storage).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionImageRAIScores": {
+      "description": "RAI scores for generated image returned.",
+      "id": "CloudAiLargeModelsVisionImageRAIScores",
+      "properties": {
+        "agileWatermarkDetectionScore": {
+          "description": "Agile watermark score for image.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionMedia": {
+      "description": "Media.",
+      "id": "CloudAiLargeModelsVisionMedia",
+      "properties": {
+        "image": {
+          "$ref": "CloudAiLargeModelsVisionImage",
+          "description": "Image."
+        },
+        "video": {
+          "$ref": "CloudAiLargeModelsVisionVideo",
+          "description": "Video"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionMediaGenerateContentResponse": {
+      "description": "Generate media content response",
+      "id": "CloudAiLargeModelsVisionMediaGenerateContentResponse",
+      "properties": {
+        "response": {
+          "$ref": "CloudAiNlLlmProtoServiceGenerateMultiModalResponse",
+          "description": "Response to the user's request."
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionNamedBoundingBox": {
+      "id": "CloudAiLargeModelsVisionNamedBoundingBox",
+      "properties": {
+        "classes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entities": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scores": {
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "x1": {
+          "format": "float",
+          "type": "number"
+        },
+        "x2": {
+          "format": "float",
+          "type": "number"
+        },
+        "y1": {
+          "format": "float",
+          "type": "number"
+        },
+        "y2": {
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionRaiInfo": {
+      "id": "CloudAiLargeModelsVisionRaiInfo",
+      "properties": {
+        "raiCategories": {
+          "description": "List of rai categories' information to return",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scores": {
+          "description": "List of rai scores mapping to the rai categories. Rounded to 1 decimal place.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionReasonVideoResponse": {
+      "description": "Video reasoning response.",
+      "id": "CloudAiLargeModelsVisionReasonVideoResponse",
+      "properties": {
+        "responses": {
+          "description": "Generated text responses. The generated responses for different segments within the same video.",
+          "items": {
+            "$ref": "CloudAiLargeModelsVisionReasonVideoResponseTextResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionReasonVideoResponseTextResponse": {
+      "description": "Contains text that is the response of the video captioning.",
+      "id": "CloudAiLargeModelsVisionReasonVideoResponseTextResponse",
+      "properties": {
+        "relativeTemporalPartition": {
+          "$ref": "CloudAiLargeModelsVisionRelativeTemporalPartition",
+          "description": "Partition of the caption's video in time. This field is intended for video captioning. To represent the start time and end time of the caption's video."
+        },
+        "text": {
+          "description": "Text information",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionRelativeTemporalPartition": {
+      "description": "For ease of use, assume that the start_offset is inclusive and the end_offset is exclusive. In mathematical terms, the partition would be written as [start_offset, end_offset).",
+      "id": "CloudAiLargeModelsVisionRelativeTemporalPartition",
+      "properties": {
+        "endOffset": {
+          "description": "End time offset of the partition.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startOffset": {
+          "description": "Start time offset of the partition.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionSemanticFilterResponse": {
+      "id": "CloudAiLargeModelsVisionSemanticFilterResponse",
+      "properties": {
+        "namedBoundingBoxes": {
+          "description": "Class labels of the bounding boxes that failed the semantic filtering. Bounding box coordinates.",
+          "items": {
+            "$ref": "CloudAiLargeModelsVisionNamedBoundingBox"
+          },
+          "type": "array"
+        },
+        "passedSemanticFilter": {
+          "description": "This response is added when semantic filter config is turned on in EditConfig. It reports if this image is passed semantic filter response. If passed_semantic_filter is false, the bounding box information will be populated for user to check what caused the semantic filter to fail.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiLargeModelsVisionVideo": {
+      "description": "Video",
+      "id": "CloudAiLargeModelsVisionVideo",
+      "properties": {
+        "uri": {
+          "description": "Path to another storage (typically Google Cloud Storage).",
+          "type": "string"
+        },
+        "video": {
+          "description": "Raw bytes.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceCandidate": {
+      "id": "CloudAiNlLlmProtoServiceCandidate",
+      "properties": {
+        "citationMetadata": {
+          "$ref": "CloudAiNlLlmProtoServiceCitationMetadata",
+          "description": "Source attribution of the generated content."
+        },
+        "content": {
+          "$ref": "CloudAiNlLlmProtoServiceContent",
+          "description": "Content of the candidate."
+        },
+        "finishMessage": {
+          "description": "A string that describes the filtering behavior in more detail. Only filled when reason is set.",
+          "type": "string"
+        },
+        "finishReason": {
+          "description": "The reason why the model stopped generating tokens.",
+          "enum": [
+            "FINISH_REASON_UNSPECIFIED",
+            "FINISH_REASON_STOP",
+            "FINISH_REASON_MAX_TOKENS",
+            "FINISH_REASON_SAFETY",
+            "FINISH_REASON_RECITATION",
+            "FINISH_REASON_OTHER"
+          ],
+          "enumDescriptions": [
+            "The finish reason is unspecified.",
+            "Natural stop point of the model or provided stop sequence.",
+            "The maximum number of tokens as specified in the request was reached.",
+            "The token generation was stopped as the response was flagged for safety reasons. NOTE: When streaming the Candidate.content will be empty if content filters blocked the output.",
+            "The token generation was stopped as the response was flagged for unauthorized citations.",
+            "All other reasons that stopped the token generation."
+          ],
+          "type": "string"
+        },
+        "index": {
+          "description": "Index of the candidate.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "safetyRatings": {
+          "description": "Safety ratings of the generated content.",
+          "items": {
+            "$ref": "CloudAiNlLlmProtoServiceSafetyRating"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceCitation": {
+      "description": "Source attributions for content.",
+      "id": "CloudAiNlLlmProtoServiceCitation",
+      "properties": {
+        "endIndex": {
+          "description": "End index into the content.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "license": {
+          "description": "License of the attribution.",
+          "type": "string"
+        },
+        "publicationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Publication date of the attribution."
+        },
+        "startIndex": {
+          "description": "Start index into the content.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "title": {
+          "description": "Title of the attribution.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Url reference of the attribution.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceCitationMetadata": {
+      "description": "A collection of source attributions for a piece of content.",
+      "id": "CloudAiNlLlmProtoServiceCitationMetadata",
+      "properties": {
+        "citations": {
+          "description": "List of citations.",
+          "items": {
+            "$ref": "CloudAiNlLlmProtoServiceCitation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceContent": {
+      "description": "The content of a single message from a participant.",
+      "id": "CloudAiNlLlmProtoServiceContent",
+      "properties": {
+        "parts": {
+          "description": "The parts of the message.",
+          "items": {
+            "$ref": "CloudAiNlLlmProtoServicePart"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "The role of the current conversation participant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceFunctionCall": {
+      "description": "Function call details.",
+      "id": "CloudAiNlLlmProtoServiceFunctionCall",
+      "properties": {
+        "args": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The function parameters and values in JSON format.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. The name of the function to call.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceFunctionResponse": {
+      "description": "Function response details.",
+      "id": "CloudAiNlLlmProtoServiceFunctionResponse",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the function to call.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. The function response in JSON object format.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceGenerateMultiModalResponse": {
+      "id": "CloudAiNlLlmProtoServiceGenerateMultiModalResponse",
+      "properties": {
+        "candidates": {
+          "description": "Possible candidate responses to the conversation up until this point.",
+          "items": {
+            "$ref": "CloudAiNlLlmProtoServiceCandidate"
+          },
+          "type": "array"
+        },
+        "promptFeedback": {
+          "$ref": "CloudAiNlLlmProtoServicePromptFeedback",
+          "description": "Content filter results for a prompt sent in the request. Note: Sent only in the first stream chunk. Only happens when no candidates were generated due to content violations."
+        },
+        "reportingMetrics": {
+          "$ref": "IntelligenceCloudAutomlXpsReportingMetrics",
+          "description": "Billable prediction metrics."
+        },
+        "usageMetadata": {
+          "$ref": "CloudAiNlLlmProtoServiceUsageMetadata",
+          "description": "Usage metadata about the response(s)."
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServicePart": {
+      "description": "A single part of a message.",
+      "id": "CloudAiNlLlmProtoServicePart",
+      "properties": {
+        "fileData": {
+          "$ref": "CloudAiNlLlmProtoServicePartFileData",
+          "description": "URI-based data."
+        },
+        "functionCall": {
+          "$ref": "CloudAiNlLlmProtoServiceFunctionCall",
+          "description": "Function call data."
+        },
+        "functionResponse": {
+          "$ref": "CloudAiNlLlmProtoServiceFunctionResponse",
+          "description": "Function response data."
+        },
+        "inlineData": {
+          "$ref": "CloudAiNlLlmProtoServicePartBlob",
+          "description": "Inline bytes data"
+        },
+        "text": {
+          "description": "Text input.",
+          "type": "string"
+        },
+        "videoMetadata": {
+          "$ref": "CloudAiNlLlmProtoServicePartVideoMetadata",
+          "description": "Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data."
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServicePartBlob": {
+      "description": "Represents arbitrary blob data input.",
+      "id": "CloudAiNlLlmProtoServicePartBlob",
+      "properties": {
+        "data": {
+          "description": "Inline data.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type corresponding to this input.",
+          "type": "string"
+        },
+        "originalFileData": {
+          "$ref": "CloudAiNlLlmProtoServicePartFileData",
+          "description": "Original file data where the blob comes from."
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServicePartFileData": {
+      "description": "Represents file data.",
+      "id": "CloudAiNlLlmProtoServicePartFileData",
+      "properties": {
+        "fileUri": {
+          "description": "Inline data.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type corresponding to this input.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServicePartVideoMetadata": {
+      "description": "Metadata describes the input video content.",
+      "id": "CloudAiNlLlmProtoServicePartVideoMetadata",
+      "properties": {
+        "endOffset": {
+          "description": "The end offset of the video.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startOffset": {
+          "description": "The start offset of the video.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServicePromptFeedback": {
+      "description": "Content filter results for a prompt sent in the request.",
+      "id": "CloudAiNlLlmProtoServicePromptFeedback",
+      "properties": {
+        "blockReason": {
+          "description": "Blocked reason.",
+          "enum": [
+            "BLOCKED_REASON_UNSPECIFIED",
+            "SAFETY",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified blocked reason.",
+            "Candidates blocked due to safety.",
+            "Candidates blocked due to other reason."
+          ],
+          "type": "string"
+        },
+        "blockReasonMessage": {
+          "description": "A readable block reason message.",
+          "type": "string"
+        },
+        "safetyRatings": {
+          "description": "Safety ratings.",
+          "items": {
+            "$ref": "CloudAiNlLlmProtoServiceSafetyRating"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceSafetyRating": {
+      "description": "Safety rating corresponding to the generated content.",
+      "id": "CloudAiNlLlmProtoServiceSafetyRating",
+      "properties": {
+        "blocked": {
+          "description": "Indicates whether the content was filtered out because of this rating.",
+          "type": "boolean"
+        },
+        "category": {
+          "description": "Harm category.",
+          "enum": [
+            "HARM_CATEGORY_UNSPECIFIED",
+            "HARM_CATEGORY_HATE_SPEECH",
+            "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "HARM_CATEGORY_HARASSMENT",
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+          ],
+          "enumDescriptions": [
+            "The harm category is unspecified.",
+            "The harm category is hate speech.",
+            "The harm category is dengerous content.",
+            "The harm category is harassment.",
+            "The harm category is sexually explicit."
+          ],
+          "type": "string"
+        },
+        "probability": {
+          "description": "Harm probability levels in the content.",
+          "enum": [
+            "HARM_PROBABILITY_UNSPECIFIED",
+            "NEGLIGIBLE",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Harm probability unspecified.",
+            "Negligible level of harm.",
+            "Low level of harm.",
+            "Medium level of harm.",
+            "High level of harm."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceUsageMetadata": {
+      "description": "Usage metadata about response(s).",
+      "id": "CloudAiNlLlmProtoServiceUsageMetadata",
+      "properties": {
+        "candidatesTokenCount": {
+          "description": "Number of tokens in the response(s).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "promptTokenCount": {
+          "description": "Number of tokens in the request.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTokenCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleApiHttpBody": {
       "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
       "id": "GoogleApiHttpBody",
@@ -16595,6 +17655,34 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1BatchCancelPipelineJobsRequest": {
+      "description": "Request message for PipelineService.BatchCancelPipelineJobs.",
+      "id": "GoogleCloudAiplatformV1beta1BatchCancelPipelineJobsRequest",
+      "properties": {
+        "names": {
+          "description": "Required. The names of the PipelineJobs to cancel. A maximum of 32 PipelineJobs can be cancelled in a batch. Format: `projects/{project}/locations/{location}/pipelineJobs/{pipelineJob}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1BatchCancelPipelineJobsResponse": {
+      "description": "Response message for PipelineService.BatchCancelPipelineJobs.",
+      "id": "GoogleCloudAiplatformV1beta1BatchCancelPipelineJobsResponse",
+      "properties": {
+        "pipelineJobs": {
+          "description": "PipelineJobs cancelled.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1PipelineJob"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1BatchCreateFeaturesOperationMetadata": {
       "description": "Details of operations that perform batch create Features.",
       "id": "GoogleCloudAiplatformV1beta1BatchCreateFeaturesOperationMetadata",
@@ -16719,6 +17807,20 @@
           "description": "Required. The names of the PipelineJobs to delete. A maximum of 32 PipelineJobs can be deleted in a batch. Format: `projects/{project}/locations/{location}/pipelineJobs/{pipelineJob}`",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1BatchDeletePipelineJobsResponse": {
+      "description": "Response message for PipelineService.BatchDeletePipelineJobs.",
+      "id": "GoogleCloudAiplatformV1beta1BatchDeletePipelineJobsResponse",
+      "properties": {
+        "pipelineJobs": {
+          "description": "PipelineJobs deleted.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1PipelineJob"
           },
           "type": "array"
         }
@@ -17055,14 +18157,14 @@
       "id": "GoogleCloudAiplatformV1beta1BatchPredictionJobInstanceConfig",
       "properties": {
         "excludedFields": {
-          "description": "Fields that will be excluded in the prediction instance that is sent to the Model. Excluded will be attached to the batch prediction output if key_field is not specified. When excluded_fields is populated, included_fields must be empty. The input must be JSONL with objects at each line, CSV, BigQuery or TfRecord.",
+          "description": "Fields that will be excluded in the prediction instance that is sent to the Model. Excluded will be attached to the batch prediction output if key_field is not specified. When excluded_fields is populated, included_fields must be empty. The input must be JSONL with objects at each line, BigQuery or TfRecord.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "includedFields": {
-          "description": "Fields that will be included in the prediction instance that is sent to the Model. If instance_type is `array`, the order of field names in included_fields also determines the order of the values in the array. When included_fields is populated, excluded_fields must be empty. The input must be JSONL with objects at each line, CSV, BigQuery or TfRecord.",
+          "description": "Fields that will be included in the prediction instance that is sent to the Model. If instance_type is `array`, the order of field names in included_fields also determines the order of the values in the array. When included_fields is populated, excluded_fields must be empty. The input must be JSONL with objects at each line, BigQuery or TfRecord.",
           "items": {
             "type": "string"
           },
@@ -17244,6 +18346,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1Blob": {
+      "description": "Raw media bytes. Text should not be sent as raw bytes, use the 'text' field.",
+      "id": "GoogleCloudAiplatformV1beta1Blob",
+      "properties": {
+        "data": {
+          "description": "Required. Raw bytes for media formats.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Required. The IANA standard MIME type of the source data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1BlurBaselineConfig": {
       "description": "Config for blur baseline. When enabled, a linear path from the maximally blurred image to the input image is created. Using a blurred baseline instead of zero (black image) is motivated by the BlurIG approach explained here: https://arxiv.org/abs/2004.03383",
       "id": "GoogleCloudAiplatformV1beta1BlurBaselineConfig",
@@ -17312,6 +18430,63 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1Candidate": {
+      "description": "A response candidate generated from the model.",
+      "id": "GoogleCloudAiplatformV1beta1Candidate",
+      "properties": {
+        "citationMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1CitationMetadata",
+          "description": "Output only. Source attribution of the generated content.",
+          "readOnly": true
+        },
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1beta1Content",
+          "description": "Output only. Content parts of the candidate.",
+          "readOnly": true
+        },
+        "finishMessage": {
+          "description": "Output only. Describes the reason the mode stopped generating tokens in more detail. This is only filled when `finish_reason` is set.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "finishReason": {
+          "description": "Output only. The reason why the model stopped generating tokens. If empty, the model has not stopped generating the tokens.",
+          "enum": [
+            "FINISH_REASON_UNSPECIFIED",
+            "STOP",
+            "MAX_TOKENS",
+            "SAFETY",
+            "RECITATION",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "The finish reason is unspecified.",
+            "Natural stop point of the model or provided stop sequence.",
+            "The maximum number of tokens as specified in the request was reached.",
+            "The token generation was stopped as the response was flagged for safety reasons. NOTE: When streaming the Candidate.content will be empty if content filters blocked the output.",
+            "The token generation was stopped as the response was flagged for unauthorized citations.",
+            "All other reasons that stopped the token generation"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "index": {
+          "description": "Output only. Index of the candidate.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "safetyRatings": {
+          "description": "Output only. List of ratings for the safety of a response candidate. There is at most one rating per category.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1SafetyRating"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1CheckTrialEarlyStoppingStateMetatdata": {
       "description": "This message will be placed in the metadata field of a google.longrunning.Operation associated with a CheckTrialEarlyStoppingState request.",
       "id": "GoogleCloudAiplatformV1beta1CheckTrialEarlyStoppingStateMetatdata",
@@ -17344,6 +18519,60 @@
         "shouldStop": {
           "description": "True if the Trial should stop.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1Citation": {
+      "description": "Source attributions for content.",
+      "id": "GoogleCloudAiplatformV1beta1Citation",
+      "properties": {
+        "endIndex": {
+          "description": "Output only. End index into the content.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "license": {
+          "description": "Output only. License of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publicationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. Publication date of the attribution.",
+          "readOnly": true
+        },
+        "startIndex": {
+          "description": "Output only. Start index into the content.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "title": {
+          "description": "Output only. Title of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. Url reference of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CitationMetadata": {
+      "description": "A collection of source attributions for a piece of content.",
+      "id": "GoogleCloudAiplatformV1beta1CitationMetadata",
+      "properties": {
+        "citations": {
+          "description": "Output only. List of citations.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Citation"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -17469,6 +18698,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1Content": {
+      "description": "The base structured datatype containing multi-part content of a message. A `Content` includes a `role` field designating the producer of the `Content` and a `parts` field containing multi-part data that contains the content of the message turn.",
+      "id": "GoogleCloudAiplatformV1beta1Content",
+      "properties": {
+        "parts": {
+          "description": "Required. Ordered `Parts` that constitute a single message. Parts may have different IANA MIME types.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Part"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "Optional. The producer of the content. Must be either 'user' or 'model'. Useful to set for multi-turn conversations, otherwise can be left blank or unset.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1Context": {
       "description": "Instance of a general context.",
       "id": "GoogleCloudAiplatformV1beta1Context",
@@ -17589,12 +18836,23 @@
       "description": "Request message for PredictionService.CountTokens.",
       "id": "GoogleCloudAiplatformV1beta1CountTokensRequest",
       "properties": {
+        "contents": {
+          "description": "Required. Input content.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Content"
+          },
+          "type": "array"
+        },
         "instances": {
           "description": "Required. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.",
           "items": {
             "type": "any"
           },
           "type": "array"
+        },
+        "model": {
+          "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -17815,21 +19073,6 @@
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
           "description": "Operation metadata for creating a MetadataStore."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1beta1CreateNotebookExecutionJobOperationMetadata": {
-      "description": "Metadata information for NotebookService.CreateNotebookExecutionJob.",
-      "id": "GoogleCloudAiplatformV1beta1CreateNotebookExecutionJobOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
-          "description": "The operation generic information."
-        },
-        "progressMessage": {
-          "description": "A human-readable message that shows the intermediate progress details of NotebookRuntime.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -18103,6 +19346,13 @@
         "experimentRun": {
           "description": "Optional. The Experiment Run associated with this job. Format: `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`",
           "type": "string"
+        },
+        "models": {
+          "description": "Optional. The name of the Model resources for which to generate a mapping to artifact URIs. Applicable only to some of the Google-provided custom jobs. Format: `projects/{project}/locations/{location}/models/{model}` In order to retrieve a specific version of the model, also provide the version ID or version alias. Example: `projects/{project}/locations/{location}/models/{model}@2` or `projects/{project}/locations/{location}/models/{model}@golden` If no version ID or alias is specified, the \"default\" version will be returned. The \"default\" version alias is created for the first version of the model, and can be moved to other versions later on. There will be exactly one default version.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "network": {
           "description": "Optional. The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the Job should be peered. For example, `projects/12345/global/networks/myVPC`. [Format](/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project}/global/networks/{network}`. Where {project} is a project number, as in `12345`, and {network} is a network name. To specify this field, you must have already [configured VPC Network Peering for Vertex AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering). If this field is left unspecified, the job is not peered with any network.",
@@ -18794,6 +20044,11 @@
           "description": "Immutable. The ID of the DeployedIndex in the above IndexEndpoint.",
           "type": "string"
         },
+        "displayName": {
+          "description": "Output only. The display name of the DeployedIndex.",
+          "readOnly": true,
+          "type": "string"
+        },
         "indexEndpoint": {
           "description": "Immutable. A resource name of the IndexEndpoint.",
           "type": "string"
@@ -18913,6 +20168,70 @@
         },
         "featureId": {
           "description": "Required. The ID of the Feature to apply the setting to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DirectPredictRequest": {
+      "description": "Request message for PredictionService.DirectPredict.",
+      "id": "GoogleCloudAiplatformV1beta1DirectPredictRequest",
+      "properties": {
+        "inputs": {
+          "description": "The prediction input.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Tensor"
+          },
+          "type": "array"
+        },
+        "parameters": {
+          "$ref": "GoogleCloudAiplatformV1beta1Tensor",
+          "description": "The parameters that govern the prediction."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DirectPredictResponse": {
+      "description": "Response message for PredictionService.DirectPredict.",
+      "id": "GoogleCloudAiplatformV1beta1DirectPredictResponse",
+      "properties": {
+        "outputs": {
+          "description": "The prediction output.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Tensor"
+          },
+          "type": "array"
+        },
+        "parameters": {
+          "$ref": "GoogleCloudAiplatformV1beta1Tensor",
+          "description": "The parameters that govern the prediction."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DirectRawPredictRequest": {
+      "description": "Request message for PredictionService.DirectRawPredict.",
+      "id": "GoogleCloudAiplatformV1beta1DirectRawPredictRequest",
+      "properties": {
+        "input": {
+          "description": "The prediction input.",
+          "format": "byte",
+          "type": "string"
+        },
+        "methodName": {
+          "description": "Fully qualified name of the API method being invoked to perform predictions. Format: `/namespace.Service/Method/` Example: `/tensorflow.serving.PredictionService/Predict`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DirectRawPredictResponse": {
+      "description": "Response message for PredictionService.DirectRawPredict.",
+      "id": "GoogleCloudAiplatformV1beta1DirectRawPredictResponse",
+      "properties": {
+        "output": {
+          "description": "The prediction output.",
+          "format": "byte",
           "type": "string"
         }
       },
@@ -19988,7 +21307,7 @@
       "id": "GoogleCloudAiplatformV1beta1ExportDataResponse",
       "properties": {
         "exportedFiles": {
-          "description": "All of the files that are exported in this export operation.",
+          "description": "All of the files that are exported in this export operation. For custom code training export, only three (training, validation and test) Cloud Storage paths in wildcard format are populated (for example, gs://.../training-*).",
           "items": {
             "type": "string"
           },
@@ -20333,7 +21652,7 @@
           "type": "string"
         },
         "versionColumnName": {
-          "description": "Only applicable for Vertex AI Feature Store. The name of the BigQuery Table/View columnn hosting data for this version. If no value is provided, will use feature_id.",
+          "description": "Only applicable for Vertex AI Feature Store. The name of the BigQuery Table/View column hosting data for this version. If no value is provided, will use feature_id.",
           "type": "string"
         }
       },
@@ -20369,8 +21688,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Name of the FeatureGroup. Format: `projects/{project}/locations/{location}/featureGroups/{featureGroup}`",
-          "readOnly": true,
+          "description": "Identifier. Name of the FeatureGroup. Format: `projects/{project}/locations/{location}/featureGroups/{featureGroup}`",
           "type": "string"
         },
         "updateTime": {
@@ -20491,8 +21809,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Name of the FeatureOnlineStore. Format: `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`",
-          "readOnly": true,
+          "description": "Identifier. Name of the FeatureOnlineStore. Format: `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`",
           "type": "string"
         },
         "optimized": {
@@ -20768,8 +22085,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Name of the FeatureView. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
-          "readOnly": true,
+          "description": "Identifier. Name of the FeatureView. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
           "type": "string"
         },
         "syncConfig": {
@@ -20865,8 +22181,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "Output only. Name of the FeatureViewSync. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`",
-          "readOnly": true,
+          "description": "Identifier. Name of the FeatureViewSync. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`",
           "type": "string"
         },
         "runTime": {
@@ -20878,6 +22193,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1FeatureViewSyncConfig": {
+      "description": "Configuration for Sync. Only one option is set.",
       "id": "GoogleCloudAiplatformV1beta1FeatureViewSyncConfig",
       "properties": {
         "cron": {
@@ -21249,6 +22565,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1FileData": {
+      "description": "URI based data.",
+      "id": "GoogleCloudAiplatformV1beta1FileData",
+      "properties": {
+        "fileUri": {
+          "description": "Required. URI.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Required. The IANA standard MIME type of the source data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1FilterSplit": {
       "description": "Assigns input data to training, validation, and test sets based on the given filters, data pieces not matched by any filter are ignored. Currently only supported for Datasets containing DataItems. If any of the filters in this message are to match nothing, then they can be set as '-' (the minus sign). Supported only for unstructured Datasets. ",
       "id": "GoogleCloudAiplatformV1beta1FilterSplit",
@@ -21391,6 +22722,63 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1FunctionCall": {
+      "description": "A predicted [FunctionCall] returned from the model that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing the parameters and their values.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionCall",
+      "properties": {
+        "args": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Required. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. The name of the function to call. Matches [FunctionDeclaration.name].",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FunctionDeclaration": {
+      "description": "Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name and parameters. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionDeclaration",
+      "properties": {
+        "description": {
+          "description": "Optional. Description and purpose of the function. Model uses it to decide how and whether to call the function.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name of the function to call. Must start with a letter or an underscore. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.",
+          "type": "string"
+        },
+        "parameters": {
+          "$ref": "GoogleCloudAiplatformV1beta1Schema",
+          "description": "Optional. Describes the parameters to this function in JSON Schema Object format. Reflects the Open API 3.03 Parameter Object. string Key: the name of the parameter. Parameter names are case sensitive. Schema Value: the Schema defining the type used for the parameter. For function with no parameters, this can be left unset. Example with 1 required and 1 optional parameter: type: OBJECT properties: param1: type: STRING param2: type: INTEGER required: - param1"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FunctionResponse": {
+      "description": "The result output from a [FunctionCall] that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing any output from the function is used as context to the model. This should contain the result of a [FunctionCall] made based on model prediction.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionResponse",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the function to call. Matches [FunctionDeclaration.name] and [FunctionCall.name].",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. The function response in JSON object format.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1GcsDestination": {
       "description": "The Google Cloud Storage location where the output is to be written to.",
       "id": "GoogleCloudAiplatformV1beta1GcsDestination",
@@ -21447,6 +22835,162 @@
         "tokenType": {
           "description": "Type of the returned access token (e.g. \"Bearer\"). It specifies how the token must be used. Bearer tokens may be used by any entity without proof of identity.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateContentRequest": {
+      "description": "Request message for [PredictionService.GenerateContent].",
+      "id": "GoogleCloudAiplatformV1beta1GenerateContentRequest",
+      "properties": {
+        "contents": {
+          "description": "Required. The content of the current conversation with the model. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Content"
+          },
+          "type": "array"
+        },
+        "endpoint": {
+          "deprecated": true,
+          "description": "Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+          "type": "string"
+        },
+        "generationConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerationConfig",
+          "description": "Optional. Generation config."
+        },
+        "safetySettings": {
+          "description": "Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1SafetySetting"
+          },
+          "type": "array"
+        },
+        "tools": {
+          "description": "Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. The only supported tool is currently `Function`",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Tool"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateContentResponse": {
+      "description": "Response message for [PredictionService.GenerateContent].",
+      "id": "GoogleCloudAiplatformV1beta1GenerateContentResponse",
+      "properties": {
+        "candidates": {
+          "description": "Output only. Generated candidates.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Candidate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "promptFeedback": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback",
+          "description": "Output only. Content filter results for a prompt sent in the request. Note: Sent only in the first stream chunk. Only happens when no candidates were generated due to content violations.",
+          "readOnly": true
+        },
+        "usageMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata",
+          "description": "Usage metadata about the response(s)."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback": {
+      "description": "Content filter results for a prompt sent in the request.",
+      "id": "GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback",
+      "properties": {
+        "blockReason": {
+          "description": "Output only. Blocked reason.",
+          "enum": [
+            "BLOCKED_REASON_UNSPECIFIED",
+            "SAFETY",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified blocked reason.",
+            "Candidates blocked due to safety.",
+            "Candidates blocked due to other reason."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "blockReasonMessage": {
+          "description": "Output only. A readable block reason message.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "safetyRatings": {
+          "description": "Output only. Safety ratings.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1SafetyRating"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata": {
+      "description": "Usage metadata about response(s).",
+      "id": "GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata",
+      "properties": {
+        "candidatesTokenCount": {
+          "description": "Number of tokens in the response(s).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "promptTokenCount": {
+          "description": "Number of tokens in the request.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTokenCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerationConfig": {
+      "description": "Generation config.",
+      "id": "GoogleCloudAiplatformV1beta1GenerationConfig",
+      "properties": {
+        "candidateCount": {
+          "description": "Optional. Number of candidates to generate.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxOutputTokens": {
+          "description": "Optional. The maximum number of output tokens to generate per message.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "stopSequences": {
+          "description": "Optional. Stop sequences.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "temperature": {
+          "description": "Optional. Controls the randomness of predictions.",
+          "format": "float",
+          "type": "number"
+        },
+        "topK": {
+          "description": "Optional. If specified, top-k sampling will be used.",
+          "format": "float",
+          "type": "number"
+        },
+        "topP": {
+          "description": "Optional. If specified, nucleus sampling will be used.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -22231,6 +23775,55 @@
           "description": "Required. The number of steps for approximating the path integral. A good value to start is 50 and gradually increase until the sum to diff property is within the desired error range. Valid range of its value is [1, 100], inclusively.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1InternalOsServiceStateInstance": {
+      "description": "Request message for [InternalOsServiceStateInstance].",
+      "id": "GoogleCloudAiplatformV1beta1InternalOsServiceStateInstance",
+      "properties": {
+        "serviceName": {
+          "description": "Required. internal service name.",
+          "enum": [
+            "INTERNAL_OS_SERVICE_ENUM_UNSPECIFIED",
+            "DOCKER_SERVICE_STATE",
+            "CONTROL_PLANE_API_DNS_STATE",
+            "PROXY_REGISTRATION_DNS_STATE",
+            "JUPYTER_STATE",
+            "JUPYTER_API_STATE",
+            "EUC_METADATA_API_STATE",
+            "EUC_AGENT_API_STATE",
+            "IDLE_SHUTDOWN_AGENT_STATE",
+            "PROXY_AGENT_STATE"
+          ],
+          "enumDescriptions": [
+            "Service name unknown.",
+            "Represents the internal os docker client.",
+            "Represents reoslving DNS for the control plane api endpoint.",
+            "Represents reoslving DNS for the proxy registration endpoint.",
+            "Represents the jupyter endpoint.",
+            "Represents the jupyter/api endpoint.",
+            "Represents the EUC metadata server API endpoint.",
+            "Represents the EUC agent server API endpoint.",
+            "Represents the idle shutdown agent sidecar container.",
+            "Represents the proxy agent sidecar container."
+          ],
+          "type": "string"
+        },
+        "serviceState": {
+          "description": "Required. internal service state.",
+          "enum": [
+            "UNKNOWN",
+            "HEALTHY",
+            "UNHEALTHY"
+          ],
+          "enumDescriptions": [
+            "Health status is unknown: not initialized or failed to retrieve.",
+            "The resource is healthy.",
+            "The resource is unhealthy."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -23788,7 +25381,7 @@
           "type": "array"
         },
         "deploymentTimeout": {
-          "description": "Immutable. Deployment timeout. TODO (b/306244185): Revise documentation before exposing.",
+          "description": "Immutable. Deployment timeout. Limit for deployment timeout is 2 hours.",
           "format": "google-duration",
           "type": "string"
         },
@@ -23799,9 +25392,16 @@
           },
           "type": "array"
         },
+        "grpcPorts": {
+          "description": "Immutable. List of ports to expose from the container. Vertex AI sends gRPC prediction requests that it receives to the first port on this list. Vertex AI also sends liveness and health checks to this port. If you do not specify this field, gRPC requests to the container will be disabled. Vertex AI does not use ports other than the first one listed. This field corresponds to the `ports` field of the Kubernetes Containers v1 core API.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Port"
+          },
+          "type": "array"
+        },
         "healthProbe": {
           "$ref": "GoogleCloudAiplatformV1beta1Probe",
-          "description": "Immutable. Specification for Kubernetes readiness probe. TODO (b/306244185): Revise documentation before exposing."
+          "description": "Immutable. Specification for Kubernetes readiness probe."
         },
         "healthRoute": {
           "description": "Immutable. HTTP path on the container to send health checks to. Vertex AI intermittently sends GET requests to this path on the container's IP address and port to check that the container is healthy. Read more about [health checks](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#health). For example, if you set this field to `/bar`, then Vertex AI intermittently sends a GET request to the `/bar` path on the port of your container specified by the first value of this `ModelContainerSpec`'s ports field. If you don't specify this field, it defaults to the following value when you deploy this Model to an Endpoint: /v1/endpoints/ENDPOINT/deployedModels/ DEPLOYED_MODEL:predict The placeholders in this value are replaced as follows: * ENDPOINT: The last segment (following `endpoints/`)of the Endpoint.name][] field of the Endpoint where this Model has been deployed. (Vertex AI makes this value available to your container code as the [`AIP_ENDPOINT_ID` environment variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).) * DEPLOYED_MODEL: DeployedModel.id of the `DeployedModel`. (Vertex AI makes this value available to your container code as the [`AIP_DEPLOYED_MODEL_ID` environment variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).)",
@@ -23823,13 +25423,13 @@
           "type": "string"
         },
         "sharedMemorySizeMb": {
-          "description": "Immutable. The amount of the VM memory to reserve as the shared memory for the model in megabytes. TODO (b/306244185): Revise documentation before exposing.",
+          "description": "Immutable. The amount of the VM memory to reserve as the shared memory for the model in megabytes.",
           "format": "int64",
           "type": "string"
         },
         "startupProbe": {
           "$ref": "GoogleCloudAiplatformV1beta1Probe",
-          "description": "Immutable. Specification for Kubernetes startup probe. TODO (b/306244185): Revise documentation before exposing."
+          "description": "Immutable. Specification for Kubernetes startup probe."
         }
       },
       "type": "object"
@@ -24108,7 +25708,7 @@
           "type": "array"
         },
         "metadata": {
-          "description": "The metadata of the ModelEvaluation. For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a structured value with keys of \"pipeline_job_id\", \"evaluation_dataset_type\", \"evaluation_dataset_path\".",
+          "description": "The metadata of the ModelEvaluation. For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a structured value with keys of \"pipeline_job_id\", \"evaluation_dataset_type\", \"evaluation_dataset_path\", \"row_based_metrics_path\".",
           "type": "any"
         },
         "metrics": {
@@ -24645,7 +26245,8 @@
             "CUSTOM",
             "BQML",
             "MODEL_GARDEN",
-            "GENIE"
+            "GENIE",
+            "CUSTOM_TEXT_EMBEDDING"
           ],
           "enumDescriptions": [
             "Should not be used.",
@@ -24653,7 +26254,8 @@
             "The Model is uploaded by user or custom training pipeline.",
             "The Model is registered and sync'ed from BigQuery ML.",
             "The Model is saved or tuned from Model Garden.",
-            "The Model is saved or tuned from Genie."
+            "The Model is saved or tuned from Genie.",
+            "The Model is uploaded by text embedding finetuning pipeline."
           ],
           "type": "string"
         }
@@ -25367,6 +26969,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1NotebookReservationAffinity": {
+      "description": "Notebook Reservation Affinity for consuming Zonal reservation.",
+      "id": "GoogleCloudAiplatformV1beta1NotebookReservationAffinity",
+      "properties": {
+        "consumeReservationType": {
+          "description": "Required. Specifies the type of reservation from which this instance can consume resources: RESERVATION_ANY (default), RESERVATION_SPECIFIC, or RESERVATION_NONE. See Consuming reserved instances for examples.",
+          "enum": [
+            "RESERVATION_AFFINITY_TYPE_UNSPECIFIED",
+            "RESERVATION_NONE",
+            "RESERVATION_ANY",
+            "RESERVATION_SPECIFIC"
+          ],
+          "enumDescriptions": [
+            "Default type.",
+            "Do not consume from any allocated capacity.",
+            "Consume any reservation available.",
+            "Must consume from a specific reservation. Must specify key value fields for specifying the reservations."
+          ],
+          "type": "string"
+        },
+        "key": {
+          "description": "Optional. Corresponds to the label key of a reservation resource. To target a RESERVATION_SPECIFIC by name, use compute.googleapis.com/reservation-name as the key and specify the name of your reservation as its value.",
+          "type": "string"
+        },
+        "values": {
+          "description": "Optional. Corresponds to the label values of a reservation resource. This must be the full path name of Reservation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1NotebookRuntime": {
       "description": "A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.",
       "id": "GoogleCloudAiplatformV1beta1NotebookRuntime",
@@ -25406,6 +27042,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "isUpgradable": {
+          "description": "Output only. Whether NotebookRuntime is upgradable.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -25417,6 +27058,13 @@
           "description": "Output only. The resource name of the NotebookRuntime.",
           "readOnly": true,
           "type": "string"
+        },
+        "networkTags": {
+          "description": "Optional. The Compute Engine tags to add to runtime (see [Tagging instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "notebookRuntimeTemplateRef": {
           "$ref": "GoogleCloudAiplatformV1beta1NotebookRuntimeTemplateRef",
@@ -25442,6 +27090,11 @@
           "description": "Output only. The proxy endpoint used to access the NotebookRuntime.",
           "readOnly": true,
           "type": "string"
+        },
+        "reservationAffinity": {
+          "$ref": "GoogleCloudAiplatformV1beta1NotebookReservationAffinity",
+          "description": "Output only. Reservation Affinity of the notebook runtime.",
+          "readOnly": true
         },
         "runtimeState": {
           "description": "Output only. The runtime (instance) state of the NotebookRuntime.",
@@ -25546,6 +27199,13 @@
           "$ref": "GoogleCloudAiplatformV1beta1NetworkSpec",
           "description": "Optional. Network spec."
         },
+        "networkTags": {
+          "description": "Optional. The Compute Engine tags to add to runtime (see [Tagging instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "notebookRuntimeType": {
           "description": "Optional. Immutable. The type of the notebook runtime template.",
           "enum": [
@@ -25560,9 +27220,17 @@
           ],
           "type": "string"
         },
+        "reservationAffinity": {
+          "$ref": "GoogleCloudAiplatformV1beta1NotebookReservationAffinity",
+          "description": "Optional. Reservation Affinity of the notebook runtime template."
+        },
         "serviceAccount": {
           "description": "The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.",
           "type": "string"
+        },
+        "shieldedVmConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1ShieldedVmConfig",
+          "description": "Optional. Immutable. Runtime Shielded VM spec."
         },
         "updateTime": {
           "description": "Output only. Timestamp when this NotebookRuntimeTemplate was most recently updated.",
@@ -25580,6 +27248,37 @@
         "notebookRuntimeTemplate": {
           "description": "Immutable. A resource name of the NotebookRuntimeTemplate.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1Part": {
+      "description": "A datatype containing media that is part of a multi-part `Content` message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. A `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.",
+      "id": "GoogleCloudAiplatformV1beta1Part",
+      "properties": {
+        "fileData": {
+          "$ref": "GoogleCloudAiplatformV1beta1FileData",
+          "description": "Optional. URI based data."
+        },
+        "functionCall": {
+          "$ref": "GoogleCloudAiplatformV1beta1FunctionCall",
+          "description": "Optional. A predicted [FunctionCall] returned from the model that contains a string representing the [FunctionDeclaration.name] with the parameters and their values."
+        },
+        "functionResponse": {
+          "$ref": "GoogleCloudAiplatformV1beta1FunctionResponse",
+          "description": "Optional. The result output of a [FunctionCall] that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing any output from the function call. It is used as context to the model."
+        },
+        "inlineData": {
+          "$ref": "GoogleCloudAiplatformV1beta1Blob",
+          "description": "Optional. Inlined bytes data."
+        },
+        "text": {
+          "description": "Optional. Text part (can be code).",
+          "type": "string"
+        },
+        "videoMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1VideoMetadata",
+          "description": "Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data."
         }
       },
       "type": "object"
@@ -25691,9 +27390,9 @@
           "enumDescriptions": [
             "Not set.",
             "The PROVISIONING state indicates the persistent resources is being created.",
-            "The RUNNING state indicates the persistent resources is healthy and fully usable.",
-            "The STOPPING state indicates the persistent resources is being deleted.",
-            "The ERROR state indicates the persistent resources may be unusable. Details can be found in the `error` field."
+            "The RUNNING state indicates the persistent resource is healthy and fully usable.",
+            "The STOPPING state indicates the persistent resource is being deleted.",
+            "The ERROR state indicates the persistent resource may be unusable. Details can be found in the `error` field."
           ],
           "readOnly": true,
           "type": "string"
@@ -26480,6 +28179,20 @@
           "description": "Output only. Immutable. The version ID of the PublisherModel. A new version is committed when a new model version is uploaded under an existing model id. It is an auto-incrementing decimal number in string representation.",
           "readOnly": true,
           "type": "string"
+        },
+        "versionState": {
+          "description": "Optional. Indicates the state of the model version.",
+          "enum": [
+            "VERSION_STATE_UNSPECIFIED",
+            "VERSION_STATE_STABLE",
+            "VERSION_STATE_UNSTABLE"
+          ],
+          "enumDescriptions": [
+            "The version state is unspecified.",
+            "Used to indicate the version is stable.",
+            "Used to indicate the version is unstable."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -26557,6 +28270,10 @@
         },
         "modelDisplayName": {
           "description": "Optional. Default model display name.",
+          "type": "string"
+        },
+        "publicArtifactUri": {
+          "description": "Optional. The signed URI for ephemeral Cloud Storage access to model artifact.",
           "type": "string"
         },
         "sharedResources": {
@@ -26640,12 +28357,20 @@
       "description": "Reference to a resource.",
       "id": "GoogleCloudAiplatformV1beta1PublisherModelResourceReference",
       "properties": {
+        "description": {
+          "description": "Description of the resource.",
+          "type": "string"
+        },
         "resourceName": {
           "description": "The resource name of the Google Cloud resource.",
           "type": "string"
         },
         "uri": {
           "description": "The URI of the resource.",
+          "type": "string"
+        },
+        "useCase": {
+          "description": "Use case (CUJ) of the resource.",
           "type": "string"
         }
       },
@@ -27209,6 +28934,21 @@
           ],
           "type": "string"
         },
+        "internalOsServiceStateInstance": {
+          "deprecated": true,
+          "description": "The details of the internal os service states.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1InternalOsServiceStateInstance"
+          },
+          "type": "array"
+        },
+        "internalOsServiceStateInstances": {
+          "description": "Optional. The details of the internal os service states.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1InternalOsServiceStateInstance"
+          },
+          "type": "array"
+        },
         "vmToken": {
           "description": "Required. The VM identity token (a JWT) for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity",
           "type": "string"
@@ -27350,6 +29090,99 @@
         "catchUp": {
           "description": "Optional. Whether to backfill missed runs when the schedule is resumed from PAUSED state. If set to true, all missed runs will be scheduled. New runs will be scheduled after the backfill is complete. This will also update Schedule.catch_up field. Default to false.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SafetyRating": {
+      "description": "Safety rating corresponding to the generated content.",
+      "id": "GoogleCloudAiplatformV1beta1SafetyRating",
+      "properties": {
+        "blocked": {
+          "description": "Output only. Indicates whether the content was filtered out because of this rating.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "category": {
+          "description": "Output only. Harm category.",
+          "enum": [
+            "HARM_CATEGORY_UNSPECIFIED",
+            "HARM_CATEGORY_HATE_SPEECH",
+            "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "HARM_CATEGORY_HARASSMENT",
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+          ],
+          "enumDescriptions": [
+            "The harm category is unspecified.",
+            "The harm category is hate speech.",
+            "The harm category is dangerous content.",
+            "The harm category is harassment.",
+            "The harm category is sexually explicit content."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "probability": {
+          "description": "Output only. Harm probability levels in the content.",
+          "enum": [
+            "HARM_PROBABILITY_UNSPECIFIED",
+            "NEGLIGIBLE",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Harm probability unspecified.",
+            "Negligible level of harm.",
+            "Low level of harm.",
+            "Medium level of harm.",
+            "High level of harm."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SafetySetting": {
+      "description": "Safety settings.",
+      "id": "GoogleCloudAiplatformV1beta1SafetySetting",
+      "properties": {
+        "category": {
+          "description": "Required. Harm category.",
+          "enum": [
+            "HARM_CATEGORY_UNSPECIFIED",
+            "HARM_CATEGORY_HATE_SPEECH",
+            "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "HARM_CATEGORY_HARASSMENT",
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+          ],
+          "enumDescriptions": [
+            "The harm category is unspecified.",
+            "The harm category is hate speech.",
+            "The harm category is dangerous content.",
+            "The harm category is harassment.",
+            "The harm category is sexually explicit content."
+          ],
+          "type": "string"
+        },
+        "threshold": {
+          "description": "Required. The harm block threshold.",
+          "enum": [
+            "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_ONLY_HIGH",
+            "BLOCK_NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecified harm block threshold.",
+            "Block low threshold and above (i.e. block more).",
+            "Block medium threshold and above.",
+            "Block only high threshold (i.e. block less).",
+            "Block none."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -27620,6 +29453,11 @@
           "description": "Optional. Indicates if the job should retry for internal errors after the job starts running. If true, overrides `Scheduling.restart_job_on_worker_restart` to false.",
           "type": "boolean"
         },
+        "maxWaitDuration": {
+          "description": "Optional. This is the maximum time a user will wait in the QRM queue for resources. Default is 1 day",
+          "format": "google-duration",
+          "type": "string"
+        },
         "restartJobOnWorkerRestart": {
           "description": "Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.",
           "type": "boolean"
@@ -27627,6 +29465,76 @@
         "timeout": {
           "description": "The maximum job running time. The default is 7 days.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1Schema": {
+      "description": "Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema). More fields may be added in the future as needed.",
+      "id": "GoogleCloudAiplatformV1beta1Schema",
+      "properties": {
+        "description": {
+          "description": "Optional. The description of the data.",
+          "type": "string"
+        },
+        "enum": {
+          "description": "Optional. Possible values of the element of Type.STRING with enum format. For example we can define an Enum Direction as : {type:STRING, format:enum, enum:[\"EAST\", NORTH\", \"SOUTH\", \"WEST\"]}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "example": {
+          "description": "Optional. Example of the object. Will only populated when the object is the root.",
+          "type": "any"
+        },
+        "format": {
+          "description": "Optional. The format of the data. Supported formats: for NUMBER type: float, double for INTEGER type: int32, int64",
+          "type": "string"
+        },
+        "items": {
+          "$ref": "GoogleCloudAiplatformV1beta1Schema",
+          "description": "Optional. Schema of the elements of Type.ARRAY."
+        },
+        "nullable": {
+          "description": "Optional. Indicates if the value may be null.",
+          "type": "boolean"
+        },
+        "properties": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1Schema"
+          },
+          "description": "Optional. Properties of Type.OBJECT.",
+          "type": "object"
+        },
+        "required": {
+          "description": "Optional. Required properties of Type.OBJECT.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Optional. The type of the data.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "STRING",
+            "NUMBER",
+            "INTEGER",
+            "BOOLEAN",
+            "ARRAY",
+            "OBJECT"
+          ],
+          "enumDescriptions": [
+            "Not specified, should not be used.",
+            "OpenAPI string type",
+            "OpenAPI number type",
+            "OpenAPI integer type",
+            "OpenAPI boolean type",
+            "OpenAPI array type",
+            "OpenAPI object type"
+          ],
           "type": "string"
         }
       },
@@ -31404,6 +33312,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ShieldedVmConfig": {
+      "description": "A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm).",
+      "id": "GoogleCloudAiplatformV1beta1ShieldedVmConfig",
+      "properties": {
+        "enableSecureBoot": {
+          "description": "Defines whether the instance has [Secure Boot](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#secure-boot) enabled. Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1SmoothGradConfig": {
       "description": "Config for SmoothGrad approximation of gradients. When enabled, the gradients are approximated by averaging the gradients from noisy samples in the vicinity of the inputs. Adding noise can help improve the computed gradients. Refer to this paper for more details: https://arxiv.org/pdf/1706.03825.pdf",
       "id": "GoogleCloudAiplatformV1beta1SmoothGradConfig",
@@ -32791,6 +34710,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1Tool": {
+      "description": "Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.",
+      "id": "GoogleCloudAiplatformV1beta1Tool",
+      "properties": {
+        "functionDeclarations": {
+          "description": "Optional. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1FunctionDeclaration"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1TrainingConfig": {
       "description": "CMLE training config. For every active learning labeling iteration, system will train a machine learning model on CMLE. The trained model will be used by data sampling algorithm to select DataItems.",
       "id": "GoogleCloudAiplatformV1beta1TrainingConfig",
@@ -33296,6 +35229,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1UpgradeNotebookRuntimeOperationMetadata": {
+      "description": "Metadata information for NotebookService.UpgradeNotebookRuntime.",
+      "id": "GoogleCloudAiplatformV1beta1UpgradeNotebookRuntimeOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "The operation generic information."
+        },
+        "progressMessage": {
+          "description": "A human-readable message that shows the intermediate progress details of NotebookRuntime.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1UpgradeNotebookRuntimeRequest": {
+      "description": "Request message for NotebookService.UpgradeNotebookRuntime.",
+      "id": "GoogleCloudAiplatformV1beta1UpgradeNotebookRuntimeRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1UploadModelOperationMetadata": {
       "description": "Details of ModelService.UploadModel operation.",
       "id": "GoogleCloudAiplatformV1beta1UploadModelOperationMetadata",
@@ -33401,6 +35355,23 @@
         },
         "stringValue": {
           "description": "A string value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1VideoMetadata": {
+      "description": "Metadata describes the input video content.",
+      "id": "GoogleCloudAiplatformV1beta1VideoMetadata",
+      "properties": {
+        "endOffset": {
+          "description": "Optional. The end offset of the video.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startOffset": {
+          "description": "Optional. The start offset of the video.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -33604,7 +35575,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.",
           "items": {
             "type": "string"
           },
@@ -33816,6 +35787,28 @@
       },
       "type": "object"
     },
+    "GoogleTypeDate": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "GoogleTypeDate",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleTypeExpr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "GoogleTypeExpr",
@@ -33873,6 +35866,70 @@
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IntelligenceCloudAutomlXpsMetricEntry": {
+      "id": "IntelligenceCloudAutomlXpsMetricEntry",
+      "properties": {
+        "argentumMetricId": {
+          "description": "For billing metrics that are using legacy sku's, set the legacy billing metric id here. This will be sent to Chemist as the \"cloudbilling.googleapis.com/argentum_metric_id\" label. Otherwise leave empty.",
+          "type": "string"
+        },
+        "doubleValue": {
+          "description": "A double value.",
+          "format": "double",
+          "type": "number"
+        },
+        "int64Value": {
+          "description": "A signed 64-bit integer value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "metricName": {
+          "description": "The metric name defined in the service configuration.",
+          "type": "string"
+        },
+        "systemLabels": {
+          "description": "Billing system labels for this (metric, value) pair.",
+          "items": {
+            "$ref": "IntelligenceCloudAutomlXpsMetricEntryLabel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IntelligenceCloudAutomlXpsMetricEntryLabel": {
+      "id": "IntelligenceCloudAutomlXpsMetricEntryLabel",
+      "properties": {
+        "labelName": {
+          "description": "The name of the label.",
+          "type": "string"
+        },
+        "labelValue": {
+          "description": "The value of the label.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IntelligenceCloudAutomlXpsReportingMetrics": {
+      "id": "IntelligenceCloudAutomlXpsReportingMetrics",
+      "properties": {
+        "effectiveTrainingDuration": {
+          "deprecated": true,
+          "description": "The effective time training used. If set, this is used for quota management and billing. Deprecated. AutoML BE doesn't use this. Don't set.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "metricEntries": {
+          "description": "One entry per metric name. The values must be aggregated per metric name.",
+          "items": {
+            "$ref": "IntelligenceCloudAutomlXpsMetricEntry"
+          },
+          "type": "array"
         }
       },
       "type": "object"
