@@ -422,6 +422,10 @@ export namespace drive_v3 {
      */
     restrictionTime?: string | null;
     /**
+     * Output only. Whether the content restriction was applied by the system, for example due to an esignature. Users cannot modify or remove system restricted content restrictions.
+     */
+    systemRestricted?: boolean | null;
+    /**
      * Output only. The type of the content restriction. Currently the only possible value is `globalContentRestriction`.
      */
     type?: string | null;
@@ -497,7 +501,7 @@ export namespace drive_v3 {
      */
     orgUnitId?: string | null;
     /**
-     * A set of restrictions that apply to this shared drive or items inside this shared drive.
+     * A set of restrictions that apply to this shared drive or items inside this shared drive. Note that restrictions can't be set when creating a shared drive. To add a restriction, first create a shared drive and then use `drives.update` to add restrictions.
      */
     restrictions?: {
       adminManagedRestrictions?: boolean;
