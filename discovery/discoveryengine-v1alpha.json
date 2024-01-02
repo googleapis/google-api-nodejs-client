@@ -224,6 +224,36 @@
     "projects": {
       "resources": {
         "locations": {
+          "methods": {
+            "estimateDataSize": {
+              "description": "Estimates the data size to be used by a customer.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}:estimateDataSize",
+              "httpMethod": "POST",
+              "id": "discoveryengine.projects.locations.estimateDataSize",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. Full resource name of the Location, such as `projects/{project}/locations/{location}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+location}:estimateDataSize",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
           "resources": {
             "collections": {
               "resources": {
@@ -436,6 +466,56 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getDocumentProcessingConfig": {
+                      "description": "Gets a DocumentProcessingConfig.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/documentProcessingConfig",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.getDocumentProcessingConfig",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Full DocumentProcessingConfig resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/documentProcessingConfig`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/documentProcessingConfig$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "getSiteSearchEngine": {
+                      "description": "Gets the SiteSearchEngine.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.getSiteSearchEngine",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of SiteSearchEngine, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaSiteSearchEngine"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists all the DataStores associated with the project.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores",
@@ -506,6 +586,68 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1alphaDataStore"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "trainCustomModel": {
+                      "description": "Trains a custom model.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:trainCustomModel",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.trainCustomModel",
+                      "parameterOrder": [
+                        "dataStore"
+                      ],
+                      "parameters": {
+                        "dataStore": {
+                          "description": "Required. The resource name of the Data Store, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to train the models.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+dataStore}:trainCustomModel",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "updateDocumentProcessingConfig": {
+                      "description": "Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleon resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/documentProcessingConfig",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.updateDocumentProcessingConfig",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/documentProcessingConfig$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.orc_config If not set, all supported fields are updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -963,7 +1105,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*`",
+                              "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*` or `project/*/locations/global/collections/{collection}/engines/*/conversations/*`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                               "required": true,
@@ -1423,6 +1565,126 @@
                     },
                     "siteSearchEngine": {
                       "methods": {
+                        "batchVerifyTargetSites": {
+                          "description": "Verify target sites' ownership and validity. This API sends all the target sites under site search engine for verification.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:batchVerifyTargetSites",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.batchVerifyTargetSites",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent resource shared by all TargetSites being verified. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}:batchVerifyTargetSites",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaBatchVerifyTargetSitesRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "disableAdvancedSiteSearch": {
+                          "description": "Downgrade from advanced site search to basic site search.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:disableAdvancedSiteSearch",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.disableAdvancedSiteSearch",
+                          "parameterOrder": [
+                            "siteSearchEngine"
+                          ],
+                          "parameters": {
+                            "siteSearchEngine": {
+                              "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/{project}/locations/{location}/dataStores/{data_store_id}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+siteSearchEngine}:disableAdvancedSiteSearch",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "enableAdvancedSiteSearch": {
+                          "description": "Upgrade from basic site search to advanced site search.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:enableAdvancedSiteSearch",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.enableAdvancedSiteSearch",
+                          "parameterOrder": [
+                            "siteSearchEngine"
+                          ],
+                          "parameters": {
+                            "siteSearchEngine": {
+                              "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/{project}/locations/{location}/dataStores/{data_store_id}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+siteSearchEngine}:enableAdvancedSiteSearch",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "fetchDomainVerificationStatus": {
+                          "description": "Returns list of target sites with its domain verification status. This method can only be called under data store with BASIC_SITE_SEARCH state at the moment.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:fetchDomainVerificationStatus",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.fetchDomainVerificationStatus",
+                          "parameterOrder": [
+                            "siteSearchEngine"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `FetchDomainVerificationStatus` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchDomainVerificationStatus` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "siteSearchEngine": {
+                              "description": "Required. The site search engine resource under which we fetch all the domain verification status. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+siteSearchEngine}:fetchDomainVerificationStatus",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaFetchDomainVerificationStatusResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "recrawlUris": {
                           "description": "Request on-demand recrawl for a list of URIs.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:recrawlUris",
@@ -1524,6 +1786,178 @@
                           }
                         },
                         "targetSites": {
+                          "methods": {
+                            "batchCreate": {
+                              "description": "Creates TargetSite in a batch.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites:batchCreate",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.batchCreate",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The parent resource shared by all TargetSites being created. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. The parent field in the CreateBookRequest messages must either be empty or match this field.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/targetSites:batchCreate",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "create": {
+                              "description": "Creates a TargetSite.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. Parent resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/targetSites",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Deletes a TargetSite.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                              "httpMethod": "DELETE",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Full resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "get": {
+                              "description": "Gets a TargetSite.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Full resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Gets a list of TargetSites.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "pageSize": {
+                                  "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "A page token, received from a previous `ListTargetSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTargetSites` must match the call that provided the page token.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent site search engine resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. If the caller does not have permission to list TargetSites under this site search engine, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/targetSites",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaListTargetSitesResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "patch": {
+                              "description": "Updates a TargetSite.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                              "httpMethod": "PATCH",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.patch",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Output only. The fully qualified resource name of the target site. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}` The `target_site_id` is system-generated.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          },
                           "resources": {
                             "operations": {
                               "methods": {
@@ -1976,6 +2410,196 @@
                     }
                   },
                   "resources": {
+                    "conversations": {
+                      "methods": {
+                        "converse": {
+                          "description": "Converses a conversation.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations/{conversationsId}:converse",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.converse",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}:converse",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaConverseConversationRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaConverseConversationResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "create": {
+                          "description": "Creates a Conversation. If the Conversation to create already exists, an ALREADY_EXISTS error is returned.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/conversations",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaConversation"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a Conversation. If the Conversation to delete does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations/{conversationsId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a Conversation.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations/{conversationsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all Conversations by their parent DataStore.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: \"user_pseudo_id = some_id\"",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `conversation_name` Example: \"update_time desc\" \"create_time\"",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `ListConversations` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/conversations",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaListConversationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates a Conversation. Conversation action type cannot be changed. If the Conversation to update does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations/{conversationsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*` or `project/*/locations/global/collections/{collection}/engines/*/conversations/*`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaConversation"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
                     "operations": {
                       "methods": {
                         "get": {
@@ -2315,6 +2939,56 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getDocumentProcessingConfig": {
+                  "description": "Gets a DocumentProcessingConfig.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/documentProcessingConfig",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.dataStores.getDocumentProcessingConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Full DocumentProcessingConfig resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/documentProcessingConfig`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/documentProcessingConfig$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getSiteSearchEngine": {
+                  "description": "Gets the SiteSearchEngine.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.dataStores.getSiteSearchEngine",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of SiteSearchEngine, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaSiteSearchEngine"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists all the DataStores associated with the project.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores",
@@ -2385,6 +3059,40 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudDiscoveryengineV1alphaDataStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateDocumentProcessingConfig": {
+                  "description": "Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleon resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/documentProcessingConfig",
+                  "httpMethod": "PATCH",
+                  "id": "discoveryengine.projects.locations.dataStores.updateDocumentProcessingConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/documentProcessingConfig$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.orc_config If not set, all supported fields are updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2842,7 +3550,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*`",
+                          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*` or `project/*/locations/global/collections/{collection}/engines/*/conversations/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                           "required": true,
@@ -3230,6 +3938,62 @@
                 },
                 "siteSearchEngine": {
                   "methods": {
+                    "disableAdvancedSiteSearch": {
+                      "description": "Downgrade from advanced site search to basic site search.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine:disableAdvancedSiteSearch",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.disableAdvancedSiteSearch",
+                      "parameterOrder": [
+                        "siteSearchEngine"
+                      ],
+                      "parameters": {
+                        "siteSearchEngine": {
+                          "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/{project}/locations/{location}/dataStores/{data_store_id}/siteSearchEngine`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+siteSearchEngine}:disableAdvancedSiteSearch",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "enableAdvancedSiteSearch": {
+                      "description": "Upgrade from basic site search to advanced site search.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine:enableAdvancedSiteSearch",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.enableAdvancedSiteSearch",
+                      "parameterOrder": [
+                        "siteSearchEngine"
+                      ],
+                      "parameters": {
+                        "siteSearchEngine": {
+                          "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/{project}/locations/{location}/dataStores/{data_store_id}/siteSearchEngine`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+siteSearchEngine}:enableAdvancedSiteSearch",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "recrawlUris": {
                       "description": "Request on-demand recrawl for a list of URIs.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine:recrawlUris",
@@ -3257,6 +4021,182 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  },
+                  "resources": {
+                    "targetSites": {
+                      "methods": {
+                        "batchCreate": {
+                          "description": "Creates TargetSite in a batch.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites:batchCreate",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.batchCreate",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent resource shared by all TargetSites being created. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. The parent field in the CreateBookRequest messages must either be empty or match this field.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/targetSites:batchCreate",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "create": {
+                          "description": "Creates a TargetSite.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Parent resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/targetSites",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a TargetSite.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Full resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a TargetSite.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Full resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Gets a list of TargetSites.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `ListTargetSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTargetSites` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent site search engine resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. If the caller does not have permission to list TargetSites under this site search engine, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/targetSites",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaListTargetSitesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates a TargetSite.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Output only. The fully qualified resource name of the target site. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}` The `target_site_id` is system-generated.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -3536,7 +4476,7 @@
       }
     }
   },
-  "revision": "20231110",
+  "revision": "20231218",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3927,6 +4867,57 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesRequest": {
+      "description": "Request message for SiteSearchEngineService.s method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The request message specifying the resources to create. A maximum of 20 TargetSites can be created in a batch.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCreateTargetSiteRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse": {
+      "description": "Response message for SiteSearchEngineService.BatchCreateTargetSites method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse",
+      "properties": {
+        "targetSites": {
+          "description": "TargetSites created.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBatchVerifyTargetSitesRequest": {
+      "description": "Request message for SiteSearchEngineService.BatchVerifyTargetSites method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchVerifyTargetSitesRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaBigQuerySource": {
       "description": "BigQuery source import data from.",
       "id": "GoogleCloudDiscoveryengineV1alphaBigQuerySource",
@@ -4055,7 +5046,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*`",
+          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*` or `project/*/locations/global/collections/{collection}/engines/*/conversations/*`.",
           "type": "string"
         },
         "startTime": {
@@ -4131,6 +5122,10 @@
         "conversation": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaConversation",
           "description": "The conversation to be used by auto session only. The name field will be ignored as we automatically assign new name for the conversation in auto session."
+        },
+        "filter": {
+          "description": "The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. This will be used to filter search results which may affect the summary response. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --> name:'ANY(\"king kong\")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
+          "type": "string"
         },
         "name": {
           "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
@@ -4238,6 +5233,38 @@
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCreateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.CreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCreateTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCreateTargetSiteRequest": {
+      "description": "Request message for SiteSearchEngineService.CreateTargetSite method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCreateTargetSiteRequest",
+      "properties": {
+        "parent": {
+          "description": "Required. Parent resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+          "type": "string"
+        },
+        "targetSite": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite",
+          "description": "Required. The TargetSite to create."
         }
       },
       "type": "object"
@@ -4390,6 +5417,52 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDeleteTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DeleteTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchRequest": {
+      "description": "Request message for SiteSearchEngineService.DisableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchResponse": {
+      "description": "Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDocument": {
       "description": "Document captures all raw metadata information of items to be recommended or searched.",
       "id": "GoogleCloudDiscoveryengineV1alphaDocument",
@@ -4489,6 +5562,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig": {
+      "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig",
+      "properties": {
+        "name": {
+          "description": "Output only. The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ocrConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
+          "description": "The OCR config. Currently it only applies to PDFs."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDoubleList": {
       "description": "Double list.",
       "id": "GoogleCloudDiscoveryengineV1alphaDoubleList",
@@ -4502,6 +5591,35 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchRequest": {
+      "description": "Request message for SiteSearchEngineService.EnableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchResponse": {
+      "description": "Response message for SiteSearchEngineService.EnableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaEngine": {
@@ -4793,6 +5911,121 @@
       "description": "Additional config specs for a `similar-items` engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaEngineSimilarDocumentsEngineConfig",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeMetadata": {
+      "description": "Metadata related to the progress of the EstimateDataSize operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequest": {
+      "description": "Request message for EstimateBillingService.EstimateDataSize method",
+      "id": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequest",
+      "properties": {
+        "fileDataSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestFileDataSource",
+          "description": "Structured or unstructured data."
+        },
+        "websiteDataSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestWebsiteDataSource",
+          "description": "Website data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestFileDataSource": {
+      "description": "Data source contains files either in GCS or BigQuery.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestFileDataSource",
+      "properties": {
+        "bigquerySource": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaBigQuerySource",
+          "description": "BigQuery input source."
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaGcsSource",
+          "description": "Cloud Storage location for the input content."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestWebsiteDataSource": {
+      "description": "Data source is a set of website patterns that we crawl to get the total number of websites.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestWebsiteDataSource",
+      "properties": {
+        "estimatorUriPatterns": {
+          "description": "Required. The URI patterns to estimate the data sizes. At most 10 patterns are allowed, otherwise an INVALID_ARGUMENT error is thrown.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestWebsiteDataSourceEstimatorUriPattern"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestWebsiteDataSourceEstimatorUriPattern": {
+      "description": "URI patterns that we use to crawl.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestWebsiteDataSourceEstimatorUriPattern",
+      "properties": {
+        "exactMatch": {
+          "description": "Whether we infer the generated URI or use the exact provided one.",
+          "type": "boolean"
+        },
+        "exclusive": {
+          "description": "Whether the pattern is exclusive or not. If set to true, the pattern is considered exclusive. If unset or set to false, the pattern is considered inclusive by default.",
+          "type": "boolean"
+        },
+        "providedUriPattern": {
+          "description": "User provided URI pattern. For example, `foo.com/bar/*`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeResponse": {
+      "description": "Response of the EstimateDataSize request. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeResponse",
+      "properties": {
+        "dataSizeBytes": {
+          "description": "Data size in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "documentCount": {
+          "description": "Total number of documents.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFetchDomainVerificationStatusResponse": {
+      "description": "Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFetchDomainVerificationStatusResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "targetSites": {
+          "description": "List of TargetSites containing the site verification status.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of items matching the request. This will always be populated in the response.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaFieldConfig": {
@@ -5260,6 +6493,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaListTargetSitesResponse": {
+      "description": "Response message for SiteSearchEngineService.ListTargetSites method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListTargetSitesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "targetSites": {
+          "description": "List of TargetSites.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of items matching the request. This will always be populated in the response.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest": {
       "description": "Request message for WidgetService.LookupWidgetConfig method.",
       "id": "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest",
@@ -5295,6 +6551,28 @@
           "description": "Media progress should be computed using only the media_progress_duration relative to the media total length. This value must be between `[0, 1.0]` inclusive. If this is not a playback or the progress cannot be computed (e.g. ongoing livestream), this field should be unset.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaOcrConfig": {
+      "description": "The OCR options for parsing documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
+      "properties": {
+        "enabled": {
+          "description": "Required. If OCR is enabled or not. OCR must be enabled for other OcrConfig options to apply.",
+          "type": "boolean"
+        },
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6010,10 +7288,40 @@
           "description": "Language code for Summary. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). Note: This is an experimental feature.",
           "type": "string"
         },
+        "modelPromptSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelPromptSpec",
+          "description": "If specified, the spec will be used to modify the prompt provided to the LLM."
+        },
+        "modelSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec",
+          "description": "If specified, the spec will be used to modify the model specification provided to the LLM."
+        },
         "summaryResultCount": {
           "description": "The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most five results can be used to generate a summary.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelPromptSpec": {
+      "description": "Specification of the prompt to use with the model.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelPromptSpec",
+      "properties": {
+        "preamble": {
+          "description": "Text at the beginning of the prompt that instructs the assistant. Examples are available in the user guide.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec": {
+      "description": "Specification of the model.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec",
+      "properties": {
+        "version": {
+          "description": "The string format of the model version. e.g. stable, preview, etc.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6414,6 +7722,78 @@
         "summaryText": {
           "description": "The summary content.",
           "type": "string"
+        },
+        "summaryWithMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySummaryWithMetadata"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitation": {
+      "description": "Citation info for a segment.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitation",
+      "properties": {
+        "endIndex": {
+          "description": "End of the attributed segment, exclusive.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sources": {
+          "description": "Citation sources for the attributed segment.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitationSource"
+          },
+          "type": "array"
+        },
+        "startIndex": {
+          "description": "Index indicates the start of the segment, measured in bytes/unicode.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitationMetadata": {
+      "description": "Citation metadata.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitationMetadata",
+      "properties": {
+        "citations": {
+          "description": "Citations for segments.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitationSource": {
+      "description": "Citation source.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitationSource",
+      "properties": {
+        "referenceIndex": {
+          "description": "Document reference index from SummaryWithMetadata.references. It is 0-indexed and the value will be zero if the reference_index is not set explicitly.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReference": {
+      "description": "Document reference.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReference",
+      "properties": {
+        "document": {
+          "description": "Required. Document.name of the document. Full resource name of the referenced document, in the format `projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*`.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "GCS or HTTP uri for the document.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6436,6 +7816,39 @@
             "type": "number"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySummaryWithMetadata": {
+      "description": "Summary with metadata information.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySummaryWithMetadata",
+      "properties": {
+        "citationMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitationMetadata",
+          "description": "Citation metadata for given summary."
+        },
+        "references": {
+          "description": "Document References.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReference"
+          },
+          "type": "array"
+        },
+        "summary": {
+          "description": "Summary text with no citation information.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSiteSearchEngine": {
+      "description": "SiteSearchEngine captures DataStore level site search persisting configurations. It is a singleton value per data store.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSiteSearchEngine",
+      "properties": {
+        "name": {
+          "description": "The fully qualified resource name of the site search engine. Format: `projects/*/locations/*/dataStores/*/siteSearchEngine`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6573,6 +7986,87 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaTrainCustomModelMetadata": {
+      "description": "Metadata related to the progress of the TrainCustomModel operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequest": {
+      "description": "Request message for SearchTuningService.TrainCustomModel method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequest",
+      "properties": {
+        "errorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaImportErrorConfig",
+          "description": "The desired location of errors incurred during the data ingestion and training."
+        },
+        "gcsTrainingInput": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput",
+          "description": "Gcs training input."
+        },
+        "modelType": {
+          "description": "Model to be trained. Supported values are: * **search-tuning**: Fine tuning the search system based on data provided.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput": {
+      "description": "Gcs training data input.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput",
+      "properties": {
+        "corpusDataPath": {
+          "description": "The gcs corpus data which could be associated in train data. The data path format is gs:///. A newline delimited jsonl/ndjson file. * For search-tuning model, each line should have the _id, title and text. Example: {\"_id\": \"doc1\", title: \"relevant doc\", \"text\": \"relevant text\"}",
+          "type": "string"
+        },
+        "queryDataPath": {
+          "description": "The gcs query data which could be associated in train data. The data path format is gs:///. A newline delimited jsonl/ndjson file. * For search-tuning model, each line should have the _id and text. Example: {\"_id\": \"query1\", \"text\": \"example query\"}",
+          "type": "string"
+        },
+        "testDataPath": {
+          "description": "Gcs test data. Same format as train_data_path. If not provided, a random 80/20 train/test split will be performed on train_data_path.",
+          "type": "string"
+        },
+        "trainDataPath": {
+          "description": "Gcs training data path whose format should be gs:///. The file should be in tsv format. Each line should have the doc_id and query_id and score (number). * For search-tuning model, it should have the query-id corpus-id score as tsv file header. The score should be a number in [0, inf+). The larger the number is, the more relevant the pair is. Example: query-id\\tcorpus-id\\tscore query1\\tdoc1\\t1",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaTrainCustomModelResponse": {
+      "description": "Response of the TrainCustomModelRequest. This message is returned by the google.longrunning.Operations.response field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelResponse",
+      "properties": {
+        "errorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaImportErrorConfig",
+          "description": "Echoes the destination for the complete errors in the request if set."
+        },
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the data.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "modelStatus": {
+          "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaTransactionInfo": {
       "description": "A transaction represents the entire purchase transaction.",
       "id": "GoogleCloudDiscoveryengineV1alphaTransactionInfo",
@@ -6634,6 +8128,23 @@
     "GoogleCloudDiscoveryengineV1alphaUpdateSchemaMetadata": {
       "description": "Metadata for UpdateSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1alphaUpdateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaUpdateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.UpdateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUpdateTargetSiteMetadata",
       "properties": {
         "createTime": {
           "description": "Operation create time.",
@@ -6839,13 +8350,15 @@
             "DATA_STORE_TYPE_UNSPECIFIED",
             "SITE_SEARCH",
             "STRUCTURED",
-            "UNSTRUCTURED"
+            "UNSTRUCTURED",
+            "BLENDED"
           ],
           "enumDescriptions": [
             "Unspecified data store type.",
             "The parent data store contains a site search engine.",
             "The parent data store contains a search engine for structured data.",
-            "The parent data store contains a search engine for unstructured data."
+            "The parent data store contains a search engine for unstructured data.",
+            "The parent data store is served for blended search with multiple data stores."
           ],
           "readOnly": true,
           "type": "string"
