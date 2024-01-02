@@ -666,7 +666,7 @@
       }
     }
   },
-  "revision": "20231112",
+  "revision": "20231214",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1537,8 +1537,13 @@
       "description": "A membership in a group of related accounts.",
       "id": "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership",
       "properties": {
+        "accountId": {
+          "description": "The unique stable account identifier of the member. The identifier corresponds to an `account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.",
+          "type": "string"
+        },
         "hashedAccountId": {
-          "description": "The unique stable hashed user identifier of the member. The identifier corresponds to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.",
+          "deprecated": true,
+          "description": "Deprecated: use `account_id` instead. The unique stable hashed account identifier of the member. The identifier corresponds to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.",
           "format": "byte",
           "type": "string"
         },
@@ -1646,8 +1651,13 @@
       "description": "The request message to search related account group memberships.",
       "id": "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest",
       "properties": {
+        "accountId": {
+          "description": "Optional. The unique stable account identifier used to search connections. The identifier should correspond to an `account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call. Either hashed_account_id or account_id must be set, but not both.",
+          "type": "string"
+        },
         "hashedAccountId": {
-          "description": "Optional. The unique stable hashed user identifier used to search connections. The identifier should correspond to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: use `account_id` instead. The unique stable hashed account identifier used to search connections. The identifier should correspond to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call. Either hashed_account_id or account_id must be set, but not both.",
           "format": "byte",
           "type": "string"
         },
