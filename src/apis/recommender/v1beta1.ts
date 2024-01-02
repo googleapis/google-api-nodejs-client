@@ -150,6 +150,10 @@ export namespace recommender_v1beta1 {
      * Duration for which this cost applies.
      */
     duration?: string | null;
+    /**
+     * How the cost is calculated.
+     */
+    pricingType?: string | null;
   }
   /**
    * Contains the impact a recommendation can have for a given category.
@@ -256,7 +260,7 @@ export namespace recommender_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommenderV1beta1InsightType {
     /**
-     * The insight_type’s name in format insightTypes/{insight_type\} eg: insightTypes/google.iam.policy.Insight
+     * The insight_type's name in format insightTypes/{insight_type\} eg: insightTypes/google.iam.policy.Insight
      */
     name?: string | null;
   }

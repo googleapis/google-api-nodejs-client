@@ -1748,7 +1748,7 @@
       }
     }
   },
-  "revision": "20231008",
+  "revision": "20231217",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -1766,6 +1766,20 @@
         "duration": {
           "description": "Duration for which this cost applies.",
           "format": "google-duration",
+          "type": "string"
+        },
+        "pricingType": {
+          "description": "How the cost is calculated.",
+          "enum": [
+            "PRICING_TYPE_UNSPECIFIED",
+            "LIST_PRICE",
+            "CUSTOM_PRICE"
+          ],
+          "enumDescriptions": [
+            "Default pricing type.",
+            "The price listed by GCP for all customers.",
+            "A price derived from past usage and billing."
+          ],
           "type": "string"
         }
       },
@@ -1961,7 +1975,7 @@
       "id": "GoogleCloudRecommenderV1beta1InsightType",
       "properties": {
         "name": {
-          "description": "The insight_type’s name in format insightTypes/{insight_type} eg: insightTypes/google.iam.policy.Insight",
+          "description": "The insight_type's name in format insightTypes/{insight_type} eg: insightTypes/google.iam.policy.Insight",
           "type": "string"
         }
       },
