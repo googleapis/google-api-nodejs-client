@@ -1106,6 +1106,10 @@ export namespace dataform_v1beta1 {
      */
     cronSchedule?: string | null;
     /**
+     * Optional. Disables automatic creation of compilation results.
+     */
+    disabled?: boolean | null;
+    /**
      * Required. Git commit/tag/branch name at which the repository should be compiled. Must exist in the remote repository. Examples: - a commit SHA: `12ade345` - a tag: `tag1` - a branch name: `branch1`
      */
     gitCommitish?: string | null;
@@ -8022,7 +8026,7 @@ export namespace dataform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles
     extends StandardParameters {
     /**
-     * Optional. Optional filter for the returned list in go/filtering format. Filtering is only currently supported on the `path` field.
+     * Optional. Optional filter for the returned list in filtering format. Filtering is only currently supported on the `path` field. See https://google.aip.dev/160 for details.
      */
     filter?: string;
     /**
