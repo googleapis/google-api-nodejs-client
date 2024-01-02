@@ -211,6 +211,19 @@ export namespace securitycenter_v1beta2 {
     version?: string | null;
   }
   /**
+   * Represents an application associated with a finding.
+   */
+  export interface Schema$Application {
+    /**
+     * The base URI that identifies the network location of the application in which the vulnerability was detected. Examples: http://11.22.33.44, http://foo.com, http://11.22.33.44:8080
+     */
+    baseUri?: string | null;
+    /**
+     * The full URI with payload that can be used to reproduce the vulnerability. Example: http://11.22.33.44/reflected/parameter/attribute/singlequoted/js?p=aMmYgI6H
+     */
+    fullUri?: string | null;
+  }
+  /**
    * An attack exposure contains the results of an attack path simulation run.
    */
   export interface Schema$AttackExposure {
@@ -242,6 +255,51 @@ export namespace securitycenter_v1beta2 {
      * What state this AttackExposure is in. This captures whether or not an attack exposure has been calculated or not.
      */
     state?: string | null;
+  }
+  /**
+   * Information related to Google Cloud Backup and DR Service findings.
+   */
+  export interface Schema$BackupDisasterRecovery {
+    /**
+     * The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, “backup-server-57137”.
+     */
+    appliance?: string | null;
+    /**
+     * The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, “centos7-01-vol00”, “centos7-01-vol01”, “centos7-01-vol02”.
+     */
+    applications?: string[] | null;
+    /**
+     * The timestamp at which the Backup and DR backup was created.
+     */
+    backupCreateTime?: string | null;
+    /**
+     * The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, “snap-ov”.
+     */
+    backupTemplate?: string | null;
+    /**
+     * The backup type of the Backup and DR image. For example, “Snapshot”, “Remote Snapshot”, “OnVault”.
+     */
+    backupType?: string | null;
+    /**
+     * The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, “centos7-01”.
+     */
+    host?: string | null;
+    /**
+     * The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, “onvaults”.
+     */
+    policies?: string[] | null;
+    /**
+     * The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, “skipofflineappsincongrp, nounmap”.
+     */
+    policyOptions?: string[] | null;
+    /**
+     * The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, “GCP”.
+     */
+    profile?: string | null;
+    /**
+     * The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, “DiskPoolOne”.
+     */
+    storagePool?: string | null;
   }
   /**
    * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
@@ -543,6 +601,19 @@ export namespace securitycenter_v1beta2 {
     percentPagesMatched?: number | null;
   }
   /**
+   * Path of the file in terms of underlying disk/partition identifiers.
+   */
+  export interface Schema$DiskPath {
+    /**
+     * UUID of the partition (format https://wiki.archlinux.org/title/persistent_block_device_naming#by-uuid)
+     */
+    partitionUuid?: string | null;
+    /**
+     * Relative path of the file in the partition as a JSON encoded string. Example: /home/user1/executable_file.sh
+     */
+    relativePath?: string | null;
+  }
+  /**
    * A name-value pair representing an environment variable used in an operating system process.
    */
   export interface Schema$EnvironmentVariable {
@@ -636,6 +707,10 @@ export namespace securitycenter_v1beta2 {
      */
     contents?: string | null;
     /**
+     * Path of the file in terms of underlying disk/partition identifiers.
+     */
+    diskPath?: Schema$DiskPath;
+    /**
      * The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.
      */
     hashedSize?: string | null;
@@ -665,9 +740,17 @@ export namespace securitycenter_v1beta2 {
      */
     access?: Schema$Access;
     /**
+     * Represents an application associated with the finding.
+     */
+    application?: Schema$Application;
+    /**
      * The results of an attack path simulation relevant to this finding.
      */
     attackExposure?: Schema$AttackExposure;
+    /**
+     * Fields related to Backup and DR findings.
+     */
+    backupDisasterRecovery?: Schema$BackupDisasterRecovery;
     /**
      * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
      */
@@ -1570,7 +1653,7 @@ export namespace securitycenter_v1beta2 {
      */
     group?: string | null;
     /**
-     * Kubernetes object kind, such as “Namespace”.
+     * Kubernetes object kind, such as "Namespace".
      */
     kind?: string | null;
     /**
@@ -1590,6 +1673,27 @@ export namespace securitycenter_v1beta2 {
      * The resource name of the org policy. Example: "organizations/{organization_id\}/policies/{constraint_name\}"
      */
     name?: string | null;
+  }
+  /**
+   * Package is a generic definition of a package.
+   */
+  export interface Schema$Package {
+    /**
+     * The CPE URI where the vulnerability was detected.
+     */
+    cpeUri?: string | null;
+    /**
+     * The name of the package where the vulnerability was detected.
+     */
+    packageName?: string | null;
+    /**
+     * Type of package, for example, os, maven, or go.
+     */
+    packageType?: string | null;
+    /**
+     * The version of the package.
+     */
+    packageVersion?: string | null;
   }
   /**
    * A Kubernetes Pod.
@@ -1666,6 +1770,10 @@ export namespace securitycenter_v1beta2 {
      */
     memoryHashSignature?: Schema$MemoryHashSignature;
     /**
+     * Describes the type of resource associated with the signature.
+     */
+    signatureType?: string | null;
+    /**
      * Signature indicating that a YARA rule was matched.
      */
     yaraRuleSignature?: Schema$YaraRuleSignature;
@@ -1720,6 +1828,23 @@ export namespace securitycenter_v1beta2 {
      * Role namespace.
      */
     ns?: string | null;
+  }
+  /**
+   * SecurityBulletin are notifications of vulnerabilities of Google products.
+   */
+  export interface Schema$SecurityBulletin {
+    /**
+     * ID of the bulletin corresponding to the vulnerability.
+     */
+    bulletinId?: string | null;
+    /**
+     * Submission time of this Security Bulletin.
+     */
+    submissionTime?: string | null;
+    /**
+     * This represents a version that the cluster receiving this notification should be upgraded to, based on its current version. For example, 1.15.0
+     */
+    suggestedUpgradeVersion?: string | null;
   }
   /**
    * Resource capturing the settings for Security Center. Next ID: 12
@@ -1889,6 +2014,18 @@ export namespace securitycenter_v1beta2 {
      * CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     cve?: Schema$Cve;
+    /**
+     * The fixed package is relevant to the finding.
+     */
+    fixedPackage?: Schema$Package;
+    /**
+     * The offending package is relevant to the finding.
+     */
+    offendingPackage?: Schema$Package;
+    /**
+     * The security bulletin is relevant to this finding.
+     */
+    securityBulletin?: Schema$SecurityBulletin;
   }
   /**
    * Resource capturing the settings for the Web Security Scanner service.
