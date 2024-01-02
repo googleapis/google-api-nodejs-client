@@ -1489,7 +1489,7 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20231206",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AutomatedBackupPolicy": {
@@ -1636,6 +1636,11 @@
         },
         "reconciling": {
           "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation), if true, indicates that the service is actively updating the resource. This can happen due to user-triggered updates or system actions like failover or maintenance.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1893,6 +1898,11 @@
         },
         "reconciling": {
           "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Cluster does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2383,6 +2393,11 @@
         },
         "reconciling": {
           "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Instance does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -3175,7 +3190,7 @@
           "type": "string"
         },
         "resourceContainer": {
-          "description": "Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\". For GCP provided resources, number should be project number.",
+          "description": "Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"projects/123\". For GCP provided resources, number should be project number.",
           "type": "string"
         },
         "resourceName": {
@@ -3502,13 +3517,35 @@
           "description": "The type of the instance. Specified at creation time.",
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
+            "SUB_RESOURCE_TYPE_UNSPECIFIED",
             "PRIMARY",
             "SECONDARY",
             "READ_REPLICA",
-            "OTHER"
+            "OTHER",
+            "SUB_RESOURCE_TYPE_PRIMARY",
+            "SUB_RESOURCE_TYPE_SECONDARY",
+            "SUB_RESOURCE_TYPE_READ_REPLICA",
+            "SUB_RESOURCE_TYPE_OTHER"
+          ],
+          "enumDeprecated": [
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "",
+            "For rest of the other categories.",
+            "A regular primary database instance.",
+            "A cluster or an instance acting as a secondary.",
+            "An instance acting as a read-replica.",
+            "For rest of the other categories.",
             "A regular primary database instance.",
             "A cluster or an instance acting as a secondary.",
             "An instance acting as a read-replica.",
@@ -3529,7 +3566,7 @@
           "description": "The product this resource represents."
         },
         "resourceContainer": {
-          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\". For GCP provided resources, number should be project number.",
+          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"/\", such as \"projects/123\". For GCP provided resources, number should be project number.",
           "type": "string"
         },
         "resourceName": {
@@ -3604,19 +3641,43 @@
           "description": "The specific engine that the underlying database is running.",
           "enum": [
             "ENGINE_UNSPECIFIED",
+            "ENGINE_MYSQL",
             "MYSQL",
+            "ENGINE_POSTGRES",
             "POSTGRES",
+            "ENGINE_SQL_SERVER",
             "SQL_SERVER",
+            "ENGINE_NATIVE",
             "NATIVE",
+            "ENGINE_CLOUD_SPANNER_WITH_POSTGRES_DIALECT",
             "SPANGRES",
             "ENGINE_OTHER"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false
+          ],
           "enumDescriptions": [
             "UNSPECIFIED means engine type is not known or available.",
+            "MySQL binary running as an engine in the database instance.",
             "MySQL binary running as engine in database instance.",
             "Postgres binary running as engine in database instance.",
+            "Postgres binary running as engine in database instance.",
+            "SQLServer binary running as engine in database instance.",
             "SQLServer binary running as engine in database instance.",
             "Native database binary running as engine in instance.",
+            "Native database binary running as engine in instance.",
+            "Cloud Spanner with Postgres dialect.",
             "Cloud Spanner with Postgres dialect.",
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum."
           ],
@@ -3626,17 +3687,37 @@
           "description": "Type of specific database product. It could be CloudSQL, AlloyDB etc..",
           "enum": [
             "PRODUCT_TYPE_UNSPECIFIED",
+            "PRODUCT_TYPE_CLOUD_SQL",
             "CLOUD_SQL",
+            "PRODUCT_TYPE_ALLOYDB",
             "ALLOYDB",
+            "PRODUCT_TYPE_SPANNER",
             "SPANNER",
+            "PRODUCT_TYPE_ON_PREM",
             "ON_PREM",
             "PRODUCT_TYPE_OTHER"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "UNSPECIFIED means product type is not known or available.",
             "Cloud SQL product area in GCP",
+            "Cloud SQL product area in GCP",
+            "AlloyDB product area in GCP",
             "AlloyDB product area in GCP",
             "Spanner product area in GCP",
+            "Spanner product area in GCP",
+            "On premises database product.",
             "On premises database product.",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],

@@ -125,6 +125,15 @@ export namespace alloydb_v1alpha {
   }
 
   /**
+   * AuthorizedNetwork contains metadata for an authorized network.
+   */
+  export interface Schema$AuthorizedNetwork {
+    /**
+     * CIDR range for one authorzied network of the instance.
+     */
+    cidrRange?: string | null;
+  }
+  /**
    * Message describing the user-specified automated backup policy. All fields in the automated backup policy are optional. Defaults for each field are provided if they are not set.
    */
   export interface Schema$AutomatedBackupPolicy {
@@ -229,6 +238,10 @@ export namespace alloydb_v1alpha {
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation), if true, indicates that the service is actively updating the resource. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. Reserved for future use.
      */
@@ -389,6 +402,10 @@ export namespace alloydb_v1alpha {
     /**
      * Output only. Reserved for future use.
      */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
     satisfiesPzs?: boolean | null;
     /**
      * Cross Region replication config specific to SECONDARY cluster.
@@ -431,6 +448,10 @@ export namespace alloydb_v1alpha {
      * Output only. The pem-encoded chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.
      */
     pemCertificateChain?: string[] | null;
+    /**
+     * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
+     */
+    publicIpAddress?: string | null;
   }
   /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
@@ -701,9 +722,17 @@ export namespace alloydb_v1alpha {
      */
     name?: string | null;
     /**
+     * Optional. Instance level network configuration.
+     */
+    networkConfig?: Schema$InstanceNetworkConfig;
+    /**
      * Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.
      */
     nodes?: Schema$Node[];
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the instance.
+     */
+    pscInstanceConfig?: Schema$PscInstanceConfig;
     /**
      * Configuration for query insights.
      */
@@ -716,6 +745,10 @@ export namespace alloydb_v1alpha {
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Instance does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. Reserved for future use.
      */
@@ -740,6 +773,19 @@ export namespace alloydb_v1alpha {
      * Output only. This is set for the read-write VM of the PRIMARY instance only.
      */
     writableNode?: Schema$Node;
+  }
+  /**
+   * Metadata related to instance level network configuration.
+   */
+  export interface Schema$InstanceNetworkConfig {
+    /**
+     * Optional. A list of external network authorized to access this instance.
+     */
+    authorizedExternalNetworks?: Schema$AuthorizedNetwork[];
+    /**
+     * Optional. Enabling public ip for the instance.
+     */
+    enablePublicIp?: boolean | null;
   }
   /**
    * Restrictions on INTEGER type values.
@@ -1002,6 +1048,48 @@ export namespace alloydb_v1alpha {
     pscEnabled?: boolean | null;
   }
   /**
+   * PscInstanceConfig contains PSC related configuration at an instance level. NEXT ID: 7
+   */
+  export interface Schema$PscInstanceConfig {
+    /**
+     * Optional. List of consumer networks that are allowed to create PSC endpoints to service-attachments to this instance.
+     */
+    allowedConsumerNetworks?: string[] | null;
+    /**
+     * Optional. List of consumer projects that are allowed to create PSC endpoints to service-attachments to this instance.
+     */
+    allowedConsumerProjects?: string[] | null;
+    /**
+     * Optional. List of service attachments that this instance has created endpoints to connect with. Currently, only a single outgoing service attachment is supported per instance.
+     */
+    outgoingServiceAttachmentLinks?: string[] | null;
+    /**
+     * Optional. Whether PSC connectivity is enabled for this instance. This is populated by referencing the value from the parent cluster.
+     */
+    pscEnabled?: boolean | null;
+    /**
+     * Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. All the VMs created for the primary instance will share the same configurations. Currently we only support 0 or 1 PSC interface.
+     */
+    pscInterfaceConfigs?: Schema$PscInterfaceConfig[];
+    /**
+     * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of projects//regions//serviceAttachments/
+     */
+    serviceAttachmentLink?: string | null;
+  }
+  /**
+   * Configuration for setting up a PSC interface. This information needs to be provided by the customer. PSC interfaces will be created and added to VMs via SLM (adding a network interface will require recreating the VM). For HA instances this will be done via LDTM.
+   */
+  export interface Schema$PscInterfaceConfig {
+    /**
+     * A list of endpoints in the consumer VPC the interface might initiate outbound connections to. This list has to be provided when the PSC interface is created.
+     */
+    consumerEndpointIps?: string[] | null;
+    /**
+     * The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: "projects/${CONSUMER_PROJECT\}/regions/${REGION\}/networkAttachments/${NETWORK_ATTACHMENT_NAME\}". NetworkAttachment has to be provided when the PSC interface is created.
+     */
+    networkAttachment?: string | null;
+  }
+  /**
    * A backup's position in a quantity-based retention queue, of backups with the same source cluster and type, with length, retention, specified by the backup's retention policy. Once the position is greater than the retention, the backup is eligible to be garbage collected. Example: 5 backups from the same source cluster and type with a quantity-based retention of 3 and denoted by backup_id (position, retention). Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3). Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3)
    */
   export interface Schema$QuantityBasedExpiry {
@@ -1248,7 +1336,7 @@ export namespace alloydb_v1alpha {
      */
     provider?: string | null;
     /**
-     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123". For GCP provided resources, number should be project number.
+     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
     /**
@@ -1343,7 +1431,7 @@ export namespace alloydb_v1alpha {
      */
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
     /**
-     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123". For GCP provided resources, number should be project number.
+     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "/", such as "projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
     /**

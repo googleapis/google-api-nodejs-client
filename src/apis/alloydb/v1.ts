@@ -230,6 +230,10 @@ export namespace alloydb_v1 {
      */
     reconciling?: boolean | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The size of the backup in bytes.
      */
     sizeBytes?: string | null;
@@ -378,6 +382,10 @@ export namespace alloydb_v1 {
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Cluster does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Cross Region replication config specific to SECONDARY cluster.
      */
@@ -692,6 +700,10 @@ export namespace alloydb_v1 {
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Instance does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The current serving state of the instance.
      */
@@ -1207,7 +1219,7 @@ export namespace alloydb_v1 {
      */
     provider?: string | null;
     /**
-     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123". For GCP provided resources, number should be project number.
+     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
     /**
@@ -1302,7 +1314,7 @@ export namespace alloydb_v1 {
      */
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
     /**
-     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123". For GCP provided resources, number should be project number.
+     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "/", such as "projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
     /**
