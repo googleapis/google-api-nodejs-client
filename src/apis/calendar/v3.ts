@@ -654,8 +654,8 @@ export namespace calendar_v3 {
     /**
      * Specific type of the event. This cannot be modified after the event is created. Possible values are:
      * - "default" - A regular event or not further specified.
-     * - "outOfOffice" - An out-of-office event.
-     * - "focusTime" - A focus-time event.
+     * - "outOfOffice" - An out-of-office event. An outOfOfficeProperties parameter must be supplied to make a valid event (even if empty).
+     * - "focusTime" - A focus-time event. A focusTimeProperties parameter must be supplied to make a valid event (even if empty).
      * - "workingLocation" - A working location event.  Currently, only "default " and "workingLocation" events can be created using the API. Extended support for other event types will be made available in later releases.
      */
     eventType?: string | null;
@@ -667,7 +667,7 @@ export namespace calendar_v3 {
       shared?: {[key: string]: string};
     } | null;
     /**
-     * Focus Time event data.
+     * Focus Time event data. Required if eventType is focusTime.
      */
     focusTimeProperties?: Schema$EventFocusTimeProperties;
     /**
@@ -743,7 +743,7 @@ export namespace calendar_v3 {
      */
     originalStartTime?: Schema$EventDateTime;
     /**
-     * Out of office event data.
+     * Out of office event data. Required if eventType is outOfOffice.
      */
     outOfOfficeProperties?: Schema$EventOutOfOfficeProperties;
     /**
@@ -4476,11 +4476,7 @@ export namespace calendar_v3 {
      * - "default"
      * - "focusTime"
      * - "outOfOffice"
-     * - "workingLocation"This parameter can be repeated multiple times to return events of different types. Currently, these are the only allowed values for this field:
-     * - ["default", "focusTime", "outOfOffice"]
-     * - ["default", "focusTime", "outOfOffice", "workingLocation"]
-     * - ["workingLocation"] The default is ["default", "focusTime", "outOfOffice"].
-     * Additional combinations of these four event types will be made available in later releases.
+     * - "workingLocation"This parameter can be repeated multiple times to return events of different types. The default is ["default", "focusTime", "outOfOffice"].
      */
     eventTypes?: string[];
     /**
@@ -4712,11 +4708,7 @@ export namespace calendar_v3 {
      * - "default"
      * - "focusTime"
      * - "outOfOffice"
-     * - "workingLocation"This parameter can be repeated multiple times to return events of different types. Currently, these are the only allowed values for this field:
-     * - ["default", "focusTime", "outOfOffice"]
-     * - ["default", "focusTime", "outOfOffice", "workingLocation"]
-     * - ["workingLocation"] The default is ["default", "focusTime", "outOfOffice"].
-     * Additional combinations of these four event types will be made available in later releases.
+     * - "workingLocation"This parameter can be repeated multiple times to return events of different types. The default is ["default", "focusTime", "outOfOffice"].
      */
     eventTypes?: string[];
     /**
