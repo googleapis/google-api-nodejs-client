@@ -478,6 +478,19 @@ export namespace run_v2 {
     template?: Schema$GoogleCloudRunV2TaskTemplate;
   }
   /**
+   * Represents a GCS Bucket mounted as a volume.
+   */
+  export interface Schema$GoogleCloudRunV2GCSVolumeSource {
+    /**
+     * GCS Bucket name
+     */
+    bucket?: string | null;
+    /**
+     * If true, mount the GCS bucket as read-only
+     */
+    readOnly?: boolean | null;
+  }
+  /**
    * GRPCAction describes an action involving a GRPC port.
    */
   export interface Schema$GoogleCloudRunV2GRPCAction {
@@ -704,6 +717,23 @@ export namespace run_v2 {
     tags?: string[] | null;
   }
   /**
+   * Represents an NFS mount.
+   */
+  export interface Schema$GoogleCloudRunV2NFSVolumeSource {
+    /**
+     * Path that is exported by the NFS server.
+     */
+    path?: string | null;
+    /**
+     * If true, mount the NFS volume as read only
+     */
+    readOnly?: boolean | null;
+    /**
+     * Hostname or IP address of the NFS server
+     */
+    server?: string | null;
+  }
+  /**
    * RunJob Overrides that contains Execution fields to be overridden.
    */
   export interface Schema$GoogleCloudRunV2Overrides {
@@ -758,11 +788,11 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2ResourceRequirements {
     /**
-     * Determines whether CPU should be throttled or not outside of requests.
+     * Determines whether CPU is only allocated during requests (true by default). However, if ResourceRequirements is set, the caller must explicitly set this field to true to preserve the default behavior.
      */
     cpuIdle?: boolean | null;
     /**
-     * Only ´memory´ and 'cpu' are supported. Notes: * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4 CPU requires at least 2Gi of memory. For more information, go to https://cloud.google.com/run/docs/configuring/cpu. * For supported 'memory' values and syntax, go to https://cloud.google.com/run/docs/configuring/memory-limits
+     * Only `memory` and `cpu` keys in the map are supported. Notes: * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4 CPU requires at least 2Gi of memory. For more information, go to https://cloud.google.com/run/docs/configuring/cpu. * For supported 'memory' values and syntax, go to https://cloud.google.com/run/docs/configuring/memory-limits
      */
     limits?: {[key: string]: string} | null;
     /**
@@ -1423,9 +1453,17 @@ export namespace run_v2 {
      */
     emptyDir?: Schema$GoogleCloudRunV2EmptyDirVolumeSource;
     /**
+     * Persistent storage backed by a Google Cloud Storage bucket.
+     */
+    gcs?: Schema$GoogleCloudRunV2GCSVolumeSource;
+    /**
      * Required. Volume's name.
      */
     name?: string | null;
+    /**
+     * For NFS Voumes, contains the path to the nfs Volume
+     */
+    nfs?: Schema$GoogleCloudRunV2NFSVolumeSource;
     /**
      * Secret represents a secret that should populate this volume.
      */
