@@ -379,7 +379,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.",
+                  "description": "Optional. If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.",
                   "location": "query",
                   "type": "string"
                 },
@@ -411,7 +411,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Immutable. The resource name of the dashboard.",
+                  "description": "Identifier. The resource name of the dashboard.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/dashboards/[^/]+$",
                   "required": true,
@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20231016",
+  "revision": "20231220",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1072,7 +1072,7 @@
           "description": "The content is arranged as a grid of tiles, with each content widget occupying one or more grid blocks."
         },
         "name": {
-          "description": "Immutable. The resource name of the dashboard.",
+          "description": "Identifier. The resource name of the dashboard.",
           "type": "string"
         },
         "rowLayout": {
@@ -1487,6 +1487,23 @@
       },
       "type": "object"
     },
+    "Interval": {
+      "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive).The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+      "id": "Interval",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Exclusive end of the interval.If specified, a Timestamp matching this interval will have to be before the end.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Inclusive start of the interval.If specified, a Timestamp matching this interval will have to be the same or after the start.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListDashboardsResponse": {
       "description": "The ListDashboards request.",
       "id": "ListDashboardsResponse",
@@ -1772,6 +1789,10 @@
           ],
           "type": "string"
         },
+        "interval": {
+          "$ref": "Interval",
+          "description": "Select the top N streams/time series within this time interval"
+        },
         "numTimeSeries": {
           "description": "How many time series to allow to pass through the filter.",
           "format": "int32",
@@ -2027,6 +2048,27 @@
           "description": "Required. Fields for querying time series data from the Stackdriver metrics API."
         }
       },
+      "type": "object"
+    },
+    "SectionHeader": {
+      "description": "A widget that defines a new section header. Sections populate a table of contents and allow easier navigation of long-form content.",
+      "id": "SectionHeader",
+      "properties": {
+        "dividerBelow": {
+          "description": "Whether to insert a divider below the section in the table of contents",
+          "type": "boolean"
+        },
+        "subtitle": {
+          "description": "The subtitle of the section",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SingleViewGroup": {
+      "description": "A widget that groups the other widgets by using a dropdown menu. All widgets that are within the area spanned by the grouping widget are considered member widgets.",
+      "id": "SingleViewGroup",
+      "properties": {},
       "type": "object"
     },
     "SourceContext": {
@@ -2625,6 +2667,14 @@
         "scorecard": {
           "$ref": "Scorecard",
           "description": "A scorecard summarizing time series data."
+        },
+        "sectionHeader": {
+          "$ref": "SectionHeader",
+          "description": "A widget that defines a section header for easier navigation of the dashboard."
+        },
+        "singleViewGroup": {
+          "$ref": "SingleViewGroup",
+          "description": "A widget that groups the other widgets by using a dropdown menu."
         },
         "text": {
           "$ref": "Text",
