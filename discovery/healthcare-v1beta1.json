@@ -3289,6 +3289,44 @@
                                 }
                               },
                               "resources": {
+                                "bulkdata": {
+                                  "methods": {
+                                    "retrieveBulkdata": {
+                                      "description": "Returns uncompressed, unencoded bytes representing the referenced bulkdata tag from an instance. See [Retrieve Transaction] (http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4){: .external}.",
+                                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}/dicomWeb/studies/{studiesId}/series/{seriesId}/instances/{instancesId}/bulkdata/{bulkdataId}/{bulkdataId1}",
+                                      "httpMethod": "GET",
+                                      "id": "healthcare.projects.locations.datasets.dicomStores.studies.series.instances.bulkdata.retrieveBulkdata",
+                                      "parameterOrder": [
+                                        "parent",
+                                        "dicomWebPath"
+                                      ],
+                                      "parameters": {
+                                        "dicomWebPath": {
+                                          "description": "Required. The path for the `RetrieveBulkdata` DICOMweb request. For example, `studies/{study_uid}/series/{series_uid}/instances/{instance_uid}/bukdata/{bulkdata_uri}`.",
+                                          "location": "path",
+                                          "pattern": "^studies/[^/]+/series/[^/]+/instances/[^/]+/bulkdata/[^/]+/.*$",
+                                          "required": true,
+                                          "type": "string"
+                                        },
+                                        "parent": {
+                                          "description": "Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.",
+                                          "location": "path",
+                                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/dicomStores/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "path": "v1beta1/{+parent}/dicomWeb/{+dicomWebPath}",
+                                      "response": {
+                                        "$ref": "HttpBody"
+                                      },
+                                      "scopes": [
+                                        "https://www.googleapis.com/auth/cloud-healthcare",
+                                        "https://www.googleapis.com/auth/cloud-platform"
+                                      ]
+                                    }
+                                  }
+                                },
                                 "frames": {
                                   "methods": {
                                     "retrieveFrames": {
@@ -5451,7 +5489,7 @@
       }
     }
   },
-  "revision": "20231115",
+  "revision": "20231214",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -5469,7 +5507,7 @@
           "enumDescriptions": [
             "No log level specified. This value is unused.",
             "No additional consent-related logging is added to audit logs.",
-            "The following information is included: - One of the following [`consentMode`](https://cloud.google.com/healthcare-api/private/docs/how-tos/fhir-consent#audit_logs) fields: (`off`|`emptyScope`|`enforced`|`btg`|`bypass`). - The accessor's request headers - The `log_level` of the [AccessDeterminationLogConfig](google.cloud.healthcare.v1beta1.fhir.FhirStore.ConsentConfig.AccessDeterminationLogConfig) - The final consent evaluation (`PERMIT`, `DENY`, or `NO_CONSENT`) - A human-readable summary of the evaluation",
+            "The following information is included: - One of the following [`consentMode`](https://cloud.google.com/healthcare-api/docs/fhir-consent#audit_logs) fields: (`off`|`emptyScope`|`enforced`|`btg`|`bypass`). - The accessor's request headers - The `log_level` of the [AccessDeterminationLogConfig](google.cloud.healthcare.v1beta1.fhir.FhirStore.ConsentConfig.AccessDeterminationLogConfig) - The final consent evaluation (`PERMIT`, `DENY`, or `NO_CONSENT`) - A human-readable summary of the evaluation",
             "Includes `MINIMUM` and, for each resource owner, returns: - The resource owner's name - Most specific part of the `X-Consent-Scope` resulting in consensual determination - Timestamp of the applied enforcement leading to the decision - Enforcement version at the time the applicable consents were applied - The Consent resource name - The timestamp of the Consent resource used for enforcement - Policy type (PATIENT or ADMIN) Note that this mode adds some overhead to CRUD operations."
           ],
           "type": "string"
@@ -6282,7 +6320,7 @@
           "description": "Optional. Specifies how the server logs the consent-aware requests. If not specified, the `AccessDeterminationLogConfig.LogLevel.MINIMUM` option is used."
         },
         "accessEnforced": {
-          "description": "Optional. If set to true, when accessing FHIR resources, the consent headers provided using [SMART-on-FHIR](https://cloud.google.com/healthcare/private/docs/how-tos/smart-on-fhir) will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.",
+          "description": "Optional. If set to true, when accessing FHIR resources, the consent headers will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.",
           "type": "boolean"
         },
         "consentHeaderHandling": {
@@ -6304,7 +6342,7 @@
           ],
           "enumDescriptions": [
             "Users must specify an enforcement version or an error is returned.",
-            "Enforcement version 1. See the [FHIR Consent resources in the Cloud Healthcare API](https://cloud.google.com/healthcare-api/private/docs/how-tos/fhir-consent) guide for more details."
+            "Enforcement version 1. See the [FHIR Consent resources in the Cloud Healthcare API](https://cloud.google.com/healthcare-api/docs/fhir-consent) guide for more details."
           ],
           "type": "string"
         }
@@ -7262,6 +7300,10 @@
         },
         "disableResourceVersioning": {
           "description": "Immutable. Whether to disable resource versioning for this FHIR store. This field can not be changed after the creation of FHIR store. If set to false, which is the default behavior, all write operations cause historical versions to be recorded automatically. The historical versions can be fetched through the history APIs, but cannot be updated. If set to true, no historical versions are kept. The server sends errors for attempts to read the historical versions.",
+          "type": "boolean"
+        },
+        "enableHistoryModifications": {
+          "description": "Optional. Whether to allow the [ImportResourcesHistory] and [ExecuteBundle] APIs to accept history bundles, and directly insert and overwrite historical resource versions into the FHIR store. Importing resource histories creates resource interactions that have occurred in the past that clients might not allow. If set to false, using history bundles fail with an error.",
           "type": "boolean"
         },
         "enableUpdateCreate": {
