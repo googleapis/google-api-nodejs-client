@@ -194,6 +194,27 @@ export namespace datafusion_v1 {
     keyReference?: string | null;
   }
   /**
+   * Next tag: 7
+   */
+  export interface Schema$DataResidencyAugmentedView {
+    /**
+     * Cloud resource to Google owned production object mapping in the form of GURIs. The GURIs should be available in DG KB storage/cns tables. This is the preferred way of providing cloud resource mappings. For further details please read go/cloud-resource-monitoring_sig
+     */
+    crGopoGuris?: string[] | null;
+    /**
+     * Cloud resource to Google owned production object mapping in the form of prefixes. These should be available in DG KB storage/cns tables. The entity type, which is the part of the string before the first colon in the GURI, must be completely specified in prefix. For details about GURI please read go/guri. For further details about the field please read go/cloud-resource-monitoring_sig.
+     */
+    crGopoPrefixes?: string[] | null;
+    /**
+     * Service-specific data. Only required for pre-determined services. Generally used to bind a Cloud Resource to some a TI container that uniquely specifies a customer. See milestone 2 of DRZ KR8 SIG for more information.
+     */
+    serviceData?: Schema$ServiceData;
+    /**
+     * The list of project_id's of the tenant projects in the 'google.com' org which serve the Cloud Resource. See go/drz-mst-sig for more details.
+     */
+    tpIds?: string[] | null;
+  }
+  /**
    * DNS peering configuration. These configurations are used to create DNS peering with the customer Cloud DNS.
    */
   export interface Schema$DnsPeering {
@@ -280,6 +301,10 @@ export namespace datafusion_v1 {
      * The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature.
      */
     cryptoKeyConfig?: Schema$CryptoKeyConfig;
+    /**
+     * Optional. Reserved for future use.
+     */
+    dataplexDataLineageIntegrationEnabled?: boolean | null;
     /**
      * User-managed service account to set on Dataproc when Cloud Data Fusion creates Dataproc to run data processing pipelines. This allows users to have fine-grained access control on Dataproc's accesses to cloud resources.
      */
@@ -492,13 +517,21 @@ export namespace datafusion_v1 {
    */
   export interface Schema$NetworkConfig {
     /**
-     * The IP range in CIDR notation to use for the managed Data Fusion instance nodes. This range must not overlap with any other ranges used in the customer network.
+     * Optional. Type of connection for establishing private IP connectivity between the Data Fusion customer project VPC and the corresponding tenant project from a predefined list of available connection modes. If this field is unspecified for a private instance, VPC peering is used.
+     */
+    connectionType?: string | null;
+    /**
+     * Optional. The IP range in CIDR notation to use for the managed Data Fusion instance nodes. This range must not overlap with any other ranges used in the Data Fusion instance network. This is required only when using connection type VPC_PEERING. Format: a.b.c.d/22 Example: 192.168.0.0/22
      */
     ipAllocation?: string | null;
     /**
-     * Name of the network in the customer project with which the Tenant Project will be peered for executing pipelines. In case of shared VPC where the network resides in another host project the network should specified in the form of projects/{host-project-id\}/global/networks/{network\}
+     * Optional. Name of the network in the customer project with which the Tenant Project will be peered for executing pipelines. This is required only when using connection type VPC peering. In case of shared VPC where the network resides in another host project the network should specified in the form of projects/{host-project-id\}/global/networks/{network\}. This is only required for connectivity type VPC_PEERING.
      */
     network?: string | null;
+    /**
+     * Optional. Configuration for Private Service Connect. This is required only when using connection type PRIVATE_SERVICE_CONNECT_INTERFACES.
+     */
+    privateServiceConnectConfig?: Schema$PrivateServiceConnectConfig;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -563,6 +596,19 @@ export namespace datafusion_v1 {
     verb?: string | null;
   }
   /**
+   * Persistent Disk service-specific Data. Contains information that may not be appropriate for the generic DRZ Augmented View. This currently includes LSV Colossus Roots and GCS Buckets.
+   */
+  export interface Schema$PersistentDiskData {
+    /**
+     * Path to Colossus root for an LSV. NOTE: Unlike `cr_ti_guris` and `cr_ti_prefixes`, the field `cfs_roots` below does not need to be a GUri or GUri prefix. It can simply be any valid CFS or CFS2 Path. The DRZ KR8 SIG has more details overall, but generally the `cfs_roots` provided here should be scoped to an individual Persistent Disk. An example for a PD Disk with a disk ID 3277719120423414466, follows: * `cr_ti_guris` could be ‘/cfs2/pj/pd-cloud-prod’ as this is a valid GUri present in the DG KB and contains enough information to perform location monitoring and scope ownership of the Production Object. * `cfs_roots` would be: ‘/cfs2/pj/pd-cloud-staging/lsv000001234@/ lsv/projects~773365403387~zones~2700~disks~3277719120423414466 ~bank-blue-careful-3526-lsv00054DB1B7254BA3/’ as this allows us to enumerate the files on CFS2 that belong to an individual Disk.
+     */
+    cfsRoots?: string[] | null;
+    /**
+     * The GCS Buckets that back this snapshot or image. This is required as `cr_ti_prefixes` and `cr_ti_guris` only accept TI resources. This should be the globally unique bucket name.
+     */
+    gcsBucketNames?: string[] | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -584,9 +630,35 @@ export namespace datafusion_v1 {
     version?: number | null;
   }
   /**
+   * Configuration for using Private Service Connect to establish connectivity between the Data Fusion consumer project and the corresponding tenant project.
+   */
+  export interface Schema$PrivateServiceConnectConfig {
+    /**
+     * Output only. The CIDR block to which the CDF instance can't route traffic to in the consumer project VPC. The size of this block is /25. The format of this field is governed by RFC 4632. Example: 240.0.0.0/25
+     */
+    effectiveUnreachableCidrBlock?: string | null;
+    /**
+     * Required. The reference to the network attachment used to establish private connectivity. It will be of the form projects/{project-id\}/regions/{region\}/networkAttachments/{network-attachment-id\}.
+     */
+    networkAttachment?: string | null;
+    /**
+     * Optional. Input only. The CIDR block to which the CDF instance can't route traffic to in the consumer project VPC. The size of this block should be at least /25. This range should not overlap with the primary address range of any subnetwork used by the network attachment. This range can be used for other purposes in the consumer VPC as long as there is no requirement for CDF to reach destinations using these addresses. If this value is not provided, the server chooses a non RFC 1918 address range. The format of this field is governed by RFC 4632. Example: 192.168.0.0/25
+     */
+    unreachableCidrBlock?: string | null;
+  }
+  /**
    * Request message for restarting a Data Fusion instance.
    */
   export interface Schema$RestartInstanceRequest {}
+  /**
+   * This message defines service-specific data that certain service teams must provide as part of the Data Residency Augmented View for a resource. Next ID: 2
+   */
+  export interface Schema$ServiceData {
+    /**
+     * Auxiliary data for the persistent disk pipeline provided to provide the LSV Colossus Roots and GCS Buckets.
+     */
+    pd?: Schema$PersistentDiskData;
+  }
   /**
    * Request message for `SetIamPolicy` method.
    */
