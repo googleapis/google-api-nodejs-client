@@ -115,6 +115,7 @@ export namespace accesscontextmanager_v1 {
     accessPolicies: Resource$Accesspolicies;
     operations: Resource$Operations;
     organizations: Resource$Organizations;
+    services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -125,6 +126,7 @@ export namespace accesscontextmanager_v1 {
       this.accessPolicies = new Resource$Accesspolicies(this.context);
       this.operations = new Resource$Operations(this.context);
       this.organizations = new Resource$Organizations(this.context);
+      this.services = new Resource$Services(this.context);
     }
   }
 
@@ -268,7 +270,7 @@ export namespace accesscontextmanager_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
      */
     members?: string[] | null;
     /**
@@ -632,6 +634,19 @@ export namespace accesscontextmanager_v1 {
     servicePerimeters?: Schema$ServicePerimeter[];
   }
   /**
+   * A response to `ListSupportedServicesRequest`.
+   */
+  export interface Schema$ListSupportedServicesResponse {
+    /**
+     * The pagination token to retrieve the next page of results. If the value is empty, no further results remain.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of services supported by VPC Service Controls instances.
+     */
+    supportedServices?: Schema$SupportedService[];
+  }
+  /**
    * An allowed method or permission of a service specified in ApiOperation.
    */
   export interface Schema$MethodSelector {
@@ -842,6 +857,35 @@ export namespace accesscontextmanager_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * `SupportedService` specifies VPC-SC supported service and its properties.
+   */
+  export interface Schema$SupportedService {
+    /**
+     * True if the service is available on the restricted VIP. Services on the restricted VIP typically either support VPC Service Controls or are core infrastructure services required for the functioning of Google Cloud.
+     */
+    availableOnRestrictedVip?: boolean | null;
+    /**
+     * True if the service is supported with some limitations. Check documentation for details.
+     */
+    knownLimitations?: boolean | null;
+    /**
+     * The service name or address of the supported service, such as `service.googleapis.com`.
+     */
+    name?: string | null;
+    /**
+     * The list of the supported methods. Field exist only in response on [GetSupportedService]
+     */
+    supportedMethods?: Schema$MethodSelector[];
+    /**
+     * The support stage of the service.
+     */
+    supportStage?: string | null;
+    /**
+     * The name of the supported product, such as 'Cloud Product API'
+     */
+    title?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -4662,5 +4706,209 @@ export namespace accesscontextmanager_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GcpUserAccessBinding;
+  }
+
+  export class Resource$Services {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns a VPC-SC supported service based on the service name.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Services$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Services$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SupportedService>;
+    get(
+      params: Params$Resource$Services$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Services$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SupportedService>,
+      callback: BodyResponseCallback<Schema$SupportedService>
+    ): void;
+    get(
+      params: Params$Resource$Services$Get,
+      callback: BodyResponseCallback<Schema$SupportedService>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SupportedService>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Get
+        | BodyResponseCallback<Schema$SupportedService>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SupportedService>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SupportedService>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SupportedService> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/services/{name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SupportedService>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SupportedService>(parameters);
+      }
+    }
+
+    /**
+     * Lists all VPC-SC supported services.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Services$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSupportedServicesResponse>;
+    list(
+      params: Params$Resource$Services$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSupportedServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListSupportedServicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$List,
+      callback: BodyResponseCallback<Schema$ListSupportedServicesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSupportedServicesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$List
+        | BodyResponseCallback<Schema$ListSupportedServicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSupportedServicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSupportedServicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSupportedServicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/services').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSupportedServicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSupportedServicesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Get extends StandardParameters {
+    /**
+     * The name of the service to get information about. The names must be in the same format as used in defining a service perimeter, for example, `storage.googleapis.com`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$List extends StandardParameters {
+    /**
+     * This flag specifies the maximum number of services to return per page. Default is 100.
+     */
+    pageSize?: number;
+    /**
+     * Token to start on a later page. Default is the first page.
+     */
+    pageToken?: string;
   }
 }
