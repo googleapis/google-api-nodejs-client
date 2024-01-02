@@ -496,11 +496,43 @@
               }
             }
           }
+        },
+        "properties": {
+          "methods": {
+            "create": {
+              "description": "Creates a consumer property. If the property already exists, this method fails with an ALREADY_EXISTS error. For this failure case, the Status details field will contain the existing property's value.",
+              "flatPath": "v1beta1/services/{servicesId}/{servicesId1}/{servicesId2}/properties",
+              "httpMethod": "POST",
+              "id": "serviceconsumermanagement.services.properties.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Name of the property to create. An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123`",
+                  "location": "path",
+                  "pattern": "^services/[^/]+/[^/]+/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/properties",
+              "request": {
+                "$ref": "V1Beta1ConsumerProperty"
+              },
+              "response": {
+                "$ref": "V1Beta1ConsumerProperty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
         }
       }
     }
   },
-  "revision": "20230815",
+  "revision": "20231218",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "Api": {
@@ -1651,6 +1683,13 @@
       "description": "Describes the generator configuration for a method.",
       "id": "MethodSettings",
       "properties": {
+        "autoPopulatedFields": {
+          "description": "List of top-level fields of the request message, that should be automatically populated by the client libraries based on their (google.api.field_info).format. Currently supported format: UUID4. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.CreateExample auto_populated_fields: - request_id",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "longRunning": {
           "$ref": "LongRunning",
           "description": "Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes"
@@ -1893,7 +1932,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The monitored resource type. For example, the type `\"cloudsql_database\"` represents databases in Google Cloud SQL. For a list of types, see [Monitoring resource types](https://cloud.google.com/monitoring/api/resources) and [Logging resource types](https://cloud.google.com/logging/docs/api/v2/resource-list).",
+          "description": "Required. The monitored resource type. For example, the type `\"cloudsql_database\"` represents databases in Google Cloud SQL. For a list of types, see [Monitored resource types](https://cloud.google.com/monitoring/api/resources) and [Logging resource types](https://cloud.google.com/logging/docs/api/v2/resource-list).",
           "type": "string"
         }
       },
@@ -2118,6 +2157,10 @@
         },
         "protoReferenceDocumentationUri": {
           "description": "Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc",
+          "type": "string"
+        },
+        "restReferenceDocumentationUri": {
+          "description": "Optional link to REST reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rest",
           "type": "string"
         }
       },
@@ -2579,6 +2622,51 @@
             "$ref": "V1Beta1QuotaOverride"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "V1Beta1ConsumerProperty": {
+      "description": "A property assigned to a consumer of a service.",
+      "id": "V1Beta1ConsumerProperty",
+      "properties": {
+        "description": {
+          "description": "Output only. The description of the property.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of this property. An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/properties/SERVICE_LEVEL` The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.",
+          "type": "string"
+        },
+        "propagation": {
+          "$ref": "Operation",
+          "description": "Output only. A long-running operation which tracks the propagation of recent changes to this resource to all affected backends. If this field is empty, all affected backends have been notified of the change. If this field contains an operation in progress, then the most recent change to this resource has not yet been sent out to all backends. If this field contains an operation that has failed with an error, the caller should retry the change."
+        },
+        "propertyKey": {
+          "description": "Output only. The name of the property as it appears in the service configuration. An example property name would be: `SERVICE_LEVEL`",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of this property.",
+          "enum": [
+            "UNSPECIFIED",
+            "INT64",
+            "BOOL",
+            "STRING",
+            "DOUBLE"
+          ],
+          "enumDescriptions": [
+            "The type is unspecified, and will result in an error.",
+            "The type is `int64`.",
+            "The type is `bool`.",
+            "The type is `string`.",
+            "The type is 'double'."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of this property for the consumer. This field may be empty if the consumer has not been assigned a value.",
+          "type": "any"
         }
       },
       "type": "object"

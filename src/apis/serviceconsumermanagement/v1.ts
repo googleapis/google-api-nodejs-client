@@ -1022,6 +1022,10 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$MethodSettings {
     /**
+     * List of top-level fields of the request message, that should be automatically populated by the client libraries based on their (google.api.field_info).format. Currently supported format: UUID4. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.CreateExample auto_populated_fields: - request_id
+     */
+    autoPopulatedFields?: string[] | null;
+    /**
      * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes
      */
     longRunning?: Schema$LongRunning;
@@ -1147,7 +1151,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type `"cloudsql_database"` represents databases in Google Cloud SQL. For a list of types, see [Monitoring resource types](https://cloud.google.com/monitoring/api/resources) and [Logging resource types](https://cloud.google.com/logging/docs/api/v2/resource-list).
+     * Required. The monitored resource type. For example, the type `"cloudsql_database"` represents databases in Google Cloud SQL. For a list of types, see [Monitored resource types](https://cloud.google.com/monitoring/api/resources) and [Logging resource types](https://cloud.google.com/logging/docs/api/v2/resource-list).
      */
     type?: string | null;
   }
@@ -1316,6 +1320,10 @@ export namespace serviceconsumermanagement_v1 {
      * Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc
      */
     protoReferenceDocumentationUri?: string | null;
+    /**
+     * Optional link to REST reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rest
+     */
+    restReferenceDocumentationUri?: string | null;
   }
   /**
    * Settings for Python client libraries.
