@@ -1075,7 +1075,7 @@ export namespace datacatalog_v1 {
      */
     displayName?: string | null;
     /**
-     * Output only. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.
+     * Identifier. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.
      */
     name?: string | null;
     /**
@@ -1608,7 +1608,7 @@ export namespace datacatalog_v1 {
      */
     displayName?: string | null;
     /**
-     * Output only. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.
+     * Identifier. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.
      */
     name?: string | null;
     /**
@@ -7985,7 +7985,7 @@ export namespace datacatalog_v1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.
+     * Identifier. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.
      */
     name?: string;
     /**
@@ -8836,7 +8836,7 @@ export namespace datacatalog_v1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.
+     * Identifier. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.
      */
     name?: string;
     /**

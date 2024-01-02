@@ -496,7 +496,7 @@ export namespace datacatalog_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Output only. Resource name of this policy tag, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{taxonomy_id\}/policyTags/{id\}".
+     * Identifier. Resource name of this policy tag, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{taxonomy_id\}/policyTags/{id\}".
      */
     name?: string | null;
     /**
@@ -825,7 +825,7 @@ export namespace datacatalog_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Output only. Resource name of this taxonomy, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{id\}".
+     * Identifier. Resource name of this taxonomy, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{id\}".
      */
     name?: string | null;
     /**
@@ -7019,7 +7019,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of this taxonomy, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{id\}".
+     * Identifier. Resource name of this taxonomy, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{id\}".
      */
     name?: string;
     /**
@@ -7858,7 +7858,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of this policy tag, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{taxonomy_id\}/policyTags/{id\}".
+     * Identifier. Resource name of this policy tag, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{taxonomy_id\}/policyTags/{id\}".
      */
     name?: string;
     /**
