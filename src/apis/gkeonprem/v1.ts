@@ -2160,6 +2160,10 @@ export namespace gkeonprem_v1 {
      * The name of the vCenter resource pool for the admin cluster.
      */
     resourcePool?: string | null;
+    /**
+     * The name of the vCenter storage policy for the user cluster.
+     */
+    storagePolicyName?: string | null;
   }
   /**
    * VmwareAdminVipConfig for VMware load balancer configurations.
@@ -2564,7 +2568,7 @@ export namespace gkeonprem_v1 {
      */
     staticIpConfig?: Schema$VmwareStaticIpConfig;
     /**
-     * vcenter_network specifies vCenter network name. Inherited from the admin cluster.
+     * Output only. vcenter_network specifies vCenter network name. Inherited from the admin cluster.
      */
     vcenterNetwork?: string | null;
   }
