@@ -280,6 +280,10 @@ export namespace orgpolicy_v2 {
      */
     dryRunSpec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
     /**
+     * Optional. An opaque tag indicating the current state of the policy, used for concurrency control. This 'etag' is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
      * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string | null;
@@ -293,7 +297,7 @@ export namespace orgpolicy_v2 {
    */
   export interface Schema$GoogleCloudOrgpolicyV2PolicySpec {
     /**
-     * An opaque tag indicating the current version of the policy, used for concurrency control. This field is ignored if used in a `CreatePolicy` request. When the policy` is returned from either a `GetPolicy` or a `ListPolicies` request, this `etag` indicates the version of the current policy to use when executing a read-modify-write loop. When the policy is returned from a `GetEffectivePolicy` request, the `etag` will be unset.
+     * An opaque tag indicating the current version of the policySpec, used for concurrency control. This field is ignored if used in a `CreatePolicy` request. When the policy is returned from either a `GetPolicy` or a `ListPolicies` request, this `etag` indicates the version of the current policySpec to use when executing a read-modify-write loop. When the policy is returned from a `GetEffectivePolicy` request, the `etag` will be unset.
      */
     etag?: string | null;
     /**
@@ -1089,6 +1093,10 @@ export namespace orgpolicy_v2 {
   }
   export interface Params$Resource$Folders$Policies$Delete
     extends StandardParameters {
+    /**
+     * Optional. The current etag of policy. If an etag is provided and does not match the current etag of the policy, deletion will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string;
     /**
      * Required. Name of the policy to delete. See the policy entry for naming rules.
      */
@@ -2384,6 +2392,10 @@ export namespace orgpolicy_v2 {
   export interface Params$Resource$Organizations$Policies$Delete
     extends StandardParameters {
     /**
+     * Optional. The current etag of policy. If an etag is provided and does not match the current etag of the policy, deletion will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string;
+    /**
      * Required. Name of the policy to delete. See the policy entry for naming rules.
      */
     name?: string;
@@ -3146,6 +3158,10 @@ export namespace orgpolicy_v2 {
   }
   export interface Params$Resource$Projects$Policies$Delete
     extends StandardParameters {
+    /**
+     * Optional. The current etag of policy. If an etag is provided and does not match the current etag of the policy, deletion will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string;
     /**
      * Required. Name of the policy to delete. See the policy entry for naming rules.
      */
