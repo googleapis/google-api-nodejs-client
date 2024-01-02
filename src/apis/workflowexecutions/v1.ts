@@ -732,7 +732,7 @@ export namespace workflowexecutions_v1 {
     }
 
     /**
-     * Creates a new execution using the latest revision of the given workflow.
+     * Creates a new execution using the latest revision of the given workflow. For more information, see Execute a workflow.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
