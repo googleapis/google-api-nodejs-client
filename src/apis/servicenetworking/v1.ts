@@ -1718,6 +1718,10 @@ export namespace servicenetworking_v1 {
      * Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc
      */
     protoReferenceDocumentationUri?: string | null;
+    /**
+     * Optional link to REST reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rest
+     */
+    restReferenceDocumentationUri?: string | null;
   }
   /**
    * Settings for Python client libraries.

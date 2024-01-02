@@ -1029,7 +1029,7 @@
       }
     }
   },
-  "revision": "20231119",
+  "revision": "20231214",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -3297,6 +3297,10 @@
         },
         "protoReferenceDocumentationUri": {
           "description": "Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc",
+          "type": "string"
+        },
+        "restReferenceDocumentationUri": {
+          "description": "Optional link to REST reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rest",
           "type": "string"
         }
       },
