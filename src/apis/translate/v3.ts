@@ -125,6 +125,124 @@ export namespace translate_v3 {
   }
 
   /**
+   * An Adaptive MT Dataset.
+   */
+  export interface Schema$AdaptiveMtDataset {
+    /**
+     * Output only. Timestamp when this dataset was created.
+     */
+    createTime?: string | null;
+    /**
+     * The name of the dataset to show in the interface. The name can be up to 32 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscores (_), and ASCII digits 0-9.
+     */
+    displayName?: string | null;
+    /**
+     * The number of examples in the dataset.
+     */
+    exampleCount?: number | null;
+    /**
+     * Required. The resource name of the dataset, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset_id\}`
+     */
+    name?: string | null;
+    /**
+     * The BCP-47 language code of the source language.
+     */
+    sourceLanguageCode?: string | null;
+    /**
+     * The BCP-47 language code of the target language.
+     */
+    targetLanguageCode?: string | null;
+    /**
+     * Output only. Timestamp when this dataset was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * An AdaptiveMtFile.
+   */
+  export interface Schema$AdaptiveMtFile {
+    /**
+     * Output only. Timestamp when this file was created.
+     */
+    createTime?: string | null;
+    /**
+     * The file's display name.
+     */
+    displayName?: string | null;
+    /**
+     * The number of entries that the file contains.
+     */
+    entryCount?: number | null;
+    /**
+     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/files/{file\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Timestamp when this file was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * An AdaptiveMt sentence entry.
+   */
+  export interface Schema$AdaptiveMtSentence {
+    /**
+     * Output only. Timestamp when this sentence was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/files/{file\}/sentences/{sentence\}`
+     */
+    name?: string | null;
+    /**
+     * Required. The source sentence.
+     */
+    sourceSentence?: string | null;
+    /**
+     * Required. The target sentence.
+     */
+    targetSentence?: string | null;
+    /**
+     * Output only. Timestamp when this sentence was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The request for sending an AdaptiveMt translation query.
+   */
+  export interface Schema$AdaptiveMtTranslateRequest {
+    /**
+     * Required. The content of the input in string format. For now only one sentence per request is supported.
+     */
+    content?: string[] | null;
+    /**
+     * Required. The resource name for the dataset to use for adaptive MT. `projects/{project\}/locations/{location-id\}/adaptiveMtDatasets/{dataset\}`
+     */
+    dataset?: string | null;
+  }
+  /**
+   * An AdaptiveMtTranslate response.
+   */
+  export interface Schema$AdaptiveMtTranslateResponse {
+    /**
+     * Output only. The translation's language code.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. The translation.
+     */
+    translations?: Schema$AdaptiveMtTranslation[];
+  }
+  /**
+   * An AdaptiveMt translation.
+   */
+  export interface Schema$AdaptiveMtTranslation {
+    /**
+     * Output only. The translated text.
+     */
+    translatedText?: string | null;
+  }
+  /**
    * Input configuration for BatchTranslateDocument request.
    */
   export interface Schema$BatchDocumentInputConfig {
@@ -412,6 +530,23 @@ export namespace translate_v3 {
     outputConfig?: Schema$DatasetOutputConfig;
   }
   /**
+   * An inlined file.
+   */
+  export interface Schema$FileInputSource {
+    /**
+     * Required. The file's byte contents.
+     */
+    content?: string | null;
+    /**
+     * Required. The file's display name.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The file's mime type.
+     */
+    mimeType?: string | null;
+  }
+  /**
    * The Google Cloud Storage location for the output content.
    */
   export interface Schema$GcsDestination {
@@ -550,6 +685,28 @@ export namespace translate_v3 {
     terms?: Schema$GlossaryTerm[];
   }
   /**
+   * The request for importing an AdaptiveMt file along with its sentences.
+   */
+  export interface Schema$ImportAdaptiveMtFileRequest {
+    /**
+     * Inline file source.
+     */
+    fileInputSource?: Schema$FileInputSource;
+    /**
+     * Google Cloud Storage file source.
+     */
+    gcsInputSource?: Schema$GcsInputSource;
+  }
+  /**
+   * The response for importing an AdaptiveMtFile
+   */
+  export interface Schema$ImportAdaptiveMtFileResponse {
+    /**
+     * Output only. The Adaptive MT file that was imported.
+     */
+    adaptiveMtFile?: Schema$AdaptiveMtFile;
+  }
+  /**
    * Request message for ImportData.
    */
   export interface Schema$ImportDataRequest {
@@ -605,6 +762,45 @@ export namespace translate_v3 {
      * The ISO-639 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.
      */
     languageCodes?: string[] | null;
+  }
+  /**
+   * A list of AdaptiveMtDatasets.
+   */
+  export interface Schema$ListAdaptiveMtDatasetsResponse {
+    /**
+     * Output only. A list of Adaptive MT datasets.
+     */
+    adaptiveMtDatasets?: Schema$AdaptiveMtDataset[];
+    /**
+     * Optional. A token to retrieve a page of results. Pass this value in the [ListAdaptiveMtDatasetsRequest.page_token] field in the subsequent call to `ListAdaptiveMtDatasets` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response for listing all AdaptiveMt files under a given dataset.
+   */
+  export interface Schema$ListAdaptiveMtFilesResponse {
+    /**
+     * Output only. The Adaptive MT files.
+     */
+    adaptiveMtFiles?: Schema$AdaptiveMtFile[];
+    /**
+     * Optional. A token to retrieve a page of results. Pass this value in the ListAdaptiveMtFilesRequest.page_token field in the subsequent call to `ListAdaptiveMtFiles` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * List AdaptiveMt sentences response.
+   */
+  export interface Schema$ListAdaptiveMtSentencesResponse {
+    /**
+     * Output only. The list of AdaptiveMtSentences.
+     */
+    adaptiveMtSentences?: Schema$AdaptiveMtSentence[];
+    /**
+     * Optional.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response message for ListDatasets.
@@ -1490,12 +1686,15 @@ export namespace translate_v3 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    adaptiveMtDatasets: Resource$Projects$Locations$Adaptivemtdatasets;
     datasets: Resource$Projects$Locations$Datasets;
     glossaries: Resource$Projects$Locations$Glossaries;
     models: Resource$Projects$Locations$Models;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.adaptiveMtDatasets =
+        new Resource$Projects$Locations$Adaptivemtdatasets(this.context);
       this.datasets = new Resource$Projects$Locations$Datasets(this.context);
       this.glossaries = new Resource$Projects$Locations$Glossaries(
         this.context
@@ -1504,6 +1703,100 @@ export namespace translate_v3 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+    }
+
+    /**
+     * Translate text using Adaptive MT.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    adaptiveMtTranslate(
+      params: Params$Resource$Projects$Locations$Adaptivemttranslate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    adaptiveMtTranslate(
+      params?: Params$Resource$Projects$Locations$Adaptivemttranslate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdaptiveMtTranslateResponse>;
+    adaptiveMtTranslate(
+      params: Params$Resource$Projects$Locations$Adaptivemttranslate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    adaptiveMtTranslate(
+      params: Params$Resource$Projects$Locations$Adaptivemttranslate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdaptiveMtTranslateResponse>,
+      callback: BodyResponseCallback<Schema$AdaptiveMtTranslateResponse>
+    ): void;
+    adaptiveMtTranslate(
+      params: Params$Resource$Projects$Locations$Adaptivemttranslate,
+      callback: BodyResponseCallback<Schema$AdaptiveMtTranslateResponse>
+    ): void;
+    adaptiveMtTranslate(
+      callback: BodyResponseCallback<Schema$AdaptiveMtTranslateResponse>
+    ): void;
+    adaptiveMtTranslate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemttranslate
+        | BodyResponseCallback<Schema$AdaptiveMtTranslateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdaptiveMtTranslateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdaptiveMtTranslateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdaptiveMtTranslateResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemttranslate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Adaptivemttranslate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}:adaptiveMtTranslate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdaptiveMtTranslateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdaptiveMtTranslateResponse>(parameters);
+      }
     }
 
     /**
@@ -2328,6 +2621,18 @@ export namespace translate_v3 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Adaptivemttranslate
+    extends StandardParameters {
+    /**
+     * Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdaptiveMtTranslateRequest;
+  }
   export interface Params$Resource$Projects$Locations$Batchtranslatedocument
     extends StandardParameters {
     /**
@@ -2440,6 +2745,1086 @@ export namespace translate_v3 {
      * Request body metadata
      */
     requestBody?: Schema$TranslateTextRequest;
+  }
+
+  export class Resource$Projects$Locations$Adaptivemtdatasets {
+    context: APIRequestContext;
+    adaptiveMtFiles: Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles;
+    adaptiveMtSentences: Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.adaptiveMtFiles =
+        new Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles(
+          this.context
+        );
+      this.adaptiveMtSentences =
+        new Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences(
+          this.context
+        );
+    }
+
+    /**
+     * Creates an Adaptive MT dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdaptiveMtDataset>;
+    create(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AdaptiveMtDataset>,
+      callback: BodyResponseCallback<Schema$AdaptiveMtDataset>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Create,
+      callback: BodyResponseCallback<Schema$AdaptiveMtDataset>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AdaptiveMtDataset>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$Create
+        | BodyResponseCallback<Schema$AdaptiveMtDataset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdaptiveMtDataset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdaptiveMtDataset>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdaptiveMtDataset>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/adaptiveMtDatasets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdaptiveMtDataset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdaptiveMtDataset>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an Adaptive MT dataset, including all its entries and associated metadata.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the Adaptive MT dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdaptiveMtDataset>;
+    get(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdaptiveMtDataset>,
+      callback: BodyResponseCallback<Schema$AdaptiveMtDataset>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Get,
+      callback: BodyResponseCallback<Schema$AdaptiveMtDataset>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AdaptiveMtDataset>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$Get
+        | BodyResponseCallback<Schema$AdaptiveMtDataset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdaptiveMtDataset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdaptiveMtDataset>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdaptiveMtDataset>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdaptiveMtDataset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdaptiveMtDataset>(parameters);
+      }
+    }
+
+    /**
+     * Imports an AdaptiveMtFile and adds all of its sentences into the AdaptiveMtDataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    importAdaptiveMtFile(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    importAdaptiveMtFile(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImportAdaptiveMtFileResponse>;
+    importAdaptiveMtFile(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    importAdaptiveMtFile(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImportAdaptiveMtFileResponse>,
+      callback: BodyResponseCallback<Schema$ImportAdaptiveMtFileResponse>
+    ): void;
+    importAdaptiveMtFile(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile,
+      callback: BodyResponseCallback<Schema$ImportAdaptiveMtFileResponse>
+    ): void;
+    importAdaptiveMtFile(
+      callback: BodyResponseCallback<Schema$ImportAdaptiveMtFileResponse>
+    ): void;
+    importAdaptiveMtFile(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile
+        | BodyResponseCallback<Schema$ImportAdaptiveMtFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImportAdaptiveMtFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImportAdaptiveMtFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ImportAdaptiveMtFileResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}:importAdaptiveMtFile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ImportAdaptiveMtFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ImportAdaptiveMtFileResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all Adaptive MT datasets for which the caller has read permission.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdaptiveMtDatasetsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdaptiveMtDatasetsResponse>,
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtDatasetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$List,
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtDatasetsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtDatasetsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$List
+        | BodyResponseCallback<Schema$ListAdaptiveMtDatasetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdaptiveMtDatasetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdaptiveMtDatasetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdaptiveMtDatasetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/adaptiveMtDatasets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdaptiveMtDatasetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdaptiveMtDatasetsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Create
+    extends StandardParameters {
+    /**
+     * Required. Name of the parent project. In form of `projects/{project-number-or-id\}/locations/{location-id\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdaptiveMtDataset;
+  }
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the dataset. In the form of `projects/{project-number-or-id\}/locations/{location-id\}/adaptiveMtDatasets/{adaptive-mt-dataset-id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the dataset. In the form of `projects/{project-number-or-id\}/locations/{location-id\}/adaptiveMtDatasets/{adaptive-mt-dataset-id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Importadaptivemtfile
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportAdaptiveMtFileRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Filter is not supported yet.
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. The server may return fewer results than requested. If unspecified, the server picks an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. Typically, this is the value of ListAdaptiveMtDatasetsResponse.next_page_token returned from the previous call to `ListAdaptiveMtDatasets` method. The first page is returned if `page_token`is empty or missing.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the project from which to list the Adaptive MT datasets. `projects/{project-number-or-id\}/locations/{location-id\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles {
+    context: APIRequestContext;
+    adaptiveMtSentences: Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.adaptiveMtSentences =
+        new Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences(
+          this.context
+        );
+    }
+
+    /**
+     * Deletes an AdaptiveMtFile along with its sentences.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets and AdaptiveMtFile
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdaptiveMtFile>;
+    get(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdaptiveMtFile>,
+      callback: BodyResponseCallback<Schema$AdaptiveMtFile>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get,
+      callback: BodyResponseCallback<Schema$AdaptiveMtFile>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AdaptiveMtFile>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get
+        | BodyResponseCallback<Schema$AdaptiveMtFile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdaptiveMtFile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdaptiveMtFile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdaptiveMtFile> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdaptiveMtFile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdaptiveMtFile>(parameters);
+      }
+    }
+
+    /**
+     * Lists all AdaptiveMtFiles associated to an AdaptiveMtDataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdaptiveMtFilesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdaptiveMtFilesResponse>,
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtFilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List,
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtFilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtFilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List
+        | BodyResponseCallback<Schema$ListAdaptiveMtFilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdaptiveMtFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdaptiveMtFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdaptiveMtFilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/adaptiveMtFiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdaptiveMtFilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdaptiveMtFilesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the file to delete, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/files/{file\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/files/{file\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$List
+    extends StandardParameters {
+    /**
+     * Optional.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. Typically, this is the value of ListAdaptiveMtFilesResponse.next_page_token returned from the previous call to `ListAdaptiveMtFiles` method. The first page is returned if `page_token`is empty or missing.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the project from which to list the Adaptive MT files. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all AdaptiveMtSentences under a given file/dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdaptiveMtSentencesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>,
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List,
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List
+        | BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdaptiveMtSentencesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/adaptiveMtSentences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdaptiveMtSentencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdaptiveMtSentencesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Adaptivemtsentences$List
+    extends StandardParameters {
+    /**
+     *
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListAdaptiveMtSentencesRequest.next_page_token returned from the previous call to `ListTranslationMemories` method. The first page is returned if `page_token` is empty or missing.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the project from which to list the Adaptive MT files. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all AdaptiveMtSentences under a given file/dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdaptiveMtSentencesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>,
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List,
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List
+        | BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdaptiveMtSentencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdaptiveMtSentencesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/adaptiveMtSentences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdaptiveMtSentencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdaptiveMtSentencesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtsentences$List
+    extends StandardParameters {
+    /**
+     *
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListAdaptiveMtSentencesRequest.next_page_token returned from the previous call to `ListTranslationMemories` method. The first page is returned if `page_token` is empty or missing.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the project from which to list the Adaptive MT files. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Datasets {
