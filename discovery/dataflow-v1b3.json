@@ -2221,7 +2221,7 @@
       }
     }
   },
-  "revision": "20231112",
+  "revision": "20231217",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3179,12 +3179,26 @@
           "readOnly": true,
           "type": "string"
         },
+        "streamingMode": {
+          "description": "Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.",
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_EXACTLY_ONCE",
+            "STREAMING_MODE_AT_LEAST_ONCE"
+          ],
+          "enumDescriptions": [
+            "Run in the default mode.",
+            "In this mode, message deduplication is performed against persistent state to make sure each message is processed and committed to storage exactly once.",
+            "Message deduplication is not performed. Messages might be processed multiple times, and the results are applied multiple times. Note: Setting this value also enables Streaming Engine and Streaming Engine resource-based billing."
+          ],
+          "type": "string"
+        },
         "tempStoragePrefix": {
           "description": "The prefix of the resources the system should use for temporary storage. The system will append the suffix \"/temp-{JOBNAME} to this resource prefix, where {JOBNAME} is the value of the job_name field. The resulting bucket and object prefix is used as the prefix of the resources used to store temporary data needed during the job execution. NOTE: This will override the value in taskrunner_settings. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket}/{object} bucket.storage.googleapis.com/{object}",
           "type": "string"
         },
         "useStreamingEngineResourceBasedBilling": {
-          "description": "Output only. Whether the job uses the new streaming engine billing model based on resource usage.",
+          "description": "Output only. Whether the job uses the Streaming Engine resource-based billing model.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -3809,7 +3823,7 @@
           "type": "string"
         },
         "currentState": {
-          "description": "The current state of the job. Jobs are created in the `JOB_STATE_STOPPED` state unless otherwise specified. A job in the `JOB_STATE_RUNNING` state may asynchronously enter a terminal state. After a job has reached a terminal state, no further state updates may be made. This field may be mutated by the Cloud Dataflow service; callers cannot mutate it.",
+          "description": "The current state of the job. Jobs are created in the `JOB_STATE_STOPPED` state unless otherwise specified. A job in the `JOB_STATE_RUNNING` state may asynchronously enter a terminal state. After a job has reached a terminal state, no further state updates may be made. This field might be mutated by the Dataflow service; callers cannot mutate it.",
           "enum": [
             "JOB_STATE_UNKNOWN",
             "JOB_STATE_STOPPED",
@@ -3856,7 +3870,7 @@
           "description": "Deprecated."
         },
         "id": {
-          "description": "The unique ID of this job. This field is set by the Cloud Dataflow service when the Job is created, and is immutable for the life of the job.",
+          "description": "The unique ID of this job. This field is set by the Dataflow service when the job is created, and is immutable for the life of the job.",
           "type": "string"
         },
         "jobMetadata": {
@@ -3875,7 +3889,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The user-specified Cloud Dataflow job name. Only one Job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`",
+          "description": "The user-specified Dataflow job name. Only one active job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a job with the same name as an active job that already exists, the attempt returns the existing job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`",
           "type": "string"
         },
         "pipelineDescription": {
@@ -3883,7 +3897,7 @@
           "description": "Preliminary field: The format of this data may change at any time. A description of the user pipeline and stages through which it is executed. Created by Cloud Dataflow service. Only retrieved with JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL."
         },
         "projectId": {
-          "description": "The ID of the Cloud Platform project that the job belongs to.",
+          "description": "The ID of the Google Cloud project that the job belongs to.",
           "type": "string"
         },
         "replaceJobId": {
@@ -3979,7 +3993,7 @@
           "type": "object"
         },
         "type": {
-          "description": "The type of Cloud Dataflow job.",
+          "description": "The type of Dataflow job.",
           "enum": [
             "JOB_TYPE_UNKNOWN",
             "JOB_TYPE_BATCH",
@@ -5372,6 +5386,11 @@
           "description": "The minimum number of workers to scale down to. This field is currently only supported for Streaming Engine jobs.",
           "format": "int32",
           "type": "integer"
+        },
+        "workerUtilizationHint": {
+          "description": "Target worker utilization, compared against the aggregate utilization of the worker pool by autoscaler, to determine upscaling and downscaling when absent other constraints such as backlog.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -6498,6 +6517,43 @@
       },
       "type": "object"
     },
+    "StreamingScalingReport": {
+      "description": "Contains per-user worker telemetry used in streaming autoscaling.",
+      "id": "StreamingScalingReport",
+      "properties": {
+        "activeBundleCount": {
+          "description": "Current acive bundle count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "activeThreadCount": {
+          "description": "Current acive thread count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maximumBundleCount": {
+          "description": "Maximum bundle count limit.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maximumBytesCount": {
+          "description": "Maximum bytes count limit.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maximumThreadCount": {
+          "description": "Maximum thread count limit.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "outstandingBytesCount": {
+          "description": "Current outstanding bytes count.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "StreamingSetupTask": {
       "description": "A task which initializes part of a streaming Dataflow job.",
       "id": "StreamingSetupTask",
@@ -7230,6 +7286,10 @@
           },
           "description": "Labels are used to group WorkerMessages. For example, a worker_message about a particular container might have the labels: { \"JOB_ID\": \"2015-04-22\", \"WORKER_ID\": \"wordcount-vm-2015…\" \"CONTAINER_TYPE\": \"worker\", \"CONTAINER_ID\": \"ac1234def\"} Label tags typically correspond to Label enum values. However, for ease of development other strings can be used as tags. LABEL_UNSPECIFIED should not be used here.",
           "type": "object"
+        },
+        "streamingScalingReport": {
+          "$ref": "StreamingScalingReport",
+          "description": "Contains per-user worker telemetry used in streaming autoscaling."
         },
         "time": {
           "description": "The timestamp of the worker_message.",
