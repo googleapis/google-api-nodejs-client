@@ -2132,6 +2132,87 @@
     },
     "inappproducts": {
       "methods": {
+        "batchDelete": {
+          "description": "Deletes in-app products (managed products or subscriptions). Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. This method should not be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts:batchDelete",
+          "httpMethod": "POST",
+          "id": "androidpublisher.inappproducts.batchDelete",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/inappproducts:batchDelete",
+          "request": {
+            "$ref": "InappproductsBatchDeleteRequest"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "batchGet": {
+          "description": "Reads multiple in-app products, which can be managed products or subscriptions. This method should not be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts:batchGet",
+          "httpMethod": "GET",
+          "id": "androidpublisher.inappproducts.batchGet",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "sku": {
+              "description": "Unique identifier for the in-app products.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/inappproducts:batchGet",
+          "response": {
+            "$ref": "InappproductsBatchGetResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "batchUpdate": {
+          "description": "Updates or inserts one or more in-app products (managed products or subscriptions). Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts:batchUpdate",
+          "httpMethod": "POST",
+          "id": "androidpublisher.inappproducts.batchUpdate",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/inappproducts:batchUpdate",
+          "request": {
+            "$ref": "InappproductsBatchUpdateRequest"
+          },
+          "response": {
+            "$ref": "InappproductsBatchUpdateResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
         "delete": {
           "description": "Deletes an in-app product (a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
@@ -2142,6 +2223,21 @@
             "sku"
           ],
           "parameters": {
+            "latencyTolerance": {
+              "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+              "enum": [
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+              ],
+              "enumDescriptions": [
+                "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+                "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+                "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "packageName": {
               "description": "Package name of the app.",
               "location": "path",
@@ -2281,6 +2377,21 @@
               "location": "query",
               "type": "boolean"
             },
+            "latencyTolerance": {
+              "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+              "enum": [
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+              ],
+              "enumDescriptions": [
+                "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+                "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+                "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "packageName": {
               "description": "Package name of the app.",
               "location": "path",
@@ -2324,6 +2435,21 @@
               "description": "If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.",
               "location": "query",
               "type": "boolean"
+            },
+            "latencyTolerance": {
+              "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+              "enum": [
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+              ],
+              "enumDescriptions": [
+                "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+                "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+                "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+              ],
+              "location": "query",
+              "type": "string"
             },
             "packageName": {
               "description": "Package name of the app.",
@@ -2505,6 +2631,63 @@
                 "https://www.googleapis.com/auth/androidpublisher"
               ]
             },
+            "batchGet": {
+              "description": "Reads one or more subscriptions.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions:batchGet",
+              "httpMethod": "GET",
+              "id": "androidpublisher.monetization.subscriptions.batchGet",
+              "parameterOrder": [
+                "packageName"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The parent app (package name) for which the subscriptions should be retrieved. Must be equal to the package_name field on all the requests.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "productIds": {
+                  "description": "Required. A list of up to 100 subscription product IDs to retrieve. All the IDs must be different.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/subscriptions:batchGet",
+              "response": {
+                "$ref": "BatchGetSubscriptionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "batchUpdate": {
+              "description": "Updates a batch of subscriptions. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions:batchUpdate",
+              "httpMethod": "POST",
+              "id": "androidpublisher.monetization.subscriptions.batchUpdate",
+              "parameterOrder": [
+                "packageName"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The parent app (package name) for which the subscriptions should be updated. Must be equal to the package_name field on all the Subscription resources.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/subscriptions:batchUpdate",
+              "request": {
+                "$ref": "BatchUpdateSubscriptionsRequest"
+              },
+              "response": {
+                "$ref": "BatchUpdateSubscriptionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
             "create": {
               "description": "Creates a new subscription. Newly added base plans will remain in draft state until activated.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions",
@@ -2651,6 +2834,26 @@
                 "productId"
               ],
               "parameters": {
+                "allowMissing": {
+                  "description": "Optional. If set to true, and the subscription with the given package_name and product_id doesn't exist, the subscription will be created. If a new subscription is created, update_mask is ignored.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "latencyTolerance": {
+                  "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+                  "enum": [
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+                  ],
+                  "enumDescriptions": [
+                    "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+                    "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+                    "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "packageName": {
                   "description": "Immutable. Package name of the parent app.",
                   "location": "path",
@@ -2726,6 +2929,74 @@
                   },
                   "response": {
                     "$ref": "Subscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/androidpublisher"
+                  ]
+                },
+                "batchMigratePrices": {
+                  "description": "Batch variant of the MigrateBasePlanPrices endpoint. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.",
+                  "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchMigratePrices",
+                  "httpMethod": "POST",
+                  "id": "androidpublisher.monetization.subscriptions.basePlans.batchMigratePrices",
+                  "parameterOrder": [
+                    "packageName",
+                    "productId"
+                  ],
+                  "parameters": {
+                    "packageName": {
+                      "description": "Required. The parent app (package name) for which the subscriptions should be created or updated. Must be equal to the package_name field on all the Subscription resources.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "productId": {
+                      "description": "Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this batch update spans multiple subscriptions, set this field to \"-\". Must be set.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchMigratePrices",
+                  "request": {
+                    "$ref": "BatchMigrateBasePlanPricesRequest"
+                  },
+                  "response": {
+                    "$ref": "BatchMigrateBasePlanPricesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/androidpublisher"
+                  ]
+                },
+                "batchUpdateStates": {
+                  "description": "Activates or deactivates base plans across one or multiple subscriptions. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.",
+                  "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchUpdateStates",
+                  "httpMethod": "POST",
+                  "id": "androidpublisher.monetization.subscriptions.basePlans.batchUpdateStates",
+                  "parameterOrder": [
+                    "packageName",
+                    "productId"
+                  ],
+                  "parameters": {
+                    "packageName": {
+                      "description": "Required. The parent app (package name) of the updated base plans.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "productId": {
+                      "description": "Required. The product ID of the parent subscription, if all updated base plans belong to the same subscription. If this batch update spans multiple subscriptions, set this field to \"-\". Must be set.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchUpdateStates",
+                  "request": {
+                    "$ref": "BatchUpdateBasePlanStatesRequest"
+                  },
+                  "response": {
+                    "$ref": "BatchUpdateBasePlanStatesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/androidpublisher"
@@ -2895,6 +3166,129 @@
                       },
                       "response": {
                         "$ref": "SubscriptionOffer"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "batchGet": {
+                      "description": "Reads one or more subscription offers.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchGet",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.subscriptions.basePlans.offers.batchGet",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "basePlanId"
+                      ],
+                      "parameters": {
+                        "basePlanId": {
+                          "description": "Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read offers from multiple base plans.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "packageName": {
+                          "description": "Required. The parent app (package name) for which the subscriptions should be created or updated. Must be equal to the package_name field on all the requests.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to \"-\". Must be set.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchGet",
+                      "request": {
+                        "$ref": "BatchGetSubscriptionOffersRequest"
+                      },
+                      "response": {
+                        "$ref": "BatchGetSubscriptionOffersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "batchUpdate": {
+                      "description": "Updates a batch of subscription offers. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdate",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.subscriptions.basePlans.offers.batchUpdate",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "basePlanId"
+                      ],
+                      "parameters": {
+                        "basePlanId": {
+                          "description": "Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "packageName": {
+                          "description": "Required. The parent app (package name) of the updated subscription offers. Must be equal to the package_name field on all the updated SubscriptionOffer resources.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to \"-\". Must be set.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdate",
+                      "request": {
+                        "$ref": "BatchUpdateSubscriptionOffersRequest"
+                      },
+                      "response": {
+                        "$ref": "BatchUpdateSubscriptionOffersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "batchUpdateStates": {
+                      "description": "Updates a batch of subscription offer states. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdateStates",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.subscriptions.basePlans.offers.batchUpdateStates",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "basePlanId"
+                      ],
+                      "parameters": {
+                        "basePlanId": {
+                          "description": "Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "packageName": {
+                          "description": "Required. The parent app (package name) of the updated subscription offers. Must be equal to the package_name field on all the updated SubscriptionOffer resources.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to \"-\". Must be set.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdateStates",
+                      "request": {
+                        "$ref": "BatchUpdateSubscriptionOfferStatesRequest"
+                      },
+                      "response": {
+                        "$ref": "BatchUpdateSubscriptionOfferStatesResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/androidpublisher"
@@ -3147,10 +3541,30 @@
                         "offerId"
                       ],
                       "parameters": {
+                        "allowMissing": {
+                          "description": "Optional. If set to true, and the subscription offer with the given package_name, product_id, base_plan_id and offer_id doesn't exist, an offer will be created. If a new offer is created, update_mask is ignored.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "basePlanId": {
                           "description": "Required. Immutable. The ID of the base plan to which this offer is an extension.",
                           "location": "path",
                           "required": true,
+                          "type": "string"
+                        },
+                        "latencyTolerance": {
+                          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+                          "enum": [
+                            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+                          ],
+                          "enumDescriptions": [
+                            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+                            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+                            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+                          ],
+                          "location": "query",
                           "type": "string"
                         },
                         "offerId": {
@@ -4081,7 +4495,7 @@
       }
     }
   },
-  "revision": "20231123",
+  "revision": "20231213",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -4148,13 +4562,71 @@
     "ActivateBasePlanRequest": {
       "description": "Request message for ActivateBasePlan.",
       "id": "ActivateBasePlanRequest",
-      "properties": {},
+      "properties": {
+        "basePlanId": {
+          "description": "Required. The unique base plan ID of the base plan to activate.",
+          "type": "string"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the base plan to activate.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent subscription (ID) of the base plan to activate.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ActivateSubscriptionOfferRequest": {
       "description": "Request message for ActivateSubscriptionOffer.",
       "id": "ActivateSubscriptionOfferRequest",
-      "properties": {},
+      "properties": {
+        "basePlanId": {
+          "description": "Required. The parent base plan (ID) of the offer to activate.",
+          "type": "string"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "offerId": {
+          "description": "Required. The unique offer ID of the offer to activate.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the offer to activate.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent subscription (ID) of the offer to activate.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Apk": {
@@ -4519,6 +4991,187 @@
       },
       "type": "object"
     },
+    "BatchGetSubscriptionOffersRequest": {
+      "description": "Request message for BatchGetSubscriptionOffers endpoint.",
+      "id": "BatchGetSubscriptionOffersRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of update requests of up to 100 elements. All requests must update different subscriptions.",
+          "items": {
+            "$ref": "GetSubscriptionOfferRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchGetSubscriptionOffersResponse": {
+      "description": "Response message for BatchGetSubscriptionOffers endpoint.",
+      "id": "BatchGetSubscriptionOffersResponse",
+      "properties": {
+        "subscriptionOffers": {
+          "items": {
+            "$ref": "SubscriptionOffer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchGetSubscriptionsResponse": {
+      "description": "Response message for BatchGetSubscriptions endpoint.",
+      "id": "BatchGetSubscriptionsResponse",
+      "properties": {
+        "subscriptions": {
+          "description": "The list of requested subscriptions, in the same order as the request.",
+          "items": {
+            "$ref": "Subscription"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchMigrateBasePlanPricesRequest": {
+      "description": "Request message for BatchMigrateBasePlanPrices.",
+      "id": "BatchMigrateBasePlanPricesRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. Up to 100 price migration requests. All requests must update different base plans.",
+          "items": {
+            "$ref": "MigrateBasePlanPricesRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchMigrateBasePlanPricesResponse": {
+      "description": "Response message for BatchMigrateBasePlanPrices.",
+      "id": "BatchMigrateBasePlanPricesResponse",
+      "properties": {
+        "responses": {
+          "description": "Contains one response per requested price migration, in the same order as the request.",
+          "items": {
+            "$ref": "MigrateBasePlanPricesResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateBasePlanStatesRequest": {
+      "description": "Request message for BatchUpdateBasePlanStates.",
+      "id": "BatchUpdateBasePlanStatesRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The update request list of up to 100 elements. All requests must update different base plans.",
+          "items": {
+            "$ref": "UpdateBasePlanStateRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateBasePlanStatesResponse": {
+      "description": "Response message for BatchUpdateBasePlanStates.",
+      "id": "BatchUpdateBasePlanStatesResponse",
+      "properties": {
+        "subscriptions": {
+          "description": "The list of updated subscriptions. This list will match the requests one to one, in the same order.",
+          "items": {
+            "$ref": "Subscription"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateSubscriptionOfferStatesRequest": {
+      "description": "Request message for BatchUpdateSubscriptionOfferStates.",
+      "id": "BatchUpdateSubscriptionOfferStatesRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The update request list of up to 100 elements. All requests must update different offers.",
+          "items": {
+            "$ref": "UpdateSubscriptionOfferStateRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateSubscriptionOfferStatesResponse": {
+      "description": "Response message for BatchUpdateSubscriptionOfferStates.",
+      "id": "BatchUpdateSubscriptionOfferStatesResponse",
+      "properties": {
+        "subscriptionOffers": {
+          "description": "The updated subscription offers list.",
+          "items": {
+            "$ref": "SubscriptionOffer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateSubscriptionOffersRequest": {
+      "description": "Request message for BatchUpdateSubscriptionOffers.",
+      "id": "BatchUpdateSubscriptionOffersRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of update requests of up to 100 elements. All requests must update different subscription offers.",
+          "items": {
+            "$ref": "UpdateSubscriptionOfferRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateSubscriptionOffersResponse": {
+      "description": "Response message for BatchUpdateSubscriptionOffers.",
+      "id": "BatchUpdateSubscriptionOffersResponse",
+      "properties": {
+        "subscriptionOffers": {
+          "description": "The updated subscription offers list.",
+          "items": {
+            "$ref": "SubscriptionOffer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateSubscriptionsRequest": {
+      "description": "Request message for BatchUpdateSubscription.",
+      "id": "BatchUpdateSubscriptionsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of update requests of up to 100 elements. All requests must update different subscriptions.",
+          "items": {
+            "$ref": "UpdateSubscriptionRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateSubscriptionsResponse": {
+      "description": "Response message for BatchUpdateSubscription.",
+      "id": "BatchUpdateSubscriptionsResponse",
+      "properties": {
+        "subscriptions": {
+          "description": "The updated subscriptions list.",
+          "items": {
+            "$ref": "Subscription"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Bundle": {
       "description": "Information about an app bundle. The resource for BundlesService.",
       "id": "Bundle",
@@ -4710,13 +5363,71 @@
     "DeactivateBasePlanRequest": {
       "description": "Request message for DeactivateBasePlan.",
       "id": "DeactivateBasePlanRequest",
-      "properties": {},
+      "properties": {
+        "basePlanId": {
+          "description": "Required. The unique base plan ID of the base plan to deactivate.",
+          "type": "string"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the base plan to deactivate.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent subscription (ID) of the base plan to deactivate.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "DeactivateSubscriptionOfferRequest": {
       "description": "Request message for DeactivateSubscriptionOffer.",
       "id": "DeactivateSubscriptionOfferRequest",
-      "properties": {},
+      "properties": {
+        "basePlanId": {
+          "description": "Required. The parent base plan (ID) of the offer to deactivate.",
+          "type": "string"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "offerId": {
+          "description": "Required. The unique offer ID of the offer to deactivate.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the offer to deactivate.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent subscription (ID) of the offer to deactivate.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "DeferredItemReplacement": {
@@ -5430,6 +6141,29 @@
       },
       "type": "object"
     },
+    "GetSubscriptionOfferRequest": {
+      "description": "Request message for GetSubscriptionOffer.",
+      "id": "GetSubscriptionOfferRequest",
+      "properties": {
+        "basePlanId": {
+          "description": "Required. The parent base plan (ID) of the offer to get.",
+          "type": "string"
+        },
+        "offerId": {
+          "description": "Required. The unique offer ID of the offer to get.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the offer to get.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent subscription (ID) of the offer to get.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Grant": {
       "description": "An access grant resource.",
       "id": "Grant",
@@ -5669,6 +6403,91 @@
       },
       "type": "object"
     },
+    "InappproductsBatchDeleteRequest": {
+      "description": "Request to delete multiple in-app products.",
+      "id": "InappproductsBatchDeleteRequest",
+      "properties": {
+        "requests": {
+          "description": "Individual delete requests. At least one request is required. Can contain up to 100 requests. All requests must correspond to different in-app products.",
+          "items": {
+            "$ref": "InappproductsDeleteRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InappproductsBatchGetResponse": {
+      "description": "Response message for BatchGetSubscriptions endpoint.",
+      "id": "InappproductsBatchGetResponse",
+      "properties": {
+        "inappproduct": {
+          "description": "The list of requested in-app products, in the same order as the request.",
+          "items": {
+            "$ref": "InAppProduct"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InappproductsBatchUpdateRequest": {
+      "description": "Request to update or insert one or more in-app products.",
+      "id": "InappproductsBatchUpdateRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. Individual update requests. At least one request is required. Can contain up to 100 requests. All requests must correspond to different in-app products.",
+          "items": {
+            "$ref": "InappproductsUpdateRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InappproductsBatchUpdateResponse": {
+      "description": "Response for a batch in-app product update.",
+      "id": "InappproductsBatchUpdateResponse",
+      "properties": {
+        "inappproducts": {
+          "description": "The updated or inserted in-app products.",
+          "items": {
+            "$ref": "InAppProduct"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InappproductsDeleteRequest": {
+      "description": "Request to delete an in-app product.",
+      "id": "InappproductsDeleteRequest",
+      "properties": {
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Package name of the app.",
+          "type": "string"
+        },
+        "sku": {
+          "description": "Unique identifier for the in-app product.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InappproductsListResponse": {
       "description": "Response listing all in-app products.",
       "id": "InappproductsListResponse",
@@ -5692,6 +6511,47 @@
         "tokenPagination": {
           "$ref": "TokenPagination",
           "description": "Pagination token, to handle a number of products that is over one page."
+        }
+      },
+      "type": "object"
+    },
+    "InappproductsUpdateRequest": {
+      "description": "Request to update an in-app product.",
+      "id": "InappproductsUpdateRequest",
+      "properties": {
+        "allowMissing": {
+          "description": "If set to true, and the in-app product with the given package_name and sku doesn't exist, the in-app product will be created.",
+          "type": "boolean"
+        },
+        "autoConvertMissingPrices": {
+          "description": "If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.",
+          "type": "boolean"
+        },
+        "inappproduct": {
+          "$ref": "InAppProduct",
+          "description": "The new in-app product."
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Package name of the app.",
+          "type": "string"
+        },
+        "sku": {
+          "description": "Unique identifier for the in-app product.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5929,6 +6789,32 @@
       "description": "Request message for MigrateBasePlanPrices.",
       "id": "MigrateBasePlanPricesRequest",
       "properties": {
+        "basePlanId": {
+          "description": "Required. The unique base plan ID of the base plan to update prices on.",
+          "type": "string"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. Package name of the parent app. Must be equal to the package_name field on the Subscription resource.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The ID of the subscription to update. Must be equal to the product_id field on the Subscription resource.",
+          "type": "string"
+        },
         "regionalPriceMigrations": {
           "description": "Required. The regional prices to update.",
           "items": {
@@ -7783,6 +8669,112 @@
             "$ref": "Track"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateBasePlanStateRequest": {
+      "description": "Request message to update the state of a subscription base plan.",
+      "id": "UpdateBasePlanStateRequest",
+      "properties": {
+        "activateBasePlanRequest": {
+          "$ref": "ActivateBasePlanRequest",
+          "description": "Activates a base plan. Once activated, base plans will be available to new subscribers."
+        },
+        "deactivateBasePlanRequest": {
+          "$ref": "DeactivateBasePlanRequest",
+          "description": "Deactivates a base plan. Once deactivated, the base plan will become unavailable to new subscribers, but existing subscribers will maintain their subscription"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateSubscriptionOfferRequest": {
+      "description": "Request message for UpdateSubscriptionOffer.",
+      "id": "UpdateSubscriptionOfferRequest",
+      "properties": {
+        "allowMissing": {
+          "description": "Optional. If set to true, and the subscription offer with the given package_name, product_id, base_plan_id and offer_id doesn't exist, an offer will be created. If a new offer is created, update_mask is ignored.",
+          "type": "boolean"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "regionsVersion": {
+          "$ref": "RegionsVersion",
+          "description": "Required. The version of the available regions being used for the subscription_offer."
+        },
+        "subscriptionOffer": {
+          "$ref": "SubscriptionOffer",
+          "description": "Required. The subscription offer to update."
+        },
+        "updateMask": {
+          "description": "Required. The list of fields to be updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateSubscriptionOfferStateRequest": {
+      "description": "Request message to update the state of a subscription offer.",
+      "id": "UpdateSubscriptionOfferStateRequest",
+      "properties": {
+        "activateSubscriptionOfferRequest": {
+          "$ref": "ActivateSubscriptionOfferRequest",
+          "description": "Activates an offer. Once activated, the offer will be available to new subscribers."
+        },
+        "deactivateSubscriptionOfferRequest": {
+          "$ref": "DeactivateSubscriptionOfferRequest",
+          "description": "Deactivates an offer. Once deactivated, the offer will become unavailable to new subscribers, but existing subscribers will maintain their subscription"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateSubscriptionRequest": {
+      "description": "Request message for UpdateSubscription.",
+      "id": "UpdateSubscriptionRequest",
+      "properties": {
+        "allowMissing": {
+          "description": "Optional. If set to true, and the subscription with the given package_name and product_id doesn't exist, the subscription will be created. If a new subscription is created, update_mask is ignored.",
+          "type": "boolean"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "regionsVersion": {
+          "$ref": "RegionsVersion",
+          "description": "Required. The version of the available regions being used for the subscription."
+        },
+        "subscription": {
+          "$ref": "Subscription",
+          "description": "Required. The subscription to update."
+        },
+        "updateMask": {
+          "description": "Required. The list of fields to be updated.",
+          "format": "google-fieldmask",
+          "type": "string"
         }
       },
       "type": "object"
