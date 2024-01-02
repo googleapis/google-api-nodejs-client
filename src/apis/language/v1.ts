@@ -317,7 +317,7 @@ export namespace language_v1 {
    */
   export interface Schema$ClassifyTextRequest {
     /**
-     * Model options to use for classification. Defaults to v1 options if not specified.
+     * Optional. Model options to use for classification. Defaults to v1 options if not specified.
      */
     classificationModelOptions?: Schema$ClassificationModelOptions;
     /**
@@ -419,7 +419,7 @@ export namespace language_v1 {
    */
   export interface Schema$Features {
     /**
-     * The model options to use for classification. Defaults to v1 options if not specified. Only used if `classify_text` is set to true.
+     * Optional. The model options to use for classification. Defaults to v1 options if not specified. Only used if `classify_text` is set to true.
      */
     classificationModelOptions?: Schema$ClassificationModelOptions;
     /**
