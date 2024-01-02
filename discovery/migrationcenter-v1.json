@@ -2099,7 +2099,7 @@
       }
     }
   },
-  "revision": "20231013",
+  "revision": "20231215",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3252,6 +3252,13 @@
           "description": "The time when the application was installed.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "licenses": {
+          "description": "License strings associated with the installed application.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "path": {
           "description": "Source path.",
@@ -4794,7 +4801,7 @@
         },
         "storageBytesHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
-          "description": "Histogram showing a distribution of memory sizes."
+          "description": "Histogram showing a distribution of storage sizes."
         },
         "storageUtilizationChart": {
           "$ref": "ReportSummaryUtilizationChartData",
