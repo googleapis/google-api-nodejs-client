@@ -585,7 +585,7 @@ export namespace contactcenterinsights_v1 {
     customerChannel?: number | null;
   }
   /**
-   * The conversation source, which is a combination of transcript, audio, and metadata.
+   * The conversation source, which is a combination of transcript and audio.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource {
     /**
@@ -1539,11 +1539,11 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string | null;
     /**
-     * Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings.
+     * Optional. DLP settings for transcript redaction. Will default to the config specified in Settings.
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig;
     /**
-     * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
+     * Optional. Speech-to-Text configuration. Will default to the config specified in Settings.
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig;
   }
@@ -2080,7 +2080,7 @@ export namespace contactcenterinsights_v1 {
     customerChannel?: number | null;
   }
   /**
-   * The conversation source, which is a combination of transcript, audio, and metadata.
+   * The conversation source, which is a combination of transcript and audio.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ConversationDataSource {
     /**
@@ -3284,11 +3284,11 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string | null;
     /**
-     * Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings.
+     * Optional. DLP settings for transcript redaction. Will default to the config specified in Settings.
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
     /**
-     * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
+     * Optional. Speech-to-Text configuration. Will default to the config specified in Settings.
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
   }
