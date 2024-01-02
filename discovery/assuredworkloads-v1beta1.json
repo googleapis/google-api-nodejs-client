@@ -563,11 +563,11 @@
       }
     }
   },
-  "revision": "20231110",
+  "revision": "20231219",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
-      "description": "Request for acknowledging the violation Next Id: 5",
+      "description": "Request for acknowledging the violation",
       "id": "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest",
       "properties": {
         "acknowledgeType": {
