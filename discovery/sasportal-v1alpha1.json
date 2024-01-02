@@ -179,6 +179,22 @@
             "https://www.googleapis.com/auth/sasportal"
           ]
         },
+        "listLegacyOrganizations": {
+          "description": "Checks whether account is legacy.",
+          "flatPath": "v1alpha1/customers:listLegacyOrganizations",
+          "httpMethod": "GET",
+          "id": "sasportal.customers.listLegacyOrganizations",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha1/customers:listLegacyOrganizations",
+          "response": {
+            "$ref": "SasPortalListLegacyOrganizationsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sasportal"
+          ]
+        },
         "migrateOrganization": {
           "description": "Migrates a SAS organization to the cloud. This will create GCP projects for each deployment and associate them. The SAS Organization is linked to the gcp project that called the command. go/sas-legacy-customer-migration",
           "flatPath": "v1alpha1/customers:migrateOrganization",
@@ -2636,7 +2652,7 @@
       }
     }
   },
-  "revision": "20231122",
+  "revision": "20231220",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -3293,6 +3309,21 @@
         "nextPageToken": {
           "description": "A pagination token returned from a previous call to ListDevices that indicates from where listing should continue. If the field is missing or empty, it means there is no more devices.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalListLegacyOrganizationsResponse": {
+      "description": "Response for [ListLegacyOrganizations]. [spectrum.sas.portal.v1alpha1.Provisioning.ListLegacyOrganizations].",
+      "id": "SasPortalListLegacyOrganizationsResponse",
+      "properties": {
+        "organizationIds": {
+          "description": "Optional. IDs of legacy SAS organizations.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
