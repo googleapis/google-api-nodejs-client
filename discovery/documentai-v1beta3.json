@@ -1284,7 +1284,7 @@
       }
     }
   },
-  "revision": "20231116",
+  "revision": "20231211",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -8755,6 +8755,10 @@
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchema",
           "description": "Optional. The schema the processor version will be trained with."
         },
+        "foundationModelTuningOptions": {
+          "$ref": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestFoundationModelTuningOptions",
+          "description": "Options to control foundation model tuning of a processor."
+        },
         "inputData": {
           "$ref": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestInputData",
           "description": "Optional. The input data used to train the ProcessorVersion."
@@ -8783,6 +8787,23 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestFoundationModelTuningOptions": {
+      "description": "Options to control foundation model tuning of the processor.",
+      "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestFoundationModelTuningOptions",
+      "properties": {
+        "learningRateMultiplier": {
+          "description": "Optional. The multiplier to apply to the recommended learning rate. Valid values are between [0.1, 10]. If not provided, recommended learning rate will be used.",
+          "format": "float",
+          "type": "number"
+        },
+        "trainSteps": {
+          "description": "Optional. The number of steps to run for model tuning. Valid values are between [1, 400]. If not provided, recommended steps will be used.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
