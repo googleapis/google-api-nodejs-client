@@ -314,7 +314,7 @@ export namespace dlp_v2 {
      */
     rowsLimit?: string | null;
     /**
-     * Max percentage of rows to scan. The rest are omitted. The number of rows scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of rows_limit and rows_limit_percent can be specified. Cannot be used in conjunction with TimespanConfig.
+     * Max percentage of rows to scan. The rest are omitted. The number of rows scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of rows_limit and rows_limit_percent can be specified. Cannot be used in conjunction with TimespanConfig. Caution: A [known issue](https://cloud.google.com/dlp/docs/known-issues#bq-sampling) is causing the `rowsLimitPercent` field to behave unexpectedly. We recommend using `rowsLimit` instead.
      */
     rowsLimitPercent?: number | null;
     sampleMethod?: string | null;
@@ -1040,9 +1040,13 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DataProfileConfigSnapshot {
     /**
-     * A copy of the configuration used to generate this profile. This is deprecated and will be replaced by DiscoveryConfig. DataProfileJobConfig will still be written here for Discovery in BigQuery for backwards compatibility, but will not be updated with new fields, while DiscoveryConfig will.
+     * A copy of the configuration used to generate this profile. This is deprecated, and the DiscoveryConfig field is preferred moving forward. DataProfileJobConfig will still be written here for Discovery in BigQuery for backwards compatibility, but will not be updated with new fields, while DiscoveryConfig will.
      */
     dataProfileJob?: Schema$GooglePrivacyDlpV2DataProfileJobConfig;
+    /**
+     * A copy of the configuration used to generate this profile.
+     */
+    discoveryConfig?: Schema$GooglePrivacyDlpV2DiscoveryConfig;
     /**
      * A copy of the inspection config used to generate this profile. This is a copy of the inspect_template specified in `DataProfileJobConfig`.
      */
