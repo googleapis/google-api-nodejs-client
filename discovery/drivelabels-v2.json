@@ -1032,7 +1032,7 @@
       }
     }
   },
-  "revision": "20230731",
+  "revision": "20231218",
   "rootUrl": "https://drivelabels.googleapis.com/",
   "schemas": {
     "GoogleAppsDriveLabelsV2BadgeColors": {
@@ -1403,10 +1403,6 @@
         "integerOptions": {
           "$ref": "GoogleAppsDriveLabelsV2FieldIntegerOptions",
           "description": "Update field to Integer."
-        },
-        "longTextOptions": {
-          "$ref": "GoogleAppsDriveLabelsV2FieldLongTextOptions",
-          "description": "Update field to Long Text."
         },
         "selectionOptions": {
           "$ref": "GoogleAppsDriveLabelsV2FieldSelectionOptions",
@@ -1945,25 +1941,6 @@
         "maxEntries": {
           "description": "Maximum number of entries permitted.",
           "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAppsDriveLabelsV2FieldLongTextOptions": {
-      "description": "Options the Long Text field type.",
-      "id": "GoogleAppsDriveLabelsV2FieldLongTextOptions",
-      "properties": {
-        "maxLength": {
-          "description": "Output only. The maximum valid length of values for the text field.",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "minLength": {
-          "description": "Output only. The minimum valid length of values for the text field.",
-          "format": "int32",
-          "readOnly": true,
           "type": "integer"
         }
       },
