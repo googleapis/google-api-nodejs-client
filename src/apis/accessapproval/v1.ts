@@ -365,7 +365,7 @@ export namespace accessapproval_v1 {
      */
     googlePublicKeyPem?: string | null;
     /**
-     * The serialized ApprovalRequest message without the approve.signature_info field. This to allow the customer to verify signatures if they want to.
+     * The ApprovalRequest that is serialized without the SignatureInfo message field. This data is used with the hashing algorithm to generate the digital signature, and it can be used for signature verification.
      */
     serializedApprovalRequest?: string | null;
     /**
