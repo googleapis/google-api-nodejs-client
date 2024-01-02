@@ -212,7 +212,7 @@ export namespace blockchainnodeengine_v1 {
      */
     apiEnableDebug?: boolean | null;
     /**
-     * An Ethereum address which the beacon client will send fee rewards to if no recipient is configured in the validator client. See https://lighthouse-book.sigmaprime.io/suggested-fee-recipient.html or https://docs.prylabs.network/docs/execution-node/fee-recipient for examples of how this is used. Note that while this is often described as "suggested", as we run the execution node we can trust the execution node, and therefore this is considered enforced.
+     * Deprecated: Use the same field in the ValidatorConfig message as replacement. An Ethereum address which the beacon client will send fee rewards to if no recipient is configured in the validator client. See https://lighthouse-book.sigmaprime.io/suggested-fee-recipient.html or https://docs.prylabs.network/docs/execution-node/fee-recipient for examples of how this is used. Note that while this is often described as "suggested", as we run the execution node we can trust the execution node, and therefore this is considered enforced.
      */
     beaconFeeRecipient?: string | null;
     /**
@@ -235,6 +235,10 @@ export namespace blockchainnodeengine_v1 {
      * Immutable. The type of Ethereum node.
      */
     nodeType?: string | null;
+    /**
+     * Configuration for validator-related parameters on the beacon client, and for any GCP-managed validator client.
+     */
+    validatorConfig?: Schema$ValidatorConfig;
   }
   /**
    * Contains endpoint information specific to Ethereum nodes.
@@ -408,6 +412,15 @@ export namespace blockchainnodeengine_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Configuration for validator-related parameters on the beacon client, and for any GCP-managed validator client.
+   */
+  export interface Schema$ValidatorConfig {
+    /**
+     * URLs for MEV-relay services to use for block building. When set, a GCP-managed MEV-boost service is configured on the beacon client.
+     */
+    mevRelayUrls?: string[] | null;
   }
 
   export class Resource$Projects {
