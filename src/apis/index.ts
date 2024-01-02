@@ -89,6 +89,7 @@ import {
 } from './apigeeregistry';
 import {VERSIONS as apikeysVersions, apikeys} from './apikeys';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
+import {VERSIONS as apphubVersions, apphub} from './apphub';
 import {VERSIONS as appsactivityVersions, appsactivity} from './appsactivity';
 import {
   VERSIONS as area120tablesVersions,
@@ -643,6 +644,10 @@ import {VERSIONS as visionVersions, vision} from './vision';
 import {VERSIONS as vmmigrationVersions, vmmigration} from './vmmigration';
 import {VERSIONS as vmwareengineVersions, vmwareengine} from './vmwareengine';
 import {VERSIONS as vpcaccessVersions, vpcaccess} from './vpcaccess';
+import {
+  VERSIONS as walletobjectsVersions,
+  walletobjects,
+} from './walletobjects';
 import {VERSIONS as webfontsVersions, webfonts} from './webfonts';
 import {VERSIONS as webmastersVersions, webmasters} from './webmasters';
 import {VERSIONS as webriskVersions, webrisk} from './webrisk';
@@ -705,6 +710,7 @@ export const APIS: APIList = {
   apigeeregistry: apigeeregistryVersions,
   apikeys: apikeysVersions,
   appengine: appengineVersions,
+  apphub: apphubVersions,
   appsactivity: appsactivityVersions,
   area120tables: area120tablesVersions,
   artifactregistry: artifactregistryVersions,
@@ -947,6 +953,7 @@ export const APIS: APIList = {
   vmmigration: vmmigrationVersions,
   vmwareengine: vmwareengineVersions,
   vpcaccess: vpcaccessVersions,
+  walletobjects: walletobjectsVersions,
   webfonts: webfontsVersions,
   webmasters: webmastersVersions,
   webrisk: webriskVersions,
@@ -990,6 +997,7 @@ export class GeneratedAPIs {
   apigeeregistry = apigeeregistry;
   apikeys = apikeys;
   appengine = appengine;
+  apphub = apphub;
   appsactivity = appsactivity;
   area120tables = area120tables;
   artifactregistry = artifactregistry;
@@ -1232,6 +1240,7 @@ export class GeneratedAPIs {
   vmmigration = vmmigration;
   vmwareengine = vmwareengine;
   vpcaccess = vpcaccess;
+  walletobjects = walletobjects;
   webfonts = webfonts;
   webmasters = webmasters;
   webrisk = webrisk;
