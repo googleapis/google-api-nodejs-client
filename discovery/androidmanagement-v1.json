@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20231113",
+  "revision": "20231128",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1534,7 +1534,7 @@
       "type": "object"
     },
     "ApplicationPolicy": {
-      "description": "Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled. The maximum number of applications that you can specify per enterprise policy is 3,000.",
+      "description": "Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled. The maximum number of applications that you can specify per policy is 3,000.",
       "id": "ApplicationPolicy",
       "properties": {
         "accessibleTrackIds": {
@@ -4482,7 +4482,7 @@
           "type": "string"
         },
         "applications": {
-          "description": "Policy applied to apps.",
+          "description": "Policy applied to apps. This can have at most 3,000 elements.",
           "items": {
             "$ref": "ApplicationPolicy"
           },
