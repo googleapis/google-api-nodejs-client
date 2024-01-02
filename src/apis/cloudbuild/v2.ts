@@ -1284,6 +1284,10 @@ export namespace cloudbuild_v2 {
      * Optional. List of environment variables to set in the Step. Cannot be updated.
      */
     env?: Schema$EnvVar[];
+    /**
+     * Optional. Pod volumes to mount into the container's filesystem.
+     */
+    volumeMounts?: Schema$VolumeMount[];
   }
   /**
    * TaskRef can be used to refer to a specific instance of a task. PipelineRef can be used to refer to a specific instance of a Pipeline.
@@ -1354,7 +1358,7 @@ export namespace cloudbuild_v2 {
     /**
      * Optional. StepTemplate can be used as the basis for all step containers within the Task, so that the steps inherit settings on the base container.
      */
-    stepTemplate?: Schema$StepTemplate[];
+    stepTemplate?: Schema$StepTemplate;
     /**
      * A collection of volumes that are available to mount into steps.
      */

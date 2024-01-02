@@ -2319,7 +2319,7 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20231211",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3759,14 +3759,16 @@
             "CLOUD_SOURCE_REPOSITORIES",
             "GITHUB",
             "BITBUCKET_SERVER",
-            "GITLAB"
+            "GITLAB",
+            "BITBUCKET_CLOUD"
           ],
           "enumDescriptions": [
             "The default, unknown repo type. Don't use it, instead use one of the other repo types.",
             "A Google Cloud Source Repositories-hosted repo.",
             "A GitHub-hosted repo not necessarily on \"github.com\" (i.e. GitHub Enterprise).",
             "A Bitbucket Server-hosted repo.",
-            "A GitLab-hosted repo."
+            "A GitLab-hosted repo.",
+            "A Bitbucket Cloud-hosted repo."
           ],
           "type": "string"
         },
@@ -4105,14 +4107,16 @@
             "CLOUD_SOURCE_REPOSITORIES",
             "GITHUB",
             "BITBUCKET_SERVER",
-            "GITLAB"
+            "GITLAB",
+            "BITBUCKET_CLOUD"
           ],
           "enumDescriptions": [
             "The default, unknown repo type. Don't use it, instead use one of the other repo types.",
             "A Google Cloud Source Repositories-hosted repo.",
             "A GitHub-hosted repo not necessarily on \"github.com\" (i.e. GitHub Enterprise).",
             "A Bitbucket Server-hosted repo.",
-            "A GitLab-hosted repo."
+            "A GitLab-hosted repo.",
+            "A Bitbucket Cloud-hosted repo."
           ],
           "type": "string"
         },
@@ -4754,14 +4758,16 @@
             "GITHUB",
             "GITHUB_ENTERPRISE",
             "GITLAB_ENTERPRISE",
-            "BITBUCKET_DATA_CENTER"
+            "BITBUCKET_DATA_CENTER",
+            "BITBUCKET_CLOUD"
           ],
           "enumDescriptions": [
             "If unspecified, RepositoryType defaults to GITHUB.",
             "The SCM repo is GITHUB.",
             "The SCM repo is GITHUB Enterprise.",
             "The SCM repo is GITLAB Enterprise.",
-            "The SCM repo is BITBUCKET Data Center."
+            "The SCM repo is BITBUCKET Data Center.",
+            "The SCM repo is BITBUCKET Cloud."
           ],
           "readOnly": true,
           "type": "string"
