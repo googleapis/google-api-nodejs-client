@@ -172,7 +172,7 @@
                       ]
                     },
                     "create": {
-                      "description": "Creates a new execution using the latest revision of the given workflow.",
+                      "description": "Creates a new execution using the latest revision of the given workflow. For more information, see Execute a workflow.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}/executions",
                       "httpMethod": "POST",
                       "id": "workflowexecutions.projects.locations.workflows.executions.create",
@@ -457,7 +457,7 @@
       }
     }
   },
-  "revision": "20231107",
+  "revision": "20231211",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "Callback": {
