@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20231108",
+  "revision": "20231207",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -622,7 +622,8 @@
             "RESOURCE_CONFIG_NOT_FOUND",
             "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
             "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
-            "SOURCE_FORWARDING_RULE_UNSUPPORTED"
+            "SOURCE_FORWARDING_RULE_UNSUPPORTED",
+            "NON_ROUTABLE_IP_ADDRESS"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -646,7 +647,8 @@
             "Aborted because expected resource configuration was missing.",
             "Aborted because a PSC endpoint selection for the Google-managed service is ambiguous (several PSC endpoints satisfy test input).",
             "Aborted because tests with a PSC-based Cloud SQL instance as a source are not supported.",
-            "Aborted because tests with a forwarding rule as a source are not supported."
+            "Aborted because tests with a forwarding rule as a source are not supported.",
+            "Aborted because one of the endpoints is a non-routable IP address (loopback, link-local, etc)."
           ],
           "type": "string"
         },
@@ -1002,12 +1004,17 @@
             "NO_ROUTE",
             "ROUTE_BLACKHOLE",
             "ROUTE_WRONG_NETWORK",
+            "ROUTE_NEXT_HOP_IP_ADDRESS_NOT_RESOLVED",
+            "ROUTE_NEXT_HOP_RESOURCE_NOT_FOUND",
+            "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS",
+            "VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH",
+            "VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH",
             "PRIVATE_TRAFFIC_TO_INTERNET",
             "PRIVATE_GOOGLE_ACCESS_DISALLOWED",
+            "PRIVATE_GOOGLE_ACCESS_VIA_VPN_TUNNEL_UNSUPPORTED",
             "NO_EXTERNAL_ADDRESS",
             "UNKNOWN_INTERNAL_ADDRESS",
             "FORWARDING_RULE_MISMATCH",
-            "FORWARDING_RULE_REGION_MISMATCH",
             "FORWARDING_RULE_NO_INSTANCES",
             "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
             "INSTANCE_NOT_RUNNING",
@@ -1031,25 +1038,34 @@
             "CLOUD_FUNCTION_NOT_ACTIVE",
             "VPC_CONNECTOR_NOT_SET",
             "VPC_CONNECTOR_NOT_RUNNING",
+            "FORWARDING_RULE_REGION_MISMATCH",
             "PSC_CONNECTION_NOT_ACCEPTED",
+            "PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK",
+            "PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS",
             "CLOUD_RUN_REVISION_NOT_READY",
             "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
-            "LOAD_BALANCER_HAS_NO_PROXY_SUBNET"
+            "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
+            "CLOUD_NAT_NO_ADDRESSES"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
             "Destination external address cannot be resolved to a known target. If the address is used in a Google Cloud project, provide the project ID as test input.",
             "A Compute Engine instance can only send or receive a packet with a foreign IP address if ip_forward is enabled.",
             "Dropped due to a firewall rule, unless allowed due to connection tracking.",
-            "Dropped due to no routes.",
+            "Dropped due to no matching routes.",
             "Dropped due to invalid route. Route's next hop is a blackhole.",
             "Packet is sent to a wrong (unintended) network. Example: you trace a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP address to Network3.",
+            "Route's next hop IP address cannot be resolved to a GCP resource.",
+            "Route's next hop resource is not found.",
+            "Packet is sent from the Internet to the private IPv6 address.",
+            "The packet does not match a policy-based VPN tunnel local selector.",
+            "The packet does not match a policy-based VPN tunnel remote selector.",
             "Packet with internal destination address sent to the internet gateway.",
-            "Instance with only an internal IP address tries to access Google API and services, but private Google access is not enabled.",
+            "Instance with only an internal IP address tries to access Google API and services, but private Google access is not enabled in the subnet.",
+            "Source endpoint tries to access Google API and services through the VPN tunnel to another network, but Private Google Access needs to be enabled in the source endpoint network.",
             "Instance with only an internal IP address tries to access external hosts, but Cloud NAT is not enabled in the subnet, unless special configurations on a VM allow this connection.",
             "Destination internal address cannot be resolved to a known target. If this is a shared VPC scenario, verify if the service project ID is provided as test input. Otherwise, verify if the IP address is being used in the project.",
             "Forwarding rule's protocol and ports do not match the packet header.",
-            "Packet could be dropped because it was sent from a different region to a regional forwarding without global access.",
             "Forwarding rule does not have backends configured.",
             "Firewalls block the health check probes to the backends and cause the backends to be unavailable for traffic from the load balancer. For more details, see [Health check firewall rules](https://cloud.google.com/load-balancing/docs/health-checks#firewall_rules).",
             "Packet is sent from or to a Compute Engine instance that is not in a running state.",
@@ -1073,15 +1089,31 @@
             "Packet could be dropped because the Cloud Function is not in an active status.",
             "Packet could be dropped because no VPC connector is set.",
             "Packet could be dropped because the VPC connector is not in a running state.",
+            "Packet could be dropped because it was sent from a different region to a regional forwarding without global access.",
             "The Private Service Connect endpoint is in a project that is not approved to connect to the service.",
+            "The packet is sent to the Private Service Connect endpoint over the peering, but [it's not supported](https://cloud.google.com/vpc/docs/configure-private-service-connect-services#on-premises).",
+            "The packet is sent to the Private Service Connect backend (network endpoint group), but the producer PSC forwarding rule does not have global access enabled.",
             "Packet sent from a Cloud Run revision that is not ready.",
             "Packet was dropped inside Private Service Connect service producer.",
-            "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found."
+            "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found.",
+            "Packet sent to Cloud Nat without active NAT IPs."
           ],
+          "type": "string"
+        },
+        "destinationIp": {
+          "description": "Destination IP address of the dropped packet (if relevant).",
+          "type": "string"
+        },
+        "region": {
+          "description": "Region of the dropped packet (if relevant).",
           "type": "string"
         },
         "resourceUri": {
           "description": "URI of the resource that caused the drop.",
+          "type": "string"
+        },
+        "sourceIp": {
+          "description": "Source IP address of the dropped packet (if relevant).",
           "type": "string"
         }
       },
@@ -1156,7 +1188,7 @@
           "type": "string"
         },
         "ipAddress": {
-          "description": "The IP address of the endpoint, which can be an external or internal IP. An IPv6 address is only allowed when the test's destination is a [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).",
+          "description": "The IP address of the endpoint, which can be an external or internal IP.",
           "type": "string"
         },
         "loadBalancerId": {
@@ -1294,7 +1326,7 @@
       "id": "FirewallInfo",
       "properties": {
         "action": {
-          "description": "Possible values: ALLOW, DENY",
+          "description": "Possible values: ALLOW, DENY, APPLY_SECURITY_PROFILE_GROUP",
           "type": "string"
         },
         "direction": {
@@ -1315,7 +1347,8 @@
             "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
             "NETWORK_FIREWALL_POLICY_RULE",
             "NETWORK_REGIONAL_FIREWALL_POLICY_RULE",
-            "UNSUPPORTED_FIREWALL_POLICY_RULE"
+            "UNSUPPORTED_FIREWALL_POLICY_RULE",
+            "TRACKING_STATE"
           ],
           "enumDescriptions": [
             "Unspecified type.",
@@ -1325,7 +1358,8 @@
             "Implicit firewall rules that are managed by serverless VPC access to allow ingress access. They are not visible in the Google Cloud console. For details, see [VPC connector's implicit rules](https://cloud.google.com/functions/docs/networking/connecting-vpc#restrict-access).",
             "Global network firewall policy rule. For details, see [Network firewall policies](https://cloud.google.com/vpc/docs/network-firewall-policies).",
             "Regional network firewall policy rule. For details, see [Regional network firewall policies](https://cloud.google.com/firewall/docs/regional-firewall-policies).",
-            "Firewall policy rule containing attributes not yet supported in Connectivity tests. Firewall analysis is skipped if such a rule can potentially be matched. Please see the [list of unsupported configurations](https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/concepts/overview#unsupported-configs)."
+            "Firewall policy rule containing attributes not yet supported in Connectivity tests. Firewall analysis is skipped if such a rule can potentially be matched. Please see the [list of unsupported configurations](https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/concepts/overview#unsupported-configs).",
+            "Tracking state for response traffic created when request traffic goes through allow firewall rule. For details, see [firewall rules specifications](https://cloud.google.com/firewall/docs/firewalls#specifications)"
           ],
           "type": "string"
         },
@@ -1382,7 +1416,8 @@
             "IMPORTED_CUSTOM_ROUTE_NEXT_HOP",
             "CLOUD_SQL_INSTANCE",
             "ANOTHER_PROJECT",
-            "NCC_HUB"
+            "NCC_HUB",
+            "ROUTER_APPLIANCE"
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -1393,7 +1428,8 @@
             "Forwarded to the next hop of a custom route imported from a peering VPC.",
             "Forwarded to a Cloud SQL instance.",
             "Forwarded to a VPC network in another project.",
-            "Forwarded to an NCC Hub."
+            "Forwarded to an NCC Hub.",
+            "Forwarded to a router appliance."
           ],
           "type": "string"
         }
@@ -1468,13 +1504,19 @@
             "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
             "IAP",
             "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
-            "CLOUD_DNS"
+            "CLOUD_DNS",
+            "GOOGLE_API",
+            "GOOGLE_API_PSC",
+            "GOOGLE_API_VPC_SC"
           ],
           "enumDescriptions": [
-            "Unspecified Google Service. Includes most of Google APIs and services.",
+            "Unspecified Google Service.",
             "Identity aware proxy. https://cloud.google.com/iap/docs/using-tcp-forwarding",
             "One of two services sharing IP ranges: * Load Balancer proxy * Centralized Health Check prober https://cloud.google.com/load-balancing/docs/firewall-rules",
-            "Connectivity from Cloud DNS to forwarding targets or alternate name servers that use private routing. https://cloud.google.com/dns/docs/zones/forwarding-zones#firewall-rules https://cloud.google.com/dns/docs/policies#firewall-rules"
+            "Connectivity from Cloud DNS to forwarding targets or alternate name servers that use private routing. https://cloud.google.com/dns/docs/zones/forwarding-zones#firewall-rules https://cloud.google.com/dns/docs/policies#firewall-rules",
+            "private.googleapis.com and restricted.googleapis.com",
+            "Google API via Private Service Connect. https://cloud.google.com/vpc/docs/configure-private-service-connect-apis",
+            "Google API via VPC Service Controls. https://cloud.google.com/vpc/docs/configure-private-service-connect-apis"
           ],
           "type": "string"
         },
@@ -1663,6 +1705,56 @@
       },
       "type": "object"
     },
+    "LoadBalancerBackendInfo": {
+      "description": "For display only. Metadata associated with the load balancer backend.",
+      "id": "LoadBalancerBackendInfo",
+      "properties": {
+        "backendServiceUri": {
+          "description": "URI of the backend service this backend belongs to (if applicable).",
+          "type": "string"
+        },
+        "healthCheckFirewallsConfigState": {
+          "description": "Output only. Health check firewalls configuration state for the backend. This is a result of the static firewall analysis (verifying that health check traffic from required IP ranges to the backend is allowed or not). The backend might still be unhealthy even if these firewalls are configured. Please refer to the documentation for more information: https://cloud.google.com/load-balancing/docs/firewall-rules",
+          "enum": [
+            "HEALTH_CHECK_FIREWALLS_CONFIG_STATE_UNSPECIFIED",
+            "FIREWALLS_CONFIGURED",
+            "FIREWALLS_PARTIALLY_CONFIGURED",
+            "FIREWALLS_NOT_CONFIGURED",
+            "FIREWALLS_UNSUPPORTED"
+          ],
+          "enumDescriptions": [
+            "Configuration state unspecified. It usually means that the backend has no health check attached, or there was an unexpected configuration error preventing Connectivity tests from verifying health check configuration.",
+            "Firewall rules (policies) allowing health check traffic from all required IP ranges to the backend are configured.",
+            "Firewall rules (policies) allow health check traffic only from a part of required IP ranges.",
+            "Firewall rules (policies) deny health check traffic from all required IP ranges to the backend.",
+            "The network contains firewall rules of unsupported types, so Connectivity tests were not able to verify health check configuration status. Please refer to the documentation for the list of unsupported configurations: https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/concepts/overview#unsupported-configs"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "healthCheckUri": {
+          "description": "URI of the health check attached to this backend (if applicable).",
+          "type": "string"
+        },
+        "instanceGroupUri": {
+          "description": "URI of the instance group this backend belongs to (if applicable).",
+          "type": "string"
+        },
+        "instanceUri": {
+          "description": "URI of the backend instance (if applicable). Populated for instance group backends, and zonal NEG backends.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Display name of the backend. For example, it might be an instance name for the instance group backends, or an IP address and port for zonal network endpoint group backends.",
+          "type": "string"
+        },
+        "networkEndpointGroupUri": {
+          "description": "URI of the network endpoint group this backend belongs to (if applicable).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LoadBalancerInfo": {
       "description": "For display only. Metadata associated with a load balancer.",
       "id": "LoadBalancerInfo",
@@ -1751,6 +1843,83 @@
         },
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NatInfo": {
+      "description": "For display only. Metadata associated with NAT.",
+      "id": "NatInfo",
+      "properties": {
+        "natGatewayName": {
+          "description": "The name of Cloud NAT Gateway. Only valid when type is CLOUD_NAT.",
+          "type": "string"
+        },
+        "networkUri": {
+          "description": "URI of the network where NAT translation takes place.",
+          "type": "string"
+        },
+        "newDestinationIp": {
+          "description": "Destination IP address after NAT translation.",
+          "type": "string"
+        },
+        "newDestinationPort": {
+          "description": "Destination port after NAT translation. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "newSourceIp": {
+          "description": "Source IP address after NAT translation.",
+          "type": "string"
+        },
+        "newSourcePort": {
+          "description": "Source port after NAT translation. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "oldDestinationIp": {
+          "description": "Destination IP address before NAT translation.",
+          "type": "string"
+        },
+        "oldDestinationPort": {
+          "description": "Destination port before NAT translation. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "oldSourceIp": {
+          "description": "Source IP address before NAT translation.",
+          "type": "string"
+        },
+        "oldSourcePort": {
+          "description": "Source port before NAT translation. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "protocol": {
+          "description": "IP protocol in string format, for example: \"TCP\", \"UDP\", \"ICMP\".",
+          "type": "string"
+        },
+        "routerUri": {
+          "description": "Uri of the Cloud Router. Only valid when type is CLOUD_NAT.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of NAT.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INTERNAL_TO_EXTERNAL",
+            "EXTERNAL_TO_INTERNAL",
+            "CLOUD_NAT",
+            "PRIVATE_SERVICE_CONNECT"
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "From Compute Engine instance's internal address to external address.",
+            "From Compute Engine instance's external address to internal address.",
+            "Cloud NAT Gateway.",
+            "Private service connect NAT."
+          ],
           "type": "string"
         }
       },
@@ -1943,6 +2112,61 @@
         "verifyTime": {
           "description": "The time that reachability was assessed through active probing.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProxyConnectionInfo": {
+      "description": "For display only. Metadata associated with ProxyConnection.",
+      "id": "ProxyConnectionInfo",
+      "properties": {
+        "networkUri": {
+          "description": "URI of the network where connection is proxied.",
+          "type": "string"
+        },
+        "newDestinationIp": {
+          "description": "Destination IP address of a new connection.",
+          "type": "string"
+        },
+        "newDestinationPort": {
+          "description": "Destination port of a new connection. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "newSourceIp": {
+          "description": "Source IP address of a new connection.",
+          "type": "string"
+        },
+        "newSourcePort": {
+          "description": "Source port of a new connection. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "oldDestinationIp": {
+          "description": "Destination IP address of an original connection",
+          "type": "string"
+        },
+        "oldDestinationPort": {
+          "description": "Destination port of an original connection. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "oldSourceIp": {
+          "description": "Source IP address of an original connection.",
+          "type": "string"
+        },
+        "oldSourcePort": {
+          "description": "Source port of an original connection. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "protocol": {
+          "description": "IP protocol in string format, for example: \"TCP\", \"UDP\", \"ICMP\".",
+          "type": "string"
+        },
+        "subnetUri": {
+          "description": "Uri of proxy subnet.",
           "type": "string"
         }
       },
@@ -2254,6 +2478,14 @@
           "$ref": "LoadBalancerInfo",
           "description": "Display information of the load balancers."
         },
+        "loadBalancerBackendInfo": {
+          "$ref": "LoadBalancerBackendInfo",
+          "description": "Display information of a specific load balancer backend."
+        },
+        "nat": {
+          "$ref": "NatInfo",
+          "description": "Display information of a NAT."
+        },
         "network": {
           "$ref": "NetworkInfo",
           "description": "Display information of a Google Cloud network."
@@ -2261,6 +2493,10 @@
         "projectId": {
           "description": "Project ID that contains the configuration this step is validating.",
           "type": "string"
+        },
+        "proxyConnection": {
+          "$ref": "ProxyConnectionInfo",
+          "description": "Display information of a ProxyConnection."
         },
         "route": {
           "$ref": "RouteInfo",
@@ -2283,6 +2519,7 @@
             "APPLY_EGRESS_FIREWALL_RULE",
             "APPLY_ROUTE",
             "APPLY_FORWARDING_RULE",
+            "ANALYZE_LOAD_BALANCER_BACKEND",
             "SPOOFING_APPROVED",
             "ARRIVE_AT_INSTANCE",
             "ARRIVE_AT_INTERNAL_LOAD_BALANCER",
@@ -2302,7 +2539,7 @@
             "Unspecified state.",
             "Initial state: packet originating from a Compute Engine instance. An InstanceInfo is populated with starting instance information.",
             "Initial state: packet originating from the internet. The endpoint information is populated.",
-            "Initial state: packet originating from a Google service. Some Google services, such as health check probers or Identity Aware Proxy use special routes, outside VPC routing configuration to reach Compute Engine Instances.",
+            "Initial state: packet originating from a Google service. The google_service information is populated.",
             "Initial state: packet originating from a VPC or on-premises network with internal source IP. If the source is a VPC network visible to the user, a NetworkInfo is populated with details of the network.",
             "Initial state: packet originating from a Google Kubernetes Engine cluster master. A GKEMasterInfo is populated with starting instance information.",
             "Initial state: packet originating from a Cloud SQL instance. A CloudSQLInstanceInfo is populated with starting instance information.",
@@ -2313,6 +2550,7 @@
             "Config checking state: verify egress firewall rule.",
             "Config checking state: verify route.",
             "Config checking state: match forwarding rule.",
+            "Config checking state: verify load balancer backend configuration.",
             "Config checking state: packet sent or received under foreign IP address and allowed.",
             "Forwarding state: arriving at a Compute Engine instance.",
             "Forwarding state: arriving at a Compute Engine internal load balancer.",
