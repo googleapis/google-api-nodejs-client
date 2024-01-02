@@ -262,6 +262,10 @@ export namespace container_v1beta1 {
      */
     enableMetrics?: boolean | null;
     /**
+     * Enable Relay component
+     */
+    enableRelay?: boolean | null;
+    /**
      * Method used to make Relay available
      */
     relayMode?: string | null;
@@ -393,6 +397,10 @@ export namespace container_v1beta1 {
     upgradeSettings?: Schema$UpgradeSettings;
   }
   /**
+   * Autoscaled rollout policy uses cluster autoscaler during blue-green upgrades to scale both the green and blue pools.
+   */
+  export interface Schema$AutoscaledRolloutPolicy {}
+  /**
    * AutoUpgradeOptions defines the set of options for the user to control how the Auto Upgrades will proceed.
    */
   export interface Schema$AutoUpgradeOptions {
@@ -486,6 +494,10 @@ export namespace container_v1beta1 {
    * Settings for blue-green upgrade.
    */
   export interface Schema$BlueGreenSettings {
+    /**
+     * Autoscaled policy for cluster autoscaler enabled blue-green upgrade.
+     */
+    autoscaledRolloutPolicy?: Schema$AutoscaledRolloutPolicy;
     /**
      * Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.
      */
