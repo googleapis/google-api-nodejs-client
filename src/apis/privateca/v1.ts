@@ -670,7 +670,7 @@ export namespace privateca_v1 {
    */
   export interface Schema$FetchCaCertsResponse {
     /**
-     * The PEM encoded CA certificate chains of all ACTIVE CertificateAuthority resources in this CaPool.
+     * The PEM encoded CA certificate chains of all Certificate Authorities in this CaPool in the ENABLED, DISABLED, or STAGED states.
      */
     caCerts?: Schema$CertChain[];
   }
@@ -1814,7 +1814,7 @@ export namespace privateca_v1 {
     }
 
     /**
-     * FetchCaCerts returns the current trust anchor for the CaPool. This will include CA certificate chains for all ACTIVE CertificateAuthority resources in the CaPool.
+     * FetchCaCerts returns the current trust anchor for the CaPool. This will include CA certificate chains for all Certificate Authorities in the ENABLED, DISABLED, or STAGED states.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
