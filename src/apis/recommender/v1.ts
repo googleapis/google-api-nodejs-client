@@ -139,6 +139,10 @@ export namespace recommender_v1 {
      */
     cost?: Schema$GoogleTypeMoney;
     /**
+     * The approximate cost savings in the billing account's local currency.
+     */
+    costInLocalCurrency?: Schema$GoogleTypeMoney;
+    /**
      * Duration for which this cost applies.
      */
     duration?: string | null;
@@ -156,7 +160,7 @@ export namespace recommender_v1 {
      */
     costProjection?: Schema$GoogleCloudRecommenderV1CostProjection;
     /**
-     * Use with CategoryType.RELAIBILITY
+     * Use with CategoryType.RELIABILITY
      */
     reliabilityProjection?: Schema$GoogleCloudRecommenderV1ReliabilityProjection;
     /**
