@@ -9127,7 +9127,7 @@
       }
     }
   },
-  "revision": "20231114",
+  "revision": "20231212",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -12196,7 +12196,7 @@
             "CONSENT_STATUS_DENIED"
           ],
           "enumDescriptions": [
-            "Consent is not specified.",
+            "Not specified.",
             "Consent is granted.",
             "Consent is denied."
           ],
@@ -12210,7 +12210,7 @@
             "CONSENT_STATUS_DENIED"
           ],
           "enumDescriptions": [
-            "Consent is not specified.",
+            "Not specified.",
             "Consent is granted.",
             "Consent is denied."
           ],
@@ -12265,7 +12265,7 @@
       "properties": {
         "consent": {
           "$ref": "Consent",
-          "description": "Input only. User consent status."
+          "description": "Input only. The consent setting for the users in contact_infos."
         },
         "contactInfos": {
           "description": "A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.",
@@ -18805,7 +18805,7 @@
       "properties": {
         "consent": {
           "$ref": "Consent",
-          "description": "Input only. User consent status."
+          "description": "Input only. The consent setting for the users in mobile_device_ids."
         },
         "mobileDeviceIds": {
           "description": "A list of mobile device IDs defining Customer Match audience members. The size of mobile_device_ids mustn't be greater than 500,000.",
