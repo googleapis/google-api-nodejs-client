@@ -459,7 +459,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The approximate number of Locations in the list irrespective of pagination.
+     * The approximate number of Locations in the list irrespective of pagination. This field will only be returned if `filter` is used as a query parameter.
      */
     totalSize?: number | null;
   }
