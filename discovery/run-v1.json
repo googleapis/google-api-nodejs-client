@@ -15,6 +15,203 @@
   "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API v1 follows the Knative Serving API specification, while v2 is aligned with Google Cloud AIP-based API standards, as described in https://google.aip.dev/.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/run/",
+  "endpoints": [
+    {
+      "endpointUrl": "https://asia-east1-run.googleapis.com/",
+      "location": "asia-east1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-east2-run.googleapis.com/",
+      "location": "asia-east2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-northeast1-run.googleapis.com/",
+      "location": "asia-northeast1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-northeast2-run.googleapis.com/",
+      "location": "asia-northeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-northeast3-run.googleapis.com/",
+      "location": "asia-northeast3",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-south1-run.googleapis.com/",
+      "location": "asia-south1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-south2-run.googleapis.com/",
+      "location": "asia-south2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-southeast1-run.googleapis.com/",
+      "location": "asia-southeast1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-southeast2-run.googleapis.com/",
+      "location": "asia-southeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://australia-southeast1-run.googleapis.com/",
+      "location": "australia-southeast1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://australia-southeast2-run.googleapis.com/",
+      "location": "australia-southeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-central2-run.googleapis.com/",
+      "location": "europe-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-north1-run.googleapis.com/",
+      "location": "europe-north1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-southwest1-run.googleapis.com/",
+      "location": "europe-southwest1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west1-run.googleapis.com/",
+      "location": "europe-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west10-run.googleapis.com/",
+      "location": "europe-west10",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west12-run.googleapis.com/",
+      "location": "europe-west12",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west2-run.googleapis.com/",
+      "location": "europe-west2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west3-run.googleapis.com/",
+      "location": "europe-west3",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west4-run.googleapis.com/",
+      "location": "europe-west4",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west6-run.googleapis.com/",
+      "location": "europe-west6",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west8-run.googleapis.com/",
+      "location": "europe-west8",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west9-run.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://me-central1-run.googleapis.com/",
+      "location": "me-central1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://me-central2-run.googleapis.com/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://me-west1-run.googleapis.com/",
+      "location": "me-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://northamerica-northeast1-run.googleapis.com/",
+      "location": "northamerica-northeast1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://northamerica-northeast2-run.googleapis.com/",
+      "location": "northamerica-northeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://southamerica-east1-run.googleapis.com/",
+      "location": "southamerica-east1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://southamerica-west1-run.googleapis.com/",
+      "location": "southamerica-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-central1-run.googleapis.com/",
+      "location": "us-central1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-east1-run.googleapis.com/",
+      "location": "us-east1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-east4-run.googleapis.com/",
+      "location": "us-east4",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-east5-run.googleapis.com/",
+      "location": "us-east5",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-south1-run.googleapis.com/",
+      "location": "us-south1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-west1-run.googleapis.com/",
+      "location": "us-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-west2-run.googleapis.com/",
+      "location": "us-west2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-west3-run.googleapis.com/",
+      "location": "us-west3",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-west4-run.googleapis.com/",
+      "location": "us-west4",
+      "description": "Locational Endpoint"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1771,6 +1968,129 @@
                 }
               }
             },
+            "operations": {
+              "methods": {
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "run.projects.locations.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "run.projects.locations.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
+                  "httpMethod": "GET",
+                  "id": "run.projects.locations.operations.list",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter for matching the completed or in-progress operations. The supported formats of *filter* are: To query for only completed operations: done:true To query for only ongoing operations: done:false Must be empty to query for all of the latest operations for the given parent project.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. To query for all of the operations for a project.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of records that should be returned. Requested page size cannot exceed 100. If not set or set to less than or equal to 0, the default page size is 100. .",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token identifying which result to start with, which is returned by a previous list call.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}/operations",
+                  "response": {
+                    "$ref": "GoogleLongrunningListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "wait": {
+                  "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:wait",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.operations.wait",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to wait on.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:wait",
+                  "request": {
+                    "$ref": "GoogleLongrunningWaitOperationRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "revisions": {
               "methods": {
                 "delete": {
@@ -2289,7 +2609,7 @@
       }
     }
   },
-  "revision": "20231112",
+  "revision": "20231210",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2384,6 +2704,28 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CSIVolumeSource": {
+      "description": "Storage volume source using the Container Storage Interface.",
+      "id": "CSIVolumeSource",
+      "properties": {
+        "driver": {
+          "description": "name of the CSI driver for the requested storage system. Cloud Run supports the following drivers: * gcsfuse.run.googleapis.com : Mount a Cloud Storage Bucket as a volume.",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "If true, mount the volume as read only. Defaults to false.",
+          "type": "boolean"
+        },
+        "volumeAttributes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "stores driver specific attributes. For Google Cloud Storage volumes, the following attributes are supported: * bucketName: the name of the Cloud Storage bucket to mount. The Cloud Run Service identity must have access to this bucket.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -2762,6 +3104,12 @@
       },
       "type": "object"
     },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
     "EmptyDirVolumeSource": {
       "description": "In memory (tmpfs) ephemeral storage. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).",
       "id": "EmptyDirVolumeSource",
@@ -3053,6 +3401,71 @@
         },
         "type": {
           "description": "type is used to communicate the status of the reconciliation process. Types common to all resources include: * \"Ready\" or \"Completed\": True when the Resource is ready.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleLongrunningListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "GoogleLongrunningListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleLongrunningOperation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "GoogleLongrunningOperation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleLongrunningWaitOperationRequest": {
+      "description": "The request message for Operations.WaitOperation.",
+      "id": "GoogleLongrunningWaitOperationRequest",
+      "properties": {
+        "timeout": {
+          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -3582,6 +3995,25 @@
       },
       "type": "object"
     },
+    "NFSVolumeSource": {
+      "description": "Represents a persistent volume that will be mounted using NFS. This volume will be shared between all instances of the Service and data will not be deleted when the instance is shut down.",
+      "id": "NFSVolumeSource",
+      "properties": {
+        "path": {
+          "description": "Path that is exported by the NFS server.",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "If true, mount the NFS volume as read only. Defaults to false.",
+          "type": "boolean"
+        },
+        "server": {
+          "description": "Hostname or IP address of the NFS server.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ObjectMeta": {
       "description": "google.cloud.run.meta.v1.ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
       "id": "ObjectMeta",
@@ -3590,7 +4022,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision. * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/disable-default-url`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service (ALPHA) * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.",
+          "description": "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision. * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service (ALPHA) * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.",
           "type": "object"
         },
         "clusterName": {
@@ -4158,7 +4590,7 @@
         },
         "metadata": {
           "$ref": "ObjectMeta",
-          "description": "Metadata associated with this Service, including name, namespace, labels, and annotations. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. The following Cloud Run-specific annotations are accepted in Service.metadata.annotations. * `run.googleapis.com/binary-authorization-breakglass` * `run.googleapis.com/binary-authorization` * `run.googleapis.com/client-name` * `run.googleapis.com/custom-audiences` * `run.googleapis.com/description` * `run.googleapis.com/disable-default-url` * `run.googleapis.com/gc-traffic-tags` * `run.googleapis.com/ingress` * `run.googleapis.com/ingress` sets the ingress settings for the Service. See [the ingress settings documentation](/run/docs/securing/ingress) for details on configuring ingress settings. * `run.googleapis.com/ingress-status` is output-only and contains the currently active ingress settings for the Service. `run.googleapis.com/ingress-status` may differ from `run.googleapis.com/ingress` while the system is processing a change to `run.googleapis.com/ingress` or if the system failed to process a change to `run.googleapis.com/ingress`. When the system has processed all changes successfully `run.googleapis.com/ingress-status` and `run.googleapis.com/ingress` are equal."
+          "description": "Metadata associated with this Service, including name, namespace, labels, and annotations. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. The following Cloud Run-specific annotations are accepted in Service.metadata.annotations. * `run.googleapis.com/binary-authorization-breakglass` * `run.googleapis.com/binary-authorization` * `run.googleapis.com/client-name` * `run.googleapis.com/custom-audiences` * `run.googleapis.com/description` * `run.googleapis.com/gc-traffic-tags` * `run.googleapis.com/ingress` * `run.googleapis.com/ingress` sets the ingress settings for the Service. See [the ingress settings documentation](/run/docs/securing/ingress) for details on configuring ingress settings. * `run.googleapis.com/ingress-status` is output-only and contains the currently active ingress settings for the Service. `run.googleapis.com/ingress-status` may differ from `run.googleapis.com/ingress` while the system is processing a change to `run.googleapis.com/ingress` or if the system failed to process a change to `run.googleapis.com/ingress`. When the system has processed all changes successfully `run.googleapis.com/ingress-status` and `run.googleapis.com/ingress` are equal."
         },
         "spec": {
           "$ref": "ServiceSpec",
@@ -4398,7 +4830,7 @@
       "id": "TaskSpec",
       "properties": {
         "containers": {
-          "description": "Optional. List of containers belonging to the task. We disallow a number of fields on this Container. Only a single container may be provided.",
+          "description": "Optional. List of containers belonging to the task. We disallow a number of fields on this Container.",
           "items": {
             "$ref": "Container"
           },
@@ -4556,6 +4988,10 @@
           "$ref": "ConfigMapVolumeSource",
           "description": "Not supported in Cloud Run."
         },
+        "csi": {
+          "$ref": "CSIVolumeSource",
+          "description": "Volume specified by the Container Storage Interface driver"
+        },
         "emptyDir": {
           "$ref": "EmptyDirVolumeSource",
           "description": "Ephemeral storage used as a shared volume."
@@ -4563,6 +4999,9 @@
         "name": {
           "description": "Volume's name. In Cloud Run Fully Managed, the name 'cloudsql' is reserved.",
           "type": "string"
+        },
+        "nfs": {
+          "$ref": "NFSVolumeSource"
         },
         "secret": {
           "$ref": "SecretVolumeSource",
