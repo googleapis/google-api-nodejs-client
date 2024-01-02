@@ -870,6 +870,36 @@ export namespace retail_v2alpha {
     originalServingConfig?: string | null;
   }
   /**
+   * Request message for the `ExportAnalyticsMetrics` method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaExportAnalyticsMetricsRequest {
+    /**
+     * A filtering expression to specify restrictions on returned metrics. The expression is a sequence of terms. Each term applies a restriction to the returned metrics. Use this expression to restrict results to a specific time range. Currently we expect only one types of fields: * `timestamp`: This can be specified twice, once with a less than operator and once with a greater than operator. The `timestamp` restriction should result in one, contiguous, valid, `timestamp` range. Some examples of valid filters expressions: * Example 1: `timestamp \> "2012-04-23T18:25:43.511Z" timestamp < "2012-04-23T18:30:43.511Z"` * Example 2: `timestamp \> "2012-04-23T18:25:43.511Z"`
+     */
+    filter?: string | null;
+    /**
+     * Required. The output location of the data.
+     */
+    outputConfig?: Schema$GoogleCloudRetailV2alphaOutputConfig;
+  }
+  /**
+   * Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaExportAnalyticsMetricsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * This field is never set.
+     */
+    errorsConfig?: Schema$GoogleCloudRetailV2alphaExportErrorsConfig;
+    /**
+     * Output result indicating where the data were exported to.
+     */
+    outputResult?: Schema$GoogleCloudRetailV2alphaOutputResult;
+  }
+  /**
    * Configuration of destination for Export related errors.
    */
   export interface Schema$GoogleCloudRetailV2alphaExportErrorsConfig {
@@ -1557,6 +1587,45 @@ export namespace retail_v2alpha {
     servingConfigIds?: string[] | null;
   }
   /**
+   * The output configuration setting.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaOutputConfig {
+    /**
+     * The BigQuery location where the output is to be written to.
+     */
+    bigqueryDestination?: Schema$GoogleCloudRetailV2alphaOutputConfigBigQueryDestination;
+    /**
+     * The Google Cloud Storage location where the output is to be written to.
+     */
+    gcsDestination?: Schema$GoogleCloudRetailV2alphaOutputConfigGcsDestination;
+  }
+  /**
+   * The BigQuery output destination configuration.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaOutputConfigBigQueryDestination {
+    /**
+     * Required. The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * Required. The prefix of exported BigQuery tables.
+     */
+    tableIdPrefix?: string | null;
+    /**
+     * Required. Describes the table type. The following values are supported: * `table`: A BigQuery native table. * `view`: A virtual table defined by a SQL query.
+     */
+    tableType?: string | null;
+  }
+  /**
+   * The Google Cloud Storage output destination configuration.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaOutputConfigGcsDestination {
+    /**
+     * Required. The output uri prefix for saving output data to json files. Some mapping examples are as follows: output_uri_prefix sample output(assuming the object is foo.json) ======================== ============================================= gs://bucket/ gs://bucket/foo.json gs://bucket/folder/ gs://bucket/folder/foo.json gs://bucket/folder/item_ gs://bucket/folder/item_foo.json
+     */
+    outputUriPrefix?: string | null;
+  }
+  /**
    * Output result that stores the information about where the exported data is stored.
    */
   export interface Schema$GoogleCloudRetailV2alphaOutputResult {
@@ -1717,7 +1786,7 @@ export namespace retail_v2alpha {
      */
     brands?: string[] | null;
     /**
-     * Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categories": [ "Shoes & Accessories \> Shoes", "Sports & Fitness \> Athletic Clothing \> Shoes" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436
+     * Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categories": [ "Shoes & Accessories \> Shoes", "Sports & Fitness \> Athletic Clothing \> Shoes" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product unless overridden via pantheon UI. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436
      */
     categories?: string[] | null;
     /**
@@ -1737,7 +1806,7 @@ export namespace retail_v2alpha {
      */
     description?: string | null;
     /**
-     * The timestamp when this product becomes unavailable for SearchService.Search. Note that this is only applicable to Type.PRIMARY and Type.COLLECTION, and ignored for Type.VARIANT. In general, we suggest the users to delete the stale products explicitly, instead of using this field to determine staleness. If it is set, the Product is not available for SearchService.Search after expire_time. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts. expire_time must be later than available_time and publish_time, otherwise an INVALID_ARGUMENT error is thrown. Corresponding properties: Google Merchant Center property [expiration_date](https://support.google.com/merchants/answer/6324499).
+     * Note that this field is applied in the following ways: * If the Product is already expired when it is uploaded, this product is not indexed for search. * If the Product is not expired when it is uploaded, only the Type.PRIMARY's and Type.COLLECTION's expireTime is respected, and Type.VARIANT's expireTime is not used. In general, we suggest the users to delete the stale products explicitly, instead of using this field to determine staleness. expire_time must be later than available_time and publish_time, otherwise an INVALID_ARGUMENT error is thrown. Corresponding properties: Google Merchant Center property [expiration_date](https://support.google.com/merchants/answer/6324499).
      */
     expireTime?: string | null;
     /**
@@ -4489,6 +4558,100 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Exports analytics metrics. `Operation.response` is of type `ExportAnalyticsMetricsResponse`. `Operation.metadata` is of type `ExportMetadata`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportAnalyticsMetrics(
+      params?: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportAnalyticsMetrics(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportAnalyticsMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha/{+catalog}:exportAnalyticsMetrics'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Gets an AttributesConfig.
      *
      * @param params - Parameters for request
@@ -5282,6 +5445,18 @@ export namespace retail_v2alpha {
      * Required field. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     visitorId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of the parent catalog. Expected format: `projects/x/locations/x/catalogs/x`
+     */
+    catalog?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaExportAnalyticsMetricsRequest;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Getattributesconfig
     extends StandardParameters {
