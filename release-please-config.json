@@ -284,6 +284,8 @@
     "src/apis/vmwareengine": {},
     "src/apis/biglake": {},
     "src/apis/looker": {},
-    "src/apis/bigquerydatapolicy": {}
+    "src/apis/bigquerydatapolicy": {},
+    "src/apis/walletobjects": {},
+    "src/apis/apphub": {}
   }
 }
