@@ -203,7 +203,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     extension?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Extension;
     /**
-     * Required. Restricted to 36 ASCII characters. A random UUID is recommended. The idempotency key for the request. The ID generation logic is controlled by the partner. request_id should be the same as on retries of the same request. A different request_id must be used for a extension of a different cycle. A random UUID is recommended.
+     * Required. Restricted to 36 ASCII characters. A random UUID is recommended. The idempotency key for the request. The ID generation logic is controlled by the partner. request_id should be the same as on retries of the same request. A different request_id must be used for a extension of a different cycle.
      */
     requestId?: string | null;
   }
@@ -882,7 +882,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * To find eligible promotions for the current user. The API requires user authorization via OAuth. The user is inferred from the authenticated OAuth credential.
+     * To find eligible promotions for the current user. The API requires user authorization via OAuth. The bare minimum oauth scope `openid` is sufficient, which will skip the consent screen.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
