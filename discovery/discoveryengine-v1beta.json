@@ -684,7 +684,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*`",
+                              "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*` or `project/*/locations/global/collections/{collection}/engines/*/conversations/*`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                               "required": true,
@@ -1395,6 +1395,196 @@
                 },
                 "engines": {
                   "resources": {
+                    "conversations": {
+                      "methods": {
+                        "converse": {
+                          "description": "Converses a conversation.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations/{conversationsId}:converse",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.converse",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}:converse",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConverseConversationRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConverseConversationResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "create": {
+                          "description": "Creates a Conversation. If the Conversation to create already exists, an ALREADY_EXISTS error is returned.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/conversations",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a Conversation. If the Conversation to delete does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations/{conversationsId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a Conversation.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations/{conversationsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all Conversations by their parent DataStore.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: \"user_pseudo_id = some_id\"",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `conversation_name` Example: \"update_time desc\" \"create_time\"",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `ListConversations` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/conversations",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaListConversationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates a Conversation. Conversation action type cannot be changed. If the Conversation to update does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/conversations/{conversationsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.engines.conversations.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*` or `project/*/locations/global/collections/{collection}/engines/*/conversations/*`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
                     "operations": {
                       "methods": {
                         "get": {
@@ -2098,7 +2288,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*`",
+                          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*` or `project/*/locations/global/collections/{collection}/engines/*/conversations/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                           "required": true,
@@ -2732,7 +2922,7 @@
       }
     }
   },
-  "revision": "20231110",
+  "revision": "20231218",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3112,6 +3302,37 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse": {
+      "description": "Response message for SiteSearchEngineService.BatchCreateTargetSites method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse",
+      "properties": {
+        "targetSites": {
+          "description": "TargetSites created.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaCreateDataStoreMetadata": {
       "description": "Metadata related to the progress of the DataStoreService.CreateDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaCreateDataStoreMetadata",
@@ -3149,6 +3370,23 @@
     "GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata": {
       "description": "Metadata for Create Schema LRO.",
       "id": "GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCreateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.CreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCreateTargetSiteMetadata",
       "properties": {
         "createTime": {
           "description": "Operation create time.",
@@ -3287,6 +3525,85 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeleteTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DeleteTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchResponse": {
+      "description": "Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig": {
+      "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig",
+      "properties": {
+        "name": {
+          "description": "Output only. The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ocrConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
+          "description": "The OCR config. Currently it only applies to PDFs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchResponse": {
+      "description": "Response message for SiteSearchEngineService.EnableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaEngine": {
@@ -3580,6 +3897,35 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeMetadata": {
+      "description": "Metadata related to the progress of the EstimateDataSize operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeResponse": {
+      "description": "Response of the EstimateDataSize request. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEstimateDataSizeResponse",
+      "properties": {
+        "dataSizeBytes": {
+          "description": "Data size in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "documentCount": {
+          "description": "Total number of documents.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaFieldConfig": {
       "description": "Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.",
       "id": "GoogleCloudDiscoveryengineV1alphaFieldConfig",
@@ -3810,6 +4156,28 @@
           "description": "Count of user events imported, but with Document information not found in the existing Branch.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaOcrConfig": {
+      "description": "The OCR options for parsing documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
+      "properties": {
+        "enabled": {
+          "description": "Required. If OCR is enabled or not. OCR must be enabled for other OcrConfig options to apply.",
+          "type": "boolean"
+        },
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4156,6 +4524,45 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaTrainCustomModelMetadata": {
+      "description": "Metadata related to the progress of the TrainCustomModel operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaTrainCustomModelResponse": {
+      "description": "Response of the TrainCustomModelRequest. This message is returned by the google.longrunning.Operations.response field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelResponse",
+      "properties": {
+        "errorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaImportErrorConfig",
+          "description": "Echoes the destination for the complete errors in the request if set."
+        },
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the data.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "modelStatus": {
+          "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaTuneEngineMetadata": {
       "description": "Metadata associated with a tune operation.",
       "id": "GoogleCloudDiscoveryengineV1alphaTuneEngineMetadata",
@@ -4176,6 +4583,23 @@
     "GoogleCloudDiscoveryengineV1alphaUpdateSchemaMetadata": {
       "description": "Metadata for UpdateSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1alphaUpdateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaUpdateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.UpdateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUpdateTargetSiteMetadata",
       "properties": {
         "createTime": {
           "description": "Operation create time.",
@@ -4291,7 +4715,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*`",
+          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*` or `project/*/locations/global/collections/{collection}/engines/*/conversations/*`.",
           "type": "string"
         },
         "startTime": {
@@ -4367,6 +4791,10 @@
         "conversation": {
           "$ref": "GoogleCloudDiscoveryengineV1betaConversation",
           "description": "The conversation to be used by auto session only. The name field will be ignored as we automatically assign new name for the conversation in auto session."
+        },
+        "filter": {
+          "description": "The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. This will be used to filter search results which may affect the summary response. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --> name:'ANY(\"king kong\")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
+          "type": "string"
         },
         "query": {
           "$ref": "GoogleCloudDiscoveryengineV1betaTextInput",
@@ -5427,10 +5855,40 @@
           "description": "Language code for Summary. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). Note: This is an experimental feature.",
           "type": "string"
         },
+        "modelPromptSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelPromptSpec",
+          "description": "If specified, the spec will be used to modify the prompt provided to the LLM."
+        },
+        "modelSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec",
+          "description": "If specified, the spec will be used to modify the model specification provided to the LLM."
+        },
         "summaryResultCount": {
           "description": "The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most five results can be used to generate a summary.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelPromptSpec": {
+      "description": "Specification of the prompt to use with the model.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelPromptSpec",
+      "properties": {
+        "preamble": {
+          "description": "Text at the beginning of the prompt that instructs the assistant. Examples are available in the user guide.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec": {
+      "description": "Specification of the model.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec",
+      "properties": {
+        "version": {
+          "description": "The string format of the model version. e.g. stable, preview, etc.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5831,6 +6289,78 @@
         "summaryText": {
           "description": "The summary content.",
           "type": "string"
+        },
+        "summaryWithMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummarySummaryWithMetadata"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitation": {
+      "description": "Citation info for a segment.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitation",
+      "properties": {
+        "endIndex": {
+          "description": "End of the attributed segment, exclusive.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sources": {
+          "description": "Citation sources for the attributed segment.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitationSource"
+          },
+          "type": "array"
+        },
+        "startIndex": {
+          "description": "Index indicates the start of the segment, measured in bytes/unicode.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitationMetadata": {
+      "description": "Citation metadata.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitationMetadata",
+      "properties": {
+        "citations": {
+          "description": "Citations for segments.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitationSource": {
+      "description": "Citation source.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitationSource",
+      "properties": {
+        "referenceIndex": {
+          "description": "Document reference index from SummaryWithMetadata.references. It is 0-indexed and the value will be zero if the reference_index is not set explicitly.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryReference": {
+      "description": "Document reference.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryReference",
+      "properties": {
+        "document": {
+          "description": "Required. Document.name of the document. Full resource name of the referenced document, in the format `projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*`.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "GCS or HTTP uri for the document.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5853,6 +6383,28 @@
             "type": "number"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseSummarySummaryWithMetadata": {
+      "description": "Summary with metadata information.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSummarySummaryWithMetadata",
+      "properties": {
+        "citationMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitationMetadata",
+          "description": "Citation metadata for given summary."
+        },
+        "references": {
+          "description": "Document References.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummaryReference"
+          },
+          "type": "array"
+        },
+        "summary": {
+          "description": "Summary text with no citation information.",
+          "type": "string"
         }
       },
       "type": "object"
