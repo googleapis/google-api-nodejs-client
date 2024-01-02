@@ -764,6 +764,10 @@ export namespace workstations_v1beta {
      */
     host?: string | null;
     /**
+     * Output only. The name of the Google Cloud KMS encryption key used to encrypt this workstation. The KMS key can only be configured in the WorkstationConfig. The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    kmsKey?: string | null;
+    /**
      * Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation and that are also propagated to the underlying Compute Engine resources.
      */
     labels?: {[key: string]: string} | null;
