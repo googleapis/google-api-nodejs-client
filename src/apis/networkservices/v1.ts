@@ -281,7 +281,7 @@ export namespace networkservices_v1 {
     title?: string | null;
   }
   /**
-   * Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway.
+   * Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway. Next id: 29
    */
   export interface Schema$Gateway {
     /**
@@ -301,9 +301,17 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Determines if envoy will insert internal debug headers into upstream requests. Other Envoy headers may still be injected. By default, envoy will not insert any debug headers.
+     */
+    envoyHeaders?: string | null;
+    /**
      * Optional. A fully-qualified GatewaySecurityPolicy URL reference. Defines how a server should apply security policy to inbound (VM to Proxy) initiated connections. For example: `projects/x/locations/x/gatewaySecurityPolicies/swg-policy`. This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
      */
     gatewaySecurityPolicy?: string | null;
+    /**
+     * Optional. The IP Version that will be used by this gateway. Valid options are IPV4 or IPV6. Default is IPV4.
+     */
+    ipVersion?: string | null;
     /**
      * Optional. Set of label tags associated with the Gateway resource.
      */
@@ -506,6 +514,10 @@ export namespace networkservices_v1 {
      */
     faultInjectionPolicy?: Schema$GrpcRouteFaultInjectionPolicy;
     /**
+     * Optional. Specifies the idle timeout for the selected route. The idle timeout is defined as the period in which there are no bytes sent or received on either the upstream or downstream connection. If not set, the default idle timeout is 1 hour. If set to 0s, the timeout will be disabled.
+     */
+    idleTimeout?: string | null;
+    /**
      * Optional. Specifies the retry policy associated with this route.
      */
     retryPolicy?: Schema$GrpcRouteRetryPolicy;
@@ -640,6 +652,14 @@ export namespace networkservices_v1 {
    */
   export interface Schema$HttpRouteDestination {
     /**
+     * Optional. The specification for modifying the headers of a matching request prior to delivery of the request to the destination. If HeaderModifiers are set on both the Destination and the RouteAction, they will be merged. Conflicts between the two will not be resolved on the configuration.
+     */
+    requestHeaderModifier?: Schema$HttpRouteHeaderModifier;
+    /**
+     * Optional. The specification for modifying the headers of a response prior to sending the response back to the client. If HeaderModifiers are set on both the Destination and the RouteAction, they will be merged. Conflicts between the two will not be resolved on the configuration.
+     */
+    responseHeaderModifier?: Schema$HttpRouteHeaderModifier;
+    /**
      * The URL of a BackendService to route traffic to.
      */
     serviceName?: string | null;
@@ -755,6 +775,23 @@ export namespace networkservices_v1 {
     set?: {[key: string]: string} | null;
   }
   /**
+   * Static HTTP response object to be returned.
+   */
+  export interface Schema$HttpRouteHttpDirectResponse {
+    /**
+     * Optional. Response body as bytes. Maximum body size is 4096B.
+     */
+    bytesBody?: string | null;
+    /**
+     * Required. Status to return as part of HTTP Response. Must be a positive integer.
+     */
+    status?: number | null;
+    /**
+     * Optional. Response body as a string. Maximum body length is 1024 characters.
+     */
+    stringBody?: string | null;
+  }
+  /**
    * Specifications to match a query parameter in the request.
    */
   export interface Schema$HttpRouteQueryParameterMatch {
@@ -816,6 +853,10 @@ export namespace networkservices_v1 {
      * The destination the requests will be mirrored to. The weight of the destination will be ignored.
      */
     destination?: Schema$HttpRouteDestination;
+    /**
+     * Optional. The percentage of requests to get mirrored to the desired destination.
+     */
+    mirrorPercent?: number | null;
   }
   /**
    * The specifications for retries.
@@ -847,9 +888,17 @@ export namespace networkservices_v1 {
      */
     destinations?: Schema$HttpRouteDestination[];
     /**
+     * Optional. Static HTTP Response object to be returned regardless of the request.
+     */
+    directResponse?: Schema$HttpRouteHttpDirectResponse;
+    /**
      * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced on a percentage of requests before sending those requests to the backend service. Similarly requests from clients can be aborted for a percentage of requests. timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy
      */
     faultInjectionPolicy?: Schema$HttpRouteFaultInjectionPolicy;
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle timeout is defined as the period in which there are no bytes sent or received on either the upstream or downstream connection. If not set, the default idle timeout is 1 hour. If set to 0s, the timeout will be disabled.
+     */
+    idleTimeout?: string | null;
     /**
      * If set, the request is directed as configured by this field.
      */
@@ -1119,6 +1168,10 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Determines if envoy will insert internal debug headers into upstream requests. Other Envoy headers may still be injected. By default, envoy will not insert any debug headers.
+     */
+    envoyHeaders?: string | null;
+    /**
      * Optional. If set to a valid TCP port (1-65535), instructs the SIDECAR proxy to listen on the specified port of localhost (127.0.0.1) address. The SIDECAR proxy will expect all traffic to be redirected to this port regardless of its actual ip:port destination. If unset, a port '15001' is used as the interception port. This is applicable only for sidecar proxy deployments.
      */
     interceptionPort?: number | null;
@@ -1331,6 +1384,10 @@ export namespace networkservices_v1 {
      */
     destinations?: Schema$TcpRouteRouteDestination[];
     /**
+     * Optional. Specifies the idle timeout for the selected route. The idle timeout is defined as the period in which there are no bytes sent or received on either the upstream or downstream connection. If not set, the default idle timeout is 30 seconds. If set to 0s, the timeout will be disabled.
+     */
+    idleTimeout?: string | null;
+    /**
      * Optional. If true, Router will use the destination IP and port of the original connection as the destination of the request. Default is false. Only one of route destinations or original destination can be set.
      */
     originalDestination?: boolean | null;
@@ -1441,6 +1498,10 @@ export namespace networkservices_v1 {
      * Required. The destination services to which traffic should be forwarded. At least one destination service is required.
      */
     destinations?: Schema$TlsRouteRouteDestination[];
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle timeout is defined as the period in which there are no bytes sent or received on either the upstream or downstream connection. If not set, the default idle timeout is 1 hour. If set to 0s, the timeout will be disabled.
+     */
+    idleTimeout?: string | null;
   }
   /**
    * Describe the destination for traffic to be routed to.
