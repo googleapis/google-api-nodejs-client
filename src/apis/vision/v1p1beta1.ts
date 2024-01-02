@@ -1442,7 +1442,7 @@ export namespace vision_v1p1beta1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }
@@ -1579,7 +1579,7 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1WebDetectionParams {
     /**
-     * Whether to include results derived from the geo information in the image.
+     * This field has no effect on results.
      */
     includeGeoResults?: boolean | null;
   }
@@ -2326,7 +2326,7 @@ export namespace vision_v1p1beta1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }
@@ -3235,7 +3235,7 @@ export namespace vision_v1p1beta1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }
@@ -4196,7 +4196,7 @@ export namespace vision_v1p1beta1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }
@@ -4812,7 +4812,7 @@ export namespace vision_v1p1beta1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }

@@ -1365,7 +1365,7 @@ export namespace vision_v1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }
@@ -2227,7 +2227,7 @@ export namespace vision_v1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }
@@ -3136,7 +3136,7 @@ export namespace vision_v1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }
@@ -4097,7 +4097,7 @@ export namespace vision_v1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }
@@ -4954,7 +4954,7 @@ export namespace vision_v1 {
      */
     spoof?: string | null;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.
      */
     violence?: string | null;
   }
@@ -5082,7 +5082,7 @@ export namespace vision_v1 {
    */
   export interface Schema$WebDetectionParams {
     /**
-     * Whether to include results derived from the geo information in the image.
+     * This field has no effect on results.
      */
     includeGeoResults?: boolean | null;
   }
