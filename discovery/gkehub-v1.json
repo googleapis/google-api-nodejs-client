@@ -1834,7 +1834,7 @@
       }
     }
   },
-  "revision": "20231114",
+  "revision": "20231206",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2178,20 +2178,9 @@
       "description": "Per-membership state for this feature.",
       "id": "ClusterUpgradeMembershipState",
       "properties": {
-        "fleet": {
-          "description": "Project number or id of the fleet. It is set only for Memberships that are part of fleet-based Rollout Sequencing.",
-          "type": "string"
-        },
         "ignored": {
           "$ref": "ClusterUpgradeIgnoredMembership",
           "description": "Whether this membership is ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel."
-        },
-        "scopes": {
-          "description": "Fully qualified scope names that this clusters is bound to which also have rollout sequencing enabled.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "upgrades": {
           "description": "Actual upgrade state against desired.",
@@ -2341,7 +2330,7 @@
           "description": "Git repo configuration for the cluster."
         },
         "metricsGcpServiceAccountEmail": {
-          "description": "The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA. This field is required when automatic Feature management is enabled.",
+          "description": "The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA.",
           "type": "string"
         },
         "oci": {
@@ -4970,7 +4959,8 @@
           "type": "string"
         },
         "podAntiAffinity": {
-          "description": "Pod anti-affinity enablement.",
+          "deprecated": true,
+          "description": "Pod anti-affinity enablement. Deprecated: use `pod_affinity` instead.",
           "type": "boolean"
         },
         "podTolerations": {
