@@ -185,7 +185,7 @@ export namespace dialogflow_v3beta1 {
     config?: Schema$GoogleCloudDialogflowCxV3InputAudioConfig;
   }
   /**
-   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length fromt the the start of the input audio. The flow goes like below: --\> Time without speech detection | utterance only | utterance or no-speech event | | +-------------+ | +------------+ | +---------------+ ----------+ no barge-in +-|-+ barge-in +-|-+ normal period +----------- +-------------+ | +------------+ | +---------------+ No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
+   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
    */
   export interface Schema$GoogleCloudDialogflowCxV3BargeInConfig {
     /**
@@ -448,7 +448,7 @@ export namespace dialogflow_v3beta1 {
     config?: Schema$GoogleCloudDialogflowCxV3beta1InputAudioConfig;
   }
   /**
-   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length fromt the the start of the input audio. The flow goes like below: --\> Time without speech detection | utterance only | utterance or no-speech event | | +-------------+ | +------------+ | +---------------+ ----------+ no barge-in +-|-+ barge-in +-|-+ normal period +----------- +-------------+ | +------------+ | +---------------+ No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
+   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1BargeInConfig {
     /**
@@ -1706,6 +1706,44 @@ export namespace dialogflow_v3beta1 {
      * Company description, used for LLM prompt, e.g. "a family company selling freshly roasted coffee beans".
      */
     businessDescription?: string | null;
+    /**
+     * Whether to disable fallback to Data Store search results (in case the LLM couldn't pick a proper answer). Per default the feature is enabled.
+     */
+    disableDataStoreFallback?: boolean | null;
+  }
+  /**
+   * Generators contain prompt to be sent to the LLM model to generate text. The prompt can contain parameters which will be resolved before calling the model. It can optionally contain banned phrases to ensure the model responses are safe.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Generator {
+    /**
+     * Required. The human-readable name of the generator, unique within the agent. The prompt contains pre-defined parameters such as $conversation, $last-user-utterance, etc. populated by Dialogflow. It can also contain custom placeholders which will be resolved during fulfillment.
+     */
+    displayName?: string | null;
+    /**
+     * The unique identifier of the generator. Must be set for the Generators.UpdateGenerator method. Generators.CreateGenerate populates the name automatically. Format: `projects//locations//agents//generators/`.
+     */
+    name?: string | null;
+    /**
+     * Optional. List of custom placeholders in the prompt text.
+     */
+    placeholders?: Schema$GoogleCloudDialogflowCxV3beta1GeneratorPlaceholder[];
+    /**
+     * Required. Prompt for the LLM model.
+     */
+    promptText?: Schema$GoogleCloudDialogflowCxV3beta1Phrase;
+  }
+  /**
+   * Represents a custom placeholder in the prompt text.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1GeneratorPlaceholder {
+    /**
+     * Unique ID used to map custom placeholder to parameters in fulfillment.
+     */
+    id?: string | null;
+    /**
+     * Custom placeholder value in the prompt text.
+     */
+    name?: string | null;
   }
   /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
@@ -1877,7 +1915,7 @@ export namespace dialogflow_v3beta1 {
      */
     enableWordInfo?: boolean | null;
     /**
-     * Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)
+     * Optional. Which Speech model to select for the given request. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).
      */
     model?: string | null;
     /**
@@ -2144,6 +2182,19 @@ export namespace dialogflow_v3beta1 {
      * The list of flows. There will be a maximum number of items returned based on the page_size field in the request.
      */
     flows?: Schema$GoogleCloudDialogflowCxV3beta1Flow[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for Generators.ListGenerators.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse {
+    /**
+     * The list of generators. There will be a maximum number of items returned based on the page_size field in the request.
+     */
+    generators?: Schema$GoogleCloudDialogflowCxV3beta1Generator[];
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
@@ -2490,6 +2541,15 @@ export namespace dialogflow_v3beta1 {
     value?: any | null;
   }
   /**
+   * Text input which can be used for prompt or banned phrases.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Phrase {
+    /**
+     * Required. Text input which can be used for prompt or banned phrases.
+     */
+    text?: string | null;
+  }
+  /**
    * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1QueryInput {
@@ -2567,7 +2627,7 @@ export namespace dialogflow_v3beta1 {
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType[];
     /**
-     * Optional. Sets Dialogflow session life time. By default, a Dialogflow session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.
+     * Optional. Configure lifetime of the Dialogflow session. By default, a Dialogflow session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.
      */
     sessionTtl?: string | null;
     /**
@@ -4493,7 +4553,7 @@ export namespace dialogflow_v3beta1 {
      */
     enableWordInfo?: boolean | null;
     /**
-     * Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)
+     * Optional. Which Speech model to select for the given request. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).
      */
     model?: string | null;
     /**
@@ -5640,19 +5700,6 @@ export namespace dialogflow_v3beta1 {
     queryResult?: Schema$GoogleCloudDialogflowV2beta1QueryResult;
   }
   /**
-   * A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1EncryptionSpec {
-    /**
-     * Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
-     */
-    kmsKey?: string | null;
-    /**
-     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
-     */
-    name?: string | null;
-  }
-  /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EntityType {
@@ -5796,24 +5843,6 @@ export namespace dialogflow_v3beta1 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
-  }
-  /**
-   * Metadata for initializing a location-level encryption specification.
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata {
-    /**
-     * Output only. The original request for initialization.
-     */
-    request?: Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest;
-  }
-  /**
-   * The request to initialize a location-level encryption specification.
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest {
-    /**
-     * Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced.
-     */
-    encryptionSpec?: Schema$GoogleCloudDialogflowV2beta1EncryptionSpec;
   }
   /**
    * An intent categorizes an end-user's intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
@@ -7303,19 +7332,6 @@ export namespace dialogflow_v3beta1 {
     createTime?: string | null;
   }
   /**
-   * A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).
-   */
-  export interface Schema$GoogleCloudDialogflowV2EncryptionSpec {
-    /**
-     * Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
-     */
-    kmsKey?: string | null;
-    /**
-     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
-     */
-    name?: string | null;
-  }
-  /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2EntityType {
@@ -7489,24 +7505,6 @@ export namespace dialogflow_v3beta1 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
-  }
-  /**
-   * Metadata for initializing a location-level encryption specification.
-   */
-  export interface Schema$GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata {
-    /**
-     * Output only. The original request for initialization.
-     */
-    request?: Schema$GoogleCloudDialogflowV2InitializeEncryptionSpecRequest;
-  }
-  /**
-   * The request to initialize a location-level encryption specification.
-   */
-  export interface Schema$GoogleCloudDialogflowV2InitializeEncryptionSpecRequest {
-    /**
-     * Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced.
-     */
-    encryptionSpec?: Schema$GoogleCloudDialogflowV2EncryptionSpec;
   }
   /**
    * InputDataset used to create model or do evaluation. NextID:5
@@ -9028,6 +9026,7 @@ export namespace dialogflow_v3beta1 {
     entityTypes: Resource$Projects$Locations$Agents$Entitytypes;
     environments: Resource$Projects$Locations$Agents$Environments;
     flows: Resource$Projects$Locations$Agents$Flows;
+    generators: Resource$Projects$Locations$Agents$Generators;
     intents: Resource$Projects$Locations$Agents$Intents;
     sessions: Resource$Projects$Locations$Agents$Sessions;
     testCases: Resource$Projects$Locations$Agents$Testcases;
@@ -9045,6 +9044,9 @@ export namespace dialogflow_v3beta1 {
         this.context
       );
       this.flows = new Resource$Projects$Locations$Agents$Flows(this.context);
+      this.generators = new Resource$Projects$Locations$Agents$Generators(
+        this.context
+      );
       this.intents = new Resource$Projects$Locations$Agents$Intents(
         this.context
       );
@@ -16801,6 +16803,560 @@ export namespace dialogflow_v3beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3beta1Version;
+  }
+
+  export class Resource$Projects$Locations$Agents$Generators {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a generator in the specified agent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Agents$Generators$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Generator>;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Generators$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Generators$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Generators$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}/generators').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Generator>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Generator>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified generators.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Agents$Generators$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Generators$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Generators$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Generators$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified generator.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Agents$Generators$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Generator>;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Generators$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Generators$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Generators$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Generator>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Generator>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all generators in the specified agent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Generators$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Agents$Generators$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Generators$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Generators$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Generators$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Generators$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Generators$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Generators$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}/generators').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update the specified generator.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Agents$Generators$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Generator>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Generators$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Generators$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Generators$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Generators$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Generator>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Generator>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agents$Generators$Create
+    extends StandardParameters {
+    /**
+     * The language to create generators for the following fields: * `Generator.prompt_text.text` If not specified, the agent's default language is used.
+     */
+    languageCode?: string;
+    /**
+     * Required. The agent to create a generator for. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1Generator;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Generators$Delete
+    extends StandardParameters {
+    /**
+     * This field has no effect for generators not being used. For generators that are used by pages/flows/transition route groups: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the generator, as well as any references to the generator (i.e. Generator) in fulfillments.
+     */
+    force?: boolean;
+    /**
+     * Required. The name of the generator to delete. Format: `projects//locations//agents//generators/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Generators$Get
+    extends StandardParameters {
+    /**
+     * The language to list generators for.
+     */
+    languageCode?: string;
+    /**
+     * Required. The name of the generator. Format: `projects//locations//agents//generators/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Generators$List
+    extends StandardParameters {
+    /**
+     * The language to list generators for.
+     */
+    languageCode?: string;
+    /**
+     * The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The agent to list all generators for. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Generators$Patch
+    extends StandardParameters {
+    /**
+     * The language to list generators for.
+     */
+    languageCode?: string;
+    /**
+     * The unique identifier of the generator. Must be set for the Generators.UpdateGenerator method. Generators.CreateGenerate populates the name automatically. Format: `projects//locations//agents//generators/`.
+     */
+    name?: string;
+    /**
+     * The mask to control which fields get updated. If the mask is not present, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1Generator;
   }
 
   export class Resource$Projects$Locations$Agents$Intents {
