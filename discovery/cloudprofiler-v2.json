@@ -175,6 +175,44 @@
                 "https://www.googleapis.com/auth/monitoring.write"
               ]
             },
+            "list": {
+              "description": "Lists profiles which have been collected so far and for which the caller has permission to view.",
+              "flatPath": "v2/projects/{projectsId}/profiles",
+              "httpMethod": "GET",
+              "id": "cloudprofiler.projects.profiles.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of items to return. Default page_size is 1000. Max limit is 10000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The token to continue pagination and get profiles from a particular page. When paginating, all other parameters provided to `ListProfiles` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns this collection of profiles. Format: projects/{user_project_id}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+parent}/profiles",
+              "response": {
+                "$ref": "ListProfilesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/monitoring",
+                "https://www.googleapis.com/auth/monitoring.write"
+              ]
+            },
             "patch": {
               "description": "UpdateProfile updates the profile bytes and labels on the profile resource created in the online mode. Updating the bytes for profiles created in the offline mode is currently not supported: the profile content must be provided at the time of the profile creation.",
               "flatPath": "v2/projects/{projectsId}/profiles/{profilesId}",
@@ -216,7 +254,7 @@
       }
     }
   },
-  "revision": "20230327",
+  "revision": "20231213",
   "rootUrl": "https://cloudprofiler.googleapis.com/",
   "schemas": {
     "CreateProfileRequest": {
@@ -275,6 +313,29 @@
         "target": {
           "description": "Target is the service name used to group related deployments: * Service name for App Engine Flex / Standard. * Cluster and container name for GKE. * User-specified string for direct Compute Engine profiling (e.g. Java). * Job name for Dataflow. Validation regex: `^[a-z0-9]([-a-z0-9_.]{0,253}[a-z0-9])?$`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListProfilesResponse": {
+      "description": "ListProfileResponse contains the list of collected profiles for deployments in projects which the user has permissions to view.",
+      "id": "ListProfilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to receive the next page of results. This field maybe empty if there are no more profiles to fetch.",
+          "type": "string"
+        },
+        "profiles": {
+          "description": "List of profiles fetched.",
+          "items": {
+            "$ref": "Profile"
+          },
+          "type": "array"
+        },
+        "skippedProfiles": {
+          "description": "Number of profiles that were skipped in the current page since they were not able to be fetched successfully. This should typically be zero. A non-zero value may indicate a transient failure, in which case if the number is too high for your use case, the call may be retried.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
