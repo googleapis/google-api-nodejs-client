@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20231113",
+  "revision": "20231218",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1907,7 +1907,11 @@
             "GO",
             "GO_STDLIB",
             "PYPI",
-            "NPM"
+            "NPM",
+            "NUGET",
+            "RUBYGEMS",
+            "RUST",
+            "COMPOSER"
           ],
           "enumDescriptions": [
             "",
@@ -1916,7 +1920,11 @@
             "Go third-party packages.",
             "Go toolchain + standard library packages.",
             "Python packages.",
-            "NPM packages."
+            "NPM packages.",
+            "Nuget (C#/.NET) packages.",
+            "Ruby packges (from RubyGems package manager).",
+            "Rust packages from Cargo (Github ecosystem is `RUST`).",
+            "PHP packages from Composer package manager."
           ],
           "type": "string"
         },

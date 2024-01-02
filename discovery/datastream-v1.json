@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20231108",
+  "revision": "20231206",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -3046,13 +3046,15 @@
             "STATE_UNSPECIFIED",
             "NOT_EXECUTED",
             "FAILED",
-            "PASSED"
+            "PASSED",
+            "WARNING"
           ],
           "enumDescriptions": [
             "Unspecified state.",
             "Validation did not execute.",
             "Validation failed.",
-            "Validation passed."
+            "Validation passed.",
+            "Validation executed with warnings."
           ],
           "readOnly": true,
           "type": "string"
