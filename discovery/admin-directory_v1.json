@@ -305,7 +305,8 @@
     "chromeosdevices": {
       "methods": {
         "action": {
-          "description": "Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).",
+          "deprecated": true,
+          "description": "DEPRECATED: Use BatchChangeChromeOsDeviceStatus instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action",
           "httpMethod": "POST",
           "id": "directory.chromeosdevices.action",
@@ -613,6 +614,33 @@
           "resources": {
             "chromeos": {
               "methods": {
+                "batchChangeStatus": {
+                  "description": "Changes the status of a batch of ChromeOS devices.",
+                  "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos:batchChangeStatus",
+                  "httpMethod": "POST",
+                  "id": "admin.customer.devices.chromeos.batchChangeStatus",
+                  "parameterOrder": [
+                    "customerId"
+                  ],
+                  "parameters": {
+                    "customerId": {
+                      "description": "Required. Immutable ID of the G Suite account.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/customer/{customerId}/devices/chromeos:batchChangeStatus",
+                  "request": {
+                    "$ref": "BatchChangeChromeOsDeviceStatusRequest"
+                  },
+                  "response": {
+                    "$ref": "BatchChangeChromeOsDeviceStatusResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.directory.device.chromeos"
+                  ]
+                },
                 "issueCommand": {
                   "description": "Issues a command for the device to execute.",
                   "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}:issueCommand",
@@ -4643,7 +4671,7 @@
       }
     }
   },
-  "revision": "20231117",
+  "revision": "20231219",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -4778,6 +4806,93 @@
             "Message of severity: error."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchChangeChromeOsDeviceStatusRequest": {
+      "description": "A request for changing the status of a batch of ChromeOS devices.",
+      "id": "BatchChangeChromeOsDeviceStatusRequest",
+      "properties": {
+        "changeChromeOsDeviceStatusAction": {
+          "description": "Required. The Action to take on the ChromeOS device in order to change its status.",
+          "enum": [
+            "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_UNSPECIFIED",
+            "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DEPROVISION",
+            "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DISABLE",
+            "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_REENABLE"
+          ],
+          "enumDescriptions": [
+            "Default value. Value is unused.",
+            "If you have ChromeOS devices that are no longer being used in your organization, you should deprovision them so that you’re no longer managing them. Deprovisioning the device removes all policies that were on the device as well as device-level printers and the ability to use the device as a kiosk. Depending on the upgrade that’s associated with the device this action might release the license back into the license pool; which allows you to use the license on a different device.",
+            "Use this action if a user loses their device or it’s stolen, this makes it such that the device is still managed, so it will still receive policies, but noone can use it. Depending on the upgrade that’s associated with the device this action might release the license back into the license pool; which allows you to use the license on a different device.",
+            "Reenable the device once it's no longer lost or it's been recovered. This allows the device to be used again. Depending on the upgrade associated with the device this might consume one license from the license pool, meaning that if there aren't enough licenses available the operation will fail."
+          ],
+          "type": "string"
+        },
+        "deprovisionReason": {
+          "description": "Optional. The reason behind a device deprovision, must be provided for all deprovisions, otherwise it must not be provided. It must be one of the non-deprecated deprovision reasons.",
+          "enum": [
+            "DEPROVISION_REASON_UNSPECIFIED",
+            "DEPROVISION_REASON_SAME_MODEL_REPLACEMENT",
+            "DEPROVISION_REASON_UPGRADE",
+            "DEPROVISION_REASON_DOMAIN_MOVE",
+            "DEPROVISION_REASON_SERVICE_EXPIRATION",
+            "DEPROVISION_REASON_OTHER",
+            "DEPROVISION_REASON_DIFFERENT_MODEL_REPLACEMENT",
+            "DEPROVISION_REASON_RETIRING_DEVICE",
+            "DEPROVISION_REASON_UPGRADE_TRANSFER",
+            "DEPROVISION_REASON_NOT_REQUIRED",
+            "DEPROVISION_REASON_REPAIR_CENTER"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "The deprovision reason is unknown.",
+            "Same model replacement. You have return materials authorization (RMA) or you are replacing a malfunctioning device under warranty with the same device model.",
+            "The device was upgraded.",
+            "The device's domain was changed.",
+            "Service expired for the device.",
+            "The device was deprovisioned for a legacy reason that is no longer supported.",
+            "Different model replacement. You are replacing this device with an upgraded or newer device model.",
+            "Retiring from fleet. You are donating, discarding, or otherwise removing the device from use.",
+            "ChromeOS Flex upgrade transfer. This is a ChromeOS Flex device that you are replacing with a Chromebook within a year.",
+            "A reason was not required. For example, the licenses were returned to the customer's license pool.",
+            "The device was deprovisioned by the Repair Service Center. Can only be set by Repair Service Center during RMA."
+          ],
+          "type": "string"
+        },
+        "deviceIds": {
+          "description": "Required. List of the IDs of the ChromeOS devices to change.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchChangeChromeOsDeviceStatusResponse": {
+      "description": "The response of changing the status of a batch of ChromeOS devices.",
+      "id": "BatchChangeChromeOsDeviceStatusResponse",
+      "properties": {
+        "changeChromeOsDeviceStatusResults": {
+          "description": "The results for each of the ChromeOS devices provided in the request.",
+          "items": {
+            "$ref": "ChangeChromeOsDeviceStatusResult"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5149,6 +5264,31 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ChangeChromeOsDeviceStatusResult": {
+      "description": "The result of a single ChromeOS device for a Change state operation.",
+      "id": "ChangeChromeOsDeviceStatusResult",
+      "properties": {
+        "deviceId": {
+          "description": "The unique ID of the ChromeOS device.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "The error result of the operation in case of failure."
+        },
+        "response": {
+          "$ref": "ChangeChromeOsDeviceStatusSucceeded",
+          "description": "The device could change its status successfully."
+        }
+      },
+      "type": "object"
+    },
+    "ChangeChromeOsDeviceStatusSucceeded": {
+      "description": "Response for a successful ChromeOS device status change.",
+      "id": "ChangeChromeOsDeviceStatusSucceeded",
+      "properties": {},
       "type": "object"
     },
     "Channel": {
@@ -7466,6 +7606,33 @@
             "$ref": "Schema"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
         }
       },
       "type": "object"
