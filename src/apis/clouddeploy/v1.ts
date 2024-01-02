@@ -154,7 +154,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$AdvanceRolloutOperation {
     /**
-     * Output only. The phase to which the rollout will be advanced to.
+     * Output only. The phase the rollout will be advanced to.
      */
     destinationPhase?: string | null;
     /**
@@ -253,7 +253,7 @@ export namespace clouddeploy_v1 {
     logType?: string | null;
   }
   /**
-   * An `Automation` resource in the Cloud Deploy API. An `Automation` enables the automation of manually driven actions for a Delivery Pipeline, which includes Release promotion amongst Targets, Rollout repair and Rollout deployment strategy advancement. The intention of Automation is to reduce manual intervention in the continuous delivery process.
+   * An `Automation` resource in the Cloud Deploy API. An `Automation` enables the automation of manually driven actions for a Delivery Pipeline, which includes Release promotion among Targets, Rollout repair and Rollout deployment strategy advancement. The intention of Automation is to reduce manual intervention in the continuous delivery process.
    */
   export interface Schema$Automation {
     /**
@@ -379,7 +379,7 @@ export namespace clouddeploy_v1 {
     targetsPresentCondition?: Schema$TargetsPresentCondition;
   }
   /**
-   * An `AutomationRun` resource in the Cloud Deploy API. An `AutomationRun` represents an automation execution instance of an automation rule.
+   * An `AutomationRun` resource in the Cloud Deploy API. An `AutomationRun` represents an execution instance of an automation rule.
    */
   export interface Schema$AutomationRun {
     /**
@@ -403,7 +403,7 @@ export namespace clouddeploy_v1 {
      */
     etag?: string | null;
     /**
-     * Output only. Time the `AutomationRun` will expire. An `AutomationRun` will expire after 14 days from its creation date.
+     * Output only. Time the `AutomationRun` expires. An `AutomationRun` expires after 14 days from its creation date.
      */
     expireTime?: string | null;
     /**
@@ -431,7 +431,7 @@ export namespace clouddeploy_v1 {
      */
     state?: string | null;
     /**
-     * Output only. Explains the current state of the `AutomationRun`. Present only an explanation is needed.
+     * Output only. Explains the current state of the `AutomationRun`. Present only when an explanation is needed.
      */
     stateDescription?: string | null;
     /**
@@ -589,6 +589,18 @@ export namespace clouddeploy_v1 {
      * Whether Cloud Deploy should update the traffic stanza in a Cloud Run Service on the user's behalf to facilitate traffic splitting. This is required to be true for CanaryDeployments, but optional for CustomCanaryDeployments.
      */
     automaticTrafficControl?: boolean | null;
+    /**
+     * Optional. A list of tags that are added to the canary revision while the canary deployment is in progress.
+     */
+    canaryRevisionTags?: string[] | null;
+    /**
+     * Optional. A list of tags that are added to the prior revision while the canary deployment is in progress.
+     */
+    priorRevisionTags?: string[] | null;
+    /**
+     * Optional. A list of tags that are added to the final stable revision after the canary deployment is completed.
+     */
+    stableRevisionTags?: string[] | null;
   }
   /**
    * Information specifying where to deploy a Cloud Run Service.
@@ -671,6 +683,95 @@ export namespace clouddeploy_v1 {
      * Required. Configuration for each phase in the canary deployment in the order executed.
      */
     phaseConfigs?: Schema$PhaseConfig[];
+  }
+  /**
+   * CustomMetadata contains information from a user defined operation.
+   */
+  export interface Schema$CustomMetadata {
+    /**
+     * Output only. Key-value pairs provided by the user defined operation.
+     */
+    values?: {[key: string]: string} | null;
+  }
+  /**
+   * Information specifying a Custom Target.
+   */
+  export interface Schema$CustomTarget {
+    /**
+     * Required. The name of the CustomTargetType. Format must be `projects/{project\}/locations/{location\}/customTargetTypes/{custom_target_type\}`.
+     */
+    customTargetType?: string | null;
+  }
+  /**
+   * CustomTargetDeployMetadata contains information from a Custom Target deploy operation.
+   */
+  export interface Schema$CustomTargetDeployMetadata {
+    /**
+     * Output only. Skip message provided in the results of a custom deploy operation.
+     */
+    skipMessage?: string | null;
+  }
+  /**
+   * CustomTargetSkaffoldActions represents the `CustomTargetType` configuration using Skaffold custom actions.
+   */
+  export interface Schema$CustomTargetSkaffoldActions {
+    /**
+     * Required. The Skaffold custom action responsible for deploy operations.
+     */
+    deployAction?: string | null;
+    /**
+     * Optional. List of Skaffold modules Cloud Deploy will include in the Skaffold Config as required before performing diagnose.
+     */
+    includeSkaffoldModules?: Schema$SkaffoldModules[];
+    /**
+     * Optional. The Skaffold custom action responsible for render operations. If not provided then Cloud Deploy will perform the render operations via `skaffold render`.
+     */
+    renderAction?: string | null;
+  }
+  /**
+   * A `CustomTargetType` resource in the Cloud Deploy API. A `CustomTargetType` defines a type of custom target that can be referenced in a `Target` in order to facilitate deploying to a runtime that does not have a 1P integration with Cloud Deploy.
+   */
+  export interface Schema$CustomTargetType {
+    /**
+     * Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. Time at which the `CustomTargetType` was created.
+     */
+    createTime?: string | null;
+    /**
+     * Configures render and deploy for the `CustomTargetType` using Skaffold custom actions.
+     */
+    customActions?: Schema$CustomTargetSkaffoldActions;
+    /**
+     * Output only. Resource id of the `CustomTargetType`.
+     */
+    customTargetTypeId?: string | null;
+    /**
+     * Optional. Description of the `CustomTargetType`. Max length is 255 characters.
+     */
+    description?: string | null;
+    /**
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/a-z{0,62\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Unique identifier of the `CustomTargetType`.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Most recent time at which the `CustomTargetType` was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -818,6 +919,14 @@ export namespace clouddeploy_v1 {
      * Output only. The name of the Cloud Run Service that is associated with a `DeployJobRun`.
      */
     cloudRun?: Schema$CloudRunMetadata;
+    /**
+     * Output only. Custom metadata provided by user defined deploy operation.
+     */
+    custom?: Schema$CustomMetadata;
+    /**
+     * Output only. Custom Target metadata associated with a `DeployJobRun`.
+     */
+    customTarget?: Schema$CustomTargetDeployMetadata;
   }
   /**
    * Deployment job composition.
@@ -1140,9 +1249,26 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$ListAutomationsResponse {
     /**
-     * The `Automations` objects.
+     * The `Automation` objects.
      */
     automations?: Schema$Automation[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * The response object from `ListCustomTargetTypes.`
+   */
+  export interface Schema$ListCustomTargetTypesResponse {
+    /**
+     * The `CustomTargetType` objects.
+     */
+    customTargetTypes?: Schema$CustomTargetType[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -1300,6 +1426,10 @@ export namespace clouddeploy_v1 {
      * Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
      */
     cloudRun?: Schema$CloudRunMetadata;
+    /**
+     * Output only. Custom metadata provided by user defined `Rollout` operations.
+     */
+    custom?: Schema$CustomMetadata;
   }
   /**
    * Information specifying a multiTarget.
@@ -1648,6 +1778,10 @@ export namespace clouddeploy_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Snapshot of the custom target types referenced by the targets taken at release creation time.
+     */
+    customTargetTypeSnapshots?: Schema$CustomTargetType[];
+    /**
      * Output only. Snapshot of the parent pipeline taken at release creation time.
      */
     deliveryPipelineSnapshot?: Schema$DeliveryPipeline;
@@ -1721,7 +1855,7 @@ export namespace clouddeploy_v1 {
      */
     releaseReadyCondition?: Schema$ReleaseReadyCondition;
     /**
-     * Details around the support state of the release's skaffold version.
+     * Details around the support state of the release's Skaffold version.
      */
     skaffoldSupportedCondition?: Schema$SkaffoldSupportedCondition;
   }
@@ -1776,6 +1910,10 @@ export namespace clouddeploy_v1 {
      * Output only. Metadata associated with rendering for Cloud Run.
      */
     cloudRun?: Schema$CloudRunRenderMetadata;
+    /**
+     * Output only. Custom metadata provided by user defined render operation.
+     */
+    custom?: Schema$CustomMetadata;
   }
   /**
    * Configuration of the repair action.
@@ -1811,6 +1949,14 @@ export namespace clouddeploy_v1 {
      * Output only. The index of the current repair action in the repair sequence.
      */
     currentRepairModeIndex?: string | null;
+    /**
+     * Output only. The job ID for the Job to repair.
+     */
+    jobId?: string | null;
+    /**
+     * Output only. The phase ID of the phase that includes the job being repaired.
+     */
+    phaseId?: string | null;
     /**
      * Output only. Records of the repair attempts. Each repair phase may have multiple retry attempts or single rollback attempt.
      */
@@ -1850,7 +1996,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Retry {
     /**
-     * Required. Total number of retries. Retry will skipped if set to 0; The minimum value is 1, and the maximum value is 10.
+     * Required. Total number of retries. Retry is skipped if set to 0; The minimum value is 1, and the maximum value is 10.
      */
     attempts?: string | null;
     /**
@@ -2214,23 +2360,70 @@ export namespace clouddeploy_v1 {
     updateMask?: string | null;
   }
   /**
-   * SkaffoldSupportedCondition contains information about when support for the release's version of skaffold ends.
+   * Cloud Storage bucket containing Skaffold Config modules.
+   */
+  export interface Schema$SkaffoldGCSSource {
+    /**
+     * Optional. Relative path from the source to the Skaffold file.
+     */
+    path?: string | null;
+    /**
+     * Required. Cloud Storage source paths to copy recursively. For example, providing "gs://my-bucket/dir/configs/x" will result in Skaffold copying all files within the "dir/configs" directory in the bucket "my-bucket".
+     */
+    source?: string | null;
+  }
+  /**
+   * Git repository containing Skaffold Config modules.
+   */
+  export interface Schema$SkaffoldGitSource {
+    /**
+     * Optional. Relative path from the repository root to the Skaffold file.
+     */
+    path?: string | null;
+    /**
+     * Optional. Git ref the package should be cloned from.
+     */
+    ref?: string | null;
+    /**
+     * Required. Git repository the package should be cloned from.
+     */
+    repo?: string | null;
+  }
+  /**
+   * Skaffold Config modules and their remote source.
+   */
+  export interface Schema$SkaffoldModules {
+    /**
+     * Optional. The Skaffold Config modules to use from the specified source.
+     */
+    configs?: string[] | null;
+    /**
+     * Remote git repository containing the Skaffold Config modules.
+     */
+    git?: Schema$SkaffoldGitSource;
+    /**
+     * Cloud Storage bucket containing the Skaffold Config modules.
+     */
+    googleCloudStorage?: Schema$SkaffoldGCSSource;
+  }
+  /**
+   * SkaffoldSupportedCondition contains information about when support for the release's version of Skaffold ends.
    */
   export interface Schema$SkaffoldSupportedCondition {
     /**
-     * The time at which this release's version of skaffold will enter maintenance mode.
+     * The time at which this release's version of Skaffold will enter maintenance mode.
      */
     maintenanceModeTime?: string | null;
     /**
-     * The skaffold support state for this release's version of skaffold.
+     * The Skaffold support state for this release's version of Skaffold.
      */
     skaffoldSupportState?: string | null;
     /**
-     * True if the version of skaffold used by this release is supported.
+     * True if the version of Skaffold used by this release is supported.
      */
     status?: boolean | null;
     /**
-     * The time at which this release's version of skaffold will no longer be supported.
+     * The time at which this release's version of Skaffold will no longer be supported.
      */
     supportExpirationTime?: string | null;
   }
@@ -2239,7 +2432,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$SkaffoldVersion {
     /**
-     * The time at which this version of skaffold will enter maintenance mode.
+     * The time at which this version of Skaffold will enter maintenance mode.
      */
     maintenanceModeTime?: string | null;
     /**
@@ -2247,7 +2440,7 @@ export namespace clouddeploy_v1 {
      */
     supportEndDate?: Schema$Date;
     /**
-     * The time at which this version of skaffold will no longer be supported.
+     * The time at which this version of Skaffold will no longer be supported.
      */
     supportExpirationTime?: string | null;
     /**
@@ -2339,6 +2532,10 @@ export namespace clouddeploy_v1 {
      * Output only. Time at which the `Target` was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. Information specifying a Custom Target.
+     */
+    customTarget?: Schema$CustomTarget;
     /**
      * Optional. The deploy parameters to use for this target.
      */
@@ -2469,7 +2666,7 @@ export namespace clouddeploy_v1 {
     renderingState?: string | null;
   }
   /**
-   * TargetsPresentCondition contains information on any Targets defined in the Delivery Pipeline that do not actually exist.
+   * `TargetsPresentCondition` contains information on any Targets referenced in the Delivery Pipeline that do not actually exist.
    */
   export interface Schema$TargetsPresentCondition {
     /**
@@ -2565,11 +2762,14 @@ export namespace clouddeploy_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    customTargetTypes: Resource$Projects$Locations$Customtargettypes;
     deliveryPipelines: Resource$Projects$Locations$Deliverypipelines;
     operations: Resource$Projects$Locations$Operations;
     targets: Resource$Projects$Locations$Targets;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.customTargetTypes =
+        new Resource$Projects$Locations$Customtargettypes(this.context);
       this.deliveryPipelines =
         new Resource$Projects$Locations$Deliverypipelines(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
@@ -2871,6 +3071,558 @@ export namespace clouddeploy_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Customtargettypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new CustomTargetType in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Customtargettypes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customtargettypes$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customtargettypes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Customtargettypes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customTargetTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single CustomTargetType.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Customtargettypes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customtargettypes$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customtargettypes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Customtargettypes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single CustomTargetType.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Customtargettypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomTargetType>;
+    get(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomTargetType>,
+      callback: BodyResponseCallback<Schema$CustomTargetType>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Get,
+      callback: BodyResponseCallback<Schema$CustomTargetType>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CustomTargetType>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customtargettypes$Get
+        | BodyResponseCallback<Schema$CustomTargetType>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomTargetType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomTargetType>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomTargetType> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customtargettypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Customtargettypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomTargetType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomTargetType>(parameters);
+      }
+    }
+
+    /**
+     * Lists CustomTargetTypes in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Customtargettypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Customtargettypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCustomTargetTypesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Customtargettypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Customtargettypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCustomTargetTypesResponse>,
+      callback: BodyResponseCallback<Schema$ListCustomTargetTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Customtargettypes$List,
+      callback: BodyResponseCallback<Schema$ListCustomTargetTypesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCustomTargetTypesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customtargettypes$List
+        | BodyResponseCallback<Schema$ListCustomTargetTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCustomTargetTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCustomTargetTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCustomTargetTypesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customtargettypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Customtargettypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customTargetTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCustomTargetTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCustomTargetTypesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a single CustomTargetType.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Customtargettypes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Customtargettypes$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customtargettypes$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customtargettypes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Customtargettypes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Create
+    extends StandardParameters {
+    /**
+     * Required. ID of the `CustomTargetType`.
+     */
+    customTargetTypeId?: string;
+    /**
+     * Required. The parent collection in which the `CustomTargetType` should be created in. Format should be `projects/{project_id\}/locations/{location_name\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomTargetType;
+  }
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, then deleting an already deleted or non-existing `CustomTargetType` will succeed.
+     */
+    allowMissing?: boolean;
+    /**
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the `CustomTargetType` to delete. Format must be `projects/{project_id\}/locations/{location_name\}/customTargetTypes/{custom_target_type\}`.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set to true, the request is validated but no actual change is made.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the `CustomTargetType`. Format must be `projects/{project_id\}/locations/{location_name\}/customTargetTypes/{custom_target_type\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Customtargettypes$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter custom target types to be returned. See https://google.aip.dev/160 for more details.
+     */
+    filter?: string;
+    /**
+     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of `CustomTargetType` objects to return. The service may return fewer than this value. If unspecified, at most 50 `CustomTargetType` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListCustomTargetTypes` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent that owns this collection of custom target types. Format must be `projects/{project_id\}/locations/{location_name\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Customtargettypes$Patch
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, updating a `CustomTargetType` that does not exist will result in the creation of a new `CustomTargetType`.
+     */
+    allowMissing?: boolean;
+    /**
+     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/a-z{0,62\}`.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `CustomTargetType` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+    /**
+     * Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomTargetType;
   }
 
   export class Resource$Projects$Locations$Deliverypipelines {
@@ -4174,7 +4926,7 @@ export namespace clouddeploy_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of automationRuns. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}`.
+     * Required. The parent `Delivery Pipeline`, which owns this collection of automationRuns. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}`.
      */
     parent?: string;
   }
@@ -4695,7 +5447,7 @@ export namespace clouddeploy_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of automations. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     * Required. The parent `Delivery Pipeline`, which owns this collection of automations. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     parent?: string;
   }

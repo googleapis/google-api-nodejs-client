@@ -202,6 +202,218 @@
             }
           },
           "resources": {
+            "customTargetTypes": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new CustomTargetType in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customTargetTypes",
+                  "httpMethod": "POST",
+                  "id": "clouddeploy.projects.locations.customTargetTypes.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "customTargetTypeId": {
+                      "description": "Required. ID of the `CustomTargetType`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent collection in which the `CustomTargetType` should be created in. Format should be `projects/{project_id}/locations/{location_name}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/customTargetTypes",
+                  "request": {
+                    "$ref": "CustomTargetType"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single CustomTargetType.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customTargetTypes/{customTargetTypesId}",
+                  "httpMethod": "DELETE",
+                  "id": "clouddeploy.projects.locations.customTargetTypes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, then deleting an already deleted or non-existing `CustomTargetType` will succeed.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "etag": {
+                      "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the `CustomTargetType` to delete. Format must be `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customTargetTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to true, the request is validated but no actual change is made.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single CustomTargetType.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customTargetTypes/{customTargetTypesId}",
+                  "httpMethod": "GET",
+                  "id": "clouddeploy.projects.locations.customTargetTypes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the `CustomTargetType`. Format must be `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customTargetTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "CustomTargetType"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists CustomTargetTypes in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customTargetTypes",
+                  "httpMethod": "GET",
+                  "id": "clouddeploy.projects.locations.customTargetTypes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter custom target types to be returned. See https://google.aip.dev/160 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of `CustomTargetType` objects to return. The service may return fewer than this value. If unspecified, at most 50 `CustomTargetType` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListCustomTargetTypes` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent that owns this collection of custom target types. Format must be `projects/{project_id}/locations/{location_name}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customTargetTypes",
+                  "response": {
+                    "$ref": "ListCustomTargetTypesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single CustomTargetType.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customTargetTypes/{customTargetTypesId}",
+                  "httpMethod": "PATCH",
+                  "id": "clouddeploy.projects.locations.customTargetTypes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, updating a `CustomTargetType` that does not exist will result in the creation of a new `CustomTargetType`.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Optional. Name of the `CustomTargetType`. Format is `projects/{project}/locations/{location}/customTargetTypes/a-z{0,62}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customTargetTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the `CustomTargetType` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "CustomTargetType"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "deliveryPipelines": {
               "methods": {
                 "create": {
@@ -620,7 +832,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent, which owns this collection of automationRuns. Format must be `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`.",
+                          "description": "Required. The parent `Delivery Pipeline`, which owns this collection of automationRuns. Format must be `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                           "required": true,
@@ -783,7 +995,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent, which owns this collection of automations. Format must be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
+                          "description": "Required. The parent `Delivery Pipeline`, which owns this collection of automations. Format must be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                           "required": true,
@@ -1794,7 +2006,7 @@
       }
     }
   },
-  "revision": "20231110",
+  "revision": "20231206",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -1837,7 +2049,7 @@
       "id": "AdvanceRolloutOperation",
       "properties": {
         "destinationPhase": {
-          "description": "Output only. The phase to which the rollout will be advanced to.",
+          "description": "Output only. The phase the rollout will be advanced to.",
           "readOnly": true,
           "type": "string"
         },
@@ -1982,7 +2194,7 @@
       "type": "object"
     },
     "Automation": {
-      "description": "An `Automation` resource in the Cloud Deploy API. An `Automation` enables the automation of manually driven actions for a Delivery Pipeline, which includes Release promotion amongst Targets, Rollout repair and Rollout deployment strategy advancement. The intention of Automation is to reduce manual intervention in the continuous delivery process.",
+      "description": "An `Automation` resource in the Cloud Deploy API. An `Automation` enables the automation of manually driven actions for a Delivery Pipeline, which includes Release promotion among Targets, Rollout repair and Rollout deployment strategy advancement. The intention of Automation is to reduce manual intervention in the continuous delivery process.",
       "id": "Automation",
       "properties": {
         "annotations": {
@@ -2177,7 +2389,7 @@
       "type": "object"
     },
     "AutomationRun": {
-      "description": "An `AutomationRun` resource in the Cloud Deploy API. An `AutomationRun` represents an automation execution instance of an automation rule.",
+      "description": "An `AutomationRun` resource in the Cloud Deploy API. An `AutomationRun` represents an execution instance of an automation rule.",
       "id": "AutomationRun",
       "properties": {
         "advanceRolloutOperation": {
@@ -2207,7 +2419,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "Output only. Time the `AutomationRun` will expire. An `AutomationRun` will expire after 14 days from its creation date.",
+          "description": "Output only. Time the `AutomationRun` expires. An `AutomationRun` expires after 14 days from its creation date.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2259,7 +2471,7 @@
           "type": "string"
         },
         "stateDescription": {
-          "description": "Output only. Explains the current state of the `AutomationRun`. Present only an explanation is needed.",
+          "description": "Output only. Explains the current state of the `AutomationRun`. Present only when an explanation is needed.",
           "readOnly": true,
           "type": "string"
         },
@@ -2491,6 +2703,27 @@
         "automaticTrafficControl": {
           "description": "Whether Cloud Deploy should update the traffic stanza in a Cloud Run Service on the user's behalf to facilitate traffic splitting. This is required to be true for CanaryDeployments, but optional for CustomCanaryDeployments.",
           "type": "boolean"
+        },
+        "canaryRevisionTags": {
+          "description": "Optional. A list of tags that are added to the canary revision while the canary deployment is in progress.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "priorRevisionTags": {
+          "description": "Optional. A list of tags that are added to the prior revision while the canary deployment is in progress.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "stableRevisionTags": {
+          "description": "Optional. A list of tags that are added to the final stable revision after the canary deployment is completed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2603,6 +2836,125 @@
             "$ref": "PhaseConfig"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CustomMetadata": {
+      "description": "CustomMetadata contains information from a user defined operation.",
+      "id": "CustomMetadata",
+      "properties": {
+        "values": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Key-value pairs provided by the user defined operation.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "CustomTarget": {
+      "description": "Information specifying a Custom Target.",
+      "id": "CustomTarget",
+      "properties": {
+        "customTargetType": {
+          "description": "Required. The name of the CustomTargetType. Format must be `projects/{project}/locations/{location}/customTargetTypes/{custom_target_type}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomTargetDeployMetadata": {
+      "description": "CustomTargetDeployMetadata contains information from a Custom Target deploy operation.",
+      "id": "CustomTargetDeployMetadata",
+      "properties": {
+        "skipMessage": {
+          "description": "Output only. Skip message provided in the results of a custom deploy operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomTargetSkaffoldActions": {
+      "description": "CustomTargetSkaffoldActions represents the `CustomTargetType` configuration using Skaffold custom actions.",
+      "id": "CustomTargetSkaffoldActions",
+      "properties": {
+        "deployAction": {
+          "description": "Required. The Skaffold custom action responsible for deploy operations.",
+          "type": "string"
+        },
+        "includeSkaffoldModules": {
+          "description": "Optional. List of Skaffold modules Cloud Deploy will include in the Skaffold Config as required before performing diagnose.",
+          "items": {
+            "$ref": "SkaffoldModules"
+          },
+          "type": "array"
+        },
+        "renderAction": {
+          "description": "Optional. The Skaffold custom action responsible for render operations. If not provided then Cloud Deploy will perform the render operations via `skaffold render`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomTargetType": {
+      "description": "A `CustomTargetType` resource in the Cloud Deploy API. A `CustomTargetType` defines a type of custom target that can be referenced in a `Target` in order to facilitate deploying to a runtime that does not have a 1P integration with Cloud Deploy.",
+      "id": "CustomTargetType",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. Time at which the `CustomTargetType` was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customActions": {
+          "$ref": "CustomTargetSkaffoldActions",
+          "description": "Configures render and deploy for the `CustomTargetType` using Skaffold custom actions."
+        },
+        "customTargetTypeId": {
+          "description": "Output only. Resource id of the `CustomTargetType`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the `CustomTargetType`. Max length is 255 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Optional. Name of the `CustomTargetType`. Format is `projects/{project}/locations/{location}/customTargetTypes/a-z{0,62}`.",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Unique identifier of the `CustomTargetType`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Most recent time at which the `CustomTargetType` was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2804,7 +3156,8 @@
             "EXECUTION_FAILED",
             "DEADLINE_EXCEEDED",
             "MISSING_RESOURCES_FOR_CANARY",
-            "CLOUD_BUILD_REQUEST_FAILED"
+            "CLOUD_BUILD_REQUEST_FAILED",
+            "DEPLOY_FEATURE_NOT_SUPPORTED"
           ],
           "enumDescriptions": [
             "No reason for failure is specified.",
@@ -2812,7 +3165,8 @@
             "The deploy operation did not complete successfully; check Cloud Build logs.",
             "The deploy job run did not complete within the alloted time.",
             "There were missing resources in the runtime environment required for a canary deployment. Check the Cloud Build logs for more information.",
-            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
+            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details.",
+            "The deploy operation had a feature configured that is not supported."
           ],
           "readOnly": true,
           "type": "string"
@@ -2837,6 +3191,16 @@
         "cloudRun": {
           "$ref": "CloudRunMetadata",
           "description": "Output only. The name of the Cloud Run Service that is associated with a `DeployJobRun`.",
+          "readOnly": true
+        },
+        "custom": {
+          "$ref": "CustomMetadata",
+          "description": "Output only. Custom metadata provided by user defined deploy operation.",
+          "readOnly": true
+        },
+        "customTarget": {
+          "$ref": "CustomTargetDeployMetadata",
+          "description": "Output only. Custom Target metadata associated with a `DeployJobRun`.",
           "readOnly": true
         }
       },
@@ -3323,9 +3687,34 @@
       "id": "ListAutomationsResponse",
       "properties": {
         "automations": {
-          "description": "The `Automations` objects.",
+          "description": "The `Automation` objects.",
           "items": {
             "$ref": "Automation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListCustomTargetTypesResponse": {
+      "description": "The response object from `ListCustomTargetTypes.`",
+      "id": "ListCustomTargetTypesResponse",
+      "properties": {
+        "customTargetTypes": {
+          "description": "The `CustomTargetType` objects.",
+          "items": {
+            "$ref": "CustomTargetType"
           },
           "type": "array"
         },
@@ -3550,6 +3939,11 @@
         "cloudRun": {
           "$ref": "CloudRunMetadata",
           "description": "Output only. The name of the Cloud Run Service that is associated with a `Rollout`.",
+          "readOnly": true
+        },
+        "custom": {
+          "$ref": "CustomMetadata",
+          "description": "Output only. Custom metadata provided by user defined `Rollout` operations.",
           "readOnly": true
         }
       },
@@ -4061,6 +4455,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "customTargetTypeSnapshots": {
+          "description": "Output only. Snapshot of the custom target types referenced by the targets taken at release creation time.",
+          "items": {
+            "$ref": "CustomTargetType"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "deliveryPipelineSnapshot": {
           "$ref": "DeliveryPipeline",
           "description": "Output only. Snapshot of the parent pipeline taken at release creation time.",
@@ -4175,7 +4577,7 @@
         },
         "skaffoldSupportedCondition": {
           "$ref": "SkaffoldSupportedCondition",
-          "description": "Details around the support state of the release's skaffold version."
+          "description": "Details around the support state of the release's Skaffold version."
         }
       },
       "type": "object"
@@ -4279,6 +4681,11 @@
           "$ref": "CloudRunRenderMetadata",
           "description": "Output only. Metadata associated with rendering for Cloud Run.",
           "readOnly": true
+        },
+        "custom": {
+          "$ref": "CustomMetadata",
+          "description": "Output only. Custom metadata provided by user defined render operation.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -4322,6 +4729,16 @@
         "currentRepairModeIndex": {
           "description": "Output only. The index of the current repair action in the repair sequence.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "jobId": {
+          "description": "Output only. The job ID for the Job to repair.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "phaseId": {
+          "description": "Output only. The phase ID of the phase that includes the job being repaired.",
           "readOnly": true,
           "type": "string"
         },
@@ -4383,7 +4800,7 @@
       "id": "Retry",
       "properties": {
         "attempts": {
-          "description": "Required. Total number of retries. Retry will skipped if set to 0; The minimum value is 1, and the maximum value is 10.",
+          "description": "Required. Total number of retries. Retry is skipped if set to 0; The minimum value is 1, and the maximum value is 10.",
           "format": "int64",
           "type": "string"
         },
@@ -4505,11 +4922,13 @@
           "type": "string"
         },
         "jobId": {
+          "deprecated": true,
           "description": "Output only. The job ID for the Job to retry.",
           "readOnly": true,
           "type": "string"
         },
         "phaseId": {
+          "deprecated": true,
           "description": "Output only. The phase ID of the phase that includes the job being retried.",
           "readOnly": true,
           "type": "string"
@@ -4699,7 +5118,8 @@
             "RELEASE_FAILED",
             "RELEASE_ABANDONED",
             "VERIFICATION_CONFIG_NOT_FOUND",
-            "CLOUD_BUILD_REQUEST_FAILED"
+            "CLOUD_BUILD_REQUEST_FAILED",
+            "OPERATION_FEATURE_NOT_SUPPORTED"
           ],
           "enumDescriptions": [
             "No reason for failure is specified.",
@@ -4708,8 +5128,9 @@
             "Deployment did not complete within the alloted time.",
             "Release is in a failed state.",
             "Release is abandoned.",
-            "No skaffold verify configuration was found.",
-            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
+            "No Skaffold verify configuration was found.",
+            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details.",
+            "A Rollout operation had a feature configured that is not supported."
           ],
           "readOnly": true,
           "type": "string"
@@ -5046,17 +5467,73 @@
       },
       "type": "object"
     },
+    "SkaffoldGCSSource": {
+      "description": "Cloud Storage bucket containing Skaffold Config modules.",
+      "id": "SkaffoldGCSSource",
+      "properties": {
+        "path": {
+          "description": "Optional. Relative path from the source to the Skaffold file.",
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. Cloud Storage source paths to copy recursively. For example, providing \"gs://my-bucket/dir/configs/*\" will result in Skaffold copying all files within the \"dir/configs\" directory in the bucket \"my-bucket\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SkaffoldGitSource": {
+      "description": "Git repository containing Skaffold Config modules.",
+      "id": "SkaffoldGitSource",
+      "properties": {
+        "path": {
+          "description": "Optional. Relative path from the repository root to the Skaffold file.",
+          "type": "string"
+        },
+        "ref": {
+          "description": "Optional. Git ref the package should be cloned from.",
+          "type": "string"
+        },
+        "repo": {
+          "description": "Required. Git repository the package should be cloned from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SkaffoldModules": {
+      "description": "Skaffold Config modules and their remote source.",
+      "id": "SkaffoldModules",
+      "properties": {
+        "configs": {
+          "description": "Optional. The Skaffold Config modules to use from the specified source.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "git": {
+          "$ref": "SkaffoldGitSource",
+          "description": "Remote git repository containing the Skaffold Config modules."
+        },
+        "googleCloudStorage": {
+          "$ref": "SkaffoldGCSSource",
+          "description": "Cloud Storage bucket containing the Skaffold Config modules."
+        }
+      },
+      "type": "object"
+    },
     "SkaffoldSupportedCondition": {
-      "description": "SkaffoldSupportedCondition contains information about when support for the release's version of skaffold ends.",
+      "description": "SkaffoldSupportedCondition contains information about when support for the release's version of Skaffold ends.",
       "id": "SkaffoldSupportedCondition",
       "properties": {
         "maintenanceModeTime": {
-          "description": "The time at which this release's version of skaffold will enter maintenance mode.",
+          "description": "The time at which this release's version of Skaffold will enter maintenance mode.",
           "format": "google-datetime",
           "type": "string"
         },
         "skaffoldSupportState": {
-          "description": "The skaffold support state for this release's version of skaffold.",
+          "description": "The Skaffold support state for this release's version of Skaffold.",
           "enum": [
             "SKAFFOLD_SUPPORT_STATE_UNSPECIFIED",
             "SKAFFOLD_SUPPORT_STATE_SUPPORTED",
@@ -5065,18 +5542,18 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "This skaffold version is currently supported.",
-            "This skaffold version is in maintenance mode.",
-            "This skaffold version is no longer supported."
+            "This Skaffold version is currently supported.",
+            "This Skaffold version is in maintenance mode.",
+            "This Skaffold version is no longer supported."
           ],
           "type": "string"
         },
         "status": {
-          "description": "True if the version of skaffold used by this release is supported.",
+          "description": "True if the version of Skaffold used by this release is supported.",
           "type": "boolean"
         },
         "supportExpirationTime": {
-          "description": "The time at which this release's version of skaffold will no longer be supported.",
+          "description": "The time at which this release's version of Skaffold will no longer be supported.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -5088,7 +5565,7 @@
       "id": "SkaffoldVersion",
       "properties": {
         "maintenanceModeTime": {
-          "description": "The time at which this version of skaffold will enter maintenance mode.",
+          "description": "The time at which this version of Skaffold will enter maintenance mode.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -5097,7 +5574,7 @@
           "description": "Date when this version is expected to no longer be supported."
         },
         "supportExpirationTime": {
-          "description": "The time at which this version of skaffold will no longer be supported.",
+          "description": "The time at which this version of Skaffold will no longer be supported.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -5218,6 +5695,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "customTarget": {
+          "$ref": "CustomTarget",
+          "description": "Optional. Information specifying a Custom Target."
         },
         "deployParameters": {
           "additionalProperties": {
@@ -5397,16 +5878,18 @@
             "CLOUD_BUILD_REQUEST_FAILED",
             "VERIFICATION_CONFIG_NOT_FOUND",
             "CUSTOM_ACTION_NOT_FOUND",
-            "DEPLOYMENT_STRATEGY_NOT_SUPPORTED"
+            "DEPLOYMENT_STRATEGY_NOT_SUPPORTED",
+            "RENDER_FEATURE_NOT_SUPPORTED"
           ],
           "enumDescriptions": [
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The render operation did not complete successfully; check Cloud Build logs.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details.",
-            "The render operation did not complete successfully because the verification stanza required for verify was not found on the skaffold configuration.",
-            "The render operation did not complete successfully because the custom action required for predeploy or postdeploy was not found in the skaffold configuration. See failure_message for additional details.",
-            "Release failed during rendering because the release configuration is not supported with the specified deployment strategy."
+            "The render operation did not complete successfully because the verification stanza required for verify was not found on the Skaffold configuration.",
+            "The render operation did not complete successfully because the custom action required for predeploy or postdeploy was not found in the Skaffold configuration. See failure_message for additional details.",
+            "Release failed during rendering because the release configuration is not supported with the specified deployment strategy.",
+            "The render operation had a feature configured that is not supported."
           ],
           "readOnly": true,
           "type": "string"
@@ -5447,7 +5930,7 @@
       "type": "object"
     },
     "TargetsPresentCondition": {
-      "description": "TargetsPresentCondition contains information on any Targets defined in the Delivery Pipeline that do not actually exist.",
+      "description": "`TargetsPresentCondition` contains information on any Targets referenced in the Delivery Pipeline that do not actually exist.",
       "id": "TargetsPresentCondition",
       "properties": {
         "missingTargets": {
