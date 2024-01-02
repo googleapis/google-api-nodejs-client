@@ -153,6 +153,10 @@ export namespace cloudfunctions_v1 {
     logType?: string | null;
   }
   /**
+   * Security patches are applied automatically to the runtime without requiring the function to be redeployed.
+   */
+  export interface Schema$AutomaticUpdatePolicy {}
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -199,6 +203,10 @@ export namespace cloudfunctions_v1 {
    * Describes a Cloud Function that contains user computation executed in response to an event. It encapsulate function and triggers configurations.
    */
   export interface Schema$CloudFunction {
+    /**
+     * See the comment next to this message for more details.
+     */
+    automaticUpdatePolicy?: Schema$AutomaticUpdatePolicy;
     /**
      * The amount of memory in MB available for a function. Defaults to 256MB.
      */
@@ -275,6 +283,10 @@ export namespace cloudfunctions_v1 {
      * Deprecated: use vpc_connector
      */
     network?: string | null;
+    /**
+     * See the comment next to this message for more details.
+     */
+    onDeployUpdatePolicy?: Schema$OnDeployUpdatePolicy;
     /**
      * The runtime in which to run the function. Required when deploying a new function, optional when updating an existing function. For a complete list of possible choices, see the [`gcloud` command reference](https://cloud.google.com/sdk/gcloud/reference/functions/deploy#--runtime).
      */
@@ -449,6 +461,10 @@ export namespace cloudfunctions_v1 {
      */
     endTime?: string | null;
     /**
+     * The operation type.
+     */
+    operationType?: string | null;
+    /**
      * The original request that started the operation.
      */
     requestResource?: {[key: string]: any} | null;
@@ -549,6 +565,10 @@ export namespace cloudfunctions_v1 {
      */
     endTime?: string | null;
     /**
+     * The operation type.
+     */
+    operationType?: string | null;
+    /**
      * The original request that started the operation.
      */
     requestResource?: {[key: string]: any} | null;
@@ -648,6 +668,10 @@ export namespace cloudfunctions_v1 {
      * The time the operation finished running.
      */
     endTime?: string | null;
+    /**
+     * The operation type.
+     */
+    operationType?: string | null;
     /**
      * The original request that started the operation.
      */
@@ -799,6 +823,15 @@ export namespace cloudfunctions_v1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Security patches are only applied when a function is redeployed.
+   */
+  export interface Schema$OnDeployUpdatePolicy {
+    /**
+     * Output only. contains the runtime version which was used during latest function deployment.
+     */
+    runtimeVersion?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
