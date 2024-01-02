@@ -125,6 +125,23 @@ export namespace connectors_v2 {
   }
 
   /**
+   * AccessCredentials includes the OAuth access token, and the other fields returned along with it.
+   */
+  export interface Schema$AccessCredentials {
+    /**
+     * OAuth access token.
+     */
+    accessToken?: string | null;
+    /**
+     * Duration till the access token expires.
+     */
+    expiresIn?: string | null;
+    /**
+     * OAuth refresh token.
+     */
+    refreshToken?: string | null;
+  }
+  /**
    * Action message contains metadata information about a single action present in the external system.
    */
   export interface Schema$Action {
@@ -156,6 +173,72 @@ export namespace connectors_v2 {
      * List containing the metadata of result fields.
      */
     resultMetadata?: Schema$ResultMetadata[];
+  }
+  /**
+   * Response containing status of the connector for readiness prober.
+   */
+  export interface Schema$CheckReadinessResponse {
+    status?: string | null;
+  }
+  /**
+   * The status of the connector.
+   */
+  export interface Schema$CheckStatusResponse {
+    /**
+     * When the connector is not in ACTIVE state, the description must be populated to specify the reason why it's not in ACTIVE state.
+     */
+    description?: string | null;
+    /**
+     * State of the connector.
+     */
+    state?: string | null;
+  }
+  /**
+   * Time window specified for daily operations.
+   */
+  export interface Schema$DailyCycle {
+    /**
+     * Output only. Duration of the time window, set by service producer.
+     */
+    duration?: string | null;
+    /**
+     * Time within the day to start the operations.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * DenyMaintenancePeriod definition. Maintenance is forbidden within the deny period. The start_date must be less than the end_date.
+   */
+  export interface Schema$DenyMaintenancePeriod {
+    /**
+     * Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be before the end.
+     */
+    endDate?: Schema$Date;
+    /**
+     * Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be the same or after the start.
+     */
+    startDate?: Schema$Date;
+    /**
+     * Time in UTC when the Blackout period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC
+     */
+    time?: Schema$TimeOfDay;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -190,6 +273,16 @@ export namespace connectors_v2 {
      * The name of the entity type.
      */
     name?: string | null;
+  }
+  /**
+   * ExchangeAuthCodeRequest currently includes no fields.
+   */
+  export interface Schema$ExchangeAuthCodeRequest {}
+  /**
+   * ExchangeAuthCodeResponse includes the returned access token and its associated credentials.
+   */
+  export interface Schema$ExchangeAuthCodeResponse {
+    accessCredentials?: Schema$AccessCredentials;
   }
   /**
    * Request message for ActionService.ExecuteAction
@@ -302,6 +395,81 @@ export namespace connectors_v2 {
     nullable?: boolean | null;
   }
   /**
+   * Instance represents the interface for SLM services to actuate the state of control plane resources. Example Instance in JSON, where consumer-project-number=123456, producer-project-id=cloud-sql: ```json Instance: { "name": "projects/123456/locations/us-east1/instances/prod-instance", "create_time": { "seconds": 1526406431, \}, "labels": { "env": "prod", "foo": "bar" \}, "state": READY, "software_versions": { "software_update": "cloud-sql-09-28-2018", \}, "maintenance_policy_names": { "UpdatePolicy": "projects/123456/locations/us-east1/maintenancePolicies/prod-update-policy", \} "tenant_project_id": "cloud-sql-test-tenant", "producer_metadata": { "cloud-sql-tier": "basic", "cloud-sql-instance-size": "1G", \}, "provisioned_resources": [ { "resource-type": "compute-instance", "resource-url": "https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1", \} ], "maintenance_schedules": { "csa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \}, "ncsa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \} \}, "consumer_defined_name": "my-sql-instance1", \} ``` LINT.IfChange
+   */
+  export interface Schema$Instance {
+    /**
+     * consumer_defined_name is the name of the instance set by the service consumers. Generally this is different from the `name` field which reperesents the system-assigned id of the instance which the service consumers do not recognize. This is a required field for tenants onboarding to Maintenance Window notifications (go/slm-rollout-maintenance-policies#prerequisites).
+     */
+    consumerDefinedName?: string | null;
+    /**
+     * Output only. Timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The instance_type of this instance of format: projects/{project_number\}/locations/{location_id\}/instanceTypes/{instance_type_id\}. Instance Type represents a high-level tier or SKU of the service that this instance belong to. When enabled(eg: Maintenance Rollout), Rollout uses 'instance_type' along with 'software_versions' to determine whether instance needs an update or not.
+     */
+    instanceType?: string | null;
+    /**
+     * Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For details, please refer to go/mr-user-guide. Should not be set if maintenance_settings.maintenance_policies is set.
+     */
+    maintenancePolicyNames?: {[key: string]: string} | null;
+    /**
+     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule with same key as software_versions.
+     */
+    maintenanceSchedules?: {[key: string]: Schema$MaintenanceSchedule} | null;
+    /**
+     * Optional. The MaintenanceSettings associated with instance.
+     */
+    maintenanceSettings?: Schema$MaintenanceSettings;
+    /**
+     * Unique name of the resource. It uses the form: `projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: This name is passed, stored and logged across the rollout system. So use of consumer project_id or any other consumer PII in the name is strongly discouraged for wipeout (go/wipeout) compliance. See go/elysium/project_ids#storage-guidance for more details.
+     */
+    name?: string | null;
+    /**
+     * Optional. notification_parameter are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.
+     */
+    notificationParameters?: {
+      [key: string]: Schema$NotificationParameter;
+    } | null;
+    /**
+     * Output only. Custom string attributes used primarily to expose producer-specific information in monitoring dashboards. See go/get-instance-metadata.
+     */
+    producerMetadata?: {[key: string]: string} | null;
+    /**
+     * Output only. The list of data plane resources provisioned for this instance, e.g. compute VMs. See go/get-instance-metadata.
+     */
+    provisionedResources?: Schema$ProvisionedResource[];
+    /**
+     * Link to the SLM instance template. Only populated when updating SLM instances via SSA's Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn't need to populate this field. Instead they should use software_versions.
+     */
+    slmInstanceTemplate?: string | null;
+    /**
+     * Output only. SLO metadata for instance classification in the Standardized dataplane SLO platform. See go/cloud-ssa-standard-slo for feature description.
+     */
+    sloMetadata?: Schema$SloMetadata;
+    /**
+     * Software versions that are used to deploy this instance. This can be mutated by rollout services.
+     */
+    softwareVersions?: {[key: string]: string} | null;
+    /**
+     * Output only. Current lifecycle state of the resource (e.g. if it's being created or ready to use).
+     */
+    state?: string | null;
+    /**
+     * Output only. ID of the associated GCP tenant project. See go/get-instance-metadata.
+     */
+    tenantProjectId?: string | null;
+    /**
+     * Output only. Timestamp when the resource was last modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * JsonSchema representation of schema metadata
    */
   export interface Schema$JsonSchema {
@@ -394,6 +562,142 @@ export namespace connectors_v2 {
     unsupportedTypeNames?: string[] | null;
   }
   /**
+   * LINT.IfChange Defines policies to service maintenance events.
+   */
+  export interface Schema$MaintenancePolicy {
+    /**
+     * Output only. The time when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of what this policy is for. Create/Update methods return INVALID_ARGUMENT if the length is greater than 512.
+     */
+    description?: string | null;
+    /**
+     * Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. MaintenancePolicy name using the form: `projects/{project_id\}/locations/{location_id\}/maintenancePolicies/{maintenance_policy_id\}` where {project_id\} refers to a GCP consumer project ID, {location_id\} refers to a GCP region/zone, {maintenance_policy_id\} must be 1-63 characters long and match the regular expression `[a-z0-9]([-a-z0-9]*[a-z0-9])?`.
+     */
+    name?: string | null;
+    /**
+     * Optional. The state of the policy.
+     */
+    state?: string | null;
+    /**
+     * Maintenance policy applicable to instance update.
+     */
+    updatePolicy?: Schema$UpdatePolicy;
+    /**
+     * Output only. The time when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Maintenance schedule which is exposed to customer and potentially end user, indicating published upcoming future maintenance schedule
+   */
+  export interface Schema$MaintenanceSchedule {
+    /**
+     * This field is deprecated, and will be always set to true since reschedule can happen multiple times now. This field should not be removed until all service producers remove this for their customers.
+     */
+    canReschedule?: boolean | null;
+    /**
+     * The scheduled end time for the maintenance.
+     */
+    endTime?: string | null;
+    /**
+     * The rollout management policy this maintenance schedule is associated with. When doing reschedule update request, the reschedule should be against this given policy.
+     */
+    rolloutManagementPolicy?: string | null;
+    /**
+     * schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus maintenance window length (1 day or 1 week). Maintenance cannot be scheduled to start beyond this deadline.
+     */
+    scheduleDeadlineTime?: string | null;
+    /**
+     * The scheduled start time for the maintenance.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Maintenance settings associated with instance. Allows service producers and end users to assign settings that controls maintenance on this instance.
+   */
+  export interface Schema$MaintenanceSettings {
+    /**
+     * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
+     */
+    exclude?: boolean | null;
+    /**
+     * Optional. If the update call is triggered from rollback, set the value as true.
+     */
+    isRollback?: boolean | null;
+    /**
+     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For details, please refer to go/mr-user-guide. Should not be set if maintenance_policy_names is set. If only the name is needed, then only populate MaintenancePolicy.name.
+     */
+    maintenancePolicies?: {[key: string]: Schema$MaintenancePolicy} | null;
+  }
+  /**
+   * MaintenanceWindow definition.
+   */
+  export interface Schema$MaintenanceWindow {
+    /**
+     * Daily cycle.
+     */
+    dailyCycle?: Schema$DailyCycle;
+    /**
+     * Weekly cycle.
+     */
+    weeklyCycle?: Schema$WeeklyCycle;
+  }
+  /**
+   * Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.
+   */
+  export interface Schema$NodeSloMetadata {
+    /**
+     * The location of the node, if different from instance location.
+     */
+    location?: string | null;
+    /**
+     * The id of the node. This should be equal to SaasInstanceNode.node_id.
+     */
+    nodeId?: string | null;
+    /**
+     * If present, this will override eligibility for the node coming from instance or exclusions for specified SLIs.
+     */
+    perSliEligibility?: Schema$PerSliSloEligibility;
+  }
+  /**
+   * Contains notification related data.
+   */
+  export interface Schema$NotificationParameter {
+    /**
+     * Optional. Array of string values. e.g. instance's replica information.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * PerSliSloEligibility is a mapping from an SLI name to eligibility.
+   */
+  export interface Schema$PerSliSloEligibility {
+    /**
+     * An entry in the eligibilities map specifies an eligibility for a particular SLI for the given instance. The SLI key in the name must be a valid SLI name specified in the Eligibility Exporter binary flags otherwise an error will be emitted by Eligibility Exporter and the oncaller will be alerted. If an SLI has been defined in the binary flags but the eligibilities map does not contain it, the corresponding SLI time series will not be emitted by the Eligibility Exporter. This ensures a smooth rollout and compatibility between the data produced by different versions of the Eligibility Exporters. If eligibilities map contains a key for an SLI which has not been declared in the binary flags, there will be an error message emitted in the Eligibility Exporter log and the metric for the SLI in question will not be emitted.
+     */
+    eligibilities?: {[key: string]: Schema$SloEligibility} | null;
+  }
+  /**
+   * Describes provisioned dataplane resources.
+   */
+  export interface Schema$ProvisionedResource {
+    /**
+     * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider's VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with 'compute-', for example: 'compute-instance', 'compute-disk', 'compute-autoscaler'.
+     */
+    resourceType?: string | null;
+    /**
+     * URL identifying the resource, e.g. "https://www.googleapis.com/compute/v1/projects/...)".
+     */
+    resourceUrl?: string | null;
+  }
+  /**
    * A wrapper around the SQL query statement. This is needed so that the JSON representation of ExecuteSqlQueryRequest has the following format: `{"query":"select *"\}`.
    */
   export interface Schema$Query {
@@ -432,6 +736,16 @@ export namespace connectors_v2 {
     type?: string | null;
   }
   /**
+   * RefreshAccessTokenRequest currently includes no fields.
+   */
+  export interface Schema$RefreshAccessTokenRequest {}
+  /**
+   * RefreshAccessTokenResponse includes the returned access token and its associated credentials.
+   */
+  export interface Schema$RefreshAccessTokenResponse {
+    accessCredentials?: Schema$AccessCredentials;
+  }
+  /**
    * Result Metadata message contains metadata about the result returned after executing an Action.
    */
   export interface Schema$ResultMetadata {
@@ -453,6 +767,74 @@ export namespace connectors_v2 {
     name?: string | null;
   }
   /**
+   * Configure the schedule.
+   */
+  export interface Schema$Schedule {
+    /**
+     * Allows to define schedule that runs specified day of the week.
+     */
+    day?: string | null;
+    /**
+     * Output only. Duration of the time window, set by service producer.
+     */
+    duration?: string | null;
+    /**
+     * Time within the window to start the operations.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * SloEligibility is a tuple containing eligibility value: true if an instance is eligible for SLO calculation or false if it should be excluded from all SLO-related calculations along with a user-defined reason.
+   */
+  export interface Schema$SloEligibility {
+    /**
+     * Whether an instance is eligible or ineligible.
+     */
+    eligible?: boolean | null;
+    /**
+     * User-defined reason for the current value of instance eligibility. Usually, this can be directly mapped to the internal state. An empty reason is allowed.
+     */
+    reason?: string | null;
+  }
+  /**
+   * SloMetadata contains resources required for proper SLO classification of the instance.
+   */
+  export interface Schema$SloMetadata {
+    /**
+     * Optional. List of nodes. Some producers need to use per-node metadata to calculate SLO. This field allows such producers to publish per-node SLO meta data, which will be consumed by SSA Eligibility Exporter and published in the form of per node metric to Monarch.
+     */
+    nodes?: Schema$NodeSloMetadata[];
+    /**
+     * Optional. Multiple per-instance SLI eligibilities which apply for individual SLIs.
+     */
+    perSliEligibility?: Schema$PerSliSloEligibility;
+    /**
+     * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.
+     */
+    tier?: string | null;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+  }
+  /**
    * Response message for EntityService.UpdateEntitiesWithConditions
    */
   export interface Schema$UpdateEntitiesWithConditionsResponse {
@@ -460,6 +842,32 @@ export namespace connectors_v2 {
      * Response returned by the external system.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Maintenance policy applicable to instance updates.
+   */
+  export interface Schema$UpdatePolicy {
+    /**
+     * Optional. Relative scheduling channel applied to resource.
+     */
+    channel?: string | null;
+    /**
+     * Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. The protocol supports zero-to-many such periods, but the current SLM Rollout implementation only supports zero-to-one.
+     */
+    denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
+    /**
+     * Optional. Maintenance window that is applied to resources covered by this policy.
+     */
+    window?: Schema$MaintenanceWindow;
+  }
+  /**
+   * Time window specified for weekly operations.
+   */
+  export interface Schema$WeeklyCycle {
+    /**
+     * User can specify multiple windows in a week. Minimum of 1 window.
+     */
+    schedule?: Schema$Schedule[];
   }
 
   export class Resource$Projects {
@@ -493,6 +901,289 @@ export namespace connectors_v2 {
       );
       this.entityTypes =
         new Resource$Projects$Locations$Connections$Entitytypes(this.context);
+    }
+
+    /**
+     * Reports readiness status of the connector. Similar logic to GetStatus but modified for kubernetes health check to understand.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkReadiness(
+      params: Params$Resource$Projects$Locations$Connections$Checkreadiness,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkReadiness(
+      params?: Params$Resource$Projects$Locations$Connections$Checkreadiness,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckReadinessResponse>;
+    checkReadiness(
+      params: Params$Resource$Projects$Locations$Connections$Checkreadiness,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkReadiness(
+      params: Params$Resource$Projects$Locations$Connections$Checkreadiness,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckReadinessResponse>,
+      callback: BodyResponseCallback<Schema$CheckReadinessResponse>
+    ): void;
+    checkReadiness(
+      params: Params$Resource$Projects$Locations$Connections$Checkreadiness,
+      callback: BodyResponseCallback<Schema$CheckReadinessResponse>
+    ): void;
+    checkReadiness(
+      callback: BodyResponseCallback<Schema$CheckReadinessResponse>
+    ): void;
+    checkReadiness(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Checkreadiness
+        | BodyResponseCallback<Schema$CheckReadinessResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckReadinessResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckReadinessResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckReadinessResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Checkreadiness;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Checkreadiness;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:checkReadiness').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckReadinessResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckReadinessResponse>(parameters);
+      }
+    }
+
+    /**
+     * Reports the status of the connection. Note that when the connection is in a state that is not ACTIVE, the implementation of this RPC method must return a Status with the corresponding State instead of returning a gRPC status code that is not "OK", which indicates that ConnectionStatus itself, not the connection, failed.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkStatus(
+      params: Params$Resource$Projects$Locations$Connections$Checkstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkStatus(
+      params?: Params$Resource$Projects$Locations$Connections$Checkstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckStatusResponse>;
+    checkStatus(
+      params: Params$Resource$Projects$Locations$Connections$Checkstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkStatus(
+      params: Params$Resource$Projects$Locations$Connections$Checkstatus,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckStatusResponse>,
+      callback: BodyResponseCallback<Schema$CheckStatusResponse>
+    ): void;
+    checkStatus(
+      params: Params$Resource$Projects$Locations$Connections$Checkstatus,
+      callback: BodyResponseCallback<Schema$CheckStatusResponse>
+    ): void;
+    checkStatus(
+      callback: BodyResponseCallback<Schema$CheckStatusResponse>
+    ): void;
+    checkStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Checkstatus
+        | BodyResponseCallback<Schema$CheckStatusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckStatusResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Checkstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Checkstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:checkStatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckStatusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckStatusResponse>(parameters);
+      }
+    }
+
+    /**
+     * ExchangeAuthCode exchanges the OAuth authorization code (and other necessary data) for an access token (and associated credentials).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exchangeAuthCode(
+      params: Params$Resource$Projects$Locations$Connections$Exchangeauthcode,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exchangeAuthCode(
+      params?: Params$Resource$Projects$Locations$Connections$Exchangeauthcode,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExchangeAuthCodeResponse>;
+    exchangeAuthCode(
+      params: Params$Resource$Projects$Locations$Connections$Exchangeauthcode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exchangeAuthCode(
+      params: Params$Resource$Projects$Locations$Connections$Exchangeauthcode,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExchangeAuthCodeResponse>,
+      callback: BodyResponseCallback<Schema$ExchangeAuthCodeResponse>
+    ): void;
+    exchangeAuthCode(
+      params: Params$Resource$Projects$Locations$Connections$Exchangeauthcode,
+      callback: BodyResponseCallback<Schema$ExchangeAuthCodeResponse>
+    ): void;
+    exchangeAuthCode(
+      callback: BodyResponseCallback<Schema$ExchangeAuthCodeResponse>
+    ): void;
+    exchangeAuthCode(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Exchangeauthcode
+        | BodyResponseCallback<Schema$ExchangeAuthCodeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExchangeAuthCodeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExchangeAuthCodeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExchangeAuthCodeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Exchangeauthcode;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Exchangeauthcode;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:exchangeAuthCode').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExchangeAuthCodeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExchangeAuthCodeResponse>(parameters);
+      }
     }
 
     /**
@@ -589,8 +1280,129 @@ export namespace connectors_v2 {
         return createAPIRequest<Schema$ExecuteSqlQueryResponse>(parameters);
       }
     }
+
+    /**
+     * RefreshAccessToken exchanges the OAuth refresh token (and other necessary data) for a new access token (and new associated credentials).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    refreshAccessToken(
+      params: Params$Resource$Projects$Locations$Connections$Refreshaccesstoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    refreshAccessToken(
+      params?: Params$Resource$Projects$Locations$Connections$Refreshaccesstoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RefreshAccessTokenResponse>;
+    refreshAccessToken(
+      params: Params$Resource$Projects$Locations$Connections$Refreshaccesstoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    refreshAccessToken(
+      params: Params$Resource$Projects$Locations$Connections$Refreshaccesstoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RefreshAccessTokenResponse>,
+      callback: BodyResponseCallback<Schema$RefreshAccessTokenResponse>
+    ): void;
+    refreshAccessToken(
+      params: Params$Resource$Projects$Locations$Connections$Refreshaccesstoken,
+      callback: BodyResponseCallback<Schema$RefreshAccessTokenResponse>
+    ): void;
+    refreshAccessToken(
+      callback: BodyResponseCallback<Schema$RefreshAccessTokenResponse>
+    ): void;
+    refreshAccessToken(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Refreshaccesstoken
+        | BodyResponseCallback<Schema$RefreshAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RefreshAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RefreshAccessTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RefreshAccessTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Refreshaccesstoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Refreshaccesstoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:refreshAccessToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RefreshAccessTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RefreshAccessTokenResponse>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Connections$Checkreadiness
+    extends StandardParameters {
+    /**
+     *
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Checkstatus
+    extends StandardParameters {
+    /**
+     *
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Exchangeauthcode
+    extends StandardParameters {
+    /**
+     *
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExchangeAuthCodeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Connections$Executesqlquery
     extends StandardParameters {
     /**
@@ -602,6 +1414,18 @@ export namespace connectors_v2 {
      * Request body metadata
      */
     requestBody?: Schema$ExecuteSqlQueryRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Refreshaccesstoken
+    extends StandardParameters {
+    /**
+     *
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RefreshAccessTokenRequest;
   }
 
   export class Resource$Projects$Locations$Connections$Actions {
