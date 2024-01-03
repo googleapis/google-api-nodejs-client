@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v6.0.0...compute-v6.1.0) (2024-01-03)
+
+
+### Features
+
+* **compute:** update the API ([ffbf00b](https://github.com/googleapis/google-api-nodejs-client/commit/ffbf00b1c1dfa03616f3900be03014f20f04c65e))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v5.0.0...compute-v6.0.0) (2023-11-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v1.2.0...cloudchannel-v1.3.0) (2024-01-03)
+
+
+### Features
+
+* **cloudchannel:** update the API ([aecac6b](https://github.com/googleapis/google-api-nodejs-client/commit/aecac6be45a12e632acffbdffe530945847ef721))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v1.1.1...cloudchannel-v1.2.0) (2023-10-11)
 
 

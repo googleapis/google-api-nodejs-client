@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/servicedirectory",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "servicedirectory",
   "main": "build/index.js",
   "types": "build/index.d.ts",

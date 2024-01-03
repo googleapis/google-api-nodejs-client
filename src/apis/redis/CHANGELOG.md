@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v4.0.0...redis-v4.1.0) (2024-01-03)
+
+
+### Features
+
+* **redis:** update the API ([fd4636b](https://github.com/googleapis/google-api-nodejs-client/commit/fd4636b1c992ccd668708b55821fa1696231b9b2))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v3.0.0...redis-v4.0.0) (2023-11-30)
 
 

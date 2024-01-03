@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v3.0.0...dataplex-v3.1.0) (2024-01-03)
+
+
+### Features
+
+* **dataplex:** update the API ([8da4b12](https://github.com/googleapis/google-api-nodejs-client/commit/8da4b128b1cfbcfd5998f0756e4bc7c3c0c4974e))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v2.1.0...dataplex-v3.0.0) (2023-11-30)
 
 

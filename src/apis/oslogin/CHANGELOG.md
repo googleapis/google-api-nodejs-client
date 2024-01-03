@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/oslogin-v2.0.0...oslogin-v2.1.0) (2024-01-03)
+
+
+### Features
+
+* **oslogin:** update the API ([f1475c5](https://github.com/googleapis/google-api-nodejs-client/commit/f1475c544fad3f6694f35de1b21fb807f1b71368))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/oslogin-v1.1.1...oslogin-v2.0.0) (2023-10-11)
 
 

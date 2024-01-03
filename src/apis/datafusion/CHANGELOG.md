@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v6.2.0...datafusion-v6.3.0) (2024-01-03)
+
+
+### Features
+
+* **datafusion:** update the API ([413c94e](https://github.com/googleapis/google-api-nodejs-client/commit/413c94e5db50bf95084b1991538cad71b0327a04))
+
 ## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v6.1.0...datafusion-v6.2.0) (2023-11-30)
 
 

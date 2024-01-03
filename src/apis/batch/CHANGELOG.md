@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v4.0.0...batch-v5.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **batch:** This release has breaking changes.
+
+### Features
+
+* **batch:** update the API ([9ef21e0](https://github.com/googleapis/google-api-nodejs-client/commit/9ef21e04593fc74206167811071c92c5c033a728))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v3.0.0...batch-v4.0.0) (2023-11-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v3.0.0...container-v3.1.0) (2024-01-03)
+
+
+### Features
+
+* **container:** update the API ([cac432f](https://github.com/googleapis/google-api-nodejs-client/commit/cac432f882b47acbeaeabd02a18c15d34160a589))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v2.1.0...container-v3.0.0) (2023-11-30)
 
 
