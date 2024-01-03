@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v2.0.1...gkebackup-v2.0.2) (2024-01-03)
+
+
+### Bug Fixes
+
+* **gkebackup:** update the API ([30ca612](https://github.com/googleapis/google-api-nodejs-client/commit/30ca6127287a5f55a8c6d7b7247f2aff618e6b8f))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v2.0.0...gkebackup-v2.0.1) (2023-10-19)
 
 

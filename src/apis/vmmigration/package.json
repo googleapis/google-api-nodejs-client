@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/vmmigration",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "vmmigration",
   "main": "build/index.js",
   "types": "build/index.d.ts",

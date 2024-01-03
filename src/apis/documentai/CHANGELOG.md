@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v4.0.0...documentai-v4.1.0) (2024-01-03)
+
+
+### Features
+
+* **documentai:** update the API ([01cc7b5](https://github.com/googleapis/google-api-nodejs-client/commit/01cc7b599452a3ba52629add7fad7a6a6591ccd9))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v3.0.0...documentai-v4.0.0) (2023-11-30)
 
 

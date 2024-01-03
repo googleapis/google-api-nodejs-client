@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v2.0.0...networksecurity-v3.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **networksecurity:** This release has breaking changes.
+
+### Features
+
+* **networksecurity:** update the API ([166232f](https://github.com/googleapis/google-api-nodejs-client/commit/166232fe1444a4db2eb17f14b12ce85e87fceac8))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v1.1.1...networksecurity-v2.0.0) (2023-10-11)
 
 
