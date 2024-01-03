@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v3.0.0...metastore-v4.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **metastore:** This release has breaking changes.
+
+### Features
+
+* **metastore:** update the API ([6887f67](https://github.com/googleapis/google-api-nodejs-client/commit/6887f67506173992f1a6c4df2d5768ca472228a8))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v2.1.0...metastore-v3.0.0) (2023-11-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicemanagement-v1.2.0...servicemanagement-v1.3.0) (2024-01-03)
+
+
+### Features
+
+* **servicemanagement:** update the API ([429940b](https://github.com/googleapis/google-api-nodejs-client/commit/429940b1b4955ea05962454ff4132f5fa93cc83d))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicemanagement-v1.1.1...servicemanagement-v1.2.0) (2023-10-11)
 
 
