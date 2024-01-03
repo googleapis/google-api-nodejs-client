@@ -2514,6 +2514,188 @@
                     }
                   }
                 },
+                "generators": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a generator in the specified agent.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/generators",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.generators.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "languageCode": {
+                          "description": "The language to create generators for the following fields: * `Generator.prompt_text.text` If not specified, the agent's default language is used.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The agent to create a generator for. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/generators",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1Generator"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1Generator"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes the specified generators.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/generators/{generatorsId}",
+                      "httpMethod": "DELETE",
+                      "id": "dialogflow.projects.locations.agents.generators.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "force": {
+                          "description": "This field has no effect for generators not being used. For generators that are used by pages/flows/transition route groups: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the generator, as well as any references to the generator (i.e. Generator) in fulfillments.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Required. The name of the generator to delete. Format: `projects//locations//agents//generators/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/generators/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves the specified generator.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/generators/{generatorsId}",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.generators.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "languageCode": {
+                          "description": "The language to list generators for.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The name of the generator. Format: `projects//locations//agents//generators/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/generators/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1Generator"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "list": {
+                      "description": "Returns the list of all generators in the specified agent.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/generators",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.generators.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "languageCode": {
+                          "description": "The language to list generators for.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value returned from a previous list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The agent to list all generators for. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/generators",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Update the specified generator.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/generators/{generatorsId}",
+                      "httpMethod": "PATCH",
+                      "id": "dialogflow.projects.locations.agents.generators.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "languageCode": {
+                          "description": "The language to list generators for.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The unique identifier of the generator. Must be set for the Generators.UpdateGenerator method. Generators.CreateGenerate populates the name automatically. Format: `projects//locations//agents//generators/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/generators/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The mask to control which fields get updated. If the mask is not present, all fields will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1Generator"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1Generator"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    }
+                  }
+                },
                 "intents": {
                   "methods": {
                     "create": {
@@ -4155,7 +4337,7 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20231215",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4229,7 +4411,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3BargeInConfig": {
-      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length fromt the the start of the input audio. The flow goes like below: --> Time without speech detection | utterance only | utterance or no-speech event | | +-------------+ | +------------+ | +---------------+ ----------+ no barge-in +-|-+ barge-in +-|-+ normal period +----------- +-------------+ | +------------+ | +---------------+ No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
+      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
       "id": "GoogleCloudDialogflowCxV3BargeInConfig",
       "properties": {
         "noBargeInDuration": {
@@ -5097,7 +5279,7 @@
           "type": "boolean"
         },
         "model": {
-          "description": "Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)",
+          "description": "Optional. Which Speech model to select for the given request. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).",
           "type": "string"
         },
         "modelVariant": {
@@ -5110,9 +5292,9 @@
           ],
           "enumDescriptions": [
             "No model variant specified. In this case Dialogflow defaults to USE_BEST_AVAILABLE.",
-            "Use the best available variant of the Speech model that the caller is eligible for. Please see the [Dialogflow docs](https://cloud.google.com/dialogflow/docs/data-logging) for how to make your project eligible for enhanced models.",
+            "Use the best available variant of the Speech model that the caller is eligible for.",
             "Use standard model variant even if an enhanced model is available. See the [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) for details about enhanced models.",
-            "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants. * If the API caller isn't eligible for enhanced models, Dialogflow returns an error. Please see the [Dialogflow docs](https://cloud.google.com/dialogflow/docs/data-logging) for how to make your project eligible."
+            "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants."
           ],
           "type": "string"
         },
@@ -6644,7 +6826,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1BargeInConfig": {
-      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length fromt the the start of the input audio. The flow goes like below: --> Time without speech detection | utterance only | utterance or no-speech event | | +-------------+ | +------------+ | +---------------+ ----------+ no barge-in +-|-+ barge-in +-|-+ normal period +----------- +-------------+ | +------------+ | +---------------+ No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
+      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
       "id": "GoogleCloudDialogflowCxV3beta1BargeInConfig",
       "properties": {
         "noBargeInDuration": {
@@ -8349,6 +8531,51 @@
         "businessDescription": {
           "description": "Company description, used for LLM prompt, e.g. \"a family company selling freshly roasted coffee beans\".",
           "type": "string"
+        },
+        "disableDataStoreFallback": {
+          "description": "Whether to disable fallback to Data Store search results (in case the LLM couldn't pick a proper answer). Per default the feature is enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1Generator": {
+      "description": "Generators contain prompt to be sent to the LLM model to generate text. The prompt can contain parameters which will be resolved before calling the model. It can optionally contain banned phrases to ensure the model responses are safe.",
+      "id": "GoogleCloudDialogflowCxV3beta1Generator",
+      "properties": {
+        "displayName": {
+          "description": "Required. The human-readable name of the generator, unique within the agent. The prompt contains pre-defined parameters such as $conversation, $last-user-utterance, etc. populated by Dialogflow. It can also contain custom placeholders which will be resolved during fulfillment.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The unique identifier of the generator. Must be set for the Generators.UpdateGenerator method. Generators.CreateGenerate populates the name automatically. Format: `projects//locations//agents//generators/`.",
+          "type": "string"
+        },
+        "placeholders": {
+          "description": "Optional. List of custom placeholders in the prompt text.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1GeneratorPlaceholder"
+          },
+          "type": "array"
+        },
+        "promptText": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Phrase",
+          "description": "Required. Prompt for the LLM model."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1GeneratorPlaceholder": {
+      "description": "Represents a custom placeholder in the prompt text.",
+      "id": "GoogleCloudDialogflowCxV3beta1GeneratorPlaceholder",
+      "properties": {
+        "id": {
+          "description": "Unique ID used to map custom placeholder to parameters in fulfillment.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Custom placeholder value in the prompt text.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8644,7 +8871,7 @@
           "type": "boolean"
         },
         "model": {
-          "description": "Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)",
+          "description": "Optional. Which Speech model to select for the given request. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).",
           "type": "string"
         },
         "modelVariant": {
@@ -8657,9 +8884,9 @@
           ],
           "enumDescriptions": [
             "No model variant specified. In this case Dialogflow defaults to USE_BEST_AVAILABLE.",
-            "Use the best available variant of the Speech model that the caller is eligible for. Please see the [Dialogflow docs](https://cloud.google.com/dialogflow/docs/data-logging) for how to make your project eligible for enhanced models.",
+            "Use the best available variant of the Speech model that the caller is eligible for.",
             "Use standard model variant even if an enhanced model is available. See the [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) for details about enhanced models.",
-            "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants. * If the API caller isn't eligible for enhanced models, Dialogflow returns an error. Please see the [Dialogflow docs](https://cloud.google.com/dialogflow/docs/data-logging) for how to make your project eligible."
+            "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants."
           ],
           "type": "string"
         },
@@ -9001,6 +9228,24 @@
           "description": "The list of flows. There will be a maximum number of items returned based on the page_size field in the request.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1Flow"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse": {
+      "description": "The response message for Generators.ListGenerators.",
+      "id": "GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse",
+      "properties": {
+        "generators": {
+          "description": "The list of generators. There will be a maximum number of items returned based on the page_size field in the request.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1Generator"
           },
           "type": "array"
         },
@@ -9509,6 +9754,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1Phrase": {
+      "description": "Text input which can be used for prompt or banned phrases.",
+      "id": "GoogleCloudDialogflowCxV3beta1Phrase",
+      "properties": {
+        "text": {
+          "description": "Required. Text input which can be used for prompt or banned phrases.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1QueryInput": {
       "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.",
       "id": "GoogleCloudDialogflowCxV3beta1QueryInput",
@@ -9607,7 +9863,7 @@
           "type": "array"
         },
         "sessionTtl": {
-          "description": "Optional. Sets Dialogflow session life time. By default, a Dialogflow session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.",
+          "description": "Optional. Configure lifetime of the Dialogflow session. By default, a Dialogflow session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.",
           "format": "google-duration",
           "type": "string"
         },
@@ -11886,21 +12142,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowV2EncryptionSpec": {
-      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
-      "id": "GoogleCloudDialogflowV2EncryptionSpec",
-      "properties": {
-        "kmsKey": {
-          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
-          "type": "string"
-        },
-        "name": {
-          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowV2EntityType": {
       "description": "Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2EntityType",
@@ -12140,29 +12381,6 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata": {
-      "description": "Metadata for initializing a location-level encryption specification.",
-      "id": "GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata",
-      "properties": {
-        "request": {
-          "$ref": "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest",
-          "description": "Output only. The original request for initialization.",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest": {
-      "description": "The request to initialize a location-level encryption specification.",
-      "id": "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest",
-      "properties": {
-        "encryptionSpec": {
-          "$ref": "GoogleCloudDialogflowV2EncryptionSpec",
-          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
         }
       },
       "type": "object"
@@ -13866,21 +14084,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowV2beta1EncryptionSpec": {
-      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
-      "id": "GoogleCloudDialogflowV2beta1EncryptionSpec",
-      "properties": {
-        "kmsKey": {
-          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
-          "type": "string"
-        },
-        "name": {
-          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowV2beta1EntityType": {
       "description": "Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2beta1EntityType",
@@ -14081,29 +14284,6 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata": {
-      "description": "Metadata for initializing a location-level encryption specification.",
-      "id": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata",
-      "properties": {
-        "request": {
-          "$ref": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest",
-          "description": "Output only. The original request for initialization.",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest": {
-      "description": "The request to initialize a location-level encryption specification.",
-      "id": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest",
-      "properties": {
-        "encryptionSpec": {
-          "$ref": "GoogleCloudDialogflowV2beta1EncryptionSpec",
-          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
         }
       },
       "type": "object"

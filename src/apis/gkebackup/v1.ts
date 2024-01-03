@@ -757,7 +757,7 @@ export namespace gkebackup_v1 {
     namespaces?: string[] | null;
   }
   /**
-   * Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 19
+   * Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 20
    */
   export interface Schema$Restore {
     /**
@@ -830,7 +830,7 @@ export namespace gkebackup_v1 {
     volumesRestoredCount?: number | null;
   }
   /**
-   * Configuration of a restore. Next id: 12
+   * Configuration of a restore. Next id: 14
    */
   export interface Schema$RestoreConfig {
     /**

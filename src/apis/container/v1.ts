@@ -250,6 +250,10 @@ export namespace container_v1 {
      */
     enableMetrics?: boolean | null;
     /**
+     * Enable Relay component
+     */
+    enableRelay?: boolean | null;
+    /**
      * Method used to make Relay available
      */
     relayMode?: string | null;

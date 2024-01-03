@@ -777,6 +777,10 @@ export namespace drive_v2 {
      */
     restrictionDate?: string | null;
     /**
+     * Output only. Whether the content restriction was applied by the system, for example due to an esignature. Users cannot modify or remove system restricted content restrictions.
+     */
+    systemRestricted?: boolean | null;
+    /**
      * Output only. The type of the content restriction. Currently the only possible value is `globalContentRestriction`.
      */
     type?: string | null;

@@ -1488,7 +1488,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Resource name of this taxonomy, whose format is: \"projects/{project_number}/locations/{location_id}/taxonomies/{id}\".",
+                      "description": "Identifier. Resource name of this taxonomy, whose format is: \"projects/{project_number}/locations/{location_id}/taxonomies/{id}\".",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                       "required": true,
@@ -1724,7 +1724,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Resource name of this policy tag, whose format is: \"projects/{project_number}/locations/{location_id}/taxonomies/{taxonomy_id}/policyTags/{id}\".",
+                          "description": "Identifier. Resource name of this policy tag, whose format is: \"projects/{project_number}/locations/{location_id}/taxonomies/{taxonomy_id}/policyTags/{id}\".",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+/policyTags/[^/]+$",
                           "required": true,
@@ -1813,7 +1813,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20231208",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3861,8 +3861,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of this policy tag, whose format is: \"projects/{project_number}/locations/{location_id}/taxonomies/{taxonomy_id}/policyTags/{id}\".",
-          "readOnly": true,
+          "description": "Identifier. Resource name of this policy tag, whose format is: \"projects/{project_number}/locations/{location_id}/taxonomies/{taxonomy_id}/policyTags/{id}\".",
           "type": "string"
         },
         "parentPolicyTag": {
@@ -4301,8 +4300,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of this taxonomy, whose format is: \"projects/{project_number}/locations/{location_id}/taxonomies/{id}\".",
-          "readOnly": true,
+          "description": "Identifier. Resource name of this taxonomy, whose format is: \"projects/{project_number}/locations/{location_id}/taxonomies/{id}\".",
           "type": "string"
         },
         "policyTagCount": {

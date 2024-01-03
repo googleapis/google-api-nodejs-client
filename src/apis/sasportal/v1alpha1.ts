@@ -579,6 +579,15 @@ export namespace sasportal_v1alpha1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response for [ListLegacyOrganizations]. [spectrum.sas.portal.v1alpha1.Provisioning.ListLegacyOrganizations].
+   */
+  export interface Schema$SasPortalListLegacyOrganizationsResponse {
+    /**
+     * Optional. IDs of legacy SAS organizations.
+     */
+    organizationIds?: string[] | null;
+  }
+  /**
    * Response for ListNodes.
    */
   export interface Schema$SasPortalListNodesResponse {
@@ -1157,6 +1166,101 @@ export namespace sasportal_v1alpha1 {
     }
 
     /**
+     * Checks whether account is legacy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listLegacyOrganizations(
+      params: Params$Resource$Customers$Listlegacyorganizations,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listLegacyOrganizations(
+      params?: Params$Resource$Customers$Listlegacyorganizations,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListLegacyOrganizationsResponse>;
+    listLegacyOrganizations(
+      params: Params$Resource$Customers$Listlegacyorganizations,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listLegacyOrganizations(
+      params: Params$Resource$Customers$Listlegacyorganizations,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListLegacyOrganizationsResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListLegacyOrganizationsResponse>
+    ): void;
+    listLegacyOrganizations(
+      params: Params$Resource$Customers$Listlegacyorganizations,
+      callback: BodyResponseCallback<Schema$SasPortalListLegacyOrganizationsResponse>
+    ): void;
+    listLegacyOrganizations(
+      callback: BodyResponseCallback<Schema$SasPortalListLegacyOrganizationsResponse>
+    ): void;
+    listLegacyOrganizations(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Listlegacyorganizations
+        | BodyResponseCallback<Schema$SasPortalListLegacyOrganizationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListLegacyOrganizationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListLegacyOrganizationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListLegacyOrganizationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Listlegacyorganizations;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Listlegacyorganizations;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha1/customers:listLegacyOrganizations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListLegacyOrganizationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListLegacyOrganizationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Migrates a SAS organization to the cloud. This will create GCP projects for each deployment and associate them. The SAS Organization is linked to the gcp project that called the command. go/sas-legacy-customer-migration
      *
      * @param params - Parameters for request
@@ -1541,6 +1645,8 @@ export namespace sasportal_v1alpha1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Customers$Listlegacyorganizations
+    extends StandardParameters {}
   export interface Params$Resource$Customers$Migrateorganization
     extends StandardParameters {
     /**

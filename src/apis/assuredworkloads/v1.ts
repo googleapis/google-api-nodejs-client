@@ -125,7 +125,7 @@ export namespace assuredworkloads_v1 {
   }
 
   /**
-   * Request for acknowledging the violation Next Id: 5
+   * Request for acknowledging the violation
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest {
     /**
@@ -196,6 +196,10 @@ export namespace assuredworkloads_v1 {
      */
     parent?: string | null;
   }
+  /**
+   * Response for EnableResourceMonitoring endpoint.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse {}
   /**
    * Response of ListViolations endpoint.
    */
@@ -1255,6 +1259,104 @@ export namespace assuredworkloads_v1 {
     }
 
     /**
+     * Enable resource violation monitoring for a workload.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enableResourceMonitoring(
+      params?: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>;
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>
+    ): void;
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>
+    ): void;
+    enableResourceMonitoring(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>
+    ): void;
+    enableResourceMonitoring(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:enableResourceMonitoring').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets Assured Workload associated with a CRM Node
      *
      * @param params - Parameters for request
@@ -1781,6 +1883,13 @@ export namespace assuredworkloads_v1 {
      * Optional. The etag of the workload. If this is provided, it must match the server's etag.
      */
     etag?: string;
+    /**
+     * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring
+    extends StandardParameters {
     /**
      * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
      */

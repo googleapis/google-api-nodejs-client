@@ -552,7 +552,7 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20231207",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -601,6 +601,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AutomaticUpdatePolicy": {
+      "description": "Security patches are applied automatically to the runtime without requiring the function to be redeployed.",
+      "id": "AutomaticUpdatePolicy",
+      "properties": {},
       "type": "object"
     },
     "Binding": {
@@ -659,6 +665,10 @@
       "description": "Describes a Cloud Function that contains user computation executed in response to an event. It encapsulate function and triggers configurations.",
       "id": "CloudFunction",
       "properties": {
+        "automaticUpdatePolicy": {
+          "$ref": "AutomaticUpdatePolicy",
+          "description": "See the comment next to this message for more details."
+        },
         "availableMemoryMb": {
           "description": "The amount of memory in MB available for a function. Defaults to 256MB.",
           "format": "int32",
@@ -771,6 +781,10 @@
           "deprecated": true,
           "description": "Deprecated: use vpc_connector",
           "type": "string"
+        },
+        "onDeployUpdatePolicy": {
+          "$ref": "OnDeployUpdatePolicy",
+          "description": "See the comment next to this message for more details."
         },
         "runtime": {
           "description": "The runtime in which to run the function. Required when deploying a new function, optional when updating an existing function. For a complete list of possible choices, see the [`gcloud` command reference](https://cloud.google.com/sdk/gcloud/reference/functions/deploy#--runtime).",
@@ -1017,6 +1031,32 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "operationType": {
+          "description": "The operation type.",
+          "enum": [
+            "OPERATIONTYPE_UNSPECIFIED",
+            "CREATE_FUNCTION",
+            "UPDATE_FUNCTION",
+            "DELETE_FUNCTION",
+            "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+            "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+            "SETUP_FUNCTION_UPGRADE_CONFIG",
+            "ABORT_FUNCTION_UPGRADE",
+            "COMMIT_FUNCTION_UPGRADE"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "CreateFunction",
+            "UpdateFunction",
+            "DeleteFunction",
+            "RedirectFunctionUpgradeTraffic",
+            "RollbackFunctionUpgradeTraffic",
+            "SetupFunctionUpgradeConfig",
+            "AbortFunctionUpgrade",
+            "CommitFunctionUpgrade"
+          ],
+          "type": "string"
+        },
         "requestResource": {
           "additionalProperties": {
             "description": "Properties of the object. Contains field @type with type URL.",
@@ -1192,6 +1232,32 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "operationType": {
+          "description": "The operation type.",
+          "enum": [
+            "OPERATIONTYPE_UNSPECIFIED",
+            "CREATE_FUNCTION",
+            "UPDATE_FUNCTION",
+            "DELETE_FUNCTION",
+            "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+            "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+            "SETUP_FUNCTION_UPGRADE_CONFIG",
+            "ABORT_FUNCTION_UPGRADE",
+            "COMMIT_FUNCTION_UPGRADE"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "CreateFunction",
+            "UpdateFunction",
+            "DeleteFunction",
+            "RedirectFunctionUpgradeTraffic",
+            "RollbackFunctionUpgradeTraffic",
+            "SetupFunctionUpgradeConfig",
+            "AbortFunctionUpgrade",
+            "CommitFunctionUpgrade"
+          ],
+          "type": "string"
+        },
         "requestResource": {
           "additionalProperties": {
             "description": "Properties of the object. Contains field @type with type URL.",
@@ -1365,6 +1431,32 @@
         "endTime": {
           "description": "The time the operation finished running.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "operationType": {
+          "description": "The operation type.",
+          "enum": [
+            "OPERATIONTYPE_UNSPECIFIED",
+            "CREATE_FUNCTION",
+            "UPDATE_FUNCTION",
+            "DELETE_FUNCTION",
+            "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+            "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+            "SETUP_FUNCTION_UPGRADE_CONFIG",
+            "ABORT_FUNCTION_UPGRADE",
+            "COMMIT_FUNCTION_UPGRADE"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "CreateFunction",
+            "UpdateFunction",
+            "DeleteFunction",
+            "RedirectFunctionUpgradeTraffic",
+            "RollbackFunctionUpgradeTraffic",
+            "SetupFunctionUpgradeConfig",
+            "AbortFunctionUpgrade",
+            "CommitFunctionUpgrade"
+          ],
           "type": "string"
         },
         "requestResource": {
@@ -1612,6 +1704,18 @@
         },
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OnDeployUpdatePolicy": {
+      "description": "Security patches are only applied when a function is redeployed.",
+      "id": "OnDeployUpdatePolicy",
+      "properties": {
+        "runtimeVersion": {
+          "description": "Output only. contains the runtime version which was used during latest function deployment.",
+          "readOnly": true,
           "type": "string"
         }
       },

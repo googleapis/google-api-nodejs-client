@@ -214,6 +214,15 @@ export namespace workstations_v1 {
     kmsKeyServiceAccount?: string | null;
   }
   /**
+   * Configuration options for a custom domain.
+   */
+  export interface Schema$DomainConfig {
+    /**
+     * Immutable. Domain used by Workstations for HTTP ingress.
+     */
+    domain?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -742,6 +751,10 @@ export namespace workstations_v1 {
      */
     host?: string | null;
     /**
+     * Output only. The name of the Google Cloud KMS encryption key used to encrypt this workstation. The KMS key can only be configured in the WorkstationConfig. The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    kmsKey?: string | null;
+    /**
      * Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation and that are also propagated to the underlying Compute Engine resources.
      */
     labels?: {[key: string]: string} | null;
@@ -802,6 +815,10 @@ export namespace workstations_v1 {
      * Optional. Human-readable name for this workstation cluster.
      */
     displayName?: string | null;
+    /**
+     * Optional. Configuration options for a custom domain.
+     */
+    domainConfig?: Schema$DomainConfig;
     /**
      * Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.
      */

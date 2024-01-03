@@ -15,6 +15,203 @@
   "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API v1 follows the Knative Serving API specification, while v2 is aligned with Google Cloud AIP-based API standards, as described in https://google.aip.dev/.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/run/",
+  "endpoints": [
+    {
+      "endpointUrl": "https://asia-east1-run.googleapis.com/",
+      "location": "asia-east1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-east2-run.googleapis.com/",
+      "location": "asia-east2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-northeast1-run.googleapis.com/",
+      "location": "asia-northeast1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-northeast2-run.googleapis.com/",
+      "location": "asia-northeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-northeast3-run.googleapis.com/",
+      "location": "asia-northeast3",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-south1-run.googleapis.com/",
+      "location": "asia-south1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-south2-run.googleapis.com/",
+      "location": "asia-south2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-southeast1-run.googleapis.com/",
+      "location": "asia-southeast1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-southeast2-run.googleapis.com/",
+      "location": "asia-southeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://australia-southeast1-run.googleapis.com/",
+      "location": "australia-southeast1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://australia-southeast2-run.googleapis.com/",
+      "location": "australia-southeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-central2-run.googleapis.com/",
+      "location": "europe-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-north1-run.googleapis.com/",
+      "location": "europe-north1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-southwest1-run.googleapis.com/",
+      "location": "europe-southwest1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west1-run.googleapis.com/",
+      "location": "europe-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west10-run.googleapis.com/",
+      "location": "europe-west10",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west12-run.googleapis.com/",
+      "location": "europe-west12",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west2-run.googleapis.com/",
+      "location": "europe-west2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west3-run.googleapis.com/",
+      "location": "europe-west3",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west4-run.googleapis.com/",
+      "location": "europe-west4",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west6-run.googleapis.com/",
+      "location": "europe-west6",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west8-run.googleapis.com/",
+      "location": "europe-west8",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west9-run.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://me-central1-run.googleapis.com/",
+      "location": "me-central1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://me-central2-run.googleapis.com/",
+      "location": "me-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://me-west1-run.googleapis.com/",
+      "location": "me-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://northamerica-northeast1-run.googleapis.com/",
+      "location": "northamerica-northeast1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://northamerica-northeast2-run.googleapis.com/",
+      "location": "northamerica-northeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://southamerica-east1-run.googleapis.com/",
+      "location": "southamerica-east1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://southamerica-west1-run.googleapis.com/",
+      "location": "southamerica-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-central1-run.googleapis.com/",
+      "location": "us-central1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-east1-run.googleapis.com/",
+      "location": "us-east1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-east4-run.googleapis.com/",
+      "location": "us-east4",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-east5-run.googleapis.com/",
+      "location": "us-east5",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-south1-run.googleapis.com/",
+      "location": "us-south1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-west1-run.googleapis.com/",
+      "location": "us-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-west2-run.googleapis.com/",
+      "location": "us-west2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-west3-run.googleapis.com/",
+      "location": "us-west3",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-west4-run.googleapis.com/",
+      "location": "us-west4",
+      "description": "Locational Endpoint"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1115,7 +1312,7 @@
       }
     }
   },
-  "revision": "20231112",
+  "revision": "20231210",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1720,6 +1917,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2GCSVolumeSource": {
+      "description": "Represents a GCS Bucket mounted as a volume.",
+      "id": "GoogleCloudRunV2GCSVolumeSource",
+      "properties": {
+        "bucket": {
+          "description": "GCS Bucket name",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "If true, mount the GCS bucket as read-only",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2GRPCAction": {
       "description": "GRPCAction describes an action involving a GRPC port.",
       "id": "GoogleCloudRunV2GRPCAction",
@@ -2019,6 +2231,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2NFSVolumeSource": {
+      "description": "Represents an NFS mount.",
+      "id": "GoogleCloudRunV2NFSVolumeSource",
+      "properties": {
+        "path": {
+          "description": "Path that is exported by the NFS server.",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "If true, mount the NFS volume as read only",
+          "type": "boolean"
+        },
+        "server": {
+          "description": "Hostname or IP address of the NFS server",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2NetworkInterface": {
       "description": "Direct VPC egress settings.",
       "id": "GoogleCloudRunV2NetworkInterface",
@@ -2109,14 +2340,14 @@
       "id": "GoogleCloudRunV2ResourceRequirements",
       "properties": {
         "cpuIdle": {
-          "description": "Determines whether CPU should be throttled or not outside of requests.",
+          "description": "Determines whether CPU is only allocated during requests (true by default). However, if ResourceRequirements is set, the caller must explicitly set this field to true to preserve the default behavior.",
           "type": "boolean"
         },
         "limits": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Only ´memory´ and 'cpu' are supported. Notes: * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4 CPU requires at least 2Gi of memory. For more information, go to https://cloud.google.com/run/docs/configuring/cpu. * For supported 'memory' values and syntax, go to https://cloud.google.com/run/docs/configuring/memory-limits",
+          "description": "Only `memory` and `cpu` keys in the map are supported. Notes: * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4 CPU requires at least 2Gi of memory. For more information, go to https://cloud.google.com/run/docs/configuring/cpu. * For supported 'memory' values and syntax, go to https://cloud.google.com/run/docs/configuring/memory-limits",
           "type": "object"
         },
         "startupCpuBoost": {
@@ -3105,9 +3336,17 @@
           "$ref": "GoogleCloudRunV2EmptyDirVolumeSource",
           "description": "Ephemeral storage used as a shared volume."
         },
+        "gcs": {
+          "$ref": "GoogleCloudRunV2GCSVolumeSource",
+          "description": "Persistent storage backed by a Google Cloud Storage bucket."
+        },
         "name": {
           "description": "Required. Volume's name.",
           "type": "string"
+        },
+        "nfs": {
+          "$ref": "GoogleCloudRunV2NFSVolumeSource",
+          "description": "For NFS Voumes, contains the path to the nfs Volume"
         },
         "secret": {
           "$ref": "GoogleCloudRunV2SecretVolumeSource",

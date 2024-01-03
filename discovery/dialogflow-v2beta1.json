@@ -7695,7 +7695,7 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20231215",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -7769,7 +7769,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3BargeInConfig": {
-      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length fromt the the start of the input audio. The flow goes like below: --> Time without speech detection | utterance only | utterance or no-speech event | | +-------------+ | +------------+ | +---------------+ ----------+ no barge-in +-|-+ barge-in +-|-+ normal period +----------- +-------------+ | +------------+ | +---------------+ No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
+      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
       "id": "GoogleCloudDialogflowCxV3BargeInConfig",
       "properties": {
         "noBargeInDuration": {
@@ -8637,7 +8637,7 @@
           "type": "boolean"
         },
         "model": {
-          "description": "Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)",
+          "description": "Optional. Which Speech model to select for the given request. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).",
           "type": "string"
         },
         "modelVariant": {
@@ -8650,9 +8650,9 @@
           ],
           "enumDescriptions": [
             "No model variant specified. In this case Dialogflow defaults to USE_BEST_AVAILABLE.",
-            "Use the best available variant of the Speech model that the caller is eligible for. Please see the [Dialogflow docs](https://cloud.google.com/dialogflow/docs/data-logging) for how to make your project eligible for enhanced models.",
+            "Use the best available variant of the Speech model that the caller is eligible for.",
             "Use standard model variant even if an enhanced model is available. See the [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) for details about enhanced models.",
-            "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants. * If the API caller isn't eligible for enhanced models, Dialogflow returns an error. Please see the [Dialogflow docs](https://cloud.google.com/dialogflow/docs/data-logging) for how to make your project eligible."
+            "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants."
           ],
           "type": "string"
         },
@@ -9973,7 +9973,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1BargeInConfig": {
-      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length fromt the the start of the input audio. The flow goes like below: --> Time without speech detection | utterance only | utterance or no-speech event | | +-------------+ | +------------+ | +---------------+ ----------+ no barge-in +-|-+ barge-in +-|-+ normal period +----------- +-------------+ | +------------+ | +---------------+ No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
+      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
       "id": "GoogleCloudDialogflowCxV3beta1BargeInConfig",
       "properties": {
         "noBargeInDuration": {
@@ -10841,7 +10841,7 @@
           "type": "boolean"
         },
         "model": {
-          "description": "Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)",
+          "description": "Optional. Which Speech model to select for the given request. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).",
           "type": "string"
         },
         "modelVariant": {
@@ -10854,9 +10854,9 @@
           ],
           "enumDescriptions": [
             "No model variant specified. In this case Dialogflow defaults to USE_BEST_AVAILABLE.",
-            "Use the best available variant of the Speech model that the caller is eligible for. Please see the [Dialogflow docs](https://cloud.google.com/dialogflow/docs/data-logging) for how to make your project eligible for enhanced models.",
+            "Use the best available variant of the Speech model that the caller is eligible for.",
             "Use standard model variant even if an enhanced model is available. See the [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) for details about enhanced models.",
-            "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants. * If the API caller isn't eligible for enhanced models, Dialogflow returns an error. Please see the [Dialogflow docs](https://cloud.google.com/dialogflow/docs/data-logging) for how to make your project eligible."
+            "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants."
           ],
           "type": "string"
         },
@@ -12503,21 +12503,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowV2EncryptionSpec": {
-      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
-      "id": "GoogleCloudDialogflowV2EncryptionSpec",
-      "properties": {
-        "kmsKey": {
-          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
-          "type": "string"
-        },
-        "name": {
-          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowV2EntityType": {
       "description": "Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2EntityType",
@@ -12757,29 +12742,6 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata": {
-      "description": "Metadata for initializing a location-level encryption specification.",
-      "id": "GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata",
-      "properties": {
-        "request": {
-          "$ref": "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest",
-          "description": "Output only. The original request for initialization.",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest": {
-      "description": "The request to initialize a location-level encryption specification.",
-      "id": "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest",
-      "properties": {
-        "encryptionSpec": {
-          "$ref": "GoogleCloudDialogflowV2EncryptionSpec",
-          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
         }
       },
       "type": "object"
@@ -14737,7 +14699,7 @@
           "type": "string"
         },
         "sessionTtl": {
-          "description": "Optional. Sets Dialogflow CX session life time. By default, a Dialogflow CX session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.",
+          "description": "Optional. Configure lifetime of the Dialogflow session. By default, a Dialogflow CX session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.",
           "format": "google-duration",
           "type": "string"
         }
@@ -15603,21 +15565,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowV2beta1EncryptionSpec": {
-      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
-      "id": "GoogleCloudDialogflowV2beta1EncryptionSpec",
-      "properties": {
-        "kmsKey": {
-          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
-          "type": "string"
-        },
-        "name": {
-          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowV2beta1EntityType": {
       "description": "Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2beta1EntityType",
@@ -16191,6 +16138,10 @@
           "description": "Optional. Disable the logging of search queries sent by human agents. It can prevent those queries from being stored at answer records. Supported features: KNOWLEDGE_SEARCH.",
           "type": "boolean"
         },
+        "enableConversationAugmentedQuery": {
+          "description": "Optional. Enable including conversation context during query answer generation. Supported features: KNOWLEDGE_SEARCH.",
+          "type": "boolean"
+        },
         "enableEventBasedSuggestion": {
           "description": "Automatically iterates all participants and tries to compile suggestions. Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST, ENTITY_EXTRACTION, KNOWLEDGE_ASSIST.",
           "type": "boolean"
@@ -16239,6 +16190,10 @@
           "description": "Maximum number of results to return. Currently, if unset, defaults to 10. And the max number is 20.",
           "format": "int32",
           "type": "integer"
+        },
+        "sections": {
+          "$ref": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigSections",
+          "description": "Optional. The customized sections chosen to return when requesting a summary of a conversation."
         }
       },
       "type": "object"
@@ -16309,6 +16264,38 @@
         "knowledgeBases": {
           "description": "Required. Knowledge bases to query. Format: `projects//locations//knowledgeBases/`. Currently, only one knowledge base is supported.",
           "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigSections": {
+      "description": "Custom sections to return when requesting a summary of a conversation. This is only supported when `baseline_model_version` == '2.0'. Supported features: CONVERSATION_SUMMARIZATION, CONVERSATION_SUMMARIZATION_VOICE.",
+      "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigSections",
+      "properties": {
+        "sectionTypes": {
+          "description": "The selected sections chosen to return when requesting a summary of a conversation. A duplicate selected section will be treated as a single selected section. If section types are not provided, the default will be {SITUATION, ACTION, RESULT}.",
+          "items": {
+            "enum": [
+              "SECTION_TYPE_UNSPECIFIED",
+              "SITUATION",
+              "ACTION",
+              "RESOLUTION",
+              "REASON_FOR_CANCELLATION",
+              "CUSTOMER_SATISFACTION",
+              "ENTITIES"
+            ],
+            "enumDescriptions": [
+              "Undefined section type, does not return anything.",
+              "What the customer needs help with or has question about. Section name: \"situation\".",
+              "What the agent does to help the customer. Section name: \"action\".",
+              "Result of the customer service. A single word describing the result of the conversation. Section name: \"resolution\".",
+              "Reason for cancellation if the customer requests for a cancellation. \"N/A\" otherwise. Section name: \"reason_for_cancellation\".",
+              "\"Unsatisfied\" or \"Satisfied\" depending on the customer's feelings at the end of the conversation. Section name: \"customer_satisfaction\".",
+              "Key entities extracted from the conversation, such as ticket number, order number, dollar amount, etc. Section names are prefixed by \"entities/\"."
+            ],
             "type": "string"
           },
           "type": "array"
@@ -16492,29 +16479,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata": {
-      "description": "Metadata for initializing a location-level encryption specification.",
-      "id": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata",
-      "properties": {
-        "request": {
-          "$ref": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest",
-          "description": "Output only. The original request for initialization.",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest": {
-      "description": "The request to initialize a location-level encryption specification.",
-      "id": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest",
-      "properties": {
-        "encryptionSpec": {
-          "$ref": "GoogleCloudDialogflowV2beta1EncryptionSpec",
-          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowV2beta1InputAudioConfig": {
       "description": "Instructs the speech recognizer on how to process the audio content.",
       "id": "GoogleCloudDialogflowV2beta1InputAudioConfig",
@@ -16564,7 +16528,7 @@
           "type": "string"
         },
         "model": {
-          "description": "Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)",
+          "description": "Optional. Which Speech model to select for the given request. For more information, see [Speech models](https://cloud.google.com/dialogflow/es/docs/speech-models).",
           "type": "string"
         },
         "modelVariant": {
@@ -18837,12 +18801,14 @@
           "enum": [
             "ANSWER_TYPE_UNSPECIFIED",
             "FAQ",
-            "GENERATIVE"
+            "GENERATIVE",
+            "INTENT"
           ],
           "enumDescriptions": [
             "The answer has a unspecified type.",
-            "The answer is from FAQ doucments.",
-            "The answer is from generative model."
+            "The answer is from FAQ documents.",
+            "The answer is from generative model.",
+            "The answer is from intent matching."
           ],
           "type": "string"
         }
@@ -18909,6 +18875,10 @@
             "$ref": "GoogleCloudDialogflowV2beta1SearchKnowledgeAnswer"
           },
           "type": "array"
+        },
+        "rewrittenQuery": {
+          "description": "The rewritten query used to search knowledge.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -19109,7 +19079,7 @@
       "id": "GoogleCloudDialogflowV2beta1SpeechToTextConfig",
       "properties": {
         "model": {
-          "description": "Which Speech model to select. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then a default model is used. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.",
+          "description": "Which Speech model to select. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then Dialogflow auto-selects a model based on other parameters in the SpeechToTextConfig and Agent settings. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search Leave this field unspecified to use [Agent Speech settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech) for model selection.",
           "type": "string"
         },
         "speechModelVariant": {

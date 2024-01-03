@@ -177,6 +177,38 @@
             }
           },
           "resources": {
+            "backupVaults": {
+              "methods": {
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "backupdr.projects.locations.backupVaults.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "managementServers": {
               "methods": {
                 "create": {
@@ -535,7 +567,7 @@
       }
     }
   },
-  "revision": "20231105",
+  "revision": "20231208",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -811,7 +843,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The type of the ManagementServer resource.",
+          "description": "Optional. The type of the ManagementServer resource.",
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
             "BACKUP_RESTORE"

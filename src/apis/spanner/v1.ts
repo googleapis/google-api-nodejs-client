@@ -169,7 +169,7 @@ export namespace spanner_v1 {
      */
     highPriorityCpuUtilizationPercent?: number | null;
     /**
-     * Required. The target storage utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 100] inclusive.
+     * Required. The target storage utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 99] inclusive.
      */
     storageUtilizationPercent?: number | null;
   }

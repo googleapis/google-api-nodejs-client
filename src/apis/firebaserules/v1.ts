@@ -325,6 +325,10 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$Ruleset {
     /**
+     * Immutable. Intended resource to which this Ruleset should be released. May be left blank to signify the resource associated with the default release. Expected format: firestore.googleapis.com/projects//databases/
+     */
+    attachmentPoint?: string | null;
+    /**
      * Output only. Time the `Ruleset` was created.
      */
     createTime?: string | null;

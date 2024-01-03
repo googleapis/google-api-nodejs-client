@@ -185,11 +185,49 @@ export namespace androidpublisher_v3 {
   /**
    * Request message for ActivateBasePlan.
    */
-  export interface Schema$ActivateBasePlanRequest {}
+  export interface Schema$ActivateBasePlanRequest {
+    /**
+     * Required. The unique base plan ID of the base plan to activate.
+     */
+    basePlanId?: string | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The parent app (package name) of the base plan to activate.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent subscription (ID) of the base plan to activate.
+     */
+    productId?: string | null;
+  }
   /**
    * Request message for ActivateSubscriptionOffer.
    */
-  export interface Schema$ActivateSubscriptionOfferRequest {}
+  export interface Schema$ActivateSubscriptionOfferRequest {
+    /**
+     * Required. The parent base plan (ID) of the offer to activate.
+     */
+    basePlanId?: string | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The unique offer ID of the offer to activate.
+     */
+    offerId?: string | null;
+    /**
+     * Required. The parent app (package name) of the offer to activate.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent subscription (ID) of the offer to activate.
+     */
+    productId?: string | null;
+  }
   /**
    * Information about an APK. The resource for ApksService.
    */
@@ -458,6 +496,120 @@ export namespace androidpublisher_v3 {
     state?: string | null;
   }
   /**
+   * Request message for BatchGetSubscriptionOffers endpoint.
+   */
+  export interface Schema$BatchGetSubscriptionOffersRequest {
+    /**
+     * Required. A list of update requests of up to 100 elements. All requests must update different subscriptions.
+     */
+    requests?: Schema$GetSubscriptionOfferRequest[];
+  }
+  /**
+   * Response message for BatchGetSubscriptionOffers endpoint.
+   */
+  export interface Schema$BatchGetSubscriptionOffersResponse {
+    subscriptionOffers?: Schema$SubscriptionOffer[];
+  }
+  /**
+   * Response message for BatchGetSubscriptions endpoint.
+   */
+  export interface Schema$BatchGetSubscriptionsResponse {
+    /**
+     * The list of requested subscriptions, in the same order as the request.
+     */
+    subscriptions?: Schema$Subscription[];
+  }
+  /**
+   * Request message for BatchMigrateBasePlanPrices.
+   */
+  export interface Schema$BatchMigrateBasePlanPricesRequest {
+    /**
+     * Required. Up to 100 price migration requests. All requests must update different base plans.
+     */
+    requests?: Schema$MigrateBasePlanPricesRequest[];
+  }
+  /**
+   * Response message for BatchMigrateBasePlanPrices.
+   */
+  export interface Schema$BatchMigrateBasePlanPricesResponse {
+    /**
+     * Contains one response per requested price migration, in the same order as the request.
+     */
+    responses?: Schema$MigrateBasePlanPricesResponse[];
+  }
+  /**
+   * Request message for BatchUpdateBasePlanStates.
+   */
+  export interface Schema$BatchUpdateBasePlanStatesRequest {
+    /**
+     * Required. The update request list of up to 100 elements. All requests must update different base plans.
+     */
+    requests?: Schema$UpdateBasePlanStateRequest[];
+  }
+  /**
+   * Response message for BatchUpdateBasePlanStates.
+   */
+  export interface Schema$BatchUpdateBasePlanStatesResponse {
+    /**
+     * The list of updated subscriptions. This list will match the requests one to one, in the same order.
+     */
+    subscriptions?: Schema$Subscription[];
+  }
+  /**
+   * Request message for BatchUpdateSubscriptionOffers.
+   */
+  export interface Schema$BatchUpdateSubscriptionOffersRequest {
+    /**
+     * Required. A list of update requests of up to 100 elements. All requests must update different subscription offers.
+     */
+    requests?: Schema$UpdateSubscriptionOfferRequest[];
+  }
+  /**
+   * Response message for BatchUpdateSubscriptionOffers.
+   */
+  export interface Schema$BatchUpdateSubscriptionOffersResponse {
+    /**
+     * The updated subscription offers list.
+     */
+    subscriptionOffers?: Schema$SubscriptionOffer[];
+  }
+  /**
+   * Request message for BatchUpdateSubscriptionOfferStates.
+   */
+  export interface Schema$BatchUpdateSubscriptionOfferStatesRequest {
+    /**
+     * Required. The update request list of up to 100 elements. All requests must update different offers.
+     */
+    requests?: Schema$UpdateSubscriptionOfferStateRequest[];
+  }
+  /**
+   * Response message for BatchUpdateSubscriptionOfferStates.
+   */
+  export interface Schema$BatchUpdateSubscriptionOfferStatesResponse {
+    /**
+     * The updated subscription offers list.
+     */
+    subscriptionOffers?: Schema$SubscriptionOffer[];
+  }
+  /**
+   * Request message for BatchUpdateSubscription.
+   */
+  export interface Schema$BatchUpdateSubscriptionsRequest {
+    /**
+     * Required. A list of update requests of up to 100 elements. All requests must update different subscriptions.
+     */
+    requests?: Schema$UpdateSubscriptionRequest[];
+  }
+  /**
+   * Response message for BatchUpdateSubscription.
+   */
+  export interface Schema$BatchUpdateSubscriptionsResponse {
+    /**
+     * The updated subscriptions list.
+     */
+    subscriptions?: Schema$Subscription[];
+  }
+  /**
    * Information about an app bundle. The resource for BundlesService.
    */
   export interface Schema$Bundle {
@@ -602,11 +754,49 @@ export namespace androidpublisher_v3 {
   /**
    * Request message for DeactivateBasePlan.
    */
-  export interface Schema$DeactivateBasePlanRequest {}
+  export interface Schema$DeactivateBasePlanRequest {
+    /**
+     * Required. The unique base plan ID of the base plan to deactivate.
+     */
+    basePlanId?: string | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The parent app (package name) of the base plan to deactivate.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent subscription (ID) of the base plan to deactivate.
+     */
+    productId?: string | null;
+  }
   /**
    * Request message for DeactivateSubscriptionOffer.
    */
-  export interface Schema$DeactivateSubscriptionOfferRequest {}
+  export interface Schema$DeactivateSubscriptionOfferRequest {
+    /**
+     * Required. The parent base plan (ID) of the offer to deactivate.
+     */
+    basePlanId?: string | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The unique offer ID of the offer to deactivate.
+     */
+    offerId?: string | null;
+    /**
+     * Required. The parent app (package name) of the offer to deactivate.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent subscription (ID) of the offer to deactivate.
+     */
+    productId?: string | null;
+  }
   /**
    * Information related to deferred item replacement.
    */
@@ -1140,6 +1330,27 @@ export namespace androidpublisher_v3 {
     downloadId?: string | null;
   }
   /**
+   * Request message for GetSubscriptionOffer.
+   */
+  export interface Schema$GetSubscriptionOfferRequest {
+    /**
+     * Required. The parent base plan (ID) of the offer to get.
+     */
+    basePlanId?: string | null;
+    /**
+     * Required. The unique offer ID of the offer to get.
+     */
+    offerId?: string | null;
+    /**
+     * Required. The parent app (package name) of the offer to get.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent subscription (ID) of the offer to get.
+     */
+    productId?: string | null;
+  }
+  /**
    * An access grant resource.
    */
   export interface Schema$Grant {
@@ -1279,6 +1490,59 @@ export namespace androidpublisher_v3 {
     title?: string | null;
   }
   /**
+   * Request to delete multiple in-app products.
+   */
+  export interface Schema$InappproductsBatchDeleteRequest {
+    /**
+     * Individual delete requests. At least one request is required. Can contain up to 100 requests. All requests must correspond to different in-app products.
+     */
+    requests?: Schema$InappproductsDeleteRequest[];
+  }
+  /**
+   * Response message for BatchGetSubscriptions endpoint.
+   */
+  export interface Schema$InappproductsBatchGetResponse {
+    /**
+     * The list of requested in-app products, in the same order as the request.
+     */
+    inappproduct?: Schema$InAppProduct[];
+  }
+  /**
+   * Request to update or insert one or more in-app products.
+   */
+  export interface Schema$InappproductsBatchUpdateRequest {
+    /**
+     * Required. Individual update requests. At least one request is required. Can contain up to 100 requests. All requests must correspond to different in-app products.
+     */
+    requests?: Schema$InappproductsUpdateRequest[];
+  }
+  /**
+   * Response for a batch in-app product update.
+   */
+  export interface Schema$InappproductsBatchUpdateResponse {
+    /**
+     * The updated or inserted in-app products.
+     */
+    inappproducts?: Schema$InAppProduct[];
+  }
+  /**
+   * Request to delete an in-app product.
+   */
+  export interface Schema$InappproductsDeleteRequest {
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Package name of the app.
+     */
+    packageName?: string | null;
+    /**
+     * Unique identifier for the in-app product.
+     */
+    sku?: string | null;
+  }
+  /**
    * Response listing all in-app products.
    */
   export interface Schema$InappproductsListResponse {
@@ -1298,6 +1562,35 @@ export namespace androidpublisher_v3 {
      * Pagination token, to handle a number of products that is over one page.
      */
     tokenPagination?: Schema$TokenPagination;
+  }
+  /**
+   * Request to update an in-app product.
+   */
+  export interface Schema$InappproductsUpdateRequest {
+    /**
+     * If set to true, and the in-app product with the given package_name and sku doesn't exist, the in-app product will be created.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     */
+    autoConvertMissingPrices?: boolean | null;
+    /**
+     * The new in-app product.
+     */
+    inappproduct?: Schema$InAppProduct;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Package name of the app.
+     */
+    packageName?: string | null;
+    /**
+     * Unique identifier for the in-app product.
+     */
+    sku?: string | null;
   }
   /**
    * An artifact resource which gets created when uploading an APK or Android App Bundle through internal app sharing.
@@ -1476,6 +1769,22 @@ export namespace androidpublisher_v3 {
    * Request message for MigrateBasePlanPrices.
    */
   export interface Schema$MigrateBasePlanPricesRequest {
+    /**
+     * Required. The unique base plan ID of the base plan to update prices on.
+     */
+    basePlanId?: string | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. Package name of the parent app. Must be equal to the package_name field on the Subscription resource.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The ID of the subscription to update. Must be equal to the product_id field on the Subscription resource.
+     */
+    productId?: string | null;
     /**
      * Required. The regional prices to update.
      */
@@ -2784,6 +3093,82 @@ export namespace androidpublisher_v3 {
      * The country to target, as a two-letter CLDR code.
      */
     countryCode?: string | null;
+  }
+  /**
+   * Request message to update the state of a subscription base plan.
+   */
+  export interface Schema$UpdateBasePlanStateRequest {
+    /**
+     * Activates a base plan. Once activated, base plans will be available to new subscribers.
+     */
+    activateBasePlanRequest?: Schema$ActivateBasePlanRequest;
+    /**
+     * Deactivates a base plan. Once deactivated, the base plan will become unavailable to new subscribers, but existing subscribers will maintain their subscription
+     */
+    deactivateBasePlanRequest?: Schema$DeactivateBasePlanRequest;
+  }
+  /**
+   * Request message for UpdateSubscriptionOffer.
+   */
+  export interface Schema$UpdateSubscriptionOfferRequest {
+    /**
+     * Optional. If set to true, and the subscription offer with the given package_name, product_id, base_plan_id and offer_id doesn't exist, an offer will be created. If a new offer is created, update_mask is ignored.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The version of the available regions being used for the subscription_offer.
+     */
+    regionsVersion?: Schema$RegionsVersion;
+    /**
+     * Required. The subscription offer to update.
+     */
+    subscriptionOffer?: Schema$SubscriptionOffer;
+    /**
+     * Required. The list of fields to be updated.
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * Request message to update the state of a subscription offer.
+   */
+  export interface Schema$UpdateSubscriptionOfferStateRequest {
+    /**
+     * Activates an offer. Once activated, the offer will be available to new subscribers.
+     */
+    activateSubscriptionOfferRequest?: Schema$ActivateSubscriptionOfferRequest;
+    /**
+     * Deactivates an offer. Once deactivated, the offer will become unavailable to new subscribers, but existing subscribers will maintain their subscription
+     */
+    deactivateSubscriptionOfferRequest?: Schema$DeactivateSubscriptionOfferRequest;
+  }
+  /**
+   * Request message for UpdateSubscription.
+   */
+  export interface Schema$UpdateSubscriptionRequest {
+    /**
+     * Optional. If set to true, and the subscription with the given package_name and product_id doesn't exist, the subscription will be created. If a new subscription is created, update_mask is ignored.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The version of the available regions being used for the subscription.
+     */
+    regionsVersion?: Schema$RegionsVersion;
+    /**
+     * Required. The subscription to update.
+     */
+    subscription?: Schema$Subscription;
+    /**
+     * Required. The list of fields to be updated.
+     */
+    updateMask?: string | null;
   }
   /**
    * Represents a targeting rule of the form: User currently has {scope\} [with billing period {billing_period\}].
@@ -8394,6 +8779,286 @@ export namespace androidpublisher_v3 {
     }
 
     /**
+     * Deletes in-app products (managed products or subscriptions). Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. This method should not be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Inappproducts$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
+      params?: Params$Resource$Inappproducts$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    batchDelete(
+      params: Params$Resource$Inappproducts$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Inappproducts$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Inappproducts$Batchdelete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(callback: BodyResponseCallback<void>): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Inappproducts$Batchdelete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inappproducts$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inappproducts$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/inappproducts:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Reads multiple in-app products, which can be managed products or subscriptions. This method should not be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Inappproducts$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Inappproducts$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InappproductsBatchGetResponse>;
+    batchGet(
+      params: Params$Resource$Inappproducts$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Inappproducts$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InappproductsBatchGetResponse>,
+      callback: BodyResponseCallback<Schema$InappproductsBatchGetResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Inappproducts$Batchget,
+      callback: BodyResponseCallback<Schema$InappproductsBatchGetResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$InappproductsBatchGetResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Inappproducts$Batchget
+        | BodyResponseCallback<Schema$InappproductsBatchGetResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InappproductsBatchGetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InappproductsBatchGetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InappproductsBatchGetResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inappproducts$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inappproducts$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/inappproducts:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InappproductsBatchGetResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InappproductsBatchGetResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates or inserts one or more in-app products (managed products or subscriptions). Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput. This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Inappproducts$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
+      params?: Params$Resource$Inappproducts$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InappproductsBatchUpdateResponse>;
+    batchUpdate(
+      params: Params$Resource$Inappproducts$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Inappproducts$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InappproductsBatchUpdateResponse>,
+      callback: BodyResponseCallback<Schema$InappproductsBatchUpdateResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Inappproducts$Batchupdate,
+      callback: BodyResponseCallback<Schema$InappproductsBatchUpdateResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$InappproductsBatchUpdateResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Inappproducts$Batchupdate
+        | BodyResponseCallback<Schema$InappproductsBatchUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InappproductsBatchUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InappproductsBatchUpdateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InappproductsBatchUpdateResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inappproducts$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inappproducts$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/inappproducts:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InappproductsBatchUpdateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InappproductsBatchUpdateResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes an in-app product (a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      *
      * @param params - Parameters for request
@@ -8927,8 +9592,47 @@ export namespace androidpublisher_v3 {
     }
   }
 
+  export interface Params$Resource$Inappproducts$Batchdelete
+    extends StandardParameters {
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InappproductsBatchDeleteRequest;
+  }
+  export interface Params$Resource$Inappproducts$Batchget
+    extends StandardParameters {
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+    /**
+     * Unique identifier for the in-app products.
+     */
+    sku?: string[];
+  }
+  export interface Params$Resource$Inappproducts$Batchupdate
+    extends StandardParameters {
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InappproductsBatchUpdateRequest;
+  }
   export interface Params$Resource$Inappproducts$Delete
     extends StandardParameters {
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string;
     /**
      * Package name of the app.
      */
@@ -8991,6 +9695,10 @@ export namespace androidpublisher_v3 {
      */
     autoConvertMissingPrices?: boolean;
     /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string;
+    /**
      * Package name of the app.
      */
     packageName?: string;
@@ -9014,6 +9722,10 @@ export namespace androidpublisher_v3 {
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
     autoConvertMissingPrices?: boolean;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string;
     /**
      * Package name of the app.
      */
@@ -9507,6 +10219,200 @@ export namespace androidpublisher_v3 {
     }
 
     /**
+     * Reads one or more subscriptions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Monetization$Subscriptions$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Monetization$Subscriptions$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetSubscriptionsResponse>;
+    batchGet(
+      params: Params$Resource$Monetization$Subscriptions$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Monetization$Subscriptions$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetSubscriptionsResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetSubscriptionsResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Monetization$Subscriptions$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetSubscriptionsResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$BatchGetSubscriptionsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Batchget
+        | BodyResponseCallback<Schema$BatchGetSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetSubscriptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetSubscriptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Subscriptions$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetSubscriptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetSubscriptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a batch of subscriptions. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Monetization$Subscriptions$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
+      params?: Params$Resource$Monetization$Subscriptions$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUpdateSubscriptionsResponse>;
+    batchUpdate(
+      params: Params$Resource$Monetization$Subscriptions$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Monetization$Subscriptions$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionsResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateSubscriptionsResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Monetization$Subscriptions$Batchupdate,
+      callback: BodyResponseCallback<Schema$BatchUpdateSubscriptionsResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$BatchUpdateSubscriptionsResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Batchupdate
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateSubscriptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Subscriptions$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdateSubscriptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdateSubscriptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Creates a new subscription. Newly added base plans will remain in draft state until activated.
      *
      * @param params - Parameters for request
@@ -9968,6 +10874,29 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ArchiveSubscriptionRequest;
   }
+  export interface Params$Resource$Monetization$Subscriptions$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the subscriptions should be retrieved. Must be equal to the package_name field on all the requests.
+     */
+    packageName?: string;
+    /**
+     * Required. A list of up to 100 subscription product IDs to retrieve. All the IDs must be different.
+     */
+    productIds?: string[];
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Batchupdate
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the subscriptions should be updated. Must be equal to the package_name field on all the Subscription resources.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdateSubscriptionsRequest;
+  }
   export interface Params$Resource$Monetization$Subscriptions$Create
     extends StandardParameters {
     /**
@@ -10031,6 +10960,14 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Monetization$Subscriptions$Patch
     extends StandardParameters {
+    /**
+     * Optional. If set to true, and the subscription with the given package_name and product_id doesn't exist, the subscription will be created. If a new subscription is created, update_mask is ignored.
+     */
+    allowMissing?: boolean;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string;
     /**
      * Immutable. Package name of the parent app.
      */
@@ -10150,6 +11087,202 @@ export namespace androidpublisher_v3 {
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
+      }
+    }
+
+    /**
+     * Batch variant of the MigrateBasePlanPrices endpoint. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchMigratePrices(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchMigratePrices(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchMigrateBasePlanPricesResponse>;
+    batchMigratePrices(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchMigratePrices(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchMigrateBasePlanPricesResponse>,
+      callback: BodyResponseCallback<Schema$BatchMigrateBasePlanPricesResponse>
+    ): void;
+    batchMigratePrices(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices,
+      callback: BodyResponseCallback<Schema$BatchMigrateBasePlanPricesResponse>
+    ): void;
+    batchMigratePrices(
+      callback: BodyResponseCallback<Schema$BatchMigrateBasePlanPricesResponse>
+    ): void;
+    batchMigratePrices(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices
+        | BodyResponseCallback<Schema$BatchMigrateBasePlanPricesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchMigrateBasePlanPricesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchMigrateBasePlanPricesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchMigrateBasePlanPricesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchMigratePrices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchMigrateBasePlanPricesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchMigrateBasePlanPricesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Activates or deactivates base plans across one or multiple subscriptions. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdateStates(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUpdateBasePlanStatesResponse>;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateBasePlanStatesResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateBasePlanStatesResponse>
+    ): void;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates,
+      callback: BodyResponseCallback<Schema$BatchUpdateBasePlanStatesResponse>
+    ): void;
+    batchUpdateStates(
+      callback: BodyResponseCallback<Schema$BatchUpdateBasePlanStatesResponse>
+    ): void;
+    batchUpdateStates(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates
+        | BodyResponseCallback<Schema$BatchUpdateBasePlanStatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateBasePlanStatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateBasePlanStatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateBasePlanStatesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchUpdateStates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdateBasePlanStatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdateBasePlanStatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -10448,6 +11581,38 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ActivateBasePlanRequest;
   }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the subscriptions should be created or updated. Must be equal to the package_name field on all the Subscription resources.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this batch update spans multiple subscriptions, set this field to "-". Must be set.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchMigrateBasePlanPricesRequest;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the updated base plans.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent subscription, if all updated base plans belong to the same subscription. If this batch update spans multiple subscriptions, set this field to "-". Must be set.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdateBasePlanStatesRequest;
+  }
   export interface Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate
     extends StandardParameters {
     /**
@@ -10599,6 +11764,300 @@ export namespace androidpublisher_v3 {
         );
       } else {
         return createAPIRequest<Schema$SubscriptionOffer>(parameters);
+      }
+    }
+
+    /**
+     * Reads one or more subscription offers.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetSubscriptionOffersResponse>;
+    batchGet(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetSubscriptionOffersResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetSubscriptionOffersResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetSubscriptionOffersResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$BatchGetSubscriptionOffersResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget
+        | BodyResponseCallback<Schema$BatchGetSubscriptionOffersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetSubscriptionOffersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetSubscriptionOffersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetSubscriptionOffersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId'],
+        pathParams: ['basePlanId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetSubscriptionOffersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetSubscriptionOffersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a batch of subscription offers. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUpdateSubscriptionOffersResponse>;
+    batchUpdate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionOffersResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateSubscriptionOffersResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate,
+      callback: BodyResponseCallback<Schema$BatchUpdateSubscriptionOffersResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$BatchUpdateSubscriptionOffersResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionOffersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionOffersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionOffersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateSubscriptionOffersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId'],
+        pathParams: ['basePlanId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdateSubscriptionOffersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdateSubscriptionOffersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a batch of subscription offer states. Set the latencyTolerance field on nested requests to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT to achieve maximum update throughput.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdateStates(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUpdateSubscriptionOfferStatesResponse>;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionOfferStatesResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateSubscriptionOfferStatesResponse>
+    ): void;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates,
+      callback: BodyResponseCallback<Schema$BatchUpdateSubscriptionOfferStatesResponse>
+    ): void;
+    batchUpdateStates(
+      callback: BodyResponseCallback<Schema$BatchUpdateSubscriptionOfferStatesResponse>
+    ): void;
+    batchUpdateStates(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionOfferStatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionOfferStatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateSubscriptionOfferStatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateSubscriptionOfferStatesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdateStates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId'],
+        pathParams: ['basePlanId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdateSubscriptionOfferStatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdateSubscriptionOfferStatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -11180,6 +12639,66 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ActivateSubscriptionOfferRequest;
   }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read offers from multiple base plans.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The parent app (package name) for which the subscriptions should be created or updated. Must be equal to the package_name field on all the requests.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to "-". Must be set.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchGetSubscriptionOffersRequest;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate
+    extends StandardParameters {
+    /**
+     * Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The parent app (package name) of the updated subscription offers. Must be equal to the package_name field on all the updated SubscriptionOffer resources.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to "-". Must be set.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdateSubscriptionOffersRequest;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates
+    extends StandardParameters {
+    /**
+     * Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The parent app (package name) of the updated subscription offers. Must be equal to the package_name field on all the updated SubscriptionOffer resources.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent subscription, if all updated offers belong to the same subscription. If this request spans multiple subscriptions, set this field to "-". Must be set.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdateSubscriptionOfferStatesRequest;
+  }
   export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create
     extends StandardParameters {
     /**
@@ -11296,9 +12815,17 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch
     extends StandardParameters {
     /**
+     * Optional. If set to true, and the subscription offer with the given package_name, product_id, base_plan_id and offer_id doesn't exist, an offer will be created. If a new offer is created, update_mask is ignored.
+     */
+    allowMissing?: boolean;
+    /**
      * Required. Immutable. The ID of the base plan to which this offer is an extension.
      */
     basePlanId?: string;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string;
     /**
      * Required. Immutable. Unique ID of this subscription offer. Must be unique within the base plan.
      */

@@ -338,7 +338,7 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Optional. A query filter. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). You can filter spaces by the space type ([`space_type`](https://developers.google.com/chat/api/reference/rest/v1/spaces#spacetype)). To filter by space type, you must specify valid enum value, such as `SPACE` or `GROUP_CHAT` (the `space_type` can't be `SPACE_TYPE_UNSPECIFIED`). To query for multiple space types, use the `OR` operator. For example, the following queries are valid: ``` space_type = \"SPACE\" spaceType = \"GROUP_CHAT\" OR spaceType = \"DIRECT_MESSAGE\" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error. With [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), this field is ignored and the query always returns all spaces. But the Chat API still validates the query syntax, so invalid queries are still rejected.",
+              "description": "Optional. A query filter. You can filter spaces by the space type ([`space_type`](https://developers.google.com/chat/api/reference/rest/v1/spaces#spacetype)). To filter by space type, you must specify valid enum value, such as `SPACE` or `GROUP_CHAT` (the `space_type` can't be `SPACE_TYPE_UNSPECIFIED`). To query for multiple space types, use the `OR` operator. For example, the following queries are valid: ``` space_type = \"SPACE\" spaceType = \"GROUP_CHAT\" OR spaceType = \"DIRECT_MESSAGE\" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.",
               "location": "query",
               "type": "string"
             },
@@ -537,6 +537,11 @@
                   "pattern": "^spaces/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "showGroups": {
+                  "description": "Optional. When `true`, also returns memberships associated with a Google Group, in addition to other types of memberships. If a filter is set, Google Group memberships that don't match the filter criteria aren't returned.",
+                  "location": "query",
+                  "type": "boolean"
                 },
                 "showInvited": {
                   "description": "Optional. When `true`, also returns memberships associated with invited members, in addition to other types of memberships. If a filter is set, invited memberships that don't match the filter criteria aren't returned. Currently requires [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
@@ -957,7 +962,7 @@
       }
     }
   },
-  "revision": "20231116",
+  "revision": "20231214",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -981,7 +986,7 @@
       "properties": {
         "dialogAction": {
           "$ref": "DialogAction",
-          "description": "Input only. A response to an event related to a [dialog](https://developers.google.com/chat/how-tos/dialogs). Must be accompanied by `ResponseType.Dialog`."
+          "description": "Input only. A response to an interaction event related to a [dialog](https://developers.google.com/chat/how-tos/dialogs). Must be accompanied by `ResponseType.Dialog`."
         },
         "type": {
           "description": "Input only. The type of Chat app response.",
@@ -991,7 +996,8 @@
             "UPDATE_MESSAGE",
             "UPDATE_USER_MESSAGE_CARDS",
             "REQUEST_CONFIG",
-            "DIALOG"
+            "DIALOG",
+            "UPDATE_WIDGET"
           ],
           "enumDescriptions": [
             "Default type that's handled as `NEW_MESSAGE`.",
@@ -999,9 +1005,14 @@
             "Update the Chat app's message. This is only permitted on a `CARD_CLICKED` event where the message sender type is `BOT`.",
             "Update the cards on a user's message. This is only permitted as a response to a `MESSAGE` event with a matched url, or a `CARD_CLICKED` event where the message sender type is `HUMAN`. Text is ignored.",
             "Privately ask the user for additional authentication or configuration.",
-            "Presents a [dialog](https://developers.google.com/chat/how-tos/dialogs)."
+            "Presents a [dialog](https://developers.google.com/chat/how-tos/dialogs).",
+            "Widget text autocomplete options query."
           ],
           "type": "string"
+        },
+        "updatedWidget": {
+          "$ref": "UpdatedWidget",
+          "description": "Input only. The response of the updated widget."
         },
         "url": {
           "description": "Input only. URL for users to authenticate or configure. (Only for `REQUEST_CONFIG` response types.)",
@@ -1275,7 +1286,7 @@
       "type": "object"
     },
     "CardWithId": {
-      "description": "A [card](https://developers.google.com/chat/api/reference/rest/v1/cards) in a Google Chat message. Only Chat apps can create cards. If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the message can't contain cards.",
+      "description": "A [card](https://developers.google.com/chat/api/reference/rest/v1/cards) in a Google Chat message. Only Chat apps can create cards. If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the message can't contain cards. [Card builder](https://addons.gsuite.google.com/uikit/builder)",
       "id": "CardWithId",
       "properties": {
         "card": {
@@ -1561,14 +1572,16 @@
             "MESSAGE",
             "ADDED_TO_SPACE",
             "REMOVED_FROM_SPACE",
-            "CARD_CLICKED"
+            "CARD_CLICKED",
+            "WIDGET_UPDATED"
           ],
           "enumDescriptions": [
             "Default value for the enum. DO NOT USE.",
             "A user sends the Chat app a message, or invokes the Chat app in a space.",
             "A user adds the Chat app to a space, or a Google Workspace administrator installs the Chat app in direct message spaces for users in their organization.",
             "A user removes the Chat app from a space.",
-            "A user clicks an interactive element of a card or dialog from a Chat app, such as a button. If a user interacts with a dialog, the `CARD_CLICKED` interaction event's `isDialogEvent` field is set to `true` and includes a [`DialogEventType`](https://developers.google.com/chat/api/reference/rest/v1/DialogEventType)."
+            "A user clicks an interactive element of a card or dialog from a Chat app, such as a button. If a user interacts with a dialog, the `CARD_CLICKED` interaction event's `isDialogEvent` field is set to `true` and includes a [`DialogEventType`](https://developers.google.com/chat/api/reference/rest/v1/DialogEventType).",
+            "A user updates a widget in a card message or dialog."
           ],
           "type": "string"
         },
@@ -1809,7 +1822,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Card": {
-      "description": "A card interface displayed in a Google Chat message or Google Workspace Add-on. Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. To learn how to build cards, see the following documentation: * For Google Chat apps, see [Design dynamic, interactive, and consistent UIs with cards](https://developers.google.com/chat/ui). * For Google Workspace Add-ons, see [Card-based interfaces](https://developers.google.com/apps-script/add-ons/concepts/cards). **Example: Card message for a Google Chat app** ![Example contact card](https://developers.google.com/chat/images/card_api_reference.png) To create the sample card message in Google Chat, use the following JSON: ``` { \"cardsV2\": [ { \"cardId\": \"unique-card-id\", \"card\": { \"header\": { \"title\": \"Sasha\", \"subtitle\": \"Software Engineer\", \"imageUrl\": \"https://developers.google.com/chat/images/quickstart-app-avatar.png\", \"imageType\": \"CIRCLE\", \"imageAltText\": \"Avatar for Sasha\", }, \"sections\": [ { \"header\": \"Contact Info\", \"collapsible\": true, \"uncollapsibleWidgetsCount\": 1, \"widgets\": [ { \"decoratedText\": { \"startIcon\": { \"knownIcon\": \"EMAIL\", }, \"text\": \"sasha@example.com\", } }, { \"decoratedText\": { \"startIcon\": { \"knownIcon\": \"PERSON\", }, \"text\": \"Online\", }, }, { \"decoratedText\": { \"startIcon\": { \"knownIcon\": \"PHONE\", }, \"text\": \"+1 (555) 555-1234\", } }, { \"buttonList\": { \"buttons\": [ { \"text\": \"Share\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/share\", } } }, { \"text\": \"Edit\", \"onClick\": { \"action\": { \"function\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"EDIT\", } ], } } }, ], } }, ], }, ], }, } ], } ```",
+      "description": "A card interface displayed in a Google Chat message or Google Workspace Add-on. Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. [Card builder](https://addons.gsuite.google.com/uikit/builder) To learn how to build cards, see the following documentation: * For Google Chat apps, see [Design dynamic, interactive, and consistent UIs with cards](https://developers.google.com/chat/ui). * For Google Workspace Add-ons, see [Card-based interfaces](https://developers.google.com/apps-script/add-ons/concepts/cards). **Example: Card message for a Google Chat app** ![Example contact card](https://developers.google.com/chat/images/card_api_reference.png) To create the sample card message in Google Chat, use the following JSON: ``` { \"cardsV2\": [ { \"cardId\": \"unique-card-id\", \"card\": { \"header\": { \"title\": \"Sasha\", \"subtitle\": \"Software Engineer\", \"imageUrl\": \"https://developers.google.com/chat/images/quickstart-app-avatar.png\", \"imageType\": \"CIRCLE\", \"imageAltText\": \"Avatar for Sasha\", }, \"sections\": [ { \"header\": \"Contact Info\", \"collapsible\": true, \"uncollapsibleWidgetsCount\": 1, \"widgets\": [ { \"decoratedText\": { \"startIcon\": { \"knownIcon\": \"EMAIL\", }, \"text\": \"sasha@example.com\", } }, { \"decoratedText\": { \"startIcon\": { \"knownIcon\": \"PERSON\", }, \"text\": \"Online\", }, }, { \"decoratedText\": { \"startIcon\": { \"knownIcon\": \"PHONE\", }, \"text\": \"+1 (555) 555-1234\", } }, { \"buttonList\": { \"buttons\": [ { \"text\": \"Share\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/share\", } } }, { \"text\": \"Edit\", \"onClick\": { \"action\": { \"function\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"EDIT\", } ], } } }, ], } }, ], }, ], }, } ], } ```",
       "id": "GoogleAppsCardV1Card",
       "properties": {
         "cardActions": {
@@ -2699,6 +2712,17 @@
       },
       "type": "object"
     },
+    "Group": {
+      "description": "A Google Group in Google Chat.",
+      "id": "Group",
+      "properties": {
+        "name": {
+          "description": "Resource name for a Google Group. Represents a [group](https://cloud.google.com/identity/docs/reference/rest/v1/groups) in Cloud Identity Groups API. Format: groups/{group}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "HostAppDataSourceMarkup": {
       "description": "Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from a Google Workspace application. The data source populates selection items for the multiselect menu.",
       "id": "HostAppDataSourceMarkup",
@@ -3043,10 +3067,13 @@
       "id": "Membership",
       "properties": {
         "createTime": {
-          "description": "Output only. The creation time of the membership, such as when a member joined or was invited to join a space.",
+          "description": "Optional. Immutable. The creation time of the membership, such as when a member joined or was invited to join a space. [Developer Preview](https://developers.google.com/workspace/preview): This field is output only, except when used to import historical memberships in import mode spaces.",
           "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
+        },
+        "groupMember": {
+          "$ref": "Group",
+          "description": "The Google Group the membership corresponds to. Only supports read operations. Other operations, like creating or updating a membership, aren't currently supported."
         },
         "member": {
           "$ref": "User",
@@ -3135,7 +3162,7 @@
           "type": "array"
         },
         "cardsV2": {
-          "description": "An array of [cards](https://developers.google.com/chat/api/reference/rest/v1/cards). Only Chat apps can create cards. If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the messages can't contain cards. To learn about cards and how to create them, see [Design dynamic, interactive, and consistent UIs with cards](https://developers.google.com/chat/ui).",
+          "description": "An array of [cards](https://developers.google.com/chat/api/reference/rest/v1/cards). Only Chat apps can create cards. If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the messages can't contain cards. To learn about cards and how to create them, see [Design dynamic, interactive, and consistent UIs with cards](https://developers.google.com/chat/ui). [Card builder](https://addons.gsuite.google.com/uikit/builder)",
           "items": {
             "$ref": "CardWithId"
           },
@@ -3192,6 +3219,10 @@
         "name": {
           "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`",
           "type": "string"
+        },
+        "privateMessageViewer": {
+          "$ref": "User",
+          "description": "Immutable. Input for creating a message, otherwise output only. The user that can view the message. When set, the message is private and only visible to the specified user and the Chat app. Link previews and attachments aren't supported for private messages. Only Chat apps can send private messages. If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users) to send a message, the message can't be private and must omit this field. For details, see [Send private messages to Google Chat users](https://developers.google.com/chat/api/guides/v1/messages/private)."
         },
         "quotedMessageMetadata": {
           "$ref": "QuotedMessageMetadata",
@@ -3304,6 +3335,20 @@
           "description": "A section must contain at least one widget.",
           "items": {
             "$ref": "WidgetMarkup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SelectionItems": {
+      "description": "List of widget autocomplete results.",
+      "id": "SelectionItems",
+      "properties": {
+        "items": {
+          "description": "An array of the SelectionItem objects.",
+          "items": {
+            "$ref": "GoogleAppsCardV1SelectionItem"
           },
           "type": "array"
         }
@@ -3618,6 +3663,21 @@
           "description": "The user timezone offset, in milliseconds, from Coordinated Universal Time (UTC).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "UpdatedWidget": {
+      "description": "The response of the updated widget. Used to provide autocomplete options for a widget.",
+      "id": "UpdatedWidget",
+      "properties": {
+        "suggestions": {
+          "$ref": "SelectionItems",
+          "description": "List of widget autocomplete results"
+        },
+        "widget": {
+          "description": "The ID of the updated widget. The ID must match the one for the widget that triggered the update request.",
+          "type": "string"
         }
       },
       "type": "object"

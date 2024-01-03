@@ -2996,7 +2996,7 @@
       }
     }
   },
-  "revision": "20231108",
+  "revision": "20231204",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -5818,6 +5818,10 @@
         "resourcePool": {
           "description": "The name of the vCenter resource pool for the admin cluster.",
           "type": "string"
+        },
+        "storagePolicyName": {
+          "description": "The name of the vCenter storage policy for the user cluster.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6327,7 +6331,8 @@
           "description": "Configuration settings for a static IP configuration."
         },
         "vcenterNetwork": {
-          "description": "vcenter_network specifies vCenter network name. Inherited from the admin cluster.",
+          "description": "Output only. vcenter_network specifies vCenter network name. Inherited from the admin cluster.",
+          "readOnly": true,
           "type": "string"
         }
       },

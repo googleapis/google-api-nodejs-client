@@ -165,6 +165,10 @@ export namespace checks_v1alpha {
    */
   export interface Schema$GoogleChecksReportV1alphaAnalyzeUploadRequest {
     /**
+     * Optional. The type of the uploaded app binary. If not provided, the server assumes APK file for Android and IPA file for iOS.
+     */
+    appBinaryFileType?: string | null;
+    /**
      * Optional. Git commit hash or changelist number associated with the upload.
      */
     codeReferenceId?: string | null;

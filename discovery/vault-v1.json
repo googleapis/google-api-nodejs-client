@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20231213",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1322,6 +1322,83 @@
         "sendEmails": {
           "description": "To send a notification email to the added account, set to **true**. To not send a notification email, set to **false**.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CalendarExportOptions": {
+      "description": "The options for Calendar exports.",
+      "id": "CalendarExportOptions",
+      "properties": {
+        "exportFormat": {
+          "description": "The file format for exported text messages.",
+          "enum": [
+            "EXPORT_FORMAT_UNSPECIFIED",
+            "MBOX",
+            "PST",
+            "ICS"
+          ],
+          "enumDescriptions": [
+            "No export format specified.",
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
+            "Export as ICS. Only available for Calendar."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CalendarOptions": {
+      "description": "Additional options for Calendar search",
+      "id": "CalendarOptions",
+      "properties": {
+        "locationQuery": {
+          "description": "Matches only those events whose location contains all of the words in the given set. If the string contains quoted phrases, this method only matches those events whose location contain the exact phrase. Entries in the set are considered in \"and\". Word splitting example: [\"New Zealand\"] vs [\"New\",\"Zealand\"] \"New Zealand\": matched by both \"New and better Zealand\": only matched by the later",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "minusWords": {
+          "description": "Matches only those events that do not contain any of the words in the given set in title, description, location, or attendees. Entries in the set are considered in \"or\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "peopleQuery": {
+          "description": "Matches only those events whose attendees contain all of the words in the given set. Entries in the set are considered in \"and\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "responseStatuses": {
+          "description": "Matches only events for which the custodian gave one of these responses. If the set is empty or contains ATTENDEE_RESPONSE_UNSPECIFIED there will be no filtering on responses.",
+          "items": {
+            "enum": [
+              "ATTENDEE_RESPONSE_UNSPECIFIED",
+              "ATTENDEE_RESPONSE_NEEDS_ACTION",
+              "ATTENDEE_RESPONSE_ACCEPTED",
+              "ATTENDEE_RESPONSE_DECLINED",
+              "ATTENDEE_RESPONSE_TENTATIVE"
+            ],
+            "enumDescriptions": [
+              "Attendee response unspecified. If this is set no filtering on responses will be done, all other attendee responses that are part of the query options are ignored.",
+              "The participant has been invited but has not responded yet.",
+              "The participant plans to attend.",
+              "The participant does not plan to attend.",
+              "The participant expects to possibly attend."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "versionDate": {
+          "description": "Search the current version of the Calendar event, but export the contents of the last version saved before 12:00 AM UTC on the specified date. Enter the date in UTC.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1567,6 +1644,11 @@
           "description": "The export name. Don't use special characters (~!$'(),;@:/?) in the name, they can prevent you from downloading exports.",
           "type": "string"
         },
+        "parentExportId": {
+          "description": "Output only. Identifies the parent export that spawned this child export. This is only set on child exports.",
+          "readOnly": true,
+          "type": "string"
+        },
         "query": {
           "$ref": "Query",
           "description": "The query parameters used to create the export."
@@ -1602,6 +1684,10 @@
       "description": "Additional options for exports",
       "id": "ExportOptions",
       "properties": {
+        "calendarOptions": {
+          "$ref": "CalendarExportOptions",
+          "description": "Option available for Calendar export."
+        },
         "driveOptions": {
           "$ref": "DriveExportOptions",
           "description": "Options for Drive exports."
@@ -1710,12 +1796,14 @@
           "enum": [
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
-            "PST"
+            "PST",
+            "ICS"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
-            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
+            "Export as ICS. Only available for Calendar."
           ],
           "type": "string"
         }
@@ -1731,12 +1819,14 @@
           "enum": [
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
-            "PST"
+            "PST",
+            "ICS"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
-            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
+            "Export as ICS. Only available for Calendar."
           ],
           "type": "string"
         }
@@ -1926,7 +2016,8 @@
             "MAIL",
             "GROUPS",
             "HANGOUTS_CHAT",
-            "VOICE"
+            "VOICE",
+            "CALENDAR"
           ],
           "enumDescriptions": [
             "No service specified.",
@@ -1934,7 +2025,8 @@
             "For search, Gmail and classic Hangouts. For holds, Gmail only.",
             "Groups.",
             "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
-            "Google Voice."
+            "Google Voice.",
+            "Calendar."
           ],
           "type": "string"
         },
@@ -2113,14 +2205,20 @@
           "enum": [
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
-            "PST"
+            "PST",
+            "ICS"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
-            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
+            "Export as ICS. Only available for Calendar."
           ],
           "type": "string"
+        },
+        "exportLinkedDriveFiles": {
+          "description": "Optional. To enable exporting linked Drive files, set to **true**.",
+          "type": "boolean"
         },
         "showConfidentialModeContent": {
           "description": "To export confidential mode content, set to **true**.",
@@ -2281,6 +2379,10 @@
           "$ref": "AccountInfo",
           "description": "Required when **SearchMethod** is **ACCOUNT**."
         },
+        "calendarOptions": {
+          "$ref": "CalendarOptions",
+          "description": "Set Calendar search-specific options."
+        },
         "corpus": {
           "description": "The Google Workspace service to search.",
           "enum": [
@@ -2289,7 +2391,8 @@
             "MAIL",
             "GROUPS",
             "HANGOUTS_CHAT",
-            "VOICE"
+            "VOICE",
+            "CALENDAR"
           ],
           "enumDescriptions": [
             "No service specified.",
@@ -2297,7 +2400,8 @@
             "For search, Gmail and classic Hangouts. For holds, Gmail only.",
             "Groups.",
             "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
-            "Google Voice."
+            "Google Voice.",
+            "Calendar."
           ],
           "type": "string"
         },
@@ -2629,12 +2733,14 @@
           "enum": [
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
-            "PST"
+            "PST",
+            "ICS"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
-            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
+            "Export as ICS. Only available for Calendar."
           ],
           "type": "string"
         }

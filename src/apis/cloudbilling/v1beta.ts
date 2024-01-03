@@ -144,15 +144,15 @@ export namespace cloudbilling_v1beta {
     sourceRegion?: string | null;
   }
   /**
-   * Specifies usage for Cloud CDN egress.
+   * Specifies usage for Cloud CDN Data Transfer.
    */
   export interface Schema$CloudCdnEgressWorkload {
     /**
-     * The destination for the cache egress charges.
+     * The destination for the cache data transfer.
      */
     cacheEgressDestination?: string | null;
     /**
-     * Cache egress usage. The rate of data cache egressed in the destination. For example : units such as "GiBy/s" or "TBy/mo".
+     * Cache data transfer usage. The rate of data cache transferred to the destination. Use units such as GiBy/s or TiBy/mo, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard.
      */
     cacheEgressRate?: Schema$Usage;
   }
@@ -178,15 +178,15 @@ export namespace cloudbilling_v1beta {
     cacheLookUpRate?: Schema$Usage;
   }
   /**
-   * The interconnect egress only includes the Interconnect Egress. Please use the standard egress traffic interface to specify your standard egress usage.
+   * Includes the estimate for Interconnect Data Transfer only. To specify usage for data transfer between VMs and internet end-points, use the Standard Tier Internet Data Transfer interface.
    */
   export interface Schema$CloudInterconnectEgressWorkload {
     /**
-     * Data egress usage. This usage applies when you move or copy data from one Google Cloud service to another service. Expected units such as "GiBy/s, By/s, etc."
+     * Outbound data transfer usage. This usage applies when you move or copy data from one Google Cloud service to another service. The units are GiBy/s, By/s, and so on, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard.
      */
     egressRate?: Schema$Usage;
     /**
-     * Locations in the [Interconnect connection location table](https://cloud.google.com/vpc/network-pricing#interconnect-pricing). This is the interconnect egress charges.
+     * Locations in the [Interconnect connection location table](https://cloud.google.com/vpc/network-pricing#interconnect-pricing). These are the Interconnect Data Transfer charges.
      */
     interconnectConnectionLocation?: string | null;
   }
@@ -212,7 +212,7 @@ export namespace cloudbilling_v1beta {
     provisionedLinkCount?: Schema$Usage;
   }
   /**
-   * Specification of a network type. Network egress within Google Cloud applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket.This includes the network egress within Google Cloud and the general network usage.
+   * Specification of a network type. Network data transfer within Google Cloud applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket.This includes the network data transfer within Google Cloud and the general network usage.
    */
   export interface Schema$CloudStorageEgressWorkload {
     /**
@@ -220,7 +220,7 @@ export namespace cloudbilling_v1beta {
      */
     destinationContinent?: string | null;
     /**
-     * Egress usage rate. This usage applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket. Expected units such as "GiBy/s, By/s, ..."
+     * Data transfer usage rate. This usage applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket. The expected units are GiBy/s, By/s, and so on, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard.
      */
     egressRate?: Schema$Usage;
     /**
@@ -233,11 +233,11 @@ export namespace cloudbilling_v1beta {
    */
   export interface Schema$CloudStorageWorkload {
     /**
-     * Data retrieval usage. A retrieval cost applies when data or metadata is read, copied, or rewritten . For example: units such as "GiBy/s" or "By/s".
+     * Data retrieval usage. A retrieval cost applies when data or metadata is read, copied, or rewritten . For example: units such as "GiB/s" or "B/s".
      */
     dataRetrieval?: Schema$Usage;
     /**
-     * Data storage usage. The amount of data stored in buckets. For example: units such as "GiBy/s" or "TBy/mo".
+     * Data storage usage. The amount of data stored in buckets. For example: units such as GiBy/s or TiBy/mo, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard.
      */
     dataStored?: Schema$Usage;
     /**
@@ -563,6 +563,19 @@ export namespace cloudbilling_v1beta {
      * SKU group where the floating discount comes from.
      */
     skuGroup?: string | null;
+  }
+  /**
+   * Response message for ListBillingAccountPrices.
+   */
+  export interface Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse {
+    /**
+     * The returned billing account prices.
+     */
+    billingAccountPrices?: Schema$GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice[];
+    /**
+     * Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Encapsulates a contract feature that the list price (DefaultPrice) will be used for the price if the current list price drops lower than the custom fixed price. Available to new contracts after March 21, 2022. Applies to all fixed price SKUs in the contract, including FixedPrice, FixedDiscount, MigratedPrice, and MergedPrice.
@@ -967,6 +980,19 @@ export namespace cloudbilling_v1beta {
     level?: string | null;
   }
   /**
+   * Response message for ListPrices.
+   */
+  export interface Schema$GoogleCloudBillingPricesV1betaListPricesResponse {
+    /**
+     * Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The returned publicly listed prices.
+     */
+    prices?: Schema$GoogleCloudBillingPricesV1betaPrice[];
+  }
+  /**
    * Encapsulates the latest price for a SKU.
    */
   export interface Schema$GoogleCloudBillingPricesV1betaPrice {
@@ -1186,28 +1212,28 @@ export namespace cloudbilling_v1beta {
     acceleratorType?: string | null;
   }
   /**
-   * Egress traffic between two regions.
+   * Data transfer between two regions.
    */
   export interface Schema$InterRegionEgress {
     /**
-     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data goes to.
+     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the data is transferred to.
      */
     destinationRegion?: string | null;
     /**
-     * VM to VM egress usage. Expected units such as "GiBy/s, By/s, etc."
+     * VM to VM data transfer usage. The expected units such are GiBy/s, By/s, and so on.
      */
     egressRate?: Schema$Usage;
     /**
-     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.
+     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the data is transferred from.
      */
     sourceRegion?: string | null;
   }
   /**
-   * Egress traffic within the same region. When source region and destination region are in the same zone, using the internal IP addresses, there isn't any egress charge.
+   * Data transfer within the same region. When the source region and destination region are in the same zone, using internal IP addresses, there isn't any charge for data transfer.
    */
   export interface Schema$IntraRegionEgress {
     /**
-     * VM to VM egress usage. Expected units such as "GiBy/s, By/s, etc."
+     * VM to VM data transfer usage. The expected are GiBy/s, By/s, and so on.
      */
     egressRate?: Schema$Usage;
   }
@@ -1275,7 +1301,7 @@ export namespace cloudbilling_v1beta {
     machineType?: string | null;
   }
   /**
-   * Specify Premium Tier Internet egress networking.
+   * Specify a Premium Tier Internet Data Transfer networking workload.
    */
   export interface Schema$PremiumTierEgressWorkload {
     /**
@@ -1283,11 +1309,11 @@ export namespace cloudbilling_v1beta {
      */
     destinationContinent?: string | null;
     /**
-     * Premium Tier egress usage. Expected units such as "GiBy/s, By/s, etc."
+     * Premium Tier Data Transfer usage. The expected units are GiBy/s, By/s, and so on, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard.
      */
     egressRate?: Schema$Usage;
     /**
-     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.
+     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the data comes from.
      */
     sourceRegion?: string | null;
   }
@@ -1416,15 +1442,15 @@ export namespace cloudbilling_v1beta {
     usageUnit?: string | null;
   }
   /**
-   * Specify Standard Tier Internet egress networking.
+   * Specify Standard Tier Internet Data Transfer.
    */
   export interface Schema$StandardTierEgressWorkload {
     /**
-     * Standard tier egress usage. Expected units such as "GiBy/s, By/s, etc."
+     * Standard Tier Data Transfer usage. The expected units are GiBy/s, By/s, and so on, based on the [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard.
      */
     egressRate?: Schema$Usage;
     /**
-     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.
+     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the data is transferred from.
      */
     sourceRegion?: string | null;
   }
@@ -1506,7 +1532,7 @@ export namespace cloudbilling_v1beta {
     virtualCpuCount?: string | null;
   }
   /**
-   * Specify VM to VM egress.
+   * Specify VM to VM data transfer.
    */
   export interface Schema$VmToVmEgressWorkload {
     interRegionEgress?: Schema$InterRegionEgress;
@@ -1517,7 +1543,7 @@ export namespace cloudbilling_v1beta {
    */
   export interface Schema$Workload {
     /**
-     * Usage on Google Cloud CDN Egress.
+     * Usage on Google Cloud CDN Data Transfer.
      */
     cloudCdnEgressWorkload?: Schema$CloudCdnEgressWorkload;
     /**
@@ -1525,7 +1551,7 @@ export namespace cloudbilling_v1beta {
      */
     cloudCdnWorkload?: Schema$CloudCdnWorkload;
     /**
-     * Usage on Google Cloud Interconnect Egress.
+     * Usage on Google Cloud Interconnect Data Transfer.
      */
     cloudInterconnectEgressWorkload?: Schema$CloudInterconnectEgressWorkload;
     /**
@@ -1533,7 +1559,7 @@ export namespace cloudbilling_v1beta {
      */
     cloudInterconnectWorkload?: Schema$CloudInterconnectWorkload;
     /**
-     * Usage on a cloud storage egress.
+     * Usage on Cloud Storage Data Transfer.
      */
     cloudStorageEgressWorkload?: Schema$CloudStorageEgressWorkload;
     /**
@@ -1549,15 +1575,15 @@ export namespace cloudbilling_v1beta {
      */
     name?: string | null;
     /**
-     * Usage on Premium Tier Internet Egress.
+     * Usage on Premium Tier Internet Data Transfer.
      */
     premiumTierEgressWorkload?: Schema$PremiumTierEgressWorkload;
     /**
-     * Usage on Standard Tier Internet Egress.
+     * Usage on Standard Tier Internet Data Transfer.
      */
     standardTierEgressWorkload?: Schema$StandardTierEgressWorkload;
     /**
-     * Usage on Vm to Vm Egress.
+     * Usage on VM to VM Data Transfer.
      */
     vmToVmEgressWorkload?: Schema$VmToVmEgressWorkload;
   }
@@ -2362,9 +2388,11 @@ export namespace cloudbilling_v1beta {
   export class Resource$Billingaccounts$Skus {
     context: APIRequestContext;
     price: Resource$Billingaccounts$Skus$Price;
+    prices: Resource$Billingaccounts$Skus$Prices;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.price = new Resource$Billingaccounts$Skus$Price(this.context);
+      this.prices = new Resource$Billingaccounts$Skus$Prices(this.context);
     }
 
     /**
@@ -2694,6 +2722,129 @@ export namespace cloudbilling_v1beta {
      * Required. Name of the billing account price to retrieve. Format: billingAccounts/{billing_account\}/skus/{sku\}/price
      */
     name?: string;
+  }
+
+  export class Resource$Billingaccounts$Skus$Prices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the latest prices for SKUs available to your Cloud Billing account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Skus$Prices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Skus$Prices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Skus$Prices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Skus$Prices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Skus$Prices$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Skus$Prices$List
+        | BodyResponseCallback<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Skus$Prices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Skus$Prices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/prices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Skus$Prices$List
+    extends StandardParameters {
+    /**
+     * Optional. ISO-4217 currency code for the price. If not specified, currency of billing account will be used.
+     */
+    currencyCode?: string;
+    /**
+     * Optional. Maximum number of billing account price to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListBillingAccountPrices call to retrieve the next page of results. If this field is empty, the first page is returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. To list all Billing Account SKUs, use `-` as the SKU ID. Format: `billingAccounts/{billing_account\}/skus/-` Note: Specifying an actual SKU resource id will return a collection of one Billing Account Price.
+     */
+    parent?: string;
   }
 
   export class Resource$Skugroups {
@@ -3128,9 +3279,11 @@ export namespace cloudbilling_v1beta {
   export class Resource$Skus {
     context: APIRequestContext;
     price: Resource$Skus$Price;
+    prices: Resource$Skus$Prices;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.price = new Resource$Skus$Price(this.context);
+      this.prices = new Resource$Skus$Prices(this.context);
     }
   }
 
@@ -3242,6 +3395,127 @@ export namespace cloudbilling_v1beta {
      * Required. Name of the latest price to retrieve. Format: skus/{sku\}/price
      */
     name?: string;
+  }
+
+  export class Resource$Skus$Prices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the latest prices for all SKUs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Skus$Prices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Skus$Prices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>;
+    list(
+      params: Params$Resource$Skus$Prices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Skus$Prices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Skus$Prices$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Skus$Prices$List
+        | BodyResponseCallback<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Skus$Prices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Skus$Prices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/prices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBillingPricesV1betaListPricesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Skus$Prices$List extends StandardParameters {
+    /**
+     * Optional. ISO-4217 currency code for the price. If not specified, USD will be used.
+     */
+    currencyCode?: string;
+    /**
+     * Optional. Maximum number of prices to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListPrices call to retrieve the next page of results. If this field is empty, the first page is returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. To list the prices for all SKUs, use `-` as the SKU ID. Format: `skus/-` Specifying a specific SKU ID returns a collection with one Price object for the SKU.
+     */
+    parent?: string;
   }
 
   export class Resource$V1beta {

@@ -214,6 +214,40 @@ export namespace vault_v1 {
     sendEmails?: boolean | null;
   }
   /**
+   * The options for Calendar exports.
+   */
+  export interface Schema$CalendarExportOptions {
+    /**
+     * The file format for exported text messages.
+     */
+    exportFormat?: string | null;
+  }
+  /**
+   * Additional options for Calendar search
+   */
+  export interface Schema$CalendarOptions {
+    /**
+     * Matches only those events whose location contains all of the words in the given set. If the string contains quoted phrases, this method only matches those events whose location contain the exact phrase. Entries in the set are considered in "and". Word splitting example: ["New Zealand"] vs ["New","Zealand"] "New Zealand": matched by both "New and better Zealand": only matched by the later
+     */
+    locationQuery?: string[] | null;
+    /**
+     * Matches only those events that do not contain any of the words in the given set in title, description, location, or attendees. Entries in the set are considered in "or".
+     */
+    minusWords?: string[] | null;
+    /**
+     * Matches only those events whose attendees contain all of the words in the given set. Entries in the set are considered in "and".
+     */
+    peopleQuery?: string[] | null;
+    /**
+     * Matches only events for which the custodian gave one of these responses. If the set is empty or contains ATTENDEE_RESPONSE_UNSPECIFIED there will be no filtering on responses.
+     */
+    responseStatuses?: string[] | null;
+    /**
+     * Search the current version of the Calendar event, but export the contents of the last version saved before 12:00 AM UTC on the specified date. Enter the date in UTC.
+     */
+    versionDate?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -399,6 +433,10 @@ export namespace vault_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Identifies the parent export that spawned this child export. This is only set on child exports.
+     */
+    parentExportId?: string | null;
+    /**
      * The query parameters used to create the export.
      */
     query?: Schema$Query;
@@ -419,6 +457,10 @@ export namespace vault_v1 {
    * Additional options for exports
    */
   export interface Schema$ExportOptions {
+    /**
+     * Option available for Calendar export.
+     */
+    calendarOptions?: Schema$CalendarExportOptions;
     /**
      * Options for Drive exports.
      */
@@ -766,6 +808,10 @@ export namespace vault_v1 {
      */
     exportFormat?: string | null;
     /**
+     * Optional. To enable exporting linked Drive files, set to **true**.
+     */
+    exportLinkedDriveFiles?: boolean | null;
+    /**
      * To export confidential mode content, set to **true**.
      */
     showConfidentialModeContent?: boolean | null;
@@ -867,6 +913,10 @@ export namespace vault_v1 {
      * Required when **SearchMethod** is **ACCOUNT**.
      */
     accountInfo?: Schema$AccountInfo;
+    /**
+     * Set Calendar search-specific options.
+     */
+    calendarOptions?: Schema$CalendarOptions;
     /**
      * The Google Workspace service to search.
      */

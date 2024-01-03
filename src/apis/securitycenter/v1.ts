@@ -211,6 +211,19 @@ export namespace securitycenter_v1 {
     version?: string | null;
   }
   /**
+   * Represents an application associated with a finding.
+   */
+  export interface Schema$Application {
+    /**
+     * The base URI that identifies the network location of the application in which the vulnerability was detected. Examples: http://11.22.33.44, http://foo.com, http://11.22.33.44:8080
+     */
+    baseUri?: string | null;
+    /**
+     * The full URI with payload that can be used to reproduce the vulnerability. Example: http://11.22.33.44/reflected/parameter/attribute/singlequoted/js?p=aMmYgI6H
+     */
+    fullUri?: string | null;
+  }
+  /**
    * Security Command Center representation of a Google Cloud resource. The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don't affect the referenced Google Cloud resource.
    */
   export interface Schema$Asset {
@@ -408,6 +421,51 @@ export namespace securitycenter_v1 {
     logType?: string | null;
   }
   /**
+   * Information related to Google Cloud Backup and DR Service findings.
+   */
+  export interface Schema$BackupDisasterRecovery {
+    /**
+     * The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, “backup-server-57137”.
+     */
+    appliance?: string | null;
+    /**
+     * The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, “centos7-01-vol00”, “centos7-01-vol01”, “centos7-01-vol02”.
+     */
+    applications?: string[] | null;
+    /**
+     * The timestamp at which the Backup and DR backup was created.
+     */
+    backupCreateTime?: string | null;
+    /**
+     * The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, “snap-ov”.
+     */
+    backupTemplate?: string | null;
+    /**
+     * The backup type of the Backup and DR image. For example, “Snapshot”, “Remote Snapshot”, “OnVault”.
+     */
+    backupType?: string | null;
+    /**
+     * The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, “centos7-01”.
+     */
+    host?: string | null;
+    /**
+     * The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, “onvaults”.
+     */
+    policies?: string[] | null;
+    /**
+     * The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, “skipofflineappsincongrp, nounmap”.
+     */
+    policyOptions?: string[] | null;
+    /**
+     * The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, “GCP”.
+     */
+    profile?: string | null;
+    /**
+     * The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, “DiskPoolOne”.
+     */
+    storagePool?: string | null;
+  }
+  /**
    * Request message to create multiple resource value configs
    */
   export interface Schema$BatchCreateResourceValueConfigsRequest {
@@ -434,7 +492,7 @@ export namespace securitycenter_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
      */
     members?: string[] | null;
     /**
@@ -740,6 +798,48 @@ export namespace securitycenter_v1 {
     percentPagesMatched?: number | null;
   }
   /**
+   * Path of the file in terms of underlying disk/partition identifiers.
+   */
+  export interface Schema$DiskPath {
+    /**
+     * UUID of the partition (format https://wiki.archlinux.org/title/persistent_block_device_naming#by-uuid)
+     */
+    partitionUuid?: string | null;
+    /**
+     * Relative path of the file in the partition as a JSON encoded string. Example: /home/user1/executable_file.sh
+     */
+    relativePath?: string | null;
+  }
+  /**
+   * An EffectiveEventThreatDetectionCustomModule is the representation of an Event Threat Detection custom module at a specified level of the resource hierarchy: organization, folder, or project. If a custom module is inherited from a parent organization or folder, the value of the `enablement_state` property in EffectiveEventThreatDetectionCustomModule is set to the value that is effective in the parent, instead of `INHERITED`. For example, if the module is enabled in a parent organization or folder, the effective `enablement_state` for the module in all child folders or projects is also `enabled`. EffectiveEventThreatDetectionCustomModule is read-only.
+   */
+  export interface Schema$EffectiveEventThreatDetectionCustomModule {
+    /**
+     * Output only. Config for the effective module.
+     */
+    config?: {[key: string]: any} | null;
+    /**
+     * Output only. The description for the module.
+     */
+    description?: string | null;
+    /**
+     * Output only. The human readable name to be displayed for the module.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The effective state of enablement for the module at the given level of the hierarchy.
+     */
+    enablementState?: string | null;
+    /**
+     * Output only. The resource name of the effective ETD custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}".
+     */
+    name?: string | null;
+    /**
+     * Output only. Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     */
+    type?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -757,9 +857,13 @@ export namespace securitycenter_v1 {
     val?: string | null;
   }
   /**
-   * Represents an instance of an Event Threat Detection custom module, including its full module name, display name, enablement state, and last updated time. You can create a custom module at the organization level only.
+   * Represents an instance of an Event Threat Detection custom module, including its full module name, display name, enablement state, and last updated time. You can create a custom module at the organization, folder, or project level. Custom modules that you create at the organization or folder level are inherited by child folders and projects.
    */
   export interface Schema$EventThreatDetectionCustomModule {
+    /**
+     * Output only. The closest ancestor module that this module inherits the enablement state from. The format is the same as the EventThreatDetectionCustomModule resource name.
+     */
+    ancestorModule?: string | null;
     /**
      * Config for the module. For the resident module, its config value is defined at this level. For the inherited module, its config value is inherited from the ancestor module.
      */
@@ -853,6 +957,10 @@ export namespace securitycenter_v1 {
      */
     contents?: string | null;
     /**
+     * Path of the file in terms of underlying disk/partition identifiers.
+     */
+    diskPath?: Schema$DiskPath;
+    /**
      * The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.
      */
     hashedSize?: string | null;
@@ -882,9 +990,17 @@ export namespace securitycenter_v1 {
      */
     access?: Schema$Access;
     /**
+     * Represents an application associated with the finding.
+     */
+    application?: Schema$Application;
+    /**
      * The results of an attack path simulation relevant to this finding.
      */
     attackExposure?: Schema$AttackExposure;
+    /**
+     * Fields related to Backup and DR findings.
+     */
+    backupDisasterRecovery?: Schema$BackupDisasterRecovery;
     /**
      * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
      */
@@ -1897,6 +2013,19 @@ export namespace securitycenter_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response for listing current and descendant resident Event Threat Detection custom modules.
+   */
+  export interface Schema$ListDescendantEventThreatDetectionCustomModulesResponse {
+    /**
+     * Custom modules belonging to the requested parent.
+     */
+    eventThreatDetectionCustomModules?: Schema$EventThreatDetectionCustomModule[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for listing descendant Security Health Analytics custom modules.
    */
   export interface Schema$ListDescendantSecurityHealthAnalyticsCustomModulesResponse {
@@ -1908,6 +2037,19 @@ export namespace securitycenter_v1 {
      * Custom modules belonging to the requested parent and its descendants.
      */
     securityHealthAnalyticsCustomModules?: Schema$GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule[];
+  }
+  /**
+   * Response for listing EffectiveEventThreatDetectionCustomModules.
+   */
+  export interface Schema$ListEffectiveEventThreatDetectionCustomModulesResponse {
+    /**
+     * Effective custom modules belonging to the requested parent.
+     */
+    effectiveEventThreatDetectionCustomModules?: Schema$EffectiveEventThreatDetectionCustomModule[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing effective Security Health Analytics custom modules.
@@ -2184,7 +2326,7 @@ export namespace securitycenter_v1 {
      */
     group?: string | null;
     /**
-     * Kubernetes object kind, such as “Namespace”.
+     * Kubernetes object kind, such as "Namespace".
      */
     kind?: string | null;
     /**
@@ -2246,6 +2388,27 @@ export namespace securitycenter_v1 {
      * The resource name of the org policy. Example: "organizations/{organization_id\}/policies/{constraint_name\}"
      */
     name?: string | null;
+  }
+  /**
+   * Package is a generic definition of a package.
+   */
+  export interface Schema$Package {
+    /**
+     * The CPE URI where the vulnerability was detected.
+     */
+    cpeUri?: string | null;
+    /**
+     * The name of the package where the vulnerability was detected.
+     */
+    packageName?: string | null;
+    /**
+     * Type of package, for example, os, maven, or go.
+     */
+    packageType?: string | null;
+    /**
+     * The version of the package.
+     */
+    packageVersion?: string | null;
   }
   /**
    * A finding that is associated with this node in the attack path.
@@ -2367,6 +2530,10 @@ export namespace securitycenter_v1 {
      */
     memoryHashSignature?: Schema$MemoryHashSignature;
     /**
+     * Describes the type of resource associated with the signature.
+     */
+    signatureType?: string | null;
+    /**
      * Signature indicating that a YARA rule was matched.
      */
     yaraRuleSignature?: Schema$YaraRuleSignature;
@@ -2451,6 +2618,23 @@ export namespace securitycenter_v1 {
    * Request message for running asset discovery for an organization.
    */
   export interface Schema$RunAssetDiscoveryRequest {}
+  /**
+   * SecurityBulletin are notifications of vulnerabilities of Google products.
+   */
+  export interface Schema$SecurityBulletin {
+    /**
+     * ID of the bulletin corresponding to the vulnerability.
+     */
+    bulletinId?: string | null;
+    /**
+     * Submission time of this Security Bulletin.
+     */
+    submissionTime?: string | null;
+    /**
+     * This represents a version that the cluster receiving this notification should be upgraded to, based on its current version. For example, 1.15.0
+     */
+    suggestedUpgradeVersion?: string | null;
+  }
   /**
    * Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user.
    */
@@ -2583,7 +2767,7 @@ export namespace securitycenter_v1 {
     mute?: string | null;
   }
   /**
-   * Manually constructed resource. If the custom module only evaluates against the resource data, the iam_policy_data field can be omitted, and vice versa.
+   * Manually constructed resource name. If the custom module evaluates against only the resource data, you can omit the `iam_policy_data` field. If it evaluates only the `iam_policy_data` field, you can omit the resource data.
    */
   export interface Schema$SimulatedResource {
     /**
@@ -2591,11 +2775,11 @@ export namespace securitycenter_v1 {
      */
     iamPolicyData?: Schema$Policy;
     /**
-     * Optional. A representation of the GCP resource. Should match the GCP resource JSON format.
+     * Optional. A representation of the Google Cloud resource. Should match the Google Cloud resource JSON format.
      */
     resourceData?: {[key: string]: any} | null;
     /**
-     * Required. The type of the resource, e.g. `compute.googleapis.com/Disk`.
+     * Required. The type of the resource, for example, `compute.googleapis.com/Disk`.
      */
     resourceType?: string | null;
   }
@@ -2621,7 +2805,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$SimulateSecurityHealthAnalyticsCustomModuleRequest {
     /**
-     * Required. The user specified custom configuration to test.
+     * Required. The custom configuration that you need to test.
      */
     customConfig?: Schema$GoogleCloudSecuritycenterV1CustomConfig;
     /**
@@ -2630,7 +2814,7 @@ export namespace securitycenter_v1 {
     resource?: Schema$SimulatedResource;
   }
   /**
-   * Response message for simulating a SecurityHealthAnalyticsCustomModule against a given resource.
+   * Response message for simulating a `SecurityHealthAnalyticsCustomModule` against a given resource.
    */
   export interface Schema$SimulateSecurityHealthAnalyticsCustomModuleResponse {
     /**
@@ -2800,6 +2984,18 @@ export namespace securitycenter_v1 {
      * CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     cve?: Schema$Cve;
+    /**
+     * The fixed package is relevant to the finding.
+     */
+    fixedPackage?: Schema$Package;
+    /**
+     * The offending package is relevant to the finding.
+     */
+    offendingPackage?: Schema$Package;
+    /**
+     * The security bulletin is relevant to this finding.
+     */
+    securityBulletin?: Schema$SecurityBulletin;
   }
   /**
    * A signature corresponding to a YARA rule.
@@ -2815,6 +3011,7 @@ export namespace securitycenter_v1 {
     context: APIRequestContext;
     assets: Resource$Folders$Assets;
     bigQueryExports: Resource$Folders$Bigqueryexports;
+    eventThreatDetectionSettings: Resource$Folders$Eventthreatdetectionsettings;
     findings: Resource$Folders$Findings;
     locations: Resource$Folders$Locations;
     muteConfigs: Resource$Folders$Muteconfigs;
@@ -2825,6 +3022,8 @@ export namespace securitycenter_v1 {
       this.context = context;
       this.assets = new Resource$Folders$Assets(this.context);
       this.bigQueryExports = new Resource$Folders$Bigqueryexports(this.context);
+      this.eventThreatDetectionSettings =
+        new Resource$Folders$Eventthreatdetectionsettings(this.context);
       this.findings = new Resource$Folders$Findings(this.context);
       this.locations = new Resource$Folders$Locations(this.context);
       this.muteConfigs = new Resource$Folders$Muteconfigs(this.context);
@@ -3713,6 +3912,1006 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
+  }
+
+  export class Resource$Folders$Eventthreatdetectionsettings {
+    context: APIRequestContext;
+    customModules: Resource$Folders$Eventthreatdetectionsettings$Custommodules;
+    effectiveCustomModules: Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.customModules =
+        new Resource$Folders$Eventthreatdetectionsettings$Custommodules(
+          this.context
+        );
+      this.effectiveCustomModules =
+        new Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules(
+          this.context
+        );
+    }
+
+    /**
+     * Validates the given Event Threat Detection custom module.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validateCustomModule(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validateCustomModule(
+      params?: Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateEventThreatDetectionCustomModuleResponse>;
+    validateCustomModule(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validateCustomModule(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>,
+      callback: BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+    ): void;
+    validateCustomModule(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule,
+      callback: BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+    ): void;
+    validateCustomModule(
+      callback: BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+    ): void;
+    validateCustomModule(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:validateCustomModule').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateEventThreatDetectionCustomModuleResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateEventThreatDetectionCustomModuleResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ValidateEventThreatDetectionCustomModuleRequest;
+  }
+
+  export class Resource$Folders$Eventthreatdetectionsettings$Custommodules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a resident Event Threat Detection custom module at the scope of the given Resource Manager parent, and also creates inherited custom modules for all descendants of the given parent. These modules are enabled by default.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventThreatDetectionCustomModule>;
+    create(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customModules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified Event Threat Detection custom module and all of its descendants in the Resource Manager hierarchy. This method is only supported for resident custom modules.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets an Event Threat Detection custom module.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventThreatDetectionCustomModule>;
+    get(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all Event Threat Detection custom modules for the given Resource Manager parent. This includes resident modules defined at the scope of the parent along with modules inherited from ancestors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEventThreatDetectionCustomModulesResponse>;
+    list(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>,
+      callback: BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List,
+      callback: BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEventThreatDetectionCustomModulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customModules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEventThreatDetectionCustomModulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEventThreatDetectionCustomModulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all resident Event Threat Detection custom modules under the given Resource Manager parent and its descendants.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listDescendant(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDescendant(
+      params?: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>;
+    listDescendant(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listDescendant(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>,
+      callback: BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+    ): void;
+    listDescendant(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      callback: BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+    ): void;
+    listDescendant(
+      callback: BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+    ): void;
+    listDescendant(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/customModules:listDescendant'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the Event Threat Detection custom module with the given name based on the given update mask. Updating the enablement state is supported for both resident and inherited modules (though resident modules cannot have an enablement state of "inherited"). Updating the display name or configuration of a module is supported for resident modules only. The type of a module cannot be changed.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventThreatDetectionCustomModule>;
+    patch(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create
+    extends StandardParameters {
+    /**
+     * Required. The new custom module's parent. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EventThreatDetectionCustomModule;
+  }
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the custom module to delete. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the custom module to get. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$List
+    extends StandardParameters {
+    /**
+     * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEventThreatDetectionCustomModules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Listdescendant
+    extends StandardParameters {
+    /**
+     * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListDescendantEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDescendantEventThreatDetectionCustomModules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EventThreatDetectionCustomModule;
+  }
+
+  export class Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets an effective Event Threat Detection custom module at the given level.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EffectiveEventThreatDetectionCustomModule>;
+    get(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      callback: BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EffectiveEventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EffectiveEventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EffectiveEventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all effective Event Threat Detection custom modules for the given parent. This includes resident modules defined at the scope of the parent along with modules inherited from its ancestors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>;
+    list(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>,
+      callback: BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      callback: BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/effectiveCustomModules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$List
+    extends StandardParameters {
+    /**
+     * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListEffectiveEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEffectiveEventThreatDetectionCustomModules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent to list custom modules for. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
   }
 
   export class Resource$Folders$Findings {
@@ -5949,7 +7148,7 @@ export namespace securitycenter_v1 {
      */
     name?: string;
     /**
-     * The list of fields to update.
+     * The list of fields to be updated. The only fields that can be updated are `enablement_state` and `custom_config`. If empty or set to the wildcard value `*`, both `enablement_state` and `custom_config` are updated.
      */
     updateMask?: string;
 
@@ -5961,7 +7160,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Simulate
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the organization, project, or folder. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name An example is: "organizations/{organization_id\}".
+     * Required. The relative resource name of the organization, project, or folder. For more information about relative resource names, see [Relative Resource Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) Example: `organizations/{organization_id\}`
      */
     parent?: string;
 
@@ -8311,10 +9510,15 @@ export namespace securitycenter_v1 {
   export class Resource$Organizations$Eventthreatdetectionsettings {
     context: APIRequestContext;
     customModules: Resource$Organizations$Eventthreatdetectionsettings$Custommodules;
+    effectiveCustomModules: Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.customModules =
         new Resource$Organizations$Eventthreatdetectionsettings$Custommodules(
+          this.context
+        );
+      this.effectiveCustomModules =
+        new Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules(
           this.context
         );
     }
@@ -8421,7 +9625,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule
     extends StandardParameters {
     /**
-     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings".
+     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
      */
     parent?: string;
 
@@ -8438,7 +9642,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Creates an Event Threat Detection custom module.
+     * Creates a resident Event Threat Detection custom module at the scope of the given Resource Manager parent, and also creates inherited custom modules for all descendants of the given parent. These modules are enabled by default.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8536,7 +9740,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Deletes an Event Threat Detection custom module.
+     * Deletes the specified Event Threat Detection custom module and all of its descendants in the Resource Manager hierarchy. This method is only supported for resident custom modules.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8717,7 +9921,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Lists Event Threat Detection custom modules.
+     * Lists all Event Threat Detection custom modules for the given Resource Manager parent. This includes resident modules defined at the scope of the parent along with modules inherited from ancestors.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8815,7 +10019,104 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Updates an Event Threat Detection custom module.
+     * Lists all resident Event Threat Detection custom modules under the given Resource Manager parent and its descendants.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listDescendant(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDescendant(
+      params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>;
+    listDescendant(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listDescendant(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>,
+      callback: BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+    ): void;
+    listDescendant(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      callback: BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+    ): void;
+    listDescendant(
+      callback: BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+    ): void;
+    listDescendant(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/customModules:listDescendant'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the Event Threat Detection custom module with the given name based on the given update mask. Updating the enablement state is supported for both resident and inherited modules (though resident modules cannot have an enablement state of "inherited"). Updating the display name or configuration of a module is supported for resident modules only. The type of a module cannot be changed.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8913,7 +10214,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create
     extends StandardParameters {
     /**
-     * Required. The new custom module's parent. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings".
+     * Required. The new custom module's parent. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
      */
     parent?: string;
 
@@ -8925,14 +10226,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to delete. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Required. Name of the custom module to delete. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to get. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Required. Name of the custom module to get. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
      */
     name?: string;
   }
@@ -8947,7 +10248,22 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Listdescendant
+    extends StandardParameters {
+    /**
+     * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListDescendantEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDescendantEventThreatDetectionCustomModules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
      */
     parent?: string;
   }
@@ -8966,6 +10282,229 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$EventThreatDetectionCustomModule;
+  }
+
+  export class Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets an effective Event Threat Detection custom module at the given level.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EffectiveEventThreatDetectionCustomModule>;
+    get(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      callback: BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EffectiveEventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EffectiveEventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EffectiveEventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all effective Event Threat Detection custom modules for the given parent. This includes resident modules defined at the scope of the parent along with modules inherited from its ancestors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>;
+    list(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>,
+      callback: BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      callback: BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/effectiveCustomModules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$List
+    extends StandardParameters {
+    /**
+     * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListEffectiveEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEffectiveEventThreatDetectionCustomModules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent to list custom modules for. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
   }
 
   export class Resource$Organizations$Findings {
@@ -12130,7 +13669,7 @@ export namespace securitycenter_v1 {
      */
     name?: string;
     /**
-     * The list of fields to update.
+     * The list of fields to be updated. The only fields that can be updated are `enablement_state` and `custom_config`. If empty or set to the wildcard value `*`, both `enablement_state` and `custom_config` are updated.
      */
     updateMask?: string;
 
@@ -12142,7 +13681,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Simulate
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the organization, project, or folder. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name An example is: "organizations/{organization_id\}".
+     * Required. The relative resource name of the organization, project, or folder. For more information about relative resource names, see [Relative Resource Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) Example: `organizations/{organization_id\}`
      */
     parent?: string;
 
@@ -12881,6 +14420,92 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Get the valued resource by name
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Simulations$Valuedresources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValuedResource>;
+    get(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ValuedResource>,
+      callback: BodyResponseCallback<Schema$ValuedResource>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$Get,
+      callback: BodyResponseCallback<Schema$ValuedResource>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ValuedResource>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Simulations$Valuedresources$Get
+        | BodyResponseCallback<Schema$ValuedResource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValuedResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValuedResource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ValuedResource> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Simulations$Valuedresources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Simulations$Valuedresources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValuedResource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValuedResource>(parameters);
+      }
+    }
+
+    /**
      * Lists the valued resources for a set of simulation results and filter.
      *
      * @param params - Parameters for request
@@ -12977,6 +14602,13 @@ export namespace securitycenter_v1 {
     }
   }
 
+  export interface Params$Resource$Organizations$Simulations$Valuedresources$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of this valued resource Valid format: "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Simulations$Valuedresources$List
     extends StandardParameters {
     /**
@@ -14716,6 +16348,7 @@ export namespace securitycenter_v1 {
     context: APIRequestContext;
     assets: Resource$Projects$Assets;
     bigQueryExports: Resource$Projects$Bigqueryexports;
+    eventThreatDetectionSettings: Resource$Projects$Eventthreatdetectionsettings;
     findings: Resource$Projects$Findings;
     locations: Resource$Projects$Locations;
     muteConfigs: Resource$Projects$Muteconfigs;
@@ -14728,6 +16361,8 @@ export namespace securitycenter_v1 {
       this.bigQueryExports = new Resource$Projects$Bigqueryexports(
         this.context
       );
+      this.eventThreatDetectionSettings =
+        new Resource$Projects$Eventthreatdetectionsettings(this.context);
       this.findings = new Resource$Projects$Findings(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
       this.muteConfigs = new Resource$Projects$Muteconfigs(this.context);
@@ -15616,6 +17251,1006 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
+  }
+
+  export class Resource$Projects$Eventthreatdetectionsettings {
+    context: APIRequestContext;
+    customModules: Resource$Projects$Eventthreatdetectionsettings$Custommodules;
+    effectiveCustomModules: Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.customModules =
+        new Resource$Projects$Eventthreatdetectionsettings$Custommodules(
+          this.context
+        );
+      this.effectiveCustomModules =
+        new Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules(
+          this.context
+        );
+    }
+
+    /**
+     * Validates the given Event Threat Detection custom module.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validateCustomModule(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validateCustomModule(
+      params?: Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateEventThreatDetectionCustomModuleResponse>;
+    validateCustomModule(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validateCustomModule(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>,
+      callback: BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+    ): void;
+    validateCustomModule(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule,
+      callback: BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+    ): void;
+    validateCustomModule(
+      callback: BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+    ): void;
+    validateCustomModule(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:validateCustomModule').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateEventThreatDetectionCustomModuleResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateEventThreatDetectionCustomModuleResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ValidateEventThreatDetectionCustomModuleRequest;
+  }
+
+  export class Resource$Projects$Eventthreatdetectionsettings$Custommodules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a resident Event Threat Detection custom module at the scope of the given Resource Manager parent, and also creates inherited custom modules for all descendants of the given parent. These modules are enabled by default.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventThreatDetectionCustomModule>;
+    create(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customModules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified Event Threat Detection custom module and all of its descendants in the Resource Manager hierarchy. This method is only supported for resident custom modules.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets an Event Threat Detection custom module.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventThreatDetectionCustomModule>;
+    get(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all Event Threat Detection custom modules for the given Resource Manager parent. This includes resident modules defined at the scope of the parent along with modules inherited from ancestors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEventThreatDetectionCustomModulesResponse>;
+    list(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>,
+      callback: BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List,
+      callback: BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEventThreatDetectionCustomModulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customModules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEventThreatDetectionCustomModulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEventThreatDetectionCustomModulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all resident Event Threat Detection custom modules under the given Resource Manager parent and its descendants.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listDescendant(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDescendant(
+      params?: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>;
+    listDescendant(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listDescendant(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>,
+      callback: BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+    ): void;
+    listDescendant(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant,
+      callback: BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+    ): void;
+    listDescendant(
+      callback: BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+    ): void;
+    listDescendant(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/customModules:listDescendant'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDescendantEventThreatDetectionCustomModulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the Event Threat Detection custom module with the given name based on the given update mask. Updating the enablement state is supported for both resident and inherited modules (though resident modules cannot have an enablement state of "inherited"). Updating the display name or configuration of a module is supported for resident modules only. The type of a module cannot be changed.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventThreatDetectionCustomModule>;
+    patch(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create
+    extends StandardParameters {
+    /**
+     * Required. The new custom module's parent. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EventThreatDetectionCustomModule;
+  }
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the custom module to delete. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the custom module to get. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$List
+    extends StandardParameters {
+    /**
+     * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEventThreatDetectionCustomModules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Listdescendant
+    extends StandardParameters {
+    /**
+     * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListDescendantEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDescendantEventThreatDetectionCustomModules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EventThreatDetectionCustomModule;
+  }
+
+  export class Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets an effective Event Threat Detection custom module at the given level.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EffectiveEventThreatDetectionCustomModule>;
+    get(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get,
+      callback: BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EffectiveEventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EffectiveEventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EffectiveEventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EffectiveEventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all effective Event Threat Detection custom modules for the given parent. This includes resident modules defined at the scope of the parent along with modules inherited from its ancestors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>;
+    list(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>,
+      callback: BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List,
+      callback: BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/effectiveCustomModules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEffectiveEventThreatDetectionCustomModulesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$List
+    extends StandardParameters {
+    /**
+     * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListEffectiveEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEffectiveEventThreatDetectionCustomModules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent to list custom modules for. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Findings {
@@ -17852,7 +20487,7 @@ export namespace securitycenter_v1 {
      */
     name?: string;
     /**
-     * The list of fields to update.
+     * The list of fields to be updated. The only fields that can be updated are `enablement_state` and `custom_config`. If empty or set to the wildcard value `*`, both `enablement_state` and `custom_config` are updated.
      */
     updateMask?: string;
 
@@ -17864,7 +20499,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Simulate
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the organization, project, or folder. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name An example is: "organizations/{organization_id\}".
+     * Required. The relative resource name of the organization, project, or folder. For more information about relative resource names, see [Relative Resource Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) Example: `organizations/{organization_id\}`
      */
     parent?: string;
 

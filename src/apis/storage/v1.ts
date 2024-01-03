@@ -1512,7 +1512,7 @@ export namespace storage_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/storage/v1/b/{bucket}/anywhereCache').replace(
+            url: (rootUrl + '/storage/v1/b/{bucket}/anywhereCaches').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),

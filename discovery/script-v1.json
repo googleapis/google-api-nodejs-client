@@ -891,7 +891,7 @@
       }
     }
   },
-  "revision": "20231105",
+  "revision": "20231218",
   "rootUrl": "https://script.googleapis.com/",
   "schemas": {
     "Content": {
@@ -904,6 +904,10 @@
             "$ref": "File"
           },
           "type": "array"
+        },
+        "revertFlumeInvoked": {
+          "description": "Set to true if called from revert flume to allow deletion of system generated manifest file while validating content request. This value is false by default.",
+          "type": "boolean"
         },
         "scriptId": {
           "description": "The script project's Drive ID.",

@@ -246,7 +246,7 @@
       }
     }
   },
-  "revision": "20230805",
+  "revision": "20231216",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -558,7 +558,7 @@
       "properties": {
         "classificationModelOptions": {
           "$ref": "ClassificationModelOptions",
-          "description": "Model options to use for classification. Defaults to v1 options if not specified."
+          "description": "Optional. Model options to use for classification. Defaults to v1 options if not specified."
         },
         "document": {
           "$ref": "Document",
@@ -903,7 +903,7 @@
       "properties": {
         "classificationModelOptions": {
           "$ref": "ClassificationModelOptions",
-          "description": "The model options to use for classification. Defaults to v1 options if not specified. Only used if `classify_text` is set to true."
+          "description": "Optional. The model options to use for classification. Defaults to v1 options if not specified. Only used if `classify_text` is set to true."
         },
         "classifyText": {
           "description": "Classify the full document into categories.",

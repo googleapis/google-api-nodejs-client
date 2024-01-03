@@ -384,7 +384,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231214",
   "rootUrl": "https://vpcaccess.googleapis.com/",
   "schemas": {
     "Connector": {
@@ -399,8 +399,20 @@
           "readOnly": true,
           "type": "array"
         },
+        "createTime": {
+          "description": "Output only. The creation time of the connector.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "ipCidrRange": {
           "description": "The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.",
+          "type": "string"
+        },
+        "lastRestartTime": {
+          "description": "Output only. The last restart time of the connector.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "machineType": {
@@ -413,7 +425,7 @@
           "type": "integer"
         },
         "maxThroughput": {
-          "description": "Maximum throughput of the connector in Mbps. Default is 300, max is 1000. If both max-throughput and max-instances are provided, max-instances takes precedence over max-throughput.",
+          "description": "Maximum throughput of the connector in Mbps. Refers to the expected throughput when using an `e2-micro` machine type. Value must be a multiple of 100 from 300 through 1000. Must be higher than the value specified by --min-throughput. If both max-throughput and max-instances are provided, max-instances takes precedence over max-throughput. The use of `max-throughput` is discouraged in favor of `max-instances`.",
           "format": "int32",
           "type": "integer"
         },
@@ -423,7 +435,7 @@
           "type": "integer"
         },
         "minThroughput": {
-          "description": "Minimum throughput of the connector in Mbps. Default and min is 200. If both min-throughput and min-instances are provided, min-instances takes precedence over min-throughput.",
+          "description": "Minimum throughput of the connector in Mbps. Refers to the expected throughput when using an `e2-micro` machine type. Value must be a multiple of 100 from 200 through 900. Must be lower than the value specified by --max-throughput. If both min-throughput and min-instances are provided, min-instances takes precedence over min-throughput. The use of `min-throughput` is discouraged in favor of `min-instances`.",
           "format": "int32",
           "type": "integer"
         },

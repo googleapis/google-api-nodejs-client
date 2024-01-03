@@ -125,6 +125,15 @@ export namespace alloydb_v1beta {
   }
 
   /**
+   * AuthorizedNetwork contains metadata for an authorized network.
+   */
+  export interface Schema$AuthorizedNetwork {
+    /**
+     * CIDR range for one authorzied network of the instance.
+     */
+    cidrRange?: string | null;
+  }
+  /**
    * Message describing the user-specified automated backup policy. All fields in the automated backup policy are optional. Defaults for each field are provided if they are not set.
    */
   export interface Schema$AutomatedBackupPolicy {
@@ -229,6 +238,10 @@ export namespace alloydb_v1beta {
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation), if true, indicates that the service is actively updating the resource. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The size of the backup in bytes.
      */
@@ -375,6 +388,10 @@ export namespace alloydb_v1beta {
      */
     reconciling?: boolean | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Cross Region replication config specific to SECONDARY cluster.
      */
     secondaryConfig?: Schema$SecondaryConfig;
@@ -415,6 +432,10 @@ export namespace alloydb_v1beta {
      * Output only. The pem-encoded chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.
      */
     pemCertificateChain?: string[] | null;
+    /**
+     * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
+     */
+    publicIpAddress?: string | null;
   }
   /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
@@ -685,6 +706,10 @@ export namespace alloydb_v1beta {
      */
     name?: string | null;
     /**
+     * Optional. Instance level network configuration.
+     */
+    networkConfig?: Schema$InstanceNetworkConfig;
+    /**
      * Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.
      */
     nodes?: Schema$Node[];
@@ -700,6 +725,10 @@ export namespace alloydb_v1beta {
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Instance does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The current serving state of the instance.
      */
@@ -720,6 +749,19 @@ export namespace alloydb_v1beta {
      * Output only. This is set for the read-write VM of the PRIMARY instance only.
      */
     writableNode?: Schema$Node;
+  }
+  /**
+   * Metadata related to instance level network configuration.
+   */
+  export interface Schema$InstanceNetworkConfig {
+    /**
+     * Optional. A list of external network authorized to access this instance.
+     */
+    authorizedExternalNetworks?: Schema$AuthorizedNetwork[];
+    /**
+     * Optional. Enabling public ip for the instance.
+     */
+    enablePublicIp?: boolean | null;
   }
   /**
    * Restrictions on INTEGER type values.
@@ -863,7 +905,7 @@ export namespace alloydb_v1beta {
      */
     allocatedIpRange?: string | null;
     /**
-     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
+     * Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
      */
     network?: string | null;
   }
@@ -1219,7 +1261,7 @@ export namespace alloydb_v1beta {
      */
     provider?: string | null;
     /**
-     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123". For GCP provided resources, number should be project number.
+     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
     /**
@@ -1314,7 +1356,7 @@ export namespace alloydb_v1beta {
      */
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
     /**
-     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123". For GCP provided resources, number should be project number.
+     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "/", such as "projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
     /**

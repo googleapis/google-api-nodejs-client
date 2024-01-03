@@ -941,7 +941,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20231217",
   "rootUrl": "https://playdeveloperreporting.googleapis.com/",
   "schemas": {
     "GooglePlayDeveloperReportingV1beta1Anomaly": {
@@ -964,7 +964,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Name of the anomaly. Format: apps/{app}/anomalies/{anomaly}",
+          "description": "Identifier. Name of the anomaly. Format: apps/{app}/anomalies/{anomaly}",
           "type": "string"
         },
         "timelineSpec": {
@@ -983,7 +983,7 @@
           "description": "Summary about data freshness in this resource."
         },
         "name": {
-          "description": "The resource name. Format: apps/{app}/anrRateMetricSet",
+          "description": "Identifier. The resource name. Format: apps/{app}/anrRateMetricSet",
           "type": "string"
         }
       },
@@ -998,7 +998,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name. Format: apps/{app}",
+          "description": "Identifier. The resource name. Format: apps/{app}",
           "type": "string"
         },
         "packageName": {
@@ -1029,7 +1029,7 @@
           "description": "Summary about data freshness in this resource."
         },
         "name": {
-          "description": "The resource name. Format: apps/{app}/crashRateMetricSet",
+          "description": "Identifier. The resource name. Format: apps/{app}/crashRateMetricSet",
           "type": "string"
         }
       },
@@ -1199,6 +1199,10 @@
       "description": "An error report received for an app. There reports are produced by the Android platform code when a (potentially fatal) error condition is detected. Identical reports from many users will be deduplicated and coalesced into a single ErrorReport. **Required permissions**: to access this resource, the calling user needs the _View app information (read-only)_ permission for the app.",
       "id": "GooglePlayDeveloperReportingV1beta1ErrorReport",
       "properties": {
+        "appVersion": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1AppVersion",
+          "description": "The app version on which an event in this error report occurred on."
+        },
         "deviceModel": {
           "$ref": "GooglePlayDeveloperReportingV1beta1DeviceModelSummary",
           "description": "A device model on which an event in this error report occurred on."
@@ -1237,6 +1241,10 @@
             "Crash caused by an unhandled exception in Java (or Kotlin or any other JVM language) or a signal in native code such as SIGSEGV."
           ],
           "type": "string"
+        },
+        "vcsInformation": {
+          "description": "Version control system information from BUNDLE-METADATA/version-control-info.textproto or META-INF/version-control-info.textproto of the app bundle or APK, respectively.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1250,7 +1258,7 @@
           "description": "Summary about data freshness in this resource."
         },
         "name": {
-          "description": "The resource name. Format: apps/{app}/excessiveWakeupRateMetricSet",
+          "description": "Identifier. The resource name. Format: apps/{app}/excessiveWakeupRateMetricSet",
           "type": "string"
         }
       },
@@ -1971,7 +1979,7 @@
           "description": "Summary about data freshness in this resource."
         },
         "name": {
-          "description": "The resource name. Format: apps/{app}/slowRenderingRateMetricSet",
+          "description": "Identifier. The resource name. Format: apps/{app}/slowRenderingRateMetricSet",
           "type": "string"
         }
       },
@@ -1986,7 +1994,7 @@
           "description": "Summary about data freshness in this resource."
         },
         "name": {
-          "description": "The resource name. Format: apps/{app}/slowStartRateMetricSet",
+          "description": "Identifier. The resource name. Format: apps/{app}/slowStartRateMetricSet",
           "type": "string"
         }
       },
@@ -2001,7 +2009,7 @@
           "description": "Summary about data freshness in this resource."
         },
         "name": {
-          "description": "The resource name. Format: apps/{app}/stuckBackgroundWakelockRateMetricSet",
+          "description": "Identifier. The resource name. Format: apps/{app}/stuckBackgroundWakelockRateMetricSet",
           "type": "string"
         }
       },

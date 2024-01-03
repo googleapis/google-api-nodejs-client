@@ -593,6 +593,10 @@ export namespace workloadmanager_v1 {
      */
     metadata?: Schema$SapDiscoveryMetadata;
     /**
+     * Optional. The GCP project number that this SapSystem belongs to.
+     */
+    projectNumber?: string | null;
+    /**
      * Output only. A combination of database SID, database instance URI and tenant DB name to make a unique identifier per-system.
      */
     systemId?: string | null;
@@ -614,6 +618,10 @@ export namespace workloadmanager_v1 {
      */
     databaseProperties?: Schema$SapDiscoveryComponentDatabaseProperties;
     /**
+     * Optional. A list of host URIs that are part of the HA configuration if present. An empty list indicates the component is not configured for HA.
+     */
+    haHosts?: string[] | null;
+    /**
      * Required. Pantheon Project in which the resources reside.
      */
     hostProject?: string | null;
@@ -625,11 +633,19 @@ export namespace workloadmanager_v1 {
      * Optional. The SAP identifier, used by the SAP software and helps differentiate systems for customers.
      */
     sid?: string | null;
+    /**
+     * Optional. The detected topology of the component.
+     */
+    topologyType?: string | null;
   }
   /**
    * A set of properties describing an SAP Application layer.
    */
   export interface Schema$SapDiscoveryComponentApplicationProperties {
+    /**
+     * Optional. Indicates whether this is a Java or ABAP Netweaver instance. true means it is ABAP, false means it is Java.
+     */
+    abap?: boolean | null;
     /**
      * Required. Type of the application. Netweaver, etc.
      */
@@ -638,6 +654,10 @@ export namespace workloadmanager_v1 {
      * Optional. Resource URI of the recognized ASCS host of the application.
      */
     ascsUri?: string | null;
+    /**
+     * Optional. Kernel version for Netweaver running in the system.
+     */
+    kernelVersion?: string | null;
     /**
      * Optional. Resource URI of the recognized shared NFS of the application. May be empty if the application server has only a single node.
      */
@@ -651,6 +671,10 @@ export namespace workloadmanager_v1 {
      * Required. Type of the database. HANA, DB2, etc.
      */
     databaseType?: string | null;
+    /**
+     * Optional. The version of the database software running in the system.
+     */
+    databaseVersion?: string | null;
     /**
      * Required. URI of the recognized primary instance of the database.
      */
@@ -686,6 +710,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryResource {
     /**
+     * Optional. A set of properties only applying to instance type resources.
+     */
+    instanceProperties?: Schema$SapDiscoveryResourceInstanceProperties;
+    /**
      * Optional. A list of resource URIs related to this resource.
      */
     relatedResources?: string[] | null;
@@ -707,13 +735,34 @@ export namespace workloadmanager_v1 {
     updateTime?: string | null;
   }
   /**
+   * A set of properties only present for an instance type resource
+   */
+  export interface Schema$SapDiscoveryResourceInstanceProperties {
+    /**
+     * Optional. A list of instance URIs that are part of a cluster with this one.
+     */
+    clusterInstances?: string[] | null;
+    /**
+     * Optional. A virtual hostname of the instance if it has one.
+     */
+    virtualHostname?: string | null;
+  }
+  /**
    * A presentation of SAP workload insight. The schema of SAP workloads validation related data.
    */
   export interface Schema$SapValidation {
     /**
+     * Required. The project_id of the cloud project that the Insight data comes from.
+     */
+    projectId?: string | null;
+    /**
      * Optional. A list of SAP validation metrics data.
      */
     validationDetails?: Schema$SapValidationValidationDetail[];
+    /**
+     * Optional. The zone of the instance that the Insight data comes from.
+     */
+    zone?: string | null;
   }
   /**
    * Message describing the SAP validation metrics.
@@ -723,6 +772,10 @@ export namespace workloadmanager_v1 {
      * Optional. The pairs of metrics data: field name & field value.
      */
     details?: {[key: string]: string} | null;
+    /**
+     * Optional. Was there a SAP system detected for this validation type.
+     */
+    isPresent?: boolean | null;
     /**
      * Optional. The SAP system that the validation data is from.
      */

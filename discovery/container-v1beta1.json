@@ -2565,7 +2565,7 @@
       }
     }
   },
-  "revision": "20231030",
+  "revision": "20231201",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2726,6 +2726,10 @@
       "properties": {
         "enableMetrics": {
           "description": "Expose flow metrics on nodes",
+          "type": "boolean"
+        },
+        "enableRelay": {
+          "description": "Enable Relay component",
           "type": "boolean"
         },
         "relayMode": {
@@ -2931,6 +2935,12 @@
       },
       "type": "object"
     },
+    "AutoscaledRolloutPolicy": {
+      "description": "Autoscaled rollout policy uses cluster autoscaler during blue-green upgrades to scale both the green and blue pools.",
+      "id": "AutoscaledRolloutPolicy",
+      "properties": {},
+      "type": "object"
+    },
     "AvailableVersion": {
       "deprecated": true,
       "description": "Deprecated.",
@@ -2996,8 +3006,8 @@
             "Default value",
             "Disable BinaryAuthorization",
             "Enforce Kubernetes admission requests with BinaryAuthorization using the project's singleton policy. This is equivalent to setting the enabled boolean to true.",
-            "Use Binary Authorization with the policies specified in policy_bindings.",
-            "Use Binary Authorization with the policies specified in policy_bindings, and also with the project's singleton policy in enforcement mode."
+            "Use Binary Authorization Continuous Validation with the policies specified in policy_bindings.",
+            "Use Binary Authorization Continuous Validation with the policies specified in policy_bindings and enforce Kubernetes admission requests with Binary Authorization using the project's singleton policy."
           ],
           "type": "string"
         },
@@ -3070,6 +3080,10 @@
       "description": "Settings for blue-green upgrade.",
       "id": "BlueGreenSettings",
       "properties": {
+        "autoscaledRolloutPolicy": {
+          "$ref": "AutoscaledRolloutPolicy",
+          "description": "Autoscaled policy for cluster autoscaler enabled blue-green upgrade."
+        },
         "nodePoolSoakDuration": {
           "description": "Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.",
           "format": "google-duration",

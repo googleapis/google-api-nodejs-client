@@ -1412,7 +1412,7 @@
       }
     }
   },
-  "revision": "20231113",
+  "revision": "20231213",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -2112,7 +2112,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1ConversationDataSource": {
-      "description": "The conversation source, which is a combination of transcript, audio, and metadata.",
+      "description": "The conversation source, which is a combination of transcript and audio.",
       "id": "GoogleCloudContactcenterinsightsV1ConversationDataSource",
       "properties": {
         "dialogflowSource": {
@@ -2887,7 +2887,7 @@
             "AUDIO"
           ],
           "enumDescriptions": [
-            "The object type is unspecified and will default to TRANSCRIPT.",
+            "The object type is unspecified and will default to `TRANSCRIPT`.",
             "The object is a transcript.",
             "The object is an audio file."
           ],
@@ -3777,11 +3777,11 @@
         },
         "redactionConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1RedactionConfig",
-          "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
+          "description": "Optional. DLP settings for transcript redaction. Will default to the config specified in Settings."
         },
         "speechConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1SpeechConfig",
-          "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
+          "description": "Optional. Speech-to-Text configuration. Will default to the config specified in Settings."
         }
       },
       "type": "object"
@@ -4409,7 +4409,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource": {
-      "description": "The conversation source, which is a combination of transcript, audio, and metadata.",
+      "description": "The conversation source, which is a combination of transcript and audio.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource",
       "properties": {
         "dialogflowSource": {
@@ -5173,7 +5173,7 @@
             "AUDIO"
           ],
           "enumDescriptions": [
-            "The object type is unspecified and will default to TRANSCRIPT.",
+            "The object type is unspecified and will default to `TRANSCRIPT`.",
             "The object is a transcript.",
             "The object is an audio file."
           ],
@@ -5713,11 +5713,11 @@
         },
         "redactionConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1RedactionConfig",
-          "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
+          "description": "Optional. DLP settings for transcript redaction. Will default to the config specified in Settings."
         },
         "speechConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
-          "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
+          "description": "Optional. Speech-to-Text configuration. Will default to the config specified in Settings."
         }
       },
       "type": "object"

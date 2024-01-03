@@ -1969,7 +1969,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Optional filter for the returned list in go/filtering format. Filtering is only currently supported on the `path` field.",
+                          "description": "Optional. Optional filter for the returned list in filtering format. Filtering is only currently supported on the `path` field. See https://google.aip.dev/160 for details.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2093,7 +2093,7 @@
       }
     }
   },
-  "revision": "20231111",
+  "revision": "20231209",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -3411,6 +3411,10 @@
         "cronSchedule": {
           "description": "Optional. Optional schedule (in cron format) for automatic creation of compilation results.",
           "type": "string"
+        },
+        "disabled": {
+          "description": "Optional. Disables automatic creation of compilation results.",
+          "type": "boolean"
         },
         "gitCommitish": {
           "description": "Required. Git commit/tag/branch name at which the repository should be compiled. Must exist in the remote repository. Examples: - a commit SHA: `12ade345` - a tag: `tag1` - a branch name: `branch1`",

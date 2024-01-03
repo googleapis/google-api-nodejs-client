@@ -125,7 +125,7 @@ export namespace assuredworkloads_v1beta1 {
   }
 
   /**
-   * Request for acknowledging the violation Next Id: 5
+   * Request for acknowledging the violation
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest {
     /**

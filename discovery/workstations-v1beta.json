@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20231101",
+  "revision": "20231129",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1989,6 +1989,11 @@
         },
         "host": {
           "description": "Output only. Host to which clients can send HTTPS traffic that will be received by the workstation. Authorized traffic will be received to the workstation as HTTP on port 80. To send traffic to a different port, clients may prefix the host with the destination port in the format `{port}-{host}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKey": {
+          "description": "Output only. The name of the Google Cloud KMS encryption key used to encrypt this workstation. The KMS key can only be configured in the WorkstationConfig. The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
           "readOnly": true,
           "type": "string"
         },

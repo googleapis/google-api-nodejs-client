@@ -707,7 +707,7 @@
       }
     }
   },
-  "revision": "20230907",
+  "revision": "20231211",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1352,6 +1352,10 @@
           "$ref": "SapDiscoveryMetadata",
           "description": "Optional. The metadata for SAP system discovery data."
         },
+        "projectNumber": {
+          "description": "Optional. The GCP project number that this SapSystem belongs to.",
+          "type": "string"
+        },
         "systemId": {
           "description": "Output only. A combination of database SID, database instance URI and tenant DB name to make a unique identifier per-system.",
           "readOnly": true,
@@ -1377,6 +1381,13 @@
           "$ref": "SapDiscoveryComponentDatabaseProperties",
           "description": "Optional. The component is a SAP database."
         },
+        "haHosts": {
+          "description": "Optional. A list of host URIs that are part of the HA configuration if present. An empty list indicates the component is not configured for HA.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "hostProject": {
           "description": "Required. Pantheon Project in which the resources reside.",
           "type": "string"
@@ -1391,6 +1402,20 @@
         "sid": {
           "description": "Optional. The SAP identifier, used by the SAP software and helps differentiate systems for customers.",
           "type": "string"
+        },
+        "topologyType": {
+          "description": "Optional. The detected topology of the component.",
+          "enum": [
+            "TOPOLOGY_TYPE_UNSPECIFIED",
+            "TOPOLOGY_SCALE_UP",
+            "TOPOLOGY_SCALE_OUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified topology.",
+            "A scale-up single node system.",
+            "A scale-out multi-node system."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1399,6 +1424,10 @@
       "description": "A set of properties describing an SAP Application layer.",
       "id": "SapDiscoveryComponentApplicationProperties",
       "properties": {
+        "abap": {
+          "description": "Optional. Indicates whether this is a Java or ABAP Netweaver instance. true means it is ABAP, false means it is Java.",
+          "type": "boolean"
+        },
         "applicationType": {
           "description": "Required. Type of the application. Netweaver, etc.",
           "enum": [
@@ -1413,6 +1442,10 @@
         },
         "ascsUri": {
           "description": "Optional. Resource URI of the recognized ASCS host of the application.",
+          "type": "string"
+        },
+        "kernelVersion": {
+          "description": "Optional. Kernel version for Netweaver running in the system.",
           "type": "string"
         },
         "nfsUri": {
@@ -1440,6 +1473,10 @@
             "SAP MAX_DB",
             "IBM DB2"
           ],
+          "type": "string"
+        },
+        "databaseVersion": {
+          "description": "Optional. The version of the database software running in the system.",
           "type": "string"
         },
         "primaryInstanceUri": {
@@ -1480,6 +1517,10 @@
       "description": "Message describing a resource.",
       "id": "SapDiscoveryResource",
       "properties": {
+        "instanceProperties": {
+          "$ref": "SapDiscoveryResourceInstanceProperties",
+          "description": "Optional. A set of properties only applying to instance type resources."
+        },
         "relatedResources": {
           "description": "Optional. A list of resource URIs related to this resource.",
           "items": {
@@ -1547,16 +1588,42 @@
       },
       "type": "object"
     },
+    "SapDiscoveryResourceInstanceProperties": {
+      "description": "A set of properties only present for an instance type resource",
+      "id": "SapDiscoveryResourceInstanceProperties",
+      "properties": {
+        "clusterInstances": {
+          "description": "Optional. A list of instance URIs that are part of a cluster with this one.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "virtualHostname": {
+          "description": "Optional. A virtual hostname of the instance if it has one.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SapValidation": {
       "description": "A presentation of SAP workload insight. The schema of SAP workloads validation related data.",
       "id": "SapValidation",
       "properties": {
+        "projectId": {
+          "description": "Required. The project_id of the cloud project that the Insight data comes from.",
+          "type": "string"
+        },
         "validationDetails": {
           "description": "Optional. A list of SAP validation metrics data.",
           "items": {
             "$ref": "SapValidationValidationDetail"
           },
           "type": "array"
+        },
+        "zone": {
+          "description": "Optional. The zone of the instance that the Insight data comes from.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1571,6 +1638,10 @@
           },
           "description": "Optional. The pairs of metrics data: field name & field value.",
           "type": "object"
+        },
+        "isPresent": {
+          "description": "Optional. Was there a SAP system detected for this validation type.",
+          "type": "boolean"
         },
         "sapValidationType": {
           "description": "Optional. The SAP system that the validation data is from.",

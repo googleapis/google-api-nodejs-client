@@ -1791,7 +1791,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.",
+                      "description": "Identifier. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                       "required": true,
@@ -2055,7 +2055,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.",
+                          "description": "Identifier. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+/policyTags/[^/]+$",
                           "required": true,
@@ -2144,7 +2144,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20231208",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3516,8 +3516,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.",
-          "readOnly": true,
+          "description": "Identifier. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.",
           "type": "string"
         },
         "parentPolicyTag": {
@@ -4267,8 +4266,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.",
-          "readOnly": true,
+          "description": "Identifier. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.",
           "type": "string"
         },
         "policyTagCount": {
