@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v9.0.0...networkservices-v9.1.0) (2024-01-03)
+
+
+### Features
+
+* **networkservices:** update the API ([076de17](https://github.com/googleapis/google-api-nodejs-client/commit/076de17ce5a6588459729c00d6f8fd2de91a9d0c))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v8.0.1...networkservices-v9.0.0) (2023-11-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.5.0...calendar-v9.5.1) (2024-01-03)
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([e6ba462](https://github.com/googleapis/google-api-nodejs-client/commit/e6ba462408d14ae49da8348557c8a5161f7de78f))
+
 ## [9.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.4.0...calendar-v9.5.0) (2023-11-30)
 
 

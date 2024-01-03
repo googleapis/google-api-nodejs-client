@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v3.2.0...vault-v3.3.0) (2024-01-03)
+
+
+### Features
+
+* **vault:** update the API ([db163fd](https://github.com/googleapis/google-api-nodejs-client/commit/db163fd3b3ea4a71d8108563763f687e7df0262d))
+
 ## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v3.1.2...vault-v3.2.0) (2023-10-11)
 
 

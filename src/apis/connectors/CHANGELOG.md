@@ -1,5 +1,16 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v8.0.0...connectors-v9.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **connectors:** This release has breaking changes.
+
+### Features
+
+* **connectors:** update the API ([f433bd6](https://github.com/googleapis/google-api-nodejs-client/commit/f433bd628431cd6c340746a6066b55bf27267e42))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v7.2.0...connectors-v8.0.0) (2023-11-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v8.0.0...chromepolicy-v8.0.1) (2024-01-03)
+
+
+### Bug Fixes
+
+* **chromepolicy:** update the API ([a5a5351](https://github.com/googleapis/google-api-nodejs-client/commit/a5a5351998cac8894741ce9461a9af2d71eaea19))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v7.1.4...chromepolicy-v8.0.0) (2023-10-11)
 
 

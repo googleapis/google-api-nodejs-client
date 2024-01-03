@@ -1,5 +1,16 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v19.0.0...chat-v20.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([88428f0](https://github.com/googleapis/google-api-nodejs-client/commit/88428f0d91d6836e07278b399a995c03d88992c8))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v18.0.1...chat-v19.0.0) (2023-11-30)
 
 
