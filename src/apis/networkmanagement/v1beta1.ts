@@ -386,9 +386,21 @@ export namespace networkmanagement_v1beta1 {
      */
     cause?: string | null;
     /**
+     * Destination IP address of the dropped packet (if relevant).
+     */
+    destinationIp?: string | null;
+    /**
+     * Region of the dropped packet (if relevant).
+     */
+    region?: string | null;
+    /**
      * URI of the resource that caused the drop.
      */
     resourceUri?: string | null;
+    /**
+     * Source IP address of the dropped packet (if relevant).
+     */
+    sourceIp?: string | null;
   }
   /**
    * Representation of a network edge location as per https://cloud.google.com/vpc/docs/edge-locations.
@@ -440,7 +452,7 @@ export namespace networkmanagement_v1beta1 {
      */
     instance?: string | null;
     /**
-     * The IP address of the endpoint, which can be an external or internal IP. An IPv6 address is only allowed when the test's destination is a [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
+     * The IP address of the endpoint, which can be an external or internal IP.
      */
     ipAddress?: string | null;
     /**
@@ -531,7 +543,7 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$FirewallInfo {
     /**
-     * Possible values: ALLOW, DENY
+     * Possible values: ALLOW, DENY, APPLY_SECURITY_PROFILE_GROUP
      */
     action?: string | null;
     /**
@@ -779,6 +791,39 @@ export namespace networkmanagement_v1beta1 {
     uri?: string | null;
   }
   /**
+   * For display only. Metadata associated with the load balancer backend.
+   */
+  export interface Schema$LoadBalancerBackendInfo {
+    /**
+     * URI of the backend service this backend belongs to (if applicable).
+     */
+    backendServiceUri?: string | null;
+    /**
+     * Output only. Health check firewalls configuration state for the backend. This is a result of the static firewall analysis (verifying that health check traffic from required IP ranges to the backend is allowed or not). The backend might still be unhealthy even if these firewalls are configured. Please refer to the documentation for more information: https://cloud.google.com/load-balancing/docs/firewall-rules
+     */
+    healthCheckFirewallsConfigState?: string | null;
+    /**
+     * URI of the health check attached to this backend (if applicable).
+     */
+    healthCheckUri?: string | null;
+    /**
+     * URI of the instance group this backend belongs to (if applicable).
+     */
+    instanceGroupUri?: string | null;
+    /**
+     * URI of the backend instance (if applicable). Populated for instance group backends, and zonal NEG backends.
+     */
+    instanceUri?: string | null;
+    /**
+     * Display name of the backend. For example, it might be an instance name for the instance group backends, or an IP address and port for zonal network endpoint group backends.
+     */
+    name?: string | null;
+    /**
+     * URI of the network endpoint group this backend belongs to (if applicable).
+     */
+    networkEndpointGroupUri?: string | null;
+  }
+  /**
    * For display only. Metadata associated with a load balancer.
    */
   export interface Schema$LoadBalancerInfo {
@@ -827,6 +872,63 @@ export namespace networkmanagement_v1beta1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with NAT.
+   */
+  export interface Schema$NatInfo {
+    /**
+     * The name of Cloud NAT Gateway. Only valid when type is CLOUD_NAT.
+     */
+    natGatewayName?: string | null;
+    /**
+     * URI of the network where NAT translation takes place.
+     */
+    networkUri?: string | null;
+    /**
+     * Destination IP address after NAT translation.
+     */
+    newDestinationIp?: string | null;
+    /**
+     * Destination port after NAT translation. Only valid when protocol is TCP or UDP.
+     */
+    newDestinationPort?: number | null;
+    /**
+     * Source IP address after NAT translation.
+     */
+    newSourceIp?: string | null;
+    /**
+     * Source port after NAT translation. Only valid when protocol is TCP or UDP.
+     */
+    newSourcePort?: number | null;
+    /**
+     * Destination IP address before NAT translation.
+     */
+    oldDestinationIp?: string | null;
+    /**
+     * Destination port before NAT translation. Only valid when protocol is TCP or UDP.
+     */
+    oldDestinationPort?: number | null;
+    /**
+     * Source IP address before NAT translation.
+     */
+    oldSourceIp?: string | null;
+    /**
+     * Source port before NAT translation. Only valid when protocol is TCP or UDP.
+     */
+    oldSourcePort?: number | null;
+    /**
+     * IP protocol in string format, for example: "TCP", "UDP", "ICMP".
+     */
+    protocol?: string | null;
+    /**
+     * Uri of the Cloud Router. Only valid when type is CLOUD_NAT.
+     */
+    routerUri?: string | null;
+    /**
+     * Type of NAT.
+     */
+    type?: string | null;
   }
   /**
    * For display only. Metadata associated with a Compute Engine network.
@@ -964,6 +1066,55 @@ export namespace networkmanagement_v1beta1 {
      * The time that reachability was assessed through active probing.
      */
     verifyTime?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with ProxyConnection.
+   */
+  export interface Schema$ProxyConnectionInfo {
+    /**
+     * URI of the network where connection is proxied.
+     */
+    networkUri?: string | null;
+    /**
+     * Destination IP address of a new connection.
+     */
+    newDestinationIp?: string | null;
+    /**
+     * Destination port of a new connection. Only valid when protocol is TCP or UDP.
+     */
+    newDestinationPort?: number | null;
+    /**
+     * Source IP address of a new connection.
+     */
+    newSourceIp?: string | null;
+    /**
+     * Source port of a new connection. Only valid when protocol is TCP or UDP.
+     */
+    newSourcePort?: number | null;
+    /**
+     * Destination IP address of an original connection
+     */
+    oldDestinationIp?: string | null;
+    /**
+     * Destination port of an original connection. Only valid when protocol is TCP or UDP.
+     */
+    oldDestinationPort?: number | null;
+    /**
+     * Source IP address of an original connection.
+     */
+    oldSourceIp?: string | null;
+    /**
+     * Source port of an original connection. Only valid when protocol is TCP or UDP.
+     */
+    oldSourcePort?: number | null;
+    /**
+     * IP protocol in string format, for example: "TCP", "UDP", "ICMP".
+     */
+    protocol?: string | null;
+    /**
+     * Uri of proxy subnet.
+     */
+    subnetUri?: string | null;
   }
   /**
    * Results of the configuration analysis from the last run of the test.
@@ -1162,6 +1313,14 @@ export namespace networkmanagement_v1beta1 {
      */
     loadBalancer?: Schema$LoadBalancerInfo;
     /**
+     * Display information of a specific load balancer backend.
+     */
+    loadBalancerBackendInfo?: Schema$LoadBalancerBackendInfo;
+    /**
+     * Display information of a NAT.
+     */
+    nat?: Schema$NatInfo;
+    /**
      * Display information of a Google Cloud network.
      */
     network?: Schema$NetworkInfo;
@@ -1169,6 +1328,10 @@ export namespace networkmanagement_v1beta1 {
      * Project ID that contains the configuration this step is validating.
      */
     projectId?: string | null;
+    /**
+     * Display information of a ProxyConnection.
+     */
+    proxyConnection?: Schema$ProxyConnectionInfo;
     /**
      * Display information of a Compute Engine route.
      */

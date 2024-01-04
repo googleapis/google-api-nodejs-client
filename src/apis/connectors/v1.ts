@@ -242,7 +242,7 @@ export namespace connectors_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
      */
     members?: string[] | null;
     /**
@@ -311,6 +311,10 @@ export namespace connectors_v1 {
      * Key of the config variable.
      */
     key?: string | null;
+    /**
+     * Optional. Location Tyep denotes where this value should be sent in BYOC connections.
+     */
+    locationType?: string | null;
     /**
      * Flag represents that this `ConfigVariable` must be provided for a connection.
      */
@@ -461,6 +465,10 @@ export namespace connectors_v1 {
      * Output only. List of entity names.
      */
     entities?: string[] | null;
+    /**
+     * Error message for users.
+     */
+    errorMessage?: string | null;
     /**
      * Output only. Resource name. Format: projects/{project\}/locations/{location\}/connections/{connection\}/connectionSchemaMetadata
      */
@@ -659,6 +667,10 @@ export namespace connectors_v1 {
      */
     supportedRuntimeFeatures?: Schema$SupportedRuntimeFeatures;
     /**
+     * Output only. Unsupported connection types.
+     */
+    unsupportedConnectionTypes?: string[] | null;
+    /**
      * Output only. Updated time.
      */
     updateTime?: string | null;
@@ -721,10 +733,6 @@ export namespace connectors_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Launch stage.
-     */
-    launchStage?: string | null;
-    /**
      * Optional. Logo of the resource.
      */
     logo?: string | null;
@@ -742,19 +750,23 @@ export namespace connectors_v1 {
    */
   export interface Schema$CustomConnectorVersion {
     /**
-     * Required. Configuration for establishing the authentication to the connector destination.
+     * Optional. Authentication config for accessing connector facade/ proxy. This is used only when enable_backend_destination_config is true.
      */
     authConfig?: Schema$AuthConfig;
+    /**
+     * Optional. Backend variables config templates. This translates to additional variable templates in connection.
+     */
+    backendVariableTemplates?: Schema$ConfigVariableTemplate[];
     /**
      * Output only. Created time.
      */
     createTime?: string | null;
     /**
-     * Required. Configuration of the customConnector's destination.
+     * Optional. Destination config(s) for accessing connector facade/ proxy. This is used only when enable_backend_destination_config is true.
      */
-    destinationConfig?: Schema$DestinationConfig;
+    destinationConfigs?: Schema$DestinationConfig[];
     /**
-     * Optional. Whether to enable backend destination config. This is the backend server that the connector connects to.
+     * Optional. When enabled, the connector will be a facade/ proxy, and connects to the destination provided during connection creation.
      */
     enableBackendDestinationConfig?: boolean | null;
     /**
@@ -766,17 +778,64 @@ export namespace connectors_v1 {
      */
     name?: string | null;
     /**
+     * Required. Service account used by runtime plane to access auth config secrets.
+     */
+    serviceAccount?: string | null;
+    /**
      * Optional. Location of the custom connector spec.
      */
     specLocation?: string | null;
     /**
-     * Required. Type of the customConnector.
-     */
-    type?: string | null;
-    /**
      * Output only. Updated time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Time window specified for daily operations.
+   */
+  export interface Schema$DailyCycle {
+    /**
+     * Output only. Duration of the time window, set by service producer.
+     */
+    duration?: string | null;
+    /**
+     * Time within the day to start the operations.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * DenyMaintenancePeriod definition. Maintenance is forbidden within the deny period. The start_date must be less than the end_date.
+   */
+  export interface Schema$DenyMaintenancePeriod {
+    /**
+     * Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be before the end.
+     */
+    endDate?: Schema$Date;
+    /**
+     * Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be the same or after the start.
+     */
+    startDate?: Schema$Date;
+    /**
+     * Time in UTC when the Blackout period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC
+     */
+    time?: Schema$TimeOfDay;
   }
   export interface Schema$Destination {
     /**
@@ -961,10 +1020,6 @@ export namespace connectors_v1 {
      */
     authConfig?: Schema$AuthConfig;
     /**
-     * Encryption key (can be either Google managed or CMEK).
-     */
-    encryptionKey?: Schema$ConfigVariable;
-    /**
      * Enrichment Enabled.
      */
     enrichmentEnabled?: boolean | null;
@@ -972,6 +1027,10 @@ export namespace connectors_v1 {
      * Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.
      */
     eventsListenerIngressEndpoint?: string | null;
+    /**
+     * Optional. Auth details for the event listener.
+     */
+    listenerAuthConfig?: Schema$AuthConfig;
     /**
      * Optional. Private Connectivity Enabled.
      */
@@ -1017,6 +1076,10 @@ export namespace connectors_v1 {
      * Is Eventing Supported.
      */
     isEventingSupported?: boolean | null;
+    /**
+     * ListenerAuthConfigTemplates represents the auth values for the event listener.
+     */
+    listenerAuthConfigTemplates?: Schema$AuthConfigTemplate[];
     /**
      * Registration host destination config template.
      */
@@ -1362,6 +1425,81 @@ export namespace connectors_v1 {
     parameter?: string | null;
   }
   /**
+   * Instance represents the interface for SLM services to actuate the state of control plane resources. Example Instance in JSON, where consumer-project-number=123456, producer-project-id=cloud-sql: ```json Instance: { "name": "projects/123456/locations/us-east1/instances/prod-instance", "create_time": { "seconds": 1526406431, \}, "labels": { "env": "prod", "foo": "bar" \}, "state": READY, "software_versions": { "software_update": "cloud-sql-09-28-2018", \}, "maintenance_policy_names": { "UpdatePolicy": "projects/123456/locations/us-east1/maintenancePolicies/prod-update-policy", \} "tenant_project_id": "cloud-sql-test-tenant", "producer_metadata": { "cloud-sql-tier": "basic", "cloud-sql-instance-size": "1G", \}, "provisioned_resources": [ { "resource-type": "compute-instance", "resource-url": "https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1", \} ], "maintenance_schedules": { "csa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \}, "ncsa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \} \}, "consumer_defined_name": "my-sql-instance1", \} ``` LINT.IfChange
+   */
+  export interface Schema$Instance {
+    /**
+     * consumer_defined_name is the name of the instance set by the service consumers. Generally this is different from the `name` field which reperesents the system-assigned id of the instance which the service consumers do not recognize. This is a required field for tenants onboarding to Maintenance Window notifications (go/slm-rollout-maintenance-policies#prerequisites).
+     */
+    consumerDefinedName?: string | null;
+    /**
+     * Output only. Timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The instance_type of this instance of format: projects/{project_number\}/locations/{location_id\}/instanceTypes/{instance_type_id\}. Instance Type represents a high-level tier or SKU of the service that this instance belong to. When enabled(eg: Maintenance Rollout), Rollout uses 'instance_type' along with 'software_versions' to determine whether instance needs an update or not.
+     */
+    instanceType?: string | null;
+    /**
+     * Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For details, please refer to go/mr-user-guide. Should not be set if maintenance_settings.maintenance_policies is set.
+     */
+    maintenancePolicyNames?: {[key: string]: string} | null;
+    /**
+     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule with same key as software_versions.
+     */
+    maintenanceSchedules?: {[key: string]: Schema$MaintenanceSchedule} | null;
+    /**
+     * Optional. The MaintenanceSettings associated with instance.
+     */
+    maintenanceSettings?: Schema$MaintenanceSettings;
+    /**
+     * Unique name of the resource. It uses the form: `projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: This name is passed, stored and logged across the rollout system. So use of consumer project_id or any other consumer PII in the name is strongly discouraged for wipeout (go/wipeout) compliance. See go/elysium/project_ids#storage-guidance for more details.
+     */
+    name?: string | null;
+    /**
+     * Optional. notification_parameter are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.
+     */
+    notificationParameters?: {
+      [key: string]: Schema$NotificationParameter;
+    } | null;
+    /**
+     * Output only. Custom string attributes used primarily to expose producer-specific information in monitoring dashboards. See go/get-instance-metadata.
+     */
+    producerMetadata?: {[key: string]: string} | null;
+    /**
+     * Output only. The list of data plane resources provisioned for this instance, e.g. compute VMs. See go/get-instance-metadata.
+     */
+    provisionedResources?: Schema$ProvisionedResource[];
+    /**
+     * Link to the SLM instance template. Only populated when updating SLM instances via SSA's Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn't need to populate this field. Instead they should use software_versions.
+     */
+    slmInstanceTemplate?: string | null;
+    /**
+     * Output only. SLO metadata for instance classification in the Standardized dataplane SLO platform. See go/cloud-ssa-standard-slo for feature description.
+     */
+    sloMetadata?: Schema$SloMetadata;
+    /**
+     * Software versions that are used to deploy this instance. This can be mutated by rollout services.
+     */
+    softwareVersions?: {[key: string]: string} | null;
+    /**
+     * Output only. Current lifecycle state of the resource (e.g. if it's being created or ready to use).
+     */
+    state?: string | null;
+    /**
+     * Output only. ID of the associated GCP tenant project. See go/get-instance-metadata.
+     */
+    tenantProjectId?: string | null;
+    /**
+     * Output only. Timestamp when the resource was last modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * JMS message denotes the source of the event
    */
   export interface Schema$JMS {
@@ -1548,6 +1686,19 @@ export namespace connectors_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Expected request for ListenEvent API.
+   */
+  export interface Schema$ListenEventRequest {
+    /**
+     * Optional. Request payload.
+     */
+    payload?: {[key: string]: any} | null;
+  }
+  /**
+   * Expected response for ListenEvent API.
+   */
+  export interface Schema$ListenEventResponse {}
+  /**
    * Response message for ListEntityTypes API
    */
   export interface Schema$ListEntityTypesResponse {
@@ -1728,6 +1879,94 @@ export namespace connectors_v1 {
     logicalOperator?: string | null;
   }
   /**
+   * LINT.IfChange Defines policies to service maintenance events.
+   */
+  export interface Schema$MaintenancePolicy {
+    /**
+     * Output only. The time when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of what this policy is for. Create/Update methods return INVALID_ARGUMENT if the length is greater than 512.
+     */
+    description?: string | null;
+    /**
+     * Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. MaintenancePolicy name using the form: `projects/{project_id\}/locations/{location_id\}/maintenancePolicies/{maintenance_policy_id\}` where {project_id\} refers to a GCP consumer project ID, {location_id\} refers to a GCP region/zone, {maintenance_policy_id\} must be 1-63 characters long and match the regular expression `[a-z0-9]([-a-z0-9]*[a-z0-9])?`.
+     */
+    name?: string | null;
+    /**
+     * Optional. The state of the policy.
+     */
+    state?: string | null;
+    /**
+     * Maintenance policy applicable to instance update.
+     */
+    updatePolicy?: Schema$UpdatePolicy;
+    /**
+     * Output only. The time when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Maintenance schedule which is exposed to customer and potentially end user, indicating published upcoming future maintenance schedule
+   */
+  export interface Schema$MaintenanceSchedule {
+    /**
+     * This field is deprecated, and will be always set to true since reschedule can happen multiple times now. This field should not be removed until all service producers remove this for their customers.
+     */
+    canReschedule?: boolean | null;
+    /**
+     * The scheduled end time for the maintenance.
+     */
+    endTime?: string | null;
+    /**
+     * The rollout management policy this maintenance schedule is associated with. When doing reschedule update request, the reschedule should be against this given policy.
+     */
+    rolloutManagementPolicy?: string | null;
+    /**
+     * schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus maintenance window length (1 day or 1 week). Maintenance cannot be scheduled to start beyond this deadline.
+     */
+    scheduleDeadlineTime?: string | null;
+    /**
+     * The scheduled start time for the maintenance.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Maintenance settings associated with instance. Allows service producers and end users to assign settings that controls maintenance on this instance.
+   */
+  export interface Schema$MaintenanceSettings {
+    /**
+     * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
+     */
+    exclude?: boolean | null;
+    /**
+     * Optional. If the update call is triggered from rollback, set the value as true.
+     */
+    isRollback?: boolean | null;
+    /**
+     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For details, please refer to go/mr-user-guide. Should not be set if maintenance_policy_names is set. If only the name is needed, then only populate MaintenancePolicy.name.
+     */
+    maintenancePolicies?: {[key: string]: Schema$MaintenancePolicy} | null;
+  }
+  /**
+   * MaintenanceWindow definition.
+   */
+  export interface Schema$MaintenanceWindow {
+    /**
+     * Daily cycle.
+     */
+    dailyCycle?: Schema$DailyCycle;
+    /**
+     * Weekly cycle.
+     */
+    weeklyCycle?: Schema$WeeklyCycle;
+  }
+  /**
    * represents the Connector's Managed Zone resource
    */
   export interface Schema$ManagedZone {
@@ -1789,6 +2028,32 @@ export namespace connectors_v1 {
      * Minimum number of nodes in the runtime nodes.
      */
     minNodeCount?: number | null;
+  }
+  /**
+   * Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.
+   */
+  export interface Schema$NodeSloMetadata {
+    /**
+     * The location of the node, if different from instance location.
+     */
+    location?: string | null;
+    /**
+     * The id of the node. This should be equal to SaasInstanceNode.node_id.
+     */
+    nodeId?: string | null;
+    /**
+     * If present, this will override eligibility for the node coming from instance or exclusions for specified SLIs.
+     */
+    perSliEligibility?: Schema$PerSliSloEligibility;
+  }
+  /**
+   * Contains notification related data.
+   */
+  export interface Schema$NotificationParameter {
+    /**
+     * Optional. Array of string values. e.g. instance's replica information.
+     */
+    values?: string[] | null;
   }
   /**
    * Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.
@@ -1912,6 +2177,15 @@ export namespace connectors_v1 {
     verb?: string | null;
   }
   /**
+   * PerSliSloEligibility is a mapping from an SLI name to eligibility.
+   */
+  export interface Schema$PerSliSloEligibility {
+    /**
+     * An entry in the eligibilities map specifies an eligibility for a particular SLI for the given instance. The SLI key in the name must be a valid SLI name specified in the Eligibility Exporter binary flags otherwise an error will be emitted by Eligibility Exporter and the oncaller will be alerted. If an SLI has been defined in the binary flags but the eligibilities map does not contain it, the corresponding SLI time series will not be emitted by the Eligibility Exporter. This ensures a smooth rollout and compatibility between the data produced by different versions of the Eligibility Exporters. If eligibilities map contains a key for an SLI which has not been declared in the binary flags, there will be an error message emitted in the Eligibility Exporter log and the metric for the SLI in question will not be emitted.
+     */
+    eligibilities?: {[key: string]: Schema$SloEligibility} | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -1976,6 +2250,19 @@ export namespace connectors_v1 {
      * Output only. Cloud storage location of icons etc consumed by UI.
      */
     webAssetsLocation?: string | null;
+  }
+  /**
+   * Describes provisioned dataplane resources.
+   */
+  export interface Schema$ProvisionedResource {
+    /**
+     * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider's VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with 'compute-', for example: 'compute-instance', 'compute-disk', 'compute-autoscaler'.
+     */
+    resourceType?: string | null;
+    /**
+     * URL identifying the resource, e.g. "https://www.googleapis.com/compute/v1/projects/...)".
+     */
+    resourceUrl?: string | null;
   }
   /**
    * Request message for ConnectorsService.RefreshConnectionSchemaMetadata.
@@ -2183,6 +2470,23 @@ export namespace connectors_v1 {
     jsonSchema?: Schema$JsonSchema;
   }
   /**
+   * Configure the schedule.
+   */
+  export interface Schema$Schedule {
+    /**
+     * Allows to define schedule that runs specified day of the week.
+     */
+    day?: string | null;
+    /**
+     * Output only. Duration of the time window, set by service producer.
+     */
+    duration?: string | null;
+    /**
+     * Time within the window to start the operations.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
    * Secret provides a reference to entries in Secret Manager.
    */
   export interface Schema$Secret {
@@ -2224,6 +2528,36 @@ export namespace connectors_v1 {
      * Optional. Flag indicates whether vpc-sc is enabled.
      */
     vpcsc?: boolean | null;
+  }
+  /**
+   * SloEligibility is a tuple containing eligibility value: true if an instance is eligible for SLO calculation or false if it should be excluded from all SLO-related calculations along with a user-defined reason.
+   */
+  export interface Schema$SloEligibility {
+    /**
+     * Whether an instance is eligible or ineligible.
+     */
+    eligible?: boolean | null;
+    /**
+     * User-defined reason for the current value of instance eligibility. Usually, this can be directly mapped to the internal state. An empty reason is allowed.
+     */
+    reason?: string | null;
+  }
+  /**
+   * SloMetadata contains resources required for proper SLO classification of the instance.
+   */
+  export interface Schema$SloMetadata {
+    /**
+     * Optional. List of nodes. Some producers need to use per-node metadata to calculate SLO. This field allows such producers to publish per-node SLO meta data, which will be consumed by SSA Eligibility Exporter and published in the form of per node metric to Monarch.
+     */
+    nodes?: Schema$NodeSloMetadata[];
+    /**
+     * Optional. Multiple per-instance SLI eligibilities which apply for individual SLIs.
+     */
+    perSliEligibility?: Schema$PerSliSloEligibility;
+    /**
+     * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.
+     */
+    tier?: string | null;
   }
   /**
    * Source to extract the backend from.
@@ -2382,6 +2716,44 @@ export namespace connectors_v1 {
     permissions?: string[] | null;
   }
   /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+  }
+  /**
+   * Maintenance policy applicable to instance updates.
+   */
+  export interface Schema$UpdatePolicy {
+    /**
+     * Optional. Relative scheduling channel applied to resource.
+     */
+    channel?: string | null;
+    /**
+     * Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. The protocol supports zero-to-many such periods, but the current SLM Rollout implementation only supports zero-to-one.
+     */
+    denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
+    /**
+     * Optional. Maintenance window that is applied to resources covered by this policy.
+     */
+    window?: Schema$MaintenanceWindow;
+  }
+  /**
    * Parameters to support Username and Password Authentication.
    */
   export interface Schema$UserPassword {
@@ -2393,6 +2765,15 @@ export namespace connectors_v1 {
      * Username.
      */
     username?: string | null;
+  }
+  /**
+   * Time window specified for weekly operations.
+   */
+  export interface Schema$WeeklyCycle {
+    /**
+     * User can specify multiple windows in a week. Minimum of 1 window.
+     */
+    schedule?: Schema$Schedule[];
   }
 
   export class Resource$Projects {
@@ -3472,6 +3853,99 @@ export namespace connectors_v1 {
     }
 
     /**
+     * ListenEvent listens to the event.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listenEvent(
+      params: Params$Resource$Projects$Locations$Connections$Listenevent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listenEvent(
+      params?: Params$Resource$Projects$Locations$Connections$Listenevent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListenEventResponse>;
+    listenEvent(
+      params: Params$Resource$Projects$Locations$Connections$Listenevent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listenEvent(
+      params: Params$Resource$Projects$Locations$Connections$Listenevent,
+      options: MethodOptions | BodyResponseCallback<Schema$ListenEventResponse>,
+      callback: BodyResponseCallback<Schema$ListenEventResponse>
+    ): void;
+    listenEvent(
+      params: Params$Resource$Projects$Locations$Connections$Listenevent,
+      callback: BodyResponseCallback<Schema$ListenEventResponse>
+    ): void;
+    listenEvent(
+      callback: BodyResponseCallback<Schema$ListenEventResponse>
+    ): void;
+    listenEvent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Listenevent
+        | BodyResponseCallback<Schema$ListenEventResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListenEventResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListenEventResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListenEventResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Listenevent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Listenevent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resourcePath}:listenEvent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resourcePath'],
+        pathParams: ['resourcePath'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListenEventResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListenEventResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates the parameters of a single Connection.
      *
      * @param params - Parameters for request
@@ -3905,6 +4379,18 @@ export namespace connectors_v1 {
      * Specifies which fields of the Connection are returned in the response. Defaults to `BASIC` view.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Listenevent
+    extends StandardParameters {
+    /**
+     * Required. Resource path for request.
+     */
+    resourcePath?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ListenEventRequest;
   }
   export interface Params$Resource$Projects$Locations$Connections$Patch
     extends StandardParameters {

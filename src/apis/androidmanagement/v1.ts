@@ -312,7 +312,7 @@ export namespace androidmanagement_v1 {
     permissionId?: string | null;
   }
   /**
-   * Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled. The maximum number of applications that you can specify per enterprise policy is 3,000.
+   * Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled. The maximum number of applications that you can specify per policy is 3,000.
    */
   export interface Schema$ApplicationPolicy {
     /**
@@ -2085,7 +2085,7 @@ export namespace androidmanagement_v1 {
      */
     appAutoUpdatePolicy?: string | null;
     /**
-     * Policy applied to apps.
+     * Policy applied to apps. This can have at most 3,000 elements.
      */
     applications?: Schema$ApplicationPolicy[];
     /**

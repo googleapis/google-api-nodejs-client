@@ -159,6 +159,10 @@ export namespace file_v1 {
     /**
      * Output only. Reserved for future use.
      */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
     satisfiesPzs?: boolean | null;
     /**
      * Name of the file share in the source Filestore instance that the backup is created from.
@@ -245,7 +249,7 @@ export namespace file_v1 {
      */
     capacityGb?: string | null;
     /**
-     * The name of the file share (must be 16 characters or less).
+     * Required. The name of the file share. Must use 1-16 characters for the basic service tier and 1-63 characters for all other service tiers. Must use lowercase letters, numbers, or underscores `[a-z0-9_]`. Must start with a letter. Immutable.
      */
     name?: string | null;
     /**
@@ -278,7 +282,7 @@ export namespace file_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For details, please refer to go/cloud-saas-mw-ug. Should not be set if maintenance_settings.maintenance_policies is set.
+     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For details, please refer to go/mr-user-guide. Should not be set if maintenance_settings.maintenance_policies is set.
      */
     maintenancePolicyNames?: {[key: string]: string} | null;
     /**
@@ -376,7 +380,7 @@ export namespace file_v1 {
      */
     isRollback?: boolean | null;
     /**
-     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For details, please refer to go/cloud-saas-mw-ug. Should not be set if maintenance_policy_names is set. If only the name is needed, then only populate MaintenancePolicy.name.
+     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For details, please refer to go/mr-user-guide. Should not be set if maintenance_policy_names is set. If only the name is needed, then only populate MaintenancePolicy.name.
      */
     maintenancePolicies?: {[key: string]: Schema$MaintenancePolicy} | null;
   }
@@ -498,6 +502,10 @@ export namespace file_v1 {
      * VPC networks to which the instance is connected. For this version, only a single network is supported.
      */
     networks?: Schema$NetworkConfig[];
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. Reserved for future use.
      */
@@ -789,7 +797,7 @@ export namespace file_v1 {
    */
   export interface Schema$RevertInstanceRequest {
     /**
-     * Required. The snapshot resource ID, in the format 'my-snapshot', where the specified ID is the {snapshot_id\} of the fully qualified name like projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}
+     * Required. The snapshot resource ID, in the format 'my-snapshot', where the specified ID is the {snapshot_id\} of the fully qualified name like `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
      */
     targetSnapshotId?: string | null;
   }
@@ -2342,7 +2350,7 @@ export namespace file_v1 {
   export interface Params$Resource$Projects$Locations$Instances$Revert
     extends StandardParameters {
     /**
-     * Required. projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}. The resource name of the instance, in the format
+     * Required. `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`. The resource name of the instance, in the format
      */
     name?: string;
 

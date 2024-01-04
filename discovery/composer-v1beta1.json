@@ -655,7 +655,7 @@
       }
     }
   },
-  "revision": "20231004",
+  "revision": "20231205",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -749,6 +749,33 @@
         "enabled": {
           "description": "Optional. Whether or not Cloud Data Lineage integration is enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DagProcessorResource": {
+      "description": "Configuration for resources used by Airflow DAG processors.",
+      "id": "DagProcessorResource",
+      "properties": {
+        "count": {
+          "description": "Optional. The number of DAG processors. If not provided or set to 0, a single DAG processor instance will be created.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "cpu": {
+          "description": "Optional. CPU request and limit for a single Airflow DAG processor replica.",
+          "format": "float",
+          "type": "number"
+        },
+        "memoryGb": {
+          "description": "Optional. Memory (GB) request and limit for a single Airflow DAG processor replica.",
+          "format": "float",
+          "type": "number"
+        },
+        "storageGb": {
+          "description": "Optional. Storage (GB) request and limit for a single Airflow DAG processor replica.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -1299,6 +1326,14 @@
       "description": "The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.",
       "id": "NodeConfig",
       "properties": {
+        "composerInternalIpv4CidrBlock": {
+          "description": "Optional. The IP range in CIDR notation to use internally by Cloud Composer. IP addresses are not reserved - and the same range can be used by multiple Cloud Composer environments. In case of overlap, IPs from this range will not be accessible in the user's VPC network. Cannot be updated. If not specified, the default value of '100.64.128.0/20' is used. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+          "type": "string"
+        },
+        "composerNetworkAttachment": {
+          "description": "Optional. Network Attachment that Cloud Composer environment is connected to, which provides connectivity with a user's VPC network. Takes precedence over network and subnetwork settings. If not provided, but network and subnetwork are defined during environment, it will be provisioned. If not provided and network and subnetwork are also empty, then connectivity to user's VPC network is disabled. Network attachment must be provided in format projects/{project}/regions/{region}/networkAttachments/{networkAttachment}. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+          "type": "string"
+        },
         "diskSizeGb": {
           "description": "Optional. The disk size in GB used for node VMs. Minimum size is 30GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
           "format": "int32",
@@ -1543,6 +1578,10 @@
           "description": "Optional. The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from web_server_ipv4_cidr_block",
           "type": "string"
         },
+        "enablePrivateBuildsOnly": {
+          "description": "Optional. If `true`, builds performed during operations that install Python packages have only private connectivity to Google services (including Artifact Registry) and VPC network (if either `NodeConfig.network` and `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment` field are specified). If `false`, the builds also have access to the internet. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+          "type": "boolean"
+        },
         "enablePrivateEnvironment": {
           "description": "Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
           "type": "boolean"
@@ -1701,6 +1740,20 @@
           "description": "Optional. The number of schedulers for Airflow. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-2.*.*.",
           "format": "int32",
           "type": "integer"
+        },
+        "webServerPluginsMode": {
+          "description": "Optional. Whether or not the web server uses custom plugins. If unspecified, the field defaults to `PLUGINS_ENABLED`. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+          "enum": [
+            "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED",
+            "PLUGINS_DISABLED",
+            "PLUGINS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default mode.",
+            "Web server plugins are not supported.",
+            "Web server plugins are supported."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1889,6 +1942,10 @@
       "description": "The Kubernetes workloads configuration for GKE cluster associated with the Cloud Composer environment. Supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.",
       "id": "WorkloadsConfig",
       "properties": {
+        "dagProcessor": {
+          "$ref": "DagProcessorResource",
+          "description": "Optional. Resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer."
+        },
         "scheduler": {
           "$ref": "SchedulerResource",
           "description": "Optional. Resources used by Airflow schedulers."

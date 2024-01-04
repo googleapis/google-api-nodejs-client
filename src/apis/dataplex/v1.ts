@@ -945,6 +945,19 @@ export namespace dataplex_v1 {
     fieldNames?: string[] | null;
   }
   /**
+   * DataQualityColumnResult provides a more detailed, per-column view of the results.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualityColumnResult {
+    /**
+     * Output only. The column specified in the DataQualityRule.
+     */
+    column?: string | null;
+    /**
+     * Output only. The column-level data quality score for this data scan job if and only if the 'column' field is set.The score ranges between between 0, 100 (up to two decimal points).
+     */
+    score?: number | null;
+  }
+  /**
    * A dimension captures data quality intent about a defined subset of the rules specified.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityDimension {
@@ -965,11 +978,19 @@ export namespace dataplex_v1 {
      * Whether the dimension passed or failed.
      */
     passed?: boolean | null;
+    /**
+     * Output only. The dimension-level data quality score for this data scan job if and only if the 'dimension' field is set.The score ranges between 0, 100 (up to two decimal points).
+     */
+    score?: number | null;
   }
   /**
    * The output of a DataQualityScan.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityResult {
+    /**
+     * Output only. A list of results at the column level.A column will have a corresponding DataQualityColumnResult if and only if there is at least one rule with the 'column' field set to it.
+     */
+    columns?: Schema$GoogleCloudDataplexV1DataQualityColumnResult[];
     /**
      * A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.
      */
@@ -994,6 +1015,10 @@ export namespace dataplex_v1 {
      * The data scanned for this result.
      */
     scannedData?: Schema$GoogleCloudDataplexV1ScannedData;
+    /**
+     * Output only. The overall data quality score.The score ranges between 0, 100 (up to two decimal points).
+     */
+    score?: number | null;
   }
   /**
    * The result of post scan actions of DataQualityScan job.
@@ -1034,7 +1059,7 @@ export namespace dataplex_v1 {
      */
     dimension?: string | null;
     /**
-     * Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing.This field is only valid for row-level type rules.
+     * Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing.This field is only valid for the following type of rules: RangeExpectation RegexExpectation SetExpectation UniquenessExpectation
      */
     ignoreNull?: boolean | null;
     /**

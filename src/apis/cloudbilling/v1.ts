@@ -184,11 +184,11 @@ export namespace cloudbilling_v1 {
      */
     name?: string | null;
     /**
-     * Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services.
+     * Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it are unable to use paid services.
      */
     open?: boolean | null;
     /**
-     * Output only. The billing account's parent resource identifier. Use the `MoveBillingAccount` method to update the account's parent resource if it is a organization. Format: - organizations/{organization_id\}, for example: organizations/12345678 - billingAccounts/{billing_account_id\}, for example: `billingAccounts/012345-567890-ABCDEF`
+     * Output only. The billing account's parent resource identifier. Use the `MoveBillingAccount` method to update the account's parent resource if it is a organization. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string | null;
   }
@@ -201,7 +201,7 @@ export namespace cloudbilling_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
      */
     members?: string[] | null;
     /**
@@ -338,7 +338,7 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$MoveBillingAccountRequest {
     /**
-     * Required. The resource name of the Organization to reparent the billing account under. Must be of the form `organizations/{organization_id\}`.
+     * Required. The resource name of the Organization to move the billing account under. Must be of the form `organizations/{organization_id\}`.
      */
     destinationParent?: string | null;
   }
@@ -1260,7 +1260,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Create
     extends StandardParameters {
     /**
-     * Optional. The parent to create a billing account from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     * Optional. The parent to create a billing account from. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string;
 
@@ -1290,7 +1290,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$List
     extends StandardParameters {
     /**
-     * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
+     * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported.
      */
     filter?: string;
     /**
@@ -1302,7 +1302,7 @@ export namespace cloudbilling_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. The parent resource to list billing accounts from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     * Optional. The parent resource to list billing accounts from. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string;
   }
@@ -1669,7 +1669,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Subaccounts$Create
     extends StandardParameters {
     /**
-     * Optional. The parent to create a billing account from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     * Optional. The parent to create a billing account from. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string;
 
@@ -1681,7 +1681,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Subaccounts$List
     extends StandardParameters {
     /**
-     * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
+     * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported.
      */
     filter?: string;
     /**
@@ -1693,7 +1693,7 @@ export namespace cloudbilling_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. The parent resource to list billing accounts from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     * Optional. The parent resource to list billing accounts from. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string;
   }
@@ -1987,7 +1987,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Organizations$Billingaccounts$Create
     extends StandardParameters {
     /**
-     * Optional. The parent to create a billing account from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     * Optional. The parent to create a billing account from. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string;
 
@@ -1999,7 +1999,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Organizations$Billingaccounts$List
     extends StandardParameters {
     /**
-     * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
+     * Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported.
      */
     filter?: string;
     /**
@@ -2011,14 +2011,14 @@ export namespace cloudbilling_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. The parent resource to list billing accounts from. Format: - organizations/{organization_id\} eg organizations/12345678 - billingAccounts/{billing_account_id\} eg `billingAccounts/012345-567890-ABCDEF`
+     * Optional. The parent resource to list billing accounts from. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Billingaccounts$Move
     extends StandardParameters {
     /**
-     * Required. The resource name of the Organization to reparent the billing account under. Must be of the form `organizations/{organization_id\}`.
+     * Required. The resource name of the Organization to move the billing account under. Must be of the form `organizations/{organization_id\}`.
      */
     destinationParent?: string;
     /**

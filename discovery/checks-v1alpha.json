@@ -414,7 +414,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20231221",
   "rootUrl": "https://checks.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -466,6 +466,22 @@
       "description": "The request message for ReportService.AnalyzeUpload.",
       "id": "GoogleChecksReportV1alphaAnalyzeUploadRequest",
       "properties": {
+        "appBinaryFileType": {
+          "description": "Optional. The type of the uploaded app binary. If not provided, the server assumes APK file for Android and IPA file for iOS.",
+          "enum": [
+            "APP_BINARY_FILE_TYPE_UNSPECIFIED",
+            "ANDROID_APK",
+            "ANDROID_AAB",
+            "IOS_IPA"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            ".apk file type.",
+            ".aab (app bundle) file type.",
+            ".ipa file type."
+          ],
+          "type": "string"
+        },
         "codeReferenceId": {
           "description": "Optional. Git commit hash or changelist number associated with the upload.",
           "type": "string"

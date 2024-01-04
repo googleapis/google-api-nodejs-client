@@ -612,7 +612,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20231212",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -1064,7 +1064,7 @@
           "type": "string"
         },
         "totalSize": {
-          "description": "The approximate number of Locations in the list irrespective of pagination.",
+          "description": "The approximate number of Locations in the list irrespective of pagination. This field will only be returned if `filter` is used as a query parameter.",
           "format": "int32",
           "type": "integer"
         }

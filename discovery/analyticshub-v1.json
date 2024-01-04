@@ -857,6 +857,35 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the IAM policy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/subscriptions/{subscriptionsId}:getIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "analyticshub.projects.locations.subscriptions.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "request": {
+                    "$ref": "GetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists all subscriptions in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/subscriptions",
@@ -956,6 +985,35 @@
                     "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the IAM policy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/subscriptions/{subscriptionsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "analyticshub.projects.locations.subscriptions.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -964,7 +1022,7 @@
       }
     }
   },
-  "revision": "20230923",
+  "revision": "20231211",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {

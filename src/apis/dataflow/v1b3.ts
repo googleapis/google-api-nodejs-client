@@ -822,6 +822,10 @@ export namespace dataflow_v1b3 {
      */
     shuffleMode?: string | null;
     /**
+     * Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.
+     */
+    streamingMode?: string | null;
+    /**
      * The prefix of the resources the system should use for temporary storage. The system will append the suffix "/temp-{JOBNAME\} to this resource prefix, where {JOBNAME\} is the value of the job_name field. The resulting bucket and object prefix is used as the prefix of the resources used to store temporary data needed during the job execution. NOTE: This will override the value in taskrunner_settings. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket\}/{object\} bucket.storage.googleapis.com/{object\}
      */
     tempStoragePrefix?: string | null;
@@ -830,7 +834,7 @@ export namespace dataflow_v1b3 {
      */
     userAgent?: {[key: string]: any} | null;
     /**
-     * Output only. Whether the job uses the new streaming engine billing model based on resource usage.
+     * Output only. Whether the job uses the Streaming Engine resource-based billing model.
      */
     useStreamingEngineResourceBasedBilling?: boolean | null;
     /**
@@ -1251,7 +1255,7 @@ export namespace dataflow_v1b3 {
      */
     createTime?: string | null;
     /**
-     * The current state of the job. Jobs are created in the `JOB_STATE_STOPPED` state unless otherwise specified. A job in the `JOB_STATE_RUNNING` state may asynchronously enter a terminal state. After a job has reached a terminal state, no further state updates may be made. This field may be mutated by the Cloud Dataflow service; callers cannot mutate it.
+     * The current state of the job. Jobs are created in the `JOB_STATE_STOPPED` state unless otherwise specified. A job in the `JOB_STATE_RUNNING` state may asynchronously enter a terminal state. After a job has reached a terminal state, no further state updates may be made. This field might be mutated by the Dataflow service; callers cannot mutate it.
      */
     currentState?: string | null;
     /**
@@ -1267,7 +1271,7 @@ export namespace dataflow_v1b3 {
      */
     executionInfo?: Schema$JobExecutionInfo;
     /**
-     * The unique ID of this job. This field is set by the Cloud Dataflow service when the Job is created, and is immutable for the life of the job.
+     * The unique ID of this job. This field is set by the Dataflow service when the job is created, and is immutable for the life of the job.
      */
     id?: string | null;
     /**
@@ -1283,7 +1287,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string | null;
     /**
-     * The user-specified Cloud Dataflow job name. Only one Job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022\}[a-z0-9])?`
+     * The user-specified Dataflow job name. Only one active job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a job with the same name as an active job that already exists, the attempt returns the existing job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -1291,7 +1295,7 @@ export namespace dataflow_v1b3 {
      */
     pipelineDescription?: Schema$PipelineDescription;
     /**
-     * The ID of the Cloud Platform project that the job belongs to.
+     * The ID of the Google Cloud project that the job belongs to.
      */
     projectId?: string | null;
     /**
@@ -1343,7 +1347,7 @@ export namespace dataflow_v1b3 {
      */
     transformNameMapping?: {[key: string]: string} | null;
     /**
-     * The type of Cloud Dataflow job.
+     * The type of Dataflow job.
      */
     type?: string | null;
   }
@@ -2342,6 +2346,10 @@ export namespace dataflow_v1b3 {
      * The minimum number of workers to scale down to. This field is currently only supported for Streaming Engine jobs.
      */
     minNumWorkers?: number | null;
+    /**
+     * Target worker utilization, compared against the aggregate utilization of the worker pool by autoscaler, to determine upscaling and downscaling when absent other constraints such as backlog.
+     */
+    workerUtilizationHint?: number | null;
   }
   /**
    * A bug found in the Dataflow SDK.
@@ -3094,6 +3102,35 @@ export namespace dataflow_v1b3 {
     windmillServicePort?: string | null;
   }
   /**
+   * Contains per-user worker telemetry used in streaming autoscaling.
+   */
+  export interface Schema$StreamingScalingReport {
+    /**
+     * Current acive bundle count.
+     */
+    activeBundleCount?: number | null;
+    /**
+     * Current acive thread count.
+     */
+    activeThreadCount?: number | null;
+    /**
+     * Maximum bundle count limit.
+     */
+    maximumBundleCount?: number | null;
+    /**
+     * Maximum bytes count limit.
+     */
+    maximumBytesCount?: number | null;
+    /**
+     * Maximum thread count limit.
+     */
+    maximumThreadCount?: number | null;
+    /**
+     * Current outstanding bytes count.
+     */
+    outstandingBytesCount?: number | null;
+  }
+  /**
    * A task which initializes part of a streaming Dataflow job.
    */
   export interface Schema$StreamingSetupTask {
@@ -3448,6 +3485,10 @@ export namespace dataflow_v1b3 {
      * Labels are used to group WorkerMessages. For example, a worker_message about a particular container might have the labels: { "JOB_ID": "2015-04-22", "WORKER_ID": "wordcount-vm-2015…" "CONTAINER_TYPE": "worker", "CONTAINER_ID": "ac1234def"\} Label tags typically correspond to Label enum values. However, for ease of development other strings can be used as tags. LABEL_UNSPECIFIED should not be used here.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Contains per-user worker telemetry used in streaming autoscaling.
+     */
+    streamingScalingReport?: Schema$StreamingScalingReport;
     /**
      * The timestamp of the worker_message.
      */

@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20231207",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -782,6 +782,10 @@
             "Do not retry.",
             "Retry on any failure, retry up to 7 days with an exponential backoff (capped at 10 seconds)."
           ],
+          "type": "string"
+        },
+        "service": {
+          "description": "Optional. The hostname of the service that 1st Gen function should be observed. If no string is provided, the default service implementing the API will be used. For example, `storage.googleapis.com` is the default for all event types in the `google.storage` namespace. The field is only applicable to 1st Gen functions.",
           "type": "string"
         },
         "serviceAccountEmail": {
@@ -1009,6 +1013,32 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "operationType": {
+          "description": "The operation type.",
+          "enum": [
+            "OPERATIONTYPE_UNSPECIFIED",
+            "CREATE_FUNCTION",
+            "UPDATE_FUNCTION",
+            "DELETE_FUNCTION",
+            "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+            "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+            "SETUP_FUNCTION_UPGRADE_CONFIG",
+            "ABORT_FUNCTION_UPGRADE",
+            "COMMIT_FUNCTION_UPGRADE"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "CreateFunction",
+            "UpdateFunction",
+            "DeleteFunction",
+            "RedirectFunctionUpgradeTraffic",
+            "RollbackFunctionUpgradeTraffic",
+            "SetupFunctionUpgradeConfig",
+            "AbortFunctionUpgrade",
+            "CommitFunctionUpgrade"
+          ],
+          "type": "string"
+        },
         "requestResource": {
           "additionalProperties": {
             "description": "Properties of the object. Contains field @type with type URL.",
@@ -1184,6 +1214,32 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "operationType": {
+          "description": "The operation type.",
+          "enum": [
+            "OPERATIONTYPE_UNSPECIFIED",
+            "CREATE_FUNCTION",
+            "UPDATE_FUNCTION",
+            "DELETE_FUNCTION",
+            "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+            "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+            "SETUP_FUNCTION_UPGRADE_CONFIG",
+            "ABORT_FUNCTION_UPGRADE",
+            "COMMIT_FUNCTION_UPGRADE"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "CreateFunction",
+            "UpdateFunction",
+            "DeleteFunction",
+            "RedirectFunctionUpgradeTraffic",
+            "RollbackFunctionUpgradeTraffic",
+            "SetupFunctionUpgradeConfig",
+            "AbortFunctionUpgrade",
+            "CommitFunctionUpgrade"
+          ],
+          "type": "string"
+        },
         "requestResource": {
           "additionalProperties": {
             "description": "Properties of the object. Contains field @type with type URL.",
@@ -1357,6 +1413,32 @@
         "endTime": {
           "description": "The time the operation finished running.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "operationType": {
+          "description": "The operation type.",
+          "enum": [
+            "OPERATIONTYPE_UNSPECIFIED",
+            "CREATE_FUNCTION",
+            "UPDATE_FUNCTION",
+            "DELETE_FUNCTION",
+            "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+            "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+            "SETUP_FUNCTION_UPGRADE_CONFIG",
+            "ABORT_FUNCTION_UPGRADE",
+            "COMMIT_FUNCTION_UPGRADE"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "CreateFunction",
+            "UpdateFunction",
+            "DeleteFunction",
+            "RedirectFunctionUpgradeTraffic",
+            "RollbackFunctionUpgradeTraffic",
+            "SetupFunctionUpgradeConfig",
+            "AbortFunctionUpgrade",
+            "CommitFunctionUpgrade"
+          ],
           "type": "string"
         },
         "requestResource": {
@@ -1890,7 +1972,7 @@
           "type": "boolean"
         },
         "availableCpu": {
-          "description": "[Preview] The number of CPUs used in a single container instance. Default value is calculated from available memory. Supports the same values as Cloud Run, see https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements Example: \"1\" indicates 1 vCPU",
+          "description": "The number of CPUs used in a single container instance. Default value is calculated from available memory. Supports the same values as Cloud Run, see https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements Example: \"1\" indicates 1 vCPU",
           "type": "string"
         },
         "availableMemory": {
@@ -1926,7 +2008,7 @@
           "type": "integer"
         },
         "maxInstanceRequestConcurrency": {
-          "description": "[Preview] Sets the maximum number of concurrent requests that each instance can receive. Defaults to 1.",
+          "description": "Sets the maximum number of concurrent requests that each instance can receive. Defaults to 1.",
           "format": "int32",
           "type": "integer"
         },

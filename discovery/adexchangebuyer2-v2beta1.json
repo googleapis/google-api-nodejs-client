@@ -2566,9 +2566,556 @@
           }
         }
       }
+    },
+    "buyers": {
+      "resources": {
+        "filterSets": {
+          "methods": {
+            "create": {
+              "description": "Creates the specified filter set for the account with the given account ID.",
+              "flatPath": "v2beta1/buyers/{buyersId}/filterSets",
+              "httpMethod": "POST",
+              "id": "adexchangebuyer2.buyers.filterSets.create",
+              "parameterOrder": [
+                "ownerName"
+              ],
+              "parameters": {
+                "isTransient": {
+                  "description": "Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "ownerName": {
+                  "description": "Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`",
+                  "location": "path",
+                  "pattern": "^buyers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+ownerName}/filterSets",
+              "request": {
+                "$ref": "FilterSet"
+              },
+              "response": {
+                "$ref": "FilterSet"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adexchange.buyer"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the requested filter set from the account with the given account ID.",
+              "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}",
+              "httpMethod": "DELETE",
+              "id": "adexchangebuyer2.buyers.filterSets.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                  "location": "path",
+                  "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adexchange.buyer"
+              ]
+            },
+            "get": {
+              "description": "Retrieves the requested filter set for the account with the given account ID.",
+              "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}",
+              "httpMethod": "GET",
+              "id": "adexchangebuyer2.buyers.filterSets.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                  "location": "path",
+                  "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+name}",
+              "response": {
+                "$ref": "FilterSet"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adexchange.buyer"
+              ]
+            },
+            "list": {
+              "description": "Lists all filter sets for the account with the given account ID.",
+              "flatPath": "v2beta1/buyers/{buyersId}/filterSets",
+              "httpMethod": "GET",
+              "id": "adexchangebuyer2.buyers.filterSets.list",
+              "parameterOrder": [
+                "ownerName"
+              ],
+              "parameters": {
+                "ownerName": {
+                  "description": "Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`",
+                  "location": "path",
+                  "pattern": "^buyers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of ListFilterSetsResponse.nextPageToken returned from the previous call to the accounts.filterSets.list method.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+ownerName}/filterSets",
+              "response": {
+                "$ref": "ListFilterSetsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adexchange.buyer"
+              ]
+            }
+          },
+          "resources": {
+            "bidMetrics": {
+              "methods": {
+                "list": {
+                  "description": "Lists all metrics that are measured in terms of number of bids.",
+                  "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/bidMetrics",
+                  "httpMethod": "GET",
+                  "id": "adexchangebuyer2.buyers.filterSets.bidMetrics.list",
+                  "parameterOrder": [
+                    "filterSetName"
+                  ],
+                  "parameters": {
+                    "filterSetName": {
+                      "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                      "location": "path",
+                      "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return. Typically, this is the value of ListBidMetricsResponse.nextPageToken returned from the previous call to the bidMetrics.list method.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+filterSetName}/bidMetrics",
+                  "response": {
+                    "$ref": "ListBidMetricsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adexchange.buyer"
+                  ]
+                }
+              }
+            },
+            "bidResponseErrors": {
+              "methods": {
+                "list": {
+                  "description": "List all errors that occurred in bid responses, with the number of bid responses affected for each reason.",
+                  "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/bidResponseErrors",
+                  "httpMethod": "GET",
+                  "id": "adexchangebuyer2.buyers.filterSets.bidResponseErrors.list",
+                  "parameterOrder": [
+                    "filterSetName"
+                  ],
+                  "parameters": {
+                    "filterSetName": {
+                      "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                      "location": "path",
+                      "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return. Typically, this is the value of ListBidResponseErrorsResponse.nextPageToken returned from the previous call to the bidResponseErrors.list method.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+filterSetName}/bidResponseErrors",
+                  "response": {
+                    "$ref": "ListBidResponseErrorsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adexchange.buyer"
+                  ]
+                }
+              }
+            },
+            "bidResponsesWithoutBids": {
+              "methods": {
+                "list": {
+                  "description": "List all reasons for which bid responses were considered to have no applicable bids, with the number of bid responses affected for each reason.",
+                  "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/bidResponsesWithoutBids",
+                  "httpMethod": "GET",
+                  "id": "adexchangebuyer2.buyers.filterSets.bidResponsesWithoutBids.list",
+                  "parameterOrder": [
+                    "filterSetName"
+                  ],
+                  "parameters": {
+                    "filterSetName": {
+                      "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                      "location": "path",
+                      "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return. Typically, this is the value of ListBidResponsesWithoutBidsResponse.nextPageToken returned from the previous call to the bidResponsesWithoutBids.list method.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+filterSetName}/bidResponsesWithoutBids",
+                  "response": {
+                    "$ref": "ListBidResponsesWithoutBidsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adexchange.buyer"
+                  ]
+                }
+              }
+            },
+            "filteredBidRequests": {
+              "methods": {
+                "list": {
+                  "description": "List all reasons that caused a bid request not to be sent for an impression, with the number of bid requests not sent for each reason.",
+                  "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/filteredBidRequests",
+                  "httpMethod": "GET",
+                  "id": "adexchangebuyer2.buyers.filterSets.filteredBidRequests.list",
+                  "parameterOrder": [
+                    "filterSetName"
+                  ],
+                  "parameters": {
+                    "filterSetName": {
+                      "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                      "location": "path",
+                      "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidRequestsResponse.nextPageToken returned from the previous call to the filteredBidRequests.list method.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+filterSetName}/filteredBidRequests",
+                  "response": {
+                    "$ref": "ListFilteredBidRequestsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adexchange.buyer"
+                  ]
+                }
+              }
+            },
+            "filteredBids": {
+              "methods": {
+                "list": {
+                  "description": "List all reasons for which bids were filtered, with the number of bids filtered for each reason.",
+                  "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/filteredBids",
+                  "httpMethod": "GET",
+                  "id": "adexchangebuyer2.buyers.filterSets.filteredBids.list",
+                  "parameterOrder": [
+                    "filterSetName"
+                  ],
+                  "parameters": {
+                    "filterSetName": {
+                      "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                      "location": "path",
+                      "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidsResponse.nextPageToken returned from the previous call to the filteredBids.list method.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+filterSetName}/filteredBids",
+                  "response": {
+                    "$ref": "ListFilteredBidsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adexchange.buyer"
+                  ]
+                }
+              },
+              "resources": {
+                "creatives": {
+                  "methods": {
+                    "list": {
+                      "description": "List all creatives associated with a specific reason for which bids were filtered, with the number of bids filtered for each creative.",
+                      "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/filteredBids/{creativeStatusId}/creatives",
+                      "httpMethod": "GET",
+                      "id": "adexchangebuyer2.buyers.filterSets.filteredBids.creatives.list",
+                      "parameterOrder": [
+                        "filterSetName",
+                        "creativeStatusId"
+                      ],
+                      "parameters": {
+                        "creativeStatusId": {
+                          "description": "The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).",
+                          "format": "int32",
+                          "location": "path",
+                          "required": true,
+                          "type": "integer"
+                        },
+                        "filterSetName": {
+                          "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                          "location": "path",
+                          "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives",
+                      "response": {
+                        "$ref": "ListCreativeStatusBreakdownByCreativeResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/adexchange.buyer"
+                      ]
+                    }
+                  }
+                },
+                "details": {
+                  "methods": {
+                    "list": {
+                      "description": "List all details associated with a specific reason for which bids were filtered, with the number of bids filtered for each detail.",
+                      "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/filteredBids/{creativeStatusId}/details",
+                      "httpMethod": "GET",
+                      "id": "adexchangebuyer2.buyers.filterSets.filteredBids.details.list",
+                      "parameterOrder": [
+                        "filterSetName",
+                        "creativeStatusId"
+                      ],
+                      "parameters": {
+                        "creativeStatusId": {
+                          "description": "The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.",
+                          "format": "int32",
+                          "location": "path",
+                          "required": true,
+                          "type": "integer"
+                        },
+                        "filterSetName": {
+                          "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                          "location": "path",
+                          "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details",
+                      "response": {
+                        "$ref": "ListCreativeStatusBreakdownByDetailResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/adexchange.buyer"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "impressionMetrics": {
+              "methods": {
+                "list": {
+                  "description": "Lists all metrics that are measured in terms of number of impressions.",
+                  "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/impressionMetrics",
+                  "httpMethod": "GET",
+                  "id": "adexchangebuyer2.buyers.filterSets.impressionMetrics.list",
+                  "parameterOrder": [
+                    "filterSetName"
+                  ],
+                  "parameters": {
+                    "filterSetName": {
+                      "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                      "location": "path",
+                      "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return. Typically, this is the value of ListImpressionMetricsResponse.nextPageToken returned from the previous call to the impressionMetrics.list method.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+filterSetName}/impressionMetrics",
+                  "response": {
+                    "$ref": "ListImpressionMetricsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adexchange.buyer"
+                  ]
+                }
+              }
+            },
+            "losingBids": {
+              "methods": {
+                "list": {
+                  "description": "List all reasons for which bids lost in the auction, with the number of bids that lost for each reason.",
+                  "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/losingBids",
+                  "httpMethod": "GET",
+                  "id": "adexchangebuyer2.buyers.filterSets.losingBids.list",
+                  "parameterOrder": [
+                    "filterSetName"
+                  ],
+                  "parameters": {
+                    "filterSetName": {
+                      "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                      "location": "path",
+                      "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return. Typically, this is the value of ListLosingBidsResponse.nextPageToken returned from the previous call to the losingBids.list method.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+filterSetName}/losingBids",
+                  "response": {
+                    "$ref": "ListLosingBidsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adexchange.buyer"
+                  ]
+                }
+              }
+            },
+            "nonBillableWinningBids": {
+              "methods": {
+                "list": {
+                  "description": "List all reasons for which winning bids were not billable, with the number of bids not billed for each reason.",
+                  "flatPath": "v2beta1/buyers/{buyersId}/filterSets/{filterSetsId}/nonBillableWinningBids",
+                  "httpMethod": "GET",
+                  "id": "adexchangebuyer2.buyers.filterSets.nonBillableWinningBids.list",
+                  "parameterOrder": [
+                    "filterSetName"
+                  ],
+                  "parameters": {
+                    "filterSetName": {
+                      "description": "Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`",
+                      "location": "path",
+                      "pattern": "^buyers/[^/]+/filterSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return. Typically, this is the value of ListNonBillableWinningBidsResponse.nextPageToken returned from the previous call to the nonBillableWinningBids.list method.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+filterSetName}/nonBillableWinningBids",
+                  "response": {
+                    "$ref": "ListNonBillableWinningBidsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adexchange.buyer"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20231018",
+  "revision": "20231213",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {

@@ -1133,6 +1133,22 @@
                           "location": "query",
                           "type": "string"
                         },
+                        "files": {
+                          "description": "Optional. Integration related file to download like Integration Json, Config variable, testcase etc.",
+                          "enum": [
+                            "INTEGRATION_FILE_UNSPECIFIED",
+                            "INTEGRATION",
+                            "INTEGRATION_CONFIG_VARIABLES"
+                          ],
+                          "enumDescriptions": [
+                            "Default value.",
+                            "Integration file.",
+                            "Integration Config variables."
+                          ],
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
                         "name": {
                           "description": "Required. The version to download. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
                           "location": "path",
@@ -2458,6 +2474,22 @@
                               "location": "query",
                               "type": "string"
                             },
+                            "files": {
+                              "description": "Optional. Integration related file to download like Integration Json, Config variable, testcase etc.",
+                              "enum": [
+                                "INTEGRATION_FILE_UNSPECIFIED",
+                                "INTEGRATION",
+                                "INTEGRATION_CONFIG_VARIABLES"
+                              ],
+                              "enumDescriptions": [
+                                "Default value.",
+                                "Integration file.",
+                                "Integration Config variables."
+                              ],
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            },
                             "name": {
                               "description": "Required. The version to download. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
                               "location": "path",
@@ -3524,7 +3556,7 @@
       }
     }
   },
-  "revision": "20231117",
+  "revision": "20231213",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -3844,6 +3876,10 @@
         "logSettings": {
           "$ref": "EnterpriseCrmEventbusProtoLogSettings",
           "description": "See"
+        },
+        "masked": {
+          "description": "True if this workflow parameter should be masked in the logs",
+          "type": "boolean"
         },
         "readOnly": {
           "description": "Used to indicate if the ParameterEntry is a read only field or not.",
@@ -4233,9 +4269,11 @@
             "GET_ENTITY",
             "CREATE_ENTITY",
             "UPDATE_ENTITY",
-            "DELETE_ENTITY"
+            "DELETE_ENTITY",
+            "EXECUTE_QUERY"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -5413,6 +5451,10 @@
         "key": {
           "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the integration definition.",
           "type": "string"
+        },
+        "masked": {
+          "description": "True if this parameter should be masked in the logs",
+          "type": "boolean"
         },
         "value": {
           "$ref": "EnterpriseCrmEventbusProtoParameterValueType",
@@ -7264,6 +7306,10 @@
           "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the workflow definition.",
           "type": "string"
         },
+        "masked": {
+          "description": "True if this parameter should be masked in the logs",
+          "type": "boolean"
+        },
         "value": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterValueType",
           "description": "Values for the defined keys. Each value can either be string, int, double or any proto message."
@@ -7873,6 +7919,10 @@
           },
           "type": "array"
         },
+        "containsLargeData": {
+          "description": "Indicates whether this variable contains large data and need to be uploaded to Cloud Storage.",
+          "type": "boolean"
+        },
         "dataType": {
           "description": "The data type of the parameter.",
           "enum": [
@@ -8150,7 +8200,8 @@
             "OAUTH2_JWT_BEARER",
             "OAUTH2_CLIENT_CREDENTIALS",
             "SSH_PUBLIC_KEY",
-            "OAUTH2_AUTH_CODE_FLOW"
+            "OAUTH2_AUTH_CODE_FLOW",
+            "GOOGLE_AUTHENTICATION"
           ],
           "enumDescriptions": [
             "Authentication type not specified.",
@@ -8158,7 +8209,8 @@
             "JSON Web Token (JWT) Profile for Oauth 2.0 Authorization Grant based authentication",
             "Oauth 2.0 Client Credentials Grant Authentication",
             "SSH Public Key Authentication",
-            "Oauth 2.0 Authorization Code Flow"
+            "Oauth 2.0 Authorization Code Flow",
+            "Google authentication"
           ],
           "type": "string"
         },
@@ -8682,10 +8734,6 @@
           "$ref": "GoogleCloudConnectorsV1AuthConfig",
           "description": "Auth details for the webhook adapter."
         },
-        "encryptionKey": {
-          "$ref": "GoogleCloudConnectorsV1ConfigVariable",
-          "description": "Encryption key (can be either Google managed or CMEK)."
-        },
         "enrichmentEnabled": {
           "description": "Enrichment Enabled.",
           "type": "boolean"
@@ -8693,6 +8741,10 @@
         "eventsListenerIngressEndpoint": {
           "description": "Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.",
           "type": "string"
+        },
+        "listenerAuthConfig": {
+          "$ref": "GoogleCloudConnectorsV1AuthConfig",
+          "description": "Optional. Auth details for the event listener."
         },
         "privateConnectivityEnabled": {
           "description": "Optional. Private Connectivity Enabled.",
@@ -9018,6 +9070,39 @@
           "description": "Number of times given task should be retried in case of ASSERT_FAILED_EXECUTION",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaAssertionResult": {
+      "description": "The result of an assertion.",
+      "id": "GoogleCloudIntegrationsV1alphaAssertionResult",
+      "properties": {
+        "assertion": {
+          "$ref": "GoogleCloudIntegrationsV1alphaAssertion",
+          "description": "Assertion that was run."
+        },
+        "status": {
+          "description": "Status of assertion to signify if the assertion succeeded or failed",
+          "enum": [
+            "ASSERTION_STATUS_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified assertion status",
+            "Assertion succeeded",
+            "Assertion failed"
+          ],
+          "type": "string"
+        },
+        "taskName": {
+          "description": "Task name of task where the assertion was run.",
+          "type": "string"
+        },
+        "taskNumber": {
+          "description": "Task number of task where the assertion was run.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9511,8 +9596,15 @@
       "id": "GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse",
       "properties": {
         "content": {
-          "description": "String representation of the integration version.",
+          "description": "String representation of the requested file.",
           "type": "string"
+        },
+        "files": {
+          "description": "List containing String represendation for multiple file with type.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaSerializedFile"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -9566,12 +9658,16 @@
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaEventParameter": {
-      "description": "This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus.",
+      "description": "This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Next available id: 4",
       "id": "GoogleCloudIntegrationsV1alphaEventParameter",
       "properties": {
         "key": {
           "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the integration definition.",
           "type": "string"
+        },
+        "masked": {
+          "description": "True if this parameter should be masked in the logs",
+          "type": "boolean"
         },
         "value": {
           "$ref": "GoogleCloudIntegrationsV1alphaValueType",
@@ -9690,6 +9786,13 @@
       "description": "The response for executing a functional test.",
       "id": "GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse",
       "properties": {
+        "assertionResults": {
+          "description": "Results of each assertions ran during execution of test case.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaAssertionResult"
+          },
+          "type": "array"
+        },
         "executionId": {
           "description": "The id of the execution corresponding to this run of integration.",
           "type": "string"
@@ -9701,6 +9804,20 @@
           },
           "description": "OUTPUT parameters in format of Map. Where Key is the name of the parameter. Note: Name of the system generated parameters are wrapped by backtick(`) to distinguish them from the user defined parameters.",
           "type": "object"
+        },
+        "testExecutionState": {
+          "description": "State of the test case execution",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state",
+            "Test case execution passed",
+            "Test case execution failed"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -9803,6 +9920,12 @@
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
           },
           "type": "array"
+        },
+        "snapshotNumber": {
+          "description": "Output only. An increasing sequence that is set when a new snapshot is created",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "triggerId": {
           "description": "The trigger id of the integration trigger config. If both trigger_id and client_id is present, the integration is executed from the start tasks provided by the matching trigger config otherwise it is executed from the default start tasks.",
@@ -10124,10 +10247,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaIntegrationConfigParameter": {
+      "description": "Integration Config Parameter is defined in the integration config and are used to provide external configuration for integration. It provide information about data types of the expected parameters and provide any default values or value. They can also be used to add custom attributes.",
+      "id": "GoogleCloudIntegrationsV1alphaIntegrationConfigParameter",
+      "properties": {
+        "parameter": {
+          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationParameter",
+          "description": "Optional. Integration Parameter to provide the default value, data type and attributes required for the Integration config variables."
+        },
+        "value": {
+          "$ref": "GoogleCloudIntegrationsV1alphaValueType",
+          "description": "Values for the defined keys. Each value can either be string, int, double or any proto message or a serialized object."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaIntegrationParameter": {
       "description": "Integration Parameter is defined in the integration config and are used to provide information about data types of the expected parameters and provide any default values if needed. They can also be used to add custom attributes. These are static in nature and should not be used for dynamic event definition.",
       "id": "GoogleCloudIntegrationsV1alphaIntegrationParameter",
       "properties": {
+        "containsLargeData": {
+          "description": "Indicates whether this variable contains large data and need to be uploaded to Cloud Storage.",
+          "type": "boolean"
+        },
         "dataType": {
           "description": "Type of the parameter.",
           "enum": [
@@ -10196,6 +10338,10 @@
           "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the integration definition.",
           "type": "string"
         },
+        "masked": {
+          "description": "True if this parameter should be masked in the logs",
+          "type": "boolean"
+        },
         "producer": {
           "description": "The identifier of the node (TaskConfig/TriggerConfig) this parameter was produced by, if it is a transient param or a copy of an input param.",
           "type": "string"
@@ -10208,7 +10354,7 @@
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion": {
-      "description": "IntegrationTemplateVersion definition. An IntegrationTemplateVersion provides configurations required to construct an IntegrationVersion. It cannot be executed directly like an Integration. Users can create IntegrationTemplateVersions using Integrations. These Templates can be shared by users across GCP projects.",
+      "description": "IntegrationTemplateVersion definition. An IntegrationTemplateVersion provides configurations required to construct an IntegrationVersion. It cannot be executed directly like an Integration. Users can create IntegrationTemplateVersions using Integrations. These Templates can be shared by users across GCP projects. Next available: 17",
       "id": "GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion",
       "properties": {
         "createTime": {
@@ -10234,6 +10380,10 @@
         "description": {
           "description": "Optional. The templateversion description. Permitted format is alphanumeric with underscores and no spaces.",
           "type": "string"
+        },
+        "enableVariableMasking": {
+          "description": "Optional. True if variable masking feature should be turned on for generated workflows",
+          "type": "boolean"
         },
         "errorCatcherConfigs": {
           "description": "Optional. Error Catch Task configuration for the IntegrationTemplateVersion. It's optional.",
@@ -10346,10 +10496,21 @@
           "description": "Optional. The integration description.",
           "type": "string"
         },
+        "enableVariableMasking": {
+          "description": "Optional. True if variable masking feature should be turned on for this version",
+          "type": "boolean"
+        },
         "errorCatcherConfigs": {
           "description": "Optional. Error Catch Task configuration for the integration. It's optional.",
           "items": {
             "$ref": "GoogleCloudIntegrationsV1alphaErrorCatcherConfig"
+          },
+          "type": "array"
+        },
+        "integrationConfigParameters": {
+          "description": "Optional. Config Parameters that are expected to be passed to the integration when an integration is published. This consists of all the parameters that are expected to provide configuration in the integration execution. This gives the user the ability to provide default values, value, add information like connection url, project based configuration value and also provide data types of each parameter.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaIntegrationConfigParameter"
           },
           "type": "array"
         },
@@ -11202,7 +11363,16 @@
     "GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest": {
       "description": "Request for PublishIntegrationVersion.",
       "id": "GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest",
-      "properties": {},
+      "properties": {
+        "configParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Config parameters used during integration execution.",
+          "type": "object"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse": {
@@ -11267,7 +11437,7 @@
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaScheduleIntegrationsRequest": {
-      "description": "The request for scheduling an integration.",
+      "description": "The request for scheduling an integration. Next available id: 10",
       "id": "GoogleCloudIntegrationsV1alphaScheduleIntegrationsRequest",
       "properties": {
         "inputParameters": {
@@ -11302,6 +11472,10 @@
         "triggerId": {
           "description": "Required. Matched against all {@link TriggerConfig}s across all integrations. i.e. TriggerConfig.trigger_id.equals(trigger_id)",
           "type": "string"
+        },
+        "userGeneratedExecutionId": {
+          "description": "Optional. This is a unique id provided by the method caller. If provided this will be used as the execution_id when a new execution info is created. This is a string representation of a UUID. Must have no more than 36 characters and contain only alphanumeric characters and hyphens.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11316,6 +11490,31 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaSerializedFile": {
+      "description": "To store string representation of Integration file.",
+      "id": "GoogleCloudIntegrationsV1alphaSerializedFile",
+      "properties": {
+        "content": {
+          "description": "String representation of the file content.",
+          "type": "string"
+        },
+        "file": {
+          "description": "File information like Integration version, Integration Config variables etc.",
+          "enum": [
+            "INTEGRATION_FILE_UNSPECIFIED",
+            "INTEGRATION",
+            "INTEGRATION_CONFIG_VARIABLES"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Integration file.",
+            "Integration Config variables."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

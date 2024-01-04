@@ -437,6 +437,10 @@ export namespace redis_v1 {
      */
     reservedIpRange?: string | null;
     /**
+     * Optional. Output only. Reserved for future use. Zone Isolation compliance state of the instance. Field name and documentation is obfuscated according to go/per-resource-zi-bit-semantics.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
      * Optional. Output only. Reserved for future use. Zone Separation compliance state of the instance. Field name and documentation is obfuscated according to go/zs-resource-status.
      */
     satisfiesPzs?: boolean | null;

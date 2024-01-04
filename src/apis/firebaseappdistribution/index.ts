@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {firebaseappdistribution_v1} from './v1';
+import {firebaseappdistribution_v1alpha} from './v1alpha';
 
 export const VERSIONS = {
   v1: firebaseappdistribution_v1.Firebaseappdistribution,
+  v1alpha: firebaseappdistribution_v1alpha.Firebaseappdistribution,
 };
 
 export function firebaseappdistribution(
@@ -26,11 +28,23 @@ export function firebaseappdistribution(
 export function firebaseappdistribution(
   options: firebaseappdistribution_v1.Options
 ): firebaseappdistribution_v1.Firebaseappdistribution;
+export function firebaseappdistribution(
+  version: 'v1alpha'
+): firebaseappdistribution_v1alpha.Firebaseappdistribution;
+export function firebaseappdistribution(
+  options: firebaseappdistribution_v1alpha.Options
+): firebaseappdistribution_v1alpha.Firebaseappdistribution;
 export function firebaseappdistribution<
-  T = firebaseappdistribution_v1.Firebaseappdistribution,
+  T =
+    | firebaseappdistribution_v1.Firebaseappdistribution
+    | firebaseappdistribution_v1alpha.Firebaseappdistribution,
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | firebaseappdistribution_v1.Options
+  versionOrOptions:
+    | 'v1'
+    | firebaseappdistribution_v1.Options
+    | 'v1alpha'
+    | firebaseappdistribution_v1alpha.Options
 ) {
   return getAPI<T>('firebaseappdistribution', versionOrOptions, VERSIONS, this);
 }
@@ -38,6 +52,7 @@ export function firebaseappdistribution<
 const auth = new AuthPlus();
 export {auth};
 export {firebaseappdistribution_v1};
+export {firebaseappdistribution_v1alpha};
 export {
   AuthPlus,
   GlobalOptions,

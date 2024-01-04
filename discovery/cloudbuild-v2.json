@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20231211",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2470,6 +2470,13 @@
             "$ref": "EnvVar"
           },
           "type": "array"
+        },
+        "volumeMounts": {
+          "description": "Optional. Pod volumes to mount into the container's filesystem.",
+          "items": {
+            "$ref": "VolumeMount"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2592,11 +2599,8 @@
           "type": "array"
         },
         "stepTemplate": {
-          "description": "Optional. StepTemplate can be used as the basis for all step containers within the Task, so that the steps inherit settings on the base container.",
-          "items": {
-            "$ref": "StepTemplate"
-          },
-          "type": "array"
+          "$ref": "StepTemplate",
+          "description": "Optional. StepTemplate can be used as the basis for all step containers within the Task, so that the steps inherit settings on the base container."
         },
         "steps": {
           "description": "Steps of the task.",

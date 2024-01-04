@@ -687,7 +687,7 @@ export namespace healthcare_v1beta1 {
      */
     accessDeterminationLogConfig?: Schema$AccessDeterminationLogConfig;
     /**
-     * Optional. If set to true, when accessing FHIR resources, the consent headers provided using [SMART-on-FHIR](https://cloud.google.com/healthcare/private/docs/how-tos/smart-on-fhir) will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.
+     * Optional. If set to true, when accessing FHIR resources, the consent headers will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.
      */
     accessEnforced?: boolean | null;
     /**
@@ -1407,6 +1407,10 @@ export namespace healthcare_v1beta1 {
      * Immutable. Whether to disable resource versioning for this FHIR store. This field can not be changed after the creation of FHIR store. If set to false, which is the default behavior, all write operations cause historical versions to be recorded automatically. The historical versions can be fetched through the history APIs, but cannot be updated. If set to true, no historical versions are kept. The server sends errors for attempts to read the historical versions.
      */
     disableResourceVersioning?: boolean | null;
+    /**
+     * Optional. Whether to allow the [ImportResourcesHistory] and [ExecuteBundle] APIs to accept history bundles, and directly insert and overwrite historical resource versions into the FHIR store. Importing resource histories creates resource interactions that have occurred in the past that clients might not allow. If set to false, using history bundles fail with an error.
+     */
+    enableHistoryModifications?: boolean | null;
     /**
      * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources.
      */
@@ -12861,9 +12865,14 @@ export namespace healthcare_v1beta1 {
 
   export class Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances {
     context: APIRequestContext;
+    bulkdata: Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata;
     frames: Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.bulkdata =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata(
+          this.context
+        );
       this.frames =
         new Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames(
           this.context
@@ -13260,6 +13269,112 @@ export namespace healthcare_v1beta1 {
     dicomWebPath?: string;
     /**
      * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns uncompressed, unencoded bytes representing the referenced bulkdata tag from an instance. See [Retrieve Transaction] (http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4){: .external\}.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveBulkdata(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata$Retrievebulkdata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveBulkdata(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata$Retrievebulkdata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    retrieveBulkdata(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata$Retrievebulkdata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveBulkdata(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata$Retrievebulkdata,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    retrieveBulkdata(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata$Retrievebulkdata,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    retrieveBulkdata(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    retrieveBulkdata(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata$Retrievebulkdata
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata$Retrievebulkdata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata$Retrievebulkdata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'dicomWebPath'],
+        pathParams: ['dicomWebPath', 'parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Bulkdata$Retrievebulkdata
+    extends StandardParameters {
+    /**
+     * Required. The path for the `RetrieveBulkdata` DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/bukdata/{bulkdata_uri\}`.
+     */
+    dicomWebPath?: string;
+    /**
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }

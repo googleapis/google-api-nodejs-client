@@ -207,6 +207,19 @@ export namespace securitycenter_v1beta1 {
     version?: string | null;
   }
   /**
+   * Represents an application associated with a finding.
+   */
+  export interface Schema$Application {
+    /**
+     * The base URI that identifies the network location of the application in which the vulnerability was detected. Examples: http://11.22.33.44, http://foo.com, http://11.22.33.44:8080
+     */
+    baseUri?: string | null;
+    /**
+     * The full URI with payload that can be used to reproduce the vulnerability. Example: http://11.22.33.44/reflected/parameter/attribute/singlequoted/js?p=aMmYgI6H
+     */
+    fullUri?: string | null;
+  }
+  /**
    * Security Command Center representation of a Google Cloud resource. The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don't affect the referenced Google Cloud resource.
    */
   export interface Schema$Asset {
@@ -308,6 +321,51 @@ export namespace securitycenter_v1beta1 {
     logType?: string | null;
   }
   /**
+   * Information related to Google Cloud Backup and DR Service findings.
+   */
+  export interface Schema$BackupDisasterRecovery {
+    /**
+     * The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, “backup-server-57137”.
+     */
+    appliance?: string | null;
+    /**
+     * The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, “centos7-01-vol00”, “centos7-01-vol01”, “centos7-01-vol02”.
+     */
+    applications?: string[] | null;
+    /**
+     * The timestamp at which the Backup and DR backup was created.
+     */
+    backupCreateTime?: string | null;
+    /**
+     * The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, “snap-ov”.
+     */
+    backupTemplate?: string | null;
+    /**
+     * The backup type of the Backup and DR image. For example, “Snapshot”, “Remote Snapshot”, “OnVault”.
+     */
+    backupType?: string | null;
+    /**
+     * The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, “centos7-01”.
+     */
+    host?: string | null;
+    /**
+     * The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, “onvaults”.
+     */
+    policies?: string[] | null;
+    /**
+     * The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, “skipofflineappsincongrp, nounmap”.
+     */
+    policyOptions?: string[] | null;
+    /**
+     * The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, “GCP”.
+     */
+    profile?: string | null;
+    /**
+     * The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, “DiskPoolOne”.
+     */
+    storagePool?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -316,7 +374,7 @@ export namespace securitycenter_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
      */
     members?: string[] | null;
     /**
@@ -573,6 +631,19 @@ export namespace securitycenter_v1beta1 {
     percentPagesMatched?: number | null;
   }
   /**
+   * Path of the file in terms of underlying disk/partition identifiers.
+   */
+  export interface Schema$DiskPath {
+    /**
+     * UUID of the partition (format https://wiki.archlinux.org/title/persistent_block_device_naming#by-uuid)
+     */
+    partitionUuid?: string | null;
+    /**
+     * Relative path of the file in the partition as a JSON encoded string. Example: /home/user1/executable_file.sh
+     */
+    relativePath?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -649,6 +720,10 @@ export namespace securitycenter_v1beta1 {
      */
     contents?: string | null;
     /**
+     * Path of the file in terms of underlying disk/partition identifiers.
+     */
+    diskPath?: Schema$DiskPath;
+    /**
      * The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.
      */
     hashedSize?: string | null;
@@ -678,9 +753,17 @@ export namespace securitycenter_v1beta1 {
      */
     access?: Schema$Access;
     /**
+     * Represents an application associated with the finding.
+     */
+    application?: Schema$Application;
+    /**
      * The results of an attack path simulation relevant to this finding.
      */
     attackExposure?: Schema$AttackExposure;
+    /**
+     * Fields related to Backup and DR findings.
+     */
+    backupDisasterRecovery?: Schema$BackupDisasterRecovery;
     /**
      * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
      */
@@ -1841,7 +1924,7 @@ export namespace securitycenter_v1beta1 {
      */
     group?: string | null;
     /**
-     * Kubernetes object kind, such as “Namespace”.
+     * Kubernetes object kind, such as "Namespace".
      */
     kind?: string | null;
     /**
@@ -1903,6 +1986,27 @@ export namespace securitycenter_v1beta1 {
      * The resource name of the org policy. Example: "organizations/{organization_id\}/policies/{constraint_name\}"
      */
     name?: string | null;
+  }
+  /**
+   * Package is a generic definition of a package.
+   */
+  export interface Schema$Package {
+    /**
+     * The CPE URI where the vulnerability was detected.
+     */
+    cpeUri?: string | null;
+    /**
+     * The name of the package where the vulnerability was detected.
+     */
+    packageName?: string | null;
+    /**
+     * Type of package, for example, os, maven, or go.
+     */
+    packageType?: string | null;
+    /**
+     * The version of the package.
+     */
+    packageVersion?: string | null;
   }
   /**
    * A Kubernetes Pod.
@@ -2000,6 +2104,10 @@ export namespace securitycenter_v1beta1 {
      */
     memoryHashSignature?: Schema$MemoryHashSignature;
     /**
+     * Describes the type of resource associated with the signature.
+     */
+    signatureType?: string | null;
+    /**
      * Signature indicating that a YARA rule was matched.
      */
     yaraRuleSignature?: Schema$YaraRuleSignature;
@@ -2038,6 +2146,23 @@ export namespace securitycenter_v1beta1 {
    * Request message for running asset discovery for an organization.
    */
   export interface Schema$RunAssetDiscoveryRequest {}
+  /**
+   * SecurityBulletin are notifications of vulnerabilities of Google products.
+   */
+  export interface Schema$SecurityBulletin {
+    /**
+     * ID of the bulletin corresponding to the vulnerability.
+     */
+    bulletinId?: string | null;
+    /**
+     * Submission time of this Security Bulletin.
+     */
+    submissionTime?: string | null;
+    /**
+     * This represents a version that the cluster receiving this notification should be upgraded to, based on its current version. For example, 1.15.0
+     */
+    suggestedUpgradeVersion?: string | null;
+  }
   /**
    * Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user.
    */
@@ -2221,6 +2346,18 @@ export namespace securitycenter_v1beta1 {
      * CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     cve?: Schema$Cve;
+    /**
+     * The fixed package is relevant to the finding.
+     */
+    fixedPackage?: Schema$Package;
+    /**
+     * The offending package is relevant to the finding.
+     */
+    offendingPackage?: Schema$Package;
+    /**
+     * The security bulletin is relevant to this finding.
+     */
+    securityBulletin?: Schema$SecurityBulletin;
   }
   /**
    * A signature corresponding to a YARA rule.

@@ -3077,7 +3077,7 @@
       }
     }
   },
-  "revision": "20231120",
+  "revision": "20231218",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -3846,10 +3846,6 @@
             "$ref": "Label"
           },
           "type": "array"
-        },
-        "productId": {
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"

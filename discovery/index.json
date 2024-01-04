@@ -49,21 +49,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "accesscontextmanager:v1beta",
-      "name": "accesscontextmanager",
-      "version": "v1beta",
-      "title": "Access Context Manager API",
-      "description": "An API for setting attribute based access control to requests to Google Cloud services.",
-      "discoveryRestUrl": "https://accesscontextmanager.googleapis.com/$discovery/rest?version=v1beta",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/access-context-manager/docs/reference/rest/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "accesscontextmanager:v1",
       "name": "accesscontextmanager",
       "version": "v1",
@@ -614,6 +599,36 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/appengine/docs/admin-api/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "apphub:v1alpha",
+      "name": "apphub",
+      "version": "v1alpha",
+      "title": "App Hub API",
+      "description": "",
+      "discoveryRestUrl": "https://apphub.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/app-hub/docs/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "apphub:v1",
+      "name": "apphub",
+      "version": "v1",
+      "title": "App Hub API",
+      "description": "",
+      "discoveryRestUrl": "https://apphub.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/app-hub/docs/",
       "preferred": true
     },
     {
@@ -2930,6 +2945,21 @@
       },
       "documentationLink": "https://firebase.google.com/docs/app-check",
       "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "firebaseappdistribution:v1alpha",
+      "name": "firebaseappdistribution",
+      "version": "v1alpha",
+      "title": "Firebase App Distribution API",
+      "description": "",
+      "discoveryRestUrl": "https://firebaseappdistribution.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://firebase.google.com/products/app-distribution",
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -6215,6 +6245,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/vpc/docs/configure-serverless-vpc-access",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "walletobjects:v1",
+      "name": "walletobjects",
+      "version": "v1",
+      "title": "Google Wallet API",
+      "description": "API for issuers to save and manage Google Wallet Objects.",
+      "discoveryRestUrl": "https://walletobjects.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/pay/passes",
       "preferred": true
     },
     {

@@ -1486,7 +1486,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ContactInfoList {
     /**
-     * Input only. User consent status.
+     * Input only. The consent setting for the users in contact_infos.
      */
     consent?: Schema$Consent;
     /**
@@ -4052,7 +4052,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$MobileDeviceIdList {
     /**
-     * Input only. User consent status.
+     * Input only. The consent setting for the users in mobile_device_ids.
      */
     consent?: Schema$Consent;
     /**

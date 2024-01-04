@@ -586,7 +586,6 @@ export namespace gmail_v1 {
      * List of labels. Note that each label resource only contains an `id`, `name`, `messageListVisibility`, `labelListVisibility`, and `type`. The labels.get method can fetch additional label details.
      */
     labels?: Schema$Label[];
-    productId?: number | null;
   }
   export interface Schema$ListMessagesResponse {
     /**

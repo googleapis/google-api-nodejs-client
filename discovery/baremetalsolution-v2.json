@@ -328,6 +328,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "loadAuthInfo": {
+                  "description": "Load auth info for a server.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:loadAuthInfo",
+                  "httpMethod": "GET",
+                  "id": "baremetalsolution.projects.locations.instances.loadAuthInfo",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the server.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:loadAuthInfo",
+                  "response": {
+                    "$ref": "LoadInstanceAuthInfoResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "patch": {
                   "description": "Update details of a single server.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
@@ -1613,7 +1638,7 @@
       }
     }
   },
-  "revision": "20231018",
+  "revision": "20231130",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1806,6 +1831,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "kmsKeyVersion": {
+          "description": "Optional. Name of the KMS crypto key version used to encrypt the initial passwords. The key has to have ASYMMETRIC_DECRYPT purpose. Format is `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}`.",
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -1859,6 +1888,13 @@
         "pod": {
           "description": "Immutable. Pod name. Pod is an independent part of infrastructure. Instance can only be connected to the assets (networks, volumes) allocated in the same pod.",
           "type": "string"
+        },
+        "sshKeys": {
+          "description": "Optional. List of SSH Keys used during instance provisioning.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "state": {
           "description": "Output only. The state of the server.",
@@ -1939,6 +1975,10 @@
         },
         "instanceType": {
           "description": "Instance type. [Available types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)",
+          "type": "string"
+        },
+        "kmsKeyVersion": {
+          "description": "Name of the KMS crypto key version used to encrypt the initial passwords. The key has to have ASYMMETRIC_DECRYPT purpose.",
           "type": "string"
         },
         "logicalInterfaces": {
@@ -2274,6 +2314,27 @@
       },
       "type": "object"
     },
+    "LoadInstanceAuthInfoResponse": {
+      "description": "Response for LoadInstanceAuthInfo.",
+      "id": "LoadInstanceAuthInfoResponse",
+      "properties": {
+        "sshKeys": {
+          "description": "List of ssh keys.",
+          "items": {
+            "$ref": "SSHKey"
+          },
+          "type": "array"
+        },
+        "userAccounts": {
+          "additionalProperties": {
+            "$ref": "UserAccount"
+          },
+          "description": "Map of username to the user account info.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Location": {
       "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
@@ -2393,7 +2454,7 @@
           "type": "boolean"
         },
         "sizeGb": {
-          "description": "The size of this LUN, in gigabytes.",
+          "description": "The size of this LUN, in GiB.",
           "format": "int64",
           "type": "string"
         },
@@ -3330,6 +3391,21 @@
         "provisioningConfig": {
           "$ref": "ProvisioningConfig",
           "description": "The submitted provisioning config."
+        }
+      },
+      "type": "object"
+    },
+    "UserAccount": {
+      "description": "User account provisioned for the customer.",
+      "id": "UserAccount",
+      "properties": {
+        "encryptedPassword": {
+          "description": "Encrypted initial password value.",
+          "type": "string"
+        },
+        "kmsKeyVersion": {
+          "description": "KMS CryptoKey Version used to encrypt the password.",
+          "type": "string"
         }
       },
       "type": "object"

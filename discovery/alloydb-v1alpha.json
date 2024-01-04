@@ -1489,9 +1489,20 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20231206",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
+    "AuthorizedNetwork": {
+      "description": "AuthorizedNetwork contains metadata for an authorized network.",
+      "id": "AuthorizedNetwork",
+      "properties": {
+        "cidrRange": {
+          "description": "CIDR range for one authorzied network of the instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AutomatedBackupPolicy": {
       "description": "Message describing the user-specified automated backup policy. All fields in the automated backup policy are optional. Defaults for each field are provided if they are not set.",
       "id": "AutomatedBackupPolicy",
@@ -1636,6 +1647,11 @@
         },
         "reconciling": {
           "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation), if true, indicates that the service is actively updating the resource. This can happen due to user-triggered updates or system actions like failover or maintenance.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1905,6 +1921,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -1988,6 +2009,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "publicIpAddress": {
+          "description": "Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2399,6 +2425,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "networkConfig": {
+          "$ref": "InstanceNetworkConfig",
+          "description": "Optional. Instance level network configuration."
+        },
         "nodes": {
           "description": "Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.",
           "items": {
@@ -2406,6 +2436,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "pscInstanceConfig": {
+          "$ref": "PscInstanceConfig",
+          "description": "Optional. The configuration for Private Service Connect (PSC) for the instance."
         },
         "queryInsightsConfig": {
           "$ref": "QueryInsightsInstanceConfig",
@@ -2417,6 +2451,11 @@
         },
         "reconciling": {
           "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Instance does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2471,6 +2510,24 @@
           "$ref": "Node",
           "description": "Output only. This is set for the read-write VM of the PRIMARY instance only.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "InstanceNetworkConfig": {
+      "description": "Metadata related to instance level network configuration.",
+      "id": "InstanceNetworkConfig",
+      "properties": {
+        "authorizedExternalNetworks": {
+          "description": "Optional. A list of external network authorized to access this instance.",
+          "items": {
+            "$ref": "AuthorizedNetwork"
+          },
+          "type": "array"
+        },
+        "enablePublicIp": {
+          "description": "Optional. Enabling public ip for the instance.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2828,6 +2885,68 @@
         "pscEnabled": {
           "description": "Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PscInstanceConfig": {
+      "description": "PscInstanceConfig contains PSC related configuration at an instance level. NEXT ID: 7",
+      "id": "PscInstanceConfig",
+      "properties": {
+        "allowedConsumerNetworks": {
+          "description": "Optional. List of consumer networks that are allowed to create PSC endpoints to service-attachments to this instance.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "allowedConsumerProjects": {
+          "description": "Optional. List of consumer projects that are allowed to create PSC endpoints to service-attachments to this instance.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "outgoingServiceAttachmentLinks": {
+          "description": "Optional. List of service attachments that this instance has created endpoints to connect with. Currently, only a single outgoing service attachment is supported per instance.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pscEnabled": {
+          "description": "Optional. Whether PSC connectivity is enabled for this instance. This is populated by referencing the value from the parent cluster.",
+          "type": "boolean"
+        },
+        "pscInterfaceConfigs": {
+          "description": "Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. All the VMs created for the primary instance will share the same configurations. Currently we only support 0 or 1 PSC interface.",
+          "items": {
+            "$ref": "PscInterfaceConfig"
+          },
+          "type": "array"
+        },
+        "serviceAttachmentLink": {
+          "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of projects//regions//serviceAttachments/",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscInterfaceConfig": {
+      "description": "Configuration for setting up a PSC interface. This information needs to be provided by the customer. PSC interfaces will be created and added to VMs via SLM (adding a network interface will require recreating the VM). For HA instances this will be done via LDTM.",
+      "id": "PscInterfaceConfig",
+      "properties": {
+        "consumerEndpointIps": {
+          "description": "A list of endpoints in the consumer VPC the interface might initiate outbound connections to. This list has to be provided when the PSC interface is created.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "networkAttachment": {
+          "description": "The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: \"projects/${CONSUMER_PROJECT}/regions/${REGION}/networkAttachments/${NETWORK_ATTACHMENT_NAME}\". NetworkAttachment has to be provided when the PSC interface is created.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3229,7 +3348,7 @@
           "type": "string"
         },
         "resourceContainer": {
-          "description": "Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\". For GCP provided resources, number should be project number.",
+          "description": "Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"projects/123\". For GCP provided resources, number should be project number.",
           "type": "string"
         },
         "resourceName": {
@@ -3556,13 +3675,35 @@
           "description": "The type of the instance. Specified at creation time.",
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
+            "SUB_RESOURCE_TYPE_UNSPECIFIED",
             "PRIMARY",
             "SECONDARY",
             "READ_REPLICA",
-            "OTHER"
+            "OTHER",
+            "SUB_RESOURCE_TYPE_PRIMARY",
+            "SUB_RESOURCE_TYPE_SECONDARY",
+            "SUB_RESOURCE_TYPE_READ_REPLICA",
+            "SUB_RESOURCE_TYPE_OTHER"
+          ],
+          "enumDeprecated": [
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "",
+            "For rest of the other categories.",
+            "A regular primary database instance.",
+            "A cluster or an instance acting as a secondary.",
+            "An instance acting as a read-replica.",
+            "For rest of the other categories.",
             "A regular primary database instance.",
             "A cluster or an instance acting as a secondary.",
             "An instance acting as a read-replica.",
@@ -3583,7 +3724,7 @@
           "description": "The product this resource represents."
         },
         "resourceContainer": {
-          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\". For GCP provided resources, number should be project number.",
+          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"/\", such as \"projects/123\". For GCP provided resources, number should be project number.",
           "type": "string"
         },
         "resourceName": {
@@ -3658,19 +3799,43 @@
           "description": "The specific engine that the underlying database is running.",
           "enum": [
             "ENGINE_UNSPECIFIED",
+            "ENGINE_MYSQL",
             "MYSQL",
+            "ENGINE_POSTGRES",
             "POSTGRES",
+            "ENGINE_SQL_SERVER",
             "SQL_SERVER",
+            "ENGINE_NATIVE",
             "NATIVE",
+            "ENGINE_CLOUD_SPANNER_WITH_POSTGRES_DIALECT",
             "SPANGRES",
             "ENGINE_OTHER"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false
+          ],
           "enumDescriptions": [
             "UNSPECIFIED means engine type is not known or available.",
+            "MySQL binary running as an engine in the database instance.",
             "MySQL binary running as engine in database instance.",
             "Postgres binary running as engine in database instance.",
+            "Postgres binary running as engine in database instance.",
+            "SQLServer binary running as engine in database instance.",
             "SQLServer binary running as engine in database instance.",
             "Native database binary running as engine in instance.",
+            "Native database binary running as engine in instance.",
+            "Cloud Spanner with Postgres dialect.",
             "Cloud Spanner with Postgres dialect.",
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum."
           ],
@@ -3680,17 +3845,37 @@
           "description": "Type of specific database product. It could be CloudSQL, AlloyDB etc..",
           "enum": [
             "PRODUCT_TYPE_UNSPECIFIED",
+            "PRODUCT_TYPE_CLOUD_SQL",
             "CLOUD_SQL",
+            "PRODUCT_TYPE_ALLOYDB",
             "ALLOYDB",
+            "PRODUCT_TYPE_SPANNER",
             "SPANNER",
+            "PRODUCT_TYPE_ON_PREM",
             "ON_PREM",
             "PRODUCT_TYPE_OTHER"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "UNSPECIFIED means product type is not known or available.",
             "Cloud SQL product area in GCP",
+            "Cloud SQL product area in GCP",
+            "AlloyDB product area in GCP",
             "AlloyDB product area in GCP",
             "Spanner product area in GCP",
+            "Spanner product area in GCP",
+            "On premises database product.",
             "On premises database product.",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],

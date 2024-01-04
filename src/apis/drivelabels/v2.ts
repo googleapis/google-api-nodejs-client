@@ -435,10 +435,6 @@ export namespace drivelabels_v2 {
      */
     integerOptions?: Schema$GoogleAppsDriveLabelsV2FieldIntegerOptions;
     /**
-     * Update field to Long Text.
-     */
-    longTextOptions?: Schema$GoogleAppsDriveLabelsV2FieldLongTextOptions;
-    /**
      * Update field to Selection.
      */
     selectionOptions?: Schema$GoogleAppsDriveLabelsV2FieldSelectionOptions;
@@ -879,19 +875,6 @@ export namespace drivelabels_v2 {
      * Maximum number of entries permitted.
      */
     maxEntries?: number | null;
-  }
-  /**
-   * Options the Long Text field type.
-   */
-  export interface Schema$GoogleAppsDriveLabelsV2FieldLongTextOptions {
-    /**
-     * Output only. The maximum valid length of values for the text field.
-     */
-    maxLength?: number | null;
-    /**
-     * Output only. The minimum valid length of values for the text field.
-     */
-    minLength?: number | null;
   }
   /**
    * The basic properties of the field.

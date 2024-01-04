@@ -235,6 +235,28 @@ export namespace firebaseappcheck_v1beta {
     configs?: Schema$GoogleFirebaseAppcheckV1betaSafetyNetConfig[];
   }
   /**
+   * Request message for the BatchUpdateResourcePolicies method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesRequest {
+    /**
+     * Required. The request messages specifying the ResourcePolicys to update. A maximum of 100 objects can be updated in a batch.
+     */
+    requests?: Schema$GoogleFirebaseAppcheckV1betaUpdateResourcePolicyRequest[];
+    /**
+     * Optional. A comma-separated list of names of fields in the ResourceConfigurations to update. Example: `enforcement_mode`. If this field is present, the `update_mask` field in the UpdateResourcePolicyRequest messages must all match this field, or the entire batch fails and no updates will be committed.
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * Response message for the BatchUpdateResourcePolicies method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse {
+    /**
+     * ResourcePolicy objects after the updates have been applied.
+     */
+    resourcePolicies?: Schema$GoogleFirebaseAppcheckV1betaResourcePolicy[];
+  }
+  /**
    * Request message for the BatchUpdateServices method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaBatchUpdateServicesRequest {
@@ -501,6 +523,19 @@ export namespace firebaseappcheck_v1beta {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for the ListResourcePolicies method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse {
+    /**
+     * If the result list is too large to fit in a single response, then a token is returned. If the string is empty or omitted, then this response is the last page of results. This token can be used in a subsequent call to ListResourcePolicies to find the next group of ResourcePolicys. Page tokens are short-lived and should not be persisted.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The ResourcePolicys retrieved.
+     */
+    resourcePolicies?: Schema$GoogleFirebaseAppcheckV1betaResourcePolicy[];
+  }
+  /**
    * Response message for the ListServices method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaListServicesResponse {
@@ -624,6 +659,31 @@ export namespace firebaseappcheck_v1beta {
     tokenTtl?: string | null;
   }
   /**
+   * App Check enforcement policy for a specific resource of a Firebase service supported by App Check. Note that this policy will override the Service level enforcement mode configuration.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaResourcePolicy {
+    /**
+     * Required. The App Check enforcement mode for this resource. This will override the EnforcementMode setting on the service. For new resources that you are creating, you should consider setting an override and enable enforcement on the resource immediately, if there are no outdated clients that can use it.
+     */
+    enforcementMode?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. This etag is strongly validated.
+     */
+    etag?: string | null;
+    /**
+     * Required. The relative name of the resource configuration object, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) `resource_policy_id` is a system-generated UID used as the resource ID for the policy.
+     */
+    name?: string | null;
+    /**
+     * Required. Service specific name of the resource object to which this policy applies, in the format: * `//oauth2.googleapis.com/projects/{project\}/oauthClients/{oauth_client_id\}` (Google Identity for iOS) NOTE that the resource must belong to the service specified in the `name` and be from the same project as this policy, but it may or may not exist at the time of creation of the policy.
+     */
+    targetResource?: string | null;
+    /**
+     * Output only. Timestamp when this service configuration object was most recently updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * An app's SafetyNet configuration object. This configuration controls certain properties of the `AppCheckToken` returned by ExchangeSafetyNetToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by SafetyNet; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.androidApps.sha/create).
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaSafetyNetConfig {
@@ -656,6 +716,19 @@ export namespace firebaseappcheck_v1beta {
      * Output only. Timestamp when this service configuration object was most recently updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Request message for the UpdateResourcePolicy method as well as an individual update message for the BatchUpdateResourcePolicies method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaUpdateResourcePolicyRequest {
+    /**
+     * Required. The ResourcePolicy to update. The ResourcePolicy's `name` field is used to identify the ResourcePolicy to be updated, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_name\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) Only the top-level resources are supported for each of the services. The resources must belong to the service specified and `resource_name` should be formatted as: * `oauthClients/{oauth_client_id\}` (Google Identity for iOS)
+     */
+    resourcePolicy?: Schema$GoogleFirebaseAppcheckV1betaResourcePolicy;
+    /**
+     * Required. A comma-separated list of names of fields in the ResourcePolicy to update. Example: `enforcement_mode`.
+     */
+    updateMask?: string | null;
   }
   /**
    * Request message for the UpdateService method as well as an individual update message for the BatchUpdateServices method.
@@ -5529,8 +5602,12 @@ export namespace firebaseappcheck_v1beta {
 
   export class Resource$Projects$Services {
     context: APIRequestContext;
+    resourcePolicies: Resource$Projects$Services$Resourcepolicies;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.resourcePolicies = new Resource$Projects$Services$Resourcepolicies(
+        this.context
+      );
     }
 
     /**
@@ -5965,5 +6042,655 @@ export namespace firebaseappcheck_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaService;
+  }
+
+  export class Resource$Projects$Services$Resourcepolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Atomically updates the specified ResourcePolicy configurations.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
+      params?: Params$Resource$Projects$Services$Resourcepolicies$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>;
+    batchUpdate(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Batchupdate,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Resourcepolicies$Batchupdate
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Resourcepolicies$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Services$Resourcepolicies$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta/{+parent}/resourcePolicies:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates the specified ResourcePolicy configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Services$Resourcepolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>;
+    create(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Create,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Resourcepolicies$Create
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Resourcepolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Services$Resourcepolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/resourcePolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified ResourcePolicy configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Services$Resourcepolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Resourcepolicies$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Resourcepolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Services$Resourcepolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the requested ResourcePolicy configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Services$Resourcepolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>;
+    get(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Resourcepolicies$Get
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Resourcepolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Services$Resourcepolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all ResourcePolicy configurations for the specified project and service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Services$Resourcepolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Services$Resourcepolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>;
+    list(
+      params: Params$Resource$Projects$Services$Resourcepolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Services$Resourcepolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Services$Resourcepolicies$List,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Resourcepolicies$List
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Resourcepolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Services$Resourcepolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/resourcePolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified ResourcePolicy configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Services$Resourcepolicies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>;
+    patch(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Patch,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Resourcepolicies$Patch
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Resourcepolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Services$Resourcepolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaResourcePolicy>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Batchupdate
+    extends StandardParameters {
+    /**
+     * Required. The parent project name and the service, in the format ``` projects/{project_number\}/services/{service_id\} ``` The parent collection in the `name` field of any resource being updated must match this field, or the entire batch fails.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesRequest;
+  }
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Create
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the parent service in which the specified ResourcePolicy will be created, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaResourcePolicy;
+  }
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Delete
+    extends StandardParameters {
+    /**
+     * The checksum to be validated against the current ResourcePolicy, to ensure the client has an up-to-date value before proceeding. The user can obtain this from the ResourcePolicy object that they last received. This etag is strongly validated.
+     */
+    etag?: string;
+    /**
+     * Required. The relative resource name of the ResourcePolicy to delete, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_name\} ```
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Get
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the ResourcePolicy to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) `resource_policy_id` is a system-generated UID used as the resource ID for the policy.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Services$Resourcepolicies$List
+    extends StandardParameters {
+    /**
+     * The maximum number of ResourcePolicys to return in the response. Only explicitly configured policies are returned. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
+     */
+    pageSize?: number;
+    /**
+     * Token returned from a previous call to ListResourcePolicies indicating where in the set of ResourcePolicys to resume listing. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListResourcePolicies must match the call that provided the page token; if they do not match, the result is undefined.
+     */
+    pageToken?: string;
+    /**
+     * Required. The relative resource name of the parent project and service for which to list each associated ResourcePolicy, in the format: ``` projects/{project_number\}/services/{service_name\} ```
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Patch
+    extends StandardParameters {
+    /**
+     * Required. The relative name of the resource configuration object, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) `resource_policy_id` is a system-generated UID used as the resource ID for the policy.
+     */
+    name?: string;
+    /**
+     * Required. A comma-separated list of names of fields in the ResourcePolicy to update. Example: `enforcement_mode`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaResourcePolicy;
   }
 }

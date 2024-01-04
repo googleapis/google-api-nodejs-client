@@ -3082,6 +3082,10 @@ export namespace bigquery_v2 {
      * Output only. The remote service type for remote model.
      */
     remoteServiceType?: string | null;
+    /**
+     * Output only. The name of the speech recognizer to use for speech recognition. The expected format is `projects/{project\}/locations/{location\}/recognizers/{recognizer\}`. Customers can specify this field at model creation. If not specified, a default recognizer `projects/{model project\}/locations/global/recognizers/_` will be used. See more details at [recognizers](https://cloud.google.com/speech-to-text/v2/docs/reference/rest/v2/projects.locations.recognizers)
+     */
+    speechRecognizer?: string | null;
   }
   /**
    * A user-defined function or a stored procedure.
@@ -4293,6 +4297,19 @@ export namespace bigquery_v2 {
      * [Pick one] A code resource to load from a Google Cloud Storage URI (gs://bucket/path).
      */
     resourceUri?: string | null;
+  }
+  /**
+   * Statistics for a vector search query. Populated as part of JobStatistics2.
+   */
+  export interface Schema$VectorSearchStatistics {
+    /**
+     * When `indexUsageMode` is `UNUSED` or `PARTIALLY_USED`, this field explains why indexes were not used in all or part of the vector search query. If `indexUsageMode` is `FULLY_USED`, this field is not populated.
+     */
+    indexUnusedReasons?: Schema$IndexUnusedReason[];
+    /**
+     * Specifies the index usage mode for the query.
+     */
+    indexUsageMode?: string | null;
   }
   export interface Schema$ViewDefinition {
     /**

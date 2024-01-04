@@ -463,6 +463,53 @@
                   ]
                 }
               }
+            },
+            "prices": {
+              "methods": {
+                "list": {
+                  "description": "Lists the latest prices for SKUs available to your Cloud Billing account.",
+                  "flatPath": "v1beta/billingAccounts/{billingAccountsId}/skus/{skusId}/prices",
+                  "httpMethod": "GET",
+                  "id": "cloudbilling.billingAccounts.skus.prices.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "currencyCode": {
+                      "description": "Optional. ISO-4217 currency code for the price. If not specified, currency of billing account will be used.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of billing account price to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous ListBillingAccountPrices call to retrieve the next page of results. If this field is empty, the first page is returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. To list all Billing Account SKUs, use `-` as the SKU ID. Format: `billingAccounts/{billing_account}/skus/-` Note: Specifying an actual SKU resource id will return a collection of one Billing Account Price.",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/skus/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/prices",
+                  "response": {
+                    "$ref": "GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-billing",
+                    "https://www.googleapis.com/auth/cloud-billing.readonly",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
@@ -636,6 +683,53 @@
               ]
             }
           }
+        },
+        "prices": {
+          "methods": {
+            "list": {
+              "description": "Lists the latest prices for all SKUs.",
+              "flatPath": "v1beta/skus/{skusId}/prices",
+              "httpMethod": "GET",
+              "id": "cloudbilling.skus.prices.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "currencyCode": {
+                  "description": "Optional. ISO-4217 currency code for the price. If not specified, USD will be used.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum number of prices to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token received from a previous ListPrices call to retrieve the next page of results. If this field is empty, the first page is returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. To list the prices for all SKUs, use `-` as the SKU ID. Format: `skus/-` Specifying a specific SKU ID returns a collection with one Price object for the SKU.",
+                  "location": "path",
+                  "pattern": "^skus/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/prices",
+              "response": {
+                "$ref": "GoogleCloudBillingPricesV1betaListPricesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-billing",
+                "https://www.googleapis.com/auth/cloud-billing.readonly",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
         }
       }
     },
@@ -664,7 +758,7 @@
       }
     }
   },
-  "revision": "20231120",
+  "revision": "20231215",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "CacheFillRegions": {
@@ -719,11 +813,11 @@
       "type": "object"
     },
     "CloudCdnEgressWorkload": {
-      "description": "Specifies usage for Cloud CDN egress.",
+      "description": "Specifies usage for Cloud CDN Data Transfer.",
       "id": "CloudCdnEgressWorkload",
       "properties": {
         "cacheEgressDestination": {
-          "description": "The destination for the cache egress charges.",
+          "description": "The destination for the cache data transfer.",
           "enum": [
             "CACHE_EGRESS_DESTINATION_UNSPECIFIED",
             "CACHE_EGRESS_DESTINATION_ASIA_PACIFIC",
@@ -748,7 +842,7 @@
         },
         "cacheEgressRate": {
           "$ref": "Usage",
-          "description": "Cache egress usage. The rate of data cache egressed in the destination. For example : units such as \"GiBy/s\" or \"TBy/mo\"."
+          "description": "Cache data transfer usage. The rate of data cache transferred to the destination. Use units such as GiBy/s or TiBy/mo, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard."
         }
       },
       "type": "object"
@@ -787,15 +881,15 @@
       "type": "object"
     },
     "CloudInterconnectEgressWorkload": {
-      "description": "The interconnect egress only includes the Interconnect Egress. Please use the standard egress traffic interface to specify your standard egress usage.",
+      "description": "Includes the estimate for Interconnect Data Transfer only. To specify usage for data transfer between VMs and internet end-points, use the Standard Tier Internet Data Transfer interface.",
       "id": "CloudInterconnectEgressWorkload",
       "properties": {
         "egressRate": {
           "$ref": "Usage",
-          "description": "Data egress usage. This usage applies when you move or copy data from one Google Cloud service to another service. Expected units such as \"GiBy/s, By/s, etc.\""
+          "description": "Outbound data transfer usage. This usage applies when you move or copy data from one Google Cloud service to another service. The units are GiBy/s, By/s, and so on, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard."
         },
         "interconnectConnectionLocation": {
-          "description": "Locations in the [Interconnect connection location table](https://cloud.google.com/vpc/network-pricing#interconnect-pricing). This is the interconnect egress charges.",
+          "description": "Locations in the [Interconnect connection location table](https://cloud.google.com/vpc/network-pricing#interconnect-pricing). These are the Interconnect Data Transfer charges.",
           "enum": [
             "INTERCONNECT_CONNECTION_LOCATION_UNSPECIFIED",
             "INTERCONNECT_CONNECTION_LOCATION_ASIA",
@@ -864,7 +958,7 @@
       "type": "object"
     },
     "CloudStorageEgressWorkload": {
-      "description": "Specification of a network type. Network egress within Google Cloud applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket.This includes the network egress within Google Cloud and the general network usage.",
+      "description": "Specification of a network type. Network data transfer within Google Cloud applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket.This includes the network data transfer within Google Cloud and the general network usage.",
       "id": "CloudStorageEgressWorkload",
       "properties": {
         "destinationContinent": {
@@ -889,7 +983,7 @@
         },
         "egressRate": {
           "$ref": "Usage",
-          "description": "Egress usage rate. This usage applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket. Expected units such as \"GiBy/s, By/s, ...\""
+          "description": "Data transfer usage rate. This usage applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket. The expected units are GiBy/s, By/s, and so on, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard."
         },
         "sourceContinent": {
           "description": "Where the data comes from.",
@@ -920,11 +1014,11 @@
       "properties": {
         "dataRetrieval": {
           "$ref": "Usage",
-          "description": "Data retrieval usage. A retrieval cost applies when data or metadata is read, copied, or rewritten . For example: units such as \"GiBy/s\" or \"By/s\"."
+          "description": "Data retrieval usage. A retrieval cost applies when data or metadata is read, copied, or rewritten . For example: units such as \"GiB/s\" or \"B/s\"."
         },
         "dataStored": {
           "$ref": "Usage",
-          "description": "Data storage usage. The amount of data stored in buckets. For example: units such as \"GiBy/s\" or \"TBy/mo\"."
+          "description": "Data storage usage. The amount of data stored in buckets. For example: units such as GiBy/s or TiBy/mo, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard."
         },
         "dualRegion": {
           "$ref": "DualRegional",
@@ -1337,6 +1431,24 @@
         },
         "skuGroup": {
           "description": "SKU group where the floating discount comes from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse": {
+      "description": "Response message for ListBillingAccountPrices.",
+      "id": "GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse",
+      "properties": {
+        "billingAccountPrices": {
+          "description": "The returned billing account prices.",
+          "items": {
+            "$ref": "GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -1875,6 +1987,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudBillingPricesV1betaListPricesResponse": {
+      "description": "Response message for ListPrices.",
+      "id": "GoogleCloudBillingPricesV1betaListPricesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages.",
+          "type": "string"
+        },
+        "prices": {
+          "description": "The returned publicly listed prices.",
+          "items": {
+            "$ref": "GoogleCloudBillingPricesV1betaPrice"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudBillingPricesV1betaPrice": {
       "description": "Encapsulates the latest price for a SKU.",
       "id": "GoogleCloudBillingPricesV1betaPrice",
@@ -2155,31 +2285,31 @@
       "type": "object"
     },
     "InterRegionEgress": {
-      "description": "Egress traffic between two regions.",
+      "description": "Data transfer between two regions.",
       "id": "InterRegionEgress",
       "properties": {
         "destinationRegion": {
-          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data goes to.",
+          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the data is transferred to.",
           "type": "string"
         },
         "egressRate": {
           "$ref": "Usage",
-          "description": "VM to VM egress usage. Expected units such as \"GiBy/s, By/s, etc.\""
+          "description": "VM to VM data transfer usage. The expected units such are GiBy/s, By/s, and so on."
         },
         "sourceRegion": {
-          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.",
+          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the data is transferred from.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "IntraRegionEgress": {
-      "description": "Egress traffic within the same region. When source region and destination region are in the same zone, using the internal IP addresses, there isn't any egress charge.",
+      "description": "Data transfer within the same region. When the source region and destination region are in the same zone, using internal IP addresses, there isn't any charge for data transfer.",
       "id": "IntraRegionEgress",
       "properties": {
         "egressRate": {
           "$ref": "Usage",
-          "description": "VM to VM egress usage. Expected units such as \"GiBy/s, By/s, etc.\""
+          "description": "VM to VM data transfer usage. The expected are GiBy/s, By/s, and so on."
         }
       },
       "type": "object"
@@ -2274,7 +2404,7 @@
       "type": "object"
     },
     "PremiumTierEgressWorkload": {
-      "description": "Specify Premium Tier Internet egress networking.",
+      "description": "Specify a Premium Tier Internet Data Transfer networking workload.",
       "id": "PremiumTierEgressWorkload",
       "properties": {
         "destinationContinent": {
@@ -2313,10 +2443,10 @@
         },
         "egressRate": {
           "$ref": "Usage",
-          "description": "Premium Tier egress usage. Expected units such as \"GiBy/s, By/s, etc.\""
+          "description": "Premium Tier Data Transfer usage. The expected units are GiBy/s, By/s, and so on, based on [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard."
         },
         "sourceRegion": {
-          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.",
+          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the data comes from.",
           "type": "string"
         }
       },
@@ -2479,15 +2609,15 @@
       "type": "object"
     },
     "StandardTierEgressWorkload": {
-      "description": "Specify Standard Tier Internet egress networking.",
+      "description": "Specify Standard Tier Internet Data Transfer.",
       "id": "StandardTierEgressWorkload",
       "properties": {
         "egressRate": {
           "$ref": "Usage",
-          "description": "Standard tier egress usage. Expected units such as \"GiBy/s, By/s, etc.\""
+          "description": "Standard Tier Data Transfer usage. The expected units are GiBy/s, By/s, and so on, based on the [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard."
         },
         "sourceRegion": {
-          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.",
+          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the data is transferred from.",
           "type": "string"
         }
       },
@@ -2627,7 +2757,7 @@
       "type": "object"
     },
     "VmToVmEgressWorkload": {
-      "description": "Specify VM to VM egress.",
+      "description": "Specify VM to VM data transfer.",
       "id": "VmToVmEgressWorkload",
       "properties": {
         "interRegionEgress": {
@@ -2645,7 +2775,7 @@
       "properties": {
         "cloudCdnEgressWorkload": {
           "$ref": "CloudCdnEgressWorkload",
-          "description": "Usage on Google Cloud CDN Egress."
+          "description": "Usage on Google Cloud CDN Data Transfer."
         },
         "cloudCdnWorkload": {
           "$ref": "CloudCdnWorkload",
@@ -2653,7 +2783,7 @@
         },
         "cloudInterconnectEgressWorkload": {
           "$ref": "CloudInterconnectEgressWorkload",
-          "description": "Usage on Google Cloud Interconnect Egress."
+          "description": "Usage on Google Cloud Interconnect Data Transfer."
         },
         "cloudInterconnectWorkload": {
           "$ref": "CloudInterconnectWorkload",
@@ -2661,7 +2791,7 @@
         },
         "cloudStorageEgressWorkload": {
           "$ref": "CloudStorageEgressWorkload",
-          "description": "Usage on a cloud storage egress."
+          "description": "Usage on Cloud Storage Data Transfer."
         },
         "cloudStorageWorkload": {
           "$ref": "CloudStorageWorkload",
@@ -2677,15 +2807,15 @@
         },
         "premiumTierEgressWorkload": {
           "$ref": "PremiumTierEgressWorkload",
-          "description": "Usage on Premium Tier Internet Egress."
+          "description": "Usage on Premium Tier Internet Data Transfer."
         },
         "standardTierEgressWorkload": {
           "$ref": "StandardTierEgressWorkload",
-          "description": "Usage on Standard Tier Internet Egress."
+          "description": "Usage on Standard Tier Internet Data Transfer."
         },
         "vmToVmEgressWorkload": {
           "$ref": "VmToVmEgressWorkload",
-          "description": "Usage on Vm to Vm Egress."
+          "description": "Usage on VM to VM Data Transfer."
         }
       },
       "type": "object"

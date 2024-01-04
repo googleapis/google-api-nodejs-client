@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20231110",
+  "revision": "20231208",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -1018,7 +1018,8 @@
             "GOOGLE_INITIATED_SERVICE",
             "GOOGLE_INITIATED_REVIEW",
             "THIRD_PARTY_DATA_REQUEST",
-            "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"
+            "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT",
+            "CLOUD_INITIATED_ACCESS"
           ],
           "enumDescriptions": [
             "Default value for proto, shouldn't be used.",
@@ -1026,7 +1027,8 @@
             "The principal accessed customer data in order to diagnose or resolve a suspected issue in services. Often this access is used to confirm that customers are not affected by a suspected service issue or to remediate a reversible system issue.",
             "Google initiated service for security, fraud, abuse, or compliance purposes.",
             "The principal was compelled to access customer data in order to respond to a legal third party data request or process, including legal processes from customers themselves.",
-            "The principal accessed customer data in order to diagnose or resolve a suspected issue in services or a known outage."
+            "The principal accessed customer data in order to diagnose or resolve a suspected issue in services or a known outage.",
+            "Similar to 'GOOGLE_INITIATED_SERVICE' or 'GOOGLE_INITIATED_REVIEW', but meant to reflect when the cloud operator is not Google (namely, a TPC operator), and accessed customer data in order to diagnose or resolve a suspected issue in services or a known outage, or for security, fraud, abuse, or compliance review purposes."
           ],
           "type": "string"
         }
@@ -1302,7 +1304,7 @@
           "type": "string"
         },
         "serializedApprovalRequest": {
-          "description": "The serialized ApprovalRequest message without the approve.signature_info field. This to allow the customer to verify signatures if they want to.",
+          "description": "The ApprovalRequest that is serialized without the SignatureInfo message field. This data is used with the hashing algorithm to generate the digital signature, and it can be used for signature verification.",
           "format": "byte",
           "type": "string"
         },

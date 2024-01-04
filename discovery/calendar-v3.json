@@ -1088,7 +1088,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\" \n- \"workingLocation\"This parameter can be repeated multiple times to return events of different types. Currently, these are the only allowed values for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] The default is [\"default\", \"focusTime\", \"outOfOffice\"].\nAdditional combinations of these four event types will be made available in later releases.",
+              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\" \n- \"workingLocation\"This parameter can be repeated multiple times to return events of different types. The default is [\"default\", \"focusTime\", \"outOfOffice\"].",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1491,7 +1491,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\" \n- \"workingLocation\"This parameter can be repeated multiple times to return events of different types. Currently, these are the only allowed values for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] The default is [\"default\", \"focusTime\", \"outOfOffice\"].\nAdditional combinations of these four event types will be made available in later releases.",
+              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\" \n- \"workingLocation\"This parameter can be repeated multiple times to return events of different types. The default is [\"default\", \"focusTime\", \"outOfOffice\"].",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1735,7 +1735,7 @@
       }
     }
   },
-  "revision": "20231116",
+  "revision": "20231201",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2392,7 +2392,7 @@
         },
         "eventType": {
           "default": "default",
-          "description": "Specific type of the event. This cannot be modified after the event is created. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event. \n- \"focusTime\" - A focus-time event. \n- \"workingLocation\" - A working location event.  Currently, only \"default \" and \"workingLocation\" events can be created using the API. Extended support for other event types will be made available in later releases.",
+          "description": "Specific type of the event. This cannot be modified after the event is created. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event. An outOfOfficeProperties parameter must be supplied to make a valid event (even if empty). \n- \"focusTime\" - A focus-time event. A focusTimeProperties parameter must be supplied to make a valid event (even if empty). \n- \"workingLocation\" - A working location event.  Currently, only \"default \" and \"workingLocation\" events can be created using the API. Extended support for other event types will be made available in later releases.",
           "type": "string"
         },
         "extendedProperties": {
@@ -2419,7 +2419,7 @@
         },
         "focusTimeProperties": {
           "$ref": "EventFocusTimeProperties",
-          "description": "Focus Time event data."
+          "description": "Focus Time event data. Required if eventType is focusTime."
         },
         "gadget": {
           "description": "A gadget that extends this event. Gadgets are deprecated; this structure is instead only used for returning birthday calendar metadata.",
@@ -2544,7 +2544,7 @@
         },
         "outOfOfficeProperties": {
           "$ref": "EventOutOfOfficeProperties",
-          "description": "Out of office event data."
+          "description": "Out of office event data. Required if eventType is outOfOffice."
         },
         "privateCopy": {
           "default": "false",

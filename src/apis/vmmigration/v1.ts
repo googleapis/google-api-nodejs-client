@@ -5997,7 +5997,7 @@ export namespace vmmigration_v1 {
     }
 
     /**
-     * Lists CloneJobs of a given migrating VM.
+     * Lists the CloneJobs of a migrating VM. Only 25 most recent CloneJobs are listed.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6418,7 +6418,7 @@ export namespace vmmigration_v1 {
     }
 
     /**
-     * Lists CutoverJobs of a given migrating VM.
+     * Lists the CutoverJobs of a migrating VM. Only 25 most recent CutoverJobs are listed.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

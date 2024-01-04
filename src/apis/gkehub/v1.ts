@@ -371,17 +371,9 @@ export namespace gkehub_v1 {
    */
   export interface Schema$ClusterUpgradeMembershipState {
     /**
-     * Project number or id of the fleet. It is set only for Memberships that are part of fleet-based Rollout Sequencing.
-     */
-    fleet?: string | null;
-    /**
      * Whether this membership is ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel.
      */
     ignored?: Schema$ClusterUpgradeIgnoredMembership;
-    /**
-     * Fully qualified scope names that this clusters is bound to which also have rollout sequencing enabled.
-     */
-    scopes?: string[] | null;
     /**
      * Actual upgrade state against desired.
      */
@@ -493,7 +485,7 @@ export namespace gkehub_v1 {
      */
     git?: Schema$ConfigManagementGitConfig;
     /**
-     * The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA. This field is required when automatic Feature management is enabled.
+     * The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA.
      */
     metricsGcpServiceAccountEmail?: string | null;
     /**
@@ -2260,7 +2252,7 @@ export namespace gkehub_v1 {
      */
     podAffinity?: string | null;
     /**
-     * Pod anti-affinity enablement.
+     * Pod anti-affinity enablement. Deprecated: use `pod_affinity` instead.
      */
     podAntiAffinity?: boolean | null;
     /**

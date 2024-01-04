@@ -114,6 +114,7 @@ export namespace adexchangebuyer2_v2beta1 {
     context: APIRequestContext;
     accounts: Resource$Accounts;
     bidders: Resource$Bidders;
+    buyers: Resource$Buyers;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -123,6 +124,7 @@ export namespace adexchangebuyer2_v2beta1 {
 
       this.accounts = new Resource$Accounts(this.context);
       this.bidders = new Resource$Bidders(this.context);
+      this.buyers = new Resource$Buyers(this.context);
     }
   }
 
@@ -9376,6 +9378,1648 @@ export namespace adexchangebuyer2_v2beta1 {
   }
 
   export interface Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List
+    extends StandardParameters {
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListNonBillableWinningBidsResponse.nextPageToken returned from the previous call to the nonBillableWinningBids.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers {
+    context: APIRequestContext;
+    filterSets: Resource$Buyers$Filtersets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.filterSets = new Resource$Buyers$Filtersets(this.context);
+    }
+  }
+
+  export class Resource$Buyers$Filtersets {
+    context: APIRequestContext;
+    bidMetrics: Resource$Buyers$Filtersets$Bidmetrics;
+    bidResponseErrors: Resource$Buyers$Filtersets$Bidresponseerrors;
+    bidResponsesWithoutBids: Resource$Buyers$Filtersets$Bidresponseswithoutbids;
+    filteredBidRequests: Resource$Buyers$Filtersets$Filteredbidrequests;
+    filteredBids: Resource$Buyers$Filtersets$Filteredbids;
+    impressionMetrics: Resource$Buyers$Filtersets$Impressionmetrics;
+    losingBids: Resource$Buyers$Filtersets$Losingbids;
+    nonBillableWinningBids: Resource$Buyers$Filtersets$Nonbillablewinningbids;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.bidMetrics = new Resource$Buyers$Filtersets$Bidmetrics(this.context);
+      this.bidResponseErrors = new Resource$Buyers$Filtersets$Bidresponseerrors(
+        this.context
+      );
+      this.bidResponsesWithoutBids =
+        new Resource$Buyers$Filtersets$Bidresponseswithoutbids(this.context);
+      this.filteredBidRequests =
+        new Resource$Buyers$Filtersets$Filteredbidrequests(this.context);
+      this.filteredBids = new Resource$Buyers$Filtersets$Filteredbids(
+        this.context
+      );
+      this.impressionMetrics = new Resource$Buyers$Filtersets$Impressionmetrics(
+        this.context
+      );
+      this.losingBids = new Resource$Buyers$Filtersets$Losingbids(this.context);
+      this.nonBillableWinningBids =
+        new Resource$Buyers$Filtersets$Nonbillablewinningbids(this.context);
+    }
+
+    /**
+     * Creates the specified filter set for the account with the given account ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Buyers$Filtersets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Buyers$Filtersets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FilterSet>;
+    create(
+      params: Params$Resource$Buyers$Filtersets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Buyers$Filtersets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$FilterSet>,
+      callback: BodyResponseCallback<Schema$FilterSet>
+    ): void;
+    create(
+      params: Params$Resource$Buyers$Filtersets$Create,
+      callback: BodyResponseCallback<Schema$FilterSet>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$FilterSet>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Create
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Filtersets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['ownerName'],
+        pathParams: ['ownerName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FilterSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FilterSet>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the requested filter set from the account with the given account ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Buyers$Filtersets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Buyers$Filtersets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Buyers$Filtersets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Buyers$Filtersets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Buyers$Filtersets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Filtersets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the requested filter set for the account with the given account ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Buyers$Filtersets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Buyers$Filtersets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FilterSet>;
+    get(
+      params: Params$Resource$Buyers$Filtersets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Buyers$Filtersets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$FilterSet>,
+      callback: BodyResponseCallback<Schema$FilterSet>
+    ): void;
+    get(
+      params: Params$Resource$Buyers$Filtersets$Get,
+      callback: BodyResponseCallback<Schema$FilterSet>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$FilterSet>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Get
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Filtersets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FilterSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FilterSet>(parameters);
+      }
+    }
+
+    /**
+     * Lists all filter sets for the account with the given account ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFilterSetsResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>,
+      callback: BodyResponseCallback<Schema$ListFilterSetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$List,
+      callback: BodyResponseCallback<Schema$ListFilterSetsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListFilterSetsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$List
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFilterSetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Filtersets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['ownerName'],
+        pathParams: ['ownerName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFilterSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFilterSetsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Create
+    extends StandardParameters {
+    /**
+     * Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
+     */
+    isTransient?: boolean;
+    /**
+     * Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
+     */
+    ownerName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FilterSet;
+  }
+  export interface Params$Resource$Buyers$Filtersets$Delete
+    extends StandardParameters {
+    /**
+     * Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Buyers$Filtersets$Get
+    extends StandardParameters {
+    /**
+     * Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Buyers$Filtersets$List
+    extends StandardParameters {
+    /**
+     * Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
+     */
+    ownerName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListFilterSetsResponse.nextPageToken returned from the previous call to the accounts.filterSets.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Bidmetrics {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all metrics that are measured in terms of number of bids.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidmetrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Bidmetrics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBidMetricsResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidmetrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidmetrics$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>,
+      callback: BodyResponseCallback<Schema$ListBidMetricsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidmetrics$List,
+      callback: BodyResponseCallback<Schema$ListBidMetricsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBidMetricsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Bidmetrics$List
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBidMetricsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Bidmetrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Filtersets$Bidmetrics$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName'],
+        pathParams: ['filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBidMetricsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBidMetricsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Bidmetrics$List
+    extends StandardParameters {
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListBidMetricsResponse.nextPageToken returned from the previous call to the bidMetrics.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Bidresponseerrors {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all errors that occurred in bid responses, with the number of bid responses affected for each reason.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidresponseerrors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Bidresponseerrors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBidResponseErrorsResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidresponseerrors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidresponseerrors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
+      callback: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidresponseerrors$List,
+      callback: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Bidresponseerrors$List
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBidResponseErrorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Bidresponseerrors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Filtersets$Bidresponseerrors$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName'],
+        pathParams: ['filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBidResponseErrorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBidResponseErrorsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Bidresponseerrors$List
+    extends StandardParameters {
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListBidResponseErrorsResponse.nextPageToken returned from the previous call to the bidResponseErrors.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Bidresponseswithoutbids {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all reasons for which bid responses were considered to have no applicable bids, with the number of bid responses affected for each reason.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
+      callback: BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List,
+      callback: BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName'],
+        pathParams: ['filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Bidresponseswithoutbids$List
+    extends StandardParameters {
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListBidResponsesWithoutBidsResponse.nextPageToken returned from the previous call to the bidResponsesWithoutBids.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Filteredbidrequests {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all reasons that caused a bid request not to be sent for an impression, with the number of bid requests not sent for each reason.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbidrequests$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Filteredbidrequests$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFilteredBidRequestsResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbidrequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbidrequests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
+      callback: BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbidrequests$List,
+      callback: BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Filteredbidrequests$List
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFilteredBidRequestsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Filteredbidrequests$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Buyers$Filtersets$Filteredbidrequests$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName'],
+        pathParams: ['filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Filteredbidrequests$List
+    extends StandardParameters {
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidRequestsResponse.nextPageToken returned from the previous call to the filteredBidRequests.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Filteredbids {
+    context: APIRequestContext;
+    creatives: Resource$Buyers$Filtersets$Filteredbids$Creatives;
+    details: Resource$Buyers$Filtersets$Filteredbids$Details;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.creatives = new Resource$Buyers$Filtersets$Filteredbids$Creatives(
+        this.context
+      );
+      this.details = new Resource$Buyers$Filtersets$Filteredbids$Details(
+        this.context
+      );
+    }
+
+    /**
+     * List all reasons for which bids were filtered, with the number of bids filtered for each reason.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Filteredbids$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFilteredBidsResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
+      callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$List,
+      callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Filteredbids$List
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFilteredBidsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Filteredbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Filtersets$Filteredbids$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBids').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName'],
+        pathParams: ['filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFilteredBidsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFilteredBidsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Filteredbids$List
+    extends StandardParameters {
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidsResponse.nextPageToken returned from the previous call to the filteredBids.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Filteredbids$Creatives {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all creatives associated with a specific reason for which bids were filtered, with the number of bids filtered for each creative.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>,
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List,
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName', 'creativeStatusId'],
+        pathParams: ['creativeStatusId', 'filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Filteredbids$Creatives$List
+    extends StandardParameters {
+    /**
+     * The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
+     */
+    creativeStatusId?: number;
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Filteredbids$Details {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all details associated with a specific reason for which bids were filtered, with the number of bids filtered for each detail.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$Details$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Filteredbids$Details$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$Details$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$Details$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>,
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Filteredbids$Details$List,
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Filteredbids$Details$List
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Filteredbids$Details$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Buyers$Filtersets$Filteredbids$Details$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName', 'creativeStatusId'],
+        pathParams: ['creativeStatusId', 'filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Filteredbids$Details$List
+    extends StandardParameters {
+    /**
+     * The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
+     */
+    creativeStatusId?: number;
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Impressionmetrics {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all metrics that are measured in terms of number of impressions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Impressionmetrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Impressionmetrics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListImpressionMetricsResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Impressionmetrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Impressionmetrics$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
+      callback: BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Impressionmetrics$List,
+      callback: BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Impressionmetrics$List
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListImpressionMetricsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Impressionmetrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Filtersets$Impressionmetrics$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName'],
+        pathParams: ['filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListImpressionMetricsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListImpressionMetricsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Impressionmetrics$List
+    extends StandardParameters {
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListImpressionMetricsResponse.nextPageToken returned from the previous call to the impressionMetrics.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Losingbids {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all reasons for which bids lost in the auction, with the number of bids that lost for each reason.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Losingbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Losingbids$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLosingBidsResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Losingbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Losingbids$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>,
+      callback: BodyResponseCallback<Schema$ListLosingBidsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Losingbids$List,
+      callback: BodyResponseCallback<Schema$ListLosingBidsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLosingBidsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Losingbids$List
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLosingBidsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Losingbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Filtersets$Losingbids$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+filterSetName}/losingBids').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName'],
+        pathParams: ['filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLosingBidsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLosingBidsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Losingbids$List
+    extends StandardParameters {
+    /**
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListLosingBidsResponse.nextPageToken returned from the previous call to the losingBids.list method.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Buyers$Filtersets$Nonbillablewinningbids {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all reasons for which winning bids were not billable, with the number of bids not billed for each reason.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
+      callback: BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List,
+      callback: BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['filterSetName'],
+        pathParams: ['filterSetName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyers$Filtersets$Nonbillablewinningbids$List
     extends StandardParameters {
     /**
      * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`

@@ -1688,7 +1688,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20231208",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2590,7 +2590,7 @@
       "type": "object"
     },
     "Restore": {
-      "description": "Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 19",
+      "description": "Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 20",
       "id": "Restore",
       "properties": {
         "backup": {
@@ -2705,7 +2705,7 @@
       "type": "object"
     },
     "RestoreConfig": {
-      "description": "Configuration of a restore. Next id: 12",
+      "description": "Configuration of a restore. Next id: 14",
       "id": "RestoreConfig",
       "properties": {
         "allNamespaces": {

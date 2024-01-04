@@ -331,6 +331,10 @@ export namespace networksecurity_v1beta1 {
      */
     associatedNetworks?: string[] | null;
     /**
+     * Output only. List of FirewallEndpointAssociations that are associated to this endpoint. An association will only appear in this list after traffic routing is fully configured.
+     */
+    associations?: Schema$FirewallEndpointAssociationReference[];
+    /**
      * Optional. Project to bill on endpoint uptime usage.
      */
     billingProjectId?: string | null;
@@ -347,7 +351,7 @@ export namespace networksecurity_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. name of resource
+     * Immutable. Identifier. name of resource
      */
     name?: string | null;
     /**
@@ -380,7 +384,7 @@ export namespace networksecurity_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. name of resource
+     * Immutable. Identifier. name of resource
      */
     name?: string | null;
     /**
@@ -403,6 +407,19 @@ export namespace networksecurity_v1beta1 {
      * Output only. Update time stamp
      */
     updateTime?: string | null;
+  }
+  /**
+   * This is a subset of the FirewallEndpointAssociation message, containing fields to be used by the consumer.
+   */
+  export interface Schema$FirewallEndpointAssociationReference {
+    /**
+     * Output only. The resource name of the FirewallEndpointAssociation. Format: projects/{project\}/locations/{location\}/firewallEndpointAssociations/{id\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The VPC network associated. Format: projects/{project\}/global/networks/{name\}.
+     */
+    network?: string | null;
   }
   /**
    * The GatewaySecurityPolicy resource contains a collection of GatewaySecurityPolicyRules and associated metadata.
@@ -2717,7 +2734,7 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Patch
     extends StandardParameters {
     /**
-     * Output only. name of resource
+     * Immutable. Identifier. name of resource
      */
     name?: string;
     /**
@@ -7821,7 +7838,7 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Create
     extends StandardParameters {
     /**
-     * Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_association_id from the method_signature of Create RPC.
+     * Optional. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_association_id from the method_signature of Create RPC.
      */
     firewallEndpointAssociationId?: string;
     /**
@@ -7882,7 +7899,7 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Patch
     extends StandardParameters {
     /**
-     * Output only. name of resource
+     * Immutable. Identifier. name of resource
      */
     name?: string;
     /**

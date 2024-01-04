@@ -947,6 +947,10 @@ export namespace migrationcenter_v1 {
      */
     installTime?: string | null;
     /**
+     * License strings associated with the installed application.
+     */
+    licenses?: string[] | null;
+    /**
      * Source path.
      */
     path?: string | null;
@@ -2028,7 +2032,7 @@ export namespace migrationcenter_v1 {
      */
     operatingSystem?: Schema$ReportSummaryChartData;
     /**
-     * Histogram showing a distribution of memory sizes.
+     * Histogram showing a distribution of storage sizes.
      */
     storageBytesHistogram?: Schema$ReportSummaryHistogramChartData;
     /**

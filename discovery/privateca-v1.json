@@ -253,7 +253,7 @@
                   ]
                 },
                 "fetchCaCerts": {
-                  "description": "FetchCaCerts returns the current trust anchor for the CaPool. This will include CA certificate chains for all ACTIVE CertificateAuthority resources in the CaPool.",
+                  "description": "FetchCaCerts returns the current trust anchor for the CaPool. This will include CA certificate chains for all Certificate Authorities in the ENABLED, DISABLED, or STAGED states.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/caPools/{caPoolsId}:fetchCaCerts",
                   "httpMethod": "POST",
                   "id": "privateca.projects.locations.caPools.fetchCaCerts",
@@ -1605,7 +1605,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20231206",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -2416,7 +2416,7 @@
       "id": "FetchCaCertsResponse",
       "properties": {
         "caCerts": {
-          "description": "The PEM encoded CA certificate chains of all ACTIVE CertificateAuthority resources in this CaPool.",
+          "description": "The PEM encoded CA certificate chains of all Certificate Authorities in this CaPool in the ENABLED, DISABLED, or STAGED states.",
           "items": {
             "$ref": "CertChain"
           },

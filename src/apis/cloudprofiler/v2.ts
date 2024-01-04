@@ -155,6 +155,23 @@ export namespace cloudprofiler_v2 {
     target?: string | null;
   }
   /**
+   * ListProfileResponse contains the list of collected profiles for deployments in projects which the user has permissions to view.
+   */
+  export interface Schema$ListProfilesResponse {
+    /**
+     * Token to receive the next page of results. This field maybe empty if there are no more profiles to fetch.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of profiles fetched.
+     */
+    profiles?: Schema$Profile[];
+    /**
+     * Number of profiles that were skipped in the current page since they were not able to be fetched successfully. This should typically be zero. A non-zero value may indicate a transient failure, in which case if the number is too high for your use case, the call may be retried.
+     */
+    skippedProfiles?: number | null;
+  }
+  /**
    * Profile resource.
    */
   export interface Schema$Profile {
@@ -376,6 +393,99 @@ export namespace cloudprofiler_v2 {
     }
 
     /**
+     * Lists profiles which have been collected so far and for which the caller has permission to view.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Profiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Profiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProfilesResponse>;
+    list(
+      params: Params$Resource$Projects$Profiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Profiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProfilesResponse>,
+      callback: BodyResponseCallback<Schema$ListProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Profiles$List,
+      callback: BodyResponseCallback<Schema$ListProfilesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListProfilesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Profiles$List
+        | BodyResponseCallback<Schema$ListProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Profiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Profiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudprofiler.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/profiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListProfilesResponse>(parameters);
+      }
+    }
+
+    /**
      * UpdateProfile updates the profile bytes and labels on the profile resource created in the online mode. Updating the bytes for profiles created in the offline mode is currently not supported: the profile content must be provided at the time of the profile creation.
      *
      * @param params - Parameters for request
@@ -484,6 +594,21 @@ export namespace cloudprofiler_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Profile;
+  }
+  export interface Params$Resource$Projects$Profiles$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return. Default page_size is 1000. Max limit is 10000.
+     */
+    pageSize?: number;
+    /**
+     * The token to continue pagination and get profiles from a particular page. When paginating, all other parameters provided to `ListProfiles` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of profiles. Format: projects/{user_project_id\}
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Profiles$Patch
     extends StandardParameters {

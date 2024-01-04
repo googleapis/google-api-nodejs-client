@@ -138,6 +138,51 @@ export namespace analyticsdata_v1beta {
     restrictedMetricTypes?: string[] | null;
   }
   /**
+   * An audience export is a list of users in an audience at the time of the list's creation. One audience may have multiple audience exports created for different days.
+   */
+  export interface Schema$AudienceExport {
+    /**
+     * Required. The audience resource name. This resource name identifies the audience being listed and is shared between the Analytics Data & Admin APIs. Format: `properties/{property\}/audiences/{audience\}`
+     */
+    audience?: string | null;
+    /**
+     * Output only. The descriptive display name for this audience. For example, "Purchasers".
+     */
+    audienceDisplayName?: string | null;
+    /**
+     * Output only. The time when CreateAudienceExport was called and the AudienceExport began the `CREATING` state.
+     */
+    beginCreatingTime?: string | null;
+    /**
+     * Output only. The total quota tokens charged during creation of the AudienceExport. Because this token count is based on activity from the `CREATING` state, this tokens charged will be fixed once an AudienceExport enters the `ACTIVE` or `FAILED` states.
+     */
+    creationQuotaTokensCharged?: number | null;
+    /**
+     * Required. The dimensions requested and displayed in the query response.
+     */
+    dimensions?: Schema$V1betaAudienceDimension[];
+    /**
+     * Output only. Error message is populated when an audience export fails during creation. A common reason for such a failure is quota exhaustion.
+     */
+    errorMessage?: string | null;
+    /**
+     * Output only. Identifier. The audience export resource name assigned during creation. This resource name identifies this `AudienceExport`. Format: `properties/{property\}/audienceExports/{audience_export\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The percentage completed for this audience export ranging between 0 to 100.
+     */
+    percentageCompleted?: number | null;
+    /**
+     * Output only. The total number of rows in the AudienceExport result.
+     */
+    rowCount?: number | null;
+    /**
+     * Output only. The current state for this AudienceExport.
+     */
+    state?: string | null;
+  }
+  /**
    * This metadata is currently blank.
    */
   export interface Schema$AudienceListMetadata {}
@@ -507,6 +552,19 @@ export namespace analyticsdata_v1beta {
     values?: string[] | null;
   }
   /**
+   * A list of all audience exports for a property.
+   */
+  export interface Schema$ListAudienceExportsResponse {
+    /**
+     * Each audience export for a property.
+     */
+    audienceExports?: Schema$AudienceExport[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The dimensions, metrics and comparisons currently accepted in reporting methods.
    */
   export interface Schema$Metadata {
@@ -669,6 +727,31 @@ export namespace analyticsdata_v1beta {
     int64Value?: string | null;
   }
   /**
+   * This resource represents a long-running operation that is the result of a network API call.
+   */
+  export interface Schema$Operation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     */
+    done?: boolean | null;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$Status;
+    /**
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
+     */
+    name?: string | null;
+    /**
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any} | null;
+  }
+  /**
    * Order bys define how rows will be sorted in the response. For example, ordering rows by descending event count is one ordering, and ordering rows by the event name string is a different ordering.
    */
   export interface Schema$OrderBy {
@@ -790,6 +873,36 @@ export namespace analyticsdata_v1beta {
      * Analytics Properties can use up to 35% of their tokens per project per hour. This amounts to standard Analytics Properties can use up to 14,000 tokens per project per hour, and Analytics 360 Properties can use 140,000 tokens per project per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas.
      */
     tokensPerProjectPerHour?: Schema$QuotaStatus;
+  }
+  /**
+   * A request to list users in an audience export.
+   */
+  export interface Schema$QueryAudienceExportRequest {
+    /**
+     * Optional. The number of rows to return. If unspecified, 10,000 rows are returned. The API returns a maximum of 250,000 rows per request, no matter how many you ask for. `limit` must be positive. The API can also return fewer rows than the requested `limit`, if there aren't as many dimension values as the `limit`. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     */
+    limit?: string | null;
+    /**
+     * Optional. The row count of the start row. The first row is counted as row 0. When paging, the first request does not specify offset; or equivalently, sets offset to 0; the first request returns the first `limit` of rows. The second request sets offset to the `limit` of the first request; the second request returns the second `limit` of rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     */
+    offset?: string | null;
+  }
+  /**
+   * A list of users in an audience export.
+   */
+  export interface Schema$QueryAudienceExportResponse {
+    /**
+     * Configuration data about AudienceExport being queried. Returned to help interpret the audience rows in this response. For example, the dimensions in this AudienceExport correspond to the columns in the AudienceRows.
+     */
+    audienceExport?: Schema$AudienceExport;
+    /**
+     * Rows for each user in an audience export. The number of rows in this response will be less than or equal to request's page size.
+     */
+    audienceRows?: Schema$V1betaAudienceRow[];
+    /**
+     * The total number of rows in the AudienceExport result. `rowCount` is independent of the number of rows returned in the response, the `limit` request parameter, and the `offset` request parameter. For example if a query returns 175 rows and includes `limit` of 50 in the API request, the response will contain `rowCount` of 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     */
+    rowCount?: number | null;
   }
   /**
    * Current state for a particular quota group.
@@ -1147,6 +1260,23 @@ export namespace analyticsdata_v1beta {
     activeMetricRestrictions?: Schema$ActiveMetricRestriction[];
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
+  /**
    * The filter for string
    */
   export interface Schema$StringFilter {
@@ -1163,11 +1293,42 @@ export namespace analyticsdata_v1beta {
      */
     value?: string | null;
   }
+  /**
+   * An audience dimension is a user attribute. Specific user attributed are requested and then later returned in the `QueryAudienceExportResponse`.
+   */
+  export interface Schema$V1betaAudienceDimension {
+    /**
+     * Optional. The API name of the dimension. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-api-schema#dimensions) for the list of dimension names.
+     */
+    dimensionName?: string | null;
+  }
+  /**
+   * The value of a dimension.
+   */
+  export interface Schema$V1betaAudienceDimensionValue {
+    /**
+     * Value as a string if the dimension type is a string.
+     */
+    value?: string | null;
+  }
+  /**
+   * Dimension value attributes for the audience user row.
+   */
+  export interface Schema$V1betaAudienceRow {
+    /**
+     * Each dimension value attribute for an audience user. One dimension value will be added for each dimension column requested.
+     */
+    dimensionValues?: Schema$V1betaAudienceDimensionValue[];
+  }
 
   export class Resource$Properties {
     context: APIRequestContext;
+    audienceExports: Resource$Properties$Audienceexports;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.audienceExports = new Resource$Properties$Audienceexports(
+        this.context
+      );
     }
 
     /**
@@ -1902,5 +2063,422 @@ export namespace analyticsdata_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$RunReportRequest;
+  }
+
+  export class Resource$Properties$Audienceexports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an audience export for later retrieval. This method quickly returns the audience export's resource name and initiates a long running asynchronous request to form an audience export. To export the users in an audience export, first create the audience export through this method and then send the audience resource name to the `QueryAudienceExport` method. See [Creating an Audience Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics) for an introduction to Audience Exports with examples. An audience export is a snapshot of the users currently in the audience at the time of audience export creation. Creating audience exports for one audience on different days will return different results as users enter and exit the audience. Audiences in Google Analytics 4 allow you to segment your users in the ways that are important to your business. To learn more, see https://support.google.com/analytics/answer/9267572. Audience exports contain the users in each audience. Audience Export APIs have some methods at alpha and other methods at beta stability. The intention is to advance methods to beta stability after some feedback and adoption. To give your feedback on this API, complete the [Google Analytics Audience Export API Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Audienceexports$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Audienceexports$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Properties$Audienceexports$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Audienceexports$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Audienceexports$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Audienceexports$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Audienceexports$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Audienceexports$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsdata.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/audienceExports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets configuration metadata about a specific audience export. This method can be used to understand an audience export after it has been created. See [Creating an Audience Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics) for an introduction to Audience Exports with examples. Audience Export APIs have some methods at alpha and other methods at beta stability. The intention is to advance methods to beta stability after some feedback and adoption. To give your feedback on this API, complete the [Google Analytics Audience Export API Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Audienceexports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Audienceexports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AudienceExport>;
+    get(
+      params: Params$Resource$Properties$Audienceexports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Audienceexports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AudienceExport>,
+      callback: BodyResponseCallback<Schema$AudienceExport>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Audienceexports$Get,
+      callback: BodyResponseCallback<Schema$AudienceExport>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AudienceExport>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Audienceexports$Get
+        | BodyResponseCallback<Schema$AudienceExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AudienceExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AudienceExport>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AudienceExport> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Audienceexports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Audienceexports$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsdata.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AudienceExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AudienceExport>(parameters);
+      }
+    }
+
+    /**
+     * Lists all audience exports for a property. This method can be used for you to find and reuse existing audience exports rather than creating unnecessary new audience exports. The same audience can have multiple audience exports that represent the export of users that were in an audience on different days. See [Creating an Audience Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics) for an introduction to Audience Exports with examples. Audience Export APIs have some methods at alpha and other methods at beta stability. The intention is to advance methods to beta stability after some feedback and adoption. To give your feedback on this API, complete the [Google Analytics Audience Export API Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Audienceexports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Audienceexports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAudienceExportsResponse>;
+    list(
+      params: Params$Resource$Properties$Audienceexports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Audienceexports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAudienceExportsResponse>,
+      callback: BodyResponseCallback<Schema$ListAudienceExportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Audienceexports$List,
+      callback: BodyResponseCallback<Schema$ListAudienceExportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAudienceExportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Audienceexports$List
+        | BodyResponseCallback<Schema$ListAudienceExportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAudienceExportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAudienceExportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAudienceExportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Audienceexports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Audienceexports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsdata.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/audienceExports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAudienceExportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAudienceExportsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves an audience export of users. After creating an audience, the users are not immediately available for exporting. First, a request to `CreateAudienceExport` is necessary to create an audience export of users, and then second, this method is used to retrieve the users in the audience export. See [Creating an Audience Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics) for an introduction to Audience Exports with examples. Audiences in Google Analytics 4 allow you to segment your users in the ways that are important to your business. To learn more, see https://support.google.com/analytics/answer/9267572. Audience Export APIs have some methods at alpha and other methods at beta stability. The intention is to advance methods to beta stability after some feedback and adoption. To give your feedback on this API, complete the [Google Analytics Audience Export API Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    query(
+      params: Params$Resource$Properties$Audienceexports$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
+      params?: Params$Resource$Properties$Audienceexports$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryAudienceExportResponse>;
+    query(
+      params: Params$Resource$Properties$Audienceexports$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    query(
+      params: Params$Resource$Properties$Audienceexports$Query,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryAudienceExportResponse>,
+      callback: BodyResponseCallback<Schema$QueryAudienceExportResponse>
+    ): void;
+    query(
+      params: Params$Resource$Properties$Audienceexports$Query,
+      callback: BodyResponseCallback<Schema$QueryAudienceExportResponse>
+    ): void;
+    query(
+      callback: BodyResponseCallback<Schema$QueryAudienceExportResponse>
+    ): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Audienceexports$Query
+        | BodyResponseCallback<Schema$QueryAudienceExportResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryAudienceExportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryAudienceExportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryAudienceExportResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Audienceexports$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Audienceexports$Query;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsdata.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:query').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryAudienceExportResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryAudienceExportResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Audienceexports$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this audience export will be created. Format: `properties/{property\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AudienceExport;
+  }
+  export interface Params$Resource$Properties$Audienceexports$Get
+    extends StandardParameters {
+    /**
+     * Required. The audience export resource name. Format: `properties/{property\}/audienceExports/{audience_export\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Audienceexports$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of audience exports to return. The service may return fewer than this value. If unspecified, at most 200 audience exports will be returned. The maximum value is 1000 (higher values will be coerced to the maximum).
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListAudienceExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAudienceExports` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. All audience exports for this property will be listed in the response. Format: `properties/{property\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Audienceexports$Query
+    extends StandardParameters {
+    /**
+     * Required. The name of the audience export to retrieve users from. Format: `properties/{property\}/audienceExports/{audience_export\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueryAudienceExportRequest;
   }
 }

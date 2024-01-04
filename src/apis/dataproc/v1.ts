@@ -714,11 +714,11 @@ export namespace dataproc_v1 {
    */
   export interface Schema$EncryptionConfig {
     /**
-     * Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster.
+     * Optional. The Cloud KMS key resource name to use for persistent disk encryption for all instances in the cluster. See Use CMEK with cluster data (https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data) for more information.
      */
     gcePdKmsKeyName?: string | null;
     /**
-     * Optional. The Cloud KMS key name to use for encrypting customer core content in spanner and cluster PD disk for all instances in the cluster.
+     * Optional. The Cloud KMS key resource name to use for cluster persistent disk and job argument encryption. See Use CMEK with cluster data (https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data) for more information.When this key resource name is provided, the following job arguments of the following job types submitted to the cluster are encrypted using CMEK: FlinkJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob) HadoopJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob) SparkJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob) SparkRJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob) PySparkJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob) SparkSqlJob (https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkSqlJob) scriptVariables and queryList.queries HiveJob (https://cloud.google.com/dataproc/docs/reference/rest/v1/HiveJob) scriptVariables and queryList.queries PigJob (https://cloud.google.com/dataproc/docs/reference/rest/v1/PigJob) scriptVariables and queryList.queries PrestoJob (https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob) scriptVariables and queryList.queries
      */
     kmsKey?: string | null;
   }
@@ -1029,11 +1029,11 @@ export namespace dataproc_v1 {
     roles?: string[] | null;
   }
   /**
-   * Encryption settings for the encrypting customer core content. NEXT ID: 2
+   * Encryption settings for encrypting workflow template job arguments.
    */
   export interface Schema$GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig {
     /**
-     * Optional. The Cloud KMS key name to use for encrypting customer core content.
+     * Optional. The Cloud KMS key name to use for encrypting workflow template job arguments.When this this key is provided, the following workflow template job arguments (https://cloud.google.com/dataproc/docs/concepts/workflows/use-workflows#adding_jobs_to_a_template), if present, are CMEK encrypted (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_workflow_template_data): FlinkJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob) HadoopJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob) SparkJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob) SparkRJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob) PySparkJob args (https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob) SparkSqlJob (https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkSqlJob) scriptVariables and queryList.queries HiveJob (https://cloud.google.com/dataproc/docs/reference/rest/v1/HiveJob) scriptVariables and queryList.queries PigJob (https://cloud.google.com/dataproc/docs/reference/rest/v1/PigJob) scriptVariables and queryList.queries PrestoJob (https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob) scriptVariables and queryList.queries
      */
     kmsKey?: string | null;
   }
@@ -1525,7 +1525,7 @@ export namespace dataproc_v1 {
      */
     keystoreUri?: string | null;
     /**
-     * Optional. The uri of the KMS key used to encrypt various sensitive files.
+     * Optional. The URI of the KMS key used to encrypt sensitive files.
      */
     kmsKeyUri?: string | null;
     /**
@@ -1625,6 +1625,10 @@ export namespace dataproc_v1 {
      * A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+    /**
+     * Output only. List of Batches that could not be included in the response. Attempting to get one of these resources may indicate why it was not included in the list response.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The list of all clusters in a project.
@@ -1652,7 +1656,7 @@ export namespace dataproc_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Output only. List of jobs that could not be included in the response. Attempting to get one of these resources may indicate why it was not included in the list response.
+     * Output only. List of jobs with kms_key-encrypted parameters that could not be decrypted. A response to a jobs.get request may indicate the reason for the decryption failure for a specific job.
      */
     unreachable?: string[] | null;
   }
@@ -3064,7 +3068,7 @@ export namespace dataproc_v1 {
      */
     dagTimeout?: string | null;
     /**
-     * Optional. Encryption settings for the encrypting customer core content.
+     * Optional. Encryption settings for encrypting workflow template job arguments.
      */
     encryptionConfig?: Schema$GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig;
     id?: string | null;

@@ -271,6 +271,10 @@ export namespace cloudfunctions_v2alpha {
      */
     retryPolicy?: string | null;
     /**
+     * Optional. The hostname of the service that 1st Gen function should be observed. If no string is provided, the default service implementing the API will be used. For example, `storage.googleapis.com` is the default for all event types in the `google.storage` namespace. The field is only applicable to 1st Gen functions.
+     */
+    service?: string | null;
+    /**
      * Optional. The email of the trigger's service account. The service account must have permission to invoke Cloud Run services, the permission is `run.routes.invoke`. If empty, defaults to the Compute Engine default service account: `{project_number\}-compute@developer.gserviceaccount.com`.
      */
     serviceAccountEmail?: string | null;
@@ -426,6 +430,10 @@ export namespace cloudfunctions_v2alpha {
      */
     endTime?: string | null;
     /**
+     * The operation type.
+     */
+    operationType?: string | null;
+    /**
      * The original request that started the operation.
      */
     requestResource?: {[key: string]: any} | null;
@@ -526,6 +534,10 @@ export namespace cloudfunctions_v2alpha {
      */
     endTime?: string | null;
     /**
+     * The operation type.
+     */
+    operationType?: string | null;
+    /**
      * The original request that started the operation.
      */
     requestResource?: {[key: string]: any} | null;
@@ -625,6 +637,10 @@ export namespace cloudfunctions_v2alpha {
      * The time the operation finished running.
      */
     endTime?: string | null;
+    /**
+     * The operation type.
+     */
+    operationType?: string | null;
     /**
      * The original request that started the operation.
      */
@@ -982,7 +998,7 @@ export namespace cloudfunctions_v2alpha {
      */
     allTrafficOnLatestRevision?: boolean | null;
     /**
-     * [Preview] The number of CPUs used in a single container instance. Default value is calculated from available memory. Supports the same values as Cloud Run, see https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements Example: "1" indicates 1 vCPU
+     * The number of CPUs used in a single container instance. Default value is calculated from available memory. Supports the same values as Cloud Run, see https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements Example: "1" indicates 1 vCPU
      */
     availableCpu?: string | null;
     /**
@@ -1002,7 +1018,7 @@ export namespace cloudfunctions_v2alpha {
      */
     maxInstanceCount?: number | null;
     /**
-     * [Preview] Sets the maximum number of concurrent requests that each instance can receive. Defaults to 1.
+     * Sets the maximum number of concurrent requests that each instance can receive. Defaults to 1.
      */
     maxInstanceRequestConcurrency?: number | null;
     /**

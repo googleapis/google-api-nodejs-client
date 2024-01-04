@@ -113,6 +113,7 @@ export namespace advisorynotifications_v1 {
   export class Advisorynotifications {
     context: APIRequestContext;
     organizations: Resource$Organizations;
+    projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -121,6 +122,7 @@ export namespace advisorynotifications_v1 {
       };
 
       this.organizations = new Resource$Organizations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -219,7 +221,7 @@ export namespace advisorynotifications_v1 {
      */
     messages?: Schema$GoogleCloudAdvisorynotificationsV1Message[];
     /**
-     * The resource name of the notification. Format: organizations/{organization\}/locations/{location\}/notifications/{notification\}.
+     * The resource name of the notification. Format: organizations/{organization\}/locations/{location\}/notifications/{notification\} or projects/{project\}/locations/{location\}/notifications/{notification\}.
      */
     name?: string | null;
     /**
@@ -249,7 +251,7 @@ export namespace advisorynotifications_v1 {
      */
     etag?: string | null;
     /**
-     * Output only. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings.
+     * Identifier. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings.
      */
     name?: string | null;
     /**
@@ -506,7 +508,7 @@ export namespace advisorynotifications_v1 {
   export interface Params$Resource$Organizations$Locations$Updatesettings
     extends StandardParameters {
     /**
-     * Output only. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings.
+     * Identifier. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings.
      */
     name?: string;
 
@@ -723,7 +725,7 @@ export namespace advisorynotifications_v1 {
      */
     languageCode?: string;
     /**
-     * Required. A name of the notification to retrieve. Format: organizations/{organization\}/locations/{location\}/notifications/{notification\}.
+     * Required. A name of the notification to retrieve. Format: organizations/{organization\}/locations/{location\}/notifications/{notification\} or projects/{projects\}/locations/{location\}/notifications/{notification\}.
      */
     name?: string;
   }
@@ -742,7 +744,260 @@ export namespace advisorynotifications_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}"
+     * Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}" or "projects/{project\}/locations/{location\}"
+     */
+    parent?: string;
+    /**
+     * Specifies which parts of the notification resource should be returned in the response.
+     */
+    view?: string;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    locations: Resource$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    notifications: Resource$Projects$Locations$Notifications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.notifications = new Resource$Projects$Locations$Notifications(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Notifications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a notification.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Notifications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Notifications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>;
+    get(
+      params: Params$Resource$Projects$Locations$Notifications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notifications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Notification>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notifications$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notifications$Get
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notifications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notifications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://advisorynotifications.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAdvisorynotificationsV1Notification>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAdvisorynotificationsV1Notification>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists notifications under a given parent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Notifications$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Notifications$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Notifications$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notifications$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notifications$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notifications$List
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notifications$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notifications$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://advisorynotifications.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notifications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notifications$Get
+    extends StandardParameters {
+    /**
+     * ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
+     */
+    languageCode?: string;
+    /**
+     * Required. A name of the notification to retrieve. Format: organizations/{organization\}/locations/{location\}/notifications/{notification\} or projects/{projects\}/locations/{location\}/notifications/{notification\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notifications$List
+    extends StandardParameters {
+    /**
+     * ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
+     */
+    languageCode?: string;
+    /**
+     * The maximum number of notifications to return. The service may return fewer than this value. If unspecified or equal to 0, at most 50 notifications will be returned. The maximum value is 50; values above 50 will be coerced to 50.
+     */
+    pageSize?: number;
+    /**
+     * A page token returned from a previous request. When paginating, all other parameters provided in the request must match the call that returned the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}" or "projects/{project\}/locations/{location\}"
      */
     parent?: string;
     /**

@@ -245,6 +245,32 @@ export namespace admin_directory_v1 {
     severity?: string | null;
   }
   /**
+   * A request for changing the status of a batch of ChromeOS devices.
+   */
+  export interface Schema$BatchChangeChromeOsDeviceStatusRequest {
+    /**
+     * Required. The Action to take on the ChromeOS device in order to change its status.
+     */
+    changeChromeOsDeviceStatusAction?: string | null;
+    /**
+     * Optional. The reason behind a device deprovision, must be provided for all deprovisions, otherwise it must not be provided. It must be one of the non-deprecated deprovision reasons.
+     */
+    deprovisionReason?: string | null;
+    /**
+     * Required. List of the IDs of the ChromeOS devices to change.
+     */
+    deviceIds?: string[] | null;
+  }
+  /**
+   * The response of changing the status of a batch of ChromeOS devices.
+   */
+  export interface Schema$BatchChangeChromeOsDeviceStatusResponse {
+    /**
+     * The results for each of the ChromeOS devices provided in the request.
+     */
+    changeChromeOsDeviceStatusResults?: Schema$ChangeChromeOsDeviceStatusResult[];
+  }
+  /**
    * Request for adding new printers in batch.
    */
   export interface Schema$BatchCreatePrintersRequest {
@@ -516,6 +542,27 @@ export namespace admin_directory_v1 {
      */
     nextPageToken?: string | null;
   }
+  /**
+   * The result of a single ChromeOS device for a Change state operation.
+   */
+  export interface Schema$ChangeChromeOsDeviceStatusResult {
+    /**
+     * The unique ID of the ChromeOS device.
+     */
+    deviceId?: string | null;
+    /**
+     * The error result of the operation in case of failure.
+     */
+    error?: Schema$Status;
+    /**
+     * The device could change its status successfully.
+     */
+    response?: Schema$ChangeChromeOsDeviceStatusSucceeded;
+  }
+  /**
+   * Response for a successful ChromeOS device status change.
+   */
+  export interface Schema$ChangeChromeOsDeviceStatusSucceeded {}
   /**
    * An notification channel used to watch for resource changes.
    */
@@ -1982,6 +2029,23 @@ export namespace admin_directory_v1 {
     schemas?: Schema$Schema[];
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
+  /**
    * JSON template for token resource in Directory API.
    */
   export interface Schema$Token {
@@ -3168,7 +3232,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).
+     * DEPRECATED: Use BatchChangeChromeOsDeviceStatus instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3842,6 +3906,103 @@ export namespace admin_directory_v1 {
     }
 
     /**
+     * Changes the status of a batch of ChromeOS devices.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchChangeStatus(
+      params: Params$Resource$Customer$Devices$Chromeos$Batchchangestatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchChangeStatus(
+      params?: Params$Resource$Customer$Devices$Chromeos$Batchchangestatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchChangeChromeOsDeviceStatusResponse>;
+    batchChangeStatus(
+      params: Params$Resource$Customer$Devices$Chromeos$Batchchangestatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchChangeStatus(
+      params: Params$Resource$Customer$Devices$Chromeos$Batchchangestatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchChangeChromeOsDeviceStatusResponse>,
+      callback: BodyResponseCallback<Schema$BatchChangeChromeOsDeviceStatusResponse>
+    ): void;
+    batchChangeStatus(
+      params: Params$Resource$Customer$Devices$Chromeos$Batchchangestatus,
+      callback: BodyResponseCallback<Schema$BatchChangeChromeOsDeviceStatusResponse>
+    ): void;
+    batchChangeStatus(
+      callback: BodyResponseCallback<Schema$BatchChangeChromeOsDeviceStatusResponse>
+    ): void;
+    batchChangeStatus(
+      paramsOrCallback?:
+        | Params$Resource$Customer$Devices$Chromeos$Batchchangestatus
+        | BodyResponseCallback<Schema$BatchChangeChromeOsDeviceStatusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchChangeChromeOsDeviceStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchChangeChromeOsDeviceStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchChangeChromeOsDeviceStatusResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customer$Devices$Chromeos$Batchchangestatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customer$Devices$Chromeos$Batchchangestatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/admin/directory/v1/customer/{customerId}/devices/chromeos:batchChangeStatus'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchChangeChromeOsDeviceStatusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchChangeChromeOsDeviceStatusResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Issues a command for the device to execute.
      *
      * @param params - Parameters for request
@@ -3938,6 +4099,18 @@ export namespace admin_directory_v1 {
     }
   }
 
+  export interface Params$Resource$Customer$Devices$Chromeos$Batchchangestatus
+    extends StandardParameters {
+    /**
+     * Required. Immutable ID of the G Suite account.
+     */
+    customerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchChangeChromeOsDeviceStatusRequest;
+  }
   export interface Params$Resource$Customer$Devices$Chromeos$Issuecommand
     extends StandardParameters {
     /**
