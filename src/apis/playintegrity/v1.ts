@@ -206,6 +206,10 @@ export namespace playintegrity_v1 {
      * Details about the integrity of the device the app is running on.
      */
     deviceRecognitionVerdict?: string[] | null;
+    /**
+     * Details about the device activity of the device the app is running on.
+     */
+    recentDeviceActivity?: Schema$RecentDeviceActivity;
   }
   /**
    * Contains information about the environment Play Integrity API runs in, e.g. Play Protect verdict.
@@ -219,6 +223,15 @@ export namespace playintegrity_v1 {
      * The evaluation of Play Protect verdict.
      */
     playProtectVerdict?: string | null;
+  }
+  /**
+   * Recent device activity can help developers identify devices that have exhibited hyperactive attestation activity, which could be a sign of an attack or token farming.
+   */
+  export interface Schema$RecentDeviceActivity {
+    /**
+     * Required. Indicates the activity level of the device.
+     */
+    deviceActivityLevel?: string | null;
   }
   /**
    * Contains the integrity request information.
