@@ -212,7 +212,7 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$DynamicGroupMetadata {
     /**
-     * Memberships will be the union of all queries. Only one entry with USER resource is currently supported. Customers can create up to 100 dynamic groups.
+     * Memberships will be the union of all queries. Only one entry with USER resource is currently supported. Customers can create up to 500 dynamic groups.
      */
     queries?: Schema$DynamicGroupQuery[];
     /**
