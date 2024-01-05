@@ -249,15 +249,15 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$BatchChangeChromeOsDeviceStatusRequest {
     /**
-     * Required. The Action to take on the ChromeOS device in order to change its status.
+     * Required. The action to take on the ChromeOS device in order to change its status.
      */
     changeChromeOsDeviceStatusAction?: string | null;
     /**
-     * Optional. The reason behind a device deprovision, must be provided for all deprovisions, otherwise it must not be provided. It must be one of the non-deprecated deprovision reasons.
+     * Optional. The reason behind a device deprovision. Must be provided if 'changeChromeOsDeviceStatusAction' is set to 'CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DEPROVISION'. Otherwise, omit this field.
      */
     deprovisionReason?: string | null;
     /**
-     * Required. List of the IDs of the ChromeOS devices to change.
+     * Required. List of the IDs of the ChromeOS devices to change. Maximum 50.
      */
     deviceIds?: string[] | null;
   }
@@ -3232,7 +3232,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * DEPRECATED: Use BatchChangeChromeOsDeviceStatus instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).
+     * Use [BatchChangeChromeOsDeviceStatus](/admin-sdk/directory/reference/rest/v1/customer.devices.chromeos/batchChangeStatus) instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3906,7 +3906,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Changes the status of a batch of ChromeOS devices.
+     * Changes the status of a batch of ChromeOS devices. For more information about changing a ChromeOS device state [Repair, repurpose, or retire ChromeOS devices](https://support.google.com/chrome/a/answer/3523633).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4102,7 +4102,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Customer$Devices$Chromeos$Batchchangestatus
     extends StandardParameters {
     /**
-     * Required. Immutable ID of the G Suite account.
+     * Required. Immutable ID of the Google Workspace account.
      */
     customerId?: string;
 
