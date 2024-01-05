@@ -1,5 +1,23 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v10.0.1...deploymentmanager-v11.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **deploymentmanager:** update the API ([f3ec8ef](https://github.com/googleapis/google-api-nodejs-client/commit/f3ec8efabe149fe11506dc2f8a0be94dce540138))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([b48abef](https://github.com/googleapis/google-api-nodejs-client/commit/b48abef098c1c639c72524121cf39d054ba29587))
+* **deploymentmanager:** update the API ([4c74af6](https://github.com/googleapis/google-api-nodejs-client/commit/4c74af69e1605917f756c66477a6f016ffa201e6))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v10.0.0...deploymentmanager-v10.0.1) (2024-01-03)
 
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v6.0.0...drivelabels-v7.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **drivelabels:** This release has breaking changes.
+
+### Features
+
+* **drivelabels:** update the API ([50a1b75](https://github.com/googleapis/google-api-nodejs-client/commit/50a1b75751fca09b4e3cc7f58595954ac8c1d85a))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v5.4.0...drivelabels-v6.0.0) (2024-01-03)
 
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## [12.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v12.6.0...servicenetworking-v12.7.0) (2024-01-05)
+
+
+### Features
+
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+* **servicenetworking:** update the API ([42a1422](https://github.com/googleapis/google-api-nodejs-client/commit/42a142249e172d0e0ec8ab877864a2f0fb385304))
+* **servicenetworking:** update the API ([a62a335](https://github.com/googleapis/google-api-nodejs-client/commit/a62a33587c4bb51545121b6f3a06834d78fec8bf))
+
+
+### Bug Fixes
+
+* **servicenetworking:** update the API ([50c7dbd](https://github.com/googleapis/google-api-nodejs-client/commit/50c7dbd3231feefdabe77ff8a25f4d66b9b92a3a))
+
 ## [12.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v12.5.0...servicenetworking-v12.6.0) (2024-01-03)
 
 

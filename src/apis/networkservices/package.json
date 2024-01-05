@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/networkservices",
-  "version": "9.1.0",
+  "version": "10.0.0",
   "description": "networkservices",
   "main": "build/index.js",
   "types": "build/index.d.ts",
