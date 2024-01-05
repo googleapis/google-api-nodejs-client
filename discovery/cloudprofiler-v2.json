@@ -185,7 +185,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "The maximum number of items to return. Default page_size is 1000. Max limit is 10000.",
+                  "description": "The maximum number of items to return. Default page_size is 1000. Max limit is 1000.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -254,7 +254,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240101",
   "rootUrl": "https://cloudprofiler.googleapis.com/",
   "schemas": {
     "CreateProfileRequest": {
