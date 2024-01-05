@@ -172,6 +172,15 @@ export namespace chromeuxreport_v1 {
     year?: number | null;
   }
   /**
+   * For enum metrics, provides fraction timeseries which add up to approximately 1.0 per entry (k-th element into the repeated fractions field for any k <= len) across fraction_timeseries.
+   */
+  export interface Schema$FractionTimeseries {
+    /**
+     * Values between 0.0 and 1.0 (inclusive) and NaN.
+     */
+    fractions?: number[] | null;
+  }
+  /**
    * Key defines all the dimensions that identify this record as unique.
    */
   export interface Schema$HistoryKey {
@@ -247,6 +256,10 @@ export namespace chromeuxreport_v1 {
    * A `metric timeseries` is a set of user experience data for a single web performance metric, like "first contentful paint". It contains a summary histogram of real world Chrome usage as a series of `bins`, where each bin has density values for a particular time period.
    */
   export interface Schema$MetricTimeseries {
+    /**
+     * Mapping from labels to timeseries of fractions attributed to this label.
+     */
+    fractionTimeseries?: {[key: string]: Schema$FractionTimeseries} | null;
     /**
      * The histogram of user experiences for a metric. The histogram will have at least one bin and the densities of all bins will add up to ~1, for each timeseries entry.
      */

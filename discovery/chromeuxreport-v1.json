@@ -131,7 +131,7 @@
       }
     }
   },
-  "revision": "20231116",
+  "revision": "20240103",
   "rootUrl": "https://chromeuxreport.googleapis.com/",
   "schemas": {
     "Bin": {
@@ -187,6 +187,21 @@
           "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "FractionTimeseries": {
+      "description": "For enum metrics, provides fraction timeseries which add up to approximately 1.0 per entry (k-th element into the repeated fractions field for any k <= len) across fraction_timeseries.",
+      "id": "FractionTimeseries",
+      "properties": {
+        "fractions": {
+          "description": "Values between 0.0 and 1.0 (inclusive) and NaN.",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -312,6 +327,13 @@
       "description": "A `metric timeseries` is a set of user experience data for a single web performance metric, like \"first contentful paint\". It contains a summary histogram of real world Chrome usage as a series of `bins`, where each bin has density values for a particular time period.",
       "id": "MetricTimeseries",
       "properties": {
+        "fractionTimeseries": {
+          "additionalProperties": {
+            "$ref": "FractionTimeseries"
+          },
+          "description": "Mapping from labels to timeseries of fractions attributed to this label.",
+          "type": "object"
+        },
         "histogramTimeseries": {
           "description": "The histogram of user experiences for a metric. The histogram will have at least one bin and the densities of all bins will add up to ~1, for each timeseries entry.",
           "items": {
