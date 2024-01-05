@@ -446,6 +446,10 @@ export namespace oslogin_v1 {
      * The project ID of the Google Cloud Platform project.
      */
     projectId?: string;
+    /**
+     * Optional. The regions to which to assert that the key was written. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.
+     */
+    regions?: string[];
 
     /**
      * Request body metadata
