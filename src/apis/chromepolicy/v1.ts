@@ -519,6 +519,10 @@ export namespace chromepolicy_v1 {
      */
     schemaName?: string | null;
     /**
+     * Output only. List indicates that the policy will only apply to devices/users on these platforms.
+     */
+    supportedPlatforms?: string[] | null;
+    /**
      * Output only. URI to related support article for this schema.
      */
     supportUri?: string | null;
