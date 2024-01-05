@@ -4337,7 +4337,7 @@
       }
     }
   },
-  "revision": "20231215",
+  "revision": "20240102",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -7434,6 +7434,10 @@
           "$ref": "GoogleCloudDialogflowCxV3AdvancedSettings",
           "description": "Hierarchical advanced settings for this page. The settings exposed at the lower level overrides the settings exposed at the higher level."
         },
+        "description": {
+          "description": "The description of the page. The maximum length is 500 characters.",
+          "type": "string"
+        },
         "displayName": {
           "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
@@ -7562,7 +7566,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3QueryInput": {
-      "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.",
+      "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value. 6. The results of a tool executed by the client.",
       "id": "GoogleCloudDialogflowCxV3QueryInput",
       "properties": {
         "audio": {
@@ -10677,6 +10681,10 @@
           "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettings",
           "description": "Hierarchical advanced settings for this page. The settings exposed at the lower level overrides the settings exposed at the higher level."
         },
+        "description": {
+          "description": "The description of the page. The maximum length is 500 characters.",
+          "type": "string"
+        },
         "displayName": {
           "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
@@ -10794,7 +10802,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1QueryInput": {
-      "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.",
+      "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value. 6. The results of a tool executed by the client.",
       "id": "GoogleCloudDialogflowCxV3beta1QueryInput",
       "properties": {
         "audio": {
