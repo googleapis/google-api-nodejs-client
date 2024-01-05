@@ -1,5 +1,24 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v4.0.0...dialogflow-v5.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dialogflow:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **dialogflow:** update the API ([4b1e073](https://github.com/googleapis/google-api-nodejs-client/commit/4b1e0734d9ae8775a64c0cf438cd3f657a2066b4))
+* **dialogflow:** update the API ([8829da4](https://github.com/googleapis/google-api-nodejs-client/commit/8829da4a7ee2885ae8b580eed903b2df5526918f))
+* **dialogflow:** update the API ([4c4d968](https://github.com/googleapis/google-api-nodejs-client/commit/4c4d968f3f64306083692f333b097b4dfe5f4fd3))
+* **dialogflow:** update the API ([5ad2704](https://github.com/googleapis/google-api-nodejs-client/commit/5ad2704b11d402dcfd049195486bd1550cde5c4d))
+* **dialogflow:** update the API ([c0653d0](https://github.com/googleapis/google-api-nodejs-client/commit/c0653d0317a1e101ae3d75fd3d8ef84f29d19e57))
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v3.0.0...dialogflow-v4.0.0) (2024-01-03)
 
 

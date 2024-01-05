@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v2.0.2...gkebackup-v3.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **gkebackup:** update the API ([30ca612](https://github.com/googleapis/google-api-nodejs-client/commit/30ca6127287a5f55a8c6d7b7247f2aff618e6b8f))
+* **gkebackup:** update the API ([6bc61e1](https://github.com/googleapis/google-api-nodejs-client/commit/6bc61e17c12414d04e848a611fcfb88db62a1352))
+* **gkebackup:** update the API ([e4bcddf](https://github.com/googleapis/google-api-nodejs-client/commit/e4bcddf04db3112f0a404d99e43d389a54301e4b))
+
 ## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v2.0.1...gkebackup-v2.0.2) (2024-01-03)
 
 

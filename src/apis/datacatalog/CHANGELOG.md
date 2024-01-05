@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v2.0.0...datacatalog-v3.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datacatalog:** This release has breaking changes.
+
+### Features
+
+* **datacatalog:** update the API ([a939d7e](https://github.com/googleapis/google-api-nodejs-client/commit/a939d7eaf290e763657eda597be699c0f52d8773))
+* **datacatalog:** update the API ([0052588](https://github.com/googleapis/google-api-nodejs-client/commit/0052588a7da1bb8f38dd92ab1d8f377373371c63))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v1.2.0...datacatalog-v2.0.0) (2024-01-03)
 
 
