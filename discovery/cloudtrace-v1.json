@@ -257,7 +257,7 @@
       }
     }
   },
-  "revision": "20220330",
+  "revision": "20240102",
   "rootUrl": "https://cloudtrace.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -311,7 +311,7 @@
       "id": "TraceSpan",
       "properties": {
         "endTime": {
-          "description": "End time of the span in nanoseconds from the UNIX epoch.",
+          "description": "End time of the span in seconds and nanoseconds from the UNIX epoch.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -351,7 +351,7 @@
           "type": "string"
         },
         "startTime": {
-          "description": "Start time of the span in nanoseconds from the UNIX epoch.",
+          "description": "Start time of the span in seconds and nanoseconds from the UNIX epoch.",
           "format": "google-datetime",
           "type": "string"
         }

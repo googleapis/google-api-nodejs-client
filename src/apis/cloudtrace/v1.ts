@@ -172,7 +172,7 @@ export namespace cloudtrace_v1 {
    */
   export interface Schema$TraceSpan {
     /**
-     * End time of the span in nanoseconds from the UNIX epoch.
+     * End time of the span in seconds and nanoseconds from the UNIX epoch.
      */
     endTime?: string | null;
     /**
@@ -196,7 +196,7 @@ export namespace cloudtrace_v1 {
      */
     spanId?: string | null;
     /**
-     * Start time of the span in nanoseconds from the UNIX epoch.
+     * Start time of the span in seconds and nanoseconds from the UNIX epoch.
      */
     startTime?: string | null;
   }
