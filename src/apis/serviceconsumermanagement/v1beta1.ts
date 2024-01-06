@@ -1565,35 +1565,6 @@ export namespace serviceconsumermanagement_v1beta1 {
     overrides?: Schema$V1Beta1QuotaOverride[];
   }
   /**
-   * A property assigned to a consumer of a service.
-   */
-  export interface Schema$V1Beta1ConsumerProperty {
-    /**
-     * Output only. The description of the property.
-     */
-    description?: string | null;
-    /**
-     * Output only. The resource name of this property. An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/properties/SERVICE_LEVEL` The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
-     */
-    name?: string | null;
-    /**
-     * Output only. A long-running operation which tracks the propagation of recent changes to this resource to all affected backends. If this field is empty, all affected backends have been notified of the change. If this field contains an operation in progress, then the most recent change to this resource has not yet been sent out to all backends. If this field contains an operation that has failed with an error, the caller should retry the change.
-     */
-    propagation?: Schema$Operation;
-    /**
-     * Output only. The name of the property as it appears in the service configuration. An example property name would be: `SERVICE_LEVEL`
-     */
-    propertyKey?: string | null;
-    /**
-     * Output only. The type of this property.
-     */
-    type?: string | null;
-    /**
-     * Value of this property for the consumer. This field may be empty if the consumer has not been assigned a value.
-     */
-    value?: any | null;
-  }
-  /**
    * Consumer quota settings for a quota limit.
    */
   export interface Schema$V1Beta1ConsumerQuotaLimit {
@@ -2049,13 +2020,11 @@ export namespace serviceconsumermanagement_v1beta1 {
   export class Resource$Services {
     context: APIRequestContext;
     consumerQuotaMetrics: Resource$Services$Consumerquotametrics;
-    properties: Resource$Services$Properties;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.consumerQuotaMetrics = new Resource$Services$Consumerquotametrics(
         this.context
       );
-      this.properties = new Resource$Services$Properties(this.context);
     }
   }
 
@@ -2946,120 +2915,5 @@ export namespace serviceconsumermanagement_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$V1Beta1QuotaOverride;
-  }
-
-  export class Resource$Services$Properties {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a consumer property. If the property already exists, this method fails with an ALREADY_EXISTS error. For this failure case, the Status details field will contain the existing property's value.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Services$Properties$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Services$Properties$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$V1Beta1ConsumerProperty>;
-    create(
-      params: Params$Resource$Services$Properties$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Services$Properties$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$V1Beta1ConsumerProperty>,
-      callback: BodyResponseCallback<Schema$V1Beta1ConsumerProperty>
-    ): void;
-    create(
-      params: Params$Resource$Services$Properties$Create,
-      callback: BodyResponseCallback<Schema$V1Beta1ConsumerProperty>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$V1Beta1ConsumerProperty>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Services$Properties$Create
-        | BodyResponseCallback<Schema$V1Beta1ConsumerProperty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$V1Beta1ConsumerProperty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$V1Beta1ConsumerProperty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$V1Beta1ConsumerProperty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Services$Properties$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Properties$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/properties').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$V1Beta1ConsumerProperty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$V1Beta1ConsumerProperty>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Services$Properties$Create
-    extends StandardParameters {
-    /**
-     * Required. Name of the property to create. An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$V1Beta1ConsumerProperty;
   }
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v12.0.0...sasportal-v12.1.0) (2024-01-03)
+
+
+### Features
+
+* **sasportal:** update the API ([2459cce](https://github.com/googleapis/google-api-nodejs-client/commit/2459cce1e414ac32977316426351423ef6d23775))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v11.0.0...sasportal-v12.0.0) (2023-11-30)
 
 

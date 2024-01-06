@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v4.0.0...analyticsadmin-v4.0.1) (2024-01-03)
+
+
+### Bug Fixes
+
+* **analyticsadmin:** update the API ([b858170](https://github.com/googleapis/google-api-nodejs-client/commit/b858170642a882c05790c2cc4a4f98bf091f159a))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v3.1.0...analyticsadmin-v4.0.0) (2023-11-30)
 
 

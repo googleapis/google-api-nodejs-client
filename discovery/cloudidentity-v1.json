@@ -1990,7 +1990,7 @@
       }
     }
   },
-  "revision": "20231211",
+  "revision": "20240101",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2098,7 +2098,7 @@
       "id": "DynamicGroupMetadata",
       "properties": {
         "queries": {
-          "description": "Memberships will be the union of all queries. Only one entry with USER resource is currently supported. Customers can create up to 100 dynamic groups.",
+          "description": "Memberships will be the union of all queries. Only one entry with USER resource is currently supported. Customers can create up to 500 dynamic groups.",
           "items": {
             "$ref": "DynamicGroupQuery"
           },

@@ -306,7 +306,7 @@
       "methods": {
         "action": {
           "deprecated": true,
-          "description": "DEPRECATED: Use BatchChangeChromeOsDeviceStatus instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).",
+          "description": "Use [BatchChangeChromeOsDeviceStatus](/admin-sdk/directory/reference/rest/v1/customer.devices.chromeos/batchChangeStatus) instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action",
           "httpMethod": "POST",
           "id": "directory.chromeosdevices.action",
@@ -615,7 +615,7 @@
             "chromeos": {
               "methods": {
                 "batchChangeStatus": {
-                  "description": "Changes the status of a batch of ChromeOS devices.",
+                  "description": "Changes the status of a batch of ChromeOS devices. For more information about changing a ChromeOS device state [Repair, repurpose, or retire ChromeOS devices](https://support.google.com/chrome/a/answer/3523633).",
                   "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos:batchChangeStatus",
                   "httpMethod": "POST",
                   "id": "admin.customer.devices.chromeos.batchChangeStatus",
@@ -624,7 +624,7 @@
                   ],
                   "parameters": {
                     "customerId": {
-                      "description": "Required. Immutable ID of the G Suite account.",
+                      "description": "Required. Immutable ID of the Google Workspace account.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20231219",
+  "revision": "20240102",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -4815,7 +4815,7 @@
       "id": "BatchChangeChromeOsDeviceStatusRequest",
       "properties": {
         "changeChromeOsDeviceStatusAction": {
-          "description": "Required. The Action to take on the ChromeOS device in order to change its status.",
+          "description": "Required. The action to take on the ChromeOS device in order to change its status.",
           "enum": [
             "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_UNSPECIFIED",
             "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DEPROVISION",
@@ -4824,14 +4824,14 @@
           ],
           "enumDescriptions": [
             "Default value. Value is unused.",
-            "If you have ChromeOS devices that are no longer being used in your organization, you should deprovision them so that you’re no longer managing them. Deprovisioning the device removes all policies that were on the device as well as device-level printers and the ability to use the device as a kiosk. Depending on the upgrade that’s associated with the device this action might release the license back into the license pool; which allows you to use the license on a different device.",
-            "Use this action if a user loses their device or it’s stolen, this makes it such that the device is still managed, so it will still receive policies, but noone can use it. Depending on the upgrade that’s associated with the device this action might release the license back into the license pool; which allows you to use the license on a different device.",
-            "Reenable the device once it's no longer lost or it's been recovered. This allows the device to be used again. Depending on the upgrade associated with the device this might consume one license from the license pool, meaning that if there aren't enough licenses available the operation will fail."
+            "Deprovisions a ChromeOS device. If you have ChromeOS devices that are no longer being used in your organization, you should deprovision them so that you’re no longer managing them. Deprovisioning the device removes all policies that were on the device as well as device-level printers and the ability to use the device as a kiosk. Depending on the upgrade that’s associated with the device this action might release the license back into the license pool; which allows you to use the license on a different device.",
+            "Disables a ChromeOS device. Use this action if a user loses their device or it’s stolen, this makes it such that the device is still managed, so it will still receive policies, but no one can use it. Depending on the upgrade that’s associated with the device this action might release the license back into the license pool; which allows you to use the license on a different device.",
+            "Reenables a ChromeOS device to be used after being disabled. Reenables the device once it's no longer lost or it's been recovered. This allows the device to be used again. Depending on the upgrade associated with the device this might consume one license from the license pool, meaning that if there aren't enough licenses available the operation will fail."
           ],
           "type": "string"
         },
         "deprovisionReason": {
-          "description": "Optional. The reason behind a device deprovision, must be provided for all deprovisions, otherwise it must not be provided. It must be one of the non-deprecated deprovision reasons.",
+          "description": "Optional. The reason behind a device deprovision. Must be provided if 'changeChromeOsDeviceStatusAction' is set to 'CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DEPROVISION'. Otherwise, omit this field.",
           "enum": [
             "DEPROVISION_REASON_UNSPECIFIED",
             "DEPROVISION_REASON_SAME_MODEL_REPLACEMENT",
@@ -4874,7 +4874,7 @@
           "type": "string"
         },
         "deviceIds": {
-          "description": "Required. List of the IDs of the ChromeOS devices to change.",
+          "description": "Required. List of the IDs of the ChromeOS devices to change. Maximum 50.",
           "items": {
             "type": "string"
           },

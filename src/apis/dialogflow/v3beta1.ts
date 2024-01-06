@@ -2457,6 +2457,10 @@ export namespace dialogflow_v3beta1 {
      */
     advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
     /**
+     * The description of the page. The maximum length is 500 characters.
+     */
+    description?: string | null;
+    /**
      * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
@@ -2550,7 +2554,7 @@ export namespace dialogflow_v3beta1 {
     text?: string | null;
   }
   /**
-   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.
+   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value. 6. The results of a tool executed by the client.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1QueryInput {
     /**
@@ -4704,6 +4708,10 @@ export namespace dialogflow_v3beta1 {
      */
     advancedSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettings;
     /**
+     * The description of the page. The maximum length is 500 characters.
+     */
+    description?: string | null;
+    /**
      * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
@@ -4788,7 +4796,7 @@ export namespace dialogflow_v3beta1 {
     value?: any | null;
   }
   /**
-   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.
+   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value. 6. The results of a tool executed by the client.
    */
   export interface Schema$GoogleCloudDialogflowCxV3QueryInput {
     /**

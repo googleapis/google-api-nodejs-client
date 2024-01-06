@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/vision-v1.3.0...vision-v1.4.0) (2024-01-03)
+
+
+### Features
+
+* **vision:** update the API ([77a0a91](https://github.com/googleapis/google-api-nodejs-client/commit/77a0a9136e5f59f532a9bf064ebed830d10a16d3))
+
 ## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/vision-v1.2.0...vision-v1.3.0) (2023-10-11)
 
 

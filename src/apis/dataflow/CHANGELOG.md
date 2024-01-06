@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v7.3.0...dataflow-v7.4.0) (2024-01-03)
+
+
+### Features
+
+* **dataflow:** update the API ([9721cda](https://github.com/googleapis/google-api-nodejs-client/commit/9721cda955b70096a509f7d8984b317ef5ba1a1d))
+
 ## [7.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v7.2.0...dataflow-v7.3.0) (2023-11-30)
 
 

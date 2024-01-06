@@ -303,7 +303,8 @@
               "type": "string"
             },
             "relatedSite": {
-              "description": "Specifies that all search results should be pages that are related to the specified URL.",
+              "deprecated": true,
+              "description": "Deprecated.",
               "location": "query",
               "type": "string"
             },
@@ -598,7 +599,8 @@
                   "type": "string"
                 },
                 "relatedSite": {
-                  "description": "Specifies that all search results should be pages that are related to the specified URL.",
+                  "deprecated": true,
+                  "description": "Deprecated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -688,7 +690,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20240103",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {

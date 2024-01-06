@@ -598,7 +598,7 @@ export namespace cloudprofiler_v2 {
   export interface Params$Resource$Projects$Profiles$List
     extends StandardParameters {
     /**
-     * The maximum number of items to return. Default page_size is 1000. Max limit is 10000.
+     * The maximum number of items to return. Default page_size is 1000. Max limit is 1000.
      */
     pageSize?: number;
     /**

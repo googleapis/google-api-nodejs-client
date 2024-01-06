@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v6.0.0...gkehub-v7.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **gkehub:** This release has breaking changes.
+
+### Features
+
+* **gkehub:** update the API ([044e086](https://github.com/googleapis/google-api-nodejs-client/commit/044e0861eda69fa5426aef8643134da2e3510a3c))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v5.0.0...gkehub-v6.0.0) (2023-11-30)
 
 

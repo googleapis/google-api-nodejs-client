@@ -331,7 +331,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     location?: string | null;
     /**
-     * The resource name of the issue. Format: apps/{app\}/errorIssues/{issue\}
+     * Identifier. The resource name of the issue. Format: apps/{app\}/errorIssues/{issue\}
      */
     name?: string | null;
     /**

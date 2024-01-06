@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/workflowexecutions",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "workflowexecutions",
   "main": "build/index.js",
   "types": "build/index.d.ts",

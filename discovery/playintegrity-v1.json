@@ -138,7 +138,7 @@
       }
     }
   },
-  "revision": "20231123",
+  "revision": "20240103",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -315,28 +315,22 @@
               "MEETS_BASIC_INTEGRITY",
               "MEETS_DEVICE_INTEGRITY",
               "MEETS_STRONG_INTEGRITY",
-              "MEETS_VIRTUAL_INTEGRITY",
-              "MEETS_WEAK_INTEGRITY"
-            ],
-            "enumDeprecated": [
-              false,
-              false,
-              false,
-              false,
-              false,
-              true
+              "MEETS_VIRTUAL_INTEGRITY"
             ],
             "enumDescriptions": [
               "Play does not have sufficient information to evaluate device integrity",
               "App is running on a device that passes basic system integrity checks, but may not meet Android platform compatibility requirements and may not be approved to run Google Play services.",
               "App is running on GMS Android device with Google Play services.",
               "App is running on GMS Android device with Google Play services and has a strong guarantee of system integrity such as a hardware-backed keystore.",
-              "App is running on an Android emulator with Google Play services which meets core Android compatibility requirements.",
-              "Deprecated: this enum value will be removed. App is running on a device that passes only weak integrity checks (is a physical device)."
+              "App is running on an Android emulator with Google Play services which meets core Android compatibility requirements."
             ],
             "type": "string"
           },
           "type": "array"
+        },
+        "recentDeviceActivity": {
+          "$ref": "RecentDeviceActivity",
+          "description": "Details about the device activity of the device the app is running on."
         }
       },
       "type": "object"
@@ -368,6 +362,33 @@
             "Play Protect is on and warnings found.",
             "Play Protect is on and high severity issues found.",
             "Play Protect is turned off. Turn on Play Protect."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecentDeviceActivity": {
+      "description": "Recent device activity can help developers identify devices that have exhibited hyperactive attestation activity, which could be a sign of an attack or token farming.",
+      "id": "RecentDeviceActivity",
+      "properties": {
+        "deviceActivityLevel": {
+          "description": "Required. Indicates the activity level of the device.",
+          "enum": [
+            "DEVICE_ACTIVITY_LEVEL_UNSPECIFIED",
+            "UNEVALUATED",
+            "LEVEL_1",
+            "LEVEL_2",
+            "LEVEL_3",
+            "LEVEL_4"
+          ],
+          "enumDescriptions": [
+            "Device activity level has not been set.",
+            "Device activity level has not been evaluated.",
+            "Indicates the amount of used tokens. See the documentation for details.",
+            "Indicates the amount of used tokens. See the documentation for details.",
+            "Indicates the amount of used tokens. See the documentation for details.",
+            "Indicates the amount of used tokens. See the documentation for details."
           ],
           "type": "string"
         }

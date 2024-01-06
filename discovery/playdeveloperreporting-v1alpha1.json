@@ -941,7 +941,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240103",
   "rootUrl": "https://playdeveloperreporting.googleapis.com/",
   "schemas": {
     "GooglePlayDeveloperReportingV1alpha1Anomaly": {
@@ -1175,7 +1175,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the issue. Format: apps/{app}/errorIssues/{issue}",
+          "description": "Identifier. The resource name of the issue. Format: apps/{app}/errorIssues/{issue}",
           "type": "string"
         },
         "type": {

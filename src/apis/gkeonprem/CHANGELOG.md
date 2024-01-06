@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v6.0.0...gkeonprem-v6.1.0) (2024-01-03)
+
+
+### Features
+
+* **gkeonprem:** update the API ([6c9398e](https://github.com/googleapis/google-api-nodejs-client/commit/6c9398e54ec4e75eb22c58420c81b32880f2b365))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v5.0.0...gkeonprem-v6.0.0) (2023-11-30)
 
 

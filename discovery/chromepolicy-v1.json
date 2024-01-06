@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240103",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
@@ -1103,6 +1103,28 @@
           "description": "Output only. URI to related support article for this schema.",
           "readOnly": true,
           "type": "string"
+        },
+        "supportedPlatforms": {
+          "description": "Output only. List indicates that the policy will only apply to devices/users on these platforms.",
+          "items": {
+            "enum": [
+              "PLATFORM_UNSPECIFIED",
+              "CHROME_OS",
+              "CHROME_BROWSER",
+              "CHROME_BROWSER_FOR_ANDROID",
+              "CHROME_BROWSER_FOR_IOS"
+            ],
+            "enumDescriptions": [
+              "Unspecified platform.",
+              "ChromeOS.",
+              "Chrome Browser for OSX/Windows/Linux.",
+              "Chrome Browser for Android.",
+              "Chrome Browser for iOS."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "validTargetResources": {
           "description": "Output only. Information about applicable target resources for the policy.",

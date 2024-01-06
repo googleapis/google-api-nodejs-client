@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v1.0.5...sourcerepo-v1.0.6) (2024-01-03)
+
+
+### Bug Fixes
+
+* **sourcerepo:** update the API ([1965102](https://github.com/googleapis/google-api-nodejs-client/commit/19651026aed9d4a97452b390cbc45b0bc8f97fa9))
+
 ## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v1.0.4...sourcerepo-v1.0.5) (2023-10-11)
 
 

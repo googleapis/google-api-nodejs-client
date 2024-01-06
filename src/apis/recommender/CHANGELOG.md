@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v3.0.0...recommender-v3.1.0) (2024-01-03)
+
+
+### Features
+
+* **recommender:** update the API ([76b9501](https://github.com/googleapis/google-api-nodejs-client/commit/76b950132771df9ecd733ef8e535a910c8826cc3))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v2.0.1...recommender-v3.0.0) (2023-11-30)
 
 

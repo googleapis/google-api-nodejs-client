@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/gkehub",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "gkehub",
   "main": "build/index.js",
   "types": "build/index.d.ts",

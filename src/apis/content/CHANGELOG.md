@@ -1,5 +1,16 @@
 # Changelog
 
+## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v18.0.0...content-v19.0.0) (2024-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **content:** This release has breaking changes.
+
+### Features
+
+* **content:** update the API ([c0dd4c0](https://github.com/googleapis/google-api-nodejs-client/commit/c0dd4c0bc2398f077f3b9a00dcacffa2052f4f38))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v17.0.0...content-v18.0.0) (2023-11-30)
 
 
