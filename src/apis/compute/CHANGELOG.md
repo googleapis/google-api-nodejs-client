@@ -1,5 +1,29 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v6.1.0...compute-v7.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **compute:** This release has breaking changes.
+* This release has breaking changes.
+* **compute:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **compute:** This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([ffbf00b](https://github.com/googleapis/google-api-nodejs-client/commit/ffbf00b1c1dfa03616f3900be03014f20f04c65e))
+* **compute:** update the API ([ff34fa6](https://github.com/googleapis/google-api-nodejs-client/commit/ff34fa659d97eb880290823f5724514a546f29a7))
+* **compute:** update the API ([dcaa0c0](https://github.com/googleapis/google-api-nodejs-client/commit/dcaa0c0f6b15405ce8a9b23cf0aca20c82268240))
+* **compute:** update the API ([92abcb6](https://github.com/googleapis/google-api-nodejs-client/commit/92abcb604adb3960323db96d1d4aa02994e6ff17))
+* **compute:** update the API ([c0d7188](https://github.com/googleapis/google-api-nodejs-client/commit/c0d7188676f5989875202c038db3e53d50477413))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+* run the generator ([#3364](https://github.com/googleapis/google-api-nodejs-client/issues/3364)) ([8a012d1](https://github.com/googleapis/google-api-nodejs-client/commit/8a012d18c1dd5499a087b114eda0f2c22baef203))
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v6.0.0...compute-v6.1.0) (2024-01-03)
 
 

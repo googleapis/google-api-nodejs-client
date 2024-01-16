@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v3.1.0...securitycenter-v4.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+* **securitycenter:** update the API ([74c634a](https://github.com/googleapis/google-api-nodejs-client/commit/74c634a34ab01195b5e86f8034c977af13a9fa69))
+* **securitycenter:** update the API ([0795694](https://github.com/googleapis/google-api-nodejs-client/commit/07956947483b90b3d954c4f8309282f8a11c47f0))
+* **securitycenter:** update the API ([39b4fe5](https://github.com/googleapis/google-api-nodejs-client/commit/39b4fe528c3aa55d74c498b4bfaf54f6cec40c13))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v3.0.0...securitycenter-v3.1.0) (2024-01-03)
 
 

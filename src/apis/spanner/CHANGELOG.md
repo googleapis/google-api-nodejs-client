@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v4.0.1...spanner-v4.1.0) (2024-01-05)
+
+
+### Features
+
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+
+
+### Bug Fixes
+
+* **spanner:** update the API ([0e40d67](https://github.com/googleapis/google-api-nodejs-client/commit/0e40d674369b7cc93147e1f97186ca7063eeb770))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v4.0.0...spanner-v4.0.1) (2024-01-03)
 
 

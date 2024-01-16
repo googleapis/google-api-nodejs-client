@@ -1,5 +1,25 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v5.0.2...iap-v6.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **iap:** update the API ([c735eaf](https://github.com/googleapis/google-api-nodejs-client/commit/c735eaf4c6c5abd884b23669054f4fc304fd7696))
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **iap:** update the API ([ec596c1](https://github.com/googleapis/google-api-nodejs-client/commit/ec596c1b8719938469a31030108b321c8aeb09cc))
+* **iap:** update the API ([65c644e](https://github.com/googleapis/google-api-nodejs-client/commit/65c644e9dedde1b314a854dc39c1028b95921dc5))
+* **iap:** update the API ([972d221](https://github.com/googleapis/google-api-nodejs-client/commit/972d221b98ba0dc08d202198a03482742459d6d0))
+
 ## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v5.0.1...iap-v5.0.2) (2024-01-03)
 
 

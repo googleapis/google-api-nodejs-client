@@ -1,5 +1,20 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v12.1.0...healthcare-v13.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **healthcare:** update the API ([d34ee61](https://github.com/googleapis/google-api-nodejs-client/commit/d34ee618f97d95f61de528f9ada2100a0ba22643))
+* **healthcare:** update the API ([1abe817](https://github.com/googleapis/google-api-nodejs-client/commit/1abe81731e5dbce277e42d33ed1f55c740df11c7))
+* **healthcare:** update the API ([1b16ed7](https://github.com/googleapis/google-api-nodejs-client/commit/1b16ed773775db1d7f87900dcf823550a49225ea))
+* **healthcare:** update the API ([2640490](https://github.com/googleapis/google-api-nodejs-client/commit/264049006120c0d46acbdee8665b463e54b7d90b))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
 ## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v12.0.0...healthcare-v12.1.0) (2024-01-03)
 
 

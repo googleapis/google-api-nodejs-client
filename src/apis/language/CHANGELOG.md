@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/language-v1.0.4...language-v1.0.5) (2024-01-05)
+
+
+### Bug Fixes
+
+* **language:** update the API ([77252e1](https://github.com/googleapis/google-api-nodejs-client/commit/77252e1b9c209700260742a3884ff628457387f7))
+* **language:** update the API ([b9c3e49](https://github.com/googleapis/google-api-nodejs-client/commit/b9c3e4940a7b6d5b578a6496b54a41ec9ceb21d1))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/language-v1.0.3...language-v1.0.4) (2024-01-03)
 
 

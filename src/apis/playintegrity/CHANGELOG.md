@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v7.0.0...playintegrity-v8.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **playintegrity:** This release has breaking changes.
+
+### Features
+
+* **playintegrity:** update the API ([767af5f](https://github.com/googleapis/google-api-nodejs-client/commit/767af5f12e2f9e882df86428449d1a98e0e960a7))
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v6.0.0...playintegrity-v7.0.0) (2023-11-30)
 
 

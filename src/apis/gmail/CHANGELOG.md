@@ -1,5 +1,20 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v8.0.0...gmail-v9.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **gmail:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **gmail:** update the API ([c7698bd](https://github.com/googleapis/google-api-nodejs-client/commit/c7698bda1d9a8a034d92a63c27d9af74a416d94b))
+* **gmail:** update the API ([1fe47cf](https://github.com/googleapis/google-api-nodejs-client/commit/1fe47cf81e9656a15f085ad859b0968f0ae24569))
+* **gmail:** update the API ([e943c90](https://github.com/googleapis/google-api-nodejs-client/commit/e943c90dbba2603cafb29e8045ba8969f1d51505))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v7.0.0...gmail-v8.0.0) (2024-01-03)
 
 

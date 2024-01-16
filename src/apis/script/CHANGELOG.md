@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/script-v3.1.0...script-v3.2.0) (2024-01-05)
+
+
+### Features
+
+* **script:** update the API ([0520e5e](https://github.com/googleapis/google-api-nodejs-client/commit/0520e5efd59cf7fdfcd2c0ba68962c95f194178d))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/script-v3.0.4...script-v3.1.0) (2024-01-03)
 
 
