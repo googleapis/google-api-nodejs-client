@@ -1,5 +1,23 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v9.1.0...networkservices-v10.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **networkservices:** update the API ([076de17](https://github.com/googleapis/google-api-nodejs-client/commit/076de17ce5a6588459729c00d6f8fd2de91a9d0c))
+* **networkservices:** update the API ([fe7e04d](https://github.com/googleapis/google-api-nodejs-client/commit/fe7e04da776cfe880d3cc59119ba34770d4b8096))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([029d25c](https://github.com/googleapis/google-api-nodejs-client/commit/029d25c56efe992b5c7e69607d5a128794922599))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v9.0.0...networkservices-v9.1.0) (2024-01-03)
 
 

@@ -1,5 +1,24 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v4.1.0...retail-v5.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **retail:** update the API ([0aa095b](https://github.com/googleapis/google-api-nodejs-client/commit/0aa095b51a4ee7be3dde61b0a8653f526f3e73ea))
+* **retail:** update the API ([ba147af](https://github.com/googleapis/google-api-nodejs-client/commit/ba147af6e343bef545e5914b1aeff5a2bcdea5d3))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **retail:** update the API ([943be6c](https://github.com/googleapis/google-api-nodejs-client/commit/943be6c22ebbc9ba4e17f45bb2ba58e6193a126e))
+* **retail:** update the API ([a325f25](https://github.com/googleapis/google-api-nodejs-client/commit/a325f25c3f600d1dfaa2ee6e4d45e969a1d646c0))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v4.0.0...retail-v4.1.0) (2024-01-03)
 
 

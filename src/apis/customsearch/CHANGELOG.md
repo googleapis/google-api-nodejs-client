@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v1.0.5...customsearch-v1.1.0) (2024-01-05)
+
+
+### Features
+
+* **customsearch:** update the API ([1169e4c](https://github.com/googleapis/google-api-nodejs-client/commit/1169e4c6072c5838d6a746210367e094cf65e9d2))
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+
 ## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v1.0.4...customsearch-v1.0.5) (2023-10-11)
 
 

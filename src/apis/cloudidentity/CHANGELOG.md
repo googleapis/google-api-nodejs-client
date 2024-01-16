@@ -1,5 +1,18 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v12.0.5...cloudidentity-v12.1.0) (2024-01-05)
+
+
+### Features
+
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+
+
+### Bug Fixes
+
+* **cloudidentity:** update the API ([22610b3](https://github.com/googleapis/google-api-nodejs-client/commit/22610b3d15ec8f639ae77785d76e890be521c98f))
+* **cloudidentity:** update the API ([5155e11](https://github.com/googleapis/google-api-nodejs-client/commit/5155e11cd24367c79c81ec525fffe541c87690d7))
+
 ## [12.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v12.0.4...cloudidentity-v12.0.5) (2024-01-03)
 
 

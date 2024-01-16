@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v2.0.0...advisorynotifications-v3.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **advisorynotifications:** This release has breaking changes.
+
+### Features
+
+* **advisorynotifications:** update the API ([0f44091](https://github.com/googleapis/google-api-nodejs-client/commit/0f440919dd1046ca5d0ea86233513958eed59602))
+* **advisorynotifications:** update the API ([69862b5](https://github.com/googleapis/google-api-nodejs-client/commit/69862b5ad3bee47af15183dcfe04ea4079689cab))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v1.1.0...advisorynotifications-v2.0.0) (2024-01-03)
 
 

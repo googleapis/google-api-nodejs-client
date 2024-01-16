@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v7.4.0...dataflow-v7.5.0) (2024-01-05)
+
+
+### Features
+
+* **dataflow:** update the API ([9721cda](https://github.com/googleapis/google-api-nodejs-client/commit/9721cda955b70096a509f7d8984b317ef5ba1a1d))
+* **dataflow:** update the API ([2f7ff38](https://github.com/googleapis/google-api-nodejs-client/commit/2f7ff38cc99a315ad3bf7798f026ec9eb1790da8))
+* **dataflow:** update the API ([a16fa60](https://github.com/googleapis/google-api-nodejs-client/commit/a16fa6024f40c3f5437f1cad968098c8a23b3cf9))
+
 ## [7.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v7.3.0...dataflow-v7.4.0) (2024-01-03)
 
 

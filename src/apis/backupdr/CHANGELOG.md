@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v1.1.0...backupdr-v1.2.0) (2024-01-05)
+
+
+### Features
+
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+
+
+### Bug Fixes
+
+* **backupdr:** update the API ([19b0192](https://github.com/googleapis/google-api-nodejs-client/commit/19b019219b696491ea603a8557212b4eee5535c4))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v1.0.0...backupdr-v1.1.0) (2024-01-03)
 
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v11.6.0...serviceconsumermanagement-v12.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serviceconsumermanagement:** This release has breaking changes.
+
+### Features
+
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+* **serviceconsumermanagement:** update the API ([a68206a](https://github.com/googleapis/google-api-nodejs-client/commit/a68206a2112e645b0b5f521b38c2c068d7ba2375))
+* **serviceconsumermanagement:** update the API ([0552119](https://github.com/googleapis/google-api-nodejs-client/commit/05521190feb8bada97478dbbfbe617b3d2060080))
+
 ## [11.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v11.5.0...serviceconsumermanagement-v11.6.0) (2024-01-03)
 
 
