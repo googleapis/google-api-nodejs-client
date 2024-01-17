@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/prod_tt_sasportal",
-  "version": "12.1.0",
+  "version": "13.0.0",
   "description": "prod_tt_sasportal",
   "main": "build/index.js",
   "types": "build/index.d.ts",

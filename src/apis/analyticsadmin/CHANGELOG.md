@@ -1,5 +1,27 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v4.0.1...analyticsadmin-v5.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **analyticsadmin:** This release has breaking changes.
+
+### Features
+
+* **analyticsadmin:** update the API ([134dc22](https://github.com/googleapis/google-api-nodejs-client/commit/134dc220e7df7b27a6c0d37d2f5955c326bbb733))
+* **analyticsadmin:** update the API ([c212bcf](https://github.com/googleapis/google-api-nodejs-client/commit/c212bcf9355c926423e5dfb45d2f7f1f2e7c5dc0))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **analyticsadmin:** update the API ([b858170](https://github.com/googleapis/google-api-nodejs-client/commit/b858170642a882c05790c2cc4a4f98bf091f159a))
+* **analyticsadmin:** update the API ([4c62556](https://github.com/googleapis/google-api-nodejs-client/commit/4c6255647b4414f352df0c2336a233a171bba10d))
+* **analyticsadmin:** update the API ([31df609](https://github.com/googleapis/google-api-nodejs-client/commit/31df609d40c0363472ac96c97fd19f16c82671b0))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v4.0.0...analyticsadmin-v4.0.1) (2024-01-03)
 
 

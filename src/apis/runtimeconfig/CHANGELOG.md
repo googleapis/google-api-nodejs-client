@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/googleapis/google-api-nodejs-client/compare/runtimeconfig-v1.0.7...runtimeconfig-v1.0.8) (2024-01-05)
+
+
+### Bug Fixes
+
+* **runtimeconfig:** update the API ([0dfe961](https://github.com/googleapis/google-api-nodejs-client/commit/0dfe9610eb577576fd5a14aa676b449a13c8f4bc))
+
 ## [1.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/runtimeconfig-v1.0.6...runtimeconfig-v1.0.7) (2024-01-03)
 
 

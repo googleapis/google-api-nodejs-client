@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappcheck-v5.4.0...firebaseappcheck-v5.5.0) (2024-01-05)
+
+
+### Features
+
+* **firebaseappcheck:** update the API ([c8fb050](https://github.com/googleapis/google-api-nodejs-client/commit/c8fb050246b60f72597a9f55708b976daf1ae1e6))
+* **firebaseappcheck:** update the API ([53b090f](https://github.com/googleapis/google-api-nodejs-client/commit/53b090fa9cd814770613a746cc7fbd92efa7ae0a))
+
+
+### Bug Fixes
+
+* **firebaseappcheck:** update the API ([7edbc0d](https://github.com/googleapis/google-api-nodejs-client/commit/7edbc0d090d1373b9c80a64874c1ae6d13b4a226))
+
 ## [5.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappcheck-v5.3.1...firebaseappcheck-v5.4.0) (2024-01-03)
 
 

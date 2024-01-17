@@ -4,6 +4,42 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [131.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v130.0.0...googleapis-v131.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serviceconsumermanagement:** This release has breaking changes.
+* **playintegrity:** This release has breaking changes.
+
+### Features
+
+* **chromepolicy:** update the API ([8429e3c](https://github.com/googleapis/google-api-nodejs-client/commit/8429e3c9d69b2b2e02b4b5e4556f0b0b53a27663))
+* **chromeuxreport:** update the API ([6d52abb](https://github.com/googleapis/google-api-nodejs-client/commit/6d52abb90222775fa364da0903229c4b56d6c72e))
+* **customsearch:** update the API ([1169e4c](https://github.com/googleapis/google-api-nodejs-client/commit/1169e4c6072c5838d6a746210367e094cf65e9d2))
+* **dialogflow:** update the API ([4b1e073](https://github.com/googleapis/google-api-nodejs-client/commit/4b1e0734d9ae8775a64c0cf438cd3f657a2066b4))
+* **displayvideo:** update the API ([45b61b5](https://github.com/googleapis/google-api-nodejs-client/commit/45b61b5d20396610af050b54d84e7749467d5a30))
+* **oslogin:** update the API ([cfc90e7](https://github.com/googleapis/google-api-nodejs-client/commit/cfc90e7c9c9a3598ce397a40b6d5996b134bf1cf))
+* **playintegrity:** update the API ([767af5f](https://github.com/googleapis/google-api-nodejs-client/commit/767af5f12e2f9e882df86428449d1a98e0e960a7))
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+* **serviceconsumermanagement:** update the API ([a68206a](https://github.com/googleapis/google-api-nodejs-client/commit/a68206a2112e645b0b5f521b38c2c068d7ba2375))
+
+
+### Bug Fixes
+
+* **accesscontextmanager:** update the API ([845c716](https://github.com/googleapis/google-api-nodejs-client/commit/845c7168e95499c0142a5cf4c368cb6144729019))
+* **admin:** update the API ([4664d6b](https://github.com/googleapis/google-api-nodejs-client/commit/4664d6bb4c2fbf2751ae3e403359749fe960fc7a))
+* **backupdr:** update the API ([19b0192](https://github.com/googleapis/google-api-nodejs-client/commit/19b019219b696491ea603a8557212b4eee5535c4))
+* **calendar:** update the API ([0ca9bbc](https://github.com/googleapis/google-api-nodejs-client/commit/0ca9bbc4e4f841c163458e51952cc92d1363f578))
+* **cloudbuild:** update the API ([31158a2](https://github.com/googleapis/google-api-nodejs-client/commit/31158a226c1d47bedfd330c25d376a6d48f09b40))
+* **cloudidentity:** update the API ([22610b3](https://github.com/googleapis/google-api-nodejs-client/commit/22610b3d15ec8f639ae77785d76e890be521c98f))
+* **cloudprofiler:** update the API ([2c5cbc4](https://github.com/googleapis/google-api-nodejs-client/commit/2c5cbc4299ab26894388427dbcd837e48f05a43b))
+* **cloudtrace:** update the API ([2a811d5](https://github.com/googleapis/google-api-nodejs-client/commit/2a811d5fe82adc2795ce7015e5eeae258b11458d))
+* **iap:** update the API ([ec596c1](https://github.com/googleapis/google-api-nodejs-client/commit/ec596c1b8719938469a31030108b321c8aeb09cc))
+* **playdeveloperreporting:** update the API ([7181840](https://github.com/googleapis/google-api-nodejs-client/commit/7181840daf9fd92d06a70b7cb64e45ce9b39671c))
+* **servicenetworking:** update the API ([50c7dbd](https://github.com/googleapis/google-api-nodejs-client/commit/50c7dbd3231feefdabe77ff8a25f4d66b9b92a3a))
+* **spanner:** update the API ([0e40d67](https://github.com/googleapis/google-api-nodejs-client/commit/0e40d674369b7cc93147e1f97186ca7063eeb770))
+
 ## [130.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v129.0.0...googleapis-v130.0.0) (2024-01-03)
 
 

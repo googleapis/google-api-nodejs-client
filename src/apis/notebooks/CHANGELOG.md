@@ -1,5 +1,24 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v4.1.0...notebooks-v5.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **notebooks:** This release has breaking changes.
+
+### Features
+
+* **notebooks:** update the API ([a08d104](https://github.com/googleapis/google-api-nodejs-client/commit/a08d10480099cf544c56c0c4223dd94dfc5632f7))
+* **notebooks:** update the API ([54a6e56](https://github.com/googleapis/google-api-nodejs-client/commit/54a6e5684cf00913854db1a2ba237c44ae301d82))
+* **notebooks:** update the API ([5dedc3d](https://github.com/googleapis/google-api-nodejs-client/commit/5dedc3dc48977d795e1e3b88425b1e87723c4008))
+* **notebooks:** update the API ([e76ae49](https://github.com/googleapis/google-api-nodejs-client/commit/e76ae4980915ac036257e676dc5f595decd232b8))
+* regenerate index files ([dc214c6](https://github.com/googleapis/google-api-nodejs-client/commit/dc214c6fc788530f9723840985ef901e725b4330))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+* run the generator ([#3362](https://github.com/googleapis/google-api-nodejs-client/issues/3362)) ([24846e8](https://github.com/googleapis/google-api-nodejs-client/commit/24846e81aa8f487b8d30b4d1b31c945e9968ec42))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v4.0.0...notebooks-v4.1.0) (2024-01-03)
 
 

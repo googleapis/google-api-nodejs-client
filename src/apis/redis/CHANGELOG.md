@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v4.1.0...redis-v5.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **redis:** update the API ([fd4636b](https://github.com/googleapis/google-api-nodejs-client/commit/fd4636b1c992ccd668708b55821fa1696231b9b2))
+* **redis:** update the API ([c893e66](https://github.com/googleapis/google-api-nodejs-client/commit/c893e6640a1672de58feca85b385836aca67db17))
+* **redis:** update the API ([4902a2d](https://github.com/googleapis/google-api-nodejs-client/commit/4902a2dacfc02f0df0488a464b989fd1d5faacfa))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v4.0.0...redis-v4.1.0) (2024-01-03)
 
 

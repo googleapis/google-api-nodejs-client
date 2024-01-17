@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/vpcaccess-v1.4.0...vpcaccess-v1.5.0) (2024-01-05)
+
+
+### Features
+
+* **vpcaccess:** update the API ([8db5275](https://github.com/googleapis/google-api-nodejs-client/commit/8db52757e6cc1842f451581340d9fa0aa554fea3))
+
+
+### Bug Fixes
+
+* **vpcaccess:** update the API ([a16c068](https://github.com/googleapis/google-api-nodejs-client/commit/a16c06850bd93116aad03e30d749aec1041fc1f8))
+
 ## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/vpcaccess-v1.3.0...vpcaccess-v1.4.0) (2024-01-03)
 
 

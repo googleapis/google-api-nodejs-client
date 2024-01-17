@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/videointelligence",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "videointelligence",
   "main": "build/index.js",
   "types": "build/index.d.ts",

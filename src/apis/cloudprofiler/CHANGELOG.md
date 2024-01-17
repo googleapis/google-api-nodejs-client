@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudprofiler-v1.1.0...cloudprofiler-v1.2.0) (2024-01-05)
+
+
+### Features
+
+* **cloudprofiler:** update the API ([2933bff](https://github.com/googleapis/google-api-nodejs-client/commit/2933bff415c872da86b92b6c128a968530c6bfac))
+* regenerate index files ([4246fd1](https://github.com/googleapis/google-api-nodejs-client/commit/4246fd1c6484dac0d636d48a2dfcbfcbb2668702))
+
+
+### Bug Fixes
+
+* **cloudprofiler:** update the API ([2c5cbc4](https://github.com/googleapis/google-api-nodejs-client/commit/2c5cbc4299ab26894388427dbcd837e48f05a43b))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudprofiler-v1.0.3...cloudprofiler-v1.1.0) (2024-01-03)
 
 

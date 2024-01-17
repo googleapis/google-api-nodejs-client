@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v3.1.0...recommender-v4.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **recommender:** update the API ([76b9501](https://github.com/googleapis/google-api-nodejs-client/commit/76b950132771df9ecd733ef8e535a910c8826cc3))
+* run the generator ([#3362](https://github.com/googleapis/google-api-nodejs-client/issues/3362)) ([24846e8](https://github.com/googleapis/google-api-nodejs-client/commit/24846e81aa8f487b8d30b4d1b31c945e9968ec42))
+
+
+### Bug Fixes
+
+* **recommender:** update the API ([e4f8194](https://github.com/googleapis/google-api-nodejs-client/commit/e4f8194acfb8af6d0bfd30df8a991500795f6422))
+* **recommender:** update the API ([3e76efd](https://github.com/googleapis/google-api-nodejs-client/commit/3e76efde7d92203a555870908a10da54f5021df6))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v3.0.0...recommender-v3.1.0) (2024-01-03)
 
 

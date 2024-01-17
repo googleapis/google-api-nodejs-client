@@ -1,5 +1,24 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflowexecutions-v6.0.1...workflowexecutions-v7.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3371](https://github.com/googleapis/google-api-nodejs-client/issues/3371)) ([d3fd980](https://github.com/googleapis/google-api-nodejs-client/commit/d3fd980907c318048c7ee471c38033cf529a3c04))
+* **workflowexecutions:** update the API ([158153d](https://github.com/googleapis/google-api-nodejs-client/commit/158153d06d7321d31da03107febb3837ecb40444))
+* **workflowexecutions:** update the API ([66d36c2](https://github.com/googleapis/google-api-nodejs-client/commit/66d36c2adae0dcab4daae5b9fcbe5b16f8009165))
+
+
+### Bug Fixes
+
+* **workflowexecutions:** update the API ([6553987](https://github.com/googleapis/google-api-nodejs-client/commit/6553987f65508971cd403629752688603faf6b90))
+* **workflowexecutions:** update the API ([122d68b](https://github.com/googleapis/google-api-nodejs-client/commit/122d68b6f94067a4a52afd0a40814ef94253638f))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workflowexecutions-v6.0.0...workflowexecutions-v6.0.1) (2024-01-03)
 
 

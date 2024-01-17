@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/servicedirectory-v3.0.1...servicedirectory-v3.0.2) (2024-01-05)
+
+
+### Bug Fixes
+
+* **servicedirectory:** update the API ([ddc06a2](https://github.com/googleapis/google-api-nodejs-client/commit/ddc06a219b2d2b225fc8219d10030d0f605d791e))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicedirectory-v3.0.0...servicedirectory-v3.0.1) (2024-01-03)
 
 
