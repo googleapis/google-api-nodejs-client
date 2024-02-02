@@ -214,7 +214,7 @@
                           "type": "string"
                         },
                         "queryModel": {
-                          "description": "Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.",
+                          "description": "Specifies the autocomplete data model. This overrides any model specified in the Configuration > Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.",
                           "location": "query",
                           "type": "string"
                         },
@@ -227,6 +227,194 @@
                       "path": "v1beta/{+dataStore}:completeQuery",
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "create": {
+                      "description": "Creates a DataStore. DataStore is for storing Documents. To serve these documents for Search, or Recommendation use case, an Engine needs to be created separately.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "createAdvancedSiteSearch": {
+                          "description": "A boolean flag indicating whether user want to directly create an advanced data store for site search. If the data store is not configured as site search (GENERIC vertical and PUBLIC_WEBSITE content_config), this flag will be ignored.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "dataStoreId": {
+                          "description": "Required. The ID to use for the DataStore, which will become the final component of the DataStore's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}/collections/{collection}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/dataStores",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a DataStore.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}",
+                      "httpMethod": "DELETE",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to delete the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the DataStore to delete does not exist, a NOT_FOUND error is returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a DataStore.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "getSiteSearchEngine": {
+                      "description": "Gets the SiteSearchEngine.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.getSiteSearchEngine",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of SiteSearchEngine, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaSiteSearchEngine"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all the DataStores associated with the project.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Maximum number of DataStores to return. If unspecified, defaults to 10. The maximum allowed value is 50. Values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT is returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token ListDataStoresResponse.next_page_token, received from a previous DataStoreService.ListDataStores call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to DataStoreService.ListDataStores must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/collections/{collection_id}`. If the caller does not have permission to list DataStores under this location, regardless of whether or not this data store exists, a PERMISSION_DENIED error is returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/dataStores",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaListDataStoresResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a DataStore",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided DataStore to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -691,7 +879,7 @@
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.",
+                              "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * Conversation.name If not set or empty, all supported fields are updated.",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -1094,7 +1282,7 @@
                           ],
                           "parameters": {
                             "servingConfig": {
-                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your Recommend requests.",
+                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -1143,6 +1331,156 @@
                       }
                     },
                     "siteSearchEngine": {
+                      "methods": {
+                        "batchVerifyTargetSites": {
+                          "description": "Verify target sites' ownership and validity. This API sends all the target sites under site search engine for verification.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:batchVerifyTargetSites",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.batchVerifyTargetSites",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent resource shared by all TargetSites being verified. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}:batchVerifyTargetSites",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaBatchVerifyTargetSitesRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "disableAdvancedSiteSearch": {
+                          "description": "Downgrade from advanced site search to basic site search.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:disableAdvancedSiteSearch",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.disableAdvancedSiteSearch",
+                          "parameterOrder": [
+                            "siteSearchEngine"
+                          ],
+                          "parameters": {
+                            "siteSearchEngine": {
+                              "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/{project}/locations/{location}/dataStores/{data_store_id}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+siteSearchEngine}:disableAdvancedSiteSearch",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "enableAdvancedSiteSearch": {
+                          "description": "Upgrade from basic site search to advanced site search.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:enableAdvancedSiteSearch",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.enableAdvancedSiteSearch",
+                          "parameterOrder": [
+                            "siteSearchEngine"
+                          ],
+                          "parameters": {
+                            "siteSearchEngine": {
+                              "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/{project}/locations/{location}/dataStores/{data_store_id}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+siteSearchEngine}:enableAdvancedSiteSearch",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "fetchDomainVerificationStatus": {
+                          "description": "Returns list of target sites with its domain verification status. This method can only be called under data store with BASIC_SITE_SEARCH state at the moment.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:fetchDomainVerificationStatus",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.fetchDomainVerificationStatus",
+                          "parameterOrder": [
+                            "siteSearchEngine"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `FetchDomainVerificationStatus` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchDomainVerificationStatus` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "siteSearchEngine": {
+                              "description": "Required. The site search engine resource under which we fetch all the domain verification status. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+siteSearchEngine}:fetchDomainVerificationStatus",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaFetchDomainVerificationStatusResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "recrawlUris": {
+                          "description": "Request on-demand recrawl for a list of URIs.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine:recrawlUris",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.recrawlUris",
+                          "parameterOrder": [
+                            "siteSearchEngine"
+                          ],
+                          "parameters": {
+                            "siteSearchEngine": {
+                              "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+siteSearchEngine}:recrawlUris",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaRecrawlUrisRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      },
                       "resources": {
                         "operations": {
                           "methods": {
@@ -1215,6 +1553,178 @@
                           }
                         },
                         "targetSites": {
+                          "methods": {
+                            "batchCreate": {
+                              "description": "Creates TargetSite in a batch.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites:batchCreate",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.batchCreate",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The parent resource shared by all TargetSites being created. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. The parent field in the CreateBookRequest messages must either be empty or match this field.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+parent}/targetSites:batchCreate",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSitesRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "create": {
+                              "description": "Creates a TargetSite.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. Parent resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+parent}/targetSites",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Deletes a TargetSite.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                              "httpMethod": "DELETE",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Full resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+name}",
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "get": {
+                              "description": "Gets a TargetSite.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Full resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+name}",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Gets a list of TargetSites.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "pageSize": {
+                                  "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "A page token, received from a previous `ListTargetSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTargetSites` must match the call that provided the page token.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent site search engine resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. If the caller does not have permission to list TargetSites under this site search engine, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+parent}/targetSites",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaListTargetSitesResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "patch": {
+                              "description": "Updates a TargetSite.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                              "httpMethod": "PATCH",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.patch",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Output only. The fully qualified resource name of the target site. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}` The `target_site_id` is system-generated.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+name}",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          },
                           "resources": {
                             "operations": {
                               "methods": {
@@ -1287,6 +1797,66 @@
                               }
                             }
                           }
+                        }
+                      }
+                    },
+                    "suggestionDenyListEntries": {
+                      "methods": {
+                        "import": {
+                          "description": "Imports all SuggestionDenyListEntry for a DataStore.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/suggestionDenyListEntries:import",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.suggestionDenyListEntries.import",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/*/locations/*/collections/*/dataStores/*.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/suggestionDenyListEntries:import",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "purge": {
+                          "description": "Permanently deletes all SuggestionDenyListEntry for a DataStore.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/suggestionDenyListEntries:purge",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.suggestionDenyListEntries.purge",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/*/locations/*/collections/*/dataStores/*.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/suggestionDenyListEntries:purge",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
                         }
                       }
                     },
@@ -1394,6 +1964,166 @@
                   }
                 },
                 "engines": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a Engine.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.engines.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "engineId": {
+                          "description": "Required. The ID to use for the Engine, which will become the final component of the Engine's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}/collections/{collection}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/engines",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Engine.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}",
+                      "httpMethod": "DELETE",
+                      "id": "discoveryengine.projects.locations.collections.engines.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Full resource name of Engine, such as `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`. If the caller does not have permission to delete the Engine, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Engine to delete does not exist, a NOT_FOUND error is returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Engine.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.engines.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Full resource name of Engine, such as `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all the Engines associated with the project.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.engines.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter by solution type. For example: solution_type=SOLUTION_TYPE_SEARCH",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Not supported.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Not supported.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}/collections/{collection_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/engines",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaListEnginesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates an Engine",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.collections.engines.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided Engine to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
                   "resources": {
                     "conversations": {
                       "methods": {
@@ -1566,7 +2296,7 @@
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.",
+                              "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * Conversation.name If not set or empty, all supported fields are updated.",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -1667,7 +2397,7 @@
                           ],
                           "parameters": {
                             "servingConfig": {
-                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your Recommend requests.",
+                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -1818,7 +2548,7 @@
                       "type": "string"
                     },
                     "queryModel": {
-                      "description": "Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.",
+                      "description": "Specifies the autocomplete data model. This overrides any model specified in the Configuration > Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1831,6 +2561,194 @@
                   "path": "v1beta/{+dataStore}:completeQuery",
                   "response": {
                     "$ref": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a DataStore. DataStore is for storing Documents. To serve these documents for Search, or Recommendation use case, an Engine needs to be created separately.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.dataStores.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "createAdvancedSiteSearch": {
+                      "description": "A boolean flag indicating whether user want to directly create an advanced data store for site search. If the data store is not configured as site search (GENERIC vertical and PUBLIC_WEBSITE content_config), this flag will be ignored.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "dataStoreId": {
+                      "description": "Required. The ID to use for the DataStore, which will become the final component of the DataStore's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}/collections/{collection}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/dataStores",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a DataStore.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}",
+                  "httpMethod": "DELETE",
+                  "id": "discoveryengine.projects.locations.dataStores.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to delete the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the DataStore to delete does not exist, a NOT_FOUND error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a DataStore.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.dataStores.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getSiteSearchEngine": {
+                  "description": "Gets the SiteSearchEngine.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.dataStores.getSiteSearchEngine",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of SiteSearchEngine, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaSiteSearchEngine"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the DataStores associated with the project.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.dataStores.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of DataStores to return. If unspecified, defaults to 10. The maximum allowed value is 50. Values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT is returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token ListDataStoresResponse.next_page_token, received from a previous DataStoreService.ListDataStores call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to DataStoreService.ListDataStores must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/collections/{collection_id}`. If the caller does not have permission to list DataStores under this location, regardless of whether or not this data store exists, a PERMISSION_DENIED error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/dataStores",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaListDataStoresResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a DataStore",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}",
+                  "httpMethod": "PATCH",
+                  "id": "discoveryengine.projects.locations.dataStores.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Indicates which fields in the provided DataStore to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2295,7 +3213,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.",
+                          "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * Conversation.name If not set or empty, all supported fields are updated.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -2626,7 +3544,7 @@
                       ],
                       "parameters": {
                         "servingConfig": {
-                          "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your Recommend requests.",
+                          "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -2667,6 +3585,330 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "siteSearchEngine": {
+                  "methods": {
+                    "disableAdvancedSiteSearch": {
+                      "description": "Downgrade from advanced site search to basic site search.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine:disableAdvancedSiteSearch",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.disableAdvancedSiteSearch",
+                      "parameterOrder": [
+                        "siteSearchEngine"
+                      ],
+                      "parameters": {
+                        "siteSearchEngine": {
+                          "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/{project}/locations/{location}/dataStores/{data_store_id}/siteSearchEngine`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+siteSearchEngine}:disableAdvancedSiteSearch",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "enableAdvancedSiteSearch": {
+                      "description": "Upgrade from basic site search to advanced site search.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine:enableAdvancedSiteSearch",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.enableAdvancedSiteSearch",
+                      "parameterOrder": [
+                        "siteSearchEngine"
+                      ],
+                      "parameters": {
+                        "siteSearchEngine": {
+                          "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/{project}/locations/{location}/dataStores/{data_store_id}/siteSearchEngine`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+siteSearchEngine}:enableAdvancedSiteSearch",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "recrawlUris": {
+                      "description": "Request on-demand recrawl for a list of URIs.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine:recrawlUris",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.recrawlUris",
+                      "parameterOrder": [
+                        "siteSearchEngine"
+                      ],
+                      "parameters": {
+                        "siteSearchEngine": {
+                          "description": "Required. Full resource name of the SiteSearchEngine, such as `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+siteSearchEngine}:recrawlUris",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaRecrawlUrisRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "targetSites": {
+                      "methods": {
+                        "batchCreate": {
+                          "description": "Creates TargetSite in a batch.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites:batchCreate",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.batchCreate",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent resource shared by all TargetSites being created. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. The parent field in the CreateBookRequest messages must either be empty or match this field.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/targetSites:batchCreate",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSitesRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "create": {
+                          "description": "Creates a TargetSite.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Parent resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/targetSites",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a TargetSite.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Full resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a TargetSite.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Full resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Gets a list of TargetSites.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `ListTargetSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTargetSites` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent site search engine resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`. If the caller does not have permission to list TargetSites under this site search engine, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/targetSites",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaListTargetSitesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates a TargetSite.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/{targetSitesId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Output only. The fully qualified resource name of the target site. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}` The `target_site_id` is system-generated.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "suggestionDenyListEntries": {
+                  "methods": {
+                    "import": {
+                      "description": "Imports all SuggestionDenyListEntry for a DataStore.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/suggestionDenyListEntries:import",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.suggestionDenyListEntries.import",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/*/locations/*/collections/*/dataStores/*.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/suggestionDenyListEntries:import",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "purge": {
+                      "description": "Permanently deletes all SuggestionDenyListEntry for a DataStore.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/suggestionDenyListEntries:purge",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.suggestionDenyListEntries.purge",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/*/locations/*/collections/*/dataStores/*.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/suggestionDenyListEntries:purge",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -2922,7 +4164,7 @@
       }
     }
   },
-  "revision": "20231218",
+  "revision": "20240131",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3071,9 +4313,200 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1BatchCreateTargetSitesResponse": {
+      "description": "Response message for SiteSearchEngineService.BatchCreateTargetSites method.",
+      "id": "GoogleCloudDiscoveryengineV1BatchCreateTargetSitesResponse",
+      "properties": {
+        "targetSites": {
+          "description": "TargetSites created.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1TargetSite"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1CreateDataStoreMetadata": {
+      "description": "Metadata related to the progress of the DataStoreService.CreateDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1CreateDataStoreMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1CreateEngineMetadata": {
+      "description": "Metadata related to the progress of the EngineService.CreateEngine operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1CreateEngineMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1CreateSchemaMetadata": {
       "description": "Metadata for Create Schema LRO.",
       "id": "GoogleCloudDiscoveryengineV1CreateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1CreateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.CreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1CreateTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataStore": {
+      "description": "DataStore captures global settings and configs at the DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1DataStore",
+      "properties": {
+        "contentConfig": {
+          "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
+          "enum": [
+            "CONTENT_CONFIG_UNSPECIFIED",
+            "NO_CONTENT",
+            "CONTENT_REQUIRED",
+            "PUBLIC_WEBSITE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Only contains documents without any Document.content.",
+            "Only contains documents with Document.content.",
+            "The data store is used for public website search."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp the DataStore was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultSchemaId": {
+          "description": "Output only. The id of the default Schema asscociated to this data store.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The data store display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "industryVertical": {
+          "description": "Immutable. The industry vertical that the data store registers.",
+          "enum": [
+            "INDUSTRY_VERTICAL_UNSPECIFIED",
+            "GENERIC",
+            "MEDIA"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "The generic vertical for documents that are not specific to any industry vertical.",
+            "The media industry vertical."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "solutionTypes": {
+          "description": "The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.",
+          "items": {
+            "enum": [
+              "SOLUTION_TYPE_UNSPECIFIED",
+              "SOLUTION_TYPE_RECOMMENDATION",
+              "SOLUTION_TYPE_SEARCH",
+              "SOLUTION_TYPE_CHAT"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Used for Recommendations AI.",
+              "Used for Discovery Search.",
+              "Used for use cases related to the Generative AI agent."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DeleteDataStoreMetadata": {
+      "description": "Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1DeleteDataStoreMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DeleteEngineMetadata": {
+      "description": "Metadata related to the progress of the EngineService.DeleteEngine operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1DeleteEngineMetadata",
       "properties": {
         "createTime": {
           "description": "Operation create time.",
@@ -3100,6 +4533,246 @@
         "updateTime": {
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DeleteTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DeleteTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1DeleteTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchResponse": {
+      "description": "Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchResponse": {
+      "description": "Response message for SiteSearchEngineService.EnableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1Engine": {
+      "description": "Metadata that describes the training and serving parameters of an Engine.",
+      "id": "GoogleCloudDiscoveryengineV1Engine",
+      "properties": {
+        "chatEngineConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineChatEngineConfig",
+          "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
+        },
+        "chatEngineMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineChatEngineMetadata",
+          "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
+          "readOnly": true
+        },
+        "commonConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineCommonConfig",
+          "description": "Common config spec that specifies the metadata of the engine."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp the Recommendation Engine was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataStoreIds": {
+          "description": "The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
+          "type": "string"
+        },
+        "industryVertical": {
+          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore liniked to the engine.",
+          "enum": [
+            "INDUSTRY_VERTICAL_UNSPECIFIED",
+            "GENERIC",
+            "MEDIA"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "The generic vertical for documents that are not specific to any industry vertical.",
+            "The media industry vertical."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "searchEngineConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig",
+          "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
+        },
+        "solutionType": {
+          "description": "Required. The solutions of the engine.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Discovery Search.",
+            "Used for use cases related to the Generative AI agent."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp the Recommendation Engine was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineChatEngineConfig": {
+      "description": "Configurations for a Chat Engine.",
+      "id": "GoogleCloudDiscoveryengineV1EngineChatEngineConfig",
+      "properties": {
+        "agentCreationConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineChatEngineConfigAgentCreationConfig",
+          "description": "The configurationt generate the Dialogflow agent that is associated to this Engine. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation."
+        },
+        "dialogflowAgentToLink": {
+          "description": "The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Please use ChatEngineMetadata.dialogflow_agent for actual agent association after Engine is created.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineChatEngineConfigAgentCreationConfig": {
+      "description": "Configurations for generating a Dialogflow agent. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.",
+      "id": "GoogleCloudDiscoveryengineV1EngineChatEngineConfigAgentCreationConfig",
+      "properties": {
+        "business": {
+          "description": "Name of the company, organization or other entity that the agent represents. Used for knowledge connector LLM prompt and for knowledge search.",
+          "type": "string"
+        },
+        "defaultLanguageCode": {
+          "description": "Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Agent location for Agent creation, supported values: global/us/eu. If not provided, us Engine will create Agent using us-central-1 by default; eu Engine will create Agent using eu-west-1 by default.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineChatEngineMetadata": {
+      "description": "Additional information of a Chat Engine. Fields in this message are output only.",
+      "id": "GoogleCloudDiscoveryengineV1EngineChatEngineMetadata",
+      "properties": {
+        "dialogflowAgent": {
+          "description": "The resource name of a Dialogflow agent, that this Chat Engine refers to. Format: `projects//locations//agents/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineCommonConfig": {
+      "description": "Common configurations for an Engine.",
+      "id": "GoogleCloudDiscoveryengineV1EngineCommonConfig",
+      "properties": {
+        "companyName": {
+          "description": "Immutable. The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig": {
+      "description": "Configurations for a Search Engine.",
+      "id": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig",
+      "properties": {
+        "searchAddOns": {
+          "description": "The add-on that this search engine enables.",
+          "items": {
+            "enum": [
+              "SEARCH_ADD_ON_UNSPECIFIED",
+              "SEARCH_ADD_ON_LLM"
+            ],
+            "enumDescriptions": [
+              "Default value when the enum is unspecified. This is invalid to use.",
+              "Large language model add-on."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "searchTier": {
+          "description": "The search feature tier of this engine. Different tiers might have different pricing. To learn more, please check the pricing documentation. Defaults to SearchTier.SEARCH_TIER_STANDARD if not specified.",
+          "enum": [
+            "SEARCH_TIER_UNSPECIFIED",
+            "SEARCH_TIER_STANDARD",
+            "SEARCH_TIER_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Default value when the enum is unspecified. This is invalid to use.",
+            "Standard tier.",
+            "Enterprise tier."
+          ],
           "type": "string"
         }
       },
@@ -3156,6 +4829,47 @@
       "properties": {
         "gcsPrefix": {
           "description": "Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ImportSuggestionDenyListEntriesMetadata": {
+      "description": "Metadata related to the progress of the ImportSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1ImportSuggestionDenyListEntriesMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ImportSuggestionDenyListEntriesResponse": {
+      "description": "Response message for CompletionService.ImportSuggestionDenyListEntries method.",
+      "id": "GoogleCloudDiscoveryengineV1ImportSuggestionDenyListEntriesResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "failedEntriesCount": {
+          "description": "Count of deny list entries that failed to be imported.",
+          "format": "int64",
+          "type": "string"
+        },
+        "importedEntriesCount": {
+          "description": "Count of deny list entries successfully imported.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -3262,6 +4976,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1PurgeSuggestionDenyListEntriesMetadata": {
+      "description": "Metadata related to the progress of the PurgeSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1PurgeSuggestionDenyListEntriesMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1PurgeSuggestionDenyListEntriesResponse": {
+      "description": "Response message for CompletionService.PurgeSuggestionDenyListEntries method.",
+      "id": "GoogleCloudDiscoveryengineV1PurgeSuggestionDenyListEntriesResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "purgeCount": {
+          "description": "Number of suggestion deny list entries purged.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1Schema": {
       "description": "Defines the structure and layout of a type of document data.",
       "id": "GoogleCloudDiscoveryengineV1Schema",
@@ -3285,6 +5035,130 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1SiteVerificationInfo": {
+      "description": "Verification information for target sites in advanced site search.",
+      "id": "GoogleCloudDiscoveryengineV1SiteVerificationInfo",
+      "properties": {
+        "siteVerificationState": {
+          "description": "Site verification state indicating the ownership and validity.",
+          "enum": [
+            "SITE_VERIFICATION_STATE_UNSPECIFIED",
+            "VERIFIED",
+            "UNVERIFIED",
+            "EXEMPTED"
+          ],
+          "enumDescriptions": [
+            "Defaults to VERIFIED.",
+            "Site ownership verified.",
+            "Site ownership pending verification or verification failed.",
+            "Site exempt from verification, e.g., a public website that opens to all."
+          ],
+          "type": "string"
+        },
+        "verifyTime": {
+          "description": "Latest site verification time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1TargetSite": {
+      "description": "A target site for the SiteSearchEngine.",
+      "id": "GoogleCloudDiscoveryengineV1TargetSite",
+      "properties": {
+        "exactMatch": {
+          "description": "Input only. If set to false, a uri_pattern is generated to include all pages whose address contains the provided_uri_pattern. If set to true, an uri_pattern is generated to try to be an exact match of the provided_uri_pattern or just the specific page if the provided_uri_pattern is a specific one. provided_uri_pattern is always normalized to generate the URI pattern to be used by the search engine.",
+          "type": "boolean"
+        },
+        "failureReason": {
+          "$ref": "GoogleCloudDiscoveryengineV1TargetSiteFailureReason",
+          "description": "Output only. Failure reason.",
+          "readOnly": true
+        },
+        "generatedUriPattern": {
+          "description": "Output only. This is system-generated based on the provided_uri_pattern.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "indexingStatus": {
+          "description": "Output only. Indexing status.",
+          "enum": [
+            "INDEXING_STATUS_UNSPECIFIED",
+            "PENDING",
+            "FAILED",
+            "SUCCEEDED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Defaults to SUCCEEDED.",
+            "The target site is in the update queue and will be picked up by indexing pipeline.",
+            "The target site fails to be indexed.",
+            "The target site has been indexed.",
+            "The previously indexed target site has been marked to be deleted. This is a transitioning state which will resulted in either: 1. target site deleted if unindexing is successful; 2. state reverts to SUCCEEDED if the unindexing fails."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The fully qualified resource name of the target site. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}` The `target_site_id` is system-generated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "providedUriPattern": {
+          "description": "Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.",
+          "type": "string"
+        },
+        "siteVerificationInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1SiteVerificationInfo",
+          "description": "Output only. Site ownership and validity verification status.",
+          "readOnly": true
+        },
+        "type": {
+          "description": "The type of the target site, e.g., whether the site is to be included or excluded.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INCLUDE",
+            "EXCLUDE"
+          ],
+          "enumDescriptions": [
+            "This value is unused. In this case, server behavior defaults to Type.INCLUDE.",
+            "Include the target site.",
+            "Exclude the target site."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The target site's last updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1TargetSiteFailureReason": {
+      "description": "Site search indexing failure reasons.",
+      "id": "GoogleCloudDiscoveryengineV1TargetSiteFailureReason",
+      "properties": {
+        "quotaFailure": {
+          "$ref": "GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure",
+          "description": "Failed due to insufficient quota."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure": {
+      "id": "GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure",
+      "properties": {
+        "totalRequiredQuota": {
+          "description": "This number is an estimation on how much total quota this project needs to successfully complete indexing.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1UpdateSchemaMetadata": {
       "description": "Metadata for UpdateSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1UpdateSchemaMetadata",
@@ -3302,8 +5176,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1UpdateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.UpdateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1UpdateTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata": {
-      "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata",
       "properties": {
         "createTime": {
@@ -3544,6 +5435,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig": {
+      "description": "The digital parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata",
@@ -3571,14 +5468,44 @@
       "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
       "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig",
       "properties": {
+        "defaultParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig",
+          "description": "Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing."
+        },
         "name": {
-          "description": "Output only. The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
-          "readOnly": true,
+          "description": "The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
           "type": "string"
         },
         "ocrConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
-          "description": "The OCR config. Currently it only applies to PDFs."
+          "deprecated": true,
+          "description": "[DEPRECATED] This field is deprecated. To specify OCR parsing config, please specify `ocr_parsing_config` in `default_parsing_config` field The OCR config. Currently it only applies to PDFs."
+        },
+        "parsingConfigOverrides": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig"
+          },
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig": {
+      "description": "Related configurations applied to a specific type of document parser.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig",
+      "properties": {
+        "digitalParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig",
+          "description": "Configurations applied to digital parser."
+        },
+        "layoutParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig",
+          "description": "Configurations applied to layout parser."
+        },
+        "ocrParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaOcrParsingConfig",
+          "description": "Configurations applied to OCR parser. Currently it only applies to PDFs."
         }
       },
       "type": "object"
@@ -3630,7 +5557,7 @@
           "type": "string"
         },
         "dataStoreIds": {
-          "description": "The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary intializations.",
+          "description": "The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.",
           "items": {
             "type": "string"
           },
@@ -3709,7 +5636,7 @@
           "description": "The configurationt generate the Dialogflow agent that is associated to this Engine. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation."
         },
         "dialogflowAgentToLink": {
-          "description": "The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Please use chat_engine_metadata.dialogflow_agent for actual agent association after Engine is created.",
+          "description": "The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Please use ChatEngineMetadata.dialogflow_agent for actual agent association after Engine is created.",
           "type": "string"
         }
       },
@@ -3725,6 +5652,10 @@
         },
         "defaultLanguageCode": {
           "description": "Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Agent location for Agent creation, supported values: global/us/eu. If not provided, us Engine will create Agent using us-central-1 by default; eu Engine will create Agent using eu-west-1 by default.",
           "type": "string"
         },
         "timeZone": {
@@ -3750,7 +5681,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaEngineCommonConfig",
       "properties": {
         "companyName": {
-          "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "description": "Immutable. The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
         }
       },
@@ -3761,7 +5692,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
       "properties": {
         "optimizationObjective": {
-          "description": "The optimization objective e.g. `cvr`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `ctr`, `cvr`. If not specified, we choose default based on engine type. Default depends on type of recommendation: `recommended-for-you` => `ctr` `others-you-may-like` => `ctr`",
+          "description": "The optimization objective. e.g., `cvr`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `ctr`, `cvr`. If not specified, we choose default based on engine type. Default depends on type of recommendation: `recommended-for-you` => `ctr` `others-you-may-like` => `ctr`",
           "type": "string"
         },
         "optimizationObjectiveConfig": {
@@ -3783,7 +5714,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The type of engine e.g. `recommended-for-you`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `recommended-for-you`, `others-you-may-like`, `more-like-this`, `most-popular-items`.",
+          "description": "Required. The type of engine. e.g., `recommended-for-you`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `recommended-for-you`, `others-you-may-like`, `more-like-this`, `most-popular-items`.",
           "type": "string"
         }
       },
@@ -3971,7 +5902,8 @@
             "NUMBER",
             "INTEGER",
             "BOOLEAN",
-            "GEOLOCATION"
+            "GEOLOCATION",
+            "DATETIME"
           ],
           "enumDescriptions": [
             "Field type is unspecified.",
@@ -3980,7 +5912,8 @@
             "Field value type is Number.",
             "Field value type is Integer.",
             "Field value type is Boolean.",
-            "Field value type is Geolocation."
+            "Field value type is Geolocation.",
+            "Field value type is Datetime."
           ],
           "readOnly": true,
           "type": "string"
@@ -4105,6 +6038,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesMetadata": {
+      "description": "Metadata related to the progress of the ImportSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesResponse": {
+      "description": "Response message for CompletionService.ImportSuggestionDenyListEntries method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "failedEntriesCount": {
+          "description": "Count of deny list entries that failed to be imported.",
+          "format": "int64",
+          "type": "string"
+        },
+        "importedEntriesCount": {
+          "description": "Count of deny list entries successfully imported.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaImportUserEventsMetadata": {
       "description": "Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaImportUserEventsMetadata",
@@ -4160,14 +6134,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig": {
+      "description": "The layout parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaOcrConfig": {
+      "deprecated": true,
       "description": "The OCR options for parsing documents.",
       "id": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
       "properties": {
         "enabled": {
-          "description": "Required. If OCR is enabled or not. OCR must be enabled for other OcrConfig options to apply.",
+          "description": "Required. If OCR is enabled or not. OCR must be enabled for other OcrConfig options to apply. We will only perform OCR on the first 80 pages of the PDF files.",
           "type": "boolean"
         },
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaOcrParsingConfig": {
+      "description": "The OCR parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaOcrParsingConfig",
+      "properties": {
         "enhancedDocumentElements": {
           "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
           "items": {
@@ -4224,6 +6223,42 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaPurgeSuggestionDenyListEntriesMetadata": {
+      "description": "Metadata related to the progress of the PurgeSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaPurgeSuggestionDenyListEntriesMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaPurgeSuggestionDenyListEntriesResponse": {
+      "description": "Response message for CompletionService.PurgeSuggestionDenyListEntries method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaPurgeSuggestionDenyListEntriesResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "purgeCount": {
+          "description": "Number of suggestion deny list entries purged.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4351,7 +6386,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaRecrawlUrisResponseFailureInfoFailureReason": {
-      "description": "Details about why crawling failed for a particular CorpusType, e.g. DESKTOP and MOBILE crawling may fail for different reasons.",
+      "description": "Details about why crawling failed for a particular CorpusType, e.g., DESKTOP and MOBILE crawling may fail for different reasons.",
       "id": "GoogleCloudDiscoveryengineV1alphaRecrawlUrisResponseFailureInfoFailureReason",
       "properties": {
         "corpusType": {
@@ -4422,7 +6457,7 @@
             "Defaults to VERIFIED.",
             "Site ownership verified.",
             "Site ownership pending verification or verification failed.",
-            "Site exempt from verification, e.g. a public website that opens to all."
+            "Site exempt from verification, e.g., a public website that opens to all."
           ],
           "type": "string"
         },
@@ -4486,7 +6521,7 @@
           "readOnly": true
         },
         "type": {
-          "description": "The type of the target site, e.g. whether the site is to be included or excluded.",
+          "description": "The type of the target site, e.g., whether the site is to be included or excluded.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "INCLUDE",
@@ -4521,7 +6556,13 @@
     },
     "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure": {
       "id": "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure",
-      "properties": {},
+      "properties": {
+        "totalRequiredQuota": {
+          "description": "This number is an estimation on how much total quota this project needs to successfully complete indexing.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaTrainCustomModelMetadata": {
@@ -4612,6 +6653,57 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSitesRequest": {
+      "description": "Request message for SiteSearchEngineService.BatchCreateTargetSites method.",
+      "id": "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSitesRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The request message specifying the resources to create. A maximum of 20 TargetSites can be created in a batch.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaCreateTargetSiteRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSitesResponse": {
+      "description": "Response message for SiteSearchEngineService.BatchCreateTargetSites method.",
+      "id": "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSitesResponse",
+      "properties": {
+        "targetSites": {
+          "description": "TargetSites created.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaBatchVerifyTargetSitesRequest": {
+      "description": "Request message for SiteSearchEngineService.BatchVerifyTargetSites method.",
+      "id": "GoogleCloudDiscoveryengineV1betaBatchVerifyTargetSitesRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaBigQuerySource": {
@@ -4851,6 +6943,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaCreateDataStoreMetadata": {
+      "description": "Metadata related to the progress of the DataStoreService.CreateDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaCreateDataStoreMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCreateEngineMetadata": {
+      "description": "Metadata related to the progress of the EngineService.CreateEngine operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaCreateEngineMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaCreateSchemaMetadata": {
       "description": "Metadata for Create Schema LRO.",
       "id": "GoogleCloudDiscoveryengineV1betaCreateSchemaMetadata",
@@ -4864,6 +6990,38 @@
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCreateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.CreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaCreateTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCreateTargetSiteRequest": {
+      "description": "Request message for SiteSearchEngineService.CreateTargetSite method.",
+      "id": "GoogleCloudDiscoveryengineV1betaCreateTargetSiteRequest",
+      "properties": {
+        "parent": {
+          "description": "Required. Parent resource name of TargetSite, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.",
+          "type": "string"
+        },
+        "targetSite": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite",
+          "description": "Required. The TargetSite to create."
         }
       },
       "type": "object"
@@ -4890,6 +7048,115 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDataStore": {
+      "description": "DataStore captures global settings and configs at the DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1betaDataStore",
+      "properties": {
+        "contentConfig": {
+          "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
+          "enum": [
+            "CONTENT_CONFIG_UNSPECIFIED",
+            "NO_CONTENT",
+            "CONTENT_REQUIRED",
+            "PUBLIC_WEBSITE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Only contains documents without any Document.content.",
+            "Only contains documents with Document.content.",
+            "The data store is used for public website search."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp the DataStore was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultSchemaId": {
+          "description": "Output only. The id of the default Schema asscociated to this data store.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The data store display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "industryVertical": {
+          "description": "Immutable. The industry vertical that the data store registers.",
+          "enum": [
+            "INDUSTRY_VERTICAL_UNSPECIFIED",
+            "GENERIC",
+            "MEDIA"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "The generic vertical for documents that are not specific to any industry vertical.",
+            "The media industry vertical."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "solutionTypes": {
+          "description": "The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.",
+          "items": {
+            "enum": [
+              "SOLUTION_TYPE_UNSPECIFIED",
+              "SOLUTION_TYPE_RECOMMENDATION",
+              "SOLUTION_TYPE_SEARCH",
+              "SOLUTION_TYPE_CHAT"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Used for Recommendations AI.",
+              "Used for Discovery Search.",
+              "Used for use cases related to the Generative AI agent."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDeleteDataStoreMetadata": {
+      "description": "Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaDeleteDataStoreMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDeleteEngineMetadata": {
+      "description": "Metadata related to the progress of the EngineService.DeleteEngine operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaDeleteEngineMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDeleteSchemaMetadata": {
       "description": "Metadata for DeleteSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1betaDeleteSchemaMetadata",
@@ -4905,6 +7172,52 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDeleteTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DeleteTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaDeleteTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchRequest": {
+      "description": "Request message for SiteSearchEngineService.DisableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchResponse": {
+      "description": "Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaDocument": {
@@ -4969,7 +7282,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "The URI of the content. Only Cloud Storage URIs (e.g. `gs://bucket-name/path/to/file`) are supported. The maximum file size is 100 MB.",
+          "description": "The URI of the content. Only Cloud Storage URIs (e.g. `gs://bucket-name/path/to/file`) are supported. The maximum file size is 2.5 MB for text-based formats, 100 MB for other formats.",
           "type": "string"
         }
       },
@@ -5017,6 +7330,235 @@
             "type": "number"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchRequest": {
+      "description": "Request message for SiteSearchEngineService.EnableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchResponse": {
+      "description": "Response message for SiteSearchEngineService.EnableAdvancedSiteSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngine": {
+      "description": "Metadata that describes the training and serving parameters of an Engine.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngine",
+      "properties": {
+        "chatEngineConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig",
+          "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
+        },
+        "chatEngineMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata",
+          "description": "Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.",
+          "readOnly": true
+        },
+        "commonConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaEngineCommonConfig",
+          "description": "Common config spec that specifies the metadata of the engine."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp the Recommendation Engine was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataStoreIds": {
+          "description": "The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
+          "type": "string"
+        },
+        "industryVertical": {
+          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore liniked to the engine.",
+          "enum": [
+            "INDUSTRY_VERTICAL_UNSPECIFIED",
+            "GENERIC",
+            "MEDIA"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "The generic vertical for documents that are not specific to any industry vertical.",
+            "The media industry vertical."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "searchEngineConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig",
+          "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
+        },
+        "solutionType": {
+          "description": "Required. The solutions of the engine.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Discovery Search.",
+            "Used for use cases related to the Generative AI agent."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp the Recommendation Engine was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig": {
+      "description": "Configurations for a Chat Engine.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig",
+      "properties": {
+        "agentCreationConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfigAgentCreationConfig",
+          "description": "The configurationt generate the Dialogflow agent that is associated to this Engine. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation."
+        },
+        "dialogflowAgentToLink": {
+          "description": "The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Please use ChatEngineMetadata.dialogflow_agent for actual agent association after Engine is created.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfigAgentCreationConfig": {
+      "description": "Configurations for generating a Dialogflow agent. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfigAgentCreationConfig",
+      "properties": {
+        "business": {
+          "description": "Name of the company, organization or other entity that the agent represents. Used for knowledge connector LLM prompt and for knowledge search.",
+          "type": "string"
+        },
+        "defaultLanguageCode": {
+          "description": "Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Agent location for Agent creation, supported values: global/us/eu. If not provided, us Engine will create Agent using us-central-1 by default; eu Engine will create Agent using eu-west-1 by default.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata": {
+      "description": "Additional information of a Chat Engine. Fields in this message are output only.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata",
+      "properties": {
+        "dialogflowAgent": {
+          "description": "The resource name of a Dialogflow agent, that this Chat Engine refers to. Format: `projects//locations//agents/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineCommonConfig": {
+      "description": "Common configurations for an Engine.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineCommonConfig",
+      "properties": {
+        "companyName": {
+          "description": "Immutable. The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig": {
+      "description": "Configurations for a Search Engine.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig",
+      "properties": {
+        "searchAddOns": {
+          "description": "The add-on that this search engine enables.",
+          "items": {
+            "enum": [
+              "SEARCH_ADD_ON_UNSPECIFIED",
+              "SEARCH_ADD_ON_LLM"
+            ],
+            "enumDescriptions": [
+              "Default value when the enum is unspecified. This is invalid to use.",
+              "Large language model add-on."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "searchTier": {
+          "description": "The search feature tier of this engine. Different tiers might have different pricing. To learn more, please check the pricing documentation. Defaults to SearchTier.SEARCH_TIER_STANDARD if not specified.",
+          "enum": [
+            "SEARCH_TIER_UNSPECIFIED",
+            "SEARCH_TIER_STANDARD",
+            "SEARCH_TIER_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Default value when the enum is unspecified. This is invalid to use.",
+            "Standard tier.",
+            "Enterprise tier."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaFetchDomainVerificationStatusResponse": {
+      "description": "Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.",
+      "id": "GoogleCloudDiscoveryengineV1betaFetchDomainVerificationStatusResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "targetSites": {
+          "description": "List of TargetSites containing the site verification status.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of items matching the request. This will always be populated in the response.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5149,6 +7691,76 @@
       "properties": {
         "gcsPrefix": {
           "description": "Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesMetadata": {
+      "description": "Metadata related to the progress of the ImportSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesRequest": {
+      "description": "Request message for CompletionService.ImportSuggestionDenyListEntries method.",
+      "id": "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesRequest",
+      "properties": {
+        "gcsSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaGcsSource",
+          "description": "Cloud Storage location for the input content. Only 1 file can be specified that contains all entries to import. Supported values `gcs_source.schema` for autocomplete suggestion deny list entry imports: * `suggestion_deny_list` (default): One JSON [SuggestionDenyListEntry] per line."
+        },
+        "inlineSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesRequestInlineSource",
+          "description": "The Inline source for the input content for suggestion deny list entries."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesRequestInlineSource": {
+      "description": "The inline source for SuggestionDenyListEntry.",
+      "id": "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesRequestInlineSource",
+      "properties": {
+        "entries": {
+          "description": "Required. A list of all denylist entries to import. Max of 1000 items.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSuggestionDenyListEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesResponse": {
+      "description": "Response message for CompletionService.ImportSuggestionDenyListEntries method.",
+      "id": "GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "failedEntriesCount": {
+          "description": "Count of deny list entries that failed to be imported.",
+          "format": "int64",
+          "type": "string"
+        },
+        "importedEntriesCount": {
+          "description": "Count of deny list entries successfully imported.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -5291,6 +7903,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaListDataStoresResponse": {
+      "description": "Response message for DataStoreService.ListDataStores method.",
+      "id": "GoogleCloudDiscoveryengineV1betaListDataStoresResponse",
+      "properties": {
+        "dataStores": {
+          "description": "All the customer's DataStores.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaDataStore"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as ListDataStoresRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaListDocumentsResponse": {
       "description": "Response message for DocumentService.ListDocuments method.",
       "id": "GoogleCloudDiscoveryengineV1betaListDocumentsResponse",
@@ -5304,6 +7934,24 @@
         },
         "nextPageToken": {
           "description": "A token that can be sent as ListDocumentsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaListEnginesResponse": {
+      "description": "Response message for EngineService.ListEngines method.",
+      "id": "GoogleCloudDiscoveryengineV1betaListEnginesResponse",
+      "properties": {
+        "engines": {
+          "description": "All the customer's Engines.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Not supported.",
           "type": "string"
         }
       },
@@ -5323,6 +7971,29 @@
             "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaListTargetSitesResponse": {
+      "description": "Response message for SiteSearchEngineService.ListTargetSites method.",
+      "id": "GoogleCloudDiscoveryengineV1betaListTargetSitesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "targetSites": {
+          "description": "List of TargetSites.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of items matching the request. This will always be populated in the response.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5453,6 +8124,48 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesMetadata": {
+      "description": "Metadata related to the progress of the PurgeSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesRequest": {
+      "description": "Request message for CompletionService.PurgeSuggestionDenyListEntries method.",
+      "id": "GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesResponse": {
+      "description": "Response message for CompletionService.PurgeSuggestionDenyListEntries method.",
+      "id": "GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "purgeCount": {
+          "description": "Number of suggestion deny list entries purged.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaRecommendRequest": {
       "description": "Request message for Recommend method.",
       "id": "GoogleCloudDiscoveryengineV1betaRecommendRequest",
@@ -5538,6 +8251,20 @@
           },
           "description": "Additional Document metadata / annotations. Possible values: * `score`: Recommendation score in double value. Is set if `returnScore` is set to true in RecommendRequest.params.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaRecrawlUrisRequest": {
+      "description": "Request message for SiteSearchEngineService.RecrawlUris method.",
+      "id": "GoogleCloudDiscoveryengineV1betaRecrawlUrisRequest",
+      "properties": {
+        "uris": {
+          "description": "Required. List of URIs to crawl. At most 10K URIs are supported, otherwise an INVALID_ARGUMENT error is thrown. Each URI should match at least one TargetSite in `site_search_engine`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5657,7 +8384,7 @@
         },
         "embeddingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpec",
-          "description": "Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.embedding_spec.embedding_vectors.vector and the document embedding that is provided in SearchRequest.embedding_spec.embedding_vectors.field_path. If SearchRequest.embedding_spec.embedding_vectors.field_path is not provided, it will use ServingConfig.embedding_config.field_paths."
+          "description": "Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embedding that is provided in SearchRequest.EmbeddingSpec.EmbeddingVector.field_path. If SearchRequest.EmbeddingSpec.EmbeddingVector.field_path is not provided, it will use ServingConfig.EmbeddingConfig.field_path."
         },
         "facetSpecs": {
           "description": "Facet specifications for faceted search. If empty, no facets are returned. A maximum of 100 values are allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.",
@@ -5791,7 +8518,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecExtractiveContentSpec",
       "properties": {
         "maxExtractiveAnswerCount": {
-          "description": "The maximum number of extractive answers returned in each search result. An extractive answer is a verbatim answer extracted from the original document, which provides a precise and contextually relevant answer to the search query. If the number of matching answers is less than the `max_extractive_answer_count`, return all of the answers. Otherwise, return the `max_extractive_answer_count`. At most one answer is returned for each SearchResult.",
+          "description": "The maximum number of extractive answers returned in each search result. An extractive answer is a verbatim answer extracted from the original document, which provides a precise and contextually relevant answer to the search query. If the number of matching answers is less than the `max_extractive_answer_count`, return all of the answers. Otherwise, return the `max_extractive_answer_count`. At most five answers are returned for each SearchResult.",
           "format": "int32",
           "type": "integer"
         },
@@ -5887,7 +8614,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec",
       "properties": {
         "version": {
-          "description": "The string format of the model version. e.g. stable, preview, etc.",
+          "description": "The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English.",
           "type": "string"
         }
       },
@@ -6359,7 +9086,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "GCS or HTTP uri for the document.",
+          "description": "Cloud Storage or HTTP uri for the document.",
           "type": "string"
         }
       },
@@ -6404,6 +9131,166 @@
         },
         "summary": {
           "description": "Summary text with no citation information.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSiteSearchEngine": {
+      "description": "SiteSearchEngine captures DataStore level site search persisting configurations. It is a singleton value per data store.",
+      "id": "GoogleCloudDiscoveryengineV1betaSiteSearchEngine",
+      "properties": {
+        "name": {
+          "description": "The fully qualified resource name of the site search engine. Format: `projects/*/locations/*/dataStores/*/siteSearchEngine`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSiteVerificationInfo": {
+      "description": "Verification information for target sites in advanced site search.",
+      "id": "GoogleCloudDiscoveryengineV1betaSiteVerificationInfo",
+      "properties": {
+        "siteVerificationState": {
+          "description": "Site verification state indicating the ownership and validity.",
+          "enum": [
+            "SITE_VERIFICATION_STATE_UNSPECIFIED",
+            "VERIFIED",
+            "UNVERIFIED",
+            "EXEMPTED"
+          ],
+          "enumDescriptions": [
+            "Defaults to VERIFIED.",
+            "Site ownership verified.",
+            "Site ownership pending verification or verification failed.",
+            "Site exempt from verification, e.g., a public website that opens to all."
+          ],
+          "type": "string"
+        },
+        "verifyTime": {
+          "description": "Latest site verification time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSuggestionDenyListEntry": {
+      "description": "Suggestion deny list entry identifying the phrase to block from suggestions and the applied operation for the phrase.",
+      "id": "GoogleCloudDiscoveryengineV1betaSuggestionDenyListEntry",
+      "properties": {
+        "blockPhrase": {
+          "description": "Required. Phrase to block from suggestions served. Can be maximum 125 characters.",
+          "type": "string"
+        },
+        "matchOperator": {
+          "description": "Required. The match operator to apply for this phrase. Whether to block the exact phrase, or block any suggestions containing this phrase.",
+          "enum": [
+            "MATCH_OPERATOR_UNSPECIFIED",
+            "EXACT_MATCH",
+            "CONTAINS"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used",
+            "If the suggestion is an exact match to the block_phrase, then block it.",
+            "If the suggestion contains the block_phrase, then block it."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTargetSite": {
+      "description": "A target site for the SiteSearchEngine.",
+      "id": "GoogleCloudDiscoveryengineV1betaTargetSite",
+      "properties": {
+        "exactMatch": {
+          "description": "Input only. If set to false, a uri_pattern is generated to include all pages whose address contains the provided_uri_pattern. If set to true, an uri_pattern is generated to try to be an exact match of the provided_uri_pattern or just the specific page if the provided_uri_pattern is a specific one. provided_uri_pattern is always normalized to generate the URI pattern to be used by the search engine.",
+          "type": "boolean"
+        },
+        "failureReason": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaTargetSiteFailureReason",
+          "description": "Output only. Failure reason.",
+          "readOnly": true
+        },
+        "generatedUriPattern": {
+          "description": "Output only. This is system-generated based on the provided_uri_pattern.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "indexingStatus": {
+          "description": "Output only. Indexing status.",
+          "enum": [
+            "INDEXING_STATUS_UNSPECIFIED",
+            "PENDING",
+            "FAILED",
+            "SUCCEEDED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Defaults to SUCCEEDED.",
+            "The target site is in the update queue and will be picked up by indexing pipeline.",
+            "The target site fails to be indexed.",
+            "The target site has been indexed.",
+            "The previously indexed target site has been marked to be deleted. This is a transitioning state which will resulted in either: 1. target site deleted if unindexing is successful; 2. state reverts to SUCCEEDED if the unindexing fails."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The fully qualified resource name of the target site. `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}` The `target_site_id` is system-generated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "providedUriPattern": {
+          "description": "Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.",
+          "type": "string"
+        },
+        "siteVerificationInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSiteVerificationInfo",
+          "description": "Output only. Site ownership and validity verification status.",
+          "readOnly": true
+        },
+        "type": {
+          "description": "The type of the target site, e.g., whether the site is to be included or excluded.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INCLUDE",
+            "EXCLUDE"
+          ],
+          "enumDescriptions": [
+            "This value is unused. In this case, server behavior defaults to Type.INCLUDE.",
+            "Include the target site.",
+            "Exclude the target site."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The target site's last updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTargetSiteFailureReason": {
+      "description": "Site search indexing failure reasons.",
+      "id": "GoogleCloudDiscoveryengineV1betaTargetSiteFailureReason",
+      "properties": {
+        "quotaFailure": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure",
+          "description": "Failed due to insufficient quota."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure": {
+      "id": "GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure",
+      "properties": {
+        "totalRequiredQuota": {
+          "description": "This number is an estimation on how much total quota this project needs to successfully complete indexing.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -6476,6 +9363,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaUpdateTargetSiteMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.UpdateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaUpdateTargetSiteMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaUserEvent": {
       "description": "UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with customers' website.",
       "id": "GoogleCloudDiscoveryengineV1betaUserEvent",
@@ -6516,7 +9420,7 @@
           "type": "string"
         },
         "filter": {
-          "description": "The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendationService.RecommendRequest, this field may be populated directly from RecommendationService.RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendRequest, this field may be populated directly from RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         },
         "mediaInfo": {
