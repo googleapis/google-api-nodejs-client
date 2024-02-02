@@ -1070,9 +1070,17 @@ export namespace retail_v2beta {
      */
     ignoredFacetValues?: Schema$GoogleCloudRetailV2betaCatalogAttributeFacetConfigIgnoredFacetValues[];
     /**
+     * Use this field only if you want to merge a facet key into another facet key.
+     */
+    mergedFacet?: Schema$GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacet;
+    /**
      * Each instance replaces a list of facet values by a merged facet value. If a facet value is not in any list, then it will stay the same. To avoid conflicts, only paths of length 1 are accepted. In other words, if "dark_blue" merged into "BLUE", then the latter can't merge into "blues" because this would create a path of length 2. The maximum number of instances of MergedFacetValue per CatalogAttribute is 100. This feature is available only for textual custom attributes.
      */
     mergedFacetValues?: Schema$GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue[];
+    /**
+     * Set this field only if you want to rerank based on facet values engaged by the user for the current key. This option is only possible for custom facetable textual keys.
+     */
+    rerankConfig?: Schema$GoogleCloudRetailV2betaCatalogAttributeFacetConfigRerankConfig;
   }
   /**
    * Facet values to ignore on facets during the specified time range for the given SearchResponse.Facet.key attribute.
@@ -1092,6 +1100,19 @@ export namespace retail_v2beta {
     values?: string[] | null;
   }
   /**
+   * The current facet key (i.e. attribute config) maps into the merged_facet_key. A facet key can have at most one child. The current facet key and the merged facet key need both to be textual custom attributes or both numerical custom attributes (same type).
+   */
+  export interface Schema$GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacet {
+    /**
+     * The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.
+     */
+    mergedFacetKey?: string | null;
+    /**
+     * Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.
+     */
+    mergedFacetValues?: Schema$GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue[];
+  }
+  /**
    * Replaces a set of textual facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute. This feature is available only for textual custom attributes.
    */
   export interface Schema$GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue {
@@ -1103,6 +1124,19 @@ export namespace retail_v2beta {
      * All the facet values that are replaces by the same merged_value that follows. The maximum number of values per MergedFacetValue is 25. Each value can have up to 128 characters.
      */
     values?: string[] | null;
+  }
+  /**
+   * Options to rerank based on facet values engaged by the user for the current key. That key needs to be a custom textual key and facetable. To use this control, you also need to pass all the facet keys engaged by the user in the request using the field [SearchRequest.FacetSpec]. In particular, if you don't pass the facet keys engaged that you want to rerank on, this control won't be effective. Moreover, to obtain better results, the facet values that you want to rerank on should be close to English (ideally made of words, underscores, and spaces).
+   */
+  export interface Schema$GoogleCloudRetailV2betaCatalogAttributeFacetConfigRerankConfig {
+    /**
+     * If empty, rerank on all facet values for the current key. Otherwise, will rerank on the facet values from this list only.
+     */
+    facetValues?: string[] | null;
+    /**
+     * If set to true, then we also rerank the dynamic facets based on the facet values engaged by the user for the current attribute key during serving.
+     */
+    rerankFacet?: boolean | null;
   }
   /**
    * The color information of a Product.
@@ -1379,6 +1413,36 @@ export namespace retail_v2beta {
     originalServingConfig?: string | null;
   }
   /**
+   * Request message for the `ExportAnalyticsMetrics` method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaExportAnalyticsMetricsRequest {
+    /**
+     * A filtering expression to specify restrictions on returned metrics. The expression is a sequence of terms. Each term applies a restriction to the returned metrics. Use this expression to restrict results to a specific time range. Currently we expect only one types of fields: * `timestamp`: This can be specified twice, once with a less than operator and once with a greater than operator. The `timestamp` restriction should result in one, contiguous, valid, `timestamp` range. Some examples of valid filters expressions: * Example 1: `timestamp \> "2012-04-23T18:25:43.511Z" timestamp < "2012-04-23T18:30:43.511Z"` * Example 2: `timestamp \> "2012-04-23T18:25:43.511Z"`
+     */
+    filter?: string | null;
+    /**
+     * Required. The output location of the data.
+     */
+    outputConfig?: Schema$GoogleCloudRetailV2betaOutputConfig;
+  }
+  /**
+   * Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
+   */
+  export interface Schema$GoogleCloudRetailV2betaExportAnalyticsMetricsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * This field is never set.
+     */
+    errorsConfig?: Schema$GoogleCloudRetailV2betaExportErrorsConfig;
+    /**
+     * Output result indicating where the data were exported to.
+     */
+    outputResult?: Schema$GoogleCloudRetailV2betaOutputResult;
+  }
+  /**
    * Configuration of destination for Export related errors.
    */
   export interface Schema$GoogleCloudRetailV2betaExportErrorsConfig {
@@ -1588,7 +1652,7 @@ export namespace retail_v2beta {
      */
     requestId?: string | null;
     /**
-     * Indicates which fields in the provided imported `products` to update. If not set, all fields are updated.
+     * Indicates which fields in the provided imported `products` to update. If not set, all fields are updated. If provided, only the existing product fields are updated. Missing products will not be created.
      */
     updateMask?: string | null;
   }
@@ -1944,6 +2008,45 @@ export namespace retail_v2beta {
      * Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.
      */
     servingConfigIds?: string[] | null;
+  }
+  /**
+   * The output configuration setting.
+   */
+  export interface Schema$GoogleCloudRetailV2betaOutputConfig {
+    /**
+     * The BigQuery location where the output is to be written to.
+     */
+    bigqueryDestination?: Schema$GoogleCloudRetailV2betaOutputConfigBigQueryDestination;
+    /**
+     * The Google Cloud Storage location where the output is to be written to.
+     */
+    gcsDestination?: Schema$GoogleCloudRetailV2betaOutputConfigGcsDestination;
+  }
+  /**
+   * The BigQuery output destination configuration.
+   */
+  export interface Schema$GoogleCloudRetailV2betaOutputConfigBigQueryDestination {
+    /**
+     * Required. The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * Required. The prefix of exported BigQuery tables.
+     */
+    tableIdPrefix?: string | null;
+    /**
+     * Required. Describes the table type. The following values are supported: * `table`: A BigQuery native table. * `view`: A virtual table defined by a SQL query.
+     */
+    tableType?: string | null;
+  }
+  /**
+   * The Google Cloud Storage output destination configuration.
+   */
+  export interface Schema$GoogleCloudRetailV2betaOutputConfigGcsDestination {
+    /**
+     * Required. The output uri prefix for saving output data to json files. Some mapping examples are as follows: output_uri_prefix sample output(assuming the object is foo.json) ======================== ============================================= gs://bucket/ gs://bucket/foo.json gs://bucket/folder/ gs://bucket/folder/foo.json gs://bucket/folder/item_ gs://bucket/folder/item_foo.json
+     */
+    outputUriPrefix?: string | null;
   }
   /**
    * Output result that stores the information about where the exported data is stored.
@@ -3856,6 +3959,100 @@ export namespace retail_v2beta {
     }
 
     /**
+     * Exports analytics metrics. `Operation.response` is of type `ExportAnalyticsMetricsResponse`. `Operation.metadata` is of type `ExportMetadata`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportAnalyticsMetrics(
+      params?: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportAnalyticsMetrics(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportAnalyticsMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta/{+catalog}:exportAnalyticsMetrics'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Gets an AttributesConfig.
      *
      * @param params - Parameters for request
@@ -4645,6 +4842,18 @@ export namespace retail_v2beta {
      * Required field. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     visitorId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of the parent catalog. Expected format: `projects/x/locations/x/catalogs/x`
+     */
+    catalog?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2betaExportAnalyticsMetricsRequest;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Getattributesconfig
     extends StandardParameters {

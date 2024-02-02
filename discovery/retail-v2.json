@@ -2059,7 +2059,7 @@
       }
     }
   },
-  "revision": "20231214",
+  "revision": "20240129",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2540,12 +2540,20 @@
           },
           "type": "array"
         },
+        "mergedFacet": {
+          "$ref": "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacet",
+          "description": "Use this field only if you want to merge a facet key into another facet key."
+        },
         "mergedFacetValues": {
           "description": "Each instance replaces a list of facet values by a merged facet value. If a facet value is not in any list, then it will stay the same. To avoid conflicts, only paths of length 1 are accepted. In other words, if \"dark_blue\" merged into \"BLUE\", then the latter can't merge into \"blues\" because this would create a path of length 2. The maximum number of instances of MergedFacetValue per CatalogAttribute is 100. This feature is available only for textual custom attributes.",
           "items": {
             "$ref": "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue"
           },
           "type": "array"
+        },
+        "rerankConfig": {
+          "$ref": "GoogleCloudRetailV2CatalogAttributeFacetConfigRerankConfig",
+          "description": "Set this field only if you want to rerank based on facet values engaged by the user for the current key. This option is only possible for custom facetable textual keys."
         }
       },
       "type": "object"
@@ -2574,6 +2582,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacet": {
+      "description": "The current facet key (i.e. attribute config) maps into the merged_facet_key. A facet key can have at most one child. The current facet key and the merged facet key need both to be textual custom attributes or both numerical custom attributes (same type).",
+      "id": "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacet",
+      "properties": {
+        "mergedFacetKey": {
+          "description": "The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.",
+          "type": "string"
+        },
+        "mergedFacetValues": {
+          "deprecated": true,
+          "description": "Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue": {
       "description": "Replaces a set of textual facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute. This feature is available only for textual custom attributes.",
       "id": "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue",
@@ -2588,6 +2615,24 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2CatalogAttributeFacetConfigRerankConfig": {
+      "description": "Options to rerank based on facet values engaged by the user for the current key. That key needs to be a custom textual key and facetable. To use this control, you also need to pass all the facet keys engaged by the user in the request using the field [SearchRequest.FacetSpec]. In particular, if you don't pass the facet keys engaged that you want to rerank on, this control won't be effective. Moreover, to obtain better results, the facet values that you want to rerank on should be close to English (ideally made of words, underscores, and spaces).",
+      "id": "GoogleCloudRetailV2CatalogAttributeFacetConfigRerankConfig",
+      "properties": {
+        "facetValues": {
+          "description": "If empty, rerank on all facet values for the current key. Otherwise, will rerank on the facet values from this list only.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rerankFacet": {
+          "description": "If set to true, then we also rerank the dynamic facets based on the facet values engaged by the user for the current attribute key during serving.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3142,7 +3187,7 @@
           "type": "string"
         },
         "updateMask": {
-          "description": "Indicates which fields in the provided imported `products` to update. If not set, all fields are updated.",
+          "description": "Indicates which fields in the provided imported `products` to update. If not set, all fields are updated. If provided, only the existing product fields are updated. Missing products will not be created.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -6302,6 +6347,28 @@
         "model": {
           "description": "The resource name of the model that this create applies to. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaExportAnalyticsMetricsResponse": {
+      "description": "Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
+      "id": "GoogleCloudRetailV2betaExportAnalyticsMetricsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "errorsConfig": {
+          "$ref": "GoogleCloudRetailV2betaExportErrorsConfig",
+          "description": "This field is never set."
+        },
+        "outputResult": {
+          "$ref": "GoogleCloudRetailV2betaOutputResult",
+          "description": "Output result indicating where the data were exported to."
         }
       },
       "type": "object"
