@@ -1,0 +1,427 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations": {
+          "description": "Move a copy of messages between you and the businesses you have conversations with."
+        },
+        "https://www.googleapis.com/auth/dataportability.myactivity.search": {
+          "description": "Move a copy of your search activity."
+        },
+        "https://www.googleapis.com/auth/dataportability.myactivity.shopping": {
+          "description": "Move a copy of your Shopping activity."
+        },
+        "https://www.googleapis.com/auth/dataportability.myactivity.youtube": {
+          "description": "Move a copy of your YouTube activity."
+        },
+        "https://www.googleapis.com/auth/dataportability.shopping.addresses": {
+          "description": "Move a copy of your shipping information."
+        },
+        "https://www.googleapis.com/auth/dataportability.shopping.reviews": {
+          "description": "Move a copy of reviews you wrote about products or online stores."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.channel": {
+          "description": "Move a copy of information about your channel."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.comments": {
+          "description": "Move a copy of your comments."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.live_chat": {
+          "description": "Move a copy of your messages in live chat."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.music": {
+          "description": "Move a copy of your uploaded YouTube Music tracks and your YouTube Music library."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.private_playlists": {
+          "description": "Move a copy of your private playlists."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.private_videos": {
+          "description": "Move a copy of your private videos and information about them."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.public_playlists": {
+          "description": "Move a copy of your public playlists."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.public_videos": {
+          "description": "Move a copy of your public videos and information about them."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.shopping": {
+          "description": "Move a copy of YouTube Shopping Wishlists, and wishlist items."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.subscriptions": {
+          "description": "Move a copy of your channel subscriptions, even if they're private."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists": {
+          "description": "Move a copy of your unlisted playlists."
+        },
+        "https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos": {
+          "description": "Move a copy of your unlisted videos and information about them."
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://dataportability.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Data Portability",
+  "description": "The Data Portability API lets you build applications that request authorization from a user to move a copy of data from Google services into your application. This enables data portability and facilitates switching services.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://developers.google.com/data-portability",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "dataportability:v1beta",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://dataportability.mtls.googleapis.com/",
+  "name": "dataportability",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "archiveJobs": {
+      "methods": {
+        "getPortabilityArchiveState": {
+          "description": "Retrieves the state of a Takeout Archive job for the Portability API.",
+          "flatPath": "v1beta/archiveJobs/{archiveJobsId}/portabilityArchiveState",
+          "httpMethod": "GET",
+          "id": "dataportability.archiveJobs.getPortabilityArchiveState",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The archive job ID that is returned when you request the state of the job from Takeout. The format is: archiveJobs/{archive_job}/portabilityArchiveState. archive_job is the job ID returned by the InitiatePortabilityArchiveResponse.",
+              "location": "path",
+              "pattern": "^archiveJobs/[^/]+/portabilityArchiveState$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+name}",
+          "response": {
+            "$ref": "PortabilityArchiveState"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
+            "https://www.googleapis.com/auth/dataportability.myactivity.search",
+            "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
+            "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
+            "https://www.googleapis.com/auth/dataportability.shopping.addresses",
+            "https://www.googleapis.com/auth/dataportability.shopping.reviews",
+            "https://www.googleapis.com/auth/dataportability.youtube.channel",
+            "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
+            "https://www.googleapis.com/auth/dataportability.youtube.music",
+            "https://www.googleapis.com/auth/dataportability.youtube.private_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.private_videos",
+            "https://www.googleapis.com/auth/dataportability.youtube.public_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.public_videos",
+            "https://www.googleapis.com/auth/dataportability.youtube.shopping",
+            "https://www.googleapis.com/auth/dataportability.youtube.subscriptions",
+            "https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos"
+          ]
+        },
+        "retry": {
+          "description": "Retries a failed Portability Archive job.",
+          "flatPath": "v1beta/archiveJobs/{archiveJobsId}:retry",
+          "httpMethod": "POST",
+          "id": "dataportability.archiveJobs.retry",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The archive job ID returned by the InitiatePortabilityArchiveResponse to be retried. Retrying is only executed if the initial job failed.",
+              "location": "path",
+              "pattern": "^archiveJobs/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+name}:retry",
+          "request": {
+            "$ref": "RetryPortabilityArchiveRequest"
+          },
+          "response": {
+            "$ref": "RetryPortabilityArchiveResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
+            "https://www.googleapis.com/auth/dataportability.myactivity.search",
+            "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
+            "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
+            "https://www.googleapis.com/auth/dataportability.shopping.addresses",
+            "https://www.googleapis.com/auth/dataportability.shopping.reviews",
+            "https://www.googleapis.com/auth/dataportability.youtube.channel",
+            "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
+            "https://www.googleapis.com/auth/dataportability.youtube.music",
+            "https://www.googleapis.com/auth/dataportability.youtube.private_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.private_videos",
+            "https://www.googleapis.com/auth/dataportability.youtube.public_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.public_videos",
+            "https://www.googleapis.com/auth/dataportability.youtube.shopping",
+            "https://www.googleapis.com/auth/dataportability.youtube.subscriptions",
+            "https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos"
+          ]
+        }
+      }
+    },
+    "authorization": {
+      "methods": {
+        "reset": {
+          "description": "Revokes OAuth tokens and resets exhausted scopes for a user/project pair. This method allows you to initiate a Takeout request after a new consent is granted. This method also indicates that previous archives can be garbage collected. You should call this method when all jobs are complete and all archives are downloaded. Do not call it only when you start a new job.",
+          "flatPath": "v1beta/authorization:reset",
+          "httpMethod": "POST",
+          "id": "dataportability.authorization.reset",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1beta/authorization:reset",
+          "request": {
+            "$ref": "ResetAuthorizationRequest"
+          },
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
+            "https://www.googleapis.com/auth/dataportability.myactivity.search",
+            "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
+            "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
+            "https://www.googleapis.com/auth/dataportability.shopping.addresses",
+            "https://www.googleapis.com/auth/dataportability.shopping.reviews",
+            "https://www.googleapis.com/auth/dataportability.youtube.channel",
+            "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
+            "https://www.googleapis.com/auth/dataportability.youtube.music",
+            "https://www.googleapis.com/auth/dataportability.youtube.private_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.private_videos",
+            "https://www.googleapis.com/auth/dataportability.youtube.public_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.public_videos",
+            "https://www.googleapis.com/auth/dataportability.youtube.shopping",
+            "https://www.googleapis.com/auth/dataportability.youtube.subscriptions",
+            "https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos"
+          ]
+        }
+      }
+    },
+    "portabilityArchive": {
+      "methods": {
+        "initiate": {
+          "description": "Initiates a new Takeout Archive job for the Portability API.",
+          "flatPath": "v1beta/portabilityArchive:initiate",
+          "httpMethod": "POST",
+          "id": "dataportability.portabilityArchive.initiate",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1beta/portabilityArchive:initiate",
+          "request": {
+            "$ref": "InitiatePortabilityArchiveRequest"
+          },
+          "response": {
+            "$ref": "InitiatePortabilityArchiveResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
+            "https://www.googleapis.com/auth/dataportability.myactivity.search",
+            "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
+            "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
+            "https://www.googleapis.com/auth/dataportability.shopping.addresses",
+            "https://www.googleapis.com/auth/dataportability.shopping.reviews",
+            "https://www.googleapis.com/auth/dataportability.youtube.channel",
+            "https://www.googleapis.com/auth/dataportability.youtube.comments",
+            "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
+            "https://www.googleapis.com/auth/dataportability.youtube.music",
+            "https://www.googleapis.com/auth/dataportability.youtube.private_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.private_videos",
+            "https://www.googleapis.com/auth/dataportability.youtube.public_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.public_videos",
+            "https://www.googleapis.com/auth/dataportability.youtube.shopping",
+            "https://www.googleapis.com/auth/dataportability.youtube.subscriptions",
+            "https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists",
+            "https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos"
+          ]
+        }
+      }
+    }
+  },
+  "revision": "20240131",
+  "rootUrl": "https://dataportability.googleapis.com/",
+  "schemas": {
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "InitiatePortabilityArchiveRequest": {
+      "description": "Request to kick off a Takeout Archive job.",
+      "id": "InitiatePortabilityArchiveRequest",
+      "properties": {
+        "resources": {
+          "description": "The resources from which you're exporting data. These values have a 1:1 correspondence with the OAuth scopes.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InitiatePortabilityArchiveResponse": {
+      "description": "Response from initiating a Take Archive job.",
+      "id": "InitiatePortabilityArchiveResponse",
+      "properties": {
+        "archiveJobId": {
+          "description": "The archive job ID that is initiated in the Takeout API. This can be used to get the state of the job.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PortabilityArchiveState": {
+      "description": "Resource that contains the state of a Takeout Archive job.",
+      "id": "PortabilityArchiveState",
+      "properties": {
+        "name": {
+          "description": "The resource name of ArchiveJob's PortabilityArchiveState singleton. The format is: archiveJobs/{archive_job}/portabilityArchiveState. archive_job is the job ID provided in the request.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Resource that represents the state of the Takeout Archive job.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "COMPLETE",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The Takeout job is in progress.",
+            "The Takeout job is complete.",
+            "The Takeout job failed.",
+            "The Takeout job is cancelled."
+          ],
+          "type": "string"
+        },
+        "urls": {
+          "description": "If the state is complete, this method returns the signed URLs of the objects in the Cloud Storage bucket.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResetAuthorizationRequest": {
+      "description": "Request to reset exhausted OAuth scopes.",
+      "id": "ResetAuthorizationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "RetryPortabilityArchiveRequest": {
+      "description": "Request to retry a failed Portability Archive job.",
+      "id": "RetryPortabilityArchiveRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "RetryPortabilityArchiveResponse": {
+      "description": "Response from retrying a Portability Archive.",
+      "id": "RetryPortabilityArchiveResponse",
+      "properties": {
+        "archiveJobId": {
+          "description": "The archive job ID that is initiated by the retry endpoint. This can be used to get the state of the new job",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Data Portability API",
+  "version": "v1beta",
+  "version_module": true
+}
