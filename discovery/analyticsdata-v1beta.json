@@ -440,7 +440,7 @@
       }
     }
   },
-  "revision": "20231212",
+  "revision": "20240131",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -910,7 +910,7 @@
           "type": "string"
         },
         "customDefinition": {
-          "description": "True if the dimension is a custom dimension for this property.",
+          "description": "True if the dimension is custom to this property. This includes user, event, & item scoped custom dimensions; to learn more about custom dimensions, see https://support.google.com/analytics/answer/14240153. This also include custom channel groups; to learn more about custom channel groups, see https://support.google.com/analytics/answer/13051316.",
           "type": "boolean"
         },
         "deprecatedApiNames": {

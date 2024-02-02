@@ -445,7 +445,7 @@ export namespace analyticsdata_v1beta {
      */
     category?: string | null;
     /**
-     * True if the dimension is a custom dimension for this property.
+     * True if the dimension is custom to this property. This includes user, event, & item scoped custom dimensions; to learn more about custom dimensions, see https://support.google.com/analytics/answer/14240153. This also include custom channel groups; to learn more about custom channel groups, see https://support.google.com/analytics/answer/13051316.
      */
     customDefinition?: boolean | null;
     /**
