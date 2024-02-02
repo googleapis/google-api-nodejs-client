@@ -7668,7 +7668,7 @@
       }
     }
   },
-  "revision": "20231210",
+  "revision": "20240112",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryDataset": {
@@ -7718,7 +7718,7 @@
           "type": "string"
         },
         "state": {
-          "description": "State of an operation.",
+          "description": "Output only. State of an operation.",
           "enum": [
             "OPERATION_STATE_UNSPECIFIED",
             "OPERATION_STATE_SCHEDULED",
@@ -7726,7 +7726,8 @@
             "OPERATION_STATE_RUNNING",
             "OPERATION_STATE_SUCCEEDED",
             "OPERATION_STATE_FAILED",
-            "OPERATION_STATE_CANCELLED"
+            "OPERATION_STATE_CANCELLED",
+            "OPERATION_STATE_PENDING"
           ],
           "enumDescriptions": [
             "Should not be used.",
@@ -7735,8 +7736,10 @@
             "The operation is running.",
             "The operation was completed successfully.",
             "The operation failed.",
-            "The operation was cancelled by the user."
+            "The operation was cancelled by the user.",
+            "The operation is waiting for quota."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "updateBucketRequest": {
@@ -7776,11 +7779,12 @@
       "id": "CmekSettings",
       "properties": {
         "kmsKeyName": {
-          "description": "The resource name for the configured Cloud KMS key.KMS key name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]\" For example:\"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key\"To enable CMEK for the Log Router, set this field to a valid kms_key_name for which the associated service account has the needed cloudkms.cryptoKeyEncrypterDecrypter roles assigned for the key.The Cloud KMS key used by the Log Router can be updated by changing the kms_key_name to a new valid key name or disabled by setting the key name to an empty string. Encryption operations that are in progress will be completed with the key that was in use when they started. Decryption operations will be completed using the key that was used at the time of encryption unless access to that key has been revoked.To disable CMEK for the Log Router, set this field to an empty string.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
+          "description": "Optional. The resource name for the configured Cloud KMS key.KMS key name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]\" For example:\"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key\"To enable CMEK for the Log Router, set this field to a valid kms_key_name for which the associated service account has the needed cloudkms.cryptoKeyEncrypterDecrypter roles assigned for the key.The Cloud KMS key used by the Log Router can be updated by changing the kms_key_name to a new valid key name or disabled by setting the key name to an empty string. Encryption operations that are in progress will be completed with the key that was in use when they started. Decryption operations will be completed using the key that was used at the time of encryption unless access to that key has been revoked.To disable CMEK for the Log Router, set this field to an empty string.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
           "type": "string"
         },
         "kmsKeyVersionName": {
-          "description": "The CryptoKeyVersion resource name for the configured Cloud KMS key.KMS key name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION]\" For example:\"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1\"This is a read-only field used to convey the specific configured CryptoKeyVersion of kms_key that has been configured. It will be populated in cases where the CMEK settings are bound to a single key version.If this field is populated, the kms_key is tied to a specific CryptoKeyVersion.",
+          "description": "Output only. The CryptoKeyVersion resource name for the configured Cloud KMS key.KMS key name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION]\" For example:\"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1\"This is a read-only field used to convey the specific configured CryptoKeyVersion of kms_key that has been configured. It will be populated in cases where the CMEK settings are bound to a single key version.If this field is populated, the kms_key is tied to a specific CryptoKeyVersion.",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -7804,6 +7808,10 @@
           "description": "Identifies whether the user has requested cancellation of the operation.",
           "type": "boolean"
         },
+        "destination": {
+          "description": "Destination to which to copy log entries.For example, a Cloud Storage bucket:\"storage.googleapis.com/my-cloud-storage-bucket\"",
+          "type": "string"
+        },
         "endTime": {
           "description": "The end time of an operation.",
           "format": "google-datetime",
@@ -7818,13 +7826,17 @@
           "$ref": "CopyLogEntriesRequest",
           "description": "CopyLogEntries RPC request."
         },
+        "source": {
+          "description": "Source from which to copy log entries.For example, a log bucket:\"projects/my-project/locations/global/buckets/my-source-bucket\"",
+          "type": "string"
+        },
         "startTime": {
           "description": "The create time of an operation.",
           "format": "google-datetime",
           "type": "string"
         },
         "state": {
-          "description": "State of an operation.",
+          "description": "Output only. State of an operation.",
           "enum": [
             "OPERATION_STATE_UNSPECIFIED",
             "OPERATION_STATE_SCHEDULED",
@@ -7832,7 +7844,8 @@
             "OPERATION_STATE_RUNNING",
             "OPERATION_STATE_SUCCEEDED",
             "OPERATION_STATE_FAILED",
-            "OPERATION_STATE_CANCELLED"
+            "OPERATION_STATE_CANCELLED",
+            "OPERATION_STATE_PENDING"
           ],
           "enumDescriptions": [
             "Should not be used.",
@@ -7841,8 +7854,14 @@
             "The operation is running.",
             "The operation was completed successfully.",
             "The operation failed.",
-            "The operation was cancelled by the user."
+            "The operation was cancelled by the user.",
+            "The operation is waiting for quota."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Name of the verb executed by the operation.For example,\"copy\"",
           "type": "string"
         },
         "writerIdentity": {
@@ -8167,7 +8186,7 @@
       "properties": {
         "bigqueryDataset": {
           "$ref": "BigQueryDataset",
-          "description": "The information of a BigQuery Dataset. When a link is created, a BigQuery dataset is created along with it, in the same project as the LogBucket it's linked to. This dataset will also have BigQuery Views corresponding to the LogViews in the bucket."
+          "description": "Optional. The information of a BigQuery Dataset. When a link is created, a BigQuery dataset is created along with it, in the same project as the LogBucket it's linked to. This dataset will also have BigQuery Views corresponding to the LogViews in the bucket."
         },
         "createTime": {
           "description": "Output only. The creation timestamp of the link.",
@@ -8176,7 +8195,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Describes this link.The maximum length of the description is 8000 characters.",
+          "description": "Optional. Describes this link.The maximum length of the description is 8000 characters.",
           "type": "string"
         },
         "lifecycleState": {
@@ -8201,7 +8220,8 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the link. The name can have up to 100 characters. A valid link id (at the end of the link name) must only have alphanumeric characters and underscores within it. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]\" For example:`projects/my-project/locations/global/buckets/my-bucket/links/my_link",
+          "description": "Output only. The resource name of the link. The name can have up to 100 characters. A valid link id (at the end of the link name) must only have alphanumeric characters and underscores within it. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]\" For example:`projects/my-project/locations/global/buckets/my-bucket/links/my_link",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8230,7 +8250,7 @@
           "type": "string"
         },
         "state": {
-          "description": "State of an operation.",
+          "description": "Output only. State of an operation.",
           "enum": [
             "OPERATION_STATE_UNSPECIFIED",
             "OPERATION_STATE_SCHEDULED",
@@ -8238,7 +8258,8 @@
             "OPERATION_STATE_RUNNING",
             "OPERATION_STATE_SUCCEEDED",
             "OPERATION_STATE_FAILED",
-            "OPERATION_STATE_CANCELLED"
+            "OPERATION_STATE_CANCELLED",
+            "OPERATION_STATE_PENDING"
           ],
           "enumDescriptions": [
             "Should not be used.",
@@ -8247,8 +8268,10 @@
             "The operation is running.",
             "The operation was completed successfully.",
             "The operation failed.",
-            "The operation was cancelled by the user."
+            "The operation was cancelled by the user.",
+            "The operation is waiting for quota."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8591,12 +8614,12 @@
       "id": "LogBucket",
       "properties": {
         "analyticsEnabled": {
-          "description": "Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.",
+          "description": "Optional. Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.",
           "type": "boolean"
         },
         "cmekSettings": {
           "$ref": "CmekSettings",
-          "description": "The CMEK settings of the log bucket. If present, new log entries written to this log bucket are encrypted using the CMEK key provided in this configuration. If a log bucket has CMEK settings, the CMEK settings cannot be disabled later by updating the log bucket. Changing the KMS key is allowed."
+          "description": "Optional. The CMEK settings of the log bucket. If present, new log entries written to this log bucket are encrypted using the CMEK key provided in this configuration. If a log bucket has CMEK settings, the CMEK settings cannot be disabled later by updating the log bucket. Changing the KMS key is allowed."
         },
         "createTime": {
           "description": "Output only. The creation timestamp of the bucket. This is not set for any of the default buckets.",
@@ -8605,11 +8628,11 @@
           "type": "string"
         },
         "description": {
-          "description": "Describes this bucket.",
+          "description": "Optional. Describes this bucket.",
           "type": "string"
         },
         "indexConfigs": {
-          "description": "A list of indexed fields and related configuration data.",
+          "description": "Optional. A list of indexed fields and related configuration data.",
           "items": {
             "$ref": "IndexConfig"
           },
@@ -8637,7 +8660,7 @@
           "type": "string"
         },
         "locked": {
-          "description": "Whether the bucket is locked.The retention period on a locked bucket cannot be changed. Locked buckets may only be deleted if they are empty.",
+          "description": "Optional. Whether the bucket is locked.The retention period on a locked bucket cannot be changed. Locked buckets may only be deleted if they are empty.",
           "type": "boolean"
         },
         "name": {
@@ -8646,14 +8669,14 @@
           "type": "string"
         },
         "restrictedFields": {
-          "description": "Log entry field paths that are denied access in this bucket.The following fields and their children are eligible: textPayload, jsonPayload, protoPayload, httpRequest, labels, sourceLocation.Restricting a repeated field will restrict all values. Adding a parent will block all child fields. (e.g. foo.bar will block foo.bar.baz)",
+          "description": "Optional. Log entry field paths that are denied access in this bucket.The following fields and their children are eligible: textPayload, jsonPayload, protoPayload, httpRequest, labels, sourceLocation.Restricting a repeated field will restrict all values. Adding a parent will block all child fields. (e.g. foo.bar will block foo.bar.baz)",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "retentionDays": {
-          "description": "Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.",
+          "description": "Optional. Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.",
           "format": "int32",
           "type": "integer"
         },
@@ -8868,7 +8891,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. A client-assigned identifier, such as \"load-balancer-exclusion\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.",
+          "description": "Output only. A client-assigned identifier, such as \"load-balancer-exclusion\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.",
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
@@ -9039,7 +9063,8 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Required. The client-assigned sink identifier, unique within the project.For example: \"my-syslog-errors-to-pubsub\".Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, periods.First character has to be alphanumeric.",
+          "description": "Output only. The client-assigned sink identifier, unique within the project.For example: \"my-syslog-errors-to-pubsub\".Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, periods.First character has to be alphanumeric.",
+          "readOnly": true,
           "type": "string"
         },
         "outputVersionFormat": {
@@ -9103,15 +9128,16 @@
           "type": "string"
         },
         "description": {
-          "description": "Describes this view.",
+          "description": "Optional. Describes this view.",
           "type": "string"
         },
         "filter": {
-          "description": "Filter that restricts which log entries in a bucket are visible in this view.Filters must be logical conjunctions that use the AND operator, and they can use any of the following qualifiers: SOURCE(), which specifies a project, folder, organization, or billing account of origin. resource.type, which specifies the resource type. LOG_ID(), which identifies the log.They can also use the negations of these qualifiers with the NOT operator.For example:SOURCE(\"projects/myproject\") AND resource.type = \"gce_instance\" AND NOT LOG_ID(\"stdout\")",
+          "description": "Optional. Filter that restricts which log entries in a bucket are visible in this view.Filters must be logical conjunctions that use the AND operator, and they can use any of the following qualifiers: SOURCE(), which specifies a project, folder, organization, or billing account of origin. resource.type, which specifies the resource type. LOG_ID(), which identifies the log.They can also use the negations of these qualifiers with the NOT operator.For example:SOURCE(\"projects/myproject\") AND resource.type = \"gce_instance\" AND NOT LOG_ID(\"stdout\")",
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the view.For example:projects/my-project/locations/global/buckets/my-bucket/views/my-view",
+          "description": "Output only. The resource name of the view.For example:projects/my-project/locations/global/buckets/my-bucket/views/my-view",
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
@@ -9128,7 +9154,7 @@
       "id": "LoggingQuery",
       "properties": {
         "filter": {
-          "description": "An advanced query using the Logging Query Language (https://cloud.google.com/logging/docs/view/logging-query-language). The maximum length of the filter is 20000 characters.",
+          "description": "Required. An advanced query using the Logging Query Language (https://cloud.google.com/logging/docs/view/logging-query-language). The maximum length of the filter is 20000 characters.",
           "type": "string"
         },
         "summaryFieldEnd": {
@@ -9142,7 +9168,7 @@
           "type": "integer"
         },
         "summaryFields": {
-          "description": "The set of summary fields to display for this saved query.",
+          "description": "Optional. The set of summary fields to display for this saved query.",
           "items": {
             "$ref": "SummaryField"
           },
@@ -9366,7 +9392,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The monitored resource type. For example, the type \"cloudsql_database\" represents databases in Google Cloud SQL. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).",
+          "description": "Required. The monitored resource type. For example, the type \"cloudsql_database\" represents databases in Google Cloud SQL. For a list of types, see Monitored resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).",
           "type": "string"
         }
       },
@@ -9445,8 +9471,9 @@
       "id": "RecentQuery",
       "properties": {
         "lastRunTime": {
-          "description": "The timestamp when this query was last run.",
+          "description": "Output only. The timestamp when this query was last run.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "loggingQuery": {
@@ -9634,11 +9661,11 @@
           "type": "string"
         },
         "description": {
-          "description": "A human readable description of the saved query.",
+          "description": "Optional. A human readable description of the saved query.",
           "type": "string"
         },
         "displayName": {
-          "description": "The user specified title for the SavedQuery.",
+          "description": "Optional. The user specified title for the SavedQuery.",
           "type": "string"
         },
         "loggingQuery": {
@@ -9768,7 +9795,7 @@
       "id": "SummaryField",
       "properties": {
         "field": {
-          "description": "The field from the LogEntry to include in the summary line, for example resource.type or jsonPayload.name.",
+          "description": "Optional. The field from the LogEntry to include in the summary line, for example resource.type or jsonPayload.name.",
           "type": "string"
         }
       },

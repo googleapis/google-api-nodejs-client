@@ -184,7 +184,7 @@ export namespace logging_v2 {
      */
     startTime?: string | null;
     /**
-     * State of an operation.
+     * Output only. State of an operation.
      */
     state?: string | null;
     /**
@@ -218,11 +218,11 @@ export namespace logging_v2 {
    */
   export interface Schema$CmekSettings {
     /**
-     * The resource name for the configured Cloud KMS key.KMS key name format: "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]" For example:"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key"To enable CMEK for the Log Router, set this field to a valid kms_key_name for which the associated service account has the needed cloudkms.cryptoKeyEncrypterDecrypter roles assigned for the key.The Cloud KMS key used by the Log Router can be updated by changing the kms_key_name to a new valid key name or disabled by setting the key name to an empty string. Encryption operations that are in progress will be completed with the key that was in use when they started. Decryption operations will be completed using the key that was used at the time of encryption unless access to that key has been revoked.To disable CMEK for the Log Router, set this field to an empty string.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * Optional. The resource name for the configured Cloud KMS key.KMS key name format: "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]" For example:"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key"To enable CMEK for the Log Router, set this field to a valid kms_key_name for which the associated service account has the needed cloudkms.cryptoKeyEncrypterDecrypter roles assigned for the key.The Cloud KMS key used by the Log Router can be updated by changing the kms_key_name to a new valid key name or disabled by setting the key name to an empty string. Encryption operations that are in progress will be completed with the key that was in use when they started. Decryption operations will be completed using the key that was used at the time of encryption unless access to that key has been revoked.To disable CMEK for the Log Router, set this field to an empty string.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      */
     kmsKeyName?: string | null;
     /**
-     * The CryptoKeyVersion resource name for the configured Cloud KMS key.KMS key name format: "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION]" For example:"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1"This is a read-only field used to convey the specific configured CryptoKeyVersion of kms_key that has been configured. It will be populated in cases where the CMEK settings are bound to a single key version.If this field is populated, the kms_key is tied to a specific CryptoKeyVersion.
+     * Output only. The CryptoKeyVersion resource name for the configured Cloud KMS key.KMS key name format: "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION]" For example:"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1"This is a read-only field used to convey the specific configured CryptoKeyVersion of kms_key that has been configured. It will be populated in cases where the CMEK settings are bound to a single key version.If this field is populated, the kms_key is tied to a specific CryptoKeyVersion.
      */
     kmsKeyVersionName?: string | null;
     /**
@@ -243,6 +243,10 @@ export namespace logging_v2 {
      */
     cancellationRequested?: boolean | null;
     /**
+     * Destination to which to copy log entries.For example, a Cloud Storage bucket:"storage.googleapis.com/my-cloud-storage-bucket"
+     */
+    destination?: string | null;
+    /**
      * The end time of an operation.
      */
     endTime?: string | null;
@@ -255,13 +259,21 @@ export namespace logging_v2 {
      */
     request?: Schema$CopyLogEntriesRequest;
     /**
+     * Source from which to copy log entries.For example, a log bucket:"projects/my-project/locations/global/buckets/my-source-bucket"
+     */
+    source?: string | null;
+    /**
      * The create time of an operation.
      */
     startTime?: string | null;
     /**
-     * State of an operation.
+     * Output only. State of an operation.
      */
     state?: string | null;
+    /**
+     * Name of the verb executed by the operation.For example,"copy"
+     */
+    verb?: string | null;
     /**
      * The IAM identity of a service account that must be granted access to the destination.If the service account is not granted permission to the destination within an hour, the operation will be cancelled.For example: "serviceAccount:foo@bar.com"
      */
@@ -504,7 +516,7 @@ export namespace logging_v2 {
    */
   export interface Schema$Link {
     /**
-     * The information of a BigQuery Dataset. When a link is created, a BigQuery dataset is created along with it, in the same project as the LogBucket it's linked to. This dataset will also have BigQuery Views corresponding to the LogViews in the bucket.
+     * Optional. The information of a BigQuery Dataset. When a link is created, a BigQuery dataset is created along with it, in the same project as the LogBucket it's linked to. This dataset will also have BigQuery Views corresponding to the LogViews in the bucket.
      */
     bigqueryDataset?: Schema$BigQueryDataset;
     /**
@@ -512,7 +524,7 @@ export namespace logging_v2 {
      */
     createTime?: string | null;
     /**
-     * Describes this link.The maximum length of the description is 8000 characters.
+     * Optional. Describes this link.The maximum length of the description is 8000 characters.
      */
     description?: string | null;
     /**
@@ -520,7 +532,7 @@ export namespace logging_v2 {
      */
     lifecycleState?: string | null;
     /**
-     * The resource name of the link. The name can have up to 100 characters. A valid link id (at the end of the link name) must only have alphanumeric characters and underscores within it. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" For example:`projects/my-project/locations/global/buckets/my-bucket/links/my_link
+     * Output only. The resource name of the link. The name can have up to 100 characters. A valid link id (at the end of the link name) must only have alphanumeric characters and underscores within it. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" For example:`projects/my-project/locations/global/buckets/my-bucket/links/my_link
      */
     name?: string | null;
   }
@@ -545,7 +557,7 @@ export namespace logging_v2 {
      */
     startTime?: string | null;
     /**
-     * State of an operation.
+     * Output only. State of an operation.
      */
     state?: string | null;
   }
@@ -794,11 +806,11 @@ export namespace logging_v2 {
    */
   export interface Schema$LogBucket {
     /**
-     * Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.
+     * Optional. Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.
      */
     analyticsEnabled?: boolean | null;
     /**
-     * The CMEK settings of the log bucket. If present, new log entries written to this log bucket are encrypted using the CMEK key provided in this configuration. If a log bucket has CMEK settings, the CMEK settings cannot be disabled later by updating the log bucket. Changing the KMS key is allowed.
+     * Optional. The CMEK settings of the log bucket. If present, new log entries written to this log bucket are encrypted using the CMEK key provided in this configuration. If a log bucket has CMEK settings, the CMEK settings cannot be disabled later by updating the log bucket. Changing the KMS key is allowed.
      */
     cmekSettings?: Schema$CmekSettings;
     /**
@@ -806,11 +818,11 @@ export namespace logging_v2 {
      */
     createTime?: string | null;
     /**
-     * Describes this bucket.
+     * Optional. Describes this bucket.
      */
     description?: string | null;
     /**
-     * A list of indexed fields and related configuration data.
+     * Optional. A list of indexed fields and related configuration data.
      */
     indexConfigs?: Schema$IndexConfig[];
     /**
@@ -818,7 +830,7 @@ export namespace logging_v2 {
      */
     lifecycleState?: string | null;
     /**
-     * Whether the bucket is locked.The retention period on a locked bucket cannot be changed. Locked buckets may only be deleted if they are empty.
+     * Optional. Whether the bucket is locked.The retention period on a locked bucket cannot be changed. Locked buckets may only be deleted if they are empty.
      */
     locked?: boolean | null;
     /**
@@ -826,11 +838,11 @@ export namespace logging_v2 {
      */
     name?: string | null;
     /**
-     * Log entry field paths that are denied access in this bucket.The following fields and their children are eligible: textPayload, jsonPayload, protoPayload, httpRequest, labels, sourceLocation.Restricting a repeated field will restrict all values. Adding a parent will block all child fields. (e.g. foo.bar will block foo.bar.baz)
+     * Optional. Log entry field paths that are denied access in this bucket.The following fields and their children are eligible: textPayload, jsonPayload, protoPayload, httpRequest, labels, sourceLocation.Restricting a repeated field will restrict all values. Adding a parent will block all child fields. (e.g. foo.bar will block foo.bar.baz)
      */
     restrictedFields?: string[] | null;
     /**
-     * Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
+     * Optional. Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
      */
     retentionDays?: number | null;
     /**
@@ -987,7 +999,7 @@ export namespace logging_v2 {
      */
     filter?: string | null;
     /**
-     * Required. A client-assigned identifier, such as "load-balancer-exclusion". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
+     * Output only. A client-assigned identifier, such as "load-balancer-exclusion". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      */
     name?: string | null;
     /**
@@ -1000,7 +1012,7 @@ export namespace logging_v2 {
    */
   export interface Schema$LoggingQuery {
     /**
-     * An advanced query using the Logging Query Language (https://cloud.google.com/logging/docs/view/logging-query-language). The maximum length of the filter is 20000 characters.
+     * Required. An advanced query using the Logging Query Language (https://cloud.google.com/logging/docs/view/logging-query-language). The maximum length of the filter is 20000 characters.
      */
     filter?: string | null;
     /**
@@ -1008,7 +1020,7 @@ export namespace logging_v2 {
      */
     summaryFieldEnd?: number | null;
     /**
-     * The set of summary fields to display for this saved query.
+     * Optional. The set of summary fields to display for this saved query.
      */
     summaryFields?: Schema$SummaryField[];
     /**
@@ -1127,7 +1139,7 @@ export namespace logging_v2 {
      */
     includeChildren?: boolean | null;
     /**
-     * Required. The client-assigned sink identifier, unique within the project.For example: "my-syslog-errors-to-pubsub".Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, periods.First character has to be alphanumeric.
+     * Output only. The client-assigned sink identifier, unique within the project.For example: "my-syslog-errors-to-pubsub".Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, periods.First character has to be alphanumeric.
      */
     name?: string | null;
     /**
@@ -1169,15 +1181,15 @@ export namespace logging_v2 {
      */
     createTime?: string | null;
     /**
-     * Describes this view.
+     * Optional. Describes this view.
      */
     description?: string | null;
     /**
-     * Filter that restricts which log entries in a bucket are visible in this view.Filters must be logical conjunctions that use the AND operator, and they can use any of the following qualifiers: SOURCE(), which specifies a project, folder, organization, or billing account of origin. resource.type, which specifies the resource type. LOG_ID(), which identifies the log.They can also use the negations of these qualifiers with the NOT operator.For example:SOURCE("projects/myproject") AND resource.type = "gce_instance" AND NOT LOG_ID("stdout")
+     * Optional. Filter that restricts which log entries in a bucket are visible in this view.Filters must be logical conjunctions that use the AND operator, and they can use any of the following qualifiers: SOURCE(), which specifies a project, folder, organization, or billing account of origin. resource.type, which specifies the resource type. LOG_ID(), which identifies the log.They can also use the negations of these qualifiers with the NOT operator.For example:SOURCE("projects/myproject") AND resource.type = "gce_instance" AND NOT LOG_ID("stdout")
      */
     filter?: string | null;
     /**
-     * The resource name of the view.For example:projects/my-project/locations/global/buckets/my-bucket/views/my-view
+     * Output only. The resource name of the view.For example:projects/my-project/locations/global/buckets/my-bucket/views/my-view
      */
     name?: string | null;
     /**
@@ -1289,7 +1301,7 @@ export namespace logging_v2 {
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type "cloudsql_database" represents databases in Google Cloud SQL. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
+     * Required. The monitored resource type. For example, the type "cloudsql_database" represents databases in Google Cloud SQL. For a list of types, see Monitored resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
      */
     type?: string | null;
   }
@@ -1345,7 +1357,7 @@ export namespace logging_v2 {
    */
   export interface Schema$RecentQuery {
     /**
-     * The timestamp when this query was last run.
+     * Output only. The timestamp when this query was last run.
      */
     lastRunTime?: string | null;
     /**
@@ -1511,11 +1523,11 @@ export namespace logging_v2 {
      */
     createTime?: string | null;
     /**
-     * A human readable description of the saved query.
+     * Optional. A human readable description of the saved query.
      */
     description?: string | null;
     /**
-     * The user specified title for the SavedQuery.
+     * Optional. The user specified title for the SavedQuery.
      */
     displayName?: string | null;
     /**
@@ -1620,7 +1632,7 @@ export namespace logging_v2 {
    */
   export interface Schema$SummaryField {
     /**
-     * The field from the LogEntry to include in the summary line, for example resource.type or jsonPayload.name.
+     * Optional. The field from the LogEntry to include in the summary line, for example resource.type or jsonPayload.name.
      */
     field?: string | null;
   }
