@@ -1109,6 +1109,10 @@ export namespace dialogflow_v3 {
      */
     modelVariant?: string | null;
     /**
+     * If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow CX Speech model migration](https://cloud.google.com/dialogflow/cx/docs/concept/speech-model-migration).
+     */
+    optOutConformerModelMigration?: boolean | null;
+    /**
      * Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.
      */
     phraseHints?: string[] | null;
@@ -1701,7 +1705,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TextInput {
     /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.
+     * Required. The UTF-8 encoded natural language text to be processed.
      */
     text?: string | null;
   }
@@ -2065,7 +2069,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3BoostSpecs {
     /**
-     * Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}
+     * Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}`
      */
     dataStores?: string[] | null;
     /**
@@ -2899,7 +2903,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3FilterSpecs {
     /**
-     * Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}
+     * Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}`
      */
     dataStores?: string[] | null;
     /**
@@ -3460,6 +3464,10 @@ export namespace dialogflow_v3 {
      * Optional. Which variant of the Speech model to use.
      */
     modelVariant?: string | null;
+    /**
+     * If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow CX Speech model migration](https://cloud.google.com/dialogflow/cx/docs/concept/speech-model-migration).
+     */
+    optOutConformerModelMigration?: boolean | null;
     /**
      * Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.
      */
@@ -4905,7 +4913,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3TextInput {
     /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.
+     * Required. The UTF-8 encoded natural language text to be processed.
      */
     text?: string | null;
   }
@@ -13277,6 +13285,102 @@ export namespace dialogflow_v3 {
         );
       }
     }
+
+    /**
+     * Processes a natural language query and returns structured, actionable data as a result through server-side streaming. Server-side streaming allows Dialogflow to send [partial responses](https://cloud.google.com/dialogflow/cx/docs/concept/fulfillment#partial-response) earlier in a single request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    serverStreamingDetectIntent(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    serverStreamingDetectIntent(
+      params?: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>;
+    serverStreamingDetectIntent(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    serverStreamingDetectIntent(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+    ): void;
+    serverStreamingDetectIntent(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+    ): void;
+    serverStreamingDetectIntent(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+    ): void;
+    serverStreamingDetectIntent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v3/{+session}:serverStreamingDetectIntent'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['session'],
+        pathParams: ['session'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent
@@ -13314,6 +13418,18 @@ export namespace dialogflow_v3 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3MatchIntentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent
+    extends StandardParameters {
+    /**
+     * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
+     */
+    session?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3DetectIntentRequest;
   }
 
   export class Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes {
@@ -18414,6 +18530,102 @@ export namespace dialogflow_v3 {
     }
 
     /**
+     * Processes a natural language query and returns structured, actionable data as a result through server-side streaming. Server-side streaming allows Dialogflow to send [partial responses](https://cloud.google.com/dialogflow/cx/docs/concept/fulfillment#partial-response) earlier in a single request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    serverStreamingDetectIntent(
+      params: Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    serverStreamingDetectIntent(
+      params?: Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>;
+    serverStreamingDetectIntent(
+      params: Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    serverStreamingDetectIntent(
+      params: Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+    ): void;
+    serverStreamingDetectIntent(
+      params: Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+    ): void;
+    serverStreamingDetectIntent(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+    ): void;
+    serverStreamingDetectIntent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v3/{+session}:serverStreamingDetectIntent'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['session'],
+        pathParams: ['session'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3DetectIntentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the feedback received from the user for a single turn of the bot response.
      *
      * @param params - Parameters for request
@@ -18546,6 +18758,18 @@ export namespace dialogflow_v3 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3MatchIntentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent
+    extends StandardParameters {
+    /**
+     * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
+     */
+    session?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3DetectIntentRequest;
   }
   export interface Params$Resource$Projects$Locations$Agents$Sessions$Submitanswerfeedback
     extends StandardParameters {

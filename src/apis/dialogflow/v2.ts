@@ -915,6 +915,10 @@ export namespace dialogflow_v2 {
      */
     modelVariant?: string | null;
     /**
+     * If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow CX Speech model migration](https://cloud.google.com/dialogflow/cx/docs/concept/speech-model-migration).
+     */
+    optOutConformerModelMigration?: boolean | null;
+    /**
      * Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.
      */
     phraseHints?: string[] | null;
@@ -1058,6 +1062,10 @@ export namespace dialogflow_v2 {
      */
     advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
     /**
+     * The description of the page. The maximum length is 500 characters.
+     */
+    description?: string | null;
+    /**
      * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
@@ -1142,7 +1150,7 @@ export namespace dialogflow_v2 {
     value?: any | null;
   }
   /**
-   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.
+   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value. 6. The results of a tool executed by the client.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1QueryInput {
     /**
@@ -1503,7 +1511,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TextInput {
     /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.
+     * Required. The UTF-8 encoded natural language text to be processed.
      */
     text?: string | null;
   }
@@ -2449,6 +2457,10 @@ export namespace dialogflow_v2 {
      */
     modelVariant?: string | null;
     /**
+     * If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow CX Speech model migration](https://cloud.google.com/dialogflow/cx/docs/concept/speech-model-migration).
+     */
+    optOutConformerModelMigration?: boolean | null;
+    /**
      * Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.
      */
     phraseHints?: string[] | null;
@@ -2592,6 +2604,10 @@ export namespace dialogflow_v2 {
      */
     advancedSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettings;
     /**
+     * The description of the page. The maximum length is 500 characters.
+     */
+    description?: string | null;
+    /**
      * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
@@ -2676,7 +2692,7 @@ export namespace dialogflow_v2 {
     value?: any | null;
   }
   /**
-   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.
+   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value. 6. The results of a tool executed by the client.
    */
   export interface Schema$GoogleCloudDialogflowCxV3QueryInput {
     /**
@@ -3041,7 +3057,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3TextInput {
     /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.
+     * Required. The UTF-8 encoded natural language text to be processed.
      */
     text?: string | null;
   }
@@ -6750,6 +6766,10 @@ export namespace dialogflow_v2 {
      * Which variant of the Speech model to use.
      */
     modelVariant?: string | null;
+    /**
+     * If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow ES Speech model migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
+     */
+    optOutConformerModelMigration?: boolean | null;
     /**
      * A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details. This field is deprecated. Please use [`speech_contexts`]() instead. If you specify both [`phrase_hints`]() and [`speech_contexts`](), Dialogflow will treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      */

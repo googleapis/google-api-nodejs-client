@@ -1440,6 +1440,35 @@
                             "https://www.googleapis.com/auth/cloud-platform",
                             "https://www.googleapis.com/auth/dialogflow"
                           ]
+                        },
+                        "serverStreamingDetectIntent": {
+                          "description": "Processes a natural language query and returns structured, actionable data as a result through server-side streaming. Server-side streaming allows Dialogflow to send [partial responses](https://cloud.google.com/dialogflow/cx/docs/concept/fulfillment#partial-response) earlier in a single request.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/environments/{environmentsId}/sessions/{sessionsId}:serverStreamingDetectIntent",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.agents.environments.sessions.serverStreamingDetectIntent",
+                          "parameterOrder": [
+                            "session"
+                          ],
+                          "parameters": {
+                            "session": {
+                              "description": "Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/environments/[^/]+/sessions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+session}:serverStreamingDetectIntent",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3DetectIntentRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3DetectIntentResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
                         }
                       },
                       "resources": {
@@ -3035,6 +3064,35 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     },
+                    "serverStreamingDetectIntent": {
+                      "description": "Processes a natural language query and returns structured, actionable data as a result through server-side streaming. Server-side streaming allows Dialogflow to send [partial responses](https://cloud.google.com/dialogflow/cx/docs/concept/fulfillment#partial-response) earlier in a single request.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/sessions/{sessionsId}:serverStreamingDetectIntent",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.sessions.serverStreamingDetectIntent",
+                      "parameterOrder": [
+                        "session"
+                      ],
+                      "parameters": {
+                        "session": {
+                          "description": "Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/sessions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+session}:serverStreamingDetectIntent",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3DetectIntentRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3DetectIntentResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
                     "submitAnswerFeedback": {
                       "description": "Updates the feedback received from the user for a single turn of the bot response.",
                       "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/sessions/{sessionsId}:submitAnswerFeedback",
@@ -4337,7 +4395,7 @@
       }
     }
   },
-  "revision": "20240102",
+  "revision": "20240122",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4733,7 +4791,7 @@
       "id": "GoogleCloudDialogflowCxV3BoostSpecs",
       "properties": {
         "dataStores": {
-          "description": "Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}` `projects/{project}/locations/{location}/dataStores/{data_store}",
+          "description": "Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}` `projects/{project}/locations/{location}/dataStores/{data_store}`",
           "items": {
             "type": "string"
           },
@@ -5890,7 +5948,7 @@
       "id": "GoogleCloudDialogflowCxV3FilterSpecs",
       "properties": {
         "dataStores": {
-          "description": "Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}` `projects/{project}/locations/{location}/dataStores/{data_store}",
+          "description": "Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}` `projects/{project}/locations/{location}/dataStores/{data_store}`",
           "items": {
             "type": "string"
           },
@@ -6685,6 +6743,10 @@
             "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants."
           ],
           "type": "string"
+        },
+        "optOutConformerModelMigration": {
+          "description": "If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow CX Speech model migration](https://cloud.google.com/dialogflow/cx/docs/concept/speech-model-migration).",
+          "type": "boolean"
         },
         "phraseHints": {
           "description": "Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.",
@@ -8701,7 +8763,7 @@
       "id": "GoogleCloudDialogflowCxV3TextInput",
       "properties": {
         "text": {
-          "description": "Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.",
+          "description": "Required. The UTF-8 encoded natural language text to be processed.",
           "type": "string"
         }
       },
@@ -10503,6 +10565,10 @@
           ],
           "type": "string"
         },
+        "optOutConformerModelMigration": {
+          "description": "If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow CX Speech model migration](https://cloud.google.com/dialogflow/cx/docs/concept/speech-model-migration).",
+          "type": "boolean"
+        },
         "phraseHints": {
           "description": "Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.",
           "items": {
@@ -11284,7 +11350,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1TextInput",
       "properties": {
         "text": {
-          "description": "Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.",
+          "description": "Required. The UTF-8 encoded natural language text to be processed.",
           "type": "string"
         }
       },

@@ -7695,7 +7695,7 @@
       }
     }
   },
-  "revision": "20240102",
+  "revision": "20240122",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -8656,6 +8656,10 @@
           ],
           "type": "string"
         },
+        "optOutConformerModelMigration": {
+          "description": "If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow CX Speech model migration](https://cloud.google.com/dialogflow/cx/docs/concept/speech-model-migration).",
+          "type": "boolean"
+        },
         "phraseHints": {
           "description": "Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.",
           "items": {
@@ -9453,7 +9457,7 @@
       "id": "GoogleCloudDialogflowCxV3TextInput",
       "properties": {
         "text": {
-          "description": "Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.",
+          "description": "Required. The UTF-8 encoded natural language text to be processed.",
           "type": "string"
         }
       },
@@ -10864,6 +10868,10 @@
           ],
           "type": "string"
         },
+        "optOutConformerModelMigration": {
+          "description": "If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow CX Speech model migration](https://cloud.google.com/dialogflow/cx/docs/concept/speech-model-migration).",
+          "type": "boolean"
+        },
         "phraseHints": {
           "description": "Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.",
           "items": {
@@ -11645,7 +11653,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1TextInput",
       "properties": {
         "text": {
-          "description": "Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.",
+          "description": "Required. The UTF-8 encoded natural language text to be processed.",
           "type": "string"
         }
       },
@@ -16554,6 +16562,10 @@
             "Use an enhanced model variant: * If an enhanced variant does not exist for the given model and request language, Dialogflow falls back to the standard variant. The [Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/enhanced-models) describes which models have enhanced variants. * If the API caller isn't eligible for enhanced models, Dialogflow returns an error. Please see the [Dialogflow docs](https://cloud.google.com/dialogflow/docs/data-logging) for how to make your project eligible."
           ],
           "type": "string"
+        },
+        "optOutConformerModelMigration": {
+          "description": "If `true`, the request will opt out for STT conformer model migration. This field will be deprecated once force migration takes place in June 2024. Please refer to [Dialogflow ES Speech model migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).",
+          "type": "boolean"
         },
         "phraseHints": {
           "deprecated": true,
