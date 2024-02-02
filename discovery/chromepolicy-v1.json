@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20240103",
+  "revision": "20240131",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
@@ -762,6 +762,10 @@
         "numericRangeConstraint": {
           "$ref": "GoogleChromePolicyVersionsV1NumericRangeConstraint",
           "description": "The allowed range for numeric fields."
+        },
+        "uploadedFileConstraints": {
+          "$ref": "GoogleChromePolicyVersionsV1UploadedFileConstraints",
+          "description": "Constraints on the uploaded file of a file policy. If present, this policy requires a URL that can be fetched by uploading a file with the constraints specified in this proto."
         }
       },
       "type": "object"
@@ -1516,6 +1520,53 @@
         "downloadUri": {
           "description": "The uri for end user to download the file.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyVersionsV1UploadedFileConstraints": {
+      "description": "Constraints on the uploaded file of a file policy.",
+      "id": "GoogleChromePolicyVersionsV1UploadedFileConstraints",
+      "properties": {
+        "sizeLimitBytes": {
+          "description": "The size limit of uploaded files for a setting, in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "supportedContentTypes": {
+          "description": "File types that can be uploaded for a setting.",
+          "items": {
+            "enum": [
+              "CONTENT_TYPE_UNSPECIFIED",
+              "CONTENT_TYPE_PLAIN_TEXT",
+              "CONTENT_TYPE_HTML",
+              "CONTENT_TYPE_IMAGE_JPEG",
+              "CONTENT_TYPE_IMAGE_GIF",
+              "CONTENT_TYPE_IMAGE_PNG",
+              "CONTENT_TYPE_JSON",
+              "CONTENT_TYPE_ZIP",
+              "CONTENT_TYPE_GZIP",
+              "CONTENT_TYPE_CSV",
+              "CONTENT_TYPE_YAML",
+              "CONTENT_TYPE_IMAGE_WEBP"
+            ],
+            "enumDescriptions": [
+              "Unspecified content type.",
+              "Plain text.",
+              "HTML.",
+              "JPEG.",
+              "GIF.",
+              "PNG.",
+              "JSON.",
+              "ZIP.",
+              "GZIP.",
+              "CSV.",
+              "YAML.",
+              "WEBP."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
