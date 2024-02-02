@@ -188,6 +188,14 @@ export namespace workflowexecutions_v1 {
      */
     callLogLevel?: string | null;
     /**
+     * Output only. Marks the creation of the execution.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. If set to true, the execution will not be backlogged when the concurrency quota is exhausted. The backlog execution starts when the concurrency quota becomes available.
+     */
+    disableConcurrencyQuotaOverflowBuffering?: boolean | null;
+    /**
      * Output only. Measures the duration of the execution.
      */
     duration?: string | null;

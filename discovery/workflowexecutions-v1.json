@@ -457,7 +457,7 @@
       }
     }
   },
-  "revision": "20231211",
+  "revision": "20240122",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "Callback": {
@@ -550,6 +550,16 @@
             "Explicitly log nothing."
           ],
           "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Marks the creation of the execution.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "disableConcurrencyQuotaOverflowBuffering": {
+          "description": "Optional. If set to true, the execution will not be backlogged when the concurrency quota is exhausted. The backlog execution starts when the concurrency quota becomes available.",
+          "type": "boolean"
         },
         "duration": {
           "description": "Output only. Measures the duration of the execution.",
