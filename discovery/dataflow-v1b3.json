@@ -2221,7 +2221,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240121",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -2367,6 +2367,23 @@
       },
       "type": "object"
     },
+    "Base2Exponent": {
+      "description": "Exponential buckets where the growth factor between buckets is `2**(2**-scale)`. e.g. for `scale=1` growth factor is `2**(2**(-1))=sqrt(2)`. `n` buckets will have the following boundaries. - 0th: [0, gf) - i in [1, n-1]: [gf^(i), gf^(i+1))",
+      "id": "Base2Exponent",
+      "properties": {
+        "numberOfBuckets": {
+          "description": "Must be greater than 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "scale": {
+          "description": "Must be between -3 and 3. This forces the growth factor of the bucket boundaries to be between `2^(1/8)` and `256`.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "BigQueryIODetails": {
       "description": "Metadata for a BigQuery connector used by the job.",
       "id": "BigQueryIODetails",
@@ -2405,6 +2422,21 @@
         "tableId": {
           "description": "TableId accessed in the connection.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BucketOptions": {
+      "description": "`BucketOptions` describes the bucket boundaries used in the histogram.",
+      "id": "BucketOptions",
+      "properties": {
+        "exponential": {
+          "$ref": "Base2Exponent",
+          "description": "Bucket boundaries grow exponentially."
+        },
+        "linear": {
+          "$ref": "Linear",
+          "description": "Bucket boundaries grow linearly."
         }
       },
       "type": "object"
@@ -2903,6 +2935,34 @@
           "description": "Optional. Delta of errors counts from retrieving, or translating the samples from previous report.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataflowHistogramValue": {
+      "description": "Summary statistics for a population of values. HistogramValue contains a sequence of buckets and gives a count of values that fall into each bucket. Bucket boundares are defined by a formula and bucket widths are either fixed or exponentially increasing.",
+      "id": "DataflowHistogramValue",
+      "properties": {
+        "bucketCounts": {
+          "description": "Optional. The number of values in each bucket of the histogram, as described in `bucket_options`. `bucket_counts` should contain N values, where N is the number of buckets specified in `bucket_options`. If `bucket_counts` has fewer than N values, the remaining values are assumed to be 0.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "bucketOptions": {
+          "$ref": "BucketOptions",
+          "description": "Describes the bucket boundaries used in the histogram."
+        },
+        "count": {
+          "description": "Number of values recorded in this histogram.",
+          "format": "int64",
+          "type": "string"
+        },
+        "outlierStats": {
+          "$ref": "OutlierStats",
+          "description": "Statistics on the values recorded in the histogram that fall out of the bucket boundaries."
         }
       },
       "type": "object"
@@ -3515,6 +3575,20 @@
         },
         "stagingLocation": {
           "description": "The Cloud Storage path for staging local files. Must be a valid Cloud Storage URL, beginning with `gs://`.",
+          "type": "string"
+        },
+        "streamingMode": {
+          "description": "Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.",
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_EXACTLY_ONCE",
+            "STREAMING_MODE_AT_LEAST_ONCE"
+          ],
+          "enumDescriptions": [
+            "Run in the default mode.",
+            "In this mode, message deduplication is performed against persistent state to make sure each message is processed and committed to storage exactly once.",
+            "Message deduplication is not performed. Messages might be processed multiple times, and the results are applied multiple times. Note: Setting this value also enables Streaming Engine and Streaming Engine resource-based billing."
+          ],
           "type": "string"
         },
         "subnetwork": {
@@ -4408,6 +4482,28 @@
       },
       "type": "object"
     },
+    "Linear": {
+      "description": "Linear buckets with the following boundaries for indices in 0 to n-1. - i in [0, n-1]: [start + (i)*width, start + (i+1)*width)",
+      "id": "Linear",
+      "properties": {
+        "numberOfBuckets": {
+          "description": "Must be greater than 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "start": {
+          "description": "Lower bound of the first bucket.",
+          "format": "double",
+          "type": "number"
+        },
+        "width": {
+          "description": "Distance between bucket boundaries. Must be greater than 0.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ListJobMessagesResponse": {
       "description": "Response to a request to list job messages.",
       "id": "ListJobMessagesResponse",
@@ -4621,6 +4717,33 @@
       },
       "type": "object"
     },
+    "MetricValue": {
+      "description": "The value of a metric along with its name and labels.",
+      "id": "MetricValue",
+      "properties": {
+        "metric": {
+          "description": "Base name for this metric.",
+          "type": "string"
+        },
+        "metricLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of metric labels for this metric.",
+          "type": "object"
+        },
+        "valueHistogram": {
+          "$ref": "DataflowHistogramValue",
+          "description": "Histogram value of this metric."
+        },
+        "valueInt64": {
+          "description": "Integer value of this metric.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MountedDataDisk": {
       "description": "Describes mounted data disk.",
       "id": "MountedDataDisk",
@@ -4678,6 +4801,33 @@
         "name": {
           "description": "Name of the counter.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OutlierStats": {
+      "description": "Statistics for the underflow and overflow bucket.",
+      "id": "OutlierStats",
+      "properties": {
+        "overflowCount": {
+          "description": "Number of values that are larger than the upper bound of the largest bucket.",
+          "format": "int64",
+          "type": "string"
+        },
+        "overflowMean": {
+          "description": "Mean of values in the overflow bucket.",
+          "format": "double",
+          "type": "number"
+        },
+        "underflowCount": {
+          "description": "Number of values that are smaller than the lower bound of the smallest bucket.",
+          "format": "int64",
+          "type": "string"
+        },
+        "underflowMean": {
+          "description": "Mean of values in the undeflow bucket.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -4826,6 +4976,10 @@
           "description": "Required. The help text to display for the parameter.",
           "type": "string"
         },
+        "hiddenUi": {
+          "description": "Optional. Whether the parameter should be hidden in the UI.",
+          "type": "boolean"
+        },
         "isOptional": {
           "description": "Optional. Whether the parameter is optional. Defaults to false.",
           "type": "boolean"
@@ -4964,6 +5118,42 @@
           },
           "description": "The value combining function to invoke.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "PerStepNamespaceMetrics": {
+      "description": "Metrics for a particular unfused step and namespace. A metric is uniquely identified by the `metrics_namespace`, `original_step`, `metric name` and `metric_labels`.",
+      "id": "PerStepNamespaceMetrics",
+      "properties": {
+        "metricValues": {
+          "description": "Optional. Metrics that are recorded for this namespace and unfused step.",
+          "items": {
+            "$ref": "MetricValue"
+          },
+          "type": "array"
+        },
+        "metricsNamespace": {
+          "description": "The namespace of these metrics on the worker.",
+          "type": "string"
+        },
+        "originalStep": {
+          "description": "The original system name of the unfused step that these metrics are reported from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PerWorkerMetrics": {
+      "description": "Per worker metrics.",
+      "id": "PerWorkerMetrics",
+      "properties": {
+        "perStepNamespaceMetrics": {
+          "description": "Optional. Metrics for a particular unfused step and namespace.",
+          "items": {
+            "$ref": "PerStepNamespaceMetrics"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5330,6 +5520,20 @@
         },
         "serviceAccountEmail": {
           "description": "Optional. The email address of the service account to run the job as.",
+          "type": "string"
+        },
+        "streamingMode": {
+          "description": "Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.",
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_EXACTLY_ONCE",
+            "STREAMING_MODE_AT_LEAST_ONCE"
+          ],
+          "enumDescriptions": [
+            "Run in the default mode.",
+            "In this mode, message deduplication is performed against persistent state to make sure each message is processed and committed to storage exactly once.",
+            "Message deduplication is not performed. Messages might be processed multiple times, and the results are applied multiple times. Note: Setting this value also enables Streaming Engine and Streaming Engine resource-based billing."
+          ],
           "type": "string"
         },
         "subnetwork": {
@@ -6522,7 +6726,7 @@
       "id": "StreamingScalingReport",
       "properties": {
         "activeBundleCount": {
-          "description": "Current acive bundle count.",
+          "deprecated": true,
           "format": "int32",
           "type": "integer"
         },
@@ -6532,12 +6736,17 @@
           "type": "integer"
         },
         "maximumBundleCount": {
-          "description": "Maximum bundle count limit.",
+          "description": "Maximum bundle count.",
           "format": "int32",
           "type": "integer"
         },
+        "maximumBytes": {
+          "description": "Maximum bytes.",
+          "format": "int64",
+          "type": "string"
+        },
         "maximumBytesCount": {
-          "description": "Maximum bytes count limit.",
+          "deprecated": true,
           "format": "int32",
           "type": "integer"
         },
@@ -6546,8 +6755,18 @@
           "format": "int32",
           "type": "integer"
         },
+        "outstandingBundleCount": {
+          "description": "Current outstanding bundle count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "outstandingBytes": {
+          "description": "Current outstanding bytes.",
+          "format": "int64",
+          "type": "string"
+        },
         "outstandingBytesCount": {
-          "description": "Current outstanding bytes count.",
+          "deprecated": true,
           "format": "int32",
           "type": "integer"
         }
@@ -6780,6 +6999,18 @@
             "$ref": "ParameterMetadata"
           },
           "type": "array"
+        },
+        "streaming": {
+          "description": "Optional. Indicates if the template is streaming or not.",
+          "type": "boolean"
+        },
+        "supportsAtLeastOnce": {
+          "description": "Optional. Indicates if the streaming template supports at least once mode.",
+          "type": "boolean"
+        },
+        "supportsExactlyOnce": {
+          "description": "Optional. Indicates if the streaming template supports exactly once mode.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7286,6 +7517,10 @@
           },
           "description": "Labels are used to group WorkerMessages. For example, a worker_message about a particular container might have the labels: { \"JOB_ID\": \"2015-04-22\", \"WORKER_ID\": \"wordcount-vm-2015…\" \"CONTAINER_TYPE\": \"worker\", \"CONTAINER_ID\": \"ac1234def\"} Label tags typically correspond to Label enum values. However, for ease of development other strings can be used as tags. LABEL_UNSPECIFIED should not be used here.",
           "type": "object"
+        },
+        "perWorkerMetrics": {
+          "$ref": "PerWorkerMetrics",
+          "description": "System defined metrics for this worker."
         },
         "streamingScalingReport": {
           "$ref": "StreamingScalingReport",
