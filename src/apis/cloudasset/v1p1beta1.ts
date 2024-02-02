@@ -178,7 +178,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -568,7 +568,7 @@ export namespace cloudasset_v1p1beta1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressFrom {
     /**
-     * A list of identities that are allowed access through this [EgressPolicy]. Should be in the format of email address. The email address should represent individual user or service account only.
+     * A list of identities that are allowed access through this [EgressPolicy], in the format of `user:{email_id\}` or `serviceAccount:{email_id\}`.
      */
     identities?: string[] | null;
     /**
@@ -628,7 +628,7 @@ export namespace cloudasset_v1p1beta1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressFrom {
     /**
-     * A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.
+     * A list of identities that are allowed access through this ingress policy, in the format of `user:{email_id\}` or `serviceAccount:{email_id\}`.
      */
     identities?: string[] | null;
     /**
@@ -684,11 +684,11 @@ export namespace cloudasset_v1p1beta1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1MethodSelector {
     /**
-     * Value for `method` should be a valid method name for the corresponding `service_name` in ApiOperation. If `*` used as value for `method`, then ALL methods and permissions are allowed.
+     * A valid method name for the corresponding `service_name` in ApiOperation. If `*` is used as the value for the `method`, then ALL methods and permissions are allowed.
      */
     method?: string | null;
     /**
-     * Value for `permission` should be a valid Cloud IAM permission for the corresponding `service_name` in ApiOperation.
+     * A valid Cloud IAM permission for the corresponding `service_name` in ApiOperation.
      */
     permission?: string | null;
   }
