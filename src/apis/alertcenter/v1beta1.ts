@@ -631,6 +631,39 @@ export namespace alertcenter_v1beta1 {
     serialNumber?: string | null;
   }
   /**
+   * Alerts from Device Management Rules configured by Admin.
+   */
+  export interface Schema$DeviceManagementRule {
+    /**
+     * Required. The device ID.
+     */
+    deviceId?: string | null;
+    /**
+     * The model of the device.
+     */
+    deviceModel?: string | null;
+    /**
+     * The type of the device.
+     */
+    deviceType?: string | null;
+    /**
+     * The email of the user this alert was created for.
+     */
+    email?: string | null;
+    /**
+     * Required for iOS, empty for others.
+     */
+    iosVendorId?: string | null;
+    /**
+     * The device resource ID.
+     */
+    resourceId?: string | null;
+    /**
+     * The serial number of the device.
+     */
+    serialNumber?: string | null;
+  }
+  /**
    * Alerts that get triggered on violations of Data Loss Prevention (DLP) rules.
    */
   export interface Schema$DlpRuleViolation {
