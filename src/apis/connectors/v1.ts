@@ -246,7 +246,7 @@ export namespace connectors_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -684,6 +684,10 @@ export namespace connectors_v1 {
      */
     connectionRatelimitWindowSeconds?: string | null;
     /**
+     * Optional. Indicates whether connector is deployed on GKE/CloudRun
+     */
+    deploymentModel?: string | null;
+    /**
      * Output only. HPA autoscaling config.
      */
     hpaConfig?: Schema$HPAConfig;
@@ -778,7 +782,7 @@ export namespace connectors_v1 {
      */
     name?: string | null;
     /**
-     * Required. Service account used by runtime plane to access auth config secrets.
+     * Optional. Service account used by runtime plane to access auth config secrets.
      */
     serviceAccount?: string | null;
     /**
@@ -819,6 +823,19 @@ export namespace connectors_v1 {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
+  }
+  /**
+   * Dead Letter configuration details provided by the user.
+   */
+  export interface Schema$DeadLetterConfig {
+    /**
+     * Optional. Project which has the topic given.
+     */
+    projectId?: string | null;
+    /**
+     * Optional. Topic to push events which couldn't be processed.
+     */
+    topic?: string | null;
   }
   /**
    * DenyMaintenancePeriod definition. Maintenance is forbidden within the deny period. The start_date must be less than the end_date.
@@ -1020,6 +1037,10 @@ export namespace connectors_v1 {
      */
     authConfig?: Schema$AuthConfig;
     /**
+     * Optional. Dead letter configuration for eventing of a connection.
+     */
+    deadLetterConfig?: Schema$DeadLetterConfig;
+    /**
      * Enrichment Enabled.
      */
     enrichmentEnabled?: boolean | null;
@@ -1035,6 +1056,10 @@ export namespace connectors_v1 {
      * Optional. Private Connectivity Enabled.
      */
     privateConnectivityEnabled?: boolean | null;
+    /**
+     * Optional. Proxy for Eventing auto-registration.
+     */
+    proxyDestinationConfig?: Schema$DestinationConfig;
     /**
      * Registration endpoint for auto registration.
      */
@@ -1080,6 +1105,10 @@ export namespace connectors_v1 {
      * ListenerAuthConfigTemplates represents the auth values for the event listener.
      */
     listenerAuthConfigTemplates?: Schema$AuthConfigTemplate[];
+    /**
+     * Proxy destination config template.
+     */
+    proxyDestinationConfig?: Schema$DestinationConfigTemplate;
     /**
      * Registration host destination config template.
      */
@@ -2284,6 +2313,10 @@ export namespace connectors_v1 {
      * Optional. Regional network config.
      */
     networkConfig?: Schema$NetworkConfig;
+    /**
+     * Output only. Specifies whether the region is provisioned.
+     */
+    provisioned?: boolean | null;
   }
   /**
    * Request message for ConnectorsService.RepairEventing
@@ -7046,6 +7079,10 @@ export namespace connectors_v1 {
   }
   export interface Params$Resource$Projects$Locations$Global$Customconnectors$Delete
     extends StandardParameters {
+    /**
+     * Optional. If set to true, any customConnectorVersion which is a child resource will also be deleted. https://aip.dev/135#cascading-delete
+     */
+    force?: boolean;
     /**
      * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{connector\}`
      */
