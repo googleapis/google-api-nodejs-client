@@ -249,7 +249,7 @@ export namespace sasportal_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * The FCC identifier of the device.
+     * The FCC identifier of the device. Refer to https://www.fcc.gov/oet/ea/fccid for FccID format.
      */
     fccId?: string | null;
     /**
@@ -583,9 +583,9 @@ export namespace sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalListLegacyOrganizationsResponse {
     /**
-     * Optional. IDs of legacy SAS organizations.
+     * Optional. Legacy SAS organizations.
      */
-    organizationIds?: string[] | null;
+    organizations?: Schema$SasPortalOrganization[];
   }
   /**
    * Response for ListNodes.
@@ -720,6 +720,19 @@ export namespace sasportal_v1alpha1 {
      * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Organization details.
+   */
+  export interface Schema$SasPortalOrganization {
+    /**
+     * Name of organization
+     */
+    displayName?: string | null;
+    /**
+     * Id of organization
+     */
+    id?: string | null;
   }
   /**
    * Defines an access control policy to the resources.
