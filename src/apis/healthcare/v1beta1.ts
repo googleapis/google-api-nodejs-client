@@ -416,7 +416,7 @@ export namespace healthcare_v1beta1 {
      */
     description?: string | null;
     /**
-     * Resource name of the Attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`. Cannot be changed after creation.
+     * Identifier. Resource name of the Attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`. Cannot be changed after creation.
      */
     name?: string | null;
   }
@@ -464,7 +464,7 @@ export namespace healthcare_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
      */
     members?: string[] | null;
     /**
@@ -662,7 +662,7 @@ export namespace healthcare_v1beta1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Resource name of the Consent artifact, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`. Cannot be changed after creation.
+     * Identifier. Resource name of the Consent artifact, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`. Cannot be changed after creation.
      */
     name?: string | null;
     /**
@@ -874,7 +874,7 @@ export namespace healthcare_v1beta1 {
      */
     config?: Schema$DeidentifyConfig;
     /**
-     * The name of the dataset resource to create and write the redacted data to. * The destination dataset must not exist. * The destination dataset must be in the same location as the source dataset. De-identifying data across multiple locations is not supported.
+     * Required. The name of the dataset resource to create and write the redacted data to. * The destination dataset must not exist. * The destination dataset must be in the same location as the source dataset. De-identifying data across multiple locations is not supported.
      */
     destinationDataset?: string | null;
     /**
@@ -891,7 +891,7 @@ export namespace healthcare_v1beta1 {
      */
     config?: Schema$DeidentifyConfig;
     /**
-     * The name of the DICOM store to create and write the redacted data to. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`. * The destination dataset must exist. * The source dataset and destination dataset must both reside in the same location. De-identifying data across multiple locations is not supported. * The destination DICOM store must not exist. * The caller must have the necessary permissions to create the destination DICOM store.
+     * Required. The name of the DICOM store to create and write the redacted data to. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`. * The destination dataset must exist. * The source dataset and destination dataset must both reside in the same location. De-identifying data across multiple locations is not supported. * The destination DICOM store must not exist. * The caller must have the necessary permissions to create the destination DICOM store.
      */
     destinationStore?: string | null;
     /**
@@ -912,7 +912,7 @@ export namespace healthcare_v1beta1 {
      */
     config?: Schema$DeidentifyConfig;
     /**
-     * The name of the FHIR store to create and write the redacted data to. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`. * The destination dataset must exist. * The source dataset and destination dataset must both reside in the same location. De-identifying data across multiple locations is not supported. * The destination FHIR store must exist. * The caller must have the healthcare.fhirResources.update permission to write to the destination FHIR store.
+     * Required. The name of the FHIR store to create and write the redacted data to. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`. * The destination dataset must exist. * The source dataset and destination dataset must both reside in the same location. De-identifying data across multiple locations is not supported. * The destination FHIR store must exist. * The caller must have the healthcare.fhirResources.update permission to write to the destination FHIR store.
      */
     destinationStore?: string | null;
     /**
@@ -990,7 +990,7 @@ export namespace healthcare_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Resource name of the DICOM store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Identifier. Resource name of the DICOM store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     name?: string | null;
     /**
@@ -1420,7 +1420,7 @@ export namespace healthcare_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Resource name of the FHIR store, of the form `projects/{project_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     * Output only. Identifier. Resource name of the FHIR store, of the form `projects/{project_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
      */
     name?: string | null;
     /**
@@ -1444,7 +1444,7 @@ export namespace healthcare_v1beta1 {
      */
     validationConfig?: Schema$ValidationConfig;
     /**
-     * Immutable. The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. Version is required for every FHIR store.
+     * Required. Immutable. The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. Version is required for every FHIR store.
      */
     version?: string | null;
   }
@@ -2827,7 +2827,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$SearchResourcesRequest {
     /**
-     * The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     * Required. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
      */
     resourceType?: string | null;
   }
@@ -4257,7 +4257,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Deidentify
     extends StandardParameters {
     /**
-     * Source dataset resource name. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
+     * Required. Source dataset resource name. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
      */
     sourceDataset?: string;
 
@@ -7639,7 +7639,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch
     extends StandardParameters {
     /**
-     * Resource name of the Attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`. Cannot be changed after creation.
+     * Identifier. Resource name of the Attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`. Cannot be changed after creation.
      */
     name?: string;
     /**
@@ -11216,11 +11216,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Create
     extends StandardParameters {
     /**
-     * The ID of the DICOM store that is being created. Any string value up to 256 characters in length.
+     * Required. The ID of the DICOM store that is being created. Any string value up to 256 characters in length.
      */
     dicomStoreId?: string;
     /**
-     * The name of the dataset this DICOM store belongs to.
+     * Required. The name of the dataset this DICOM store belongs to.
      */
     parent?: string;
 
@@ -11232,7 +11232,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Deidentify
     extends StandardParameters {
     /**
-     * Source DICOM store resource name. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. Source DICOM store resource name. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     sourceStore?: string;
 
@@ -11244,14 +11244,14 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete
     extends StandardParameters {
     /**
-     * The resource name of the DICOM store to delete.
+     * Required. The resource name of the DICOM store to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Export
     extends StandardParameters {
     /**
-     * The DICOM store resource name from which to export the data. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The DICOM store resource name from which to export the data. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     name?: string;
 
@@ -11263,14 +11263,14 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Get
     extends StandardParameters {
     /**
-     * The resource name of the DICOM store to get.
+     * Required. The resource name of the DICOM store to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics
     extends StandardParameters {
     /**
-     * The resource name of the DICOM store to get metrics for.
+     * Required. The resource name of the DICOM store to get metrics for.
      */
     name?: string;
   }
@@ -11288,7 +11288,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Import
     extends StandardParameters {
     /**
-     * The name of the DICOM store resource into which the data is imported. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store resource into which the data is imported. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     name?: string;
 
@@ -11312,14 +11312,14 @@ export namespace healthcare_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Name of the dataset.
+     * Required. Name of the dataset.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch
     extends StandardParameters {
     /**
-     * Resource name of the DICOM store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Identifier. Resource name of the DICOM store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     name?: string;
     /**
@@ -11335,33 +11335,33 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforinstances
     extends StandardParameters {
     /**
-     * The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
+     * Required. The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforseries
     extends StandardParameters {
     /**
-     * The path of the SearchForSeries DICOMweb request. For example, `series` or `studies/{study_uid\}/series`.
+     * Required. The path of the SearchForSeries DICOMweb request. For example, `series` or `studies/{study_uid\}/series`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforstudies
     extends StandardParameters {
     /**
-     * The path of the SearchForStudies DICOMweb request. For example, `studies`.
+     * Required. The path of the SearchForStudies DICOMweb request. For example, `studies`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
@@ -11392,11 +11392,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Storeinstances
     extends StandardParameters {
     /**
-     * The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid\}]`. Note that the `study_uid` is optional.
+     * Required. The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid\}]`. Note that the `study_uid` is optional.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
 
@@ -11622,7 +11622,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics
     extends StandardParameters {
     /**
-     * The study resource path. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}/dicomWeb/studies/{study_uid\}`.
+     * Required. The study resource path. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}/dicomWeb/studies/{study_uid\}`.
      */
     study?: string;
   }
@@ -11744,7 +11744,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics
     extends StandardParameters {
     /**
-     * The series resource path. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}`.
+     * Required. The series resource path. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}`.
      */
     series?: string;
   }
@@ -12389,7 +12389,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete
     extends StandardParameters {
     /**
-     * The path of the DeleteStudy request. For example, `studies/{study_uid\}`.
+     * Required. The path of the DeleteStudy request. For example, `studies/{study_uid\}`.
      */
     dicomWebPath?: string;
     /**
@@ -12400,55 +12400,55 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievemetadata
     extends StandardParameters {
     /**
-     * The path of the RetrieveStudyMetadata DICOMweb request. For example, `studies/{study_uid\}/metadata`.
+     * Required. The path of the RetrieveStudyMetadata DICOMweb request. For example, `studies/{study_uid\}/metadata`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievestudy
     extends StandardParameters {
     /**
-     * The path of the RetrieveStudy DICOMweb request. For example, `studies/{study_uid\}`.
+     * Required. The path of the RetrieveStudy DICOMweb request. For example, `studies/{study_uid\}`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforinstances
     extends StandardParameters {
     /**
-     * The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
+     * Required. The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforseries
     extends StandardParameters {
     /**
-     * The path of the SearchForSeries DICOMweb request. For example, `series` or `studies/{study_uid\}/series`.
+     * Required. The path of the SearchForSeries DICOMweb request. For example, `series` or `studies/{study_uid\}/series`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Storeinstances
     extends StandardParameters {
     /**
-     * The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid\}]`. Note that the `study_uid` is optional.
+     * Required. The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid\}]`. Note that the `study_uid` is optional.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
 
@@ -12821,44 +12821,44 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete
     extends StandardParameters {
     /**
-     * The path of the DeleteSeries request. For example, `studies/{study_uid\}/series/{series_uid\}`.
+     * Required. The path of the DeleteSeries request. For example, `studies/{study_uid\}/series/{series_uid\}`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrievemetadata
     extends StandardParameters {
     /**
-     * The path of the RetrieveSeriesMetadata DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/metadata`.
+     * Required. The path of the RetrieveSeriesMetadata DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/metadata`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrieveseries
     extends StandardParameters {
     /**
-     * The path of the RetrieveSeries DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}`.
+     * Required. The path of the RetrieveSeries DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Searchforinstances
     extends StandardParameters {
     /**
-     * The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
+     * Required. The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
@@ -13231,44 +13231,44 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Delete
     extends StandardParameters {
     /**
-     * The path of the DeleteInstance request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`.
+     * Required. The path of the DeleteInstance request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieveinstance
     extends StandardParameters {
     /**
-     * The path of the RetrieveInstance DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`.
+     * Required. The path of the RetrieveInstance DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrievemetadata
     extends StandardParameters {
     /**
-     * The path of the RetrieveInstanceMetadata DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/metadata`.
+     * Required. The path of the RetrieveInstanceMetadata DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/metadata`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieverendered
     extends StandardParameters {
     /**
-     * The path of the RetrieveRenderedInstance DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/rendered`.
+     * Required. The path of the RetrieveRenderedInstance DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/rendered`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
@@ -13280,7 +13280,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Returns uncompressed, unencoded bytes representing the referenced bulkdata tag from an instance. See [Retrieve Transaction] (http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4){: .external\}.
+     * Returns uncompressed, unencoded bytes representing the referenced bulkdata tag from an instance. See [Retrieve Transaction] (http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4){: .external\}. For details on the implementation of RetrieveBulkdata, see [Bulkdata resources](https://cloud.google.com/healthcare/docs/dicom#bulkdata-resources) in the Cloud Healthcare API conformance statement. For samples that show how to call RetrieveBulkdata, see [Retrieve bulkdata](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-bulkdata).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13563,22 +13563,22 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieveframes
     extends StandardParameters {
     /**
-     * The path of the RetrieveFrames DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/frames/{frame_list\}`.
+     * Required. The path of the RetrieveFrames DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/frames/{frame_list\}`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieverendered
     extends StandardParameters {
     /**
-     * The path of the RetrieveRenderedFrames DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/frames/{frame_list\}/rendered`.
+     * Required. The path of the RetrieveRenderedFrames DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/frames/{frame_list\}/rendered`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
   }
@@ -15010,7 +15010,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents
     extends StandardParameters {
     /**
-     * The name of the FHIR store to enforce, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     * Required. The name of the FHIR store to enforce, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
      */
     name?: string;
 
@@ -15034,7 +15034,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch
     extends StandardParameters {
     /**
-     * The name of the FHIR store to configure, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     * Required. The name of the FHIR store to configure, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
      */
     name?: string;
 
@@ -15046,11 +15046,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Create
     extends StandardParameters {
     /**
-     * The ID of the FHIR store that is being created. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`.
+     * Required. The ID of the FHIR store that is being created. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`.
      */
     fhirStoreId?: string;
     /**
-     * The name of the dataset this FHIR store belongs to.
+     * Required. The name of the dataset this FHIR store belongs to.
      */
     parent?: string;
 
@@ -15062,7 +15062,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Deidentify
     extends StandardParameters {
     /**
-     * Source FHIR store resource name. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     * Required. Source FHIR store resource name. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
      */
     sourceStore?: string;
 
@@ -15074,14 +15074,14 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete
     extends StandardParameters {
     /**
-     * The resource name of the FHIR store to delete.
+     * Required. The resource name of the FHIR store to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Export
     extends StandardParameters {
     /**
-     * The name of the FHIR store to export resource from, in the format of `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     * Required. The name of the FHIR store to export resource from, in the format of `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
      */
     name?: string;
 
@@ -15093,14 +15093,14 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Get
     extends StandardParameters {
     /**
-     * The resource name of the FHIR store to get.
+     * Required. The resource name of the FHIR store to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics
     extends StandardParameters {
     /**
-     * The resource name of the FHIR store to get metrics for.
+     * Required. The resource name of the FHIR store to get metrics for.
      */
     name?: string;
   }
@@ -15118,7 +15118,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Import
     extends StandardParameters {
     /**
-     * The name of the FHIR store to import FHIR resources to, in the format of `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     * Required. The name of the FHIR store to import FHIR resources to, in the format of `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
      */
     name?: string;
 
@@ -15142,18 +15142,18 @@ export namespace healthcare_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Name of the dataset.
+     * Required. Name of the dataset.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of the FHIR store, of the form `projects/{project_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     * Output only. Identifier. Resource name of the FHIR store, of the form `projects/{project_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
      */
     name?: string;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -17220,14 +17220,14 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities
     extends StandardParameters {
     /**
-     * Name of the FHIR store to retrieve the capabilities for.
+     * Required. Name of the FHIR store to retrieve the capabilities for.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmapsearchtranslate
     extends StandardParameters {
     /**
-     * The code to translate.
+     * Required. The code to translate.
      */
     code?: string;
     /**
@@ -17235,7 +17235,7 @@ export namespace healthcare_v1beta1 {
      */
     conceptMapVersion?: string;
     /**
-     * The name for the FHIR store containing the concept map(s) to use for the translation.
+     * Required. The name for the FHIR store containing the concept map(s) to use for the translation.
      */
     parent?: string;
     /**
@@ -17243,7 +17243,7 @@ export namespace healthcare_v1beta1 {
      */
     source?: string;
     /**
-     * The system for the code to be translated.
+     * Required. The system for the code to be translated.
      */
     system?: string;
     /**
@@ -17258,7 +17258,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmaptranslate
     extends StandardParameters {
     /**
-     * The code to translate.
+     * Required. The code to translate.
      */
     code?: string;
     /**
@@ -17266,33 +17266,33 @@ export namespace healthcare_v1beta1 {
      */
     conceptMapVersion?: string;
     /**
-     * The URL for the concept map to use for the translation.
+     * Required. The URL for the concept map to use for the translation.
      */
     name?: string;
     /**
-     * The system for the code to be translated.
+     * Required. The system for the code to be translated.
      */
     system?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete
     extends StandardParameters {
     /**
-     * The name of the FHIR store this resource belongs to.
+     * Required. The name of the FHIR store this resource belongs to.
      */
     parent?: string;
     /**
-     * The FHIR resource type to delete, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     * Required. The FHIR resource type to delete, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
      */
     type?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch
     extends StandardParameters {
     /**
-     * The name of the FHIR store this resource belongs to.
+     * Required. The name of the FHIR store this resource belongs to.
      */
     parent?: string;
     /**
-     * The FHIR resource type to update, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     * Required. The FHIR resource type to update, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
      */
     type?: string;
 
@@ -17304,11 +17304,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate
     extends StandardParameters {
     /**
-     * The name of the FHIR store this resource belongs to.
+     * Required. The name of the FHIR store this resource belongs to.
      */
     parent?: string;
     /**
-     * The FHIR resource type to update, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
+     * Required. The FHIR resource type to update, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
      */
     type?: string;
 
@@ -17327,11 +17327,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create
     extends StandardParameters {
     /**
-     * The name of the FHIR store this resource belongs to.
+     * Required. The name of the FHIR store this resource belongs to.
      */
     parent?: string;
     /**
-     * The FHIR resource type to create, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
+     * Required. The FHIR resource type to create, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
      */
     type?: string;
 
@@ -17343,14 +17343,14 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete
     extends StandardParameters {
     /**
-     * The name of the resource to delete.
+     * Required. The name of the resource to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle
     extends StandardParameters {
     /**
-     * Name of the FHIR store in which this bundle will be executed.
+     * Required. Name of the FHIR store in which this bundle will be executed.
      */
     parent?: string;
 
@@ -17362,7 +17362,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History
     extends StandardParameters {
     /**
-     * The name of the resource to retrieve.
+     * Required. The name of the resource to retrieve.
      */
     name?: string;
     /**
@@ -17385,14 +17385,14 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observationlastn
     extends StandardParameters {
     /**
-     * Name of the FHIR store to retrieve resources from.
+     * Required. Name of the FHIR store to retrieve resources from.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch
     extends StandardParameters {
     /**
-     * The name of the resource to update.
+     * Required. The name of the resource to update.
      */
     name?: string;
 
@@ -17423,7 +17423,7 @@ export namespace healthcare_v1beta1 {
      */
     end?: string;
     /**
-     * Name of the `Patient` resource for which the information is required.
+     * Required. Name of the `Patient` resource for which the information is required.
      */
     name?: string;
     /**
@@ -17450,7 +17450,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read
     extends StandardParameters {
     /**
-     * The name of the resource to retrieve.
+     * Required. The name of the resource to retrieve.
      */
     name?: string;
   }
@@ -17484,22 +17484,22 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge
     extends StandardParameters {
     /**
-     * The name of the resource to purge.
+     * Required. The name of the resource to purge.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate
     extends StandardParameters {
     /**
-     * The name of the FHIR store that holds the profiles being used for validation.
+     * Required. The name of the FHIR store that holds the profiles being used for validation.
      */
     parent?: string;
     /**
-     * The canonical URL of a profile that this resource should be validated against. For example, to validate a Patient resource against the US Core Patient profile this parameter would be `http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient`. A StructureDefinition with this canonical URL must exist in the FHIR store.
+     * Required. The canonical URL of a profile that this resource should be validated against. For example, to validate a Patient resource against the US Core Patient profile this parameter would be `http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient`. A StructureDefinition with this canonical URL must exist in the FHIR store.
      */
     profile?: string;
     /**
-     * The FHIR resource type of the resource being validated. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), or [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
+     * Required. The FHIR resource type of the resource being validated. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), or [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
      */
     type?: string;
 
@@ -17511,7 +17511,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search
     extends StandardParameters {
     /**
-     * Name of the FHIR store to retrieve resources from.
+     * Required. Name of the FHIR store to retrieve resources from.
      */
     parent?: string;
 
@@ -17523,11 +17523,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype
     extends StandardParameters {
     /**
-     * Name of the FHIR store to retrieve resources from.
+     * Required. Name of the FHIR store to retrieve resources from.
      */
     parent?: string;
     /**
-     * The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     * Required. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
      */
     resourceType?: string;
 
@@ -17539,7 +17539,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update
     extends StandardParameters {
     /**
-     * The name of the resource to update.
+     * Required. The name of the resource to update.
      */
     name?: string;
 
@@ -17551,7 +17551,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread
     extends StandardParameters {
     /**
-     * The name of the resource version to retrieve.
+     * Required. The name of the resource version to retrieve.
      */
     name?: string;
   }
