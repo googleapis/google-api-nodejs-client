@@ -2838,7 +2838,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the DlpJob resource to be cancelled.",
+                      "description": "Required. The name of the DlpJob resource to be finished.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dlpJobs/[^/]+$",
                       "required": true,
@@ -3714,7 +3714,7 @@
       }
     }
   },
-  "revision": "20231210",
+  "revision": "20240128",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5166,6 +5166,18 @@
             "Medium risk - Sensitive data may be present but additional access or fine grain access restrictions appear to be present. Consider limiting access even further or transform data to mask.",
             "High risk – SPII may be present. Access controls may include public ACLs. Exfiltration of data may lead to user data loss. Re-identification of users may be possible. Consider limiting usage and or removing SPII."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DataSourceType": {
+      "description": "Message used to identify the type of resource being profiled.",
+      "id": "GooglePrivacyDlpV2DataSourceType",
+      "properties": {
+        "dataSource": {
+          "description": "Output only. An identifying string to the type of resource being profiled. Current values: google/bigquery/table, google/project",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8846,6 +8858,10 @@
         "dataRiskLevel": {
           "$ref": "GooglePrivacyDlpV2DataRiskLevel",
           "description": "The data risk level of this table."
+        },
+        "dataSourceType": {
+          "$ref": "GooglePrivacyDlpV2DataSourceType",
+          "description": "The resource type that was profiled."
         },
         "datasetId": {
           "description": "The BigQuery dataset ID.",

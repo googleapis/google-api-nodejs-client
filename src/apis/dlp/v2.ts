@@ -1118,6 +1118,15 @@ export namespace dlp_v2 {
     score?: string | null;
   }
   /**
+   * Message used to identify the type of resource being profiled.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataSourceType {
+    /**
+     * Output only. An identifying string to the type of resource being profiled. Current values: google/bigquery/table, google/project
+     */
+    dataSource?: string | null;
+  }
+  /**
    * Record key for a finding in Cloud Datastore.
    */
   export interface Schema$GooglePrivacyDlpV2DatastoreKey {
@@ -3643,6 +3652,10 @@ export namespace dlp_v2 {
      * The Google Cloud project ID that owns the BigQuery dataset.
      */
     datasetProjectId?: string | null;
+    /**
+     * The resource type that was profiled.
+     */
+    dataSourceType?: Schema$GooglePrivacyDlpV2DataSourceType;
     /**
      * How the table is encrypted.
      */
@@ -13758,7 +13771,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Dlpjobs$Finish
     extends StandardParameters {
     /**
-     * Required. The name of the DlpJob resource to be cancelled.
+     * Required. The name of the DlpJob resource to be finished.
      */
     name?: string;
 
