@@ -447,7 +447,7 @@ export namespace vmmigration_v1alpha1 {
     vmCapabilitiesInfo?: Schema$VmCapabilities;
   }
   /**
-   * AwsVmDetails describes a VM in AWS.
+   * AzureVmDetails describes a VM in Azure.
    */
   export interface Schema$AzureVmDetails {
     /**
