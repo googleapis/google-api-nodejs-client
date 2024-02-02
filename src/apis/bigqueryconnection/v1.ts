@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace bigqueryconnection_v1beta1 {
+export namespace bigqueryconnection_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace bigqueryconnection_v1beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const bigqueryconnection = google.bigqueryconnection('v1beta1');
+   * const bigqueryconnection = google.bigqueryconnection('v1');
    * ```
    */
   export class Bigqueryconnection {
@@ -151,6 +151,61 @@ export namespace bigqueryconnection_v1beta1 {
     logType?: string | null;
   }
   /**
+   * Authentication method for Amazon Web Services (AWS) that uses Google owned Google service account to assume into customer's AWS IAM Role.
+   */
+  export interface Schema$AwsAccessRole {
+    /**
+     * The user’s AWS IAM Role that trusts the Google-owned AWS IAM user Connection.
+     */
+    iamRoleId?: string | null;
+    /**
+     * A unique Google-owned and Google-generated identity for the Connection. This identity will be used to access the user's AWS IAM Role.
+     */
+    identity?: string | null;
+  }
+  /**
+   * Connection properties specific to Amazon Web Services (AWS).
+   */
+  export interface Schema$AwsProperties {
+    /**
+     * Authentication using Google owned service account to assume into customer's AWS IAM Role.
+     */
+    accessRole?: Schema$AwsAccessRole;
+  }
+  /**
+   * Container for connection properties specific to Azure.
+   */
+  export interface Schema$AzureProperties {
+    /**
+     * Output only. The name of the Azure Active Directory Application.
+     */
+    application?: string | null;
+    /**
+     * Output only. The client id of the Azure Active Directory Application.
+     */
+    clientId?: string | null;
+    /**
+     * The id of customer's directory that host the data.
+     */
+    customerTenantId?: string | null;
+    /**
+     * The client ID of the user's Azure Active Directory Application used for a federated connection.
+     */
+    federatedApplicationClientId?: string | null;
+    /**
+     * Output only. A unique Google-owned and Google-generated identity for the Connection. This identity will be used to access the user's Azure Active Directory Application.
+     */
+    identity?: string | null;
+    /**
+     * Output only. The object id of the Azure Active Directory Application.
+     */
+    objectId?: string | null;
+    /**
+     * The URL user will be redirected to after granting consent during connection setup.
+     */
+    redirectUri?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -166,6 +221,44 @@ export namespace bigqueryconnection_v1beta1 {
      * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
+  }
+  /**
+   * Container for connection properties for delegation of access to GCP resources.
+   */
+  export interface Schema$CloudResourceProperties {
+    /**
+     * Output only. The account ID of the service created for the purpose of this connection. The service account does not have any permissions associated with it when it is created. After creation, customers delegate permissions to the service account. When the connection is used in the context of an operation in BigQuery, the service account will be used to connect to the desired resources in GCP. The account ID is in the form of: @gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com
+     */
+    serviceAccountId?: string | null;
+  }
+  /**
+   * Connection properties specific to Cloud Spanner.
+   */
+  export interface Schema$CloudSpannerProperties {
+    /**
+     * Cloud Spanner database in the form `project/instance/database'
+     */
+    database?: string | null;
+    /**
+     * Optional. Cloud Spanner database role for fine-grained access control. The Cloud Spanner admin should have provisioned the database role with appropriate permissions, such as `SELECT` and `INSERT`. Other users should only use roles provided by their Cloud Spanner admins. For more details, see [About fine-grained access control] (https://cloud.google.com/spanner/docs/fgac-about). REQUIRES: The database role name must start with a letter, and can only contain letters, numbers, and underscores.
+     */
+    databaseRole?: string | null;
+    /**
+     * Allows setting max parallelism per query when executing on Spanner independent compute resources. If unspecified, default values of parallelism are chosen that are dependent on the Cloud Spanner instance configuration. REQUIRES: `use_parallelism` must be set. REQUIRES: `use_data_boost` must be set.
+     */
+    maxParallelism?: number | null;
+    /**
+     * If set, the request will be executed via Spanner independent compute resources. REQUIRES: `use_parallelism` must be set.
+     */
+    useDataBoost?: boolean | null;
+    /**
+     * If parallelism should be used when reading from Cloud Spanner
+     */
+    useParallelism?: boolean | null;
+    /**
+     * Deprecated: prefer use_data_boost instead. If the serverless analytics service should be used to read data from Cloud Spanner. Note: `use_parallelism` must be set when using serverless analytics.
+     */
+    useServerlessAnalytics?: boolean | null;
   }
   /**
    * Credential info for the Cloud SQL.
@@ -210,9 +303,29 @@ export namespace bigqueryconnection_v1beta1 {
    */
   export interface Schema$Connection {
     /**
+     * Amazon Web Services (AWS) properties.
+     */
+    aws?: Schema$AwsProperties;
+    /**
+     * Azure properties.
+     */
+    azure?: Schema$AzureProperties;
+    /**
+     * Cloud Resource properties.
+     */
+    cloudResource?: Schema$CloudResourceProperties;
+    /**
+     * Cloud Spanner properties.
+     */
+    cloudSpanner?: Schema$CloudSpannerProperties;
+    /**
      * Cloud SQL properties.
      */
     cloudSql?: Schema$CloudSqlProperties;
+    /**
+     * Optional. Connector configuration.
+     */
+    configuration?: Schema$ConnectorConfiguration;
     /**
      * Output only. The creation timestamp of the connection.
      */
@@ -230,22 +343,86 @@ export namespace bigqueryconnection_v1beta1 {
      */
     hasCredential?: boolean | null;
     /**
+     * Optional. The Cloud KMS key that is used for encryption. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
+     */
+    kmsKeyName?: string | null;
+    /**
      * Output only. The last update timestamp of the connection.
      */
     lastModifiedTime?: string | null;
     /**
-     * The resource name of the connection in the form of: `projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}`
+     * Output only. The resource name of the connection in the form of: `projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}`
      */
     name?: string | null;
+    /**
+     * Optional. Salesforce DataCloud properties. This field is intended for use only by Salesforce partner projects. This field contains properties for your Salesforce DataCloud connection.
+     */
+    salesforceDataCloud?: Schema$SalesforceDataCloudProperties;
+    /**
+     * Spark properties.
+     */
+    spark?: Schema$SparkProperties;
   }
   /**
-   * Credential to use with a connection.
+   * Represents concrete parameter values for Connector Configuration.
    */
-  export interface Schema$ConnectionCredential {
+  export interface Schema$ConnectorConfiguration {
     /**
-     * Credential for Cloud SQL database.
+     * Client authentication.
      */
-    cloudSql?: Schema$CloudSqlCredential;
+    authentication?: Schema$ConnectorConfigurationAuthentication;
+    /**
+     * Required. Immutable. The ID of the Connector these parameters are configured for.
+     */
+    connectorId?: string | null;
+    /**
+     * Specifies how to reach the remote system this connection is pointing to.
+     */
+    endpoint?: Schema$ConnectorConfigurationEndpoint;
+  }
+  /**
+   * Client authentication.
+   */
+  export interface Schema$ConnectorConfigurationAuthentication {
+    /**
+     * Username/password authentication.
+     */
+    usernamePassword?: Schema$ConnectorConfigurationUsernamePassword;
+  }
+  /**
+   * Remote endpoint specification.
+   */
+  export interface Schema$ConnectorConfigurationEndpoint {
+    /**
+     * Host and port in a format of `hostname:port` as defined in https://www.ietf.org/rfc/rfc3986.html#section-3.2.2 and https://www.ietf.org/rfc/rfc3986.html#section-3.2.3.
+     */
+    hostPort?: string | null;
+  }
+  /**
+   * Secret value parameter.
+   */
+  export interface Schema$ConnectorConfigurationSecret {
+    /**
+     * Input only. Secret as plaintext.
+     */
+    plaintext?: string | null;
+    /**
+     * Output only. Indicates type of secret. Can be used to check type of stored secret value even if it's `INPUT_ONLY`.
+     */
+    secretType?: string | null;
+  }
+  /**
+   * Username and Password authentication.
+   */
+  export interface Schema$ConnectorConfigurationUsernamePassword {
+    /**
+     * Required. Password.
+     */
+    password?: Schema$ConnectorConfigurationSecret;
+    /**
+     * Required. Username.
+     */
+    username?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -304,6 +481,15 @@ export namespace bigqueryconnection_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * Configuration of the Dataproc Metastore Service.
+   */
+  export interface Schema$MetastoreServiceConfig {
+    /**
+     * Optional. Resource name of an existing Dataproc Metastore service. Example: * `projects/[project_id]/locations/[region]/services/[service_id]`
+     */
+    metastoreService?: string | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -325,6 +511,23 @@ export namespace bigqueryconnection_v1beta1 {
     version?: number | null;
   }
   /**
+   * Connection properties specific to Salesforce DataCloud. This is intended for use only by Salesforce partner projects.
+   */
+  export interface Schema$SalesforceDataCloudProperties {
+    /**
+     * Output only. A unique Google-owned and Google-generated service account identity for the connection.
+     */
+    identity?: string | null;
+    /**
+     * The URL to the user's Salesforce DataCloud instance.
+     */
+    instanceUri?: string | null;
+    /**
+     * The ID of the user's Salesforce tenant.
+     */
+    tenantId?: string | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -336,6 +539,32 @@ export namespace bigqueryconnection_v1beta1 {
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
+  }
+  /**
+   * Configuration of the Spark History Server.
+   */
+  export interface Schema$SparkHistoryServerConfig {
+    /**
+     * Optional. Resource name of an existing Dataproc Cluster to act as a Spark History Server for the connection. Example: * `projects/[project_id]/regions/[region]/clusters/[cluster_name]`
+     */
+    dataprocCluster?: string | null;
+  }
+  /**
+   * Container for connection properties to execute stored procedures for Apache Spark.
+   */
+  export interface Schema$SparkProperties {
+    /**
+     * Optional. Dataproc Metastore Service configuration for the connection.
+     */
+    metastoreServiceConfig?: Schema$MetastoreServiceConfig;
+    /**
+     * Output only. The account ID of the service created for the purpose of this connection. The service account does not have any permissions associated with it when it is created. After creation, customers delegate permissions to the service account. When the connection is used in the context of a stored procedure for Apache Spark in BigQuery, the service account is used to connect to the desired resources in Google Cloud. The account ID is in the form of: bqcx--@gcp-sa-bigquery-consp.iam.gserviceaccount.com
+     */
+    serviceAccountId?: string | null;
+    /**
+     * Optional. Spark History Server configuration for the connection.
+     */
+    sparkHistoryServerConfig?: Schema$SparkHistoryServerConfig;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -447,7 +676,7 @@ export namespace bigqueryconnection_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/connections').replace(
+            url: (rootUrl + '/v1/{+parent}/connections').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -535,7 +764,7 @@ export namespace bigqueryconnection_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -620,7 +849,7 @@ export namespace bigqueryconnection_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -706,7 +935,7 @@ export namespace bigqueryconnection_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -799,7 +1028,7 @@ export namespace bigqueryconnection_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/connections').replace(
+            url: (rootUrl + '/v1/{+parent}/connections').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -887,7 +1116,7 @@ export namespace bigqueryconnection_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -973,7 +1202,7 @@ export namespace bigqueryconnection_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1069,7 +1298,7 @@ export namespace bigqueryconnection_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1089,92 +1318,6 @@ export namespace bigqueryconnection_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-
-    /**
-     * Sets the credential for the specified connection.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateCredential(
-      params: Params$Resource$Projects$Locations$Connections$Updatecredential,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateCredential(
-      params?: Params$Resource$Projects$Locations$Connections$Updatecredential,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    updateCredential(
-      params: Params$Resource$Projects$Locations$Connections$Updatecredential,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateCredential(
-      params: Params$Resource$Projects$Locations$Connections$Updatecredential,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    updateCredential(
-      params: Params$Resource$Projects$Locations$Connections$Updatecredential,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    updateCredential(callback: BodyResponseCallback<Schema$Empty>): void;
-    updateCredential(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Connections$Updatecredential
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Connections$Updatecredential;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Connections$Updatecredential;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigqueryconnection.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
       }
     }
   }
@@ -1224,9 +1367,9 @@ export namespace bigqueryconnection_v1beta1 {
   export interface Params$Resource$Projects$Locations$Connections$List
     extends StandardParameters {
     /**
-     * Required. Maximum number of results per page.
+     * Required. Page size.
      */
-    maxResults?: number;
+    pageSize?: number;
     /**
      * Page token.
      */
@@ -1275,17 +1418,5 @@ export namespace bigqueryconnection_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Connections$Updatecredential
-    extends StandardParameters {
-    /**
-     * Required. Name of the connection, for example: `projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}/credential`
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ConnectionCredential;
   }
 }
