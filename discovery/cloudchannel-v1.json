@@ -2183,7 +2183,7 @@
       }
     }
   },
-  "revision": "20231220",
+  "revision": "20240131",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2459,7 +2459,7 @@
       "id": "GoogleCloudChannelV1CheckCloudIdentityAccountsExistRequest",
       "properties": {
         "domain": {
-          "description": "Required. Domain to fetch for Cloud Identity account customer.",
+          "description": "Required. Domain to fetch for Cloud Identity account customers, including domained and domainless.",
           "type": "string"
         }
       },
