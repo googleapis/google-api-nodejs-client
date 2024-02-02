@@ -421,7 +421,7 @@ export namespace deploymentmanager_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/{$api_version\}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version\}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version\}/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zoneOperations` resource. For more information, read Global, Regional, and Zonal Resources.
+   * Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/{$api_version\}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version\}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version\}/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zoneOperations` resource. For more information, read Global, Regional, and Zonal Resources. Note that completed Operation resources have a limited retention period.
    */
   export interface Schema$Operation {
     /**
