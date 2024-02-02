@@ -153,7 +153,7 @@ export namespace blockchainnodeengine_v1 {
      */
     name?: string | null;
     /**
-     * Optional. When true, the node is only accessible via Private Service Connect; no public endpoints are exposed. Otherwise, the node is only accessible via public endpoints. See https://cloud.google.com/vpc/docs/private-service-connect.
+     * Optional. When true, the node is only accessible via Private Service Connect; no public endpoints are exposed. Otherwise, the node is only accessible via public endpoints. Warning: Private Service Connect enabled nodes may require a manual migration effort to remain compatible with future versions of the product. If this feature is enabled, you will be notified of these changes along with any required action to avoid disruption. See https://cloud.google.com/vpc/docs/private-service-connect.
      */
     privateServiceConnectEnabled?: boolean | null;
     /**
@@ -211,10 +211,6 @@ export namespace blockchainnodeengine_v1 {
      * Immutable. Enables JSON-RPC access to functions in the `debug` namespace. Defaults to `false`.
      */
     apiEnableDebug?: boolean | null;
-    /**
-     * Deprecated: Use the same field in the ValidatorConfig message as replacement. An Ethereum address which the beacon client will send fee rewards to if no recipient is configured in the validator client. See https://lighthouse-book.sigmaprime.io/suggested-fee-recipient.html or https://docs.prylabs.network/docs/execution-node/fee-recipient for examples of how this is used. Note that while this is often described as "suggested", as we run the execution node we can trust the execution node, and therefore this is considered enforced.
-     */
-    beaconFeeRecipient?: string | null;
     /**
      * Immutable. The consensus client.
      */
@@ -417,6 +413,10 @@ export namespace blockchainnodeengine_v1 {
    * Configuration for validator-related parameters on the beacon client, and for any GCP-managed validator client.
    */
   export interface Schema$ValidatorConfig {
+    /**
+     * Immutable. When true, deploys a GCP-managed validator client alongside the beacon client.
+     */
+    managedValidatorClient?: boolean | null;
     /**
      * URLs for MEV-relay services to use for block building. When set, a GCP-managed MEV-boost service is configured on the beacon client.
      */
