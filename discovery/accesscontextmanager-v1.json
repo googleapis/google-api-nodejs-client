@@ -1290,7 +1290,7 @@
       }
     }
   },
-  "revision": "20240102",
+  "revision": "20240126",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -1522,7 +1522,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -1689,7 +1689,7 @@
       "id": "EgressFrom",
       "properties": {
         "identities": {
-          "description": "A list of identities that are allowed access through this [EgressPolicy]. Should be in the format of email address. The email address should represent individual user or service account only.",
+          "description": "A list of identities that are allowed access through this [EgressPolicy], in the format of `user:{email_id}` or `serviceAccount:{email_id}`.",
           "items": {
             "type": "string"
           },
@@ -1881,7 +1881,7 @@
       "id": "IngressFrom",
       "properties": {
         "identities": {
-          "description": "A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.",
+          "description": "A list of identities that are allowed access through this ingress policy, in the format of `user:{email_id}` or `serviceAccount:{email_id}`.",
           "items": {
             "type": "string"
           },
