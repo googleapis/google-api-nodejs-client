@@ -1486,7 +1486,7 @@
       }
     }
   },
-  "revision": "20231206",
+  "revision": "20240117",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2414,6 +2414,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "publicIpAddress": {
+          "description": "Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.",
+          "readOnly": true,
+          "type": "string"
+        },
         "queryInsightsConfig": {
           "$ref": "QueryInsightsInstanceConfig",
           "description": "Configuration for query insights."
@@ -3144,6 +3149,44 @@
       },
       "type": "object"
     },
+    "StorageDatabasecenterPartnerapiV1mainCustomMetadataData": {
+      "description": "Any custom metadata associated with the resource. i.e. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data",
+      "id": "StorageDatabasecenterPartnerapiV1mainCustomMetadataData",
+      "properties": {
+        "databaseMetadata": {
+          "items": {
+            "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseMetadata"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainDatabaseMetadata": {
+      "description": "Metadata for individual databases created in an instance. i.e. spanner instance can have multiple databases with unique configuration settings.",
+      "id": "StorageDatabasecenterPartnerapiV1mainDatabaseMetadata",
+      "properties": {
+        "backupConfiguration": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupConfiguration",
+          "description": "Backup configuration for this database"
+        },
+        "backupRun": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
+          "description": "Information about the last backup attempt for this database"
+        },
+        "product": {
+          "$ref": "StorageDatabasecenterProtoCommonProduct"
+        },
+        "resourceId": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId"
+        },
+        "resourceName": {
+          "description": "Required. Database name. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed": {
       "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform.",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed",
@@ -3399,7 +3442,7 @@
             "Represents if a resource violates NIST 800-53.",
             "Represents if a resource violates ISO-27001.",
             "Represents if a resource violates PCI-DSS v3.2.1.",
-            "LINT.IfChange(scc_signals) Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
             "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
@@ -3430,7 +3473,7 @@
             "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
             "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
             "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
-            "Represents if public IP is enabled. LINT.ThenChange(//depot/google3/storage/databasecenter/ingestion/borgjob/message_adapter/health_signal_feed/health_signal_mapping.h)"
+            "Represents if public IP is enabled."
           ],
           "type": "string"
         },
@@ -3535,12 +3578,8 @@
           "type": "string"
         },
         "customMetadata": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "Any custom metadata associated with the resource (a JSON field)",
-          "type": "object"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainCustomMetadataData",
+          "description": "Any custom metadata associated with the resource"
         },
         "expectedState": {
           "description": "The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.",
@@ -3703,7 +3742,7 @@
             "ENGINE_NATIVE",
             "NATIVE",
             "ENGINE_CLOUD_SPANNER_WITH_POSTGRES_DIALECT",
-            "SPANGRES",
+            "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
             "ENGINE_OTHER"
           ],
           "enumDeprecated": [
@@ -3717,7 +3756,7 @@
             false,
             true,
             false,
-            true,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3730,8 +3769,8 @@
             "SQLServer binary running as engine in database instance.",
             "Native database binary running as engine in instance.",
             "Native database binary running as engine in instance.",
-            "Cloud Spanner with Postgres dialect.",
-            "Cloud Spanner with Postgres dialect.",
+            "Cloud Spanner with PostgreSQL dialect.",
+            "Cloud Spanner with Google SQL dialect.",
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum."
           ],
           "type": "string"
@@ -3745,7 +3784,6 @@
             "PRODUCT_TYPE_ALLOYDB",
             "ALLOYDB",
             "PRODUCT_TYPE_SPANNER",
-            "SPANNER",
             "PRODUCT_TYPE_ON_PREM",
             "ON_PREM",
             "PRODUCT_TYPE_OTHER"
@@ -3757,7 +3795,6 @@
             false,
             true,
             false,
-            true,
             false,
             true,
             false
@@ -3768,7 +3805,6 @@
             "Cloud SQL product area in GCP",
             "AlloyDB product area in GCP",
             "AlloyDB product area in GCP",
-            "Spanner product area in GCP",
             "Spanner product area in GCP",
             "On premises database product.",
             "On premises database product.",
