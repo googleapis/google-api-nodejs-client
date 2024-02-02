@@ -134,6 +134,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getDnsBindPermission": {
+              "description": "Gets all the principals having bind permission on the intranet VPC associated with the consumer project granted by the Grant API. DnsBindPermission is a global resource and location can only be global.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dnsBindPermission",
+              "httpMethod": "GET",
+              "id": "vmwareengine.projects.locations.getDnsBindPermission",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/dnsBindPermission$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "DnsBindPermission"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1/projects/{projectsId}/locations",
@@ -177,13 +202,13 @@
             }
           },
           "resources": {
-            "global": {
+            "dnsBindPermission": {
               "methods": {
-                "getDnsBindPermission": {
-                  "description": "Gets all the principals having bind permission on the intranet VPC associated with the consumer project granted by the Grant API.",
-                  "flatPath": "v1/projects/{projectsId}/locations/global/dnsBindPermission",
-                  "httpMethod": "GET",
-                  "id": "vmwareengine.projects.locations.global.getDnsBindPermission",
+                "grant": {
+                  "description": "Grants the bind permission to the customer provided principal(user / service account) to bind their DNS zone with the intranet VPC associated with the project. DnsBindPermission is a global resource and location can only be global.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dnsBindPermission:grant",
+                  "httpMethod": "POST",
+                  "id": "vmwareengine.projects.locations.dnsBindPermission.grant",
                   "parameterOrder": [
                     "name"
                   ],
@@ -191,14 +216,227 @@
                     "name": {
                       "description": "Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`",
                       "location": "path",
-                      "pattern": "^projects/[^/]+/locations/global/dnsBindPermission$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dnsBindPermission$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:grant",
+                  "request": {
+                    "$ref": "GrantDnsBindPermissionRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "revoke": {
+                  "description": "Revokes the bind permission from the customer provided principal(user / service account) on the intranet VPC associated with the consumer project. DnsBindPermission is a global resource and location can only be global.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dnsBindPermission:revoke",
+                  "httpMethod": "POST",
+                  "id": "vmwareengine.projects.locations.dnsBindPermission.revoke",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dnsBindPermission$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:revoke",
+                  "request": {
+                    "$ref": "RevokeDnsBindPermissionRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "networkPeerings": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new network peering between the peer network and VMware Engine network provided in a `NetworkPeering` resource. NetworkPeering is a global resource and location can only be global.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/networkPeerings",
+                  "httpMethod": "POST",
+                  "id": "vmwareengine.projects.locations.networkPeerings.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "networkPeeringId": {
+                      "description": "Required. The user-provided identifier of the new `NetworkPeering`. This identifier must be unique among `NetworkPeering` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the location to create the new network peering in. This value is always `global`, because `NetworkPeering` is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/networkPeerings",
+                  "request": {
+                    "$ref": "NetworkPeering"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a `NetworkPeering` resource. When a network peering is deleted for a VMware Engine network, the peer network becomes inaccessible to that VMware Engine network. NetworkPeering is a global resource and location can only be global.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/networkPeerings/{networkPeeringsId}",
+                  "httpMethod": "DELETE",
+                  "id": "vmwareengine.projects.locations.networkPeerings.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the network peering to be deleted. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/networkPeerings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a `NetworkPeering` resource by its resource name. The resource contains details of the network peering, such as peered networks, import and export custom route configurations, and peering state. NetworkPeering is a global resource and location can only be global.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/networkPeerings/{networkPeeringsId}",
+                  "httpMethod": "GET",
+                  "id": "vmwareengine.projects.locations.networkPeerings.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the network peering to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/networkPeerings/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
                   "path": "v1/{+name}",
                   "response": {
-                    "$ref": "DnsBindPermission"
+                    "$ref": "NetworkPeering"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists `NetworkPeering` resources in a given project. NetworkPeering is a global resource and location can only be global.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/networkPeerings",
+                  "httpMethod": "GET",
+                  "id": "vmwareengine.projects.locations.networkPeerings.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `>`, or `<`. For example, if you are filtering a list of network peerings, you can exclude the ones named `example-peering` by specifying `name != \"example-peering\"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = \"example-peering\") (createTime > \"2021-04-12T08:15:10.40Z\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = \"example-peering-1\") AND (createTime > \"2021-04-12T08:15:10.40Z\") OR (name = \"example-peering-2\") ```",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy=\"name desc\"`. Currently, only ordering by `name` is supported.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of network peerings to return in one page. The maximum value is coerced to 1000. The default value of this field is 500.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListNetworkPeerings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListNetworkPeerings` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the location (global) to query for network peerings. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/networkPeerings",
+                  "response": {
+                    "$ref": "ListNetworkPeeringsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Modifies a `NetworkPeering` resource. Only the `description` field can be updated. Only fields specified in `updateMask` are applied. NetworkPeering is a global resource and location can only be global.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/networkPeerings/{networkPeeringsId}",
+                  "httpMethod": "PATCH",
+                  "id": "vmwareengine.projects.locations.networkPeerings.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/networkPeerings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the `NetworkPeering` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "NetworkPeering"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -206,292 +444,48 @@
                 }
               },
               "resources": {
-                "dnsBindPermission": {
+                "peeringRoutes": {
                   "methods": {
-                    "grant": {
-                      "description": "Grants the bind permission to the customer provided principal(user / service account) to bind their DNS zone with the intranet VPC associated with the project.",
-                      "flatPath": "v1/projects/{projectsId}/locations/global/dnsBindPermission:grant",
-                      "httpMethod": "POST",
-                      "id": "vmwareengine.projects.locations.global.dnsBindPermission.grant",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/global/dnsBindPermission$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:grant",
-                      "request": {
-                        "$ref": "GrantDnsBindPermissionRequest"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "revoke": {
-                      "description": "Revokes the bind permission from the customer provided principal(user / service account) on the intranet VPC associated with the consumer project.",
-                      "flatPath": "v1/projects/{projectsId}/locations/global/dnsBindPermission:revoke",
-                      "httpMethod": "POST",
-                      "id": "vmwareengine.projects.locations.global.dnsBindPermission.revoke",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/global/dnsBindPermission$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:revoke",
-                      "request": {
-                        "$ref": "RevokeDnsBindPermissionRequest"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                },
-                "networkPeerings": {
-                  "methods": {
-                    "create": {
-                      "description": "Creates a new network peering between the peer network and VMware Engine network provided in a `NetworkPeering` resource.",
-                      "flatPath": "v1/projects/{projectsId}/locations/global/networkPeerings",
-                      "httpMethod": "POST",
-                      "id": "vmwareengine.projects.locations.global.networkPeerings.create",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "networkPeeringId": {
-                          "description": "Required. The user-provided identifier of the new `NetworkPeering`. This identifier must be unique among `NetworkPeering` resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. The resource name of the location to create the new network peering in. This value is always `global`, because `NetworkPeering` is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global`",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/global$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "requestId": {
-                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+parent}/networkPeerings",
-                      "request": {
-                        "$ref": "NetworkPeering"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "delete": {
-                      "description": "Deletes a `NetworkPeering` resource. When a network peering is deleted for a VMware Engine network, the peer network becomes inaccessible to that VMware Engine network.",
-                      "flatPath": "v1/projects/{projectsId}/locations/global/networkPeerings/{networkPeeringsId}",
-                      "httpMethod": "DELETE",
-                      "id": "vmwareengine.projects.locations.global.networkPeerings.delete",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The resource name of the network peering to be deleted. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/global/networkPeerings/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "requestId": {
-                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "get": {
-                      "description": "Retrieves a `NetworkPeering` resource by its resource name. The resource contains details of the network peering, such as peered networks, import and export custom route configurations, and peering state.",
-                      "flatPath": "v1/projects/{projectsId}/locations/global/networkPeerings/{networkPeeringsId}",
-                      "httpMethod": "GET",
-                      "id": "vmwareengine.projects.locations.global.networkPeerings.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The resource name of the network peering to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/global/networkPeerings/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "NetworkPeering"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "list": {
-                      "description": "Lists `NetworkPeering` resources in a given project.",
-                      "flatPath": "v1/projects/{projectsId}/locations/global/networkPeerings",
+                      "description": "Lists the network peering routes exchanged over a peering connection. NetworkPeering is a global resource and location can only be global.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/networkPeerings/{networkPeeringsId}/peeringRoutes",
                       "httpMethod": "GET",
-                      "id": "vmwareengine.projects.locations.global.networkPeerings.list",
+                      "id": "vmwareengine.projects.locations.networkPeerings.peeringRoutes.list",
                       "parameterOrder": [
                         "parent"
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `>`, or `<`. For example, if you are filtering a list of network peerings, you can exclude the ones named `example-peering` by specifying `name != \"example-peering\"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = \"example-peering\") (createTime > \"2021-04-12T08:15:10.40Z\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = \"example-peering-1\") AND (createTime > \"2021-04-12T08:15:10.40Z\") OR (name = \"example-peering-2\") ```",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "orderBy": {
-                          "description": "Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy=\"name desc\"`. Currently, only ordering by `name` is supported.",
+                          "description": "A filter expression that matches resources returned in the response. Currently, only filtering on the `direction` field is supported. To return routes imported from the peer network, provide \"direction=INCOMING\". To return routes exported from the VMware Engine network, provide \"direction=OUTGOING\". Other filter expressions return an error.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of network peerings to return in one page. The maximum value is coerced to 1000. The default value of this field is 500.",
+                          "description": "The maximum number of peering routes to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "A page token, received from a previous `ListNetworkPeerings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListNetworkPeerings` must match the call that provided the page token.",
+                          "description": "A page token, received from a previous `ListPeeringRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPeeringRoutes` must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the location (global) to query for network peerings. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global`",
+                          "description": "Required. The resource name of the network peering to retrieve peering routes from. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
                           "location": "path",
-                          "pattern": "^projects/[^/]+/locations/global$",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/networkPeerings/[^/]+$",
                           "required": true,
                           "type": "string"
                         }
                       },
-                      "path": "v1/{+parent}/networkPeerings",
+                      "path": "v1/{+parent}/peeringRoutes",
                       "response": {
-                        "$ref": "ListNetworkPeeringsResponse"
+                        "$ref": "ListPeeringRoutesResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
-                    },
-                    "patch": {
-                      "description": "Modifies a `NetworkPeering` resource. Only the `description` field can be updated. Only fields specified in `updateMask` are applied.",
-                      "flatPath": "v1/projects/{projectsId}/locations/global/networkPeerings/{networkPeeringsId}",
-                      "httpMethod": "PATCH",
-                      "id": "vmwareengine.projects.locations.global.networkPeerings.patch",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Output only. The resource name of the network peering. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/global/networkPeerings/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "requestId": {
-                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "updateMask": {
-                          "description": "Required. Field mask is used to specify the fields to be overwritten in the `NetworkPeering` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
-                          "format": "google-fieldmask",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "request": {
-                        "$ref": "NetworkPeering"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  },
-                  "resources": {
-                    "peeringRoutes": {
-                      "methods": {
-                        "list": {
-                          "description": "Lists the network peering routes exchanged over a peering connection.",
-                          "flatPath": "v1/projects/{projectsId}/locations/global/networkPeerings/{networkPeeringsId}/peeringRoutes",
-                          "httpMethod": "GET",
-                          "id": "vmwareengine.projects.locations.global.networkPeerings.peeringRoutes.list",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "filter": {
-                              "description": "A filter expression that matches resources returned in the response. Currently, only filtering on the `direction` field is supported. To return routes imported from the peer network, provide \"direction=INCOMING\". To return routes exported from the VMware Engine network, provide \"direction=OUTGOING\". Other filter expressions return an error.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "pageSize": {
-                              "description": "The maximum number of peering routes to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.",
-                              "format": "int32",
-                              "location": "query",
-                              "type": "integer"
-                            },
-                            "pageToken": {
-                              "description": "A page token, received from a previous `ListPeeringRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPeeringRoutes` must match the call that provided the page token.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "parent": {
-                              "description": "Required. The resource name of the network peering to retrieve peering routes from. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/global/networkPeerings/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+parent}/peeringRoutes",
-                          "response": {
-                            "$ref": "ListPeeringRoutesResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        }
-                      }
                     }
                   }
                 }
@@ -3179,7 +3173,7 @@
       }
     }
   },
-  "revision": "20231025",
+  "revision": "20240116",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3239,7 +3233,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.",
           "items": {
             "type": "string"
           },
@@ -3338,7 +3332,7 @@
       "id": "DnsBindPermission",
       "properties": {
         "name": {
-          "description": "Required. Output only. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`",
+          "description": "Required. Output only. The name of the resource which stores the users/service accounts having the permission to bind to the corresponding intranet VPC of the consumer project. DnsBindPermission is a global resource and location can only be global. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/dnsBindPermission`",
           "readOnly": true,
           "type": "string"
         },
@@ -4414,7 +4408,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Output only. The resource name of the network peering. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
+          "description": "Output only. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
           "readOnly": true,
           "type": "string"
         },
@@ -4667,6 +4661,29 @@
         },
         "displayName": {
           "description": "Output only. The friendly name for this node type. For example: ve1-standard-72",
+          "readOnly": true,
+          "type": "string"
+        },
+        "families": {
+          "description": "Output only. Families of the node type. For node types to be in the same cluster they must share at least one element in the `families`.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "kind": {
+          "description": "Output only. The type of the resource.",
+          "enum": [
+            "KIND_UNSPECIFIED",
+            "STANDARD",
+            "STORAGE_ONLY"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "Standard HCI node.",
+            "Storage only Node."
+          ],
           "readOnly": true,
           "type": "string"
         },
