@@ -700,6 +700,10 @@ export namespace paymentsresellersubscription_v1 {
      * The list of eligibility_ids which are applicable for the line item.
      */
     partnerEligibilityIds?: string[] | null;
+    /**
+     * Optional. Specifies the plan type offered to the end user by the partner.
+     */
+    partnerPlanType?: string | null;
   }
   /**
    * Localized variant of a text in a particular language.
