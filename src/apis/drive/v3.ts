@@ -113,6 +113,7 @@ export namespace drive_v3 {
   export class Drive {
     context: APIRequestContext;
     about: Resource$About;
+    apps: Resource$Apps;
     changes: Resource$Changes;
     channels: Resource$Channels;
     comments: Resource$Comments;
@@ -130,6 +131,7 @@ export namespace drive_v3 {
       };
 
       this.about = new Resource$About(this.context);
+      this.apps = new Resource$Apps(this.context);
       this.changes = new Resource$Changes(this.context);
       this.channels = new Resource$Channels(this.context);
       this.comments = new Resource$Comments(this.context);
@@ -211,6 +213,142 @@ export namespace drive_v3 {
      * The authenticated user.
      */
     user?: Schema$User;
+  }
+  /**
+   * The `apps` resource provides a list of apps that a user has installed, with information about each app's supported MIME types, file extensions, and other details. Some resource methods (such as `apps.get`) require an `appId`. Use the `apps.list` method to retrieve the ID for an installed application.
+   */
+  export interface Schema$App {
+    /**
+     * Whether the app is authorized to access data on the user's Drive.
+     */
+    authorized?: boolean | null;
+    /**
+     * The template URL to create a file with this app in a given folder. The template contains the {folderId\} to be replaced by the folder ID house the new file.
+     */
+    createInFolderTemplate?: string | null;
+    /**
+     * The URL to create a file with this app.
+     */
+    createUrl?: string | null;
+    /**
+     * Whether the app has Drive-wide scope. An app with Drive-wide scope can access all files in the user's Drive.
+     */
+    hasDriveWideScope?: boolean | null;
+    /**
+     * The various icons for the app.
+     */
+    icons?: Schema$AppIcons[];
+    /**
+     * The ID of the app.
+     */
+    id?: string | null;
+    /**
+     * Whether the app is installed.
+     */
+    installed?: boolean | null;
+    /**
+     * Output only. Identifies what kind of resource this is. Value: the fixed string "drive#app".
+     */
+    kind?: string | null;
+    /**
+     * A long description of the app.
+     */
+    longDescription?: string | null;
+    /**
+     * The name of the app.
+     */
+    name?: string | null;
+    /**
+     * The type of object this app creates such as a Chart. If empty, the app name should be used instead.
+     */
+    objectType?: string | null;
+    /**
+     * The template URL for opening files with this app. The template contains {ids\} or {exportIds\} to be replaced by the actual file IDs. For more information, see Open Files for the full documentation.
+     */
+    openUrlTemplate?: string | null;
+    /**
+     * The list of primary file extensions.
+     */
+    primaryFileExtensions?: string[] | null;
+    /**
+     * The list of primary MIME types.
+     */
+    primaryMimeTypes?: string[] | null;
+    /**
+     * The ID of the product listing for this app.
+     */
+    productId?: string | null;
+    /**
+     * A link to the product listing for this app.
+     */
+    productUrl?: string | null;
+    /**
+     * The list of secondary file extensions.
+     */
+    secondaryFileExtensions?: string[] | null;
+    /**
+     * The list of secondary MIME types.
+     */
+    secondaryMimeTypes?: string[] | null;
+    /**
+     * A short description of the app.
+     */
+    shortDescription?: string | null;
+    /**
+     * Whether this app supports creating objects.
+     */
+    supportsCreate?: boolean | null;
+    /**
+     * Whether this app supports importing from Google Docs.
+     */
+    supportsImport?: boolean | null;
+    /**
+     * Whether this app supports opening more than one file.
+     */
+    supportsMultiOpen?: boolean | null;
+    /**
+     * Whether this app supports creating files when offline.
+     */
+    supportsOfflineCreate?: boolean | null;
+    /**
+     * Whether the app is selected as the default handler for the types it supports.
+     */
+    useByDefault?: boolean | null;
+  }
+  export interface Schema$AppIcons {
+    /**
+     * Category of the icon. Allowed values are: * `application` - The icon for the application. * `document` - The icon for a file associated with the app. * `documentShared` - The icon for a shared file associated with the app.
+     */
+    category?: string | null;
+    /**
+     * URL for the icon.
+     */
+    iconUrl?: string | null;
+    /**
+     * Size of the icon. Represented as the maximum of the width and height.
+     */
+    size?: number | null;
+  }
+  /**
+   * A list of third-party applications which the user has installed or given access to Google Drive.
+   */
+  export interface Schema$AppList {
+    /**
+     * The list of app IDs that the user has specified to use by default. The list is in reverse-priority order (lowest to highest).
+     */
+    defaultAppIds?: string[] | null;
+    /**
+     * The list of apps.
+     */
+    items?: Schema$App[];
+    /**
+     * Output only. Identifies what kind of resource this is. Value: the fixed string "drive#appList".
+     */
+    kind?: string | null;
+    /**
+     * A link back to this list.
+     */
+    selfLink?: string | null;
   }
   /**
    * A change to a file or shared drive.
@@ -323,7 +461,7 @@ export namespace drive_v3 {
      */
     token?: string | null;
     /**
-     * The type of delivery mechanism used for this channel.
+     * The type of delivery mechanism used for this channel. Valid values are "web_hook" or "webhook".
      */
     type?: string | null;
   }
@@ -1520,6 +1658,203 @@ export namespace drive_v3 {
   }
 
   export interface Params$Resource$About$Get extends StandardParameters {}
+
+  export class Resource$Apps {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a specific app.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Apps$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Apps$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$App>;
+    get(
+      params: Params$Resource$Apps$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$App>,
+      callback: BodyResponseCallback<Schema$App>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Get,
+      callback: BodyResponseCallback<Schema$App>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$App>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Get
+        | BodyResponseCallback<Schema$App>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$App>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$App>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$App> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v3/apps/{appId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appId'],
+        pathParams: ['appId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$App>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$App>(parameters);
+      }
+    }
+
+    /**
+     * Lists a user's installed apps.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Apps$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Apps$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppList>;
+    list(
+      params: Params$Resource$Apps$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Apps$List,
+      options: MethodOptions | BodyResponseCallback<Schema$AppList>,
+      callback: BodyResponseCallback<Schema$AppList>
+    ): void;
+    list(
+      params: Params$Resource$Apps$List,
+      callback: BodyResponseCallback<Schema$AppList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$AppList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Apps$List
+        | BodyResponseCallback<Schema$AppList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppList> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Apps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v3/apps').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AppList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AppList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Apps$Get extends StandardParameters {
+    /**
+     * The ID of the app.
+     */
+    appId?: string;
+  }
+  export interface Params$Resource$Apps$List extends StandardParameters {
+    /**
+     * A comma-separated list of file extensions to limit returned results. All results within the given app query scope which can open any of the given file extensions are included in the response. If `appFilterMimeTypes` are provided as well, the result is a union of the two resulting app lists.
+     */
+    appFilterExtensions?: string;
+    /**
+     * A comma-separated list of file extensions to limit returned results. All results within the given app query scope which can open any of the given MIME types will be included in the response. If `appFilterExtensions` are provided as well, the result is a union of the two resulting app lists.
+     */
+    appFilterMimeTypes?: string;
+    /**
+     * A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
+     */
+    languageCode?: string;
+  }
 
   export class Resource$Changes {
     context: APIRequestContext;
