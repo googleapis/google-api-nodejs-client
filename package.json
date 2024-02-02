@@ -6,7 +6,7 @@
   "description": "Google APIs Client Library for Node.js",
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
-  "sideEffects": "false",
+  "sideEffects": false,
   "engines": {
     "node": ">=14.0.0"
   },
