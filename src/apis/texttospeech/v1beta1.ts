@@ -175,6 +175,10 @@ export namespace texttospeech_v1beta1 {
    */
   export interface Schema$GoogleCloudTexttospeechV1beta1SynthesizeLongAudioMetadata {
     /**
+     * Deprecated. Do not use.
+     */
+    lastUpdateTime?: string | null;
+    /**
      * The progress of the most recent processing update in percentage, ie. 70.0%.
      */
     progressPercentage?: number | null;
@@ -264,6 +268,10 @@ export namespace texttospeech_v1beta1 {
    * Metadata for response returned by the `SynthesizeLongAudio` method.
    */
   export interface Schema$SynthesizeLongAudioMetadata {
+    /**
+     * Deprecated. Do not use.
+     */
+    lastUpdateTime?: string | null;
     /**
      * The progress of the most recent processing update in percentage, ie. 70.0%.
      */
