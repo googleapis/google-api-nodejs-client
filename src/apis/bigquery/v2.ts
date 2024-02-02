@@ -54,9 +54,21 @@ export namespace bigquery_v2 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -74,13 +86,17 @@ export namespace bigquery_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -398,29 +414,38 @@ export namespace bigquery_v2 {
      */
     logType?: string | null;
   }
+  /**
+   * Options for external data sources.
+   */
   export interface Schema$AvroOptions {
     /**
-     * [Optional] If sourceFormat is set to "AVRO", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).
+     * Optional. If sourceFormat is set to "AVRO", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).
      */
     useAvroLogicalTypes?: boolean | null;
   }
+  /**
+   * Reason why BI Engine didn't accelerate the query (or sub-query).
+   */
   export interface Schema$BiEngineReason {
     /**
-     * [Output-only] High-level BI Engine reason for partial or disabled acceleration.
+     * Output only. High-level BI Engine reason for partial or disabled acceleration
      */
     code?: string | null;
     /**
-     * [Output-only] Free form human-readable reason for partial or disabled acceleration.
+     * Output only. Free form human-readable reason for partial or disabled acceleration.
      */
     message?: string | null;
   }
+  /**
+   * Statistics for a BI Engine specific query. Populated as part of JobStatistics2
+   */
   export interface Schema$BiEngineStatistics {
     /**
-     * [Output-only] Specifies which mode of BI Engine acceleration was performed (if any).
+     * Output only. Specifies which mode of BI Engine acceleration was performed (if any).
      */
     accelerationMode?: string | null;
     /**
-     * [Output-only] Specifies which mode of BI Engine acceleration was performed (if any).
+     * Output only. Specifies which mode of BI Engine acceleration was performed (if any).
      */
     biEngineMode?: string | null;
     /**
@@ -428,64 +453,76 @@ export namespace bigquery_v2 {
      */
     biEngineReasons?: Schema$BiEngineReason[];
   }
+  /**
+   * Configuration for BigLake managed tables.
+   */
   export interface Schema$BigLakeConfiguration {
     /**
-     * [Required] Required and immutable. Credential reference for accessing external storage system. Normalized as project_id.location_id.connection_id.
+     * Required. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection_id can have the form "<project\_id\>.<location\_id\>.<connection\_id\>" or "projects/<project\_id\>/locations/<location\_id\>/connections/<connection\_id\>".
      */
     connectionId?: string | null;
     /**
-     * [Required] Required and immutable. Open source file format that the table data is stored in. Currently only PARQUET is supported.
+     * Required. The file format the table data is stored in.
      */
     fileFormat?: string | null;
     /**
-     * [Required] Required and immutable. Fully qualified location prefix of the external folder where data is stored. Normalized to standard format: "gs:////". Starts with "gs://" rather than "/bigstore/". Ends with "/". Does not contain "*". See also BigLakeStorageMetadata on how it is used.
+     * Required. The fully qualified location prefix of the external folder where table data is stored. The '*' wildcard character is not allowed. The URI should be in the format "gs://bucket/path_to_table/"
      */
     storageUri?: string | null;
     /**
-     * [Required] Required and immutable. Open source file format that the table data is stored in. Currently only PARQUET is supported.
+     * Required. The table format the metadata only snapshots are stored in.
      */
     tableFormat?: string | null;
   }
   export interface Schema$BigQueryModelTraining {
     /**
-     * [Output-only, Beta] Index of current ML training iteration. Updated during create model query job to show job progress.
+     * Deprecated.
      */
     currentIteration?: number | null;
     /**
-     * [Output-only, Beta] Expected number of iterations for the create model query job specified as num_iterations in the input query. The actual total number of iterations may be less than this number due to early stop.
+     * Deprecated.
      */
     expectedTotalIterations?: string | null;
   }
+  /**
+   * Information related to a Bigtable column.
+   */
   export interface Schema$BigtableColumn {
     /**
-     * [Optional] The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. 'encoding' can also be set at the column family level. However, the setting at this level takes precedence if 'encoding' is set at both levels.
+     * Optional. The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. 'encoding' can also be set at the column family level. However, the setting at this level takes precedence if 'encoding' is set at both levels.
      */
     encoding?: string | null;
     /**
-     * [Optional] If the qualifier is not a valid BigQuery field identifier i.e. does not match [a-zA-Z][a-zA-Z0-9_]*, a valid identifier must be provided as the column field name and is used as field name in queries.
+     * Optional. If the qualifier is not a valid BigQuery field identifier i.e. does not match a-zA-Z*, a valid identifier must be provided as the column field name and is used as field name in queries.
      */
     fieldName?: string | null;
     /**
-     * [Optional] If this is set, only the latest version of value in this column are exposed. 'onlyReadLatest' can also be set at the column family level. However, the setting at this level takes precedence if 'onlyReadLatest' is set at both levels.
+     * Optional. If this is set, only the latest version of value in this column are exposed. 'onlyReadLatest' can also be set at the column family level. However, the setting at this level takes precedence if 'onlyReadLatest' is set at both levels.
      */
     onlyReadLatest?: boolean | null;
     /**
-     * [Required] Qualifier of the column. Columns in the parent column family that has this exact qualifier are exposed as . field. If the qualifier is valid UTF-8 string, it can be specified in the qualifier_string field. Otherwise, a base-64 encoded value must be set to qualifier_encoded. The column field name is the same as the column qualifier. However, if the qualifier is not a valid BigQuery field identifier i.e. does not match [a-zA-Z][a-zA-Z0-9_]*, a valid identifier must be provided as field_name.
+     * [Required] Qualifier of the column. Columns in the parent column family that has this exact qualifier are exposed as . field. If the qualifier is valid UTF-8 string, it can be specified in the qualifier_string field. Otherwise, a base-64 encoded value must be set to qualifier_encoded. The column field name is the same as the column qualifier. However, if the qualifier is not a valid BigQuery field identifier i.e. does not match a-zA-Z*, a valid identifier must be provided as field_name.
      */
     qualifierEncoded?: string | null;
+    /**
+     * Qualifier string.
+     */
     qualifierString?: string | null;
     /**
-     * [Optional] The type to convert the value in cells of this column. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. 'type' can also be set at the column family level. However, the setting at this level takes precedence if 'type' is set at both levels.
+     * Optional. The type to convert the value in cells of this column. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive): * BYTES * STRING * INTEGER * FLOAT * BOOLEAN * JSON Default type is BYTES. 'type' can also be set at the column family level. However, the setting at this level takes precedence if 'type' is set at both levels.
      */
     type?: string | null;
   }
+  /**
+   * Information related to a Bigtable column family.
+   */
   export interface Schema$BigtableColumnFamily {
     /**
-     * [Optional] Lists of columns that should be exposed as individual fields as opposed to a list of (column name, value) pairs. All columns whose qualifier matches a qualifier in this list can be accessed as .. Other columns can be accessed as a list through .Column field.
+     * Optional. Lists of columns that should be exposed as individual fields as opposed to a list of (column name, value) pairs. All columns whose qualifier matches a qualifier in this list can be accessed as .. Other columns can be accessed as a list through .Column field.
      */
     columns?: Schema$BigtableColumn[];
     /**
-     * [Optional] The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. This can be overridden for a specific column by listing that column in 'columns' and specifying an encoding for it.
+     * Optional. The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. This can be overridden for a specific column by listing that column in 'columns' and specifying an encoding for it.
      */
     encoding?: string | null;
     /**
@@ -493,25 +530,32 @@ export namespace bigquery_v2 {
      */
     familyId?: string | null;
     /**
-     * [Optional] If this is set only the latest version of value are exposed for all columns in this column family. This can be overridden for a specific column by listing that column in 'columns' and specifying a different setting for that column.
+     * Optional. If this is set only the latest version of value are exposed for all columns in this column family. This can be overridden for a specific column by listing that column in 'columns' and specifying a different setting for that column.
      */
     onlyReadLatest?: boolean | null;
     /**
-     * [Optional] The type to convert the value in cells of this column family. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. This can be overridden for a specific column by listing that column in 'columns' and specifying a type for it.
+     * Optional. The type to convert the value in cells of this column family. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive): * BYTES * STRING * INTEGER * FLOAT * BOOLEAN * JSON Default type is BYTES. This can be overridden for a specific column by listing that column in 'columns' and specifying a type for it.
      */
     type?: string | null;
   }
+  /**
+   * Options specific to Google Cloud Bigtable data sources.
+   */
   export interface Schema$BigtableOptions {
     /**
-     * [Optional] List of column families to expose in the table schema along with their types. This list restricts the column families that can be referenced in queries and specifies their value types. You can use this list to do type conversions - see the 'type' field for more details. If you leave this list empty, all column families are present in the table schema and their values are read as BYTES. During a query only the column families referenced in that query are read from Bigtable.
+     * Optional. List of column families to expose in the table schema along with their types. This list restricts the column families that can be referenced in queries and specifies their value types. You can use this list to do type conversions - see the 'type' field for more details. If you leave this list empty, all column families are present in the table schema and their values are read as BYTES. During a query only the column families referenced in that query are read from Bigtable.
      */
     columnFamilies?: Schema$BigtableColumnFamily[];
     /**
-     * [Optional] If field is true, then the column families that are not specified in columnFamilies list are not exposed in the table schema. Otherwise, they are read with BYTES type values. The default value is false.
+     * Optional. If field is true, then the column families that are not specified in columnFamilies list are not exposed in the table schema. Otherwise, they are read with BYTES type values. The default value is false.
      */
     ignoreUnspecifiedColumnFamilies?: boolean | null;
     /**
-     * [Optional] If field is true, then the rowkey column families will be read and converted to string. Otherwise they are read with BYTES type values and users need to manually cast them with CAST if necessary. The default value is false.
+     * Optional. If field is true, then each column family will be read as a single JSON column. Otherwise they are read as a repeated cell structure containing timestamp/value tuples. The default value is false.
+     */
+    outputColumnFamiliesAsJson?: boolean | null;
+    /**
+     * Optional. If field is true, then the rowkey column families will be read and converted to string. Otherwise they are read with BYTES type values and users need to manually cast them with CAST if necessary. The default value is false.
      */
     readRowkeyAsString?: boolean | null;
   }
@@ -586,51 +630,51 @@ export namespace bigquery_v2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
   export interface Schema$BqmlIterationResult {
     /**
-     * [Output-only, Beta] Time taken to run the training iteration in milliseconds.
+     * Deprecated.
      */
     durationMs?: string | null;
     /**
-     * [Output-only, Beta] Eval loss computed on the eval data at the end of the iteration. The eval loss is used for early stopping to avoid overfitting. No eval loss if eval_split_method option is specified as no_split or auto_split with input data size less than 500 rows.
+     * Deprecated.
      */
     evalLoss?: number | null;
     /**
-     * [Output-only, Beta] Index of the ML training iteration, starting from zero for each training run.
+     * Deprecated.
      */
     index?: number | null;
     /**
-     * [Output-only, Beta] Learning rate used for this iteration, it varies for different training iterations if learn_rate_strategy option is not constant.
+     * Deprecated.
      */
     learnRate?: number | null;
     /**
-     * [Output-only, Beta] Training loss computed on the training data at the end of the iteration. The training loss function is defined by model type.
+     * Deprecated.
      */
     trainingLoss?: number | null;
   }
   export interface Schema$BqmlTrainingRun {
     /**
-     * [Output-only, Beta] List of each iteration results.
+     * Deprecated.
      */
     iterationResults?: Schema$BqmlIterationResult[];
     /**
-     * [Output-only, Beta] Training run start time in milliseconds since the epoch.
+     * Deprecated.
      */
     startTime?: string | null;
     /**
-     * [Output-only, Beta] Different state applicable for a training run. IN PROGRESS: Training run is in progress. FAILED: Training run ended due to a non-retryable failure. SUCCEEDED: Training run successfully completed. CANCELLED: Training run cancelled by the user.
+     * Deprecated.
      */
     state?: string | null;
     /**
-     * [Output-only, Beta] Training options used by this training run. These options are mutable for subsequent training runs. Default values are explicitly stored for options not specified in the input query of the first training run. For subsequent training runs, any option not explicitly specified in the input query will be copied from the previous training run.
+     * Deprecated.
      */
     trainingOptions?: {
       earlyStop?: boolean;
@@ -666,13 +710,16 @@ export namespace bigquery_v2 {
      */
     count?: string | null;
   }
+  /**
+   * Information about base table and clone time of a table clone.
+   */
   export interface Schema$CloneDefinition {
     /**
-     * [Required] Reference describing the ID of the table that was cloned.
+     * Required. Reference describing the ID of the table that was cloned.
      */
     baseTableReference?: Schema$TableReference;
     /**
-     * [Required] The time at which the base table was cloned. This value is reported in the JSON response using RFC3339 format.
+     * Required. The time at which the base table was cloned. This value is reported in the JSON response using RFC3339 format.
      */
     cloneTime?: string | null;
   }
@@ -710,9 +757,12 @@ export namespace bigquery_v2 {
      */
     clusterSize?: string | null;
   }
+  /**
+   * Configures table clustering.
+   */
   export interface Schema$Clustering {
     /**
-     * [Repeated] One or more fields on which data should be clustered. Only top-level, non-repeated, simple-type fields are supported. When you cluster a table using multiple columns, the order of columns you specify is important. The order of the specified columns determines the sort order of the data.
+     * One or more fields on which data should be clustered. Only top-level, non-repeated, simple-type fields are supported. The ordering of the clustering fields should be prioritized from most to least important for filtering purposes. Additional information on limitations can be found here: https://cloud.google.com/bigquery/docs/creating-clustered-tables#limitations
      */
     fields?: string[] | null;
   }
@@ -746,59 +796,77 @@ export namespace bigquery_v2 {
      */
     rows?: Schema$Row[];
   }
+  /**
+   * A connection-level property to customize query behavior. Under JDBC, these correspond directly to connection properties passed to the DriverManager. Under ODBC, these correspond to properties in the connection string. Currently supported connection properties: * **dataset_project_id**: represents the default project for datasets that are used in the query. Setting the system variable `@@dataset_project_id` achieves the same behavior. For more information about system variables, see: https://cloud.google.com/bigquery/docs/reference/system-variables * **time_zone**: represents the default timezone used to run the query. * **session_id**: associates the query with a given session. * **query_label**: associates the query with a given job label. If set, all subsequent queries in a script or session will have this label. For the format in which a you can specify a query label, see labels in the JobConfiguration resource type: https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration Additional properties are allowed, but ignored. Specifying multiple connection properties with the same key returns an error.
+   */
   export interface Schema$ConnectionProperty {
     /**
-     * [Required] Name of the connection property to set.
+     * The key of the property to set.
      */
     key?: string | null;
     /**
-     * [Required] Value of the connection property.
+     * The value of the property to set.
      */
     value?: string | null;
   }
+  /**
+   * Information related to a CSV data source.
+   */
   export interface Schema$CsvOptions {
     /**
-     * [Optional] Indicates if BigQuery should accept rows that are missing trailing optional columns. If true, BigQuery treats missing trailing columns as null values. If false, records with missing trailing columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false.
+     * Optional. Indicates if BigQuery should accept rows that are missing trailing optional columns. If true, BigQuery treats missing trailing columns as null values. If false, records with missing trailing columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false.
      */
     allowJaggedRows?: boolean | null;
     /**
-     * [Optional] Indicates if BigQuery should allow quoted data sections that contain newline characters in a CSV file. The default value is false.
+     * Optional. Indicates if BigQuery should allow quoted data sections that contain newline characters in a CSV file. The default value is false.
      */
     allowQuotedNewlines?: boolean | null;
     /**
-     * [Optional] The character encoding of the data. The supported values are UTF-8 or ISO-8859-1. The default value is UTF-8. BigQuery decodes the data after the raw, binary data has been split using the values of the quote and fieldDelimiter properties.
+     * Optional. The character encoding of the data. The supported values are UTF-8, ISO-8859-1, UTF-16BE, UTF-16LE, UTF-32BE, and UTF-32LE. The default value is UTF-8. BigQuery decodes the data after the raw, binary data has been split using the values of the quote and fieldDelimiter properties.
      */
     encoding?: string | null;
     /**
-     * [Optional] The separator for fields in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence "\t" to specify a tab separator. The default value is a comma (',').
+     * Optional. The separator character for fields in a CSV file. The separator is interpreted as a single byte. For files encoded in ISO-8859-1, any single character can be used as a separator. For files encoded in UTF-8, characters represented in decimal range 1-127 (U+0001-U+007F) can be used without any modification. UTF-8 characters encoded with multiple bytes (i.e. U+0080 and above) will have only the first byte used for separating fields. The remaining bytes will be treated as a part of the field. BigQuery also supports the escape sequence "\t" (U+0009) to specify a tab separator. The default value is comma (",", U+002C).
      */
     fieldDelimiter?: string | null;
     /**
-     * [Optional] An custom string that will represent a NULL value in CSV import data.
+     * [Optional] A custom string that will represent a NULL value in CSV import data.
      */
     nullMarker?: string | null;
     /**
-     * [Optional] Preserves the embedded ASCII control characters (the first 32 characters in the ASCII-table, from '\x00' to '\x1F') when loading from CSV. Only applicable to CSV, ignored for other formats.
+     * Optional. Indicates if the embedded ASCII control characters (the first 32 characters in the ASCII-table, from '\x00' to '\x1F') are preserved.
      */
     preserveAsciiControlCharacters?: boolean | null;
     /**
-     * [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
+     * Optional. The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ("). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true. To include the specific quote character within a quoted value, precede it with an additional matching quote character. For example, if you want to escape the default character ' " ', use ' "" '.
      */
     quote?: string | null;
     /**
-     * [Optional] The number of rows at the top of a CSV file that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped. When autodetect is on, the behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N \> 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
+     * Optional. The number of rows at the top of a CSV file that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped. When autodetect is on, the behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N \> 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
      */
     skipLeadingRows?: string | null;
   }
+  /**
+   * Options for data format adjustments.
+   */
+  export interface Schema$DataFormatOptions {
+    /**
+     * Optional. Output timestamp as usec int64. Default is false.
+     */
+    useInt64Timestamp?: boolean | null;
+  }
+  /**
+   * Statistics for data-masking.
+   */
   export interface Schema$DataMaskingStatistics {
     /**
-     * [Output-only] [Preview] Whether any accessed data was protected by data masking. The actual evaluation is done by accessStats.masked_field_count \> 0. Since this is only used for the discovery_doc generation purpose, as long as the type (boolean) matches, client library can leverage this. The actual evaluation of the variable is done else-where.
+     * Whether any accessed data was protected by the data masking.
      */
     dataMaskingApplied?: boolean | null;
   }
   export interface Schema$Dataset {
     /**
-     * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
+     * Optional. An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
       dataset?: Schema$DatasetAccessEntry;
@@ -812,56 +880,59 @@ export namespace bigquery_v2 {
       view?: Schema$TableReference;
     }> | null;
     /**
-     * [Output-only] The time when this dataset was created, in milliseconds since the epoch.
+     * Output only. The time when this dataset was created, in milliseconds since the epoch.
      */
     creationTime?: string | null;
     /**
-     * [Required] A reference that identifies the dataset.
+     * Required. A reference that identifies the dataset.
      */
     datasetReference?: Schema$DatasetReference;
     /**
-     * [Output-only] The default collation of the dataset.
+     * Optional. Defines the default collation specification of future tables created in the dataset. If a table is created in this dataset without table-level default collation, then the table inherits the dataset default collation, which is applied to the string fields that do not have explicit collation specified. A change to this field affects only tables created afterwards, and does not alter the existing tables. The following values are supported: * 'und:ci': undetermined locale, case insensitive. * '': empty string. Default to case-sensitive behavior.
      */
     defaultCollation?: string | null;
+    /**
+     * The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides the key.
+     */
     defaultEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
-     * [Optional] The default partition expiration for all partitioned tables in the dataset, in milliseconds. Once this property is set, all newly-created partitioned tables in the dataset will have an expirationMs property in the timePartitioning settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of defaultTableExpirationMs for partitioned tables: only one of defaultTableExpirationMs and defaultPartitionExpirationMs will be used for any new partitioned table. If you provide an explicit timePartitioning.expirationMs when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.
+     * This default partition expiration, expressed in milliseconds. When new time-partitioned tables are created in a dataset where this property is set, the table will inherit this value, propagated as the `TimePartitioning.expirationMs` property on the new table. If you set `TimePartitioning.expirationMs` explicitly when creating a table, the `defaultPartitionExpirationMs` of the containing dataset is ignored. When creating a partitioned table, if `defaultPartitionExpirationMs` is set, the `defaultTableExpirationMs` value is ignored and the table will not be inherit a table expiration deadline.
      */
     defaultPartitionExpirationMs?: string | null;
     /**
-     * [Output-only] The default rounding mode of the dataset.
+     * Optional. Defines the default rounding mode specification of new tables created within this dataset. During table creation, if this field is specified, the table within this dataset will inherit the default rounding mode of the dataset. Setting the default rounding mode on a table overrides this option. Existing tables in the dataset are unaffected. If columns are defined during that table creation, they will immediately inherit the table's default rounding mode, unless otherwise specified.
      */
     defaultRoundingMode?: string | null;
     /**
-     * [Optional] The default lifetime of all tables in the dataset, in milliseconds. The minimum value is 3600000 milliseconds (one hour). Once this property is set, all newly-created tables in the dataset will have an expirationTime property set to the creation time plus the value in this property, and changing the value will only affect new tables, not existing ones. When the expirationTime for a given table is reached, that table will be deleted automatically. If a table's expirationTime is modified or removed before the table expires, or if you provide an explicit expirationTime when creating a table, that value takes precedence over the default expiration time indicated by this property.
+     * Optional. The default lifetime of all tables in the dataset, in milliseconds. The minimum lifetime value is 3600000 milliseconds (one hour). To clear an existing default expiration with a PATCH request, set to 0. Once this property is set, all newly-created tables in the dataset will have an expirationTime property set to the creation time plus the value in this property, and changing the value will only affect new tables, not existing ones. When the expirationTime for a given table is reached, that table will be deleted automatically. If a table's expirationTime is modified or removed before the table expires, or if you provide an explicit expirationTime when creating a table, that value takes precedence over the default expiration time indicated by this property.
      */
     defaultTableExpirationMs?: string | null;
     /**
-     * [Optional] A user-friendly description of the dataset.
+     * Optional. A user-friendly description of the dataset.
      */
     description?: string | null;
     /**
-     * [Output-only] A hash of the resource.
+     * Output only. A hash of the resource.
      */
     etag?: string | null;
     /**
-     * [Optional] Information about the external metadata storage where the dataset is defined. Filled out when the dataset type is EXTERNAL.
+     * Optional. Information about the external metadata storage where the dataset is defined. Filled out when the dataset type is EXTERNAL.
      */
     externalDatasetReference?: Schema$ExternalDatasetReference;
     /**
-     * [Optional] A descriptive name for the dataset.
+     * Optional. A descriptive name for the dataset.
      */
     friendlyName?: string | null;
     /**
-     * [Output-only] The fully-qualified unique name of the dataset in the format projectId:datasetId. The dataset name without the project name is given in the datasetId field. When creating a new dataset, leave this field blank, and instead specify the datasetId field.
+     * Output only. The fully-qualified unique name of the dataset in the format projectId:datasetId. The dataset name without the project name is given in the datasetId field. When creating a new dataset, leave this field blank, and instead specify the datasetId field.
      */
     id?: string | null;
     /**
-     * [Optional] Indicates if table names are case insensitive in the dataset.
+     * Optional. TRUE if the dataset and its table names are case-insensitive, otherwise FALSE. By default, this is FALSE, which means the dataset and its table names are case-sensitive. This field does not affect routine references.
      */
     isCaseInsensitive?: boolean | null;
     /**
-     * [Output-only] The resource type.
+     * Output only. The resource type.
      */
     kind?: string | null;
     /**
@@ -869,41 +940,58 @@ export namespace bigquery_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * [Output-only] The date when this dataset or any of its tables was last modified, in milliseconds since the epoch.
+     * Output only. The date when this dataset was last modified, in milliseconds since the epoch.
      */
     lastModifiedTime?: string | null;
     /**
-     * The geographic location where the dataset should reside. The default value is US. See details at https://cloud.google.com/bigquery/docs/locations.
+     * Optional. The source dataset reference when the dataset is of type LINKED. For all other dataset types it is not set. This field cannot be updated once it is set. Any attempt to update this field using Update and Patch API Operations will be ignored.
+     */
+    linkedDatasetSource?: Schema$LinkedDatasetSource;
+    /**
+     * The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
      */
     location?: string | null;
     /**
-     * [Optional] Number of hours for the max time travel for all tables in the dataset.
+     * Optional. Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days). The default value is 168 hours if this is not set.
      */
     maxTimeTravelHours?: string | null;
     /**
-     * [Output-only] Reserved for future use.
+     * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
     /**
-     * [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
+     * Output only. A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
      */
     selfLink?: string | null;
     /**
-     * [Optional] Storage billing model to be used for all tables in the dataset. Can be set to PHYSICAL. Default is LOGICAL.
+     * Optional. Updates storage_billing_model for the dataset.
      */
     storageBillingModel?: string | null;
     /**
-     * [Optional]The tags associated with this dataset. Tag keys are globally unique.
+     * Output only. Tags for the Dataset.
      */
     tags?: Array<{tagKey?: string; tagValue?: string}> | null;
+    /**
+     * Output only. Same as `type` in `ListFormatDataset`. The type of the dataset, one of: * DEFAULT - only accessible by owner and authorized accounts, * PUBLIC - accessible by everyone, * LINKED - linked dataset, * EXTERNAL - dataset with definition in external metadata catalog. -- *BIGLAKE_METASTORE - dataset that references a database created in BigLakeMetastore service. --
+     */
+    type?: string | null;
   }
+  /**
+   * Grants all resources of particular types in a particular dataset read access to the current dataset. Similar to how individually authorized views work, updates to any resource granted through its dataset (including creation of new resources) requires read permission to referenced resources, plus write permission to the authorizing dataset.
+   */
   export interface Schema$DatasetAccessEntry {
     /**
-     * [Required] The dataset this entry applies to.
+     * The dataset this entry applies to
      */
     dataset?: Schema$DatasetReference;
+    /**
+     * Which resources in the dataset this entry applies to. Currently, only views are supported, but additional target types may be added in the future.
+     */
     targetTypes?: string[] | null;
   }
+  /**
+   * Response format for a page of results when listing datasets.
+   */
   export interface Schema$DatasetList {
     /**
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
@@ -917,25 +1005,29 @@ export namespace bigquery_v2 {
       location?: string;
     }> | null;
     /**
-     * A hash value of the results page. You can use this property to determine if the page has changed since the last request.
+     * Output only. A hash value of the results page. You can use this property to determine if the page has changed since the last request.
      */
     etag?: string | null;
     /**
-     * The list type. This property always returns the value "bigquery#datasetList".
+     * Output only. The resource type. This property always returns the value "bigquery#datasetList"
      */
     kind?: string | null;
     /**
      * A token that can be used to request the next results page. This property is omitted on the final results page.
      */
     nextPageToken?: string | null;
+    /**
+     * A list of skipped locations that were unreachable. For more information about BigQuery locations, see: https://cloud.google.com/bigquery/docs/locations. Example: "europe-west5"
+     */
+    unreachable?: string[] | null;
   }
   export interface Schema$DatasetReference {
     /**
-     * [Required] A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
+     * Required. A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
      */
     datasetId?: string | null;
     /**
-     * [Optional] The ID of the project containing this dataset.
+     * Optional. The ID of the project containing this dataset.
      */
     projectId?: string | null;
   }
@@ -956,21 +1048,24 @@ export namespace bigquery_v2 {
      */
     trainingTable?: Schema$TableReference;
   }
+  /**
+   * Properties for the destination table.
+   */
   export interface Schema$DestinationTableProperties {
     /**
-     * [Optional] The description for the destination table. This will only be used if the destination table is newly created. If the table already exists and a value different than the current description is provided, the job will fail.
+     * Optional. The description for the destination table. This will only be used if the destination table is newly created. If the table already exists and a value different than the current description is provided, the job will fail.
      */
     description?: string | null;
     /**
-     * [Internal] This field is for Google internal use only.
+     * Internal use only.
      */
     expirationTime?: string | null;
     /**
-     * [Optional] The friendly name for the destination table. This will only be used if the destination table is newly created. If the table already exists and a value different than the current friendly name is provided, the job will fail.
+     * Optional. Friendly name for the destination table. If the table already exists, it should be same as the existing friendly name.
      */
     friendlyName?: string | null;
     /**
-     * [Optional] The labels associated with this table. You can use these to organize and group your tables. This will only be used if the destination table is newly created. If the table already exists and labels are different than the current labels are provided, the job will fail.
+     * Optional. The labels associated with this table. You can use these to organize and group your tables. This will only be used if the destination table is newly created. If the table already exists and labels are different than the current labels are provided, the job will fail.
      */
     labels?: {[key: string]: string} | null;
   }
@@ -983,17 +1078,20 @@ export namespace bigquery_v2 {
      */
     totalExplainedVarianceRatio?: number | null;
   }
+  /**
+   * Detailed statistics for DML statements
+   */
   export interface Schema$DmlStatistics {
     /**
-     * Number of deleted Rows. populated by DML DELETE, MERGE and TRUNCATE statements.
+     * Output only. Number of deleted Rows. populated by DML DELETE, MERGE and TRUNCATE statements.
      */
     deletedRowCount?: string | null;
     /**
-     * Number of inserted Rows. Populated by DML INSERT and MERGE statements.
+     * Output only. Number of inserted Rows. Populated by DML INSERT and MERGE statements
      */
     insertedRowCount?: string | null;
     /**
-     * Number of updated Rows. Populated by DML UPDATE and MERGE statements.
+     * Output only. Number of updated Rows. Populated by DML UPDATE and MERGE statements.
      */
     updatedRowCount?: string | null;
   }
@@ -1051,6 +1149,9 @@ export namespace bigquery_v2 {
      */
     predictedLabel?: string | null;
   }
+  /**
+   * Error details.
+   */
   export interface Schema$ErrorProto {
     /**
      * Debugging information. This property is internal to Google and should not be used.
@@ -1102,11 +1203,18 @@ export namespace bigquery_v2 {
      */
     regressionMetrics?: Schema$RegressionMetrics;
   }
+  /**
+   * A single stage of query execution.
+   */
   export interface Schema$ExplainQueryStage {
     /**
      * Number of parallel input segments completed.
      */
     completedParallelInputs?: string | null;
+    /**
+     * Output only. Compute mode for this stage.
+     */
+    computeMode?: string | null;
     /**
      * Milliseconds the average shard spent on CPU-bound tasks.
      */
@@ -1124,11 +1232,11 @@ export namespace bigquery_v2 {
      */
     computeRatioMax?: number | null;
     /**
-     * Stage end time represented as milliseconds since epoch.
+     * Stage end time represented as milliseconds since the epoch.
      */
     endMs?: string | null;
     /**
-     * Unique ID for stage within plan.
+     * Unique ID for the stage within the plan.
      */
     id?: string | null;
     /**
@@ -1136,11 +1244,11 @@ export namespace bigquery_v2 {
      */
     inputStages?: string[] | null;
     /**
-     * Human-readable name for stage.
+     * Human-readable name for the stage.
      */
     name?: string | null;
     /**
-     * Number of parallel input segments to be processed.
+     * Number of parallel input segments to be processed
      */
     parallelInputs?: string | null;
     /**
@@ -1180,11 +1288,11 @@ export namespace bigquery_v2 {
      */
     slotMs?: string | null;
     /**
-     * Stage start time represented as milliseconds since epoch.
+     * Stage start time represented as milliseconds since the epoch.
      */
     startMs?: string | null;
     /**
-     * Current status for the stage.
+     * Current status for this stage.
      */
     status?: string | null;
     /**
@@ -1224,13 +1332,16 @@ export namespace bigquery_v2 {
      */
     writeRatioMax?: number | null;
   }
+  /**
+   * An operation within a stage.
+   */
   export interface Schema$ExplainQueryStep {
     /**
      * Machine-readable operation type.
      */
     kind?: string | null;
     /**
-     * Human-readable stage descriptions.
+     * Human-readable description of the step(s).
      */
     substeps?: string[] | null;
   }
@@ -1246,6 +1357,19 @@ export namespace bigquery_v2 {
      * The full feature name. For non-numerical features, will be formatted like `.`. Overall size of feature name will always be truncated to first 120 characters.
      */
     featureName?: string | null;
+  }
+  /**
+   * Statistics for the EXPORT DATA statement as part of Query Job. EXTRACT JOB statistics are populated in JobStatistics4.
+   */
+  export interface Schema$ExportDataStatistics {
+    /**
+     * Number of destination files generated in case of EXPORT DATA statement only.
+     */
+    fileCount?: string | null;
+    /**
+     * [Alpha] Number of destination rows generated in case of EXPORT DATA statement only.
+     */
+    rowCount?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1274,75 +1398,79 @@ export namespace bigquery_v2 {
      */
     autodetect?: boolean | null;
     /**
-     * Additional properties to set if sourceFormat is set to Avro.
+     * Optional. Additional properties to set if sourceFormat is set to AVRO.
      */
     avroOptions?: Schema$AvroOptions;
     /**
-     * [Optional] Additional options if sourceFormat is set to BIGTABLE.
+     * Optional. Additional options if sourceFormat is set to BIGTABLE.
      */
     bigtableOptions?: Schema$BigtableOptions;
     /**
-     * [Optional] The compression type of the data source. Possible values include GZIP and NONE. The default value is NONE. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
+     * Optional. The compression type of the data source. Possible values include GZIP and NONE. The default value is NONE. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups, Avro, ORC and Parquet formats. An empty string is an invalid value.
      */
     compression?: string | null;
     /**
-     * [Optional, Trusted Tester] Connection for external data source.
+     * Optional. The connection specifying the credentials to be used to read external storage, such as Azure Blob, Cloud Storage, or S3. The connection_id can have the form "<project\_id\>.<location\_id\>.<connection\_id\>" or "projects/<project\_id\>/locations/<location\_id\>/connections/<connection\_id\>".
      */
     connectionId?: string | null;
     /**
-     * Additional properties to set if sourceFormat is set to CSV.
+     * Optional. Additional properties to set if sourceFormat is set to CSV.
      */
     csvOptions?: Schema$CsvOptions;
     /**
-     * [Optional] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: (38,9) -\> NUMERIC; (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); (76,38) -\> BIGNUMERIC; (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
+     * Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: * (38,9) -\> NUMERIC; * (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -\> BIGNUMERIC; * (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
      */
     decimalTargetTypes?: string[] | null;
     /**
-     * [Optional] Specifies how source URIs are interpreted for constructing the file set to load. By default source URIs are expanded against the underlying storage. Other options include specifying manifest files. Only applicable to object storage systems.
+     * Optional. Specifies how source URIs are interpreted for constructing the file set to load. By default source URIs are expanded against the underlying storage. Other options include specifying manifest files. Only applicable to object storage systems.
      */
     fileSetSpecType?: string | null;
     /**
-     * [Optional] Additional options if sourceFormat is set to GOOGLE_SHEETS.
+     * Optional. Additional options if sourceFormat is set to GOOGLE_SHEETS.
      */
     googleSheetsOptions?: Schema$GoogleSheetsOptions;
     /**
-     * [Optional] Options to configure hive partitioning support.
+     * Optional. When set, configures hive partitioning support. Not all storage formats support hive partitioning -- requesting hive partitioning on an unsupported format will lead to an error, as will providing an invalid specification.
      */
     hivePartitioningOptions?: Schema$HivePartitioningOptions;
     /**
-     * [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don't match any column names Google Cloud Bigtable: This setting is ignored. Google Cloud Datastore backups: This setting is ignored. Avro: This setting is ignored.
+     * Optional. Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don't match any column names Google Cloud Bigtable: This setting is ignored. Google Cloud Datastore backups: This setting is ignored. Avro: This setting is ignored. ORC: This setting is ignored. Parquet: This setting is ignored.
      */
     ignoreUnknownValues?: boolean | null;
     /**
-     * Additional properties to set if `sourceFormat` is set to `NEWLINE_DELIMITED_JSON`.
+     * Optional. Load option to be used together with source_format newline-delimited JSON to indicate that a variant of JSON is being loaded. To load newline-delimited GeoJSON, specify GEOJSON (and source_format must be set to NEWLINE_DELIMITED_JSON).
+     */
+    jsonExtension?: string | null;
+    /**
+     * Optional. Additional properties to set if sourceFormat is set to JSON.
      */
     jsonOptions?: Schema$JsonOptions;
     /**
-     * [Optional] The maximum number of bad records that BigQuery can ignore when reading data. If the number of bad records exceeds this value, an invalid error is returned in the job result. This is only valid for CSV, JSON, and Google Sheets. The default value is 0, which requires that all records are valid. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
+     * Optional. The maximum number of bad records that BigQuery can ignore when reading data. If the number of bad records exceeds this value, an invalid error is returned in the job result. The default value is 0, which requires that all records are valid. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups, Avro, ORC and Parquet formats.
      */
     maxBadRecords?: number | null;
     /**
-     * [Optional] Metadata Cache Mode for the table. Set this to enable caching of metadata from external data source.
+     * Optional. Metadata Cache Mode for the table. Set this to enable caching of metadata from external data source.
      */
     metadataCacheMode?: string | null;
     /**
-     * ObjectMetadata is used to create Object Tables. Object Tables contain a listing of objects (with their metadata) found at the source_uris. If ObjectMetadata is set, source_format should be omitted. Currently SIMPLE is the only supported Object Metadata type.
+     * Optional. ObjectMetadata is used to create Object Tables. Object Tables contain a listing of objects (with their metadata) found at the source_uris. If ObjectMetadata is set, source_format should be omitted. Currently SIMPLE is the only supported Object Metadata type.
      */
     objectMetadata?: string | null;
     /**
-     * Additional properties to set if sourceFormat is set to Parquet.
+     * Optional. Additional properties to set if sourceFormat is set to PARQUET.
      */
     parquetOptions?: Schema$ParquetOptions;
     /**
-     * [Optional] Provide a referencing file with the expected table schema. Enabled for the format: AVRO, PARQUET, ORC.
+     * Optional. When creating an external table, the user can provide a reference file with the table schema. This is enabled for the following formats: AVRO, PARQUET, ORC.
      */
     referenceFileSchemaUri?: string | null;
     /**
-     * [Optional] The schema for the data. Schema is required for CSV and JSON formats. Schema is disallowed for Google Cloud Bigtable, Cloud Datastore backups, and Avro formats.
+     * Optional. The schema for the data. Schema is required for CSV and JSON formats if autodetect is not on. Schema is disallowed for Google Cloud Bigtable, Cloud Datastore backups, Avro, ORC and Parquet formats.
      */
     schema?: Schema$TableSchema;
     /**
-     * [Required] The data format. For CSV files, specify "CSV". For Google sheets, specify "GOOGLE_SHEETS". For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro files, specify "AVRO". For Google Cloud Datastore backups, specify "DATASTORE_BACKUP". [Beta] For Google Cloud Bigtable, specify "BIGTABLE".
+     * [Required] The data format. For CSV files, specify "CSV". For Google sheets, specify "GOOGLE_SHEETS". For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro files, specify "AVRO". For Google Cloud Datastore backups, specify "DATASTORE_BACKUP". For Apache Iceberg tables, specify "ICEBERG". For ORC files, specify "ORC". For Parquet files, specify "PARQUET". [Beta] For Google Cloud Bigtable, specify "BIGTABLE".
      */
     sourceFormat?: string | null;
     /**
@@ -1350,15 +1478,43 @@ export namespace bigquery_v2 {
      */
     sourceUris?: string[] | null;
   }
+  /**
+   * Configures the access a dataset defined in an external metadata storage.
+   */
   export interface Schema$ExternalDatasetReference {
     /**
-     * [Required] The connection id that is used to access the external_source. Format: projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}
+     * Required. The connection id that is used to access the external_source. Format: projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}
      */
     connection?: string | null;
     /**
-     * [Required] External source that backs this dataset.
+     * Required. External source that backs this dataset.
      */
     externalSource?: string | null;
+  }
+  /**
+   * The external service cost is a portion of the total cost, these costs are not additive with total_bytes_billed. Moreover, this field only track external service costs that will show up as BigQuery costs (e.g. training BigQuery ML job with google cloud CAIP or Automl Tables services), not other costs which may be accrued by running the query (e.g. reading from Bigtable or Cloud Storage). The external service costs with different billing sku (e.g. CAIP job is charged based on VM usage) are converted to BigQuery billed_bytes and slot_ms with equivalent amount of US dollars. Services may not directly correlate to these metrics, but these are the equivalents for billing purposes. Output only.
+   */
+  export interface Schema$ExternalServiceCost {
+    /**
+     * External service cost in terms of bigquery bytes billed.
+     */
+    bytesBilled?: string | null;
+    /**
+     * External service cost in terms of bigquery bytes processed.
+     */
+    bytesProcessed?: string | null;
+    /**
+     * External service name.
+     */
+    externalService?: string | null;
+    /**
+     * Non-preemptable reserved slots used for external job. For example, reserved slots for Cloua AI Platform job are the VM usages converted to BigQuery slot with equivalent mount of price.
+     */
+    reservedSlotCount?: string | null;
+    /**
+     * External service cost in terms of bigquery slot milliseconds.
+     */
+    slotMs?: string | null;
   }
   /**
    * Representative value of a single feature within the cluster.
@@ -1395,13 +1551,16 @@ export namespace bigquery_v2 {
      */
     requestedPolicyVersion?: number | null;
   }
+  /**
+   * Response object of GetQueryResults.
+   */
   export interface Schema$GetQueryResultsResponse {
     /**
      * Whether the query result was fetched from the query cache.
      */
     cacheHit?: boolean | null;
     /**
-     * [Output-only] The first errors or warnings encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
+     * Output only. The first errors or warnings encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful. For more information about error messages, see [Error messages](https://cloud.google.com/bigquery/docs/error-messages).
      */
     errors?: Schema$ErrorProto[];
     /**
@@ -1421,15 +1580,15 @@ export namespace bigquery_v2 {
      */
     kind?: string | null;
     /**
-     * [Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
+     * Output only. The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
      */
     numDmlAffectedRows?: string | null;
     /**
-     * A token used for paging results.
+     * A token used for paging results. When this token is non-empty, it indicates additional results are available.
      */
     pageToken?: string | null;
     /**
-     * An object with as many results as can be contained within the maximum permitted reply size. To get any additional rows, you can call GetQueryResults and specify the jobReference returned above. Present only when the query completes successfully.
+     * An object with as many results as can be contained within the maximum permitted reply size. To get any additional rows, you can call GetQueryResults and specify the jobReference returned above. Present only when the query completes successfully. The REST-based representation of this data leverages a series of JSON f,v objects for indicating fields and values.
      */
     rows?: Schema$TableRow[];
     /**
@@ -1445,6 +1604,9 @@ export namespace bigquery_v2 {
      */
     totalRows?: string | null;
   }
+  /**
+   * Response object of GetServiceAccount
+   */
   export interface Schema$GetServiceAccountResponse {
     /**
      * The service account email address.
@@ -1468,31 +1630,58 @@ export namespace bigquery_v2 {
      */
     explanations?: Schema$Explanation[];
   }
+  /**
+   * Options specific to Google Sheets data sources.
+   */
   export interface Schema$GoogleSheetsOptions {
     /**
-     * [Optional] Range of a sheet to query from. Only used when non-empty. Typical format: sheet_name!top_left_cell_id:bottom_right_cell_id For example: sheet1!A1:B20
+     * Optional. Range of a sheet to query from. Only used when non-empty. Typical format: sheet_name!top_left_cell_id:bottom_right_cell_id For example: sheet1!A1:B20
      */
     range?: string | null;
     /**
-     * [Optional] The number of rows at the top of a sheet that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows that should be skipped. When autodetect is on, behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N \> 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
+     * Optional. The number of rows at the top of a sheet that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows that should be skipped. When autodetect is on, the behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N \> 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
      */
     skipLeadingRows?: string | null;
   }
+  /**
+   * High cardinality join detailed information.
+   */
+  export interface Schema$HighCardinalityJoin {
+    /**
+     * Output only. Count of left input rows.
+     */
+    leftRows?: string | null;
+    /**
+     * Output only. Count of the output rows.
+     */
+    outputRows?: string | null;
+    /**
+     * Output only. Count of right input rows.
+     */
+    rightRows?: string | null;
+    /**
+     * Output only. The index of the join operator in the ExplainQueryStep lists.
+     */
+    stepIndex?: number | null;
+  }
+  /**
+   * Options for configuring hive partitioning detect.
+   */
   export interface Schema$HivePartitioningOptions {
     /**
-     * [Output-only] For permanent external tables, this field is populated with the hive partition keys in the order they were inferred. The types of the partition keys can be deduced by checking the table schema (which will include the partition keys). Not every API will populate this field in the output. For example, Tables.Get will populate it, but Tables.List will not contain this field.
+     * Output only. For permanent external tables, this field is populated with the hive partition keys in the order they were inferred. The types of the partition keys can be deduced by checking the table schema (which will include the partition keys). Not every API will populate this field in the output. For example, Tables.Get will populate it, but Tables.List will not contain this field.
      */
     fields?: string[] | null;
     /**
-     * [Optional] When set, what mode of hive partitioning to use when reading data. The following modes are supported. (1) AUTO: automatically infer partition key name(s) and type(s). (2) STRINGS: automatically infer partition key name(s). All types are interpreted as strings. (3) CUSTOM: partition key schema is encoded in the source URI prefix. Not all storage formats support hive partitioning. Requesting hive partitioning on an unsupported format will lead to an error. Currently supported types include: AVRO, CSV, JSON, ORC and Parquet.
+     * Optional. When set, what mode of hive partitioning to use when reading data. The following modes are supported: * AUTO: automatically infer partition key name(s) and type(s). * STRINGS: automatically infer partition key name(s). All types are strings. * CUSTOM: partition key schema is encoded in the source URI prefix. Not all storage formats support hive partitioning. Requesting hive partitioning on an unsupported format will lead to an error. Currently supported formats are: JSON, CSV, ORC, Avro and Parquet.
      */
     mode?: string | null;
     /**
-     * [Optional] If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified. Note that this field should only be true when creating a permanent external table or querying a temporary external table. Hive-partitioned loads with requirePartitionFilter explicitly set to true will fail.
+     * Optional. If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified. Note that this field should only be true when creating a permanent external table or querying a temporary external table. Hive-partitioned loads with require_partition_filter explicitly set to true will fail.
      */
     requirePartitionFilter?: boolean | null;
     /**
-     * [Optional] When hive partition detection is requested, a common prefix for all source uris should be supplied. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout. gs://bucket/path_to_table/dt=2019-01-01/country=BR/id=7/file.avro gs://bucket/path_to_table/dt=2018-12-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/ (trailing slash does not matter).
+     * Optional. When hive partition detection is requested, a common prefix for all source uris must be required. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout: gs://bucket/path_to_table/dt=2019-06-01/country=USA/id=7/file.avro gs://bucket/path_to_table/dt=2019-05-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/. CUSTOM detection requires encoding the partitioning schema immediately after the common prefix. For CUSTOM, any of * gs://bucket/path_to_table/{dt:DATE\}/{country:STRING\}/{id:INTEGER\} * gs://bucket/path_to_table/{dt:STRING\}/{country:STRING\}/{id:INTEGER\} * gs://bucket/path_to_table/{dt:DATE\}/{country:STRING\}/{id:STRING\} would all be valid source URI prefixes.
      */
     sourceUriPrefix?: string | null;
   }
@@ -1634,23 +1823,35 @@ export namespace bigquery_v2 {
      */
     trialId?: string | null;
   }
+  /**
+   * Reason about why no search index was used in the search query (or sub-query).
+   */
   export interface Schema$IndexUnusedReason {
     /**
-     * [Output-only] Specifies the base table involved in the reason that no search index was used.
+     * Specifies the base table involved in the reason that no search index was used.
      */
     baseTable?: Schema$TableReference;
     /**
-     * [Output-only] Specifies the high-level reason for the scenario when no search index was used.
+     * Specifies the high-level reason for the scenario when no search index was used.
      */
     code?: string | null;
     /**
-     * [Output-only] Specifies the name of the unused search index, if available.
+     * Specifies the name of the unused search index, if available.
      */
     indexName?: string | null;
     /**
-     * [Output-only] Free form human-readable reason for the scenario when no search index was used.
+     * Free form human-readable reason for the scenario when no search index was used.
      */
     message?: string | null;
+  }
+  /**
+   * Details about the input data change insight.
+   */
+  export interface Schema$InputDataChange {
+    /**
+     * Output only. Records read difference percentage compared to a previous run.
+     */
+    recordsReadDiffPercentage?: number | null;
   }
   /**
    * An array of int.
@@ -1705,7 +1906,18 @@ export namespace bigquery_v2 {
      */
     min?: string | null;
   }
+  /**
+   * Information about a single iteration of the training run.
+   */
   export interface Schema$IterationResult {
+    /**
+     * Arima result.
+     */
+    arimaResult?: Schema$ArimaResult;
+    /**
+     * Information about top clusters for clustering models.
+     */
+    clusterInfos?: Schema$ClusterInfo[];
     /**
      * Time taken to run the iteration in milliseconds.
      */
@@ -1723,52 +1935,63 @@ export namespace bigquery_v2 {
      */
     learnRate?: number | null;
     /**
+     * The information of the principal components.
+     */
+    principalComponentInfos?: Schema$PrincipalComponentInfo[];
+    /**
      * Loss computed on the training data at the end of iteration.
      */
     trainingLoss?: number | null;
   }
   export interface Schema$Job {
     /**
-     * [Required] Describes the job configuration.
+     * Required. Describes the job configuration.
      */
     configuration?: Schema$JobConfiguration;
     /**
-     * [Output-only] A hash of this resource.
+     * Output only. A hash of this resource.
      */
     etag?: string | null;
     /**
-     * [Output-only] Opaque ID field of the job
+     * Output only. Opaque ID field of the job.
      */
     id?: string | null;
     /**
-     * [Output-only] If set, it provides the reason why a Job was created. If not set, it should be treated as the default: REQUESTED. This feature is not yet available. Jobs will always be created.
+     * Output only. If set, it provides the reason why a Job was created. If not set, it should be treated as the default: REQUESTED. This feature is not yet available. Jobs will always be created.
      */
-    jobCreationReason?: any | null;
+    jobCreationReason?: Schema$JobCreationReason;
     /**
-     * [Optional] Reference describing the unique-per-user name of the job.
+     * Optional. Reference describing the unique-per-user name of the job.
      */
     jobReference?: Schema$JobReference;
     /**
-     * [Output-only] The type of the resource.
+     * Output only. The type of the resource.
      */
     kind?: string | null;
     /**
-     * [Output-only] A URL that can be used to access this resource again.
+     * Output only. [Full-projection-only] String representation of identity of requesting party. Populated for both first- and third-party identities. Only present for APIs that support third-party identities.
+     */
+    principal_subject?: string | null;
+    /**
+     * Output only. A URL that can be used to access the resource again.
      */
     selfLink?: string | null;
     /**
-     * [Output-only] Information about the job, including starting time and ending time of the job.
+     * Output only. Information about the job, including starting time and ending time of the job.
      */
     statistics?: Schema$JobStatistics;
     /**
-     * [Output-only] The status of this job. Examine this value when polling an asynchronous job to see if the job is complete.
+     * Output only. The status of this job. Examine this value when polling an asynchronous job to see if the job is complete.
      */
     status?: Schema$JobStatus;
     /**
-     * [Output-only] Email address of the user who ran the job.
+     * Output only. Email address of the user who ran the job.
      */
     user_email?: string | null;
   }
+  /**
+   * Describes format of a jobs cancellation response.
+   */
   export interface Schema$JobCancelResponse {
     /**
      * The final state of the job.
@@ -1785,7 +2008,7 @@ export namespace bigquery_v2 {
      */
     copy?: Schema$JobConfigurationTableCopy;
     /**
-     * [Optional] If set, don't actually run this job. A valid query will return a mostly empty response with some processing statistics, while an invalid query will return the same error it would if it wasn't a dry run. Behavior of non-query jobs is undefined.
+     * Optional. If set, don't actually run this job. A valid query will return a mostly empty response with some processing statistics, while an invalid query will return the same error it would if it wasn't a dry run. Behavior of non-query jobs is undefined.
      */
     dryRun?: boolean | null;
     /**
@@ -1793,11 +2016,11 @@ export namespace bigquery_v2 {
      */
     extract?: Schema$JobConfigurationExtract;
     /**
-     * [Optional] Job timeout in milliseconds. If this time limit is exceeded, BigQuery may attempt to terminate the job.
+     * Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery might attempt to stop the job.
      */
     jobTimeoutMs?: string | null;
     /**
-     * [Output-only] The type of the job. Can be QUERY, LOAD, EXTRACT, COPY or UNKNOWN.
+     * Output only. The type of the job. Can be QUERY, LOAD, EXTRACT, COPY or UNKNOWN.
      */
     jobType?: string | null;
     /**
@@ -1813,13 +2036,16 @@ export namespace bigquery_v2 {
      */
     query?: Schema$JobConfigurationQuery;
   }
+  /**
+   * JobConfigurationExtract configures a job that exports data from a BigQuery table into Google Cloud Storage.
+   */
   export interface Schema$JobConfigurationExtract {
     /**
-     * [Optional] The compression type to use for exported files. Possible values include GZIP, DEFLATE, SNAPPY, and NONE. The default value is NONE. DEFLATE and SNAPPY are only supported for Avro. Not applicable when extracting models.
+     * Optional. The compression type to use for exported files. Possible values include DEFLATE, GZIP, NONE, SNAPPY, and ZSTD. The default value is NONE. Not all compression formats are support for all file formats. DEFLATE is only supported for Avro. ZSTD is only supported for Parquet. Not applicable when extracting models.
      */
     compression?: string | null;
     /**
-     * [Optional] The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON, PARQUET or AVRO for tables and ML_TF_SAVED_MODEL or ML_XGBOOST_BOOSTER for models. The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV. The default value for models is ML_TF_SAVED_MODEL.
+     * Optional. The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON, PARQUET, or AVRO for tables and ML_TF_SAVED_MODEL or ML_XGBOOST_BOOSTER for models. The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV. The default value for models is ML_TF_SAVED_MODEL.
      */
     destinationFormat?: string | null;
     /**
@@ -1831,11 +2057,15 @@ export namespace bigquery_v2 {
      */
     destinationUris?: string[] | null;
     /**
-     * [Optional] Delimiter to use between fields in the exported data. Default is ','. Not applicable when extracting models.
+     * Optional. When extracting data in CSV format, this defines the delimiter to use between fields in the exported data. Default is ','. Not applicable when extracting models.
      */
     fieldDelimiter?: string | null;
     /**
-     * [Optional] Whether to print out a header row in the results. Default is true. Not applicable when extracting models.
+     * Optional. Model extract options only applicable when extracting models.
+     */
+    modelExtractOptions?: Schema$ModelExtractOptions;
+    /**
+     * Optional. Whether to print out a header row in the results. Default is true. Not applicable when extracting models.
      */
     printHeader?: boolean | null;
     /**
@@ -1847,13 +2077,16 @@ export namespace bigquery_v2 {
      */
     sourceTable?: Schema$TableReference;
     /**
-     * [Optional] If destinationFormat is set to "AVRO", this flag indicates whether to enable extracting applicable column types (such as TIMESTAMP) to their corresponding AVRO logical types (timestamp-micros), instead of only using their raw types (avro-long). Not applicable when extracting models.
+     * Whether to use logical types when extracting to AVRO format. Not applicable when extracting models.
      */
     useAvroLogicalTypes?: boolean | null;
   }
+  /**
+   * JobConfigurationLoad contains the configuration properties for loading data into a destination table.
+   */
   export interface Schema$JobConfigurationLoad {
     /**
-     * [Optional] Accept rows that are missing trailing optional columns. The missing values are treated as nulls. If false, records with missing trailing columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. Only applicable to CSV, ignored for other formats.
+     * Optional. Accept rows that are missing trailing optional columns. The missing values are treated as nulls. If false, records with missing trailing columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. Only applicable to CSV, ignored for other formats.
      */
     allowJaggedRows?: boolean | null;
     /**
@@ -1861,31 +2094,31 @@ export namespace bigquery_v2 {
      */
     allowQuotedNewlines?: boolean | null;
     /**
-     * [Optional] Indicates if we should automatically infer the options and schema for CSV and JSON sources.
+     * Optional. Indicates if we should automatically infer the options and schema for CSV and JSON sources.
      */
     autodetect?: boolean | null;
     /**
-     * [Beta] Clustering specification for the destination table. Must be specified with time-based partitioning, data in the table will be first partitioned and subsequently clustered.
+     * Clustering specification for the destination table.
      */
     clustering?: Schema$Clustering;
     /**
-     * Connection properties.
+     * Optional. Connection properties which can modify the load job behavior. Currently, only the 'session_id' connection property is supported, and is used to resolve _SESSION appearing as the dataset id.
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
-     * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * Optional. Specifies whether the job is allowed to create new tables. The following values are supported: * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. * CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
     /**
-     * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs the load job in non-session mode.
+     * Optional. If this property is true, the job creates a new session using a randomly generated session_id. To continue using a created session with subsequent queries, pass the existing session identifier as a `ConnectionProperty` value. The session identifier is returned as part of the `SessionInfo` message within the query statistics. The new session's location will be set to `Job.JobReference.location` if it is present, otherwise it's set to the default location based on existing routing logic.
      */
     createSession?: boolean | null;
     /**
-     * [Optional] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: (38,9) -\> NUMERIC; (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); (76,38) -\> BIGNUMERIC; (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
+     * Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: * (38,9) -\> NUMERIC; * (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -\> BIGNUMERIC; * (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
      */
     decimalTargetTypes?: string[] | null;
     /**
-     * Custom encryption configuration (e.g., Cloud KMS keys).
+     * Custom encryption configuration (e.g., Cloud KMS keys)
      */
     destinationEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
@@ -1893,47 +2126,47 @@ export namespace bigquery_v2 {
      */
     destinationTable?: Schema$TableReference;
     /**
-     * [Beta] [Optional] Properties with which to create the destination table if it is new.
+     * Optional. [Experimental] Properties with which to create the destination table if it is new.
      */
     destinationTableProperties?: Schema$DestinationTableProperties;
     /**
-     * [Optional] The character encoding of the data. The supported values are UTF-8 or ISO-8859-1. The default value is UTF-8. BigQuery decodes the data after the raw, binary data has been split using the values of the quote and fieldDelimiter properties.
+     * Optional. The character encoding of the data. The supported values are UTF-8, ISO-8859-1, UTF-16BE, UTF-16LE, UTF-32BE, and UTF-32LE. The default value is UTF-8. BigQuery decodes the data after the raw, binary data has been split using the values of the `quote` and `fieldDelimiter` properties. If you don't specify an encoding, or if you specify a UTF-8 encoding when the CSV file is not UTF-8 encoded, BigQuery attempts to convert the data to UTF-8. Generally, your data loads successfully, but it may not match byte-for-byte what you expect. To avoid this, specify the correct encoding by using the `--encoding` flag. If BigQuery can't convert a character other than the ASCII `0` character, BigQuery converts the character to the standard Unicode replacement character: �.
      */
     encoding?: string | null;
     /**
-     * [Optional] The separator for fields in a CSV file. The separator can be any ISO-8859-1 single-byte character. To use a character in the range 128-255, you must encode the character as UTF8. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence "\t" to specify a tab separator. The default value is a comma (',').
+     * Optional. The separator character for fields in a CSV file. The separator is interpreted as a single byte. For files encoded in ISO-8859-1, any single character can be used as a separator. For files encoded in UTF-8, characters represented in decimal range 1-127 (U+0001-U+007F) can be used without any modification. UTF-8 characters encoded with multiple bytes (i.e. U+0080 and above) will have only the first byte used for separating fields. The remaining bytes will be treated as a part of the field. BigQuery also supports the escape sequence "\t" (U+0009) to specify a tab separator. The default value is comma (",", U+002C).
      */
     fieldDelimiter?: string | null;
     /**
-     * [Optional] Specifies how source URIs are interpreted for constructing the file set to load. By default source URIs are expanded against the underlying storage. Other options include specifying manifest files. Only applicable to object storage systems.
+     * Optional. Specifies how source URIs are interpreted for constructing the file set to load. By default, source URIs are expanded against the underlying storage. You can also specify manifest files to control how the file set is constructed. This option is only applicable to object storage systems.
      */
     fileSetSpecType?: string | null;
     /**
-     * [Optional] Options to configure hive partitioning support.
+     * Optional. When set, configures hive partitioning support. Not all storage formats support hive partitioning -- requesting hive partitioning on an unsupported format will lead to an error, as will providing an invalid specification.
      */
     hivePartitioningOptions?: Schema$HivePartitioningOptions;
     /**
-     * [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don't match any column names
+     * Optional. Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don't match any column names in the table schema Avro, Parquet, ORC: Fields in the file schema that don't exist in the table schema.
      */
     ignoreUnknownValues?: boolean | null;
     /**
-     * [Optional] If sourceFormat is set to newline-delimited JSON, indicates whether it should be processed as a JSON variant such as GeoJSON. For a sourceFormat other than JSON, omit this field. If the sourceFormat is newline-delimited JSON: - for newline-delimited GeoJSON: set to GEOJSON.
+     * Optional. Load option to be used together with source_format newline-delimited JSON to indicate that a variant of JSON is being loaded. To load newline-delimited GeoJSON, specify GEOJSON (and source_format must be set to NEWLINE_DELIMITED_JSON).
      */
     jsonExtension?: string | null;
     /**
-     * [Optional] The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value, an invalid error is returned in the job result. This is only valid for CSV and JSON. The default value is 0, which requires that all records are valid.
+     * Optional. The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value, an invalid error is returned in the job result. The default value is 0, which requires that all records are valid. This is only supported for CSV and NEWLINE_DELIMITED_JSON file formats.
      */
     maxBadRecords?: number | null;
     /**
-     * [Optional] Specifies a string that represents a null value in a CSV file. For example, if you specify "\N", BigQuery interprets "\N" as a null value when loading a CSV file. The default value is the empty string. If you set this property to a custom value, BigQuery throws an error if an empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as an empty value.
+     * Optional. Specifies a string that represents a null value in a CSV file. For example, if you specify "\N", BigQuery interprets "\N" as a null value when loading a CSV file. The default value is the empty string. If you set this property to a custom value, BigQuery throws an error if an empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as an empty value.
      */
     nullMarker?: string | null;
     /**
-     * [Optional] Options to configure parquet support.
+     * Optional. Additional properties to set if sourceFormat is set to PARQUET.
      */
     parquetOptions?: Schema$ParquetOptions;
     /**
-     * [Optional] Preserves the embedded ASCII control characters (the first 32 characters in the ASCII-table, from '\x00' to '\x1F') when loading from CSV. Only applicable to CSV, ignored for other formats.
+     * Optional. When sourceFormat is set to "CSV", this indicates whether the embedded ASCII control characters (the first 32 characters in the ASCII-table, from '\x00' to '\x1F') are preserved.
      */
     preserveAsciiControlCharacters?: boolean | null;
     /**
@@ -1941,19 +2174,19 @@ export namespace bigquery_v2 {
      */
     projectionFields?: string[] | null;
     /**
-     * [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
+     * Optional. The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true. To include the specific quote character within a quoted value, precede it with an additional matching quote character. For example, if you want to escape the default character ' " ', use ' "" '. @default "
      */
     quote?: string | null;
     /**
-     * [TrustedTester] Range partitioning specification for this table. Only one of timePartitioning and rangePartitioning should be specified.
+     * Range partitioning specification for the destination table. Only one of timePartitioning and rangePartitioning should be specified.
      */
     rangePartitioning?: Schema$RangePartitioning;
     /**
-     * User provided referencing file with the expected reader schema, Available for the format: AVRO, PARQUET, ORC.
+     * Optional. The user can provide a reference file with the reader schema. This file is only loaded if it is part of source URIs, but is not loaded otherwise. It is enabled for the following formats: AVRO, PARQUET, ORC.
      */
     referenceFileSchemaUri?: string | null;
     /**
-     * [Optional] The schema for the destination table. The schema can be omitted if the destination table already exists, or if you're loading data from Google Cloud Datastore.
+     * Optional. The schema for the destination table. The schema can be omitted if the destination table already exists, or if you're loading data from Google Cloud Datastore.
      */
     schema?: Schema$TableSchema;
     /**
@@ -1965,15 +2198,15 @@ export namespace bigquery_v2 {
      */
     schemaInlineFormat?: string | null;
     /**
-     * Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
+     * Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
      */
     schemaUpdateOptions?: string[] | null;
     /**
-     * [Optional] The number of rows at the top of a CSV file that BigQuery will skip when loading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped.
+     * Optional. The number of rows at the top of a CSV file that BigQuery will skip when loading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped. When autodetect is on, the behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N \> 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
      */
     skipLeadingRows?: number | null;
     /**
-     * [Optional] The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP". For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET". For orc, specify "ORC". The default value is CSV.
+     * Optional. The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP". For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET". For orc, specify "ORC". The default value is CSV.
      */
     sourceFormat?: string | null;
     /**
@@ -1985,25 +2218,28 @@ export namespace bigquery_v2 {
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * [Optional] If sourceFormat is set to "AVRO", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).
+     * Optional. If sourceFormat is set to "AVRO", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).
      */
     useAvroLogicalTypes?: boolean | null;
     /**
-     * [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints and uses the schema from the load job. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     writeDisposition?: string | null;
   }
+  /**
+   * JobConfigurationQuery configures a BigQuery query job.
+   */
   export interface Schema$JobConfigurationQuery {
     /**
-     * [Optional] If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance. Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed. However, you must still set destinationTable when result size exceeds the allowed maximum response size.
+     * Optional. If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance. Requires destinationTable to be set. For GoogleSQL queries, this flag is ignored and large results are always allowed. However, you must still set destinationTable when result size exceeds the allowed maximum response size.
      */
     allowLargeResults?: boolean | null;
     /**
-     * [Beta] Clustering specification for the destination table. Must be specified with time-based partitioning, data in the table will be first partitioned and subsequently clustered.
+     * Clustering specification for the destination table.
      */
     clustering?: Schema$Clustering;
     /**
-     * Connection properties.
+     * Connection properties which can modify the query behavior.
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
@@ -2011,39 +2247,39 @@ export namespace bigquery_v2 {
      */
     continuous?: boolean | null;
     /**
-     * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * Optional. Specifies whether the job is allowed to create new tables. The following values are supported: * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. * CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
     /**
-     * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.
+     * If this property is true, the job creates a new session using a randomly generated session_id. To continue using a created session with subsequent queries, pass the existing session identifier as a `ConnectionProperty` value. The session identifier is returned as part of the `SessionInfo` message within the query statistics. The new session's location will be set to `Job.JobReference.location` if it is present, otherwise it's set to the default location based on existing routing logic.
      */
     createSession?: boolean | null;
     /**
-     * [Optional] Specifies the default dataset to use for unqualified table names in the query. Note that this does not alter behavior of unqualified dataset names.
+     * Optional. Specifies the default dataset to use for unqualified table names in the query. This setting does not alter behavior of unqualified dataset names. Setting the system variable `@@dataset_id` achieves the same behavior. See https://cloud.google.com/bigquery/docs/reference/system-variables for more information on system variables.
      */
     defaultDataset?: Schema$DatasetReference;
     /**
-     * Custom encryption configuration (e.g., Cloud KMS keys).
+     * Custom encryption configuration (e.g., Cloud KMS keys)
      */
     destinationEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
-     * [Optional] Describes the table where the query results should be stored. If not present, a new table will be created to store the results. This property must be set for large results that exceed the maximum response size.
+     * Optional. Describes the table where the query results should be stored. This property must be set for large results that exceed the maximum response size. For queries that produce anonymous (cached) results, this field will be populated by BigQuery.
      */
     destinationTable?: Schema$TableReference;
     /**
-     * [Optional] If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results. allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
+     * Optional. If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results. allowLargeResults must be true if this is set to false. For GoogleSQL queries, this flag is ignored and results are never flattened.
      */
     flattenResults?: boolean | null;
     /**
-     * [Optional] Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge). If unspecified, this will be set to your project default.
+     * Optional. [Deprecated] Maximum billing tier allowed for this query. The billing tier controls the amount of compute resources allotted to the query, and multiplies the on-demand cost of the query accordingly. A query that runs within its allotted resources will succeed and indicate its billing tier in statistics.query.billingTier, but if the query exceeds its allotted resources, it will fail with billingTierLimitExceeded. WARNING: The billed byte amount can be multiplied by an amount up to this number! Most users should not need to alter this setting, and we recommend that you avoid introducing new uses of it.
      */
     maximumBillingTier?: number | null;
     /**
-     * [Optional] Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge). If unspecified, this will be set to your project default.
+     * Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge). If unspecified, this will be set to your project default.
      */
     maximumBytesBilled?: string | null;
     /**
-     * Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
+     * GoogleSQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
      */
     parameterMode?: string | null;
     /**
@@ -2051,27 +2287,35 @@ export namespace bigquery_v2 {
      */
     preserveNulls?: boolean | null;
     /**
-     * [Optional] Specifies a priority for the query. Possible values include INTERACTIVE and BATCH. The default value is INTERACTIVE.
+     * Optional. Specifies a priority for the query. Possible values include INTERACTIVE and BATCH. The default value is INTERACTIVE.
      */
     priority?: string | null;
     /**
-     * [Required] SQL query text to execute. The useLegacySql field can be used to indicate whether the query uses legacy SQL or standard SQL.
+     * [Required] SQL query text to execute. The useLegacySql field can be used to indicate whether the query uses legacy SQL or GoogleSQL.
      */
     query?: string | null;
     /**
-     * Query parameters for standard SQL queries.
+     * Query parameters for GoogleSQL queries.
      */
     queryParameters?: Schema$QueryParameter[];
     /**
-     * [TrustedTester] Range partitioning specification for this table. Only one of timePartitioning and rangePartitioning should be specified.
+     * Range partitioning specification for the destination table. Only one of timePartitioning and rangePartitioning should be specified.
      */
     rangePartitioning?: Schema$RangePartitioning;
     /**
-     * Allows the schema of the destination table to be updated as a side effect of the query job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
+     * Allows the schema of the destination table to be updated as a side effect of the query job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
      */
     schemaUpdateOptions?: string[] | null;
     /**
-     * [Optional] If querying an external data source outside of BigQuery, describes the data format, location and other properties of the data source. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
+     * Options controlling the execution of scripts.
+     */
+    scriptOptions?: Schema$ScriptOptions;
+    /**
+     * Output only. System variables for GoogleSQL queries. A system variable is output if the variable is settable and its value differs from the system default. "@@" prefix is not included in the name of the System variables.
+     */
+    systemVariables?: Schema$SystemVariables;
+    /**
+     * Optional. You can specify external table definitions, which operate as ephemeral tables that can be queried. These definitions are configured using a JSON map, where the string key represents the table identifier, and the value is the corresponding external data configuration object.
      */
     tableDefinitions?: {[key: string]: Schema$ExternalDataConfiguration} | null;
     /**
@@ -2079,11 +2323,11 @@ export namespace bigquery_v2 {
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery's standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
+     * Optional. Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery's GoogleSQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
      */
     useLegacySql?: boolean | null;
     /**
-     * [Optional] Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified. The default value is true.
+     * Optional. Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified. The default value is true.
      */
     useQueryCache?: boolean | null;
     /**
@@ -2091,13 +2335,16 @@ export namespace bigquery_v2 {
      */
     userDefinedFunctionResources?: Schema$UserDefinedFunctionResource[];
     /**
-     * [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints, and uses the schema from the query result. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     writeDisposition?: string | null;
   }
+  /**
+   * JobConfigurationTableCopy configures a job that copies data from one table to another. For more information on copying tables, see [Copy a table](https://cloud.google.com/bigquery/docs/managing-tables#copy-table).
+   */
   export interface Schema$JobConfigurationTableCopy {
     /**
-     * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * Optional. Specifies whether the job is allowed to create new tables. The following values are supported: * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. * CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
     /**
@@ -2105,15 +2352,15 @@ export namespace bigquery_v2 {
      */
     destinationEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
-     * [Optional] The time when the destination table expires. Expired tables will be deleted and their storage reclaimed.
+     * Optional. The time when the destination table expires. Expired tables will be deleted and their storage reclaimed.
      */
-    destinationExpirationTime?: any | null;
+    destinationExpirationTime?: string | null;
     /**
-     * [Required] The destination table
+     * [Required] The destination table.
      */
     destinationTable?: Schema$TableReference;
     /**
-     * [Optional] Supported operation types in table copy job.
+     * Optional. Supported operation types in table copy job.
      */
     operationType?: string | null;
     /**
@@ -2125,7 +2372,7 @@ export namespace bigquery_v2 {
      */
     sourceTables?: Schema$TableReference[];
     /**
-     * [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema and table constraints from the source table. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     writeDisposition?: string | null;
   }
@@ -2138,6 +2385,9 @@ export namespace bigquery_v2 {
      */
     code?: string | null;
   }
+  /**
+   * JobList is the response format for a jobs.list call.
+   */
   export interface Schema$JobList {
     /**
      * A hash of this page of results.
@@ -2152,6 +2402,7 @@ export namespace bigquery_v2 {
       id?: string;
       jobReference?: Schema$JobReference;
       kind?: string;
+      principal_subject?: string;
       state?: string;
       statistics?: Schema$JobStatistics;
       status?: Schema$JobStatus;
@@ -2165,290 +2416,368 @@ export namespace bigquery_v2 {
      * A token to request the next page of results.
      */
     nextPageToken?: string | null;
+    /**
+     * A list of skipped locations that were unreachable. For more information about BigQuery locations, see: https://cloud.google.com/bigquery/docs/locations. Example: "europe-west5"
+     */
+    unreachable?: string[] | null;
   }
+  /**
+   * A job reference is a fully qualified identifier for referring to a job.
+   */
   export interface Schema$JobReference {
     /**
-     * [Required] The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
+     * Required. The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
      */
     jobId?: string | null;
     /**
-     * The geographic location of the job. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     * Optional. The geographic location of the job. The default value is US. For more information about BigQuery locations, see: https://cloud.google.com/bigquery/docs/locations
      */
     location?: string | null;
     /**
-     * [Required] The ID of the project containing this job.
+     * Required. The ID of the project containing this job.
      */
     projectId?: string | null;
   }
+  /**
+   * Statistics for a single job execution.
+   */
   export interface Schema$JobStatistics {
     /**
-     * [TrustedTester] [Output-only] Job progress (0.0 -\> 1.0) for LOAD and EXTRACT jobs.
+     * Output only. [TrustedTester] Job progress (0.0 -\> 1.0) for LOAD and EXTRACT jobs.
      */
     completionRatio?: number | null;
     /**
-     * [Output-only] Statistics for a copy job.
+     * Output only. Statistics for a copy job.
      */
     copy?: Schema$JobStatistics5;
     /**
-     * [Output-only] Creation time of this job, in milliseconds since the epoch. This field will be present on all jobs.
+     * Output only. Creation time of this job, in milliseconds since the epoch. This field will be present on all jobs.
      */
     creationTime?: string | null;
     /**
-     * [Output-only] Statistics for data masking. Present only for query and extract jobs.
+     * Output only. Statistics for data-masking. Present only for query and extract jobs.
      */
     dataMaskingStatistics?: Schema$DataMaskingStatistics;
     /**
-     * [Output-only] End time of this job, in milliseconds since the epoch. This field will be present whenever a job is in the DONE state.
+     * Output only. End time of this job, in milliseconds since the epoch. This field will be present whenever a job is in the DONE state.
      */
     endTime?: string | null;
     /**
-     * [Output-only] Statistics for an extract job.
+     * Output only. Statistics for an extract job.
      */
     extract?: Schema$JobStatistics4;
     /**
-     * [Output-only] Statistics for a load job.
+     * Output only. The duration in milliseconds of the execution of the final attempt of this job, as BigQuery may internally re-attempt to execute the job.
+     */
+    finalExecutionDurationMs?: string | null;
+    /**
+     * Output only. Statistics for a load job.
      */
     load?: Schema$JobStatistics3;
     /**
-     * [Output-only] Number of child jobs executed.
+     * Output only. Number of child jobs executed.
      */
     numChildJobs?: string | null;
     /**
-     * [Output-only] If this is a child job, the id of the parent.
+     * Output only. If this is a child job, specifies the job ID of the parent.
      */
     parentJobId?: string | null;
     /**
-     * [Output-only] Statistics for a query job.
+     * Output only. Statistics for a query job.
      */
     query?: Schema$JobStatistics2;
     /**
-     * [Output-only] Quotas which delayed this job's start time.
+     * Output only. Quotas which delayed this job's start time.
      */
     quotaDeferments?: string[] | null;
     /**
-     * [Output-only] Job resource usage breakdown by reservation.
+     * Output only. Job resource usage breakdown by reservation. This field reported misleading information and will no longer be populated.
      */
     reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
     /**
-     * [Output-only] Name of the primary reservation assigned to this job. Note that this could be different than reservations reported in the reservation usage field if parent reservations were used to execute this job.
+     * Output only. Name of the primary reservation assigned to this job. Note that this could be different than reservations reported in the reservation usage field if parent reservations were used to execute this job.
      */
     reservation_id?: string | null;
     /**
-     * [Output-only] [Preview] Statistics for row-level security. Present only for query and extract jobs.
+     * Output only. Statistics for row-level security. Present only for query and extract jobs.
      */
     rowLevelSecurityStatistics?: Schema$RowLevelSecurityStatistics;
     /**
-     * [Output-only] Statistics for a child job of a script.
+     * Output only. If this a child job of a script, specifies information about the context of this job within the script.
      */
     scriptStatistics?: Schema$ScriptStatistics;
     /**
-     * [Output-only] [Preview] Information of the session if this job is part of one.
+     * Output only. Information of the session if this job is part of one.
      */
     sessionInfo?: Schema$SessionInfo;
     /**
-     * [Output-only] Start time of this job, in milliseconds since the epoch. This field will be present when the job transitions from the PENDING state to either RUNNING or DONE.
+     * Output only. Start time of this job, in milliseconds since the epoch. This field will be present when the job transitions from the PENDING state to either RUNNING or DONE.
      */
     startTime?: string | null;
     /**
-     * [Output-only] [Deprecated] Use the bytes processed in the query statistics instead.
+     * Output only. Total bytes processed for the job.
      */
     totalBytesProcessed?: string | null;
     /**
-     * [Output-only] Slot-milliseconds for the job.
+     * Output only. Slot-milliseconds for the job.
      */
     totalSlotMs?: string | null;
     /**
-     * [Output-only] [Alpha] Information of the multi-statement transaction if this job is part of one.
+     * Output only. [Alpha] Information of the multi-statement transaction if this job is part of one. This property is only expected on a child job or a job that is in a session. A script parent job is not part of the transaction started in the script.
      */
     transactionInfo?: Schema$TransactionInfo;
   }
+  /**
+   * Statistics for a query job.
+   */
   export interface Schema$JobStatistics2 {
     /**
-     * BI Engine specific Statistics. [Output only] BI Engine specific Statistics.
+     * Output only. BI Engine specific Statistics.
      */
     biEngineStatistics?: Schema$BiEngineStatistics;
     /**
-     * [Output only] Billing tier for the job.
+     * Output only. Billing tier for the job. This is a BigQuery-specific concept which is not related to the Google Cloud notion of "free tier". The value here is a measure of the query's resource consumption relative to the amount of data scanned. For on-demand queries, the limit is 100, and all queries within this limit are billed at the standard on-demand rates. On-demand queries that exceed this limit will fail with a billingTierLimitExceeded error.
      */
     billingTier?: number | null;
     /**
-     * [Output only] Whether the query result was fetched from the query cache.
+     * Output only. Whether the query result was fetched from the query cache.
      */
     cacheHit?: boolean | null;
     /**
-     * [Output only] [Preview] The number of row access policies affected by a DDL statement. Present only for DROP ALL ROW ACCESS POLICIES queries.
+     * Output only. Referenced dataset for DCL statement.
+     */
+    dclTargetDataset?: Schema$DatasetReference;
+    /**
+     * Output only. Referenced table for DCL statement.
+     */
+    dclTargetTable?: Schema$TableReference;
+    /**
+     * Output only. Referenced view for DCL statement.
+     */
+    dclTargetView?: Schema$TableReference;
+    /**
+     * Output only. The number of row access policies affected by a DDL statement. Present only for DROP ALL ROW ACCESS POLICIES queries.
      */
     ddlAffectedRowAccessPolicyCount?: string | null;
     /**
-     * [Output only] The DDL destination table. Present only for ALTER TABLE RENAME TO queries. Note that ddl_target_table is used just for its type information.
+     * Output only. The table after rename. Present only for ALTER TABLE RENAME TO query.
      */
     ddlDestinationTable?: Schema$TableReference;
     /**
-     * The DDL operation performed, possibly dependent on the pre-existence of the DDL target. Possible values (new values might be added in the future): "CREATE": The query created the DDL target. "SKIP": No-op. Example cases: the query is CREATE TABLE IF NOT EXISTS while the table already exists, or the query is DROP TABLE IF EXISTS while the table does not exist. "REPLACE": The query replaced the DDL target. Example case: the query is CREATE OR REPLACE TABLE, and the table already exists. "DROP": The query deleted the DDL target.
+     * Output only. The DDL operation performed, possibly dependent on the pre-existence of the DDL target.
      */
     ddlOperationPerformed?: string | null;
     /**
-     * [Output only] The DDL target dataset. Present only for CREATE/ALTER/DROP/UNDROP SCHEMA queries.
+     * Output only. The DDL target dataset. Present only for CREATE/ALTER/DROP SCHEMA(dataset) queries.
      */
     ddlTargetDataset?: Schema$DatasetReference;
     /**
-     * The DDL target routine. Present only for CREATE/DROP FUNCTION/PROCEDURE queries.
+     * Output only. [Beta] The DDL target routine. Present only for CREATE/DROP FUNCTION/PROCEDURE queries.
      */
     ddlTargetRoutine?: Schema$RoutineReference;
     /**
-     * [Output only] [Preview] The DDL target row access policy. Present only for CREATE/DROP ROW ACCESS POLICY queries.
+     * Output only. The DDL target row access policy. Present only for CREATE/DROP ROW ACCESS POLICY queries.
      */
     ddlTargetRowAccessPolicy?: Schema$RowAccessPolicyReference;
     /**
-     * [Output only] The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries.
+     * Output only. The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries.
      */
     ddlTargetTable?: Schema$TableReference;
     /**
-     * [Output only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
+     * Output only. Detailed statistics for DML statements INSERT, UPDATE, DELETE, MERGE or TRUNCATE.
      */
     dmlStats?: Schema$DmlStatistics;
     /**
-     * [Output only] The original estimate of bytes processed for the job.
+     * Output only. The original estimate of bytes processed for the job.
      */
     estimatedBytesProcessed?: string | null;
     /**
-     * [Output only] Statistics of a BigQuery ML training job.
+     * Output only. Stats for EXPORT DATA statement.
+     */
+    exportDataStatistics?: Schema$ExportDataStatistics;
+    /**
+     * Output only. Job cost breakdown as bigquery internal cost and external service costs.
+     */
+    externalServiceCosts?: Schema$ExternalServiceCost[];
+    /**
+     * Output only. Statistics for a LOAD query.
+     */
+    loadQueryStatistics?: Schema$LoadQueryStatistics;
+    /**
+     * Output only. Statistics of materialized views of a query job.
+     */
+    materializedViewStatistics?: Schema$MaterializedViewStatistics;
+    /**
+     * Output only. Statistics of metadata cache usage in a query for BigLake tables.
+     */
+    metadataCacheStatistics?: Schema$MetadataCacheStatistics;
+    /**
+     * Output only. Statistics of a BigQuery ML training job.
      */
     mlStatistics?: Schema$MlStatistics;
     /**
-     * [Output only, Beta] Information about create model query job progress.
+     * Deprecated.
      */
     modelTraining?: Schema$BigQueryModelTraining;
     /**
-     * [Output only, Beta] Deprecated; do not use.
+     * Deprecated.
      */
     modelTrainingCurrentIteration?: number | null;
     /**
-     * [Output only, Beta] Deprecated; do not use.
+     * Deprecated.
      */
     modelTrainingExpectedTotalIteration?: string | null;
     /**
-     * [Output only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
+     * Output only. The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
      */
     numDmlAffectedRows?: string | null;
     /**
-     * [Output only] Describes execution plan for the query.
+     * Output only. Performance insights.
+     */
+    performanceInsights?: Schema$PerformanceInsights;
+    /**
+     * Output only. Query optimization information for a QUERY job.
+     */
+    queryInfo?: Schema$QueryInfo;
+    /**
+     * Output only. Describes execution plan for the query.
      */
     queryPlan?: Schema$ExplainQueryStage[];
     /**
-     * [Output only] Referenced routines (persistent user-defined functions and stored procedures) for the job.
+     * Output only. Referenced routines for the job.
      */
     referencedRoutines?: Schema$RoutineReference[];
     /**
-     * [Output only] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
+     * Output only. Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
      */
     referencedTables?: Schema$TableReference[];
     /**
-     * [Output only] Job resource usage breakdown by reservation.
+     * Output only. Job resource usage breakdown by reservation. This field reported misleading information and will no longer be populated.
      */
     reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
     /**
-     * [Output only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
+     * Output only. The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
     schema?: Schema$TableSchema;
     /**
-     * [Output only] Search query specific statistics.
+     * Output only. Search query specific statistics.
      */
     searchStatistics?: Schema$SearchStatistics;
     /**
-     * [Output only] Statistics of a Spark procedure job.
+     * Output only. Statistics of a Spark procedure job.
      */
     sparkStatistics?: Schema$SparkStatistics;
     /**
-     * The type of query statement, if valid. Possible values (new values might be added in the future): "SELECT": SELECT query. "INSERT": INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "UPDATE": UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "DELETE": DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "MERGE": MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "ALTER_TABLE": ALTER TABLE query. "ALTER_VIEW": ALTER VIEW query. "ASSERT": ASSERT condition AS 'description'. "CREATE_FUNCTION": CREATE FUNCTION query. "CREATE_MODEL": CREATE [OR REPLACE] MODEL ... AS SELECT ... . "CREATE_PROCEDURE": CREATE PROCEDURE query. "CREATE_TABLE": CREATE [OR REPLACE] TABLE without AS SELECT. "CREATE_TABLE_AS_SELECT": CREATE [OR REPLACE] TABLE ... AS SELECT ... . "CREATE_VIEW": CREATE [OR REPLACE] VIEW ... AS SELECT ... . "DROP_FUNCTION" : DROP FUNCTION query. "DROP_PROCEDURE": DROP PROCEDURE query. "DROP_TABLE": DROP TABLE query. "DROP_VIEW": DROP VIEW query.
+     * Output only. The type of query statement, if valid. Possible values: * `SELECT`: [`SELECT`](/bigquery/docs/reference/standard-sql/query-syntax#select_list) statement. * `ASSERT`: [`ASSERT`](/bigquery/docs/reference/standard-sql/debugging-statements#assert) statement. * `INSERT`: [`INSERT`](/bigquery/docs/reference/standard-sql/dml-syntax#insert_statement) statement. * `UPDATE`: [`UPDATE`](/bigquery/docs/reference/standard-sql/query-syntax#update_statement) statement. * `DELETE`: [`DELETE`](/bigquery/docs/reference/standard-sql/data-manipulation-language) statement. * `MERGE`: [`MERGE`](/bigquery/docs/reference/standard-sql/data-manipulation-language) statement. * `CREATE_TABLE`: [`CREATE TABLE`](/bigquery/docs/reference/standard-sql/data-definition-language#create_table_statement) statement, without `AS SELECT`. * `CREATE_TABLE_AS_SELECT`: [`CREATE TABLE AS SELECT`](/bigquery/docs/reference/standard-sql/data-definition-language#query_statement) statement. * `CREATE_VIEW`: [`CREATE VIEW`](/bigquery/docs/reference/standard-sql/data-definition-language#create_view_statement) statement. * `CREATE_MODEL`: [`CREATE MODEL`](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-create#create_model_statement) statement. * `CREATE_MATERIALIZED_VIEW`: [`CREATE MATERIALIZED VIEW`](/bigquery/docs/reference/standard-sql/data-definition-language#create_materialized_view_statement) statement. * `CREATE_FUNCTION`: [`CREATE FUNCTION`](/bigquery/docs/reference/standard-sql/data-definition-language#create_function_statement) statement. * `CREATE_TABLE_FUNCTION`: [`CREATE TABLE FUNCTION`](/bigquery/docs/reference/standard-sql/data-definition-language#create_table_function_statement) statement. * `CREATE_PROCEDURE`: [`CREATE PROCEDURE`](/bigquery/docs/reference/standard-sql/data-definition-language#create_procedure) statement. * `CREATE_ROW_ACCESS_POLICY`: [`CREATE ROW ACCESS POLICY`](/bigquery/docs/reference/standard-sql/data-definition-language#create_row_access_policy_statement) statement. * `CREATE_SCHEMA`: [`CREATE SCHEMA`](/bigquery/docs/reference/standard-sql/data-definition-language#create_schema_statement) statement. * `CREATE_SNAPSHOT_TABLE`: [`CREATE SNAPSHOT TABLE`](/bigquery/docs/reference/standard-sql/data-definition-language#create_snapshot_table_statement) statement. * `CREATE_SEARCH_INDEX`: [`CREATE SEARCH INDEX`](/bigquery/docs/reference/standard-sql/data-definition-language#create_search_index_statement) statement. * `DROP_TABLE`: [`DROP TABLE`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_table_statement) statement. * `DROP_EXTERNAL_TABLE`: [`DROP EXTERNAL TABLE`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_external_table_statement) statement. * `DROP_VIEW`: [`DROP VIEW`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_view_statement) statement. * `DROP_MODEL`: [`DROP MODEL`](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-drop-model) statement. * `DROP_MATERIALIZED_VIEW`: [`DROP MATERIALIZED VIEW`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_materialized_view_statement) statement. * `DROP_FUNCTION` : [`DROP FUNCTION`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_function_statement) statement. * `DROP_TABLE_FUNCTION` : [`DROP TABLE FUNCTION`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_table_function) statement. * `DROP_PROCEDURE`: [`DROP PROCEDURE`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_procedure_statement) statement. * `DROP_SEARCH_INDEX`: [`DROP SEARCH INDEX`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_search_index) statement. * `DROP_SCHEMA`: [`DROP SCHEMA`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_schema_statement) statement. * `DROP_SNAPSHOT_TABLE`: [`DROP SNAPSHOT TABLE`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_snapshot_table_statement) statement. * `DROP_ROW_ACCESS_POLICY`: [`DROP [ALL] ROW ACCESS POLICY|POLICIES`](/bigquery/docs/reference/standard-sql/data-definition-language#drop_row_access_policy_statement) statement. * `ALTER_TABLE`: [`ALTER TABLE`](/bigquery/docs/reference/standard-sql/data-definition-language#alter_table_set_options_statement) statement. * `ALTER_VIEW`: [`ALTER VIEW`](/bigquery/docs/reference/standard-sql/data-definition-language#alter_view_set_options_statement) statement. * `ALTER_MATERIALIZED_VIEW`: [`ALTER MATERIALIZED VIEW`](/bigquery/docs/reference/standard-sql/data-definition-language#alter_materialized_view_set_options_statement) statement. * `ALTER_SCHEMA`: [`ALTER SCHEMA`](/bigquery/docs/reference/standard-sql/data-definition-language#aalter_schema_set_options_statement) statement. * `SCRIPT`: [`SCRIPT`](/bigquery/docs/reference/standard-sql/procedural-language). * `TRUNCATE_TABLE`: [`TRUNCATE TABLE`](/bigquery/docs/reference/standard-sql/dml-syntax#truncate_table_statement) statement. * `CREATE_EXTERNAL_TABLE`: [`CREATE EXTERNAL TABLE`](/bigquery/docs/reference/standard-sql/data-definition-language#create_external_table_statement) statement. * `EXPORT_DATA`: [`EXPORT DATA`](/bigquery/docs/reference/standard-sql/other-statements#export_data_statement) statement. * `EXPORT_MODEL`: [`EXPORT MODEL`](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-export-model) statement. * `LOAD_DATA`: [`LOAD DATA`](/bigquery/docs/reference/standard-sql/other-statements#load_data_statement) statement. * `CALL`: [`CALL`](/bigquery/docs/reference/standard-sql/procedural-language#call) statement.
      */
     statementType?: string | null;
     /**
-     * [Output only] [Beta] Describes a timeline of job execution.
+     * Output only. Describes a timeline of job execution.
      */
     timeline?: Schema$QueryTimelineSample[];
     /**
-     * [Output only] Total bytes billed for the job.
+     * Output only. If the project is configured to use on-demand pricing, then this field contains the total bytes billed for the job. If the project is configured to use flat-rate pricing, then you are not billed for bytes and this field is informational only.
      */
     totalBytesBilled?: string | null;
     /**
-     * [Output only] Total bytes processed for the job.
+     * Output only. Total bytes processed for the job.
      */
     totalBytesProcessed?: string | null;
     /**
-     * [Output only] For dry-run jobs, totalBytesProcessed is an estimate and this field specifies the accuracy of the estimate. Possible values can be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is precise. LOWER_BOUND: estimate is lower bound of what the query would cost. UPPER_BOUND: estimate is upper bound of what the query would cost.
+     * Output only. For dry-run jobs, totalBytesProcessed is an estimate and this field specifies the accuracy of the estimate. Possible values can be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is precise. LOWER_BOUND: estimate is lower bound of what the query would cost. UPPER_BOUND: estimate is upper bound of what the query would cost.
      */
     totalBytesProcessedAccuracy?: string | null;
     /**
-     * [Output only] Total number of partitions processed from all partitioned tables referenced in the job.
+     * Output only. Total number of partitions processed from all partitioned tables referenced in the job.
      */
     totalPartitionsProcessed?: string | null;
     /**
-     * [Output only] Slot-milliseconds for the job.
+     * Output only. Slot-milliseconds for the job.
      */
     totalSlotMs?: string | null;
     /**
-     * [Output-only] Total bytes transferred for cross-cloud queries such as Cross Cloud Transfer and CREATE TABLE AS SELECT (CTAS).
+     * Output only. Total bytes transferred for cross-cloud queries such as Cross Cloud Transfer and CREATE TABLE AS SELECT (CTAS).
      */
     transferredBytes?: string | null;
     /**
-     * Standard SQL only: list of undeclared query parameters detected during a dry run validation.
+     * Output only. GoogleSQL only: list of undeclared query parameters detected during a dry run validation.
      */
     undeclaredQueryParameters?: Schema$QueryParameter[];
+    /**
+     * Output only. Search query specific statistics.
+     */
+    vectorSearchStatistics?: Schema$VectorSearchStatistics;
   }
+  /**
+   * Statistics for a load job.
+   */
   export interface Schema$JobStatistics3 {
     /**
-     * [Output-only] The number of bad records encountered. Note that if the job has failed because of more bad records encountered than the maximum allowed in the load job configuration, then this number can be less than the total number of bad records present in the input data.
+     * Output only. The number of bad records encountered. Note that if the job has failed because of more bad records encountered than the maximum allowed in the load job configuration, then this number can be less than the total number of bad records present in the input data.
      */
     badRecords?: string | null;
     /**
-     * [Output-only] Number of bytes of source data in a load job.
+     * Output only. Number of bytes of source data in a load job.
      */
     inputFileBytes?: string | null;
     /**
-     * [Output-only] Number of source files in a load job.
+     * Output only. Number of source files in a load job.
      */
     inputFiles?: string | null;
     /**
-     * [Output-only] Size of the loaded data in bytes. Note that while a load job is in the running state, this value may change.
+     * Output only. Size of the loaded data in bytes. Note that while a load job is in the running state, this value may change.
      */
     outputBytes?: string | null;
     /**
-     * [Output-only] Number of rows imported in a load job. Note that while an import job is in the running state, this value may change.
+     * Output only. Number of rows imported in a load job. Note that while an import job is in the running state, this value may change.
      */
     outputRows?: string | null;
+    /**
+     * Output only. Describes a timeline of job execution.
+     */
+    timeline?: Schema$QueryTimelineSample[];
   }
+  /**
+   * Statistics for an extract job.
+   */
   export interface Schema$JobStatistics4 {
     /**
-     * [Output-only] Number of files per destination URI or URI pattern specified in the extract configuration. These values will be in the same order as the URIs specified in the 'destinationUris' field.
+     * Output only. Number of files per destination URI or URI pattern specified in the extract configuration. These values will be in the same order as the URIs specified in the 'destinationUris' field.
      */
     destinationUriFileCounts?: string[] | null;
     /**
-     * [Output-only] Number of user bytes extracted into the result. This is the byte count as computed by BigQuery for billing purposes.
+     * Output only. Number of user bytes extracted into the result. This is the byte count as computed by BigQuery for billing purposes and doesn't have any relationship with the number of actual result bytes extracted in the desired format.
      */
     inputBytes?: string | null;
+    /**
+     * Output only. Describes a timeline of job execution.
+     */
+    timeline?: Schema$QueryTimelineSample[];
   }
+  /**
+   * Statistics for a copy job.
+   */
   export interface Schema$JobStatistics5 {
     /**
-     * [Output-only] Number of logical bytes copied to the destination table.
+     * Output only. Number of logical bytes copied to the destination table.
      */
     copiedLogicalBytes?: string | null;
     /**
-     * [Output-only] Number of rows copied to the destination table.
+     * Output only. Number of rows copied to the destination table.
      */
     copiedRows?: string | null;
   }
   export interface Schema$JobStatus {
     /**
-     * [Output-only] Final error result of the job. If present, indicates that the job has completed and was unsuccessful.
+     * Output only. Final error result of the job. If present, indicates that the job has completed and was unsuccessful.
      */
     errorResult?: Schema$ErrorProto;
     /**
-     * [Output-only] The first errors encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
+     * Output only. The first errors encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has not completed or was unsuccessful.
      */
     errors?: Schema$ErrorProto[];
     /**
-     * [Output-only] Running state of the job.
+     * Output only. Running state of the job. Valid states include 'PENDING', 'RUNNING', and 'DONE'.
      */
     state?: string | null;
   }
@@ -2456,13 +2785,25 @@ export namespace bigquery_v2 {
    * Represents a single JSON object.
    */
   export interface Schema$JsonObject {}
+  /**
+   * Json Options for load and make external tables.
+   */
   export interface Schema$JsonOptions {
     /**
-     * [Optional] The character encoding of the data. The supported values are UTF-8, UTF-16BE, UTF-16LE, UTF-32BE, and UTF-32LE. The default value is UTF-8.
+     * Optional. The character encoding of the data. The supported values are UTF-8, UTF-16BE, UTF-16LE, UTF-32BE, and UTF-32LE. The default value is UTF-8.
      */
     encoding?: string | null;
   }
   export interface Schema$JsonValue {}
+  /**
+   * A dataset source type which refers to another BigQuery dataset.
+   */
+  export interface Schema$LinkedDatasetSource {
+    /**
+     * The source dataset reference contains project numbers and not project ids.
+     */
+    sourceDataset?: Schema$DatasetReference;
+  }
   /**
    * Response format for a single page when listing BigQuery ML models.
    */
@@ -2503,6 +2844,35 @@ export namespace bigquery_v2 {
     rowAccessPolicies?: Schema$RowAccessPolicy[];
   }
   /**
+   * Statistics for a LOAD query.
+   */
+  export interface Schema$LoadQueryStatistics {
+    /**
+     * Output only. The number of bad records encountered while processing a LOAD query. Note that if the job has failed because of more bad records encountered than the maximum allowed in the load job configuration, then this number can be less than the total number of bad records present in the input data.
+     */
+    badRecords?: string | null;
+    /**
+     * Output only. This field is deprecated. The number of bytes of source data copied over the network for a `LOAD` query. `transferred_bytes` has the canonical value for physical transferred bytes, which is used for BigQuery Omni billing.
+     */
+    bytesTransferred?: string | null;
+    /**
+     * Output only. Number of bytes of source data in a LOAD query.
+     */
+    inputFileBytes?: string | null;
+    /**
+     * Output only. Number of source files in a LOAD query.
+     */
+    inputFiles?: string | null;
+    /**
+     * Output only. Size of the loaded data in bytes. Note that while a LOAD query is in the running state, this value may change.
+     */
+    outputBytes?: string | null;
+    /**
+     * Output only. Number of rows imported in a LOAD query. Note that while a LOAD query is in the running state, this value may change.
+     */
+    outputRows?: string | null;
+  }
+  /**
    * BigQuery-specific metadata about a location. This will be set on google.cloud.location.Location.metadata in Cloud Location API responses.
    */
   export interface Schema$LocationMetadata {
@@ -2511,17 +2881,41 @@ export namespace bigquery_v2 {
      */
     legacyLocationId?: string | null;
   }
+  /**
+   * A materialized view considered for a query job.
+   */
+  export interface Schema$MaterializedView {
+    /**
+     * Whether the materialized view is chosen for the query. A materialized view can be chosen to rewrite multiple parts of the same query. If a materialized view is chosen to rewrite any part of the query, then this field is true, even if the materialized view was not chosen to rewrite others parts.
+     */
+    chosen?: boolean | null;
+    /**
+     * If present, specifies a best-effort estimation of the bytes saved by using the materialized view rather than its base tables.
+     */
+    estimatedBytesSaved?: string | null;
+    /**
+     * If present, specifies the reason why the materialized view was not chosen for the query.
+     */
+    rejectedReason?: string | null;
+    /**
+     * The candidate materialized view.
+     */
+    tableReference?: Schema$TableReference;
+  }
+  /**
+   * Definition and configuration of a materialized view.
+   */
   export interface Schema$MaterializedViewDefinition {
     /**
-     * [Optional] Allow non incremental materialized view definition. The default value is "false".
+     * Optional. This option declares authors intention to construct a materialized view that will not be refreshed incrementally.
      */
     allowNonIncrementalDefinition?: boolean | null;
     /**
-     * [Optional] [TrustedTester] Enable automatic refresh of the materialized view when the base table is updated. The default value is "true".
+     * Optional. Enable automatic refresh of the materialized view when the base table is updated. The default value is "true".
      */
     enableRefresh?: boolean | null;
     /**
-     * [Output-only] [TrustedTester] The time when this materialized view was last modified, in milliseconds since the epoch.
+     * Output only. The time when this materialized view was last refreshed, in milliseconds since the epoch.
      */
     lastRefreshTime?: string | null;
     /**
@@ -2529,23 +2923,69 @@ export namespace bigquery_v2 {
      */
     maxStaleness?: string | null;
     /**
-     * [Required] A query whose result is persisted.
+     * Required. A query whose results are persisted.
      */
     query?: string | null;
     /**
-     * [Optional] [TrustedTester] The maximum frequency at which this materialized view will be refreshed. The default value is "1800000" (30 minutes).
+     * Optional. The maximum frequency at which this materialized view will be refreshed. The default value is "1800000" (30 minutes).
      */
     refreshIntervalMs?: string | null;
   }
+  /**
+   * Statistics of materialized views considered in a query job.
+   */
+  export interface Schema$MaterializedViewStatistics {
+    /**
+     * Materialized views considered for the query job. Only certain materialized views are used. For a detailed list, see the child message. If many materialized views are considered, then the list might be incomplete.
+     */
+    materializedView?: Schema$MaterializedView[];
+  }
+  /**
+   * Status of a materialized view. The last refresh timestamp status is omitted here, but is present in the MaterializedViewDefinition message.
+   */
+  export interface Schema$MaterializedViewStatus {
+    /**
+     * Output only. Error result of the last automatic refresh. If present, indicates that the last automatic refresh was unsuccessful.
+     */
+    lastRefreshStatus?: Schema$ErrorProto;
+    /**
+     * Output only. Refresh watermark of materialized view. The base tables' data were collected into the materialized view cache until this time.
+     */
+    refreshWatermark?: string | null;
+  }
+  /**
+   * Statistics for metadata caching in BigLake tables.
+   */
+  export interface Schema$MetadataCacheStatistics {
+    /**
+     * Set for the Metadata caching eligible tables referenced in the query.
+     */
+    tableMetadataCacheUsage?: Schema$TableMetadataCacheUsage[];
+  }
+  /**
+   * Job statistics specific to a BigQuery ML training job.
+   */
   export interface Schema$MlStatistics {
     /**
-     * Results for all completed iterations.
+     * Output only. Trials of a [hyperparameter tuning job](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) sorted by trial_id.
+     */
+    hparamTrials?: Schema$HparamTuningTrial[];
+    /**
+     * Results for all completed iterations. Empty for [hyperparameter tuning jobs](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview).
      */
     iterationResults?: Schema$IterationResult[];
     /**
-     * Maximum number of iterations specified as max_iterations in the 'CREATE MODEL' query. The actual number of iterations may be less than this number due to early stop.
+     * Output only. Maximum number of iterations specified as max_iterations in the 'CREATE MODEL' query. The actual number of iterations may be less than this number due to early stop.
      */
     maxIterations?: string | null;
+    /**
+     * Output only. The type of the model that is being trained.
+     */
+    modelType?: string | null;
+    /**
+     * Output only. Training type of the job.
+     */
+    trainingType?: string | null;
   }
   export interface Schema$Model {
     /**
@@ -2635,7 +3075,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$ModelDefinition {
     /**
-     * [Output-only, Beta] Model options used for the first training run. These options are immutable for subsequent training runs. Default values are used for any options not specified in the input query.
+     * Deprecated.
      */
     modelOptions?: {
       labels?: string[];
@@ -2643,10 +3083,22 @@ export namespace bigquery_v2 {
       modelType?: string;
     } | null;
     /**
-     * [Output-only, Beta] Information about ml training runs, each training run comprises of multiple iterations and there may be multiple training runs for the model if warm start is used or if a user decides to continue a previously cancelled query.
+     * Deprecated.
      */
     trainingRuns?: Schema$BqmlTrainingRun[];
   }
+  /**
+   * Options related to model extraction.
+   */
+  export interface Schema$ModelExtractOptions {
+    /**
+     * The 1-based ID of the trial to be exported from a hyperparameter tuning model. If not specified, the trial with id = [Model](/bigquery/docs/reference/rest/v2/models#resource:-model).defaultTrialId is exported. This field is ignored for models not trained with hyperparameter tuning.
+     */
+    trialId?: string | null;
+  }
+  /**
+   * Id path of a model.
+   */
   export interface Schema$ModelReference {
     /**
      * Required. The ID of the dataset containing this model.
@@ -2674,15 +3126,35 @@ export namespace bigquery_v2 {
      */
     confusionMatrixList?: Schema$ConfusionMatrix[];
   }
+  /**
+   * Parquet Options for load and make external tables.
+   */
   export interface Schema$ParquetOptions {
     /**
-     * [Optional] Indicates whether to use schema inference specifically for Parquet LIST logical type.
+     * Optional. Indicates whether to use schema inference specifically for Parquet LIST logical type.
      */
     enableListInference?: boolean | null;
     /**
-     * [Optional] Indicates whether to infer Parquet ENUM logical type as STRING instead of BYTES by default.
+     * Optional. Indicates whether to infer Parquet ENUM logical type as STRING instead of BYTES by default.
      */
     enumAsString?: boolean | null;
+  }
+  /**
+   * Performance insights for the job.
+   */
+  export interface Schema$PerformanceInsights {
+    /**
+     * Output only. Average execution ms of previous runs. Indicates the job ran slow compared to previous executions. To find previous executions, use INFORMATION_SCHEMA tables and filter jobs with same query hash.
+     */
+    avgPreviousExecutionMs?: string | null;
+    /**
+     * Output only. Query stage performance insights compared to previous runs, for diagnosing performance regression.
+     */
+    stagePerformanceChangeInsights?: Schema$StagePerformanceChangeInsight[];
+    /**
+     * Output only. Standalone query stage performance insights, for exploring potential improvements.
+     */
+    stagePerformanceStandaloneInsights?: Schema$StagePerformanceStandaloneInsight[];
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -2735,21 +3207,24 @@ export namespace bigquery_v2 {
      */
     aggregationThresholdPolicy?: Schema$AggregationThresholdPolicy;
   }
+  /**
+   * Response object of ListProjects
+   */
   export interface Schema$ProjectList {
     /**
-     * A hash of the page of results
+     * A hash of the page of results.
      */
     etag?: string | null;
     /**
-     * The type of list.
+     * The resource type of the response.
      */
     kind?: string | null;
     /**
-     * A token to request the next page of results.
+     * Use this token to request the next page of results.
      */
     nextPageToken?: string | null;
     /**
-     * Projects to which you have at least READ access.
+     * Projects to which the user has at least READ access.
      */
     projects?: Array<{
       friendlyName?: string;
@@ -2759,37 +3234,59 @@ export namespace bigquery_v2 {
       projectReference?: Schema$ProjectReference;
     }> | null;
     /**
-     * The total number of projects in the list.
+     * The total number of projects in the page. A wrapper is used here because the field should still be in the response when the value is 0.
      */
     totalItems?: number | null;
   }
+  /**
+   * A unique reference to a project.
+   */
   export interface Schema$ProjectReference {
     /**
-     * [Required] ID of the project. Can be either the numeric ID or the assigned ID of the project.
+     * Required. ID of the project. Can be either the numeric ID or the assigned ID of the project.
      */
     projectId?: string | null;
   }
+  /**
+   * Query optimization information for a QUERY job.
+   */
+  export interface Schema$QueryInfo {
+    /**
+     * Output only. Information about query optimizations.
+     */
+    optimizationDetails?: {[key: string]: any} | null;
+  }
+  /**
+   * A parameter given to a query.
+   */
   export interface Schema$QueryParameter {
     /**
-     * [Optional] If unset, this is a positional parameter. Otherwise, should be unique within a query.
+     * Optional. If unset, this is a positional parameter. Otherwise, should be unique within a query.
      */
     name?: string | null;
     /**
-     * [Required] The type of this parameter.
+     * Required. The type of this parameter.
      */
     parameterType?: Schema$QueryParameterType;
     /**
-     * [Required] The value of this parameter.
+     * Required. The value of this parameter.
      */
     parameterValue?: Schema$QueryParameterValue;
   }
+  /**
+   * The type of a query parameter.
+   */
   export interface Schema$QueryParameterType {
     /**
-     * [Optional] The type of the array's elements, if this is an array.
+     * Optional. The type of the array's elements, if this is an array.
      */
     arrayType?: Schema$QueryParameterType;
     /**
-     * [Optional] The types of the fields of this struct, in order, if this is a struct.
+     * Optional. The element type of the range, if this is a range.
+     */
+    rangeElementType?: Schema$QueryParameterType;
+    /**
+     * Optional. The types of the fields of this struct, in order, if this is a struct.
      */
     structTypes?: Array<{
       description?: string;
@@ -2797,27 +3294,37 @@ export namespace bigquery_v2 {
       type?: Schema$QueryParameterType;
     }> | null;
     /**
-     * [Required] The top level type of this field.
+     * Required. The top level type of this field.
      */
     type?: string | null;
   }
+  /**
+   * The value of a query parameter.
+   */
   export interface Schema$QueryParameterValue {
     /**
-     * [Optional] The array values, if this is an array type.
+     * Optional. The array values, if this is an array type.
      */
     arrayValues?: Schema$QueryParameterValue[];
     /**
-     * [Optional] The struct field values, in order of the struct type's declaration.
+     * Optional. The range value, if this is a range type.
+     */
+    rangeValue?: Schema$RangeValue;
+    /**
+     * The struct field values.
      */
     structValues?: {[key: string]: Schema$QueryParameterValue} | null;
     /**
-     * [Optional] The value of this value, if a simple scalar type.
+     * Optional. The value of this value, if a simple scalar type.
      */
     value?: string | null;
   }
+  /**
+   * Describes the format of the jobs.query request.
+   */
   export interface Schema$QueryRequest {
     /**
-     * Connection properties.
+     * Optional. Connection properties which can modify the query behavior.
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
@@ -2825,17 +3332,21 @@ export namespace bigquery_v2 {
      */
     continuous?: boolean | null;
     /**
-     * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.
+     * Optional. If true, creates a new session using a randomly generated session_id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode. The session location will be set to QueryRequest.location if it is present, otherwise it's set to the default location based on existing routing logic.
      */
     createSession?: boolean | null;
     /**
-     * [Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format 'datasetId.tableId'.
+     * Optional. Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format 'datasetId.tableId'.
      */
     defaultDataset?: Schema$DatasetReference;
     /**
-     * [Optional] If set to true, BigQuery doesn't run the job. Instead, if the query is valid, BigQuery returns statistics about the job such as how many bytes would be processed. If the query is invalid, an error returns. The default value is false.
+     * Optional. If set to true, BigQuery doesn't run the job. Instead, if the query is valid, BigQuery returns statistics about the job such as how many bytes would be processed. If the query is invalid, an error returns. The default value is false.
      */
     dryRun?: boolean | null;
+    /**
+     * Optional. Output format adjustments.
+     */
+    formatOptions?: Schema$DataFormatOptions;
     /**
      * Optional. If not set, jobs are always required. If set, the query request will follow the behavior described JobCreationMode. This feature is not yet available. Jobs will always be created.
      */
@@ -2845,7 +3356,7 @@ export namespace bigquery_v2 {
      */
     kind?: string | null;
     /**
-     * The labels associated with this job. You can use these to organize and group your jobs. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and each label in the list must have a different key.
+     * Optional. The labels associated with this query. Labels can be used to organize and group query jobs. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label keys must start with a letter and each label in the list must have a different key.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -2853,43 +3364,43 @@ export namespace bigquery_v2 {
      */
     location?: string | null;
     /**
-     * [Optional] Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge). If unspecified, this will be set to your project default.
+     * Optional. Limits the bytes billed for this query. Queries with bytes billed above this limit will fail (without incurring a charge). If unspecified, the project default is used.
      */
     maximumBytesBilled?: string | null;
     /**
-     * [Optional] The maximum number of rows of data to return per page of results. Setting this flag to a small value such as 1000 and then paging through results might improve reliability when the query result set is large. In addition to this limit, responses are also limited to 10 MB. By default, there is no maximum row count, and only the byte limit applies.
+     * Optional. The maximum number of rows of data to return per page of results. Setting this flag to a small value such as 1000 and then paging through results might improve reliability when the query result set is large. In addition to this limit, responses are also limited to 10 MB. By default, there is no maximum row count, and only the byte limit applies.
      */
     maxResults?: number | null;
     /**
-     * Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
+     * GoogleSQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
      */
     parameterMode?: string | null;
     /**
-     * [Deprecated] This property is deprecated.
+     * This property is deprecated.
      */
     preserveNulls?: boolean | null;
     /**
-     * [Required] A query string, following the BigQuery query syntax, of the query to execute. Example: "SELECT count(f1) FROM [myProjectId:myDatasetId.myTableId]".
+     * Required. A query string to execute, using Google Standard SQL or legacy SQL syntax. Example: "SELECT COUNT(f1) FROM myProjectId.myDatasetId.myTableId".
      */
     query?: string | null;
     /**
-     * Query parameters for Standard SQL queries.
+     * Query parameters for GoogleSQL queries.
      */
     queryParameters?: Schema$QueryParameter[];
     /**
-     * A unique user provided identifier to ensure idempotent behavior for queries. Note that this is different from the job_id. It has the following properties: 1. It is case-sensitive, limited to up to 36 ASCII characters. A UUID is recommended. 2. Read only queries can ignore this token since they are nullipotent by definition. 3. For the purposes of idempotency ensured by the request_id, a request is considered duplicate of another only if they have the same request_id and are actually duplicates. When determining whether a request is a duplicate of the previous request, all parameters in the request that may affect the behavior are considered. For example, query, connection_properties, query_parameters, use_legacy_sql are parameters that affect the result and are considered when determining whether a request is a duplicate, but properties like timeout_ms don't affect the result and are thus not considered. Dry run query requests are never considered duplicate of another request. 4. When a duplicate mutating query request is detected, it returns: a. the results of the mutation if it completes successfully within the timeout. b. the running operation if it is still in progress at the end of the timeout. 5. Its lifetime is limited to 15 minutes. In other words, if two requests are sent with the same request_id, but more than 15 minutes apart, idempotency is not guaranteed.
+     * Optional. A unique user provided identifier to ensure idempotent behavior for queries. Note that this is different from the job_id. It has the following properties: 1. It is case-sensitive, limited to up to 36 ASCII characters. A UUID is recommended. 2. Read only queries can ignore this token since they are nullipotent by definition. 3. For the purposes of idempotency ensured by the request_id, a request is considered duplicate of another only if they have the same request_id and are actually duplicates. When determining whether a request is a duplicate of another request, all parameters in the request that may affect the result are considered. For example, query, connection_properties, query_parameters, use_legacy_sql are parameters that affect the result and are considered when determining whether a request is a duplicate, but properties like timeout_ms don't affect the result and are thus not considered. Dry run query requests are never considered duplicate of another request. 4. When a duplicate mutating query request is detected, it returns: a. the results of the mutation if it completes successfully within the timeout. b. the running operation if it is still in progress at the end of the timeout. 5. Its lifetime is limited to 15 minutes. In other words, if two requests are sent with the same request_id, but more than 15 minutes apart, idempotency is not guaranteed.
      */
     requestId?: string | null;
     /**
-     * [Optional] How long to wait for the query to complete, in milliseconds, before the request times out and returns. Note that this is only a timeout for the request, not the query. If the query takes longer to run than the timeout value, the call returns without any results and with the 'jobComplete' flag set to false. You can call GetQueryResults() to wait for the query to complete and read the results. The default value is 10000 milliseconds (10 seconds).
+     * Optional. Optional: Specifies the maximum amount of time, in milliseconds, that the client is willing to wait for the query to complete. By default, this limit is 10 seconds (10,000 milliseconds). If the query is complete, the jobComplete field in the response is true. If the query has not yet completed, jobComplete is false. You can request a longer timeout period in the timeoutMs field. However, the call is not guaranteed to wait for the specified timeout; it typically returns after around 200 seconds (200,000 milliseconds), even if the query is not complete. If jobComplete is false, you can continue to wait for the query to complete by calling the getQueryResults method until the jobComplete field in the getQueryResults response is true.
      */
     timeoutMs?: number | null;
     /**
-     * Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery's standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
+     * Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery's GoogleSQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
      */
     useLegacySql?: boolean | null;
     /**
-     * [Optional] Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. The default value is true.
+     * Optional. Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. The default value is true.
      */
     useQueryCache?: boolean | null;
   }
@@ -2899,11 +3410,11 @@ export namespace bigquery_v2 {
      */
     cacheHit?: boolean | null;
     /**
-     * [Output-only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
+     * Output only. Detailed statistics for DML statements INSERT, UPDATE, DELETE, MERGE or TRUNCATE.
      */
     dmlStats?: Schema$DmlStatistics;
     /**
-     * [Output-only] The first errors or warnings encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
+     * Output only. The first errors or warnings encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful. For more information about error messages, see [Error messages](https://cloud.google.com/bigquery/docs/error-messages).
      */
     errors?: Schema$ErrorProto[];
     /**
@@ -2913,7 +3424,7 @@ export namespace bigquery_v2 {
     /**
      * Optional. Only relevant when a job_reference is present in the response. If job_reference is not present it will always be unset. When job_reference is present, this field should be interpreted as follows: If set, it will provide the reason of why a Job was created. If not set, it should be treated as the default: REQUESTED. This feature is not yet available. Jobs will always be created.
      */
-    jobCreationReason?: any | null;
+    jobCreationReason?: Schema$JobCreationReason;
     /**
      * Reference to the Job that was created to run the query. This field will be present even if the original request timed out, in which case GetQueryResults can be used to read the results once the query has completed. Since this API only returns the first page of results, subsequent pages can be fetched via the same mechanism (GetQueryResults).
      */
@@ -2923,11 +3434,11 @@ export namespace bigquery_v2 {
      */
     kind?: string | null;
     /**
-     * [Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
+     * Output only. The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
      */
     numDmlAffectedRows?: string | null;
     /**
-     * A token used for paging results.
+     * A token used for paging results. A non-empty token indicates that additional results are available. To see additional results, query the [`jobs.getQueryResults`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/getQueryResults) method. For more information, see [Paging through table data](https://cloud.google.com/bigquery/docs/paging-results).
      */
     pageToken?: string | null;
     /**
@@ -2943,7 +3454,7 @@ export namespace bigquery_v2 {
      */
     schema?: Schema$TableSchema;
     /**
-     * [Output-only] [Preview] Information of the session if this job is part of one.
+     * Output only. Information of the session if this job is part of one.
      */
     sessionInfo?: Schema$SessionInfo;
     /**
@@ -2955,9 +3466,12 @@ export namespace bigquery_v2 {
      */
     totalRows?: string | null;
   }
+  /**
+   * Summary of the state of query execution at a given time.
+   */
   export interface Schema$QueryTimelineSample {
     /**
-     * Total number of units currently being processed by workers. This does not correspond directly to slot usage. This is the largest value observed since the last sample.
+     * Total number of active workers. This does not correspond directly to slot usage. This is the largest value observed since the last sample.
      */
     activeUnits?: string | null;
     /**
@@ -2969,7 +3483,7 @@ export namespace bigquery_v2 {
      */
     elapsedMs?: string | null;
     /**
-     * Units of work that can be scheduled immediately. Providing additional slots for these units of work will speed up the query, provided no other query in the reservation needs additional slots.
+     * Units of work that can be scheduled immediately. Providing additional slots for these units of work will accelerate the query, if no other query in the reservation needs additional slots.
      */
     estimatedRunnableUnits?: string | null;
     /**
@@ -2983,13 +3497,26 @@ export namespace bigquery_v2 {
   }
   export interface Schema$RangePartitioning {
     /**
-     * [TrustedTester] [Required] The table is partitioned by this field. The field must be a top-level NULLABLE/REQUIRED field. The only supported type is INTEGER/INT64.
+     * Required. [Experimental] The table is partitioned by this field. The field must be a top-level NULLABLE/REQUIRED field. The only supported type is INTEGER/INT64.
      */
     field?: string | null;
     /**
-     * [TrustedTester] [Required] Defines the ranges for range partitioning.
+     * [Experimental] Defines the ranges for range partitioning.
      */
     range?: {end?: string; interval?: string; start?: string} | null;
+  }
+  /**
+   * Represents the value of a range.
+   */
+  export interface Schema$RangeValue {
+    /**
+     * Optional. The end value of the range. A missing value represents an unbounded end.
+     */
+    end?: Schema$QueryParameterValue;
+    /**
+     * Optional. The start value of the range. A missing value represents an unbounded start.
+     */
+    start?: Schema$QueryParameterValue;
   }
   /**
    * Evaluation metrics used by weighted-ALS models specified by feedback_type=implicit.
@@ -3160,10 +3687,13 @@ export namespace bigquery_v2 {
      */
     sparkOptions?: Schema$SparkOptions;
     /**
-     * Optional. Can be set for procedures only. If true (default), the definition body will be validated in the creation and the updates of the procedure. For procedures with an argument of ANY TYPE, the definition body validtion is not supported at creation/update time, and thus this field must be set to false explicitly.
+     * Optional. Use this option to catch many common errors. Error checking is not exhaustive, and successfully creating a procedure doesn't guarantee that the procedure will successfully execute at runtime. If `strictMode` is set to `TRUE`, the procedure body is further checked for errors such as non-existent tables or columns. The `CREATE PROCEDURE` statement fails if the body fails any of these checks. If `strictMode` is set to `FALSE`, the procedure body is checked only for syntax. For procedures that invoke themselves recursively, specify `strictMode=FALSE` to avoid non-existent procedure errors during validation. Default value is `TRUE`.
      */
     strictMode?: boolean | null;
   }
+  /**
+   * Id path of a routine.
+   */
   export interface Schema$RoutineReference {
     /**
      * Required. The ID of the dataset containing this routine.
@@ -3216,6 +3746,9 @@ export namespace bigquery_v2 {
      */
     rowAccessPolicyReference?: Schema$RowAccessPolicyReference;
   }
+  /**
+   * Id path of a row access policy.
+   */
   export interface Schema$RowAccessPolicyReference {
     /**
      * Required. The ID of the dataset containing this row access policy.
@@ -3234,41 +3767,67 @@ export namespace bigquery_v2 {
      */
     tableId?: string | null;
   }
+  /**
+   * Statistics for row-level security.
+   */
   export interface Schema$RowLevelSecurityStatistics {
     /**
-     * [Output-only] [Preview] Whether any accessed data was protected by row access policies.
+     * Whether any accessed data was protected by row access policies.
      */
     rowLevelSecurityApplied?: boolean | null;
   }
+  /**
+   * Options related to script execution.
+   */
+  export interface Schema$ScriptOptions {
+    /**
+     * Determines which statement in the script represents the "key result", used to populate the schema and query results of the script job. Default is LAST.
+     */
+    keyResultStatement?: string | null;
+    /**
+     * Limit on the number of bytes billed per statement. Exceeding this budget results in an error.
+     */
+    statementByteBudget?: string | null;
+    /**
+     * Timeout period for each statement in a script.
+     */
+    statementTimeoutMs?: string | null;
+  }
+  /**
+   * Represents the location of the statement/expression being evaluated. Line and column numbers are defined as follows: - Line and column numbers start with one. That is, line 1 column 1 denotes the start of the script. - When inside a stored procedure, all line/column numbers are relative to the procedure body, not the script in which the procedure was defined. - Start/end positions exclude leading/trailing comments and whitespace. The end position always ends with a ";", when present. - Multi-byte Unicode characters are treated as just one column. - If the original script (or procedure definition) contains TAB characters, a tab "snaps" the indentation forward to the nearest multiple of 8 characters, plus 1. For example, a TAB on column 1, 2, 3, 4, 5, 6 , or 8 will advance the next character to column 9. A TAB on column 9, 10, 11, 12, 13, 14, 15, or 16 will advance the next character to column 17.
+   */
   export interface Schema$ScriptStackFrame {
     /**
-     * [Output-only] One-based end column.
+     * Output only. One-based end column.
      */
     endColumn?: number | null;
     /**
-     * [Output-only] One-based end line.
+     * Output only. One-based end line.
      */
     endLine?: number | null;
     /**
-     * [Output-only] Name of the active procedure, empty if in a top-level script.
+     * Output only. Name of the active procedure, empty if in a top-level script.
      */
     procedureId?: string | null;
     /**
-     * [Output-only] One-based start column.
+     * Output only. One-based start column.
      */
     startColumn?: number | null;
     /**
-     * [Output-only] One-based start line.
+     * Output only. One-based start line.
      */
     startLine?: number | null;
     /**
-     * [Output-only] Text of the current statement/expression.
+     * Output only. Text of the current statement/expression.
      */
     text?: string | null;
   }
+  /**
+   * Job statistics specific to the child job of a script.
+   */
   export interface Schema$ScriptStatistics {
     /**
-     * [Output-only] Whether this child job was a statement or expression.
+     * Whether this child job was a statement or expression.
      */
     evaluationKind?: string | null;
     /**
@@ -3276,19 +3835,25 @@ export namespace bigquery_v2 {
      */
     stackFrames?: Schema$ScriptStackFrame[];
   }
+  /**
+   * Statistics for a search query. Populated as part of JobStatistics2.
+   */
   export interface Schema$SearchStatistics {
     /**
-     * When index_usage_mode is UNUSED or PARTIALLY_USED, this field explains why index was not used in all or part of the search query. If index_usage_mode is FULLLY_USED, this field is not populated.
+     * When `indexUsageMode` is `UNUSED` or `PARTIALLY_USED`, this field explains why indexes were not used in all or part of the search query. If `indexUsageMode` is `FULLY_USED`, this field is not populated.
      */
     indexUnusedReasons?: Schema$IndexUnusedReason[];
     /**
-     * Specifies index usage mode for the query.
+     * Specifies the index usage mode for the query.
      */
     indexUsageMode?: string | null;
   }
+  /**
+   * [Preview] Information related to sessions.
+   */
   export interface Schema$SessionInfo {
     /**
-     * [Output-only] // [Preview] Id of the session.
+     * Output only. The id of the session.
      */
     sessionId?: string | null;
   }
@@ -3305,23 +3870,29 @@ export namespace bigquery_v2 {
      */
     updateMask?: string | null;
   }
+  /**
+   * Information about base table and snapshot time of the snapshot.
+   */
   export interface Schema$SnapshotDefinition {
     /**
-     * [Required] Reference describing the ID of the table that was snapshot.
+     * Required. Reference describing the ID of the table that was snapshot.
      */
     baseTableReference?: Schema$TableReference;
     /**
-     * [Required] The time at which the base table was snapshot. This value is reported in the JSON response using RFC3339 format.
+     * Required. The time at which the base table was snapshot. This value is reported in the JSON response using RFC3339 format.
      */
     snapshotTime?: string | null;
   }
+  /**
+   * Spark job logs can be filtered by these fields in Cloud Logging.
+   */
   export interface Schema$SparkLoggingInfo {
     /**
-     * [Output-only] Project ID used for logging
+     * Output only. Project ID where the Spark logs were written.
      */
     projectId?: string | null;
     /**
-     * [Output-only] Resource type used for logging
+     * Output only. Resource type used for logging.
      */
     resourceType?: string | null;
   }
@@ -3370,23 +3941,72 @@ export namespace bigquery_v2 {
      */
     runtimeVersion?: string | null;
   }
+  /**
+   * Statistics for a BigSpark query. Populated as part of JobStatistics2
+   */
   export interface Schema$SparkStatistics {
     /**
-     * [Output-only] Endpoints generated for the Spark job.
+     * Output only. Endpoints returned from Dataproc. Key list: - history_server_endpoint: A link to Spark job UI.
      */
     endpoints?: {[key: string]: string} | null;
     /**
-     * [Output-only] Logging info is used to generate a link to Cloud Logging.
+     * Output only. The Google Cloud Storage bucket that is used as the default filesystem by the Spark application. This fields is only filled when the Spark procedure uses the INVOKER security mode. It is inferred from the system variable @@spark_proc_properties.staging_bucket if it is provided. Otherwise, BigQuery creates a default staging bucket for the job and returns the bucket name in this field. Example: * `gs://[bucket_name]`
+     */
+    gcsStagingBucket?: string | null;
+    /**
+     * Output only. The Cloud KMS encryption key that is used to protect the resources created by the Spark job. If the Spark procedure uses DEFINER security mode, the Cloud KMS key is inferred from the Spark connection associated with the procedure if it is provided. Otherwise the key is inferred from the default key of the Spark connection's project if the CMEK organization policy is enforced. If the Spark procedure uses INVOKER security mode, the Cloud KMS encryption key is inferred from the system variable @@spark_proc_properties.kms_key_name if it is provided. Otherwise, the key is inferred fromt he default key of the BigQuery job's project if the CMEK organization policy is enforced. Example: * `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. Logging info is used to generate a link to Cloud Logging.
      */
     loggingInfo?: Schema$SparkLoggingInfo;
     /**
-     * [Output-only] Spark job id if a Spark job is created successfully.
+     * Output only. Spark job ID if a Spark job is created successfully.
      */
     sparkJobId?: string | null;
     /**
-     * [Output-only] Location where the Spark job is executed.
+     * Output only. Location where the Spark job is executed. A location is selected by BigQueury for jobs configured to run in a multi-region.
      */
     sparkJobLocation?: string | null;
+  }
+  /**
+   * Performance insights compared to the previous executions for a specific stage.
+   */
+  export interface Schema$StagePerformanceChangeInsight {
+    /**
+     * Output only. Input data change insight of the query stage.
+     */
+    inputDataChange?: Schema$InputDataChange;
+    /**
+     * Output only. The stage id that the insight mapped to.
+     */
+    stageId?: string | null;
+  }
+  /**
+   * Standalone performance insights for a specific stage.
+   */
+  export interface Schema$StagePerformanceStandaloneInsight {
+    /**
+     * Output only. If present, the stage had the following reasons for being disqualified from BI Engine execution.
+     */
+    biEngineReasons?: Schema$BiEngineReason[];
+    /**
+     * Output only. High cardinality joins in the stage.
+     */
+    highCardinalityJoins?: Schema$HighCardinalityJoin[];
+    /**
+     * Output only. True if the stage has insufficient shuffle quota.
+     */
+    insufficientShuffleQuota?: boolean | null;
+    /**
+     * Output only. True if the stage has a slot contention issue.
+     */
+    slotContention?: boolean | null;
+    /**
+     * Output only. The stage id that the insight mapped to.
+     */
+    stageId?: string | null;
   }
   /**
    * The data type of a variable such as a function argument. Examples include: * INT64: `{"typeKind": "INT64"\}` * ARRAY: { "typeKind": "ARRAY", "arrayElementType": {"typeKind": "STRING"\} \} * STRUCT\>: { "typeKind": "STRUCT", "structType": { "fields": [ { "name": "x", "type": {"typeKind": "STRING"\} \}, { "name": "y", "type": { "typeKind": "ARRAY", "arrayElementType": {"typeKind": "DATE"\} \} \} ] \} \}
@@ -3442,15 +4062,15 @@ export namespace bigquery_v2 {
   }
   export interface Schema$Streamingbuffer {
     /**
-     * [Output-only] A lower-bound estimate of the number of bytes currently in the streaming buffer.
+     * Output only. A lower-bound estimate of the number of bytes currently in the streaming buffer.
      */
     estimatedBytes?: string | null;
     /**
-     * [Output-only] A lower-bound estimate of the number of rows currently in the streaming buffer.
+     * Output only. A lower-bound estimate of the number of rows currently in the streaming buffer.
      */
     estimatedRows?: string | null;
     /**
-     * [Output-only] Contains the timestamp of the oldest entry in the streaming buffer, in milliseconds since the epoch, if the streaming buffer is available.
+     * Output only. Contains the timestamp of the oldest entry in the streaming buffer, in milliseconds since the epoch, if the streaming buffer is available.
      */
     oldestEntryTime?: string | null;
   }
@@ -3463,33 +4083,46 @@ export namespace bigquery_v2 {
      */
     candidates?: string[] | null;
   }
+  /**
+   * System variables given to a query.
+   */
+  export interface Schema$SystemVariables {
+    /**
+     * Output only. Data type for each system variable.
+     */
+    types?: {[key: string]: Schema$StandardSqlDataType} | null;
+    /**
+     * Output only. Value for each system variable.
+     */
+    values?: {[key: string]: any} | null;
+  }
   export interface Schema$Table {
     /**
-     * [Optional] Specifies the configuration of a BigLake managed table.
+     * Optional. Specifies the configuration of a BigLake managed table.
      */
     biglakeConfiguration?: Schema$BigLakeConfiguration;
     /**
-     * [Output-only] Clone definition.
+     * Output only. Contains information about the clone. This value is set via the clone operation.
      */
     cloneDefinition?: Schema$CloneDefinition;
     /**
-     * [Beta] Clustering specification for the table. Must be specified with partitioning, data in the table will be first partitioned and subsequently clustered.
+     * Clustering specification for the table. Must be specified with time-based partitioning, data in the table will be first partitioned and subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
-     * [Output-only] The time when this table was created, in milliseconds since the epoch.
+     * Output only. The time when this table was created, in milliseconds since the epoch.
      */
     creationTime?: string | null;
     /**
-     * [Output-only] The default collation of the table.
+     * Optional. Defines the default collation specification of new STRING fields in the table. During table creation or update, if a STRING field is added to this table without explicit collation specified, then the table inherits the table default collation. A change to this field affects only fields added afterwards, and does not alter the existing fields. The following values are supported: * 'und:ci': undetermined locale, case insensitive. * '': empty string. Default to case-sensitive behavior.
      */
     defaultCollation?: string | null;
     /**
-     * [Output-only] The default rounding mode of the table.
+     * Optional. Defines the default rounding mode specification of new decimal fields (NUMERIC OR BIGNUMERIC) in the table. During table creation or update, if a decimal field is added to this table without an explicit rounding mode specified, then the field inherits the table default rounding mode. Changing this field doesn't affect existing fields.
      */
     defaultRoundingMode?: string | null;
     /**
-     * [Optional] A user-friendly description of this table.
+     * Optional. A user-friendly description of this table.
      */
     description?: string | null;
     /**
@@ -3497,27 +4130,27 @@ export namespace bigquery_v2 {
      */
     encryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
-     * [Output-only] A hash of the table metadata. Used to ensure there were no concurrent modifications to the resource when attempting an update. Not guaranteed to change when the table contents or the fields numRows, numBytes, numLongTermBytes or lastModifiedTime change.
+     * Output only. A hash of this resource.
      */
     etag?: string | null;
     /**
-     * [Optional] The time when this table expires, in milliseconds since the epoch. If not present, the table will persist indefinitely. Expired tables will be deleted and their storage reclaimed. The defaultTableExpirationMs property of the encapsulating dataset can be used to set a default expirationTime on newly created tables.
+     * Optional. The time when this table expires, in milliseconds since the epoch. If not present, the table will persist indefinitely. Expired tables will be deleted and their storage reclaimed. The defaultTableExpirationMs property of the encapsulating dataset can be used to set a default expirationTime on newly created tables.
      */
     expirationTime?: string | null;
     /**
-     * [Optional] Describes the data format, location, and other properties of a table stored outside of BigQuery. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
+     * Optional. Describes the data format, location, and other properties of a table stored outside of BigQuery. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
      */
     externalDataConfiguration?: Schema$ExternalDataConfiguration;
     /**
-     * [Optional] A descriptive name for this table.
+     * Optional. A descriptive name for this table.
      */
     friendlyName?: string | null;
     /**
-     * [Output-only] An opaque ID uniquely identifying the table.
+     * Output only. An opaque ID uniquely identifying the table.
      */
     id?: string | null;
     /**
-     * [Output-only] The type of the resource.
+     * The type of resource ID.
      */
     kind?: string | null;
     /**
@@ -3525,79 +4158,87 @@ export namespace bigquery_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * [Output-only] The time when this table was last modified, in milliseconds since the epoch.
+     * Output only. The time when this table was last modified, in milliseconds since the epoch.
      */
     lastModifiedTime?: string | null;
     /**
-     * [Output-only] The geographic location where the table resides. This value is inherited from the dataset.
+     * Output only. The geographic location where the table resides. This value is inherited from the dataset.
      */
     location?: string | null;
     /**
-     * [Optional] Materialized view definition.
+     * Optional. The materialized view definition.
      */
     materializedView?: Schema$MaterializedViewDefinition;
     /**
-     * [Optional] Max staleness of data that could be returned when table or materialized view is queried (formatted as Google SQL Interval type).
+     * Output only. The materialized view status.
+     */
+    materializedViewStatus?: Schema$MaterializedViewStatus;
+    /**
+     * Optional. The maximum staleness of data that could be returned when the table (or stale MV) is queried. Staleness encoded as a string encoding of sql IntervalValue type.
      */
     maxStaleness?: string | null;
     /**
-     * [Output-only, Beta] Present iff this table represents a ML model. Describes the training information for the model, and it is required to run 'PREDICT' queries.
+     * Deprecated.
      */
     model?: Schema$ModelDefinition;
     /**
-     * [Output-only] Number of logical bytes that are less than 90 days old.
+     * Output only. Number of logical bytes that are less than 90 days old.
      */
     numActiveLogicalBytes?: string | null;
     /**
-     * [Output-only] Number of physical bytes less than 90 days old. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     * Output only. Number of physical bytes less than 90 days old. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
      */
     numActivePhysicalBytes?: string | null;
     /**
-     * [Output-only] The size of this table in bytes, excluding any data in the streaming buffer.
+     * Output only. The size of this table in logical bytes, excluding any data in the streaming buffer.
      */
     numBytes?: string | null;
     /**
-     * [Output-only] The number of bytes in the table that are considered "long-term storage".
+     * Output only. The number of logical bytes in the table that are considered "long-term storage".
      */
     numLongTermBytes?: string | null;
     /**
-     * [Output-only] Number of logical bytes that are more than 90 days old.
+     * Output only. Number of logical bytes that are more than 90 days old.
      */
     numLongTermLogicalBytes?: string | null;
     /**
-     * [Output-only] Number of physical bytes more than 90 days old. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     * Output only. Number of physical bytes more than 90 days old. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
      */
     numLongTermPhysicalBytes?: string | null;
     /**
-     * [Output-only] The number of partitions present in the table or materialized view. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     * Output only. The number of partitions present in the table or materialized view. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
      */
     numPartitions?: string | null;
     /**
-     * [Output-only] [TrustedTester] The physical size of this table in bytes, excluding any data in the streaming buffer. This includes compression and storage used for time travel.
+     * Output only. The physical size of this table in bytes. This includes storage used for time travel.
      */
     numPhysicalBytes?: string | null;
     /**
-     * [Output-only] The number of rows of data in this table, excluding any data in the streaming buffer.
+     * Output only. The number of rows of data in this table, excluding any data in the streaming buffer.
      */
     numRows?: string | null;
     /**
-     * [Output-only] Number of physical bytes used by time travel storage (deleted or changed data). This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     * Output only. Number of physical bytes used by time travel storage (deleted or changed data). This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
      */
     numTimeTravelPhysicalBytes?: string | null;
     /**
-     * [Output-only] Total number of logical bytes in the table or materialized view.
+     * Output only. Total number of logical bytes in the table or materialized view.
      */
     numTotalLogicalBytes?: string | null;
     /**
-     * [Output-only] The physical size of this table in bytes. This also includes storage used for time travel. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     * Output only. The physical size of this table in bytes. This also includes storage used for time travel. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
      */
     numTotalPhysicalBytes?: string | null;
     /**
-     * [TrustedTester] Range partitioning specification for this table. Only one of timePartitioning and rangePartitioning should be specified.
+     * If specified, configures range partitioning for this table.
      */
     rangePartitioning?: Schema$RangePartitioning;
     /**
-     * [Optional] If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified.
+     * Optional. Output only. Table references of all replicas currently active on the table.
+     */
+    replicas?: Schema$TableReference[];
+    /**
+     * Optional. If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified.
      */
     requirePartitionFilter?: boolean | null;
     /**
@@ -3605,48 +4246,55 @@ export namespace bigquery_v2 {
      */
     resourceTags?: {[key: string]: string} | null;
     /**
-     * [Optional] Describes the schema of this table.
+     * Optional. Describes the schema of this table.
      */
     schema?: Schema$TableSchema;
     /**
-     * [Output-only] A URL that can be used to access this resource again.
+     * Output only. A URL that can be used to access this resource again.
      */
     selfLink?: string | null;
     /**
-     * [Output-only] Snapshot definition.
+     * Output only. Contains information about the snapshot. This value is set via snapshot creation.
      */
     snapshotDefinition?: Schema$SnapshotDefinition;
     /**
-     * [Output-only] Contains information regarding this table's streaming buffer, if one is present. This field will be absent if the table is not being streamed to or if there is no data in the streaming buffer.
+     * Output only. Contains information regarding this table's streaming buffer, if one is present. This field will be absent if the table is not being streamed to or if there is no data in the streaming buffer.
      */
     streamingBuffer?: Schema$Streamingbuffer;
     /**
-     * [Optional] The table constraints on the table.
+     * Optional. Tables Primary Key and Foreign Key information
      */
     tableConstraints?: Schema$TableConstraints;
     /**
-     * [Required] Reference describing the ID of this table.
+     * Required. Reference describing the ID of this table.
      */
     tableReference?: Schema$TableReference;
     /**
-     * Time-based partitioning specification for this table. Only one of timePartitioning and rangePartitioning should be specified.
+     * Optional. Table replication info for table created `AS REPLICA` DDL like: `CREATE MATERIALIZED VIEW mv1 AS REPLICA OF src_mv`
+     */
+    tableReplicationInfo?: Schema$TableReplicationInfo;
+    /**
+     * If specified, configures time-based partitioning for this table.
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * [Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. SNAPSHOT: An immutable, read-only table that is a copy of another table. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result is persisted. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.
+     * Output only. Describes the table type. The following values are supported: * `TABLE`: A normal BigQuery table. * `VIEW`: A virtual table defined by a SQL query. * `EXTERNAL`: A table that references data stored in an external storage system, such as Google Cloud Storage. * `MATERIALIZED_VIEW`: A precomputed view defined by a SQL query. * `SNAPSHOT`: An immutable BigQuery table that preserves the contents of a base table at a particular time. See additional information on [table snapshots](/bigquery/docs/table-snapshots-intro). The default value is `TABLE`.
      */
     type?: string | null;
     /**
-     * [Optional] The view definition.
+     * Optional. The view definition.
      */
     view?: Schema$ViewDefinition;
   }
   export interface Schema$TableCell {
     v?: any | null;
   }
+  /**
+   * The TableConstraints defines the primary key and foreign key.
+   */
   export interface Schema$TableConstraints {
     /**
-     * [Optional] The foreign keys of the tables.
+     * Optional. Present only if the table has a foreign key. The foreign key is not enforced.
      */
     foreignKeys?: Array<{
       columnReferences?: Array<{
@@ -3661,39 +4309,46 @@ export namespace bigquery_v2 {
       };
     }> | null;
     /**
-     * [Optional] The primary key of the table.
+     * Represents the primary key constraint on a table's columns.
      */
     primaryKey?: {columns?: string[]} | null;
   }
+  /**
+   * Request for sending a single streaming insert.
+   */
   export interface Schema$TableDataInsertAllRequest {
     /**
-     * [Optional] Accept rows that contain values that do not match the schema. The unknown values are ignored. Default is false, which treats unknown values as errors.
+     * Optional. Accept rows that contain values that do not match the schema. The unknown values are ignored. Default is false, which treats unknown values as errors.
      */
     ignoreUnknownValues?: boolean | null;
     /**
-     * The resource type of the response.
+     * Optional. The resource type of the response. The value is not checked at the backend. Historically, it has been set to "bigquery#tableDataInsertAllRequest" but you are not required to set it.
      */
     kind?: string | null;
-    /**
-     * The rows to insert.
-     */
     rows?: Array<{insertId?: string; json?: Schema$JsonObject}> | null;
     /**
-     * [Optional] Insert all valid rows of a request, even if invalid rows exist. The default value is false, which causes the entire request to fail if any invalid rows exist.
+     * Optional. Insert all valid rows of a request, even if invalid rows exist. The default value is false, which causes the entire request to fail if any invalid rows exist.
      */
     skipInvalidRows?: boolean | null;
     /**
-     * If specified, treats the destination table as a base template, and inserts the rows into an instance table named "{destination\}{templateSuffix\}". BigQuery will manage creation of the instance table, using the schema of the base template table. See https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables for considerations when working with templates tables.
+     * Optional. If specified, treats the destination table as a base template, and inserts the rows into an instance table named "{destination\}{templateSuffix\}". BigQuery will manage creation of the instance table, using the schema of the base template table. See https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables for considerations when working with templates tables.
      */
     templateSuffix?: string | null;
+    /**
+     * Optional. Unique request trace id. Used for debugging purposes only. It is case-sensitive, limited to up to 36 ASCII characters. A UUID is recommended.
+     */
+    traceId?: string | null;
   }
+  /**
+   * Describes the format of a streaming insert response.
+   */
   export interface Schema$TableDataInsertAllResponse {
     /**
-     * An array of errors for rows that were not inserted.
+     * Describes specific errors encountered while processing the request.
      */
     insertErrors?: Array<{errors?: Schema$ErrorProto[]; index?: number}> | null;
     /**
-     * The resource type of the response.
+     * Returns "bigquery#tableDataInsertAllResponse".
      */
     kind?: string | null;
   }
@@ -3715,65 +4370,74 @@ export namespace bigquery_v2 {
      */
     rows?: Schema$TableRow[];
     /**
-     * The total number of rows in the complete table.
+     * Total rows of the entire table. In order to show default value 0 we have to present it as string.
      */
     totalRows?: string | null;
   }
+  /**
+   * A field in TableSchema
+   */
   export interface Schema$TableFieldSchema {
     /**
-     * [Optional] The categories attached to this field, used for field-level access control.
+     * Deprecated.
      */
     categories?: {names?: string[]} | null;
     /**
-     * Optional. Collation specification of the field. It only can be set on string type field.
+     * Optional. Field collation can be set only when the type of field is STRING. The following values are supported: * 'und:ci': undetermined locale, case insensitive. * '': empty string. Default to case-sensitive behavior.
      */
     collation?: string | null;
     /**
-     * Optional. A SQL expression to specify the default value for this field. It can only be set for top level fields (columns). You can use struct or array expression to specify default value for the entire struct or array. The valid SQL expressions are: - Literals for all data types, including STRUCT and ARRAY. - Following functions: - CURRENT_TIMESTAMP - CURRENT_TIME - CURRENT_DATE - CURRENT_DATETIME - GENERATE_UUID - RAND - SESSION_USER - ST_GEOGPOINT - Struct or array composed with the above allowed functions, for example, [CURRENT_DATE(), DATE '2020-01-01']
+     * Optional. A SQL expression to specify the [default value] (https://cloud.google.com/bigquery/docs/default-values) for this field.
      */
     defaultValueExpression?: string | null;
     /**
-     * [Optional] The field description. The maximum length is 1,024 characters.
+     * Optional. The field description. The maximum length is 1,024 characters.
      */
     description?: string | null;
     /**
-     * [Optional] Describes the nested schema fields if the type property is set to RECORD.
+     * Optional. Describes the nested schema fields if the type property is set to RECORD.
      */
     fields?: Schema$TableFieldSchema[];
     /**
-     * [Optional] Maximum length of values of this field for STRINGS or BYTES. If max_length is not specified, no maximum length constraint is imposed on this field. If type = "STRING", then max_length represents the maximum UTF-8 length of strings in this field. If type = "BYTES", then max_length represents the maximum number of bytes in this field. It is invalid to set this field if type ≠ "STRING" and ≠ "BYTES".
+     * Optional. Maximum length of values of this field for STRINGS or BYTES. If max_length is not specified, no maximum length constraint is imposed on this field. If type = "STRING", then max_length represents the maximum UTF-8 length of strings in this field. If type = "BYTES", then max_length represents the maximum number of bytes in this field. It is invalid to set this field if type ≠ "STRING" and ≠ "BYTES".
      */
     maxLength?: string | null;
     /**
-     * [Optional] The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.
+     * Optional. The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.
      */
     mode?: string | null;
     /**
-     * [Required] The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 300 characters.
+     * Required. The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 300 characters.
      */
     name?: string | null;
+    /**
+     * Optional. The policy tags attached to this field, used for field-level access control. If not set, defaults to empty policy_tags.
+     */
     policyTags?: {names?: string[]} | null;
     /**
-     * [Optional] Precision (maximum number of total digits in base 10) and scale (maximum number of digits in the fractional part in base 10) constraints for values of this field for NUMERIC or BIGNUMERIC. It is invalid to set precision or scale if type ≠ "NUMERIC" and ≠ "BIGNUMERIC". If precision and scale are not specified, no value range constraint is imposed on this field insofar as values are permitted by the type. Values of this NUMERIC or BIGNUMERIC field must be in this range when: - Precision (P) and scale (S) are specified: [-10P-S + 10-S, 10P-S - 10-S] - Precision (P) is specified but not scale (and thus scale is interpreted to be equal to zero): [-10P + 1, 10P - 1]. Acceptable values for precision and scale if both are specified: - If type = "NUMERIC": 1 ≤ precision - scale ≤ 29 and 0 ≤ scale ≤ 9. - If type = "BIGNUMERIC": 1 ≤ precision - scale ≤ 38 and 0 ≤ scale ≤ 38. Acceptable values for precision if only precision is specified but not scale (and thus scale is interpreted to be equal to zero): - If type = "NUMERIC": 1 ≤ precision ≤ 29. - If type = "BIGNUMERIC": 1 ≤ precision ≤ 38. If scale is specified but not precision, then it is invalid.
+     * Optional. Precision (maximum number of total digits in base 10) and scale (maximum number of digits in the fractional part in base 10) constraints for values of this field for NUMERIC or BIGNUMERIC. It is invalid to set precision or scale if type ≠ "NUMERIC" and ≠ "BIGNUMERIC". If precision and scale are not specified, no value range constraint is imposed on this field insofar as values are permitted by the type. Values of this NUMERIC or BIGNUMERIC field must be in this range when: * Precision (P) and scale (S) are specified: [-10P-S + 10-S, 10P-S - 10-S] * Precision (P) is specified but not scale (and thus scale is interpreted to be equal to zero): [-10P + 1, 10P - 1]. Acceptable values for precision and scale if both are specified: * If type = "NUMERIC": 1 ≤ precision - scale ≤ 29 and 0 ≤ scale ≤ 9. * If type = "BIGNUMERIC": 1 ≤ precision - scale ≤ 38 and 0 ≤ scale ≤ 38. Acceptable values for precision if only precision is specified but not scale (and thus scale is interpreted to be equal to zero): * If type = "NUMERIC": 1 ≤ precision ≤ 29. * If type = "BIGNUMERIC": 1 ≤ precision ≤ 38. If scale is specified but not precision, then it is invalid.
      */
     precision?: string | null;
     /**
-     * Optional. The subtype of the RANGE, if the type of this field is RANGE. If the type is RANGE, this field is required. Possible values for the field element type of a RANGE include: - DATE - DATETIME - TIMESTAMP
+     * Represents the type of a field element.
      */
     rangeElementType?: {type?: string} | null;
     /**
-     * Optional. Rounding Mode specification of the field. It only can be set on NUMERIC or BIGNUMERIC type fields.
+     * Optional. Specifies the rounding mode to be used when storing values of NUMERIC and BIGNUMERIC type.
      */
     roundingMode?: string | null;
     /**
-     * [Optional] See documentation for precision.
+     * Optional. See documentation for precision.
      */
     scale?: string | null;
     /**
-     * [Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), NUMERIC, BIGNUMERIC, BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, INTERVAL, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).
+     * Required. The field data type. Possible values include: * STRING * BYTES * INTEGER (or INT64) * FLOAT (or FLOAT64) * BOOLEAN (or BOOL) * TIMESTAMP * DATE * TIME * DATETIME * GEOGRAPHY * NUMERIC * BIGNUMERIC * JSON * RECORD (or STRUCT) Use of RECORD/STRUCT indicates that the field contains a nested schema.
      */
     type?: string | null;
   }
+  /**
+   * Partial projection of the metadata for a given table in a list response.
+   */
   export interface Schema$TableList {
     /**
      * A hash of this page of results.
@@ -3799,29 +4463,76 @@ export namespace bigquery_v2 {
       kind?: string;
       labels?: {[key: string]: string};
       rangePartitioning?: Schema$RangePartitioning;
+      requirePartitionFilter?: boolean;
       tableReference?: Schema$TableReference;
       timePartitioning?: Schema$TimePartitioning;
       type?: string;
-      view?: {useLegacySql?: boolean};
+      view?: {privacyPolicy?: Schema$PrivacyPolicy; useLegacySql?: boolean};
     }> | null;
     /**
      * The total number of tables in the dataset.
      */
     totalItems?: number | null;
   }
+  /**
+   * Table level detail on the usage of metadata caching. Only set for Metadata caching eligible tables referenced in the query.
+   */
+  export interface Schema$TableMetadataCacheUsage {
+    /**
+     * Free form human-readable reason metadata caching was unused for the job.
+     */
+    explanation?: string | null;
+    /**
+     * Metadata caching eligible table referenced in the query.
+     */
+    tableReference?: Schema$TableReference;
+    /**
+     * [Table type](/bigquery/docs/reference/rest/v2/tables#Table.FIELDS.type).
+     */
+    tableType?: string | null;
+    /**
+     * Reason for not using metadata caching for the table.
+     */
+    unusedReason?: string | null;
+  }
   export interface Schema$TableReference {
     /**
-     * [Required] The ID of the dataset containing this table.
+     * Required. The ID of the dataset containing this table.
      */
     datasetId?: string | null;
     /**
-     * [Required] The ID of the project containing this table.
+     * Required. The ID of the project containing this table.
      */
     projectId?: string | null;
     /**
-     * [Required] The ID of the table. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
+     * Required. The ID of the table. The ID can contain Unicode characters in category L (letter), M (mark), N (number), Pc (connector, including underscore), Pd (dash), and Zs (space). For more information, see [General Category](https://wikipedia.org/wiki/Unicode_character_property#General_Category). The maximum length is 1,024 characters. Certain operations allow suffixing of the table ID with a partition decorator, such as `sample_table$20190123`.
      */
     tableId?: string | null;
+  }
+  /**
+   * Replication info of a table created using `AS REPLICA` DDL like: `CREATE MATERIALIZED VIEW mv1 AS REPLICA OF src_mv`
+   */
+  export interface Schema$TableReplicationInfo {
+    /**
+     * Optional. Output only. If source is a materialized view, this field signifies the last refresh time of the source.
+     */
+    replicatedSourceLastRefreshTime?: string | null;
+    /**
+     * Optional. Output only. Replication error that will permanently stopped table replication.
+     */
+    replicationError?: Schema$ErrorProto;
+    /**
+     * Required. Specifies the interval at which the source table is polled for updates.
+     */
+    replicationIntervalMs?: string | null;
+    /**
+     * Optional. Output only. Replication status of configured replication.
+     */
+    replicationStatus?: string | null;
+    /**
+     * Required. Source table reference that is replicated.
+     */
+    sourceTable?: Schema$TableReference;
   }
   export interface Schema$TableRow {
     /**
@@ -3829,6 +4540,9 @@ export namespace bigquery_v2 {
      */
     f?: Schema$TableCell[];
   }
+  /**
+   * Schema of a table
+   */
   export interface Schema$TableSchema {
     /**
      * Describes the fields in a table.
@@ -3855,16 +4569,19 @@ export namespace bigquery_v2 {
   }
   export interface Schema$TimePartitioning {
     /**
-     * [Optional] Number of milliseconds for which to keep the storage for partitions in the table. The storage in a partition will have an expiration time of its partition time plus this value.
+     * Optional. Number of milliseconds for which to keep the storage for a partition. A wrapper is used here because 0 is an invalid value.
      */
     expirationMs?: string | null;
     /**
-     * [Beta] [Optional] If not set, the table is partitioned by pseudo column, referenced via either '_PARTITIONTIME' as TIMESTAMP type, or '_PARTITIONDATE' as DATE type. If field is specified, the table is instead partitioned by this field. The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
+     * Optional. If not set, the table is partitioned by pseudo column '_PARTITIONTIME'; if set, the table is partitioned by this field. The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED. A wrapper is used here because an empty string is an invalid value.
      */
     field?: string | null;
+    /**
+     * If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified. This field is deprecated; please set the field with the same name on the table itself instead. This field needs a wrapper because we want to output the default value, false, if the user explicitly set it.
+     */
     requirePartitionFilter?: boolean | null;
     /**
-     * [Required] The supported types are DAY, HOUR, MONTH, and YEAR, which will generate one partition per day, hour, month, and year, respectively. When the type is not specified, the default behavior is DAY.
+     * Required. The supported types are DAY, HOUR, MONTH, and YEAR, which will generate one partition per day, hour, month, and year, respectively.
      */
     type?: string | null;
   }
@@ -4262,9 +4979,12 @@ export namespace bigquery_v2 {
      */
     vertexAiModelVersion?: string | null;
   }
+  /**
+   * [Alpha] Information of a multi-statement transaction.
+   */
   export interface Schema$TransactionInfo {
     /**
-     * [Output-only] // [Alpha] Id of the transaction.
+     * Output only. [Alpha] Id of the transaction.
      */
     transactionId?: string | null;
   }
@@ -4286,7 +5006,16 @@ export namespace bigquery_v2 {
     type?: Schema$StandardSqlDataType;
   }
   /**
-   * This is used for defining User Defined Function (UDF) resources only when using legacy SQL. Users of Standard SQL should leverage either DDL (e.g. CREATE [TEMPORARY] FUNCTION ... ) or the Routines API to define UDF resources. For additional information on migrating, see: https://cloud.google.com/bigquery/docs/reference/standard-sql/migrating-from-legacy-sql#differences_in_user-defined_javascript_functions
+   * Request format for undeleting a dataset.
+   */
+  export interface Schema$UndeleteDatasetRequest {
+    /**
+     * Optional. The exact time when the dataset was deleted. If not specified, it will undelete the most recently deleted version.
+     */
+    deletionTime?: string | null;
+  }
+  /**
+   *  This is used for defining User Defined Function (UDF) resources only when using legacy SQL. Users of GoogleSQL should leverage either DDL (e.g. CREATE [TEMPORARY] FUNCTION ... ) or the Routines API to define UDF resources. For additional information on migrating, see: https://cloud.google.com/bigquery/docs/reference/standard-sql/migrating-from-legacy-sql#differences_in_user-defined_javascript_functions
    */
   export interface Schema$UserDefinedFunctionResource {
     /**
@@ -4311,17 +5040,24 @@ export namespace bigquery_v2 {
      */
     indexUsageMode?: string | null;
   }
+  /**
+   * Describes the definition of a logical view.
+   */
   export interface Schema$ViewDefinition {
     /**
-     * [Required] A query that BigQuery executes when the view is referenced.
+     * Optional. Specifices the privacy policy for the view.
+     */
+    privacyPolicy?: Schema$PrivacyPolicy;
+    /**
+     * Required. A query that BigQuery executes when the view is referenced.
      */
     query?: string | null;
     /**
-     * True if the column names are explicitly specified. For example by using the 'CREATE VIEW v(c1, c2) AS ...' syntax. Can only be set using BigQuery's standard SQL: https://cloud.google.com/bigquery/sql-reference/
+     * True if the column names are explicitly specified. For example by using the 'CREATE VIEW v(c1, c2) AS ...' syntax. Can only be set for GoogleSQL views.
      */
     useExplicitColumnNames?: boolean | null;
     /**
-     * Specifies whether to use BigQuery's legacy SQL for this view. The default value is true. If set to false, the view will use BigQuery's standard SQL: https://cloud.google.com/bigquery/sql-reference/ Queries and views that reference this view must use the same flag value.
+     * Specifies whether to use BigQuery's legacy SQL for this view. The default value is true. If set to false, the view will use BigQuery's GoogleSQL: https://cloud.google.com/bigquery/sql-reference/ Queries and views that reference this view must use the same flag value. A wrapper is used here because the default value is True.
      */
     useLegacySql?: boolean | null;
     /**
@@ -4398,7 +5134,8 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}'
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -4483,7 +5220,8 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}'
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -4568,7 +5306,7 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/datasets'
+              rootUrl + '/bigquery/v2/projects/{+projectId}/datasets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -4590,7 +5328,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Lists all datasets in the specified project to which you have been granted the READER dataset role.
+     * Lists all datasets in the specified project to which the user has been granted the READER dataset role.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4653,7 +5391,7 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/datasets'
+              rootUrl + '/bigquery/v2/projects/{+projectId}/datasets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -4675,7 +5413,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports patch semantics.
+     * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports RFC5789 patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4738,9 +5476,97 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}'
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Dataset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Dataset>(parameters);
+      }
+    }
+
+    /**
+     * Undeletes a dataset which is within time travel window based on datasetId. If a time is specified, the dataset version deleted at that time is undeleted, else the last live version is undeleted.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Datasets$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Datasets$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Dataset>;
+    undelete(
+      params: Params$Resource$Datasets$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Datasets$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
+    undelete(
+      params: Params$Resource$Datasets$Undelete,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Dataset>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Undelete
+        | BodyResponseCallback<Schema$Dataset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Dataset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Dataset>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datasets$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}:undelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
           },
           options
         ),
@@ -4823,7 +5649,8 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}'
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -4847,7 +5674,7 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Datasets$Delete extends StandardParameters {
     /**
-     * Dataset ID of dataset being deleted
+     * Required. Dataset ID of dataset being deleted
      */
     datasetId?: string;
     /**
@@ -4855,27 +5682,27 @@ export namespace bigquery_v2 {
      */
     deleteContents?: boolean;
     /**
-     * Project ID of the dataset being deleted
+     * Required. Project ID of the dataset being deleted
      */
     projectId?: string;
   }
   export interface Params$Resource$Datasets$Get extends StandardParameters {
     /**
-     * Dataset ID of the requested dataset
+     * Required. Dataset ID of the requested dataset
      */
     datasetId?: string;
     /**
-     * Specifies the view that determines which dataset information is returned. By default, metadata and ACL information are returned. Allowed values: METADATA, ACL, FULL.
+     * Optional. Specifies the view that determines which dataset information is returned. By default, metadata and ACL information are returned.
      */
     datasetView?: string;
     /**
-     * Project ID of the requested dataset
+     * Required. Project ID of the requested dataset
      */
     projectId?: string;
   }
   export interface Params$Resource$Datasets$Insert extends StandardParameters {
     /**
-     * Project ID of the new dataset
+     * Required. Project ID of the new dataset
      */
     projectId?: string;
 
@@ -4890,11 +5717,11 @@ export namespace bigquery_v2 {
      */
     all?: boolean;
     /**
-     * An expression for filtering the results of the request by label. The syntax is "labels.<name\>[:<value\>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
+     * An expression for filtering the results of the request by label. The syntax is \"labels.<name\>[:<value\>]\". Multiple filters can be ANDed together by connecting with a space. Example: \"labels.department:receiving labels.active\". See [Filtering datasets using labels](/bigquery/docs/labeling-datasets#filtering_datasets_using_labels) for details.
      */
     filter?: string;
     /**
-     * The maximum number of results to return
+     * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
      */
     maxResults?: number;
     /**
@@ -4902,17 +5729,17 @@ export namespace bigquery_v2 {
      */
     pageToken?: string;
     /**
-     * Project ID of the datasets to be listed
+     * Required. Project ID of the datasets to be listed
      */
     projectId?: string;
   }
   export interface Params$Resource$Datasets$Patch extends StandardParameters {
     /**
-     * Dataset ID of the dataset being updated
+     * Required. Dataset ID of the dataset being updated
      */
     datasetId?: string;
     /**
-     * Project ID of the dataset being updated
+     * Required. Project ID of the dataset being updated
      */
     projectId?: string;
 
@@ -4921,13 +5748,29 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$Update extends StandardParameters {
+  export interface Params$Resource$Datasets$Undelete
+    extends StandardParameters {
     /**
-     * Dataset ID of the dataset being updated
+     * Required. Dataset ID of dataset being deleted
      */
     datasetId?: string;
     /**
-     * Project ID of the dataset being updated
+     * Required. Project ID of the dataset to be undeleted
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteDatasetRequest;
+  }
+  export interface Params$Resource$Datasets$Update extends StandardParameters {
+    /**
+     * Required. Dataset ID of the dataset being updated
+     */
+    datasetId?: string;
+    /**
+     * Required. Project ID of the dataset being updated
      */
     projectId?: string;
 
@@ -5010,7 +5853,8 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel'
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/jobs/{+jobId}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -5179,7 +6023,7 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}'
+              rootUrl + '/bigquery/v2/projects/{+projectId}/jobs/{+jobId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -5201,7 +6045,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Retrieves the results of a query job.
+     * RPC to get the results of a query job.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5272,7 +6116,7 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/queries/{jobId}'
+              rootUrl + '/bigquery/v2/projects/{+projectId}/queries/{+jobId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -5294,7 +6138,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Starts a new asynchronous job. Requires the Can View project role.
+     * Starts a new asynchronous job. This API has two different kinds of endpoint URIs, as this method supports a variety of use cases. * The *Metadata* URI is used for most interactions, as it accepts the job configuration directly. * The *Upload* URI is ONLY for the case when you're sending both a load job configuration and a data stream together. In this case, the Upload URI accepts the job configuration and the data as two distinct multipart MIME parts.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5356,7 +6200,7 @@ export namespace bigquery_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs').replace(
+            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/jobs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5366,7 +6210,7 @@ export namespace bigquery_v2 {
         ),
         params,
         mediaUrl: (
-          rootUrl + '/upload/bigquery/v2/projects/{projectId}/jobs'
+          rootUrl + '/upload/bigquery/v2/projects/{+projectId}/jobs'
         ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -5445,7 +6289,7 @@ export namespace bigquery_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs').replace(
+            url: (rootUrl + '/bigquery/v2/projects/{+projectId}/jobs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5532,7 +6376,7 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/queries'
+              rootUrl + '/bigquery/v2/projects/{+projectId}/queries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -5556,15 +6400,15 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Jobs$Cancel extends StandardParameters {
     /**
-     * [Required] Job ID of the job to cancel
+     * Required. Job ID of the job to cancel
      */
     jobId?: string;
     /**
-     * The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     * The geographic location of the job. You must specify the location to run the job for the following scenarios: - If the location to run a job is not in the `us` or the `eu` multi-regional location - If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
-     * [Required] Project ID of the job to cancel
+     * Required. Project ID of the job to cancel
      */
     projectId?: string;
   }
@@ -5584,52 +6428,56 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Jobs$Get extends StandardParameters {
     /**
-     * [Required] Job ID of the requested job
+     * Required. Job ID of the requested job.
      */
     jobId?: string;
     /**
-     * The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     * The geographic location of the job. You must specify the location to run the job for the following scenarios: - If the location to run a job is not in the `us` or the `eu` multi-regional location - If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
-     * [Required] Project ID of the requested job
+     * Required. Project ID of the requested job.
      */
     projectId?: string;
   }
   export interface Params$Resource$Jobs$Getqueryresults
     extends StandardParameters {
     /**
-     * [Required] Job ID of the query job
+     * Optional. Output timestamp as usec int64. Default is false.
+     */
+    'formatOptions.useInt64Timestamp'?: boolean;
+    /**
+     * Required. Job ID of the query job.
      */
     jobId?: string;
     /**
-     * The geographic location where the job should run. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     * The geographic location of the job. You must specify the location to run the job for the following scenarios: - If the location to run a job is not in the `us` or the `eu` multi-regional location - If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
-     * Maximum number of results to read
+     * Maximum number of results to read.
      */
     maxResults?: number;
     /**
-     * Page token, returned by a previous call, to request the next page of results
+     * Page token, returned by a previous call, to request the next page of results.
      */
     pageToken?: string;
     /**
-     * [Required] Project ID of the query job
+     * Required. Project ID of the query job.
      */
     projectId?: string;
     /**
-     * Zero-based index of the starting row
+     * Zero-based index of the starting row.
      */
     startIndex?: string;
     /**
-     * How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
+     * Optional: Specifies the maximum amount of time, in milliseconds, that the client is willing to wait for the query to complete. By default, this limit is 10 seconds (10,000 milliseconds). If the query is complete, the jobComplete field in the response is true. If the query has not yet completed, jobComplete is false. You can request a longer timeout period in the timeoutMs field. However, the call is not guaranteed to wait for the specified timeout; it typically returns after around 200 seconds (200,000 milliseconds), even if the query is not complete. If jobComplete is false, you can continue to wait for the query to complete by calling the getQueryResults method until the jobComplete field in the getQueryResults response is true.
      */
     timeoutMs?: number;
   }
   export interface Params$Resource$Jobs$Insert extends StandardParameters {
     /**
-     * Project ID of the project that will be billed for the job
+     * Project ID of project that will be billed for the job.
      */
     projectId?: string;
 
@@ -5655,31 +6503,31 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Jobs$List extends StandardParameters {
     /**
-     * Whether to display jobs owned by all users in the project. Default false
+     * Whether to display jobs owned by all users in the project. Default False.
      */
     allUsers?: boolean;
     /**
-     * Max value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created before or at this timestamp are returned
+     * Max value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created before or at this timestamp are returned.
      */
     maxCreationTime?: string;
     /**
-     * Maximum number of results to return
+     * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
      */
     maxResults?: number;
     /**
-     * Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
+     * Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned.
      */
     minCreationTime?: string;
     /**
-     * Page token, returned by a previous call, to request the next page of results
+     * Page token, returned by a previous call, to request the next page of results.
      */
     pageToken?: string;
     /**
-     * If set, retrieves only jobs whose parent is this job. Otherwise, retrieves only jobs which have no parent
+     * If set, show only child jobs of the specified parent. Otherwise, show all top-level jobs.
      */
     parentJobId?: string;
     /**
-     * Project ID of the jobs to list
+     * Project ID of the jobs to list.
      */
     projectId?: string;
     /**
@@ -5693,7 +6541,7 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Jobs$Query extends StandardParameters {
     /**
-     * Project ID of the project billed for the query
+     * Required. Project ID of the query request.
      */
     projectId?: string;
 
@@ -6128,7 +6976,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Returns the email address of the service account for your project used for interactions with Google Cloud KMS.
+     * RPC to get the service account for a project used for interactions with Google Cloud KMS
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6199,7 +7047,7 @@ export namespace bigquery_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/bigquery/v2/projects/{projectId}/serviceAccount'
+              rootUrl + '/bigquery/v2/projects/{+projectId}/serviceAccount'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -6221,7 +7069,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Lists all projects to which you have been granted any project role.
+     * RPC to list projects to which the user has been granted any project role. Users of this method are encouraged to consider the [Resource Manager](https://cloud.google.com/resource-manager/docs/) API, which provides the underlying data for this method and has more capabilities.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6310,17 +7158,17 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Projects$Getserviceaccount
     extends StandardParameters {
     /**
-     * Project ID for which the service account is requested.
+     * Required. ID of the project.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
     /**
-     * Maximum number of results to return
+     * `maxResults` unset returns all results, up to 50 per page. Additionally, the number of projects in a page may be fewer than `maxResults` because projects are retrieved and then filtered to only projects with the BigQuery API enabled.
      */
     maxResults?: number;
     /**
-     * Page token, returned by a previous call, to request the next page of results
+     * Page token, returned by a previous call, to request the next page of results. If not present, no further pages are present.
      */
     pageToken?: string;
   }
@@ -7196,7 +8044,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Streams data into BigQuery one record at a time without needing to run a load job. Requires the WRITER dataset role.
+     * Streams data into BigQuery one record at a time without needing to run a load job.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7268,7 +8116,7 @@ export namespace bigquery_v2 {
           {
             url: (
               rootUrl +
-              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll'
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/insertAll'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -7290,7 +8138,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Retrieves table data from a specified set of rows. Requires the READER dataset role.
+     * List the content of a table in rows.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7354,7 +8202,7 @@ export namespace bigquery_v2 {
           {
             url: (
               rootUrl +
-              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data'
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/data'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7379,15 +8227,15 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tabledata$Insertall
     extends StandardParameters {
     /**
-     * Dataset ID of the destination table.
+     * Required. Dataset ID of the destination.
      */
     datasetId?: string;
     /**
-     * Project ID of the destination table.
+     * Required. Project ID of the destination.
      */
     projectId?: string;
     /**
-     * Table ID of the destination table.
+     * Required. Table ID of the destination.
      */
     tableId?: string;
 
@@ -7398,31 +8246,35 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Tabledata$List extends StandardParameters {
     /**
-     * Dataset ID of the table to read
+     * Required. Dataset id of the table to list.
      */
     datasetId?: string;
     /**
-     * Maximum number of results to return
+     * Optional. Output timestamp as usec int64. Default is false.
+     */
+    'formatOptions.useInt64Timestamp'?: boolean;
+    /**
+     * Row limit of the table.
      */
     maxResults?: number;
     /**
-     * Page token, returned by a previous call, identifying the result set
+     * To retrieve the next page of table data, set this field to the string provided in the pageToken field of the response body from your previous call to tabledata.list.
      */
     pageToken?: string;
     /**
-     * Project ID of the table to read
+     * Required. Project id of the table to list.
      */
     projectId?: string;
     /**
-     * List of fields to return (comma-separated). If unspecified, all fields are returned
+     * Subset of fields to return, supports select into sub fields. Example: selected_fields = "a,e.d.f";
      */
     selectedFields?: string;
     /**
-     * Zero-based index of the starting row to read
+     * Start row index of the table.
      */
     startIndex?: string;
     /**
-     * Table ID of the table to read
+     * Required. Table id of the table to list.
      */
     tableId?: string;
   }
@@ -7496,7 +8348,7 @@ export namespace bigquery_v2 {
           {
             url: (
               rootUrl +
-              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}'
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -7582,7 +8434,7 @@ export namespace bigquery_v2 {
           {
             url: (
               rootUrl +
-              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}'
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7755,7 +8607,7 @@ export namespace bigquery_v2 {
           {
             url: (
               rootUrl +
-              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables'
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -7841,7 +8693,7 @@ export namespace bigquery_v2 {
           {
             url: (
               rootUrl +
-              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables'
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7863,7 +8715,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports patch semantics.
+     * Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports RFC5789 patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7927,7 +8779,7 @@ export namespace bigquery_v2 {
           {
             url: (
               rootUrl +
-              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}'
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -8129,7 +8981,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource.
+     * Updates information in an existing table. The update method replaces the entire Table resource, whereas the patch method only replaces fields that are provided in the submitted Table resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8193,7 +9045,7 @@ export namespace bigquery_v2 {
           {
             url: (
               rootUrl +
-              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}'
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -8217,37 +9069,37 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Tables$Delete extends StandardParameters {
     /**
-     * Dataset ID of the table to delete
+     * Required. Dataset ID of the table to delete
      */
     datasetId?: string;
     /**
-     * Project ID of the table to delete
+     * Required. Project ID of the table to delete
      */
     projectId?: string;
     /**
-     * Table ID of the table to delete
+     * Required. Table ID of the table to delete
      */
     tableId?: string;
   }
   export interface Params$Resource$Tables$Get extends StandardParameters {
     /**
-     * Dataset ID of the requested table
+     * Required. Dataset ID of the requested table
      */
     datasetId?: string;
     /**
-     * Project ID of the requested table
+     * Required. Project ID of the requested table
      */
     projectId?: string;
     /**
-     * List of fields to return (comma-separated). If unspecified, all fields are returned
+     * List of table schema fields to return (comma-separated). If unspecified, all fields are returned. A fieldMask cannot be used here because the fields will automatically be converted from camelCase to snake_case and the conversion will fail if there are underscores. Since these are fields in BigQuery table schemas, underscores are allowed.
      */
     selectedFields?: string;
     /**
-     * Table ID of the requested table
+     * Required. Table ID of the requested table
      */
     tableId?: string;
     /**
-     * Specifies the view that determines which table information is returned. By default, basic table information and storage statistics (STORAGE_STATS) are returned.
+     * Optional. Specifies the view that determines which table information is returned. By default, basic table information and storage statistics (STORAGE_STATS) are returned.
      */
     view?: string;
   }
@@ -8265,11 +9117,11 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Tables$Insert extends StandardParameters {
     /**
-     * Dataset ID of the new table
+     * Required. Dataset ID of the new table
      */
     datasetId?: string;
     /**
-     * Project ID of the new table
+     * Required. Project ID of the new table
      */
     projectId?: string;
 
@@ -8280,11 +9132,11 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Tables$List extends StandardParameters {
     /**
-     * Dataset ID of the tables to list
+     * Required. Dataset ID of the tables to list
      */
     datasetId?: string;
     /**
-     * Maximum number of results to return
+     * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
      */
     maxResults?: number;
     /**
@@ -8292,25 +9144,25 @@ export namespace bigquery_v2 {
      */
     pageToken?: string;
     /**
-     * Project ID of the tables to list
+     * Required. Project ID of the tables to list
      */
     projectId?: string;
   }
   export interface Params$Resource$Tables$Patch extends StandardParameters {
     /**
-     * When true will autodetect schema, else will keep original schema
+     * Optional.  When true will autodetect schema, else will keep original schema
      */
     autodetect_schema?: boolean;
     /**
-     * Dataset ID of the table to update
+     * Required. Dataset ID of the table to update
      */
     datasetId?: string;
     /**
-     * Project ID of the table to update
+     * Required. Project ID of the table to update
      */
     projectId?: string;
     /**
-     * Table ID of the table to update
+     * Required. Table ID of the table to update
      */
     tableId?: string;
 
@@ -8345,19 +9197,19 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Tables$Update extends StandardParameters {
     /**
-     * When true will autodetect schema, else will keep original schema
+     * Optional.  When true will autodetect schema, else will keep original schema
      */
     autodetect_schema?: boolean;
     /**
-     * Dataset ID of the table to update
+     * Required. Dataset ID of the table to update
      */
     datasetId?: string;
     /**
-     * Project ID of the table to update
+     * Required. Project ID of the table to update
      */
     projectId?: string;
     /**
-     * Table ID of the table to update
+     * Required. Table ID of the table to update
      */
     tableId?: string;
 
