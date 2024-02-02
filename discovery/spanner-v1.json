@@ -2729,7 +2729,7 @@
       }
     }
   },
-  "revision": "20231215",
+  "revision": "20240120",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AutoscalingConfig": {
@@ -4145,6 +4145,12 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "storageLimitPerProcessingUnit": {
+          "description": "Output only. The storage limit in bytes per processing unit.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4829,7 +4835,7 @@
           "description": "Additional options that affect how many partitions are created."
         },
         "sql": {
-          "description": "Required. The query request to generate partitions for. The request will fail if the query is not root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, the first operator in the query execution plan must be a distributed union operator. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as INSERT, UPDATE, or DELETE. Use ExecuteStreamingSql with a PartitionedDml transaction for large, partition-friendly DML operations.",
+          "description": "Required. The query request to generate partitions for. The request will fail if the query is not root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, if the query execution plan contains a distributed union operator, then it must be the first operator in the plan. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as INSERT, UPDATE, or DELETE. Use ExecuteStreamingSql with a PartitionedDml transaction for large, partition-friendly DML operations.",
           "type": "string"
         },
         "transaction": {
