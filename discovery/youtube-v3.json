@@ -717,6 +717,11 @@
               "location": "query",
               "type": "string"
             },
+            "forHandle": {
+              "description": "Return the channel associated with a YouTube handle.",
+              "location": "query",
+              "type": "string"
+            },
             "forUsername": {
               "description": "Return the channel associated with a YouTube username.",
               "location": "query",
@@ -3994,7 +3999,7 @@
       }
     }
   },
-  "revision": "20231011",
+  "revision": "20240131",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {

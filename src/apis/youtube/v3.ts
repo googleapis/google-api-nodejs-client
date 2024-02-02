@@ -5768,6 +5768,10 @@ export namespace youtube_v3 {
      */
     categoryId?: string;
     /**
+     * Return the channel associated with a YouTube handle.
+     */
+    forHandle?: string;
+    /**
      * Return the channel associated with a YouTube username.
      */
     forUsername?: string;
