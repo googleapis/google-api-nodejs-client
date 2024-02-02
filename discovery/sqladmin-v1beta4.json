@@ -2200,7 +2200,7 @@
       }
     }
   },
-  "revision": "20231211",
+  "revision": "20240201",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3177,8 +3177,8 @@
           ],
           "enumDescriptions": [
             "",
-            "Instance is a Tenancy Unit (TU) instance.",
-            "Instance is an Umbrella instance."
+            "The instance uses the new network architecture.",
+            "The instance uses the old network architecture."
           ],
           "type": "string"
         },
@@ -3521,6 +3521,10 @@
               },
               "type": "object"
             },
+            "parallel": {
+              "description": "Optional. Whether or not the export should be parallel.",
+              "type": "boolean"
+            },
             "schemaOnly": {
               "description": "Export only schemas.",
               "type": "boolean"
@@ -3531,6 +3535,11 @@
                 "type": "string"
               },
               "type": "array"
+            },
+            "threads": {
+              "description": "Optional. The number of threads to use for parallel export.",
+              "format": "int32",
+              "type": "integer"
             }
           },
           "type": "object"
@@ -4184,7 +4193,7 @@
           "type": "boolean"
         },
         "sslMode": {
-          "description": "SQL Server uses the `require_ssl` flag. You can set the value for this flag to 'true' or 'false'.",
+          "description": "Specify how SSL/TLS is enforced in database connections. MySQL and PostgreSQL use the `ssl_mode` flag. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` The value of `ssl_mode` gets priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, the `ssl_mode=ENCRYPTED_ONLY` means only accept SSL connections, while the `require_ssl=false` means accept both non-SSL and SSL connections. MySQL and PostgreSQL databases respect `ssl_mode` in this case and accept only SSL connections. SQL Server uses the `require_ssl` flag. You can set the value for this flag to `true` or `false`.",
           "enum": [
             "SSL_MODE_UNSPECIFIED",
             "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
@@ -5210,7 +5219,9 @@
             "LOCAL_INFILE_OFF",
             "TURN_ON_PITR_AFTER_PROMOTE",
             "INCOMPATIBLE_DATABASE_MINOR_VERSION",
-            "SOURCE_MAX_SUBSCRIPTIONS"
+            "SOURCE_MAX_SUBSCRIPTIONS",
+            "UNABLE_TO_VERIFY_DEFINERS",
+            "SUBSCRIPTION_CALCULATION_STATUS"
           ],
           "enumDescriptions": [
             "",
@@ -5251,7 +5262,9 @@
             "The global variable local_infile is off on external server replica.",
             "This code instructs customers to turn on point-in-time recovery manually for the instance after promoting the Cloud SQL for PostgreSQL instance.",
             "The minor version of replica database is incompatible with the source.",
-            "This warning message indicates that Cloud SQL uses the maximum number of subscriptions to migrate data from the source to the destination."
+            "This warning message indicates that Cloud SQL uses the maximum number of subscriptions to migrate data from the source to the destination.",
+            "Unable to verify definers on the source for MySQL.",
+            "If a time out occurs while the subscription counts are calculated, then this value is set to 1. Otherwise, this value is set to 2."
           ],
           "type": "string"
         }
@@ -5798,9 +5811,9 @@
             "The database's built-in user type.",
             "Cloud IAM user.",
             "Cloud IAM service account.",
-            "Cloud IAM Group non-login user.",
-            "Cloud IAM Group login user.",
-            "Cloud IAM Group service account."
+            "Cloud IAM group non-login user.",
+            "Cloud IAM group login user.",
+            "Cloud IAM group service account."
           ],
           "type": "string"
         }
