@@ -481,6 +481,10 @@ export namespace recommender_v1 {
      */
     stateInfo?: Schema$GoogleCloudRecommenderV1RecommendationStateInfo;
     /**
+     * Fully qualified resource names that this recommendation is targeting.
+     */
+    targetResources?: string[] | null;
+    /**
      * Corresponds to a mutually exclusive group ID within a recommender. A non-empty ID indicates that the recommendation belongs to a mutually exclusive group. This means that only one recommendation within the group is suggested to be applied.
      */
     xorGroupId?: string | null;
