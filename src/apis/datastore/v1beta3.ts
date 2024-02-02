@@ -916,6 +916,15 @@ export namespace datastore_v1beta3 {
     startCursor?: string | null;
   }
   /**
+   * Plan for the query.
+   */
+  export interface Schema$QueryPlan {
+    /**
+     * Planning phase information for the query. It will include: { "indexes_used": [ {"query_scope": "Collection", "properties": "(foo ASC, __name__ ASC)"\}, {"query_scope": "Collection", "properties": "(bar ASC, __name__ ASC)"\} ] \}
+     */
+    planInfo?: {[key: string]: any} | null;
+  }
+  /**
    * A batch of results produced by a query.
    */
   export interface Schema$QueryResultBatch {
@@ -1005,6 +1014,19 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$ReserveIdsResponse {}
   /**
+   * Planning and execution statistics for the query.
+   */
+  export interface Schema$ResultSetStats {
+    /**
+     * Plan for the query.
+     */
+    queryPlan?: Schema$QueryPlan;
+    /**
+     * Aggregated statistics from the execution of the query. This will only be present when the request specifies `PROFILE` mode. For example, a query will return the statistics including: { "results_returned": "20", "documents_scanned": "20", "indexes_entries_scanned": "10050", "total_execution_time": "100.7 msecs" \}
+     */
+    queryStats?: {[key: string]: any} | null;
+  }
+  /**
    * The request for Datastore.Rollback.
    */
   export interface Schema$RollbackRequest {
@@ -1030,6 +1052,10 @@ export namespace datastore_v1beta3 {
      */
     gqlQuery?: Schema$GqlQuery;
     /**
+     * Optional. The mode in which the query request is processed. This field is optional, and when not provided, it defaults to `NORMAL` mode where no additional statistics will be returned with the query results.
+     */
+    mode?: string | null;
+    /**
      * Entities are partitioned into subsets, identified by a partition ID. Queries are scoped to a single partition. This partition ID is normalized with the standard default context partition ID.
      */
     partitionId?: Schema$PartitionId;
@@ -1050,6 +1076,10 @@ export namespace datastore_v1beta3 {
      * The parsed form of the `GqlQuery` from the request, if it was set.
      */
     query?: Schema$AggregationQuery;
+    /**
+     * Query plan and execution statistics. Note that the returned stats are subject to change as Firestore evolves. This is only present when the request specifies a mode other than `NORMAL`.
+     */
+    stats?: Schema$ResultSetStats;
   }
   /**
    * The request for Datastore.RunQuery.
@@ -1059,6 +1089,10 @@ export namespace datastore_v1beta3 {
      * The GQL query to run. This query must be a non-aggregation query.
      */
     gqlQuery?: Schema$GqlQuery;
+    /**
+     * Optional. The mode in which the query request is processed. This field is optional, and when not provided, it defaults to `NORMAL` mode where no additional statistics will be returned with the query results.
+     */
+    mode?: string | null;
     /**
      * Entities are partitioned into subsets, identified by a partition ID. Queries are scoped to a single partition. This partition ID is normalized with the standard default context partition ID.
      */
@@ -1084,6 +1118,10 @@ export namespace datastore_v1beta3 {
      * The parsed form of the `GqlQuery` from the request, if it was set.
      */
     query?: Schema$Query;
+    /**
+     * Query plan and execution statistics. Note that the returned stats are subject to change as Firestore evolves. This is only present when the request specifies a mode other than `NORMAL`.
+     */
+    stats?: Schema$ResultSetStats;
   }
   /**
    * Sum of the values of the requested property. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. Infinity math follows IEEE-754 standards. * If the aggregated value set is empty, returns 0. * Returns a 64-bit integer if all aggregated numbers are integers and the sum result does not overflow. Otherwise, the result is returned as a double. Note that even if all the aggregated values are integers, the result is returned as a double if it cannot fit within a 64-bit signed integer. When this occurs, the returned value will lose precision. * When underflow occurs, floating-point aggregation is non-deterministic. This means that running the same query repeatedly without any changes to the underlying values could produce slightly different results each time. In those cases, values should be stored as integers over floating-point numbers.
