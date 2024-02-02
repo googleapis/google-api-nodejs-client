@@ -278,7 +278,7 @@ export namespace displayvideo_v1 {
      */
     iasClientId?: string | null;
     /**
-     * Whether or not to use DV360's Online Behavioral Advertising (OBA) compliance. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.
+     * Whether or not to use DV360's Online Behavioral Advertising (OBA) compliance. Starting on February 9, 2024, this field will be affected by an update to the Display & Video 360 API Terms of Service. See our [announcement](//ads-developers.googleblog.com/2024/01/update-to-display-video-360-api-terms.html) for more detail. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.
      */
     obaComplianceDisabled?: boolean | null;
     /**
@@ -1367,6 +1367,10 @@ export namespace displayvideo_v1 {
      */
     cmAccountId?: string | null;
     /**
+     * Output only. The set of CM360 Advertiser IDs sharing the CM360 Floodlight configuration.
+     */
+    cmAdvertiserIds?: string[] | null;
+    /**
      * Required. Immutable. ID of the CM360 Floodlight configuration linked with the DV360 advertiser.
      */
     cmFloodlightConfigId?: string | null;
@@ -1486,7 +1490,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ContactInfoList {
     /**
-     * Input only. The consent setting for the users in contact_infos.
+     * Input only. The consent setting for the users in contact_infos. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error.
      */
     consent?: Schema$Consent;
     /**
@@ -4052,7 +4056,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$MobileDeviceIdList {
     /**
-     * Input only. The consent setting for the users in mobile_device_ids.
+     * Input only. The consent setting for the users in mobile_device_ids. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error.
      */
     consent?: Schema$Consent;
     /**

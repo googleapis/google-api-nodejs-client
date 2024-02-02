@@ -221,7 +221,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string | null;
     /**
-     * Required. Billing related settings of the advertiser.
+     * Optional. Required. Billing related settings of the advertiser.
      */
     billingConfig?: Schema$AdvertiserBillingConfig;
     /**
@@ -287,7 +287,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$AdvertiserBillingConfig {
     /**
-     * The ID of a billing profile assigned to the advertiser.
+     * Optional. The ID of a billing profile assigned to the advertiser.
      */
     billingProfileId?: string | null;
   }
@@ -304,7 +304,7 @@ export namespace displayvideo_v2 {
      */
     iasClientId?: string | null;
     /**
-     * Whether or not to use DV360's Online Behavioral Advertising (OBA) compliance. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.
+     * Whether or not to use DV360's Online Behavioral Advertising (OBA) compliance. Starting on February 9, 2024, this field will be affected by an update to the Display & Video 360 API Terms of Service. See our [announcement](//ads-developers.googleblog.com/2024/01/update-to-display-video-360-api-terms.html) for more detail. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.
      */
     obaComplianceDisabled?: boolean | null;
     /**
@@ -1491,6 +1491,10 @@ export namespace displayvideo_v2 {
      */
     cmAccountId?: string | null;
     /**
+     * Output only. The set of CM360 Advertiser IDs sharing the CM360 Floodlight configuration.
+     */
+    cmAdvertiserIds?: string[] | null;
+    /**
      * Required. Immutable. ID of the CM360 Floodlight configuration linked with the DV360 advertiser.
      */
     cmFloodlightConfigId?: string | null;
@@ -1643,7 +1647,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$ContactInfoList {
     /**
-     * Input only. The consent setting for the users in contact_infos.
+     * Input only. The consent setting for the users in contact_infos. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error.
      */
     consent?: Schema$Consent;
     /**
@@ -2790,6 +2794,43 @@ export namespace displayvideo_v2 {
     bidAmountMicros?: string | null;
   }
   /**
+   * A single Floodlight activity.
+   */
+  export interface Schema$FloodlightActivity {
+    /**
+     * Output only. IDs of the advertisers that have access to the parent Floodlight group. Only advertisers under the provided partner ID will be listed in this field.
+     */
+    advertiserIds?: string[] | null;
+    /**
+     * Required. The display name of the Floodlight activity.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The unique ID of the Floodlight activity. Assigned by the system.
+     */
+    floodlightActivityId?: string | null;
+    /**
+     * Required. Immutable. The ID of the parent Floodlight group.
+     */
+    floodlightGroupId?: string | null;
+    /**
+     * Output only. The resource name of the Floodlight activity.
+     */
+    name?: string | null;
+    /**
+     * Output only. A list of configuration objects designating whether remarketing for this Floodlight Activity is enabled and available for a specifc advertiser. If enabled, this Floodlight Activity generates a remarketing user list that is able to be used in targeting under the advertiser.
+     */
+    remarketingConfigs?: Schema$RemarketingConfig[];
+    /**
+     * Optional. Whether the Floodlight activity is served.
+     */
+    servingStatus?: string | null;
+    /**
+     * Output only. Whether tags are required to be compliant.
+     */
+    sslRequired?: boolean | null;
+  }
+  /**
    * A single Floodlight group.
    */
   export interface Schema$FloodlightGroup {
@@ -2831,7 +2872,7 @@ export namespace displayvideo_v2 {
      */
     maxImpressions?: number | null;
     /**
-     * The maximum number of times a user may click-through or fully view an ad during this period until it is no longer served to them. Must be greater than 0. Only applicable to YouTube and Partners resources. Required when unlimited is `false` and max_impressions is not set.
+     * Optional. The maximum number of times a user may click-through or fully view an ad during this period until it is no longer served to them. Must be greater than 0. Only applicable to YouTube and Partners resources. Required when unlimited is `false` and max_impressions is not set.
      */
     maxViews?: number | null;
     /**
@@ -3930,6 +3971,16 @@ export namespace displayvideo_v2 {
      */
     nextPageToken?: string | null;
   }
+  export interface Schema$ListFloodlightActivitiesResponse {
+    /**
+     * The list of Floodlight activities. This list will be absent if empty.
+     */
+    floodlightActivities?: Schema$FloodlightActivity[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListFloodlightActivities` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
   export interface Schema$ListGoogleAudiencesResponse {
     /**
      * The list of Google audiences. This list will be absent if empty.
@@ -4347,7 +4398,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$MobileDeviceIdList {
     /**
-     * Input only. The consent setting for the users in mobile_device_ids.
+     * Input only. The consent setting for the users in mobile_device_ids. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error.
      */
     consent?: Schema$Consent;
     /**
@@ -4972,6 +5023,19 @@ export namespace displayvideo_v2 {
      * Required. ID of the regional location list. Should refer to the location_list_id field of a LocationList resource whose type is `TARGETING_LOCATION_TYPE_REGIONAL`.
      */
     regionalLocationListId?: string | null;
+  }
+  /**
+   * Settings that control the whether remarketing is enabled for the given identified advertiser.
+   */
+  export interface Schema$RemarketingConfig {
+    /**
+     * Output only. The ID of the advertiser.
+     */
+    advertiserId?: string | null;
+    /**
+     * Output only. Whether the Floodlight activity remarketing user list is available to the identified advertiser.
+     */
+    remarketingEnabled?: boolean | null;
   }
   /**
    * Request message for NegativeKeywordService.ReplaceNegativeKeywords.
@@ -5912,6 +5976,10 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$YoutubeAndPartnersInventorySourceConfig {
     /**
+     * Optional. Whether to target inventory in video apps available with Google TV.
+     */
+    includeGoogleTv?: boolean | null;
+    /**
      * Whether to target inventory on the YouTube search results page.
      */
     includeYoutubeSearch?: boolean | null;
@@ -5945,19 +6013,19 @@ export namespace displayvideo_v2 {
      */
     inventorySourceSettings?: Schema$YoutubeAndPartnersInventorySourceConfig;
     /**
-     * The ID of the form to generate leads.
+     * Optional. The ID of the form to generate leads.
      */
     leadFormId?: string | null;
     /**
-     * The ID of the merchant which is linked to the line item for product feed.
+     * Optional. The ID of the merchant which is linked to the line item for product feed.
      */
     linkedMerchantId?: string | null;
     /**
-     * The IDs of the videos appear below the primary video ad when the ad is playing in the YouTube app on mobile devices.
+     * Optional. The IDs of the videos appear below the primary video ad when the ad is playing in the YouTube app on mobile devices.
      */
     relatedVideoIds?: string[] | null;
     /**
-     * The average number of times you want ads from this line item to show to the same person over a certain period of time.
+     * Optional. The average number of times you want ads from this line item to show to the same person over a certain period of time.
      */
     targetFrequency?: Schema$TargetFrequency;
     /**
@@ -5965,7 +6033,7 @@ export namespace displayvideo_v2 {
      */
     thirdPartyMeasurementSettings?: Schema$YoutubeAndPartnersThirdPartyMeasurementSettings;
     /**
-     * The settings related to VideoAdSequence.
+     * Optional. The settings related to VideoAdSequence.
      */
     videoAdSequenceSettings?: Schema$VideoAdSequenceSettings;
     /**
@@ -18305,8 +18373,11 @@ export namespace displayvideo_v2 {
 
   export class Resource$Floodlightgroups {
     context: APIRequestContext;
+    floodlightActivities: Resource$Floodlightgroups$Floodlightactivities;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.floodlightActivities =
+        new Resource$Floodlightgroups$Floodlightactivities(this.context);
     }
 
     /**
@@ -18513,6 +18584,240 @@ export namespace displayvideo_v2 {
      * Request body metadata
      */
     requestBody?: Schema$FloodlightGroup;
+  }
+
+  export class Resource$Floodlightgroups$Floodlightactivities {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a Floodlight activity.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivity>;
+    get(
+      params: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$FloodlightActivity>,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
+    get(
+      params: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightgroups$Floodlightactivities$Get
+        | BodyResponseCallback<Schema$FloodlightActivity>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivity>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FloodlightActivity>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FloodlightActivity>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightgroups$Floodlightactivities$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Floodlightgroups$Floodlightactivities$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/floodlightGroups/{+floodlightGroupId}/floodlightActivities/{+floodlightActivityId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['floodlightGroupId', 'floodlightActivityId'],
+        pathParams: ['floodlightActivityId', 'floodlightGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FloodlightActivity>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FloodlightActivity>(parameters);
+      }
+    }
+
+    /**
+     * Lists Floodlight activities in a Floodlight group.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Floodlightgroups$Floodlightactivities$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Floodlightgroups$Floodlightactivities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFloodlightActivitiesResponse>;
+    list(
+      params: Params$Resource$Floodlightgroups$Floodlightactivities$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Floodlightgroups$Floodlightactivities$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFloodlightActivitiesResponse>,
+      callback: BodyResponseCallback<Schema$ListFloodlightActivitiesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Floodlightgroups$Floodlightactivities$List,
+      callback: BodyResponseCallback<Schema$ListFloodlightActivitiesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListFloodlightActivitiesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightgroups$Floodlightactivities$List
+        | BodyResponseCallback<Schema$ListFloodlightActivitiesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFloodlightActivitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFloodlightActivitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFloodlightActivitiesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightgroups$Floodlightactivities$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Floodlightgroups$Floodlightactivities$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/floodlightGroups/{+floodlightGroupId}/floodlightActivities'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['floodlightGroupId'],
+        pathParams: ['floodlightGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFloodlightActivitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFloodlightActivitiesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Floodlightgroups$Floodlightactivities$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the Floodlight activity to fetch.
+     */
+    floodlightActivityId?: string;
+    /**
+     * Required. The ID of the parent Floodlight group to which the requested Floodlight activity belongs.
+     */
+    floodlightGroupId?: string;
+    /**
+     * Required. The ID of the partner through which the Floodlight activity is being accessed.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Floodlightgroups$Floodlightactivities$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the parent Floodlight group to which the requested Floodlight activities belong.
+     */
+    floodlightGroupId?: string;
+    /**
+     * Optional. Field by which to sort the list. Acceptable values are: * `displayName` (default) * `floodlightActivityId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFloodlightActivities` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The ID of the partner through which the Floodlight activities are being accessed.
+     */
+    partnerId?: string;
   }
 
   export class Resource$Googleaudiences {
