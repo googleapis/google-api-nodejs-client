@@ -165,7 +165,7 @@
           ]
         },
         "delete": {
-          "description": "Delete an Apigee organization. For organizations with BillingType EVALUATION, an immediate deletion is performed. For paid organizations, a soft-deletion is performed. The organization can be restored within the soft-deletion period which can be controlled using the retention field in the request.",
+          "description": "Delete an Apigee organization. For organizations with BillingType EVALUATION, an immediate deletion is performed. For paid organizations (Subscription or Pay-as-you-go), a soft-deletion is performed. The organization can be restored within the soft-deletion period, which is specified using the `retention` field in the request or by filing a support ticket with Apigee. During the data retention period specified in the request, the Apigee organization cannot be recreated in the same Google Cloud project. **IMPORTANT: The default data retention setting for this operation is 7 days. To permanently delete the organization in 24 hours, set the retention parameter to `MINIMUM`.**",
           "flatPath": "v1/organizations/{organizationsId}",
           "httpMethod": "DELETE",
           "id": "apigee.organizations.delete",
@@ -181,7 +181,7 @@
               "type": "string"
             },
             "retention": {
-              "description": "Optional. This setting is applicable only for organizations that are soft-deleted (i.e., BillingType is not EVALUATION). It controls how long Organization data will be retained after the initial delete operation completes. During this period, the Organization may be restored to its last known state. After this period, the Organization will no longer be able to be restored.",
+              "description": "Optional. This setting is applicable only for organizations that are soft-deleted (i.e., BillingType is not EVALUATION). It controls how long Organization data will be retained after the initial delete operation completes. During this period, the Organization may be restored to its last known state. After this period, the Organization will no longer be able to be restored. **Note: During the data retention period specified using this field, the Apigee organization cannot be recreated in the same GCP project.**",
               "enum": [
                 "DELETION_RETENTION_UNSPECIFIED",
                 "MINIMUM"
@@ -1519,6 +1519,34 @@
                       "path": "v1/{+parent}/entries",
                       "response": {
                         "$ref": "GoogleCloudApigeeV1ListKeyValueEntriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "update": {
+                      "description": "Update key value entry scoped to an organization, environment, or API proxy for an existing key.",
+                      "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
+                      "httpMethod": "PUT",
+                      "id": "apigee.organizations.apis.keyvaluemaps.entries.update",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -3095,7 +3123,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Parent of the developer app key. Use the following structure in your request: `organizations/{org}/developers/{developer_email}/apps`",
+                          "description": "Parent of the developer app key. Use the following structure in your request: 'organizations/{org}/developers/{developerEmail}/apps/{appName}'",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/developers/[^/]+/apps/[^/]+$",
                           "required": true,
@@ -3297,7 +3325,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Parent of the developer app key. Use the following structure in your request: `organizations/{org}/developers/{developer_email}/apps`",
+                              "description": "Parent of the developer app key. Use the following structure in your request: 'organizations/{org}/developers/{developerEmail}/apps/{appName}'",
                               "location": "path",
                               "pattern": "^organizations/[^/]+/developers/[^/]+/apps/[^/]+$",
                               "required": true,
@@ -3746,7 +3774,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "ID of the environment group. Overrides any ID in the environment_group resource.",
+                  "description": "Optional. ID of the environment group. Overrides any ID in the environment_group resource.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3912,7 +3940,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "List of fields to be updated.",
+                  "description": "Optional. List of fields to be updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -5940,6 +5968,34 @@
                       "path": "v1/{+parent}/entries",
                       "response": {
                         "$ref": "GoogleCloudApigeeV1ListKeyValueEntriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "update": {
+                      "description": "Update key value entry scoped to an organization, environment, or API proxy for an existing key.",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
+                      "httpMethod": "PUT",
+                      "id": "apigee.organizations.environments.keyvaluemaps.entries.update",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -8681,6 +8737,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "update": {
+                  "description": "Update key value entry scoped to an organization, environment, or API proxy for an existing key.",
+                  "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
+                  "httpMethod": "PUT",
+                  "id": "apigee.organizations.keyvaluemaps.entries.update",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -9730,7 +9814,7 @@
       }
     }
   },
-  "revision": "20231219",
+  "revision": "20240130",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -12449,7 +12533,7 @@
           "type": "string"
         },
         "forwardProxyUri": {
-          "description": "Optional. Url of the forward proxy to be applied to the runtime instances in this environment. Must be in the format of {scheme}://{hostname}:{port}. Note that scheme must be one of \"http\" or \"https\", and port must be supplied. To remove a forward proxy setting, update the field to an empty value.",
+          "description": "Optional. URI of the forward proxy to be applied to the runtime instances in this environment. Must be in the format of {scheme}://{hostname}:{port}. Note that the scheme must be one of \"http\" or \"https\", and the port must be supplied. To remove a forward proxy setting, update the field to an empty value. Note: At this time, PUT operations to add forwardProxyUri to an existing environment fail if the environment has nodeConfig set up. To successfully add the forwardProxyUri setting in this case, include the NodeConfig details with the request.",
           "type": "string"
         },
         "hasAttachedFlowHooks": {
@@ -16002,11 +16086,11 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1SecurityActionConditionConfig": {
-      "description": "The following are a list of conditions. A valid SecurityAction must contain at least one condition. Within a condition, each element is ORed. Across conditions elements are ANDed. For example if a SecurityAction has the following: api_keys: [\"key1\", \"key2\"] and developers: [\"dev1\", \"dev2\"] then this is interpreted as: enforce the action if the incoming request has ((api_key = \"key1\" OR api_key=\"key\") AND (developer=\"dev1\" OR developer=\"dev2\"))",
+      "description": "The following are a list of conditions. A valid SecurityAction must contain at least one condition. Within a condition, each element is ORed. Across conditions elements are ANDed. For example if a SecurityAction has the following: api_keys: [\"key1\", \"key2\"] and developers: [\"dev1\", \"dev2\"] then this is interpreted as: enforce the action if the incoming request has ((api_key = \"key1\" OR api_key=\"key\") AND (developer=\"dev1\" OR developer=\"dev2\")).",
       "id": "GoogleCloudApigeeV1SecurityActionConditionConfig",
       "properties": {
         "botReasons": {
-          "description": "Optional. A list of Bot Reasons. Current options: Flooder, Brute Guessor, Static Content Scraper, OAuth Abuser, Robot Abuser, TorListRule, Advanced Anomaly Detection and Advanced API Scraper.",
+          "description": "Optional. A list of Bot Reasons. Current options: Flooder, Brute Guessor, Static Content Scraper, OAuth Abuser, Robot Abuser, TorListRule, Advanced Anomaly Detection, Advanced API Scraper, Search Engine Crawlers, Public Clouds, Public Cloud AWS, Public Cloud Azure, and Public Cloud Google.",
           "items": {
             "type": "string"
           },
@@ -17273,7 +17357,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },

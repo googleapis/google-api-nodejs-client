@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20231220",
+  "revision": "20240121",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1195,7 +1195,7 @@
       "type": "object"
     },
     "Dimension": {
-      "description": "Preview: A chart dimension for an SQL query. This is applied over the x-axis. This is a preview feature and may be subject to change before final release.",
+      "description": "A chart dimension. Dimensions are a structured label, class, or category for a set of measurements in your data.",
       "id": "Dimension",
       "properties": {
         "column": {
@@ -1555,7 +1555,7 @@
       "type": "object"
     },
     "Measure": {
-      "description": "Preview: A chart measure for an SQL query. This is applied over the y-axis. This is a preview feature and may be subject to change before final release.",
+      "description": "A chart measure. Measures represent a measured property in your chart data such as rainfall in inches, number of units sold, revenue gained, etc.",
       "id": "Measure",
       "properties": {
         "aggregationFunction": {
@@ -1857,6 +1857,20 @@
       "description": "Groups a time series query definition.",
       "id": "PieChartDataSet",
       "properties": {
+        "dimensions": {
+          "description": "A dimension is a structured label, class, or category for a set of measurements in your data.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
+        "measures": {
+          "description": "A measure is a measured value of a property in your data. For example, rainfall in inches, number of units sold, revenue gained, etc.",
+          "items": {
+            "$ref": "Measure"
+          },
+          "type": "array"
+        },
         "minAlignmentPeriod": {
           "description": "Optional. The lower bound on data point frequency for this data set, implemented by specifying the minimum alignment period to use in a time series query. For example, if the data is published once every 10 minutes, the min_alignment_period should be at least 10 minutes. It would not make sense to fetch and align data at one minute intervals.",
           "format": "google-duration",
