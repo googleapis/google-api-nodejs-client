@@ -282,7 +282,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$AttackExposure {
     /**
-     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/attackExposureResults/456
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789
      */
     attackExposureResult?: string | null;
     /**
@@ -496,7 +496,7 @@ export namespace securitycenter_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -1351,6 +1351,18 @@ export namespace securitycenter_v1 {
      */
     assignees?: string[] | null;
     /**
+     * The priority of the finding's corresponding case in the external system.
+     */
+    casePriority?: string | null;
+    /**
+     * The SLA of the finding's corresponding case in the external system.
+     */
+    caseSla?: string | null;
+    /**
+     * The link to the finding's corresponding case in the external system.
+     */
+    caseUri?: string | null;
+    /**
      * The time when the case was last updated, as reported by the external system.
      */
     externalSystemUpdateTime?: string | null;
@@ -1366,6 +1378,10 @@ export namespace securitycenter_v1 {
      * The most recent status of the finding's corresponding case, as reported by the external system.
      */
     status?: string | null;
+    /**
+     * Information about the ticket, if any, that is being used to track the resolution of the issue that is identified by this finding.
+     */
+    ticketInfo?: Schema$TicketInfo;
   }
   /**
    * A mute config is a Cloud SCC resource that contains the configuration to mute create/update events of findings.
@@ -2470,6 +2486,23 @@ export namespace securitycenter_v1 {
     version?: number | null;
   }
   /**
+   * The policy field that violates the deployed posture and its expected and and detected values.
+   */
+  export interface Schema$PolicyDriftDetails {
+    /**
+     * The detected value that violates the deployed posture, for example, `false` or `allowed_values={"projects/22831892”\}`.
+     */
+    detectedValue?: string | null;
+    /**
+     * The value of this field that was configured in a posture, for example, `true` or `allowed_values={"projects/29831892”\}`.
+     */
+    expectedValue?: string | null;
+    /**
+     * The name of the updated field, for example constraint.implementation.policy_rules[0].enforce
+     */
+    field?: string | null;
+  }
+  /**
    * A position in the uploaded text version of a module.
    */
   export interface Schema$Position {
@@ -2698,19 +2731,31 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$SecurityPosture {
     /**
-     * The name of the policy that has been updated, for example, `projects/{project_id\}/policies/{constraint_name\}`.
+     * The name of the updated policy, for example, `projects/{project_id\}/policies/{constraint_name\}`.
      */
     changedPolicy?: string | null;
     /**
-     * Name of the posture, for example, `organizations/{org_id\}/locations/{location\}/postures/{posture_name\}`.
+     * Name of the posture, for example, `CIS-Posture`.
      */
     name?: string | null;
     /**
-     * The name of the posture deployment, for example, `projects/{project_id\}/posturedeployments/{posture_deployment_id\}`.
+     * The ID of the updated policy, for example, `compute-policy-1`.
+     */
+    policy?: string | null;
+    /**
+     * The details about a change in an updated policy that violates the deployed posture.
+     */
+    policyDriftDetails?: Schema$PolicyDriftDetails[];
+    /**
+     * The name of the updated policyset, for example, `cis-policyset`.
+     */
+    policySet?: string | null;
+    /**
+     * The name of the posture deployment, for example, `organizations/{org_id\}/posturedeployments/{posture_deployment_id\}`.
      */
     postureDeployment?: string | null;
     /**
-     * The project, folder, or organization on which the posture is deployed, for example, `projects/{project_id\}`.
+     * The project, folder, or organization on which the posture is deployed, for example, `projects/{project_number\}`.
      */
     postureDeploymentResource?: string | null;
     /**
@@ -2920,6 +2965,35 @@ export namespace securitycenter_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Information about the ticket, if any, that is being used to track the resolution of the issue that is identified by this finding.
+   */
+  export interface Schema$TicketInfo {
+    /**
+     * The assignee of the ticket in the ticket system.
+     */
+    assignee?: string | null;
+    /**
+     * The description of the ticket in the ticket system.
+     */
+    description?: string | null;
+    /**
+     * The identifier of the ticket in the ticket system.
+     */
+    id?: string | null;
+    /**
+     * The latest status of the ticket, as reported by the ticket system.
+     */
+    status?: string | null;
+    /**
+     * The time when the ticket was last updated, as reported by the ticket system.
+     */
+    updateTime?: string | null;
+    /**
+     * The link to the ticket in the ticket system.
+     */
+    uri?: string | null;
   }
   /**
    * Request to validate an Event Threat Detection custom module.
@@ -14274,6 +14348,10 @@ export namespace securitycenter_v1 {
      */
     filter?: string;
     /**
+     * Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a " ASC" or a " DESC" suffix, respectively; for example: `exposed_score DESC`.
+     */
+    orderBy?: string;
+    /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
     pageSize?: number;
@@ -14615,6 +14693,10 @@ export namespace securitycenter_v1 {
      * The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =
      */
     filter?: string;
+    /**
+     * Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a " ASC" or a " DESC" suffix, respectively; for example: `exposed_score DESC`.
+     */
+    orderBy?: string;
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
