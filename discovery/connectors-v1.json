@@ -1387,6 +1387,11 @@
                         "name"
                       ],
                       "parameters": {
+                        "force": {
+                          "description": "Optional. If set to true, any customConnectorVersion which is a child resource will also be deleted. https://aip.dev/135#cascading-delete",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "name": {
                           "description": "Required. Resource name of the form: `projects/{project}/locations/{location}/customConnectors/{connector}`",
                           "location": "path",
@@ -2349,7 +2354,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240122",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2550,7 +2555,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -3268,6 +3273,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "deploymentModel": {
+          "description": "Optional. Indicates whether connector is deployed on GKE/CloudRun",
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "GKE_MST",
+            "CLOUD_RUN_MST"
+          ],
+          "enumDescriptions": [
+            "Deployment model is not specified.",
+            "Default model gke mst.",
+            "Cloud run mst."
+          ],
+          "type": "string"
+        },
         "hpaConfig": {
           "$ref": "HPAConfig",
           "description": "Output only. HPA autoscaling config.",
@@ -3415,7 +3434,7 @@
           "type": "string"
         },
         "serviceAccount": {
-          "description": "Required. Service account used by runtime plane to access auth config secrets.",
+          "description": "Optional. Service account used by runtime plane to access auth config secrets.",
           "type": "string"
         },
         "specLocation": {
@@ -3465,6 +3484,21 @@
           "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DeadLetterConfig": {
+      "description": "Dead Letter configuration details provided by the user.",
+      "id": "DeadLetterConfig",
+      "properties": {
+        "projectId": {
+          "description": "Optional. Project which has the topic given.",
+          "type": "string"
+        },
+        "topic": {
+          "description": "Optional. Topic to push events which couldn't be processed.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3903,6 +3937,10 @@
           "$ref": "AuthConfig",
           "description": "Auth details for the webhook adapter."
         },
+        "deadLetterConfig": {
+          "$ref": "DeadLetterConfig",
+          "description": "Optional. Dead letter configuration for eventing of a connection."
+        },
         "enrichmentEnabled": {
           "description": "Enrichment Enabled.",
           "type": "boolean"
@@ -3918,6 +3956,10 @@
         "privateConnectivityEnabled": {
           "description": "Optional. Private Connectivity Enabled.",
           "type": "boolean"
+        },
+        "proxyDestinationConfig": {
+          "$ref": "DestinationConfig",
+          "description": "Optional. Proxy for Eventing auto-registration."
         },
         "registrationDestinationConfig": {
           "$ref": "DestinationConfig",
@@ -3984,6 +4026,10 @@
             "$ref": "AuthConfigTemplate"
           },
           "type": "array"
+        },
+        "proxyDestinationConfig": {
+          "$ref": "DestinationConfigTemplate",
+          "description": "Proxy destination config template."
         },
         "registrationDestinationConfig": {
           "$ref": "DestinationConfigTemplate",
@@ -5966,6 +6012,11 @@
         "networkConfig": {
           "$ref": "NetworkConfig",
           "description": "Optional. Regional network config."
+        },
+        "provisioned": {
+          "description": "Output only. Specifies whether the region is provisioned.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
