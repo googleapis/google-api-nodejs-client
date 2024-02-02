@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20231207",
+  "revision": "20240117",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -757,7 +757,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.",
           "items": {
             "type": "string"
           },
@@ -970,7 +970,11 @@
             "PSC_GOOGLE_API",
             "PSC_VPC_SC",
             "SERVERLESS_NEG",
-            "STORAGE_BUCKET"
+            "STORAGE_BUCKET",
+            "PRIVATE_NETWORK",
+            "CLOUD_FUNCTION",
+            "APP_ENGINE_VERSION",
+            "CLOUD_RUN_REVISION"
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -983,7 +987,11 @@
             "Target is all Google APIs that use [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
             "Target is a VPC-SC that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
             "Target is a serverless network endpoint group.",
-            "Target is a Cloud Storage bucket."
+            "Target is a Cloud Storage bucket.",
+            "Target is a private network. Used only for return traces.",
+            "Target is a Cloud Function. Used only for return traces.",
+            "Target is a App Engine service version. Used only for return traces.",
+            "Target is a Cloud Run revision. Used only for return traces."
           ],
           "type": "string"
         }
@@ -1006,6 +1014,11 @@
             "ROUTE_WRONG_NETWORK",
             "ROUTE_NEXT_HOP_IP_ADDRESS_NOT_RESOLVED",
             "ROUTE_NEXT_HOP_RESOURCE_NOT_FOUND",
+            "ROUTE_NEXT_HOP_INSTANCE_WRONG_NETWORK",
+            "ROUTE_NEXT_HOP_INSTANCE_NON_PRIMARY_IP",
+            "ROUTE_NEXT_HOP_FORWARDING_RULE_IP_MISMATCH",
+            "ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED",
+            "ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID",
             "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS",
             "VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH",
             "VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH",
@@ -1057,6 +1070,11 @@
             "Packet is sent to a wrong (unintended) network. Example: you trace a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP address to Network3.",
             "Route's next hop IP address cannot be resolved to a GCP resource.",
             "Route's next hop resource is not found.",
+            "Route's next hop instance doesn't hace a NIC in the route's network.",
+            "Route's next hop IP address is not a primary IP address of the next hop instance.",
+            "Route's next hop forwarding rule doesn't match next hop IP address.",
+            "Route's next hop VPN tunnel is down (does not have valid IKE SAs).",
+            "Route's next hop forwarding rule type is invalid (it's not a forwarding rule of the internal passthrough load balancer).",
             "Packet is sent from the Internet to the private IPv6 address.",
             "The packet does not match a policy-based VPN tunnel local selector.",
             "The packet does not match a policy-based VPN tunnel remote selector.",
@@ -1418,6 +1436,18 @@
             "ANOTHER_PROJECT",
             "NCC_HUB",
             "ROUTER_APPLIANCE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -2515,6 +2545,8 @@
             "START_FROM_CLOUD_FUNCTION",
             "START_FROM_APP_ENGINE_VERSION",
             "START_FROM_CLOUD_RUN_REVISION",
+            "START_FROM_STORAGE_BUCKET",
+            "START_FROM_PSC_PUBLISHED_SERVICE",
             "APPLY_INGRESS_FIREWALL_RULE",
             "APPLY_EGRESS_FIREWALL_RULE",
             "APPLY_ROUTE",
@@ -2546,6 +2578,8 @@
             "Initial state: packet originating from a Cloud Function. A CloudFunctionInfo is populated with starting function information.",
             "Initial state: packet originating from an App Engine service version. An AppEngineVersionInfo is populated with starting version information.",
             "Initial state: packet originating from a Cloud Run revision. A CloudRunRevisionInfo is populated with starting revision information.",
+            "Initial state: packet originating from a Storage Bucket. Used only for return traces. The storage_bucket information is populated.",
+            "Initial state: packet originating from a published service that uses Private Service Connect. Used only for return traces.",
             "Config checking state: verify ingress firewall rule.",
             "Config checking state: verify egress firewall rule.",
             "Config checking state: verify route.",
@@ -2568,6 +2602,10 @@
           ],
           "type": "string"
         },
+        "storageBucket": {
+          "$ref": "StorageBucketInfo",
+          "description": "Display information of a Storage Bucket. Used only for return traces."
+        },
         "vpcConnector": {
           "$ref": "VpcConnectorInfo",
           "description": "Display information of a VPC connector."
@@ -2579,6 +2617,17 @@
         "vpnTunnel": {
           "$ref": "VpnTunnelInfo",
           "description": "Display information of a Compute Engine VPN tunnel."
+        }
+      },
+      "type": "object"
+    },
+    "StorageBucketInfo": {
+      "description": "For display only. Metadata associated with Storage Bucket.",
+      "id": "StorageBucketInfo",
+      "properties": {
+        "bucket": {
+          "description": "Cloud Storage Bucket name.",
+          "type": "string"
         }
       },
       "type": "object"
