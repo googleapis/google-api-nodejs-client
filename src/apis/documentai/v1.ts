@@ -846,6 +846,10 @@ export namespace documentai_v1 {
      */
     inputDocuments?: Schema$GoogleCloudDocumentaiV1BatchDocumentsInputConfig;
     /**
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints) and can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Inference-time options for the process API
      */
     processOptions?: Schema$GoogleCloudDocumentaiV1ProcessOptions;
@@ -2998,7 +3002,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**
-     * Optional. Derepcated. Warehouse-based dataset configuration is not supported today.
+     * Optional. Deprecated. Warehouse-based dataset configuration is not supported.
      */
     documentWarehouseConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig;
     /**
@@ -4910,7 +4914,7 @@ export namespace documentai_v1 {
      */
     individualPageSelector?: Schema$GoogleCloudDocumentaiV1ProcessOptionsIndividualPageSelector;
     /**
-     * Only applicable to `OCR_PROCESSOR`. Returns error if set on other processor types.
+     * Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`. Returns error if set on other processor types.
      */
     ocrConfig?: Schema$GoogleCloudDocumentaiV1OcrConfig;
   }
@@ -5043,6 +5047,10 @@ export namespace documentai_v1 {
      */
     latestEvaluation?: Schema$GoogleCloudDocumentaiV1EvaluationReference;
     /**
+     * Output only. The model type of this processor version.
+     */
+    modelType?: string | null;
+    /**
      * The resource name of the processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}`
      */
     name?: string | null;
@@ -5093,6 +5101,10 @@ export namespace documentai_v1 {
      * An inline document proto.
      */
     inlineDocument?: Schema$GoogleCloudDocumentaiV1Document;
+    /**
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints) and can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Inference-time options for the process API
      */

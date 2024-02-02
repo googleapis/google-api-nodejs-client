@@ -3090,7 +3090,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**
-     * Optional. Derepcated. Warehouse-based dataset configuration is not supported today.
+     * Optional. Deprecated. Warehouse-based dataset configuration is not supported.
      */
     documentWarehouseConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig;
     /**

@@ -1284,7 +1284,7 @@
       }
     }
   },
-  "revision": "20231211",
+  "revision": "20240126",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -5568,6 +5568,13 @@
           "$ref": "GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig",
           "description": "The input documents for the BatchProcessDocuments method."
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints) and can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.",
+          "type": "object"
+        },
         "outputConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchOutputConfig",
           "deprecated": true,
@@ -5691,7 +5698,7 @@
         "documentWarehouseConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig",
           "deprecated": true,
-          "description": "Optional. Derepcated. Warehouse-based dataset configuration is not supported today."
+          "description": "Optional. Deprecated. Warehouse-based dataset configuration is not supported."
         },
         "gcsManagedConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3DatasetGCSManagedConfig",
@@ -8118,7 +8125,7 @@
         },
         "ocrConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3OcrConfig",
-          "description": "Only applicable to `OCR_PROCESSOR`. Returns error if set on other processor types."
+          "description": "Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`. Returns error if set on other processor types."
         },
         "schemaOverride": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchema",
@@ -8163,6 +8170,13 @@
         "inlineDocument": {
           "$ref": "GoogleCloudDocumentaiV1beta3Document",
           "description": "An inline document proto."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints) and can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.",
+          "type": "object"
         },
         "processOptions": {
           "$ref": "GoogleCloudDocumentaiV1beta3ProcessOptions",
@@ -8379,6 +8393,21 @@
         "latestEvaluation": {
           "$ref": "GoogleCloudDocumentaiV1beta3EvaluationReference",
           "description": "The most recently invoked evaluation for the processor version."
+        },
+        "modelType": {
+          "description": "Output only. The model type of this processor version.",
+          "enum": [
+            "MODEL_TYPE_UNSPECIFIED",
+            "MODEL_TYPE_GENERATIVE",
+            "MODEL_TYPE_CUSTOM"
+          ],
+          "enumDescriptions": [
+            "The processor version has unspecified model type.",
+            "The processor version has generative model type.",
+            "The processor version has custom model type."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "The resource name of the processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`",
@@ -8796,12 +8825,12 @@
       "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestFoundationModelTuningOptions",
       "properties": {
         "learningRateMultiplier": {
-          "description": "Optional. The multiplier to apply to the recommended learning rate. Valid values are between [0.1, 10]. If not provided, recommended learning rate will be used.",
+          "description": "Optional. The multiplier to apply to the recommended learning rate. Valid values are between 0.1 and 10. If not provided, recommended learning rate will be used.",
           "format": "float",
           "type": "number"
         },
         "trainSteps": {
-          "description": "Optional. The number of steps to run for model tuning. Valid values are between [1, 400]. If not provided, recommended steps will be used.",
+          "description": "Optional. The number of steps to run for model tuning. Valid values are between 1 and 400. If not provided, recommended steps will be used.",
           "format": "int32",
           "type": "integer"
         }
