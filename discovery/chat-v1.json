@@ -228,6 +228,34 @@
     },
     "spaces": {
       "methods": {
+        "completeImport": {
+          "description": "Completes the [import process](https://developers.google.com/chat/api/guides/import-data) for the specified space and makes it visible to users. Requires app authentication and domain-wide delegation. For more information, see [Authorize Google Chat apps to import data](https://developers.google.com/chat/api/guides/authorize-import).",
+          "flatPath": "v1/spaces/{spacesId}:completeImport",
+          "httpMethod": "POST",
+          "id": "chat.spaces.completeImport",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Resource name of the import mode space. Format: `spaces/{space}`",
+              "location": "path",
+              "pattern": "^spaces/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:completeImport",
+          "request": {
+            "$ref": "CompleteImportSpaceRequest"
+          },
+          "response": {
+            "$ref": "CompleteImportSpaceResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/chat.import"
+          ]
+        },
         "create": {
           "description": "Creates a named space. Spaces grouped by topics aren't supported. For an example, see [Create a space](https://developers.google.com/chat/api/guides/v1/spaces/create). If you receive the error message `ALREADY_EXISTS` when creating a space, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
           "flatPath": "v1/spaces",
@@ -381,7 +409,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. The updated field paths, comma separated if there are multiple. Currently supported field paths: - `display_name` (Only supports changing the display name of a space with the `SPACE` type, or when also including the `space_type` mask to change a `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument error. If you receive the error message `ALREADY_EXISTS` when updating the `displayName`, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name.) - `space_type` (Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error). - `space_details` - `space_history_state` (Supports [turning history on or off for the space](https://support.google.com/chat/answer/7664687) if [the organization allows users to change their history setting](https://support.google.com/a/answer/7664184). Warning: mutually exclusive with all other field paths.)",
+              "description": "Required. The updated field paths, comma separated if there are multiple. Currently supported field paths: - `display_name` (Only supports changing the display name of a space with the `SPACE` type, or when also including the `space_type` mask to change a `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument error. If you receive the error message `ALREADY_EXISTS` when updating the `displayName`, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name.) - `space_type` (Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error). - `space_details` - `space_history_state` (Supports [turning history on or off for the space](https://support.google.com/chat/answer/7664687) if [the organization allows users to change their history setting](https://support.google.com/a/answer/7664184). Warning: mutually exclusive with all other field paths.) - Developer Preview: `access_settings.audience` (Supports changing the [access setting](https://support.google.com/chat/answer/11971020) of a space. If no audience is specified in the access setting, the space's access setting is updated to restricted. Warning: mutually exclusive with all other field paths.)",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -574,7 +602,7 @@
               ],
               "parameters": {
                 "messageId": {
-                  "description": "Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
+                  "description": "Optional. A custom ID for a message. Lets Chat apps get, update, or delete a message without needing to store the system-assigned ID in the message's resource name (represented in the message `name` field). The value for this field must meet the following requirements: * Begins with `client-`. For example, `client-custom-name` is a valid custom ID, but `custom-name` is not. * Contains up to 63 characters and only lowercase letters, numbers, and hyphens. * Is unique within a space. A Chat app can't use the same custom ID for different messages. For details, see [Name a message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
                   "location": "query",
                   "type": "string"
                 },
@@ -641,7 +669,7 @@
                   "type": "boolean"
                 },
                 "name": {
-                  "description": "Required. Resource name of the message that you want to delete, in the form `spaces/*/messages/*` Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`",
+                  "description": "Required. Resource name of the message. Format: `spaces/{space}/messages/{message}` If you've set a custom ID for your message, you can use the value from the `clientAssignedMessageId` field for `{message}`. For details, see [Name a message] (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
@@ -668,7 +696,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Resource name of the message to retrieve. Format: `spaces/{space}/messages/{message}` If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
+                  "description": "Required. Resource name of the message. Format: `spaces/{space}/messages/{message}` If you've set a custom ID for your message, you can use the value from the `clientAssignedMessageId` field for `{message}`. For details, see [Name a message] (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
@@ -753,14 +781,14 @@
                   "type": "boolean"
                 },
                 "name": {
-                  "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`",
+                  "description": "Resource name of the message. Format: `spaces/{space}/messages/{message}` Where `{space}` is the ID of the space where the message is posted and `{message}` is a system-assigned ID for the message. For example, `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`. If you set a custom ID when you create a message, you can use this ID to specify the message in a request by replacing `{message}` with the value from the `clientAssignedMessageId` field. For example, `spaces/AAAAAAAAAAA/messages/client-custom-name`. For details, see [Name a message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
+                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - Developer Preview: `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -794,14 +822,14 @@
                   "type": "boolean"
                 },
                 "name": {
-                  "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`",
+                  "description": "Resource name of the message. Format: `spaces/{space}/messages/{message}` Where `{space}` is the ID of the space where the message is posted and `{message}` is a system-assigned ID for the message. For example, `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`. If you set a custom ID when you create a message, you can use this ID to specify the message in a request by replacing `{message}` with the value from the `clientAssignedMessageId` field. For example, `spaces/AAAAAAAAAAA/messages/client-custom-name`. For details, see [Name a message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
+                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - Developer Preview: `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -962,7 +990,7 @@
       }
     }
   },
-  "revision": "20231214",
+  "revision": "20240128",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1320,7 +1348,7 @@
       "type": "object"
     },
     "ChatClientDataSourceMarkup": {
-      "description": "Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Chat. The data source populates selection items for the multiselect menu. For example, a user can select Google Chat spaces that they're a member of.",
+      "description": "For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Chat. The data source populates selection items for the multiselect menu. For example, a user can select Google Chat spaces that they're a member of. [Google Chat apps](https://developers.google.com/chat):",
       "id": "ChatClientDataSourceMarkup",
       "properties": {
         "spaceDataSource": {
@@ -1381,7 +1409,8 @@
             "SHEETS",
             "SLIDES",
             "DRAWINGS",
-            "CHAT"
+            "CHAT",
+            "CHAT_IN_GMAIL"
           ],
           "enumDescriptions": [
             "Google can't identify a host app.",
@@ -1394,7 +1423,8 @@
             "The add-on launches from Google Sheets.",
             "The add-on launches from Google Slides.",
             "The add-on launches from Google Drawings.",
-            "A Google Chat app. Not used for Google Workspace Add-ons."
+            "A Google Chat app. Not used for Google Workspace Add-ons.",
+            "The add-on or appfinder widget launches from Chat-in-Gmail"
           ],
           "type": "string"
         },
@@ -1432,6 +1462,22 @@
         "userLocale": {
           "description": "The full `locale.displayName` in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as \"en-US\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CompleteImportSpaceRequest": {
+      "description": "Request message for completing the import process for a space.",
+      "id": "CompleteImportSpaceRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CompleteImportSpaceResponse": {
+      "id": "CompleteImportSpaceResponse",
+      "properties": {
+        "space": {
+          "$ref": "Space",
+          "description": "The import mode space."
         }
       },
       "type": "object"
@@ -1686,7 +1732,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Action": {
-      "description": "An action that describes the behavior when the form is submitted. For example, you can invoke an Apps Script script to handle the form. If the action is triggered, the form values are sent to the server.",
+      "description": "An action that describes the behavior when the form is submitted. For example, you can invoke an Apps Script script to handle the form. If the action is triggered, the form values are sent to the server. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1Action",
       "properties": {
         "function": {
@@ -1694,14 +1740,14 @@
           "type": "string"
         },
         "interaction": {
-          "description": "Optional. Required when opening a [dialog](https://developers.google.com/chat/how-tos/dialogs). What to do in response to an interaction with a user, such as a user clicking a button in a card message. If unspecified, the app responds by executing an `action`—like opening a link or running a function—as normal. By specifying an `interaction`, the app can respond in special interactive ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When specified, a loading indicator isn't shown. Supported by Chat apps, but not Google Workspace Add-ons. If specified for an add-on, the entire card is stripped and nothing is shown in the client.",
+          "description": "Optional. Required when opening a [dialog](https://developers.google.com/chat/how-tos/dialogs). What to do in response to an interaction with a user, such as a user clicking a button in a card message. If unspecified, the app responds by executing an `action`—like opening a link or running a function—as normal. By specifying an `interaction`, the app can respond in special interactive ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When specified, a loading indicator isn't shown. If specified for an add-on, the entire card is stripped and nothing is shown in the client. [Google Chat apps](https://developers.google.com/chat):",
           "enum": [
             "INTERACTION_UNSPECIFIED",
             "OPEN_DIALOG"
           ],
           "enumDescriptions": [
             "Default value. The `action` executes as normal.",
-            "Opens a [dialog](https://developers.google.com/chat/how-tos/dialogs), a windowed, card-based interface that Chat apps use to interact with users. Only supported by Chat apps in response to button-clicks on card messages. Not supported by Google Workspace Add-ons. If specified for an add-on, the entire card is stripped and nothing is shown in the client."
+            "Opens a [dialog](https://developers.google.com/chat/how-tos/dialogs), a windowed, card-based interface that Chat apps use to interact with users. Only supported by Chat apps in response to button-clicks on card messages. If specified for an add-on, the entire card is stripped and nothing is shown in the client. [Google Chat apps](https://developers.google.com/chat):"
           ],
           "type": "string"
         },
@@ -1732,7 +1778,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1ActionParameter": {
-      "description": "List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze one day, or snooze next week. You might use `action method = snooze()`, passing the snooze type and snooze time in the list of string parameters. To learn more, see [`CommonEventObject`](https://developers.google.com/chat/api/reference/rest/v1/Event#commoneventobject).",
+      "description": "List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze one day, or snooze next week. You might use `action method = snooze()`, passing the snooze type and snooze time in the list of string parameters. To learn more, see [`CommonEventObject`](https://developers.google.com/chat/api/reference/rest/v1/Event#commoneventobject). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1ActionParameter",
       "properties": {
         "key": {
@@ -1747,7 +1793,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1BorderStyle": {
-      "description": "The style options for the border of a card or widget, including the border type and color.",
+      "description": "The style options for the border of a card or widget, including the border type and color. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1BorderStyle",
       "properties": {
         "cornerRadius": {
@@ -1777,7 +1823,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Button": {
-      "description": "A text, icon, or text and icon button that users can click. For an example in Google Chat apps, see [Button list](https://developers.google.com/chat/ui/widgets/button-list). To make an image a clickable button, specify an `Image` (not an `ImageComponent`) and set an `onClick` action.",
+      "description": "A text, icon, or text and icon button that users can click. For an example in Google Chat apps, see [Button list](https://developers.google.com/chat/ui/widgets/button-list). To make an image a clickable button, specify an `Image` (not an `ImageComponent`) and set an `onClick` action. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1Button",
       "properties": {
         "altText": {
@@ -1808,7 +1854,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1ButtonList": {
-      "description": "A list of buttons layed out horizontally. For an example in Google Chat apps, see [Button list](https://developers.google.com/chat/ui/widgets/button-list).",
+      "description": "A list of buttons layed out horizontally. For an example in Google Chat apps, see [Button list](https://developers.google.com/chat/ui/widgets/button-list). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1ButtonList",
       "properties": {
         "buttons": {
@@ -1826,14 +1872,14 @@
       "id": "GoogleAppsCardV1Card",
       "properties": {
         "cardActions": {
-          "description": "The card's actions. Actions are added to the card's toolbar menu. Because Chat app cards have no toolbar, `cardActions[]` isn't supported by Chat apps. For example, the following JSON constructs a card action menu with `Settings` and `Send Feedback` options: ``` \"card_actions\": [ { \"actionLabel\": \"Settings\", \"onClick\": { \"action\": { \"functionName\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"SETTING\" } ], \"loadIndicator\": \"LoadIndicator.SPINNER\" } } }, { \"actionLabel\": \"Send Feedback\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/feedback\" } } } ] ```",
+          "description": "The card's actions. Actions are added to the card's toolbar menu. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons): For example, the following JSON constructs a card action menu with `Settings` and `Send Feedback` options: ``` \"card_actions\": [ { \"actionLabel\": \"Settings\", \"onClick\": { \"action\": { \"functionName\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"SETTING\" } ], \"loadIndicator\": \"LoadIndicator.SPINNER\" } } }, { \"actionLabel\": \"Send Feedback\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/feedback\" } } } ] ```",
           "items": {
             "$ref": "GoogleAppsCardV1CardAction"
           },
           "type": "array"
         },
         "displayStyle": {
-          "description": "In Google Workspace add-ons, sets the display properties of the `peekCardHeader`. Not supported by Chat apps.",
+          "description": "In Google Workspace Add-ons, sets the display properties of the `peekCardHeader`. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons):",
           "enum": [
             "DISPLAY_STYLE_UNSPECIFIED",
             "PEEK",
@@ -1848,19 +1894,19 @@
         },
         "fixedFooter": {
           "$ref": "GoogleAppsCardV1CardFixedFooter",
-          "description": "The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/v1/messages/create#create)."
+          "description": "The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/v1/messages/create#create). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):"
         },
         "header": {
           "$ref": "GoogleAppsCardV1CardHeader",
           "description": "The header of the card. A header usually contains a leading image and a title. Headers always appear at the top of a card."
         },
         "name": {
-          "description": "Name of the card. Used as a card identifier in card navigation. Because Chat apps don't support card navigation, they ignore this field.",
+          "description": "Name of the card. Used as a card identifier in card navigation. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons):",
           "type": "string"
         },
         "peekCardHeader": {
           "$ref": "GoogleAppsCardV1CardHeader",
-          "description": "When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards. Not supported by Chat apps."
+          "description": "When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons):"
         },
         "sectionDividerStyle": {
           "description": "The divider style between sections.",
@@ -1887,7 +1933,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1CardAction": {
-      "description": "A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser. Not supported by Chat apps.",
+      "description": "A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons):",
       "id": "GoogleAppsCardV1CardAction",
       "properties": {
         "actionLabel": {
@@ -1902,7 +1948,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1CardFixedFooter": {
-      "description": "A persistent (sticky) footer that that appears at the bottom of the card. For an example in Google Chat apps, see [Card footer](https://developers.google.com/chat/ui/widgets/card-fixed-footer). Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/v1/messages/create#create).",
+      "description": "A persistent (sticky) footer that that appears at the bottom of the card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/v1/messages/create#create). For an example in Google Chat apps, see [Card footer](https://developers.google.com/chat/ui/widgets/card-fixed-footer). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1CardFixedFooter",
       "properties": {
         "primaryButton": {
@@ -1917,7 +1963,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1CardHeader": {
-      "description": "Represents a card header. For an example in Google Chat apps, see [Card header](https://developers.google.com/chat/ui/widgets/card-header).",
+      "description": "Represents a card header. For an example in Google Chat apps, see [Card header](https://developers.google.com/chat/ui/widgets/card-header). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1CardHeader",
       "properties": {
         "imageAltText": {
@@ -1925,7 +1971,7 @@
           "type": "string"
         },
         "imageType": {
-          "description": "The shape used to crop the image.",
+          "description": "The shape used to crop the image. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
           "enum": [
             "SQUARE",
             "CIRCLE"
@@ -1952,7 +1998,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Column": {
-      "description": "A column.",
+      "description": "A column. [Google Chat apps](https://developers.google.com/chat):",
       "id": "GoogleAppsCardV1Column",
       "properties": {
         "horizontalAlignment": {
@@ -1972,7 +2018,7 @@
           "type": "string"
         },
         "horizontalSizeStyle": {
-          "description": "Specifies how a column fills the width of the card.",
+          "description": "Specifies how a column fills the width of the card. [Google Chat apps](https://developers.google.com/chat):",
           "enum": [
             "HORIZONTAL_SIZE_STYLE_UNSPECIFIED",
             "FILL_AVAILABLE_SPACE",
@@ -1986,7 +2032,7 @@
           "type": "string"
         },
         "verticalAlignment": {
-          "description": "Specifies whether widgets align to the top, bottom, or center of a column.",
+          "description": "Specifies whether widgets align to the top, bottom, or center of a column. [Google Chat apps](https://developers.google.com/chat):",
           "enum": [
             "VERTICAL_ALIGNMENT_UNSPECIFIED",
             "CENTER",
@@ -2012,7 +2058,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Columns": {
-      "description": "The `Columns` widget displays up to 2 columns in a card message or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. Supported by Chat apps, but not Google Workspace Add-ons.",
+      "description": "The `Columns` widget displays up to 2 columns in a card message or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. [Google Chat apps](https://developers.google.com/chat):",
       "id": "GoogleAppsCardV1Columns",
       "properties": {
         "columnItems": {
@@ -2026,7 +2072,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1DateTimePicker": {
-      "description": "Lets users input a date, a time, or both a date and a time. For an example in Google Chat apps, see [Date time picker](https://developers.google.com/chat/ui/widgets/date-time-picker). Users can input text or use the picker to select dates and times. If users input an invalid date or time, the picker shows an error that prompts users to input the information correctly.",
+      "description": "Lets users input a date, a time, or both a date and a time. For an example in Google Chat apps, see [Date time picker](https://developers.google.com/chat/ui/widgets/date-time-picker). Users can input text or use the picker to select dates and times. If users input an invalid date or time, the picker shows an error that prompts users to input the information correctly. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1DateTimePicker",
       "properties": {
         "label": {
@@ -2069,7 +2115,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1DecoratedText": {
-      "description": "A widget that displays text with optional decorations such as a label above or below the text, an icon in front of the text, a selection widget, or a button after the text. For an example in Google Chat apps, see [Decorated text](https://developers.google.com/chat/ui/widgets/decorated-text).",
+      "description": "A widget that displays text with optional decorations such as a label above or below the text, an icon in front of the text, a selection widget, or a button after the text. For an example in Google Chat apps, see [Decorated text](https://developers.google.com/chat/ui/widgets/decorated-text). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1DecoratedText",
       "properties": {
         "bottomLabel": {
@@ -2117,13 +2163,13 @@
       "type": "object"
     },
     "GoogleAppsCardV1Divider": {
-      "description": "Displays a divider between widgets as a horizontal line. For an example in Google Chat apps, see [Divider](https://developers.google.com/chat/ui/widgets/divider). For example, the following JSON creates a divider: ``` \"divider\": {} ```",
+      "description": "Displays a divider between widgets as a horizontal line. For an example in Google Chat apps, see [Divider](https://developers.google.com/chat/ui/widgets/divider). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, the following JSON creates a divider: ``` \"divider\": {} ```",
       "id": "GoogleAppsCardV1Divider",
       "properties": {},
       "type": "object"
     },
     "GoogleAppsCardV1Grid": {
-      "description": "Displays a grid with a collection of items. Items can only include text or images. For responsive columns, or to include more than text or images, use `Columns`. For an example in Google Chat apps, see [Grid](https://developers.google.com/chat/ui/widgets/grid). A grid supports any number of columns and items. The number of rows is determined by items divided by columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. For example, the following JSON creates a 2 column grid with a single item: ``` \"grid\": { \"title\": \"A fine collection of items\", \"columnCount\": 2, \"borderStyle\": { \"type\": \"STROKE\", \"cornerRadius\": 4 }, \"items\": [ { \"image\": { \"imageUri\": \"https://www.example.com/image.png\", \"cropStyle\": { \"type\": \"SQUARE\" }, \"borderStyle\": { \"type\": \"STROKE\" } }, \"title\": \"An item\", \"textAlignment\": \"CENTER\" } ], \"onClick\": { \"openLink\": { \"url\": \"https://www.example.com\" } } } ```",
+      "description": "Displays a grid with a collection of items. Items can only include text or images. For responsive columns, or to include more than text or images, use `Columns`. For an example in Google Chat apps, see [Grid](https://developers.google.com/chat/ui/widgets/grid). A grid supports any number of columns and items. The number of rows is determined by items divided by columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, the following JSON creates a 2 column grid with a single item: ``` \"grid\": { \"title\": \"A fine collection of items\", \"columnCount\": 2, \"borderStyle\": { \"type\": \"STROKE\", \"cornerRadius\": 4 }, \"items\": [ { \"image\": { \"imageUri\": \"https://www.example.com/image.png\", \"cropStyle\": { \"type\": \"SQUARE\" }, \"borderStyle\": { \"type\": \"STROKE\" } }, \"title\": \"An item\", \"textAlignment\": \"CENTER\" } ], \"onClick\": { \"openLink\": { \"url\": \"https://www.example.com\" } } } ```",
       "id": "GoogleAppsCardV1Grid",
       "properties": {
         "borderStyle": {
@@ -2154,7 +2200,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1GridItem": {
-      "description": "Represents an item in a grid layout. Items can contain text, an image, or both text and an image.",
+      "description": "Represents an item in a grid layout. Items can contain text, an image, or both text and an image. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1GridItem",
       "properties": {
         "id": {
@@ -2191,7 +2237,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Icon": {
-      "description": "An icon displayed in a widget on a card. For an example in Google Chat apps, see [Icon](https://developers.google.com/chat/ui/widgets/icon). Supports [built-in](https://developers.google.com/chat/format-messages#builtinicons) and [custom](https://developers.google.com/chat/format-messages#customicons) icons.",
+      "description": "An icon displayed in a widget on a card. For an example in Google Chat apps, see [Icon](https://developers.google.com/chat/ui/widgets/icon). Supports [built-in](https://developers.google.com/chat/format-messages#builtinicons) and [custom](https://developers.google.com/chat/format-messages#customicons) icons. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1Icon",
       "properties": {
         "altText": {
@@ -2222,7 +2268,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Image": {
-      "description": "An image that is specified by a URL and can have an `onClick` action. For an example, see [Image](https://developers.google.com/chat/ui/widgets/image).",
+      "description": "An image that is specified by a URL and can have an `onClick` action. For an example, see [Image](https://developers.google.com/chat/ui/widgets/image). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1Image",
       "properties": {
         "altText": {
@@ -2241,7 +2287,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1ImageComponent": {
-      "description": "Represents an image.",
+      "description": "Represents an image. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1ImageComponent",
       "properties": {
         "altText": {
@@ -2264,7 +2310,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1ImageCropStyle": {
-      "description": "Represents the crop style applied to an image. For example, here's how to apply a 16:9 aspect ratio: ``` cropStyle { \"type\": \"RECTANGLE_CUSTOM\", \"aspectRatio\": 16/9 } ```",
+      "description": "Represents the crop style applied to an image. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, here's how to apply a 16:9 aspect ratio: ``` cropStyle { \"type\": \"RECTANGLE_CUSTOM\", \"aspectRatio\": 16/9 } ```",
       "id": "GoogleAppsCardV1ImageCropStyle",
       "properties": {
         "aspectRatio": {
@@ -2294,7 +2340,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1OnClick": {
-      "description": "Represents how to respond when users click an interactive element on a card, such as a button.",
+      "description": "Represents how to respond when users click an interactive element on a card, such as a button. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1OnClick",
       "properties": {
         "action": {
@@ -2303,11 +2349,11 @@
         },
         "card": {
           "$ref": "GoogleAppsCardV1Card",
-          "description": "A new card is pushed to the card stack after clicking if specified. Supported by Google Workspace Add-ons, but not Google Chat apps."
+          "description": "A new card is pushed to the card stack after clicking if specified. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons):"
         },
         "openDynamicLinkAction": {
           "$ref": "GoogleAppsCardV1Action",
-          "description": "An add-on triggers this action when the action needs to open a link. This differs from the `open_link` above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back. Supported by Google Workspace Add-ons, but not Google Chat apps."
+          "description": "An add-on triggers this action when the action needs to open a link. This differs from the `open_link` above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons):"
         },
         "openLink": {
           "$ref": "GoogleAppsCardV1OpenLink",
@@ -2317,11 +2363,11 @@
       "type": "object"
     },
     "GoogleAppsCardV1OpenLink": {
-      "description": "Represents an `onClick` event that opens a hyperlink.",
+      "description": "Represents an `onClick` event that opens a hyperlink. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1OpenLink",
       "properties": {
         "onClose": {
-          "description": "Whether the client forgets about a link after opening it, or observes it until the window closes. Not supported by Chat apps.",
+          "description": "Whether the client forgets about a link after opening it, or observes it until the window closes. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons):",
           "enum": [
             "NOTHING",
             "RELOAD"
@@ -2333,7 +2379,7 @@
           "type": "string"
         },
         "openAs": {
-          "description": "How to open a link. Not supported by Chat apps.",
+          "description": "How to open a link. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons):",
           "enum": [
             "FULL_SIZE",
             "OVERLAY"
@@ -2352,7 +2398,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1PlatformDataSource": {
-      "description": "Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Workspace. Used to populate items in a multiselect menu.",
+      "description": "For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Workspace. Used to populate items in a multiselect menu. [Google Chat apps](https://developers.google.com/chat):",
       "id": "GoogleAppsCardV1PlatformDataSource",
       "properties": {
         "commonDataSource": {
@@ -2375,7 +2421,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Section": {
-      "description": "A section contains a collection of widgets that are rendered vertically in the order that they're specified.",
+      "description": "A section contains a collection of widgets that are rendered vertically in the order that they're specified. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1Section",
       "properties": {
         "collapsible": {
@@ -2402,7 +2448,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1SelectionInput": {
-      "description": "A widget that creates one or more UI items that users can select. For example, a dropdown menu or checkboxes. You can use this widget to collect data that can be predicted or enumerated. For an example in Google Chat apps, see [Selection input](https://developers.google.com/chat/ui/widgets/selection-input). Chat apps can process the value of items that users select or input. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data). To collect undefined or abstract data from users, use the TextInput widget.",
+      "description": "A widget that creates one or more UI items that users can select. For example, a dropdown menu or checkboxes. You can use this widget to collect data that can be predicted or enumerated. For an example in Google Chat apps, see [Selection input](https://developers.google.com/chat/ui/widgets/selection-input). Chat apps can process the value of items that users select or input. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data). To collect undefined or abstract data from users, use the TextInput widget. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1SelectionInput",
       "properties": {
         "externalDataSource": {
@@ -2456,7 +2502,7 @@
             "A set of radio buttons. Users can select one radio button.",
             "A set of switches. Users can turn on one or more switches.",
             "A dropdown menu. Users can select one item from the menu.",
-            "Supported by Chat apps, but not Google Workspace Add-ons. A multiselect menu for static or dynamic data. From the menu bar, users select one or more items. Users can also input values to populate dynamic data. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To populate items for a multiselect menu, you can use one of the following types of data sources: * Static data: Items are specified as `SelectionItem` objects in the widget. Up to 100 items. * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement multiselect menus, see the [`SelectionInput` widget page](https://developers.google.com/chat/ui/widgets/selection-input#multiselect-menu)."
+            "A multiselect menu for static or dynamic data. From the menu bar, users select one or more items. Users can also input values to populate dynamic data. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To populate items for a multiselect menu, you can use one of the following types of data sources: * Static data: Items are specified as `SelectionItem` objects in the widget. Up to 100 items. * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement multiselect menus, see the [`SelectionInput` widget page](https://developers.google.com/chat/ui/widgets/selection-input#multiselect-menu). [Google Chat apps](https://developers.google.com/chat):"
           ],
           "type": "string"
         }
@@ -2464,7 +2510,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1SelectionItem": {
-      "description": "An item that users can select in a selection input, such as a checkbox or switch.",
+      "description": "An item that users can select in a selection input, such as a checkbox or switch. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1SelectionItem",
       "properties": {
         "bottomText": {
@@ -2491,7 +2537,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1SuggestionItem": {
-      "description": "One suggested value that users can enter in a text input field.",
+      "description": "One suggested value that users can enter in a text input field. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1SuggestionItem",
       "properties": {
         "text": {
@@ -2502,7 +2548,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Suggestions": {
-      "description": "Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing `Jav`, the list of suggestions filters to show `Java` and `JavaScript`. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter `javascript` and others `java script`. Suggesting `JavaScript` can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set to `MULTIPLE_LINE`.",
+      "description": "Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing `Jav`, the list of suggestions filters to show `Java` and `JavaScript`. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter `javascript` and others `java script`. Suggesting `JavaScript` can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set to `MULTIPLE_LINE`. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1Suggestions",
       "properties": {
         "items": {
@@ -2516,11 +2562,11 @@
       "type": "object"
     },
     "GoogleAppsCardV1SwitchControl": {
-      "description": "Either a toggle-style switch or a checkbox inside a `decoratedText` widget. Only supported in the `decoratedText` widget.",
+      "description": "Either a toggle-style switch or a checkbox inside a `decoratedText` widget. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): Only supported in the `decoratedText` widget.",
       "id": "GoogleAppsCardV1SwitchControl",
       "properties": {
         "controlType": {
-          "description": "How the switch appears in the user interface.",
+          "description": "How the switch appears in the user interface. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
           "enum": [
             "SWITCH",
             "CHECKBOX",
@@ -2553,12 +2599,12 @@
       "type": "object"
     },
     "GoogleAppsCardV1TextInput": {
-      "description": "A field in which users can enter text. Supports suggestions and on-change actions. For an example in Google Chat apps, see [Text input](https://developers.google.com/chat/ui/widgets/text-input). Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data). When you need to collect undefined or abstract data from users, use a text input. To collect defined or enumerated data from users, use the SelectionInput widget.",
+      "description": "A field in which users can enter text. Supports suggestions and on-change actions. For an example in Google Chat apps, see [Text input](https://developers.google.com/chat/ui/widgets/text-input). Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data). When you need to collect undefined or abstract data from users, use a text input. To collect defined or enumerated data from users, use the SelectionInput widget. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1TextInput",
       "properties": {
         "autoCompleteAction": {
           "$ref": "GoogleAppsCardV1Action",
-          "description": "Optional. Specify what action to take when the text input field provides suggestions to users who interact with it. If unspecified, the suggestions are set by `initialSuggestions` and are processed by the client. If specified, the app takes the action specified here, such as running a custom function. Supported by Google Workspace Add-ons, but not Google Chat apps."
+          "description": "Optional. Specify what action to take when the text input field provides suggestions to users who interact with it. If unspecified, the suggestions are set by `initialSuggestions` and are processed by the client. If specified, the app takes the action specified here, such as running a custom function. [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons):"
         },
         "hintText": {
           "description": "Text that appears below the text input field meant to assist users by prompting them to enter a certain value. This text is always visible. Required if `label` is unspecified. Otherwise, optional.",
@@ -2566,7 +2612,7 @@
         },
         "initialSuggestions": {
           "$ref": "GoogleAppsCardV1Suggestions",
-          "description": "Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing `Jav`, the list of suggestions filters to show just `Java` and `JavaScript`. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter `javascript` and others `java script`. Suggesting `JavaScript` can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set to `MULTIPLE_LINE`."
+          "description": "Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing `Jav`, the list of suggestions filters to show just `Java` and `JavaScript`. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter `javascript` and others `java script`. Suggesting `JavaScript` can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set to `MULTIPLE_LINE`. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):"
         },
         "label": {
           "description": "The text that appears above the text input field in the user interface. Specify text that helps the user enter the information your app needs. For example, if you are asking someone's name, but specifically need their surname, write `surname` instead of `name`. Required if `hintText` is unspecified. Otherwise, optional.",
@@ -2581,7 +2627,7 @@
           "description": "What to do when a change occurs in the text input field. For example, a user adding to the field or deleting text. Examples of actions to take include running a custom function or opening a [dialog](https://developers.google.com/chat/how-tos/dialogs) in Google Chat."
         },
         "placeholderText": {
-          "description": "Text that appears in the text input field when the field is empty. Use this text to prompt users to enter a value. For example, `Enter a number from 0 to 100`. Supported by Google Chat apps, but not Google Workspace Add-ons.",
+          "description": "Text that appears in the text input field when the field is empty. Use this text to prompt users to enter a value. For example, `Enter a number from 0 to 100`. [Google Chat apps](https://developers.google.com/chat):",
           "type": "string"
         },
         "type": {
@@ -2604,7 +2650,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1TextParagraph": {
-      "description": "A paragraph of text that supports formatting. For an example in Google Chat apps, see [Text paragraph](https://developers.google.com/chat/ui/widgets/text-paragraph). For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
+      "description": "A paragraph of text that supports formatting. For an example in Google Chat apps, see [Text paragraph](https://developers.google.com/chat/ui/widgets/text-paragraph). For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1TextParagraph",
       "properties": {
         "text": {
@@ -2640,7 +2686,7 @@
         },
         "grid": {
           "$ref": "GoogleAppsCardV1Grid",
-          "description": "Displays a grid with a collection of items. A grid supports any number of columns and items. The number of rows is determined by the upper bounds of the number items divided by the number of columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. For example, the following JSON creates a 2 column grid with a single item: ``` \"grid\": { \"title\": \"A fine collection of items\", \"columnCount\": 2, \"borderStyle\": { \"type\": \"STROKE\", \"cornerRadius\": 4 }, \"items\": [ { \"image\": { \"imageUri\": \"https://www.example.com/image.png\", \"cropStyle\": { \"type\": \"SQUARE\" }, \"borderStyle\": { \"type\": \"STROKE\" } }, \"title\": \"An item\", \"textAlignment\": \"CENTER\" } ], \"onClick\": { \"openLink\": { \"url\": \"https://www.example.com\" } } } ```"
+          "description": "Displays a grid with a collection of items. A grid supports any number of columns and items. The number of rows is determined by the upper bounds of the number items divided by the number of columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, the following JSON creates a 2 column grid with a single item: ``` \"grid\": { \"title\": \"A fine collection of items\", \"columnCount\": 2, \"borderStyle\": { \"type\": \"STROKE\", \"cornerRadius\": 4 }, \"items\": [ { \"image\": { \"imageUri\": \"https://www.example.com/image.png\", \"cropStyle\": { \"type\": \"SQUARE\" }, \"borderStyle\": { \"type\": \"STROKE\" } }, \"title\": \"An item\", \"textAlignment\": \"CENTER\" } ], \"onClick\": { \"openLink\": { \"url\": \"https://www.example.com\" } } } ```"
         },
         "horizontalAlignment": {
           "description": "Specifies whether widgets align to the left, right, or center of a column.",
@@ -2678,7 +2724,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Widgets": {
-      "description": "The supported widgets that you can include in a column.",
+      "description": "The supported widgets that you can include in a column. [Google Chat apps](https://developers.google.com/chat):",
       "id": "GoogleAppsCardV1Widgets",
       "properties": {
         "buttonList": {
@@ -2724,7 +2770,7 @@
       "type": "object"
     },
     "HostAppDataSourceMarkup": {
-      "description": "Chat apps only. For a `SelectionInput` widget that uses a multiselect menu, a data source from a Google Workspace application. The data source populates selection items for the multiselect menu.",
+      "description": "For a `SelectionInput` widget that uses a multiselect menu, a data source from a Google Workspace application. The data source populates selection items for the multiselect menu. [Google Chat apps](https://developers.google.com/chat):",
       "id": "HostAppDataSourceMarkup",
       "properties": {
         "chatDataSource": {
@@ -3067,7 +3113,12 @@
       "id": "Membership",
       "properties": {
         "createTime": {
-          "description": "Optional. Immutable. The creation time of the membership, such as when a member joined or was invited to join a space. [Developer Preview](https://developers.google.com/workspace/preview): This field is output only, except when used to import historical memberships in import mode spaces.",
+          "description": "Optional. Immutable. The creation time of the membership, such as when a member joined or was invited to join a space. This field is output only, except when used to import historical memberships in import mode spaces.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Optional. Immutable. The deletion time of the membership, such as when a member left or was removed from a space. This field is output only, except when used to import historical memberships in import mode spaces.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3169,11 +3220,11 @@
           "type": "array"
         },
         "clientAssignedMessageId": {
-          "description": "A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
+          "description": "Optional. A custom ID for the message. You can use field to identify a message, or to get, delete, or update a message. To set a custom ID, specify the [`messageId`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages/create#body.QUERY_PARAMETERS.message_id) field when you create the message. For details, see [Name a message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
           "type": "string"
         },
         "createTime": {
-          "description": "For spaces created in Chat, the time at which the message was created. This field is output only, except when used in imported spaces. [Developer Preview](https://developers.google.com/workspace/preview): For imported spaces, set this field to the historical timestamp at which the message was created in the source in order to preserve the original creation time.",
+          "description": "Optional. Immutable. For spaces created in Chat, the time at which the message was created. This field is output only, except when used in import mode spaces. For import mode spaces, set this field to the historical timestamp at which the message was created in the source in order to preserve the original creation time.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3217,7 +3268,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`",
+          "description": "Resource name of the message. Format: `spaces/{space}/messages/{message}` Where `{space}` is the ID of the space where the message is posted and `{message}` is a system-assigned ID for the message. For example, `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`. If you set a custom ID when you create a message, you can use this ID to specify the message in a request by replacing `{message}` with the value from the `clientAssignedMessageId` field. For example, `spaces/AAAAAAAAAAA/messages/client-custom-name`. For details, see [Name a message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).",
           "type": "string"
         },
         "privateMessageViewer": {
@@ -3435,12 +3486,21 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "createTime": {
+          "description": "Optional. Immutable. For spaces created in Chat, the time the space was created. This field is output only, except when used in import mode spaces. For import mode spaces, set this field to the historical timestamp at which the space was created in the source in order to preserve the original creation time. Only populated in the output when `spaceType` is `GROUP_CHAT` or `SPACE`.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "displayName": {
           "description": "The space's display name. Required when [creating a space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create). If you receive the error message `ALREADY_EXISTS` when creating a space or updating the `displayName`, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. For direct messages, this field might be empty. Supports up to 128 characters.",
           "type": "string"
         },
         "externalUserAllowed": {
           "description": "Immutable. Whether this space permits any Google Chat user as a member. Input when creating a space in a Google Workspace organization. Omit this field when creating spaces in the following conditions: * The authenticated user uses a Google Account. By default, the space permits any Google Chat user. * The space is used to [import data to Google Chat] (https://developers.google.com/chat/api/guides/import-data-overview). Import mode spaces must only permit members from the same Google Workspace organization. For existing spaces, this field is output only.",
+          "type": "boolean"
+        },
+        "importMode": {
+          "description": "Optional. Whether this space is created in `Import Mode` as part of a data migration into Google Workspace. While spaces are being imported, they aren't visible to users until the import is complete.",
           "type": "boolean"
         },
         "name": {
@@ -3528,7 +3588,7 @@
       "type": "object"
     },
     "SpaceDataSource": {
-      "description": "A data source that populates Google Chat spaces as selection items for a multiselect menu. Only populates spaces that the user is a member of.",
+      "description": "A data source that populates Google Chat spaces as selection items for a multiselect menu. Only populates spaces that the user is a member of. [Google Chat apps](https://developers.google.com/chat):",
       "id": "SpaceDataSource",
       "properties": {
         "defaultToCurrentSpace": {
