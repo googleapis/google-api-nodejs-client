@@ -3842,7 +3842,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240126",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4439,7 +4439,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of delivery mechanism used for this channel.",
+          "description": "The type of delivery mechanism used for this channel. Valid values are \"web_hook\" or \"webhook\".",
           "type": "string"
         }
       },

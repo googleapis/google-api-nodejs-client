@@ -8,6 +8,9 @@
         "https://www.googleapis.com/auth/drive.appdata": {
           "description": "See, create, and delete its own configuration data in your Google Drive"
         },
+        "https://www.googleapis.com/auth/drive.apps.readonly": {
+          "description": "View your Google Drive apps"
+        },
         "https://www.googleapis.com/auth/drive.file": {
           "description": "See, edit, create, and delete only the specific Google Drive files you use with this app"
         },
@@ -145,6 +148,73 @@
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
             "https://www.googleapis.com/auth/drive.readonly"
+          ]
+        }
+      }
+    },
+    "apps": {
+      "methods": {
+        "get": {
+          "description": "Gets a specific app.",
+          "flatPath": "apps/{appId}",
+          "httpMethod": "GET",
+          "id": "drive.apps.get",
+          "parameterOrder": [
+            "appId"
+          ],
+          "parameters": {
+            "appId": {
+              "description": "The ID of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "apps/{appId}",
+          "response": {
+            "$ref": "App"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.appdata",
+            "https://www.googleapis.com/auth/drive.apps.readonly",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly"
+          ]
+        },
+        "list": {
+          "description": "Lists a user's installed apps.",
+          "flatPath": "apps",
+          "httpMethod": "GET",
+          "id": "drive.apps.list",
+          "parameterOrder": [],
+          "parameters": {
+            "appFilterExtensions": {
+              "default": "",
+              "description": "A comma-separated list of file extensions to limit returned results. All results within the given app query scope which can open any of the given file extensions are included in the response. If `appFilterMimeTypes` are provided as well, the result is a union of the two resulting app lists.",
+              "location": "query",
+              "type": "string"
+            },
+            "appFilterMimeTypes": {
+              "default": "",
+              "description": "A comma-separated list of file extensions to limit returned results. All results within the given app query scope which can open any of the given MIME types will be included in the response. If `appFilterExtensions` are provided as well, the result is a union of the two resulting app lists.",
+              "location": "query",
+              "type": "string"
+            },
+            "languageCode": {
+              "description": "A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "apps",
+          "response": {
+            "$ref": "AppList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive.apps.readonly"
           ]
         }
       }
@@ -2433,7 +2503,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240126",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2577,6 +2647,174 @@
       },
       "type": "object"
     },
+    "App": {
+      "description": "The `apps` resource provides a list of apps that a user has installed, with information about each app's supported MIME types, file extensions, and other details. Some resource methods (such as `apps.get`) require an `appId`. Use the `apps.list` method to retrieve the ID for an installed application.",
+      "id": "App",
+      "properties": {
+        "authorized": {
+          "description": "Whether the app is authorized to access data on the user's Drive.",
+          "type": "boolean"
+        },
+        "createInFolderTemplate": {
+          "description": "The template URL to create a file with this app in a given folder. The template contains the {folderId} to be replaced by the folder ID house the new file.",
+          "type": "string"
+        },
+        "createUrl": {
+          "description": "The URL to create a file with this app.",
+          "type": "string"
+        },
+        "hasDriveWideScope": {
+          "description": "Whether the app has Drive-wide scope. An app with Drive-wide scope can access all files in the user's Drive.",
+          "type": "boolean"
+        },
+        "icons": {
+          "description": "The various icons for the app.",
+          "items": {
+            "$ref": "AppIcons"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "The ID of the app.",
+          "type": "string"
+        },
+        "installed": {
+          "description": "Whether the app is installed.",
+          "type": "boolean"
+        },
+        "kind": {
+          "default": "drive#app",
+          "description": "Output only. Identifies what kind of resource this is. Value: the fixed string \"drive#app\".",
+          "type": "string"
+        },
+        "longDescription": {
+          "description": "A long description of the app.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the app.",
+          "type": "string"
+        },
+        "objectType": {
+          "description": "The type of object this app creates such as a Chart. If empty, the app name should be used instead.",
+          "type": "string"
+        },
+        "openUrlTemplate": {
+          "description": "The template URL for opening files with this app. The template contains {ids} or {exportIds} to be replaced by the actual file IDs. For more information, see Open Files for the full documentation.",
+          "type": "string"
+        },
+        "primaryFileExtensions": {
+          "description": "The list of primary file extensions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "primaryMimeTypes": {
+          "description": "The list of primary MIME types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "productId": {
+          "description": "The ID of the product listing for this app.",
+          "type": "string"
+        },
+        "productUrl": {
+          "description": "A link to the product listing for this app.",
+          "type": "string"
+        },
+        "secondaryFileExtensions": {
+          "description": "The list of secondary file extensions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "secondaryMimeTypes": {
+          "description": "The list of secondary MIME types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "shortDescription": {
+          "description": "A short description of the app.",
+          "type": "string"
+        },
+        "supportsCreate": {
+          "description": "Whether this app supports creating objects.",
+          "type": "boolean"
+        },
+        "supportsImport": {
+          "description": "Whether this app supports importing from Google Docs.",
+          "type": "boolean"
+        },
+        "supportsMultiOpen": {
+          "description": "Whether this app supports opening more than one file.",
+          "type": "boolean"
+        },
+        "supportsOfflineCreate": {
+          "description": "Whether this app supports creating files when offline.",
+          "type": "boolean"
+        },
+        "useByDefault": {
+          "description": "Whether the app is selected as the default handler for the types it supports.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AppIcons": {
+      "id": "AppIcons",
+      "properties": {
+        "category": {
+          "description": "Category of the icon. Allowed values are: * `application` - The icon for the application. * `document` - The icon for a file associated with the app. * `documentShared` - The icon for a shared file associated with the app.",
+          "type": "string"
+        },
+        "iconUrl": {
+          "description": "URL for the icon.",
+          "type": "string"
+        },
+        "size": {
+          "description": "Size of the icon. Represented as the maximum of the width and height.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AppList": {
+      "description": "A list of third-party applications which the user has installed or given access to Google Drive.",
+      "id": "AppList",
+      "properties": {
+        "defaultAppIds": {
+          "description": "The list of app IDs that the user has specified to use by default. The list is in reverse-priority order (lowest to highest).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "items": {
+          "description": "The list of apps.",
+          "items": {
+            "$ref": "App"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "drive#appList",
+          "description": "Output only. Identifies what kind of resource this is. Value: the fixed string \"drive#appList\".",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "A link back to this list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Change": {
       "description": "A change to a file or shared drive.",
       "id": "Change",
@@ -2706,7 +2944,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of delivery mechanism used for this channel.",
+          "description": "The type of delivery mechanism used for this channel. Valid values are \"web_hook\" or \"webhook\".",
           "type": "string"
         }
       },
