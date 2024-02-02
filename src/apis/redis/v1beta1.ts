@@ -425,7 +425,7 @@ export namespace redis_v1beta1 {
      */
     redisConfigs?: {[key: string]: string} | null;
     /**
-     * Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_X` for Redis 6.x compatibility
+     * Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_X` for Redis 6.x compatibility * `REDIS_7_0` for Redis 7.0 compatibility
      */
     redisVersion?: string | null;
     /**
@@ -437,11 +437,11 @@ export namespace redis_v1beta1 {
      */
     reservedIpRange?: string | null;
     /**
-     * Optional. Output only. Reserved for future use. Zone Isolation compliance state of the instance. Field name and documentation is obfuscated according to go/per-resource-zi-bit-semantics.
+     * Optional. Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
     /**
-     * Optional. Output only. Reserved for future use. Zone Separation compliance state of the instance. Field name and documentation is obfuscated according to go/zs-resource-status.
+     * Optional. Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
     /**
@@ -1445,10 +1445,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/certificateAuthority').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
