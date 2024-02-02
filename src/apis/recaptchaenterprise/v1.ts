@@ -150,7 +150,7 @@ export namespace recaptchaenterprise_v1 {
      */
     latestVerificationResult?: string | null;
     /**
-     * Username of the account that is being verified. Deprecated. Customers should now provide the hashed account ID field in Event.
+     * Username of the account that is being verified. Deprecated. Customers should now provide the `account_id` field in `event.user_info`.
      */
     username?: string | null;
   }
@@ -732,6 +732,19 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string | null;
   }
+  /**
+   * The reorder firewall policies request message.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest {
+    /**
+     * Required. A list containing all policy names, in the new order. Each name is in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
+     */
+    names?: string[] | null;
+  }
+  /**
+   * The reorder firewall policies response message.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse {}
   /**
    * Secret key is used only in legacy reCAPTCHA. It must be used in a 3rd party integration with legacy reCAPTCHA.
    */
@@ -1857,6 +1870,103 @@ export namespace recaptchaenterprise_v1 {
         );
       }
     }
+
+    /**
+     * Reorders all firewall policies.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reorder(
+      params: Params$Resource$Projects$Firewallpolicies$Reorder,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reorder(
+      params?: Params$Resource$Projects$Firewallpolicies$Reorder,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>;
+    reorder(
+      params: Params$Resource$Projects$Firewallpolicies$Reorder,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reorder(
+      params: Params$Resource$Projects$Firewallpolicies$Reorder,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+    ): void;
+    reorder(
+      params: Params$Resource$Projects$Firewallpolicies$Reorder,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+    ): void;
+    reorder(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+    ): void;
+    reorder(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Firewallpolicies$Reorder
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Firewallpolicies$Reorder;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Firewallpolicies$Reorder;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/firewallpolicies:reorder').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Firewallpolicies$Create
@@ -1915,6 +2025,18 @@ export namespace recaptchaenterprise_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy;
+  }
+  export interface Params$Resource$Projects$Firewallpolicies$Reorder
+    extends StandardParameters {
+    /**
+     * Required. The name of the project to list the policies for, in the format `projects/{project\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest;
   }
 
   export class Resource$Projects$Keys {
