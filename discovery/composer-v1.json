@@ -452,6 +452,53 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "workloads": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists workloads in a Cloud Composer environment. Workload is a unit that runs a single Composer component. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/workloads",
+                      "httpMethod": "GET",
+                      "id": "composer.projects.locations.environments.workloads.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The list filter. Currently only supports equality on the type field. The value of a field specified in the filter expression must be one ComposerWorkloadType enum option. It's possible to get multiple types using \"OR\" operator, e.g.: \"type=SCHEDULER OR type=CELERY_WORKER\". If not specified, all items are returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of environments to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous List request, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The environment name to get workloads for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/workloads",
+                      "response": {
+                        "$ref": "ListWorkloadsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "imageVersions": {
@@ -599,7 +646,7 @@
       }
     }
   },
-  "revision": "20231004",
+  "revision": "20240123",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -671,6 +718,137 @@
         "displayName": {
           "description": "User-defined name that identifies the CIDR block.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudDataLineageIntegration": {
+      "description": "Configuration for Cloud Data Lineage integration.",
+      "id": "CloudDataLineageIntegration",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether or not Cloud Data Lineage integration is enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ComposerWorkload": {
+      "description": "Information about a single workload.",
+      "id": "ComposerWorkload",
+      "properties": {
+        "name": {
+          "description": "Name of a workload.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "ComposerWorkloadStatus",
+          "description": "Output only. Status of a workload.",
+          "readOnly": true
+        },
+        "type": {
+          "description": "Type of a workload.",
+          "enum": [
+            "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED",
+            "CELERY_WORKER",
+            "KUBERNETES_WORKER",
+            "KUBERNETES_OPERATOR_POD",
+            "SCHEDULER",
+            "DAG_PROCESSOR",
+            "TRIGGERER",
+            "WEB_SERVER",
+            "REDIS"
+          ],
+          "enumDescriptions": [
+            "Not able to determine the type of the workload.",
+            "Celery worker.",
+            "Kubernetes worker.",
+            "Workload created by Kubernetes Pod Operator.",
+            "Airflow scheduler.",
+            "Airflow Dag processor.",
+            "Airflow triggerer.",
+            "Airflow web server UI.",
+            "Redis."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComposerWorkloadStatus": {
+      "description": "Workload status.",
+      "id": "ComposerWorkloadStatus",
+      "properties": {
+        "detailedStatusMessage": {
+          "description": "Output only. Detailed message of the status.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Workload state.",
+          "enum": [
+            "COMPOSER_WORKLOAD_STATE_UNSPECIFIED",
+            "PENDING",
+            "OK",
+            "WARNING",
+            "ERROR",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not able to determine the status of the workload.",
+            "Workload is in pending state and has not yet started.",
+            "Workload is running fine.",
+            "Workload is running but there are some non-critical problems.",
+            "Workload is not running due to an error.",
+            "Workload has finished execution with success.",
+            "Workload has finished execution with failure."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "statusMessage": {
+          "description": "Output only. Text to provide more descriptive status.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DagProcessorResource": {
+      "description": "Configuration for resources used by Airflow DAG processors.",
+      "id": "DagProcessorResource",
+      "properties": {
+        "count": {
+          "description": "Optional. The number of DAG processors. If not provided or set to 0, a single DAG processor instance will be created.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "cpu": {
+          "description": "Optional. CPU request and limit for a single Airflow DAG processor replica.",
+          "format": "float",
+          "type": "number"
+        },
+        "memoryGb": {
+          "description": "Optional. Memory (GB) request and limit for a single Airflow DAG processor replica.",
+          "format": "float",
+          "type": "number"
+        },
+        "storageGb": {
+          "description": "Optional. Storage (GB) request and limit for a single Airflow DAG processor replica.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "DataRetentionConfig": {
+      "description": "The configuration setting for Airflow database data retention mechanism.",
+      "id": "DataRetentionConfig",
+      "properties": {
+        "taskLogsRetentionConfig": {
+          "$ref": "TaskLogsRetentionConfig",
+          "description": "Optional. The configuration settings for task logs retention"
         }
       },
       "type": "object"
@@ -822,6 +1000,10 @@
         "dagGcsPrefix": {
           "description": "Output only. The Cloud Storage prefix of the DAGs for this environment. Although Cloud Storage objects reside in a flat namespace, a hierarchical file tree can be simulated using \"/\"-delimited object name prefixes. DAG objects for this environment reside in a simulated directory with the given prefix.",
           "type": "string"
+        },
+        "dataRetentionConfig": {
+          "$ref": "DataRetentionConfig",
+          "description": "Optional. The configuration setting for Airflow database data retention mechanism."
         },
         "databaseConfig": {
           "$ref": "DatabaseConfig",
@@ -1118,6 +1300,24 @@
       },
       "type": "object"
     },
+    "ListWorkloadsResponse": {
+      "description": "Response to ListWorkloadsRequest.",
+      "id": "ListWorkloadsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The page token used to query for the next page if one exists.",
+          "type": "string"
+        },
+        "workloads": {
+          "description": "The list of environment workloads.",
+          "items": {
+            "$ref": "ComposerWorkload"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "LoadSnapshotRequest": {
       "description": "Request to load a snapshot into a Cloud Composer environment.",
       "id": "LoadSnapshotRequest",
@@ -1215,6 +1415,14 @@
       "description": "The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.",
       "id": "NodeConfig",
       "properties": {
+        "composerInternalIpv4CidrBlock": {
+          "description": "Optional. The IP range in CIDR notation to use internally by Cloud Composer. IP addresses are not reserved - and the same range can be used by multiple Cloud Composer environments. In case of overlap, IPs from this range will not be accessible in the user's VPC network. Cannot be updated. If not specified, the default value of '100.64.128.0/20' is used. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+          "type": "string"
+        },
+        "composerNetworkAttachment": {
+          "description": "Optional. Network Attachment that Cloud Composer environment is connected to, which provides connectivity with a user's VPC network. Takes precedence over network and subnetwork settings. If not provided, but network and subnetwork are defined during environment, it will be provisioned. If not provided and network and subnetwork are also empty, then connectivity to user's VPC network is disabled. Network attachment must be provided in format projects/{project}/regions/{region}/networkAttachments/{networkAttachment}. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+          "type": "string"
+        },
         "diskSizeGb": {
           "description": "Optional. The disk size in GB used for node VMs. Minimum size is 30GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
           "format": "int32",
@@ -1456,6 +1664,10 @@
           "description": "Optional. The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from `web_server_ipv4_cidr_block`.",
           "type": "string"
         },
+        "enablePrivateBuildsOnly": {
+          "description": "Optional. If `true`, builds performed during operations that install Python packages have only private connectivity to Google services (including Artifact Registry) and VPC network (if either `NodeConfig.network` and `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment` field are specified). If `false`, the builds also have access to the internet. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+          "type": "boolean"
+        },
         "enablePrivateEnvironment": {
           "description": "Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
           "type": "boolean"
@@ -1578,6 +1790,10 @@
           "description": "Optional. Apache Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example \"core-dags_are_paused_at_creation\". Section names must not contain hyphens (\"-\"), opening square brackets (\"[\"), or closing square brackets (\"]\"). The property name must not be empty and must not contain an equals sign (\"=\") or semicolon (\";\"). Section and property names must not contain a period (\".\"). Apache Airflow configuration property names must be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can contain any character, and can be written in any lower/upper case format. Certain Apache Airflow configuration property values are [blocked](/composer/docs/concepts/airflow-configurations), and cannot be overridden.",
           "type": "object"
         },
+        "cloudDataLineageIntegration": {
+          "$ref": "CloudDataLineageIntegration",
+          "description": "Optional. The configuration for Cloud Data Lineage integration."
+        },
         "envVariables": {
           "additionalProperties": {
             "type": "string"
@@ -1604,6 +1820,20 @@
           "description": "Optional. The number of schedulers for Airflow. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-2.*.*.",
           "format": "int32",
           "type": "integer"
+        },
+        "webServerPluginsMode": {
+          "description": "Optional. Whether or not the web server uses custom plugins. If unspecified, the field defaults to `PLUGINS_ENABLED`. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+          "enum": [
+            "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED",
+            "PLUGINS_DISABLED",
+            "PLUGINS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default mode.",
+            "Web server plugins are not supported.",
+            "Web server plugins are supported."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1682,6 +1912,27 @@
       "properties": {
         "bucket": {
           "description": "Optional. The name of the Cloud Storage bucket used by the environment. No `gs://` prefix.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaskLogsRetentionConfig": {
+      "description": "The configuration setting for Task Logs.",
+      "id": "TaskLogsRetentionConfig",
+      "properties": {
+        "storageMode": {
+          "description": "Optional. The mode of storage for Airflow workers task logs. For details, see go/composer-store-task-logs-in-cloud-logging-only-design-doc",
+          "enum": [
+            "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
+            "CLOUD_LOGGING_AND_CLOUD_STORAGE",
+            "CLOUD_LOGGING_ONLY"
+          ],
+          "enumDescriptions": [
+            "This configuration is not specified by the user.",
+            "Store task logs in Cloud Logging and in the environment's Cloud Storage bucket.",
+            "Store task logs in Cloud Logging only."
+          ],
           "type": "string"
         }
       },
@@ -1792,6 +2043,10 @@
       "description": "The Kubernetes workloads configuration for GKE cluster associated with the Cloud Composer environment. Supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.",
       "id": "WorkloadsConfig",
       "properties": {
+        "dagProcessor": {
+          "$ref": "DagProcessorResource",
+          "description": "Optional. Resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer."
+        },
         "scheduler": {
           "$ref": "SchedulerResource",
           "description": "Optional. Resources used by Airflow schedulers."

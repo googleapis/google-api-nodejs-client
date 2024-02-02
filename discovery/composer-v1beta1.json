@@ -508,6 +508,345 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "userWorkloadsConfigMaps": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsConfigMaps",
+                      "httpMethod": "POST",
+                      "id": "composer.projects.locations.environments.userWorkloadsConfigMaps.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The environment name to create a ConfigMap for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/userWorkloadsConfigMaps",
+                      "request": {
+                        "$ref": "UserWorkloadsConfigMap"
+                      },
+                      "response": {
+                        "$ref": "UserWorkloadsConfigMap"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapsId}",
+                      "httpMethod": "DELETE",
+                      "id": "composer.projects.locations.environments.userWorkloadsConfigMaps.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The ConfigMap to delete, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+/userWorkloadsConfigMaps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets an existing user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapsId}",
+                      "httpMethod": "GET",
+                      "id": "composer.projects.locations.environments.userWorkloadsConfigMaps.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the ConfigMap to get, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+/userWorkloadsConfigMaps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "UserWorkloadsConfigMap"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists user workloads ConfigMaps. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsConfigMaps",
+                      "httpMethod": "GET",
+                      "id": "composer.projects.locations.environments.userWorkloadsConfigMaps.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of ConfigMaps to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous List request, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. List ConfigMaps in the given environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/userWorkloadsConfigMaps",
+                      "response": {
+                        "$ref": "ListUserWorkloadsConfigMapsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "update": {
+                      "description": "Updates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapsId}",
+                      "httpMethod": "PUT",
+                      "id": "composer.projects.locations.environments.userWorkloadsConfigMaps.update",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The resource name of the ConfigMap, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+/userWorkloadsConfigMaps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "UserWorkloadsConfigMap"
+                      },
+                      "response": {
+                        "$ref": "UserWorkloadsConfigMap"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "userWorkloadsSecrets": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsSecrets",
+                      "httpMethod": "POST",
+                      "id": "composer.projects.locations.environments.userWorkloadsSecrets.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The environment name to create a Secret for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/userWorkloadsSecrets",
+                      "request": {
+                        "$ref": "UserWorkloadsSecret"
+                      },
+                      "response": {
+                        "$ref": "UserWorkloadsSecret"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsSecrets/{userWorkloadsSecretsId}",
+                      "httpMethod": "DELETE",
+                      "id": "composer.projects.locations.environments.userWorkloadsSecrets.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The Secret to delete, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+/userWorkloadsSecrets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets an existing user workloads Secret. Values of the \"data\" field in the response are cleared. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsSecrets/{userWorkloadsSecretsId}",
+                      "httpMethod": "GET",
+                      "id": "composer.projects.locations.environments.userWorkloadsSecrets.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Secret to get, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+/userWorkloadsSecrets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "UserWorkloadsSecret"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists user workloads Secrets. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsSecrets",
+                      "httpMethod": "GET",
+                      "id": "composer.projects.locations.environments.userWorkloadsSecrets.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of Secrets to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous List request, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. List Secrets in the given environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/userWorkloadsSecrets",
+                      "response": {
+                        "$ref": "ListUserWorkloadsSecretsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "update": {
+                      "description": "Updates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/userWorkloadsSecrets/{userWorkloadsSecretsId}",
+                      "httpMethod": "PUT",
+                      "id": "composer.projects.locations.environments.userWorkloadsSecrets.update",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The resource name of the Secret, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+/userWorkloadsSecrets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "UserWorkloadsSecret"
+                      },
+                      "response": {
+                        "$ref": "UserWorkloadsSecret"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "workloads": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists workloads in a Cloud Composer environment. Workload is a unit that runs a single Composer component. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/workloads",
+                      "httpMethod": "GET",
+                      "id": "composer.projects.locations.environments.workloads.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The list filter. Currently only supports equality on the type field. The value of a field specified in the filter expression must be one ComposerWorkloadType enum option. It's possible to get multiple types using \"OR\" operator, e.g.: \"type=SCHEDULER OR type=CELERY_WORKER\". If not specified, all items are returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of environments to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous List request, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The environment name to get workloads for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/workloads",
+                      "response": {
+                        "$ref": "ListWorkloadsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "imageVersions": {
@@ -655,7 +994,7 @@
       }
     }
   },
-  "revision": "20231205",
+  "revision": "20240123",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -753,6 +1092,88 @@
       },
       "type": "object"
     },
+    "ComposerWorkload": {
+      "description": "Information about a single workload.",
+      "id": "ComposerWorkload",
+      "properties": {
+        "name": {
+          "description": "Name of a workload.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "ComposerWorkloadStatus",
+          "description": "Output only. Status of a workload.",
+          "readOnly": true
+        },
+        "type": {
+          "description": "Type of a workload.",
+          "enum": [
+            "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED",
+            "CELERY_WORKER",
+            "KUBERNETES_WORKER",
+            "KUBERNETES_OPERATOR_POD",
+            "SCHEDULER",
+            "DAG_PROCESSOR",
+            "TRIGGERER",
+            "WEB_SERVER",
+            "REDIS"
+          ],
+          "enumDescriptions": [
+            "Not able to determine the type of the workload.",
+            "Celery worker.",
+            "Kubernetes worker.",
+            "Workload created by Kubernetes Pod Operator.",
+            "Airflow scheduler.",
+            "Airflow Dag processor.",
+            "Airflow triggerer.",
+            "Airflow web server UI.",
+            "Redis."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComposerWorkloadStatus": {
+      "description": "Workload status.",
+      "id": "ComposerWorkloadStatus",
+      "properties": {
+        "detailedStatusMessage": {
+          "description": "Output only. Detailed message of the status.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Workload state.",
+          "enum": [
+            "COMPOSER_WORKLOAD_STATE_UNSPECIFIED",
+            "PENDING",
+            "OK",
+            "WARNING",
+            "ERROR",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not able to determine the status of the workload.",
+            "Workload is in pending state and has not yet started.",
+            "Workload is running fine.",
+            "Workload is running but there are some non-critical problems.",
+            "Workload is not running due to an error.",
+            "Workload has finished execution with success.",
+            "Workload has finished execution with failure."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "statusMessage": {
+          "description": "Output only. Text to provide more descriptive status.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DagProcessorResource": {
       "description": "Configuration for resources used by Airflow DAG processors.",
       "id": "DagProcessorResource",
@@ -776,6 +1197,17 @@
           "description": "Optional. Storage (GB) request and limit for a single Airflow DAG processor replica.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "DataRetentionConfig": {
+      "description": "The configuration setting for Airflow database data retention mechanism.",
+      "id": "DataRetentionConfig",
+      "properties": {
+        "taskLogsRetentionConfig": {
+          "$ref": "TaskLogsRetentionConfig",
+          "description": "Optional. The configuration settings for task logs retention"
         }
       },
       "type": "object"
@@ -932,6 +1364,10 @@
           "description": "Output only. The Cloud Storage prefix of the DAGs for this environment. Although Cloud Storage objects reside in a flat namespace, a hierarchical file tree can be simulated using \"/\"-delimited object name prefixes. DAG objects for this environment reside in a simulated directory with the given prefix.",
           "readOnly": true,
           "type": "string"
+        },
+        "dataRetentionConfig": {
+          "$ref": "DataRetentionConfig",
+          "description": "Optional. The configuration setting for Airflow database data retention mechanism."
         },
         "databaseConfig": {
           "$ref": "DatabaseConfig",
@@ -1223,6 +1659,60 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListUserWorkloadsConfigMapsResponse": {
+      "description": "The user workloads ConfigMaps for a given environment.",
+      "id": "ListUserWorkloadsConfigMapsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The page token used to query for the next page if one exists.",
+          "type": "string"
+        },
+        "userWorkloadsConfigMaps": {
+          "description": "The list of ConfigMaps returned by a ListUserWorkloadsConfigMapsRequest.",
+          "items": {
+            "$ref": "UserWorkloadsConfigMap"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListUserWorkloadsSecretsResponse": {
+      "description": "The user workloads Secrets for a given environment.",
+      "id": "ListUserWorkloadsSecretsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The page token used to query for the next page if one exists.",
+          "type": "string"
+        },
+        "userWorkloadsSecrets": {
+          "description": "The list of Secrets returned by a ListUserWorkloadsSecretsRequest.",
+          "items": {
+            "$ref": "UserWorkloadsSecret"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListWorkloadsResponse": {
+      "description": "Response to ListWorkloadsRequest.",
+      "id": "ListWorkloadsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The page token used to query for the next page if one exists.",
+          "type": "string"
+        },
+        "workloads": {
+          "description": "The list of environment workloads.",
+          "items": {
+            "$ref": "ComposerWorkload"
           },
           "type": "array"
         }
@@ -1837,6 +2327,27 @@
       },
       "type": "object"
     },
+    "TaskLogsRetentionConfig": {
+      "description": "The configuration setting for Task Logs.",
+      "id": "TaskLogsRetentionConfig",
+      "properties": {
+        "storageMode": {
+          "description": "Optional. The mode of storage for Airflow workers task logs. For details, see go/composer-store-task-logs-in-cloud-logging-only-design-doc",
+          "enum": [
+            "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
+            "CLOUD_LOGGING_AND_CLOUD_STORAGE",
+            "CLOUD_LOGGING_ONLY"
+          ],
+          "enumDescriptions": [
+            "This configuration is not specified by the user.",
+            "Store task logs in Cloud Logging and in the environment's Cloud Storage bucket.",
+            "Store task logs in Cloud Logging only."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TriggererResource": {
       "description": "Configuration for resources used by Airflow triggerers.",
       "id": "TriggererResource",
@@ -1855,6 +2366,42 @@
           "description": "Optional. Memory (GB) request and limit for a single Airflow triggerer replica.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "UserWorkloadsConfigMap": {
+      "description": "User workloads ConfigMap used by Airflow tasks that run with Kubernetes executor or KubernetesPodOperator.",
+      "id": "UserWorkloadsConfigMap",
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The \"data\" field of Kubernetes ConfigMap, organized in key-value pairs. For details see: https://kubernetes.io/docs/concepts/configuration/configmap/",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the ConfigMap, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserWorkloadsSecret": {
+      "description": "User workloads Secret used by Airflow tasks that run with Kubernetes executor or KubernetesPodOperator.",
+      "id": "UserWorkloadsSecret",
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The \"data\" field of Kubernetes Secret, organized in key-value pairs, which can contain sensitive values such as a password, a token, or a key. The values for all keys have to be base64-encoded strings. For details see: https://kubernetes.io/docs/concepts/configuration/secret/",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Secret, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}\"",
+          "type": "string"
         }
       },
       "type": "object"
