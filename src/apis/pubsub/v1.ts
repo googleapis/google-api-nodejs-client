@@ -143,6 +143,31 @@ export namespace pubsub_v1 {
     writeMetadata?: boolean | null;
   }
   /**
+   * Ingestion settings for Amazon Kinesis Data Streams.
+   */
+  export interface Schema$AwsKinesis {
+    /**
+     * Required. AWS role ARN to be used for Federated Identity authentication with Kinesis. Check the Pub/Sub docs for how to set up this role and the required permissions that need to be attached to it.
+     */
+    awsRoleArn?: string | null;
+    /**
+     * Required. The Kinesis consumer ARN to used for ingestion in Enhanced Fan-Out mode. The consumer must be already created and ready to be used.
+     */
+    consumerArn?: string | null;
+    /**
+     * Required. The GCP service account to be used for Federated Identity authentication with Kinesis (via a `AssumeRoleWithWebIdentity` call for the provided role). The `aws_role_arn` must be set up with `accounts.google.com:sub` equals to this service account number.
+     */
+    gcpServiceAccount?: string | null;
+    /**
+     * Output only. An output-only field that indicates the state of the Kinesis ingestion source.
+     */
+    state?: string | null;
+    /**
+     * Required. The Kinesis stream ARN to ingest data from.
+     */
+    streamArn?: string | null;
+  }
+  /**
    * Configuration for a BigQuery subscription.
    */
   export interface Schema$BigQueryConfig {
@@ -184,7 +209,7 @@ export namespace pubsub_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -299,6 +324,15 @@ export namespace pubsub_v1 {
     title?: string | null;
   }
   /**
+   * Settings for an ingestion data source on a topic.
+   */
+  export interface Schema$IngestionDataSourceSettings {
+    /**
+     * Optional. Amazon Kinesis Data Streams.
+     */
+    awsKinesis?: Schema$AwsKinesis;
+  }
+  /**
    * Response for the `ListSchemaRevisions` method.
    */
   export interface Schema$ListSchemaRevisionsResponse {
@@ -407,7 +441,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ModifyAckDeadlineRequest {
     /**
-     * Required. The new ack deadline with respect to the time this request was sent to the Pub/Sub system. For example, if the value is 10, the new ack deadline will expire 10 seconds after the `ModifyAckDeadline` call was made. Specifying zero might immediately make the message available for delivery to another subscriber client. This typically results in an increase in the rate of message redeliveries (that is, duplicates). The minimum deadline you can specify is 0 seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
+     * Required. The new ack deadline with respect to the time this request was sent to the Pub/Sub system. For example, if the value is 10, the new ack deadline will expire 10 seconds after the `ModifyAckDeadline` call was made. Specifying zero might immediately make the message available for delivery to another subscriber client. This typically results in an increase in the rate of message redeliveries (that is, duplicates). The minimum deadline you can specify is 0 seconds. The maximum deadline you can specify in a single request is 600 seconds (10 minutes).
      */
     ackDeadlineSeconds?: number | null;
     /**
@@ -494,7 +528,7 @@ export namespace pubsub_v1 {
      */
     data?: string | null;
     /**
-     * Optional. ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
+     * ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
      */
     messageId?: string | null;
     /**
@@ -502,7 +536,7 @@ export namespace pubsub_v1 {
      */
     orderingKey?: string | null;
     /**
-     * Optional. The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
+     * The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
      */
     publishTime?: string | null;
   }
@@ -793,6 +827,10 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Topic {
     /**
+     * Optional. Settings for managed ingestion from a data source into this topic.
+     */
+    ingestionDataSourceSettings?: Schema$IngestionDataSourceSettings;
+    /**
      * Optional. The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     kmsKeyName?: string | null;
@@ -820,6 +858,10 @@ export namespace pubsub_v1 {
      * Optional. Settings for validating messages published against a schema.
      */
     schemaSettings?: Schema$SchemaSettings;
+    /**
+     * Output only. An output-only field indicating the state of the topic.
+     */
+    state?: string | null;
   }
   /**
    * Request for the UpdateSnapshot method.
@@ -2679,7 +2721,7 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * Updates an existing snapshot. Snapshots are used in [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * Updates an existing snapshot by updating the fields specified in the update mask. Snapshots are used in [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3834,7 +3876,7 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * Updates an existing subscription. Note that certain properties of a subscription, such as its topic, are not modifiable.
+     * Updates an existing subscription by updating the fields specified in the update mask. Note that certain properties of a subscription, such as its topic, are not modifiable.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4872,7 +4914,7 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * Updates an existing topic. Note that certain properties of a topic are not modifiable.
+     * Updates an existing topic by updating the fields specified in the update mask. Note that certain properties of a topic are not modifiable.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
