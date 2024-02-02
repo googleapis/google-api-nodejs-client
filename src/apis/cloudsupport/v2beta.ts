@@ -284,6 +284,10 @@ export namespace cloudsupport_v2beta {
      * The unique ID for a classification. Must be specified for case creation. To retrieve valid classification IDs for case creation, use `caseClassifications.search`. Classification IDs returned by `caseClassifications.search` are guaranteed to be valid for at least 6 months. If a given classification is deactiveated, it will immediately stop being returned. After 6 months, `case.create` requests using the classification ID will fail.
      */
     id?: string | null;
+    /**
+     * The full product the classification corresponds to.
+     */
+    product?: Schema$Product;
   }
   /**
    * The request message for the CloseCase endpoint.
@@ -691,6 +695,19 @@ export namespace cloudsupport_v2beta {
     objectName?: string | null;
   }
   /**
+   * The full product a case may be associated with, including Product Line and Product Subline.
+   */
+  export interface Schema$Product {
+    /**
+     * The Product Line of the Product.
+     */
+    productLine?: string | null;
+    /**
+     * The Product Subline of the Product, such as "Maps Billing".
+     */
+    productSubline?: string | null;
+  }
+  /**
    * The response message for SearchCaseClassifications endpoint.
    */
   export interface Schema$SearchCaseClassificationsResponse {
@@ -847,6 +864,14 @@ export namespace cloudsupport_v2beta {
      * A token identifying the page of results to return. If unspecified, the first page is retrieved.
      */
     pageToken?: string;
+    /**
+     * The Product Line of the Product.
+     */
+    'product.productLine'?: string;
+    /**
+     * The Product Subline of the Product, such as "Maps Billing".
+     */
+    'product.productSubline'?: string;
     /**
      * An expression used to filter case classifications. If it's an empty string, then no filtering happens. Otherwise, case classifications will be returned that match the filter.
      */
@@ -1522,6 +1547,10 @@ export namespace cloudsupport_v2beta {
      * Required. The name of a parent to list cases under.
      */
     parent?: string;
+    /**
+     * The product line to request cases for.
+     */
+    productLine?: string;
   }
   export interface Params$Resource$Cases$Patch extends StandardParameters {
     /**
