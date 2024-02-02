@@ -382,7 +382,7 @@ export namespace places_v1 {
      */
     menuForChildren?: boolean | null;
     /**
-     * An ID representing this place which may be used to look up this place again (a.k.a. the API "resource" name: places/place_id).
+     * This Place's resource name, in `places/{place_id\}` format. Can be used to look up the Place.
      */
     name?: string | null;
     /**
@@ -971,7 +971,7 @@ export namespace places_v1 {
     }
 
     /**
-     * Get place details with a place id (in a name) string.
+     * Get the details of a place based on its resource name, which is a string in the `places/{place_id\}` format.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1257,7 +1257,7 @@ export namespace places_v1 {
      */
     languageCode?: string;
     /**
-     * Required. A place ID returned in a Place (with "places/" prefix), or equivalently the name in the same Place. Format: `places/{place_id\}`.
+     * Required. The resource name of a place, in the `places/{place_id\}` format.
      */
     name?: string;
     /**
