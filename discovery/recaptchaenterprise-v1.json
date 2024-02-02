@@ -316,6 +316,34 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "reorder": {
+              "description": "Reorders all firewall policies.",
+              "flatPath": "v1/projects/{projectsId}/firewallpolicies:reorder",
+              "httpMethod": "POST",
+              "id": "recaptchaenterprise.projects.firewallpolicies.reorder",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The name of the project to list the policies for, in the format `projects/{project}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/firewallpolicies:reorder",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         },
@@ -666,7 +694,7 @@
       }
     }
   },
-  "revision": "20231214",
+  "revision": "20240120",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -744,7 +772,7 @@
         },
         "username": {
           "deprecated": true,
-          "description": "Username of the account that is being verified. Deprecated. Customers should now provide the hashed account ID field in Event.",
+          "description": "Username of the account that is being verified. Deprecated. Customers should now provide the `account_id` field in `event.user_info`.",
           "type": "string"
         }
       },
@@ -1552,6 +1580,26 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest": {
+      "description": "The reorder firewall policies request message.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest",
+      "properties": {
+        "names": {
+          "description": "Required. A list containing all policy names, in the new order. Each name is in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse": {
+      "description": "The reorder firewall policies response message.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse": {
