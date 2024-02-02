@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20230913",
+  "revision": "20240124",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -537,7 +537,7 @@
       "type": "object"
     },
     "ContactCenter": {
-      "description": "Message describing ContactCenter object Next ID: 16",
+      "description": "Message describing ContactCenter object Next ID: 18",
       "id": "ContactCenter",
       "properties": {
         "adminUser": {
@@ -580,6 +580,14 @@
         "name": {
           "description": "name of resource",
           "type": "string"
+        },
+        "privateComponents": {
+          "description": "Output only. A list of UJET components that should be privately accessed. This field is set by reading settings from the data plane. For more information about the format of the component please refer to go/ccaip-vpc-sc-org-policy. This field is must be fully populated only for Create/Update resource operations. The main use case for this field is OrgPolicy checks via CPE.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "samlParams": {
           "$ref": "SAMLParams",
