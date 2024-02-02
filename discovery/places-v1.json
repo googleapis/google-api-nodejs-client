@@ -120,7 +120,7 @@
     "places": {
       "methods": {
         "get": {
-          "description": "Get place details with a place id (in a name) string.",
+          "description": "Get the details of a place based on its resource name, which is a string in the `places/{place_id}` format.",
           "flatPath": "v1/places/{placesId}",
           "httpMethod": "GET",
           "id": "places.places.get",
@@ -134,7 +134,7 @@
               "type": "string"
             },
             "name": {
-              "description": "Required. A place ID returned in a Place (with \"places/\" prefix), or equivalently the name in the same Place. Format: `places/{place_id}`.",
+              "description": "Required. The resource name of a place, in the `places/{place_id}` format.",
               "location": "path",
               "pattern": "^places/[^/]+$",
               "required": true,
@@ -248,7 +248,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240131",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -633,7 +633,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "An ID representing this place which may be used to look up this place again (a.k.a. the API \"resource\" name: places/place_id).",
+          "description": "This Place's resource name, in `places/{place_id}` format. Can be used to look up the Place.",
           "type": "string"
         },
         "nationalPhoneNumber": {
