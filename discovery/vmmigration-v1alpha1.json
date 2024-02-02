@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20231214",
+  "revision": "20240118",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2478,7 +2478,7 @@
       "type": "object"
     },
     "AzureVmDetails": {
-      "description": "AwsVmDetails describes a VM in AWS.",
+      "description": "AzureVmDetails describes a VM in Azure.",
       "id": "AzureVmDetails",
       "properties": {
         "bootOption": {
