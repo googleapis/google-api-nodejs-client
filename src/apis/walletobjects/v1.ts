@@ -1129,7 +1129,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$FlightCarrier {
     /**
-     * A logo for the airline alliance, displayed above the QR code that the passenger scans to board.
+     * A logo for the airline alliance, displayed below the QR code that the passenger scans to board.
      */
     airlineAllianceLogo?: Schema$Image;
     /**
@@ -2025,6 +2025,10 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$Issuer {
     /**
+     * Allows the issuer to provide their callback settings.
+     */
+    callbackOptions?: Schema$CallbackOptions;
+    /**
      * Issuer contact information.
      */
     contactInfo?: Schema$IssuerContactInfo;
@@ -2146,15 +2150,15 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$ListTemplateOverride {
     /**
-     * Specifies from a predefined set of options or from a reference to the field what will be displayed in the first row.
+     * Specifies from a predefined set of options or from a reference to the field what will be displayed in the first row. To set this override, set the FirstRowOption.fieldOption to the FieldSelector of your choice.
      */
     firstRowOption?: Schema$FirstRowOption;
     /**
-     * A reference to the field to be displayed in the second row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the second row will always display a field shared by all objects.
+     * A reference to the field to be displayed in the second row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the second row will always display a field shared by all objects. To set this override, please set secondRowOption to the FieldSelector of you choice.
      */
     secondRowOption?: Schema$FieldSelector;
     /**
-     * A reference to the field to be displayed in the third row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the third row will always display the number of objects in the group. Eg: "3 passes"
+     * An unused/deprecated field. Setting it will have no effect on what the user sees.
      */
     thirdRowOption?: Schema$FieldSelector;
   }

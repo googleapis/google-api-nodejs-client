@@ -2675,7 +2675,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240201",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -4478,7 +4478,7 @@
       "properties": {
         "airlineAllianceLogo": {
           "$ref": "Image",
-          "description": "A logo for the airline alliance, displayed above the QR code that the passenger scans to board."
+          "description": "A logo for the airline alliance, displayed below the QR code that the passenger scans to board."
         },
         "airlineLogo": {
           "$ref": "Image",
@@ -5930,6 +5930,10 @@
     "Issuer": {
       "id": "Issuer",
       "properties": {
+        "callbackOptions": {
+          "$ref": "CallbackOptions",
+          "description": "Allows the issuer to provide their callback settings."
+        },
         "contactInfo": {
           "$ref": "IssuerContactInfo",
           "description": "Issuer contact information."
@@ -6132,16 +6136,16 @@
       "properties": {
         "firstRowOption": {
           "$ref": "FirstRowOption",
-          "description": "Specifies from a predefined set of options or from a reference to the field what will be displayed in the first row."
+          "description": "Specifies from a predefined set of options or from a reference to the field what will be displayed in the first row. To set this override, set the FirstRowOption.fieldOption to the FieldSelector of your choice."
         },
         "secondRowOption": {
           "$ref": "FieldSelector",
-          "description": "A reference to the field to be displayed in the second row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the second row will always display a field shared by all objects."
+          "description": "A reference to the field to be displayed in the second row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the second row will always display a field shared by all objects. To set this override, please set secondRowOption to the FieldSelector of you choice."
         },
         "thirdRowOption": {
           "$ref": "FieldSelector",
           "deprecated": true,
-          "description": "A reference to the field to be displayed in the third row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the third row will always display the number of objects in the group. Eg: \"3 passes\""
+          "description": "An unused/deprecated field. Setting it will have no effect on what the user sees."
         }
       },
       "type": "object"
