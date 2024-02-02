@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/speech-v1.3.0...speech-v1.4.0) (2024-02-02)
+
+
+### Features
+
+* **speech:** update the API ([d77180a](https://github.com/googleapis/google-api-nodejs-client/commit/d77180a3781a100ab2fe93ce26f8e4db9e187cff))
+
 ## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/speech-v1.2.0...speech-v1.3.0) (2023-11-30)
 
 

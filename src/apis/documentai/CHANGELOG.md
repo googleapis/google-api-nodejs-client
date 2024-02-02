@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v5.0.0...documentai-v5.1.0) (2024-02-02)
+
+
+### Features
+
+* **documentai:** update the API ([24d2893](https://github.com/googleapis/google-api-nodejs-client/commit/24d28932bb7180cde103a197adfc1e357a679ea1))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v4.1.0...documentai-v5.0.0) (2024-01-05)
 
 

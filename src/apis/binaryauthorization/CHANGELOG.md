@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/binaryauthorization-v3.0.0...binaryauthorization-v3.0.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* **binaryauthorization:** update the API ([e242588](https://github.com/googleapis/google-api-nodejs-client/commit/e24258843b6b8d761e46cf1652ff4c284a19eeba))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/binaryauthorization-v2.0.1...binaryauthorization-v3.0.0) (2024-01-05)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v6.0.0...batch-v6.1.0) (2024-02-02)
+
+
+### Features
+
+* **batch:** update the API ([afcbf80](https://github.com/googleapis/google-api-nodejs-client/commit/afcbf805b24a9b789554df7bfb2d8cc22e304436))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v5.0.0...batch-v6.0.0) (2024-01-05)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v1.5.0...logging-v1.6.0) (2024-02-02)
+
+
+### Features
+
+* **logging:** update the API ([ce04723](https://github.com/googleapis/google-api-nodejs-client/commit/ce04723a83fe6e2ee5c3fb545803e50fbe5d8804))
+
 ## [1.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v1.4.1...logging-v1.5.0) (2024-01-05)
 
 

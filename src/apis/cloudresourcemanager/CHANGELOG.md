@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v1.1.4...cloudresourcemanager-v1.1.5) (2024-02-02)
+
+
+### Bug Fixes
+
+* **cloudresourcemanager:** update the API ([c2fba36](https://github.com/googleapis/google-api-nodejs-client/commit/c2fba36af030024aacc315ec3815efa67bce9486))
+
 ## [1.1.4](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v1.1.3...cloudresourcemanager-v1.1.4) (2023-11-30)
 
 
