@@ -1412,7 +1412,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240130",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -2056,6 +2056,10 @@
           "description": "Obfuscated user ID which the customer sent to us.",
           "type": "string"
         },
+        "qualityMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationQualityMetadata",
+          "description": "Conversation metadata related to quality management."
+        },
         "runtimeAnnotations": {
           "description": "Output only. The annotations that were generated during the customer and agent interaction.",
           "items": {
@@ -2179,6 +2183,57 @@
         },
         "userId": {
           "description": "A user-specified ID representing the participant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConversationQualityMetadata": {
+      "description": "Conversation metadata related to quality management.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationQualityMetadata",
+      "properties": {
+        "agentInfo": {
+          "description": "Information about agents involved in the call.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo"
+          },
+          "type": "array"
+        },
+        "customerSatisfactionRating": {
+          "description": "An arbitrary integer value indicating the customer's satisfaction rating.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "menuPath": {
+          "description": "An arbitrary string value specifying the menu path the customer took.",
+          "type": "string"
+        },
+        "waitDuration": {
+          "description": "The amount of time the customer waited to connect with an agent.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo": {
+      "description": "Information about an agent involved in the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo",
+      "properties": {
+        "agentId": {
+          "description": "A user-specified string representing the agent.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The agent's name.",
+          "type": "string"
+        },
+        "dispositionCode": {
+          "description": "A user-provided string indicating the outcome of the agent's segment of the call.",
+          "type": "string"
+        },
+        "team": {
+          "description": "A user-specified string representing the agent's team.",
           "type": "string"
         }
       },
@@ -2859,7 +2914,7 @@
       "id": "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig",
       "properties": {
         "agentChannel": {
-          "description": "Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for audio conversations to be properly displayed and analyzed.",
+          "description": "Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.",
           "format": "int32",
           "type": "integer"
         },
@@ -2868,7 +2923,7 @@
           "type": "string"
         },
         "customerChannel": {
-          "description": "Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the customer. Note that this must be set for audio conversations to be properly displayed and analyzed.",
+          "description": "Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.",
           "format": "int32",
           "type": "integer"
         }
@@ -4353,6 +4408,10 @@
           "description": "Obfuscated user ID which the customer sent to us.",
           "type": "string"
         },
+        "qualityMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadata",
+          "description": "Conversation metadata related to quality management."
+        },
         "runtimeAnnotations": {
           "description": "Output only. The annotations that were generated during the customer and agent interaction.",
           "items": {
@@ -4476,6 +4535,57 @@
         },
         "userId": {
           "description": "A user-specified ID representing the participant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadata": {
+      "description": "Conversation metadata related to quality management.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadata",
+      "properties": {
+        "agentInfo": {
+          "description": "Information about agents involved in the call.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadataAgentInfo"
+          },
+          "type": "array"
+        },
+        "customerSatisfactionRating": {
+          "description": "An arbitrary integer value indicating the customer's satisfaction rating.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "menuPath": {
+          "description": "An arbitrary string value specifying the menu path the customer took.",
+          "type": "string"
+        },
+        "waitDuration": {
+          "description": "The amount of time the customer waited to connect with an agent.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadataAgentInfo": {
+      "description": "Information about an agent involved in the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadataAgentInfo",
+      "properties": {
+        "agentId": {
+          "description": "A user-specified string representing the agent.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The agent's name.",
+          "type": "string"
+        },
+        "dispositionCode": {
+          "description": "A user-provided string indicating the outcome of the agent's segment of the call.",
+          "type": "string"
+        },
+        "team": {
+          "description": "A user-specified string representing the agent's team.",
           "type": "string"
         }
       },
@@ -5145,7 +5255,7 @@
       "id": "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig",
       "properties": {
         "agentChannel": {
-          "description": "Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for audio conversations to be properly displayed and analyzed.",
+          "description": "Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.",
           "format": "int32",
           "type": "integer"
         },
@@ -5154,7 +5264,7 @@
           "type": "string"
         },
         "customerChannel": {
-          "description": "Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the customer. Note that this must be set for audio conversations to be properly displayed and analyzed.",
+          "description": "Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.",
           "format": "int32",
           "type": "integer"
         }

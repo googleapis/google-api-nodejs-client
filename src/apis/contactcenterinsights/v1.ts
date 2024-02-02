@@ -547,6 +547,10 @@ export namespace contactcenterinsights_v1 {
      */
     obfuscatedUserId?: string | null;
     /**
+     * Conversation metadata related to quality management.
+     */
+    qualityMetadata?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadata;
+    /**
      * Output only. The annotations that were generated during the customer and agent interaction.
      */
     runtimeAnnotations?: Schema$GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation[];
@@ -634,6 +638,48 @@ export namespace contactcenterinsights_v1 {
      * A user-specified ID representing the participant.
      */
     userId?: string | null;
+  }
+  /**
+   * Conversation metadata related to quality management.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadata {
+    /**
+     * Information about agents involved in the call.
+     */
+    agentInfo?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadataAgentInfo[];
+    /**
+     * An arbitrary integer value indicating the customer's satisfaction rating.
+     */
+    customerSatisfactionRating?: number | null;
+    /**
+     * An arbitrary string value specifying the menu path the customer took.
+     */
+    menuPath?: string | null;
+    /**
+     * The amount of time the customer waited to connect with an agent.
+     */
+    waitDuration?: string | null;
+  }
+  /**
+   * Information about an agent involved in the conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadataAgentInfo {
+    /**
+     * A user-specified string representing the agent.
+     */
+    agentId?: string | null;
+    /**
+     * The agent's name.
+     */
+    displayName?: string | null;
+    /**
+     * A user-provided string indicating the outcome of the agent's segment of the call.
+     */
+    dispositionCode?: string | null;
+    /**
+     * A user-specified string representing the agent's team.
+     */
+    team?: string | null;
   }
   /**
    * Conversation summarization suggestion data.
@@ -1121,7 +1167,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig {
     /**
-     * Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.
      */
     agentChannel?: number | null;
     /**
@@ -1129,7 +1175,7 @@ export namespace contactcenterinsights_v1 {
      */
     agentId?: string | null;
     /**
-     * Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the customer. Note that this must be set for audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.
      */
     customerChannel?: number | null;
   }
@@ -2042,6 +2088,10 @@ export namespace contactcenterinsights_v1 {
      */
     obfuscatedUserId?: string | null;
     /**
+     * Conversation metadata related to quality management.
+     */
+    qualityMetadata?: Schema$GoogleCloudContactcenterinsightsV1ConversationQualityMetadata;
+    /**
      * Output only. The annotations that were generated during the customer and agent interaction.
      */
     runtimeAnnotations?: Schema$GoogleCloudContactcenterinsightsV1RuntimeAnnotation[];
@@ -2129,6 +2179,48 @@ export namespace contactcenterinsights_v1 {
      * A user-specified ID representing the participant.
      */
     userId?: string | null;
+  }
+  /**
+   * Conversation metadata related to quality management.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationQualityMetadata {
+    /**
+     * Information about agents involved in the call.
+     */
+    agentInfo?: Schema$GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo[];
+    /**
+     * An arbitrary integer value indicating the customer's satisfaction rating.
+     */
+    customerSatisfactionRating?: number | null;
+    /**
+     * An arbitrary string value specifying the menu path the customer took.
+     */
+    menuPath?: string | null;
+    /**
+     * The amount of time the customer waited to connect with an agent.
+     */
+    waitDuration?: string | null;
+  }
+  /**
+   * Information about an agent involved in the conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo {
+    /**
+     * A user-specified string representing the agent.
+     */
+    agentId?: string | null;
+    /**
+     * The agent's name.
+     */
+    displayName?: string | null;
+    /**
+     * A user-provided string indicating the outcome of the agent's segment of the call.
+     */
+    dispositionCode?: string | null;
+    /**
+     * A user-specified string representing the agent's team.
+     */
+    team?: string | null;
   }
   /**
    * Conversation summarization suggestion data.
@@ -2625,7 +2717,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig {
     /**
-     * Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.
      */
     agentChannel?: number | null;
     /**
@@ -2633,7 +2725,7 @@ export namespace contactcenterinsights_v1 {
      */
     agentId?: string | null;
     /**
-     * Optional. For audio conversations, this field indicates which of the channels, 1 or 2, contains the customer. Note that this must be set for audio conversations to be properly displayed and analyzed.
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.
      */
     customerChannel?: number | null;
   }
