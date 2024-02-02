@@ -23,7 +23,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "bigqueryconnection:v1beta1",
+  "id": "bigqueryconnection:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://bigqueryconnection.mtls.googleapis.com/",
   "name": "bigqueryconnection",
@@ -116,7 +116,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new connection.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/connections",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections",
                   "httpMethod": "POST",
                   "id": "bigqueryconnection.projects.locations.connections.create",
                   "parameterOrder": [
@@ -136,7 +136,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/connections",
+                  "path": "v1/{+parent}/connections",
                   "request": {
                     "$ref": "Connection"
                   },
@@ -150,7 +150,7 @@
                 },
                 "delete": {
                   "description": "Deletes connection and associated credential.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
                   "httpMethod": "DELETE",
                   "id": "bigqueryconnection.projects.locations.connections.delete",
                   "parameterOrder": [
@@ -165,7 +165,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -176,7 +176,7 @@
                 },
                 "get": {
                   "description": "Returns specified connection.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
                   "httpMethod": "GET",
                   "id": "bigqueryconnection.projects.locations.connections.get",
                   "parameterOrder": [
@@ -191,7 +191,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Connection"
                   },
@@ -202,7 +202,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:getIamPolicy",
                   "httpMethod": "POST",
                   "id": "bigqueryconnection.projects.locations.connections.getIamPolicy",
                   "parameterOrder": [
@@ -217,7 +217,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "request": {
                     "$ref": "GetIamPolicyRequest"
                   },
@@ -231,16 +231,16 @@
                 },
                 "list": {
                   "description": "Returns a list of connections in the given project.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/connections",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections",
                   "httpMethod": "GET",
                   "id": "bigqueryconnection.projects.locations.connections.list",
                   "parameterOrder": [
                     "parent"
                   ],
                   "parameters": {
-                    "maxResults": {
-                      "description": "Required. Maximum number of results per page.",
-                      "format": "uint32",
+                    "pageSize": {
+                      "description": "Required. Page size.",
+                      "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
@@ -257,7 +257,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/connections",
+                  "path": "v1/{+parent}/connections",
                   "response": {
                     "$ref": "ListConnectionsResponse"
                   },
@@ -268,7 +268,7 @@
                 },
                 "patch": {
                   "description": "Updates the specified connection. For security reasons, also resets credential if connection properties are in the update field mask.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
                   "httpMethod": "PATCH",
                   "id": "bigqueryconnection.projects.locations.connections.patch",
                   "parameterOrder": [
@@ -289,7 +289,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Connection"
                   },
@@ -303,7 +303,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "bigqueryconnection.projects.locations.connections.setIamPolicy",
                   "parameterOrder": [
@@ -318,7 +318,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "SetIamPolicyRequest"
                   },
@@ -332,7 +332,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "bigqueryconnection.projects.locations.connections.testIamPermissions",
                   "parameterOrder": [
@@ -347,41 +347,12 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "TestIamPermissionsRequest"
                   },
                   "response": {
                     "$ref": "TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/bigquery",
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "updateCredential": {
-                  "description": "Sets the credential for the specified connection.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/credential",
-                  "httpMethod": "PATCH",
-                  "id": "bigqueryconnection.projects.locations.connections.updateCredential",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the connection, for example: `projects/{project_id}/locations/{location_id}/connections/{connection_id}/credential`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/credential$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+name}",
-                  "request": {
-                    "$ref": "ConnectionCredential"
-                  },
-                  "response": {
-                    "$ref": "Empty"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/bigquery",
@@ -446,6 +417,71 @@
       },
       "type": "object"
     },
+    "AwsAccessRole": {
+      "description": "Authentication method for Amazon Web Services (AWS) that uses Google owned Google service account to assume into customer's AWS IAM Role.",
+      "id": "AwsAccessRole",
+      "properties": {
+        "iamRoleId": {
+          "description": "The user’s AWS IAM Role that trusts the Google-owned AWS IAM user Connection.",
+          "type": "string"
+        },
+        "identity": {
+          "description": "A unique Google-owned and Google-generated identity for the Connection. This identity will be used to access the user's AWS IAM Role.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsProperties": {
+      "description": "Connection properties specific to Amazon Web Services (AWS).",
+      "id": "AwsProperties",
+      "properties": {
+        "accessRole": {
+          "$ref": "AwsAccessRole",
+          "description": "Authentication using Google owned service account to assume into customer's AWS IAM Role."
+        }
+      },
+      "type": "object"
+    },
+    "AzureProperties": {
+      "description": "Container for connection properties specific to Azure.",
+      "id": "AzureProperties",
+      "properties": {
+        "application": {
+          "description": "Output only. The name of the Azure Active Directory Application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Output only. The client id of the Azure Active Directory Application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customerTenantId": {
+          "description": "The id of customer's directory that host the data.",
+          "type": "string"
+        },
+        "federatedApplicationClientId": {
+          "description": "The client ID of the user's Azure Active Directory Application used for a federated connection.",
+          "type": "string"
+        },
+        "identity": {
+          "description": "Output only. A unique Google-owned and Google-generated identity for the Connection. This identity will be used to access the user's Azure Active Directory Application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "objectId": {
+          "description": "Output only. The object id of the Azure Active Directory Application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "redirectUri": {
+          "description": "The URL user will be redirected to after granting consent during connection setup.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members`, or principals, with a `role`.",
       "id": "Binding",
@@ -464,6 +500,51 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudResourceProperties": {
+      "description": "Container for connection properties for delegation of access to GCP resources.",
+      "id": "CloudResourceProperties",
+      "properties": {
+        "serviceAccountId": {
+          "description": "Output only. The account ID of the service created for the purpose of this connection. The service account does not have any permissions associated with it when it is created. After creation, customers delegate permissions to the service account. When the connection is used in the context of an operation in BigQuery, the service account will be used to connect to the desired resources in GCP. The account ID is in the form of: @gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudSpannerProperties": {
+      "description": "Connection properties specific to Cloud Spanner.",
+      "id": "CloudSpannerProperties",
+      "properties": {
+        "database": {
+          "description": "Cloud Spanner database in the form `project/instance/database'",
+          "type": "string"
+        },
+        "databaseRole": {
+          "description": "Optional. Cloud Spanner database role for fine-grained access control. The Cloud Spanner admin should have provisioned the database role with appropriate permissions, such as `SELECT` and `INSERT`. Other users should only use roles provided by their Cloud Spanner admins. For more details, see [About fine-grained access control] (https://cloud.google.com/spanner/docs/fgac-about). REQUIRES: The database role name must start with a letter, and can only contain letters, numbers, and underscores.",
+          "type": "string"
+        },
+        "maxParallelism": {
+          "description": "Allows setting max parallelism per query when executing on Spanner independent compute resources. If unspecified, default values of parallelism are chosen that are dependent on the Cloud Spanner instance configuration. REQUIRES: `use_parallelism` must be set. REQUIRES: `use_data_boost` must be set.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "useDataBoost": {
+          "description": "If set, the request will be executed via Spanner independent compute resources. REQUIRES: `use_parallelism` must be set.",
+          "type": "boolean"
+        },
+        "useParallelism": {
+          "description": "If parallelism should be used when reading from Cloud Spanner",
+          "type": "boolean"
+        },
+        "useServerlessAnalytics": {
+          "deprecated": true,
+          "description": "Deprecated: prefer use_data_boost instead. If the serverless analytics service should be used to read data from Cloud Spanner. Note: `use_parallelism` must be set when using serverless analytics.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -525,9 +606,29 @@
       "description": "Configuration parameters to establish connection with an external data source, except the credential attributes.",
       "id": "Connection",
       "properties": {
+        "aws": {
+          "$ref": "AwsProperties",
+          "description": "Amazon Web Services (AWS) properties."
+        },
+        "azure": {
+          "$ref": "AzureProperties",
+          "description": "Azure properties."
+        },
+        "cloudResource": {
+          "$ref": "CloudResourceProperties",
+          "description": "Cloud Resource properties."
+        },
+        "cloudSpanner": {
+          "$ref": "CloudSpannerProperties",
+          "description": "Cloud Spanner properties."
+        },
         "cloudSql": {
           "$ref": "CloudSqlProperties",
           "description": "Cloud SQL properties."
+        },
+        "configuration": {
+          "$ref": "ConnectorConfiguration",
+          "description": "Optional. Connector configuration."
         },
         "creationTime": {
           "description": "Output only. The creation timestamp of the connection.",
@@ -548,6 +649,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "kmsKeyName": {
+          "description": "Optional. The Cloud KMS key that is used for encryption. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`",
+          "type": "string"
+        },
         "lastModifiedTime": {
           "description": "Output only. The last update timestamp of the connection.",
           "format": "int64",
@@ -555,19 +660,97 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the connection in the form of: `projects/{project_id}/locations/{location_id}/connections/{connection_id}`",
+          "description": "Output only. The resource name of the connection in the form of: `projects/{project_id}/locations/{location_id}/connections/{connection_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "salesforceDataCloud": {
+          "$ref": "SalesforceDataCloudProperties",
+          "description": "Optional. Salesforce DataCloud properties. This field is intended for use only by Salesforce partner projects. This field contains properties for your Salesforce DataCloud connection."
+        },
+        "spark": {
+          "$ref": "SparkProperties",
+          "description": "Spark properties."
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfiguration": {
+      "description": "Represents concrete parameter values for Connector Configuration.",
+      "id": "ConnectorConfiguration",
+      "properties": {
+        "authentication": {
+          "$ref": "ConnectorConfigurationAuthentication",
+          "description": "Client authentication."
+        },
+        "connectorId": {
+          "description": "Required. Immutable. The ID of the Connector these parameters are configured for.",
+          "type": "string"
+        },
+        "endpoint": {
+          "$ref": "ConnectorConfigurationEndpoint",
+          "description": "Specifies how to reach the remote system this connection is pointing to."
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfigurationAuthentication": {
+      "description": "Client authentication.",
+      "id": "ConnectorConfigurationAuthentication",
+      "properties": {
+        "usernamePassword": {
+          "$ref": "ConnectorConfigurationUsernamePassword",
+          "description": "Username/password authentication."
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfigurationEndpoint": {
+      "description": "Remote endpoint specification.",
+      "id": "ConnectorConfigurationEndpoint",
+      "properties": {
+        "hostPort": {
+          "description": "Host and port in a format of `hostname:port` as defined in https://www.ietf.org/rfc/rfc3986.html#section-3.2.2 and https://www.ietf.org/rfc/rfc3986.html#section-3.2.3.",
           "type": "string"
         }
       },
       "type": "object"
     },
-    "ConnectionCredential": {
-      "description": "Credential to use with a connection.",
-      "id": "ConnectionCredential",
+    "ConnectorConfigurationSecret": {
+      "description": "Secret value parameter.",
+      "id": "ConnectorConfigurationSecret",
       "properties": {
-        "cloudSql": {
-          "$ref": "CloudSqlCredential",
-          "description": "Credential for Cloud SQL database."
+        "plaintext": {
+          "description": "Input only. Secret as plaintext.",
+          "type": "string"
+        },
+        "secretType": {
+          "description": "Output only. Indicates type of secret. Can be used to check type of stored secret value even if it's `INPUT_ONLY`.",
+          "enum": [
+            "SECRET_TYPE_UNSPECIFIED",
+            "PLAINTEXT"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfigurationUsernamePassword": {
+      "description": "Username and Password authentication.",
+      "id": "ConnectorConfigurationUsernamePassword",
+      "properties": {
+        "password": {
+          "$ref": "ConnectorConfigurationSecret",
+          "description": "Required. Password."
+        },
+        "username": {
+          "description": "Required. Username.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -642,6 +825,17 @@
       },
       "type": "object"
     },
+    "MetastoreServiceConfig": {
+      "description": "Configuration of the Dataproc Metastore Service.",
+      "id": "MetastoreServiceConfig",
+      "properties": {
+        "metastoreService": {
+          "description": "Optional. Resource name of an existing Dataproc Metastore service. Example: * `projects/[project_id]/locations/[region]/services/[service_id]`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -673,6 +867,26 @@
       },
       "type": "object"
     },
+    "SalesforceDataCloudProperties": {
+      "description": "Connection properties specific to Salesforce DataCloud. This is intended for use only by Salesforce partner projects.",
+      "id": "SalesforceDataCloudProperties",
+      "properties": {
+        "identity": {
+          "description": "Output only. A unique Google-owned and Google-generated service account identity for the connection.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "instanceUri": {
+          "description": "The URL to the user's Salesforce DataCloud instance.",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "The ID of the user's Salesforce tenant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -685,6 +899,37 @@
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SparkHistoryServerConfig": {
+      "description": "Configuration of the Spark History Server.",
+      "id": "SparkHistoryServerConfig",
+      "properties": {
+        "dataprocCluster": {
+          "description": "Optional. Resource name of an existing Dataproc Cluster to act as a Spark History Server for the connection. Example: * `projects/[project_id]/regions/[region]/clusters/[cluster_name]`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SparkProperties": {
+      "description": "Container for connection properties to execute stored procedures for Apache Spark.",
+      "id": "SparkProperties",
+      "properties": {
+        "metastoreServiceConfig": {
+          "$ref": "MetastoreServiceConfig",
+          "description": "Optional. Dataproc Metastore Service configuration for the connection."
+        },
+        "serviceAccountId": {
+          "description": "Output only. The account ID of the service created for the purpose of this connection. The service account does not have any permissions associated with it when it is created. After creation, customers delegate permissions to the service account. When the connection is used in the context of a stored procedure for Apache Spark in BigQuery, the service account is used to connect to the desired resources in Google Cloud. The account ID is in the form of: bqcx--@gcp-sa-bigquery-consp.iam.gserviceaccount.com",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sparkHistoryServerConfig": {
+          "$ref": "SparkHistoryServerConfig",
+          "description": "Optional. Spark History Server configuration for the connection."
         }
       },
       "type": "object"
@@ -720,6 +965,6 @@
   },
   "servicePath": "",
   "title": "BigQuery Connection API",
-  "version": "v1beta1",
+  "version": "v1",
   "version_module": true
 }

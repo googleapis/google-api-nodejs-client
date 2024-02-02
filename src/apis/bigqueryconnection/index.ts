@@ -14,12 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {bigqueryconnection_v1} from './v1';
 import {bigqueryconnection_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: bigqueryconnection_v1.Bigqueryconnection,
   v1beta1: bigqueryconnection_v1beta1.Bigqueryconnection,
 };
 
+export function bigqueryconnection(
+  version: 'v1'
+): bigqueryconnection_v1.Bigqueryconnection;
+export function bigqueryconnection(
+  options: bigqueryconnection_v1.Options
+): bigqueryconnection_v1.Bigqueryconnection;
 export function bigqueryconnection(
   version: 'v1beta1'
 ): bigqueryconnection_v1beta1.Bigqueryconnection;
@@ -27,16 +35,23 @@ export function bigqueryconnection(
   options: bigqueryconnection_v1beta1.Options
 ): bigqueryconnection_v1beta1.Bigqueryconnection;
 export function bigqueryconnection<
-  T = bigqueryconnection_v1beta1.Bigqueryconnection,
+  T =
+    | bigqueryconnection_v1.Bigqueryconnection
+    | bigqueryconnection_v1beta1.Bigqueryconnection,
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | bigqueryconnection_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | bigqueryconnection_v1.Options
+    | 'v1beta1'
+    | bigqueryconnection_v1beta1.Options
 ) {
   return getAPI<T>('bigqueryconnection', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {bigqueryconnection_v1};
 export {bigqueryconnection_v1beta1};
 export {
   AuthPlus,
