@@ -755,7 +755,7 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1CheckCloudIdentityAccountsExistRequest {
     /**
-     * Required. Domain to fetch for Cloud Identity account customer.
+     * Required. Domain to fetch for Cloud Identity account customers, including domained and domainless.
      */
     domain?: string | null;
   }
