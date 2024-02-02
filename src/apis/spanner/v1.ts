@@ -1105,6 +1105,10 @@ export namespace spanner_v1 {
      * Output only. The current instance config state. Applicable only for USER_MANAGED configs.
      */
     state?: string | null;
+    /**
+     * Output only. The storage limit in bytes per processing unit.
+     */
+    storageLimitPerProcessingUnit?: string | null;
   }
   /**
    * Encapsulates progress related information for a Cloud Spanner long running instance operations.
@@ -1607,7 +1611,7 @@ export namespace spanner_v1 {
      */
     partitionOptions?: Schema$PartitionOptions;
     /**
-     * Required. The query request to generate partitions for. The request will fail if the query is not root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, the first operator in the query execution plan must be a distributed union operator. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as INSERT, UPDATE, or DELETE. Use ExecuteStreamingSql with a PartitionedDml transaction for large, partition-friendly DML operations.
+     * Required. The query request to generate partitions for. The request will fail if the query is not root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, if the query execution plan contains a distributed union operator, then it must be the first operator in the plan. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as INSERT, UPDATE, or DELETE. Use ExecuteStreamingSql with a PartitionedDml transaction for large, partition-friendly DML operations.
      */
     sql?: string | null;
     /**
