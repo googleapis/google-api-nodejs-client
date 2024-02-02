@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v3.1.0...recaptchaenterprise-v3.2.0) (2024-02-02)
+
+
+### Features
+
+* **recaptchaenterprise:** update the API ([abe83f6](https://github.com/googleapis/google-api-nodejs-client/commit/abe83f6639138f1eb5414d289e2f9332a3c6999e))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v3.0.0...recaptchaenterprise-v3.1.0) (2024-01-03)
 
 

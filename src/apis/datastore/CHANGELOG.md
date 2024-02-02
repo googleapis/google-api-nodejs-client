@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v1.1.2...datastore-v1.2.0) (2024-02-02)
+
+
+### Features
+
+* **datastore:** update the API ([8287f11](https://github.com/googleapis/google-api-nodejs-client/commit/8287f1158ec0cea49359f8bf547ca6158d23440e))
+
 ## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v1.1.1...datastore-v1.1.2) (2023-10-11)
 
 
