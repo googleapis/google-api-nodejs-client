@@ -125,6 +125,19 @@ export namespace workloadmanager_v1 {
   }
 
   /**
+   * Message describing big query destination
+   */
+  export interface Schema$BigQueryDestination {
+    /**
+     * Optional. determine if results will be saved in a new table
+     */
+    createNewResultsTable?: boolean | null;
+    /**
+     * Optional. destination dataset to save evaluation results
+     */
+    destinationDataset?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -136,6 +149,10 @@ export namespace workloadmanager_v1 {
    * LINT.IfChange Message describing Evaluation object
    */
   export interface Schema$Evaluation {
+    /**
+     * Optional. BigQuery destination
+     */
+    bigQueryDestination?: Schema$BigQueryDestination;
     /**
      * Output only. [Output only] Create time stamp
      */
