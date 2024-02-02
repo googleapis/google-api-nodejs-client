@@ -6295,7 +6295,7 @@ export namespace datamigration_v1 {
     }
 
     /**
-     * Demotes the destination database to become a read replica of the source. This is applicable for the following migrations: 1. MySQL to Cloud SQL (for MySQL) 2. PostgreSQL to Cloud SQL (for PostgreSQL) 3. PostgreSQL to AlloyDB.
+     * Demotes the destination database to become a read replica of the source. This is applicable for the following migrations: 1. MySQL to Cloud SQL for MySQL 2. PostgreSQL to Cloud SQL for PostgreSQL 3. PostgreSQL to AlloyDB for PostgreSQL.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
