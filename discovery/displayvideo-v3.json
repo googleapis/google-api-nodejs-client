@@ -6413,6 +6413,101 @@
             "https://www.googleapis.com/auth/display-video"
           ]
         }
+      },
+      "resources": {
+        "floodlightActivities": {
+          "methods": {
+            "get": {
+              "description": "Gets a Floodlight activity.",
+              "flatPath": "v3/floodlightGroups/{floodlightGroupsId}/floodlightActivities/{floodlightActivitiesId}",
+              "httpMethod": "GET",
+              "id": "displayvideo.floodlightGroups.floodlightActivities.get",
+              "parameterOrder": [
+                "floodlightGroupId",
+                "floodlightActivityId"
+              ],
+              "parameters": {
+                "floodlightActivityId": {
+                  "description": "Required. The ID of the Floodlight activity to fetch.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "floodlightGroupId": {
+                  "description": "Required. The ID of the parent Floodlight group to which the requested Floodlight activity belongs.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "Required. The ID of the partner through which the Floodlight activity is being accessed.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v3/floodlightGroups/{+floodlightGroupId}/floodlightActivities/{+floodlightActivityId}",
+              "response": {
+                "$ref": "FloodlightActivity"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "list": {
+              "description": "Lists Floodlight activities in a Floodlight group.",
+              "flatPath": "v3/floodlightGroups/{floodlightGroupsId}/floodlightActivities",
+              "httpMethod": "GET",
+              "id": "displayvideo.floodlightGroups.floodlightActivities.list",
+              "parameterOrder": [
+                "floodlightGroupId"
+              ],
+              "parameters": {
+                "floodlightGroupId": {
+                  "description": "Required. The ID of the parent Floodlight group to which the requested Floodlight activities belong.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. Field by which to sort the list. Acceptable values are: * `displayName` (default) * `floodlightActivityId` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFloodlightActivities` method. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "Required. The ID of the partner through which the Floodlight activities are being accessed.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v3/floodlightGroups/{+floodlightGroupId}/floodlightActivities",
+              "response": {
+                "$ref": "ListFloodlightActivitiesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          }
+        }
       }
     },
     "googleAudiences": {
@@ -9127,7 +9222,7 @@
       }
     }
   },
-  "revision": "20240104",
+  "revision": "20240201",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9519,7 +9614,7 @@
         },
         "billingConfig": {
           "$ref": "AdvertiserBillingConfig",
-          "description": "Required. Billing related settings of the advertiser."
+          "description": "Optional. Required. Billing related settings of the advertiser."
         },
         "creativeConfig": {
           "$ref": "AdvertiserCreativeConfig",
@@ -9608,7 +9703,7 @@
       "id": "AdvertiserBillingConfig",
       "properties": {
         "billingProfileId": {
-          "description": "The ID of a billing profile assigned to the advertiser.",
+          "description": "Optional. The ID of a billing profile assigned to the advertiser.",
           "format": "int64",
           "type": "string"
         }
@@ -9629,7 +9724,7 @@
           "type": "string"
         },
         "obaComplianceDisabled": {
-          "description": "Whether or not to use DV360's Online Behavioral Advertising (OBA) compliance. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.",
+          "description": "Whether or not to use DV360's Online Behavioral Advertising (OBA) compliance. Starting on February 9, 2024, this field will be affected by an update to the Display & Video 360 API Terms of Service. See our [announcement](//ads-developers.googleblog.com/2024/01/update-to-display-video-360-api-terms.html) for more detail. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.",
           "type": "boolean"
         },
         "videoCreativeDataSharingAuthorized": {
@@ -12050,6 +12145,15 @@
           "format": "int64",
           "type": "string"
         },
+        "cmAdvertiserIds": {
+          "description": "Output only. The set of CM360 Advertiser IDs sharing the CM360 Floodlight configuration.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "cmFloodlightConfigId": {
           "description": "Required. Immutable. ID of the CM360 Floodlight configuration linked with the DV360 advertiser.",
           "format": "int64",
@@ -12196,7 +12300,7 @@
             "CONSENT_STATUS_DENIED"
           ],
           "enumDescriptions": [
-            "Not specified.",
+            "Type value is not specified or is unknown in this version.",
             "Consent is granted.",
             "Consent is denied."
           ],
@@ -12210,7 +12314,7 @@
             "CONSENT_STATUS_DENIED"
           ],
           "enumDescriptions": [
-            "Not specified.",
+            "Type value is not specified or is unknown in this version.",
             "Consent is granted.",
             "Consent is denied."
           ],
@@ -12265,7 +12369,7 @@
       "properties": {
         "consent": {
           "$ref": "Consent",
-          "description": "Input only. The consent setting for the users in contact_infos."
+          "description": "Input only. The consent setting for the users in contact_infos. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error."
         },
         "contactInfos": {
           "description": "A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.",
@@ -15602,6 +15706,69 @@
       },
       "type": "object"
     },
+    "FloodlightActivity": {
+      "description": "A single Floodlight activity.",
+      "id": "FloodlightActivity",
+      "properties": {
+        "advertiserIds": {
+          "description": "Output only. IDs of the advertisers that have access to the parent Floodlight group. Only advertisers under the provided partner ID will be listed in this field.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. The display name of the Floodlight activity.",
+          "type": "string"
+        },
+        "floodlightActivityId": {
+          "description": "Output only. The unique ID of the Floodlight activity. Assigned by the system.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "floodlightGroupId": {
+          "description": "Required. Immutable. The ID of the parent Floodlight group.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the Floodlight activity.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "remarketingConfigs": {
+          "description": "Output only. A list of configuration objects designating whether remarketing for this Floodlight Activity is enabled and available for a specifc advertiser. If enabled, this Floodlight Activity generates a remarketing user list that is able to be used in targeting under the advertiser.",
+          "items": {
+            "$ref": "RemarketingConfig"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "servingStatus": {
+          "description": "Optional. Whether the Floodlight activity is served.",
+          "enum": [
+            "FLOODLIGHT_ACTIVITY_SERVING_STATUS_UNSPECIFIED",
+            "FLOODLIGHT_ACTIVITY_SERVING_STATUS_ENABLED",
+            "FLOODLIGHT_ACTIVITY_SERVING_STATUS_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Type value is not specified or is unknown in this version.",
+            "Enabled.",
+            "Disabled."
+          ],
+          "type": "string"
+        },
+        "sslRequired": {
+          "description": "Output only. Whether tags are required to be compliant.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "FloodlightGroup": {
       "description": "A single Floodlight group.",
       "id": "FloodlightGroup",
@@ -15666,7 +15833,7 @@
           "type": "integer"
         },
         "maxViews": {
-          "description": "The maximum number of times a user may click-through or fully view an ad during this period until it is no longer served to them. Must be greater than 0. Only applicable to YouTube and Partners resources. Required when unlimited is `false` and max_impressions is not set.",
+          "description": "Optional. The maximum number of times a user may click-through or fully view an ad during this period until it is no longer served to them. Must be greater than 0. Only applicable to YouTube and Partners resources. Required when unlimited is `false` and max_impressions is not set.",
           "format": "int32",
           "type": "integer"
         },
@@ -18274,6 +18441,23 @@
       },
       "type": "object"
     },
+    "ListFloodlightActivitiesResponse": {
+      "id": "ListFloodlightActivitiesResponse",
+      "properties": {
+        "floodlightActivities": {
+          "description": "The list of Floodlight activities. This list will be absent if empty.",
+          "items": {
+            "$ref": "FloodlightActivity"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListFloodlightActivities` method to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListGoogleAudiencesResponse": {
       "id": "ListGoogleAudiencesResponse",
       "properties": {
@@ -18805,7 +18989,7 @@
       "properties": {
         "consent": {
           "$ref": "Consent",
-          "description": "Input only. The consent setting for the users in mobile_device_ids."
+          "description": "Input only. The consent setting for the users in mobile_device_ids. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error."
         },
         "mobileDeviceIds": {
           "description": "A list of mobile device IDs defining Customer Match audience members. The size of mobile_device_ids mustn't be greater than 500,000.",
@@ -20025,6 +20209,24 @@
           "description": "Required. ID of the regional location list. Should refer to the location_list_id field of a LocationList resource whose type is `TARGETING_LOCATION_TYPE_REGIONAL`.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemarketingConfig": {
+      "description": "Settings that control the whether remarketing is enabled for the given identified advertiser.",
+      "id": "RemarketingConfig",
+      "properties": {
+        "advertiserId": {
+          "description": "Output only. The ID of the advertiser.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "remarketingEnabled": {
+          "description": "Output only. Whether the Floodlight activity remarketing user list is available to the identified advertiser.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -21681,8 +21883,12 @@
       "description": "Settings that control what YouTube related inventories the YouTube and Partners line item will target.",
       "id": "YoutubeAndPartnersInventorySourceConfig",
       "properties": {
+        "includeGoogleTv": {
+          "description": "Optional. Whether to target inventory in video apps available with Google TV.",
+          "type": "boolean"
+        },
         "includeYoutube": {
-          "description": "Whether to target inventory on YouTube. This includes both search, channels and videos.",
+          "description": "Optional. Whether to target inventory on YouTube. This includes both search, channels and videos.",
           "type": "boolean"
         },
         "includeYoutubeVideoPartners": {
@@ -21734,17 +21940,17 @@
           "description": "Settings that control what YouTube and Partners inventories the line item will target."
         },
         "leadFormId": {
-          "description": "The ID of the form to generate leads.",
+          "description": "Optional. The ID of the form to generate leads.",
           "format": "int64",
           "type": "string"
         },
         "linkedMerchantId": {
-          "description": "The ID of the merchant which is linked to the line item for product feed.",
+          "description": "Optional. The ID of the merchant which is linked to the line item for product feed.",
           "format": "int64",
           "type": "string"
         },
         "relatedVideoIds": {
-          "description": "The IDs of the videos appear below the primary video ad when the ad is playing in the YouTube app on mobile devices.",
+          "description": "Optional. The IDs of the videos appear below the primary video ad when the ad is playing in the YouTube app on mobile devices.",
           "items": {
             "type": "string"
           },
@@ -21752,7 +21958,7 @@
         },
         "targetFrequency": {
           "$ref": "TargetFrequency",
-          "description": "The average number of times you want ads from this line item to show to the same person over a certain period of time."
+          "description": "Optional. The average number of times you want ads from this line item to show to the same person over a certain period of time."
         },
         "thirdPartyMeasurementConfigs": {
           "$ref": "ThirdPartyMeasurementConfigs",
@@ -21760,7 +21966,7 @@
         },
         "videoAdSequenceSettings": {
           "$ref": "VideoAdSequenceSettings",
-          "description": "The settings related to VideoAdSequence."
+          "description": "Optional. The settings related to VideoAdSequence."
         },
         "viewFrequencyCap": {
           "$ref": "FrequencyCap",
