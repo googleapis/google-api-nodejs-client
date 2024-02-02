@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v13.0.0...youtube-v13.1.0) (2024-02-02)
+
+
+### Features
+
+* **youtube:** update the API ([dc515e2](https://github.com/googleapis/google-api-nodejs-client/commit/dc515e21ebc0d64e9fdd6a6aa16aeeede8e2929b))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v12.0.0...youtube-v13.0.0) (2023-10-19)
 
 
