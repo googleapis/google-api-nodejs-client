@@ -977,6 +977,15 @@ export namespace datastream_v1 {
     schema?: string | null;
   }
   /**
+   * Oracle SCN position
+   */
+  export interface Schema$OracleScnPosition {
+    /**
+     * Required. SCN number from where Logs will be read
+     */
+    scn?: string | null;
+  }
+  /**
    * Oracle data source configuration
    */
   export interface Schema$OracleSourceConfig {
@@ -1001,7 +1010,7 @@ export namespace datastream_v1 {
      */
     maxConcurrentCdcTasks?: number | null;
     /**
-     * Stream large object values. NOTE: This feature is currently experimental.
+     * Stream large object values.
      */
     streamLargeObjects?: Schema$StreamLargeObjects;
   }
@@ -1318,6 +1327,10 @@ export namespace datastream_v1 {
      * MySQL specific log position to start replicating from.
      */
     mysqlLogPosition?: Schema$MysqlLogPosition;
+    /**
+     * Oracle SCN to start replicating from.
+     */
+    oracleScnPosition?: Schema$OracleScnPosition;
   }
   /**
    * Request for manually initiating a backfill job for a specific stream object.
