@@ -100,11 +100,12 @@ export namespace storage_v1 {
    */
   export class Storage {
     context: APIRequestContext;
-    anywhereCache: Resource$Anywherecache;
+    anywhereCaches: Resource$Anywherecaches;
     bucketAccessControls: Resource$Bucketaccesscontrols;
     buckets: Resource$Buckets;
     channels: Resource$Channels;
     defaultObjectAccessControls: Resource$Defaultobjectaccesscontrols;
+    folders: Resource$Folders;
     managedFolders: Resource$Managedfolders;
     notifications: Resource$Notifications;
     objectAccessControls: Resource$Objectaccesscontrols;
@@ -118,7 +119,7 @@ export namespace storage_v1 {
         google,
       };
 
-      this.anywhereCache = new Resource$Anywherecache(this.context);
+      this.anywhereCaches = new Resource$Anywherecaches(this.context);
       this.bucketAccessControls = new Resource$Bucketaccesscontrols(
         this.context
       );
@@ -126,6 +127,7 @@ export namespace storage_v1 {
       this.channels = new Resource$Channels(this.context);
       this.defaultObjectAccessControls =
         new Resource$Defaultobjectaccesscontrols(this.context);
+      this.folders = new Resource$Folders(this.context);
       this.managedFolders = new Resource$Managedfolders(this.context);
       this.notifications = new Resource$Notifications(this.context);
       this.objectAccessControls = new Resource$Objectaccesscontrols(
@@ -185,6 +187,10 @@ export namespace storage_v1 {
      * The modification time of the cache instance metadata in RFC 3339 format.
      */
     updateTime?: string | null;
+    /**
+     * The zone in which the cache instance is running. For example, us-central1-a.
+     */
+    zone?: string | null;
   }
   /**
    * A list of Anywhere Caches.
@@ -253,6 +259,10 @@ export namespace storage_v1 {
      * HTTP 1.1 Entity tag for the bucket.
      */
     etag?: string | null;
+    /**
+     * The bucket's hierarchical namespace configuration.
+     */
+    hierarchicalNamespace?: {enabled?: boolean} | null;
     /**
      * The bucket's IAM configuration.
      */
@@ -576,6 +586,68 @@ export namespace storage_v1 {
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * A folder. Only available in buckets with hierarchical namespace enabled.
+   */
+  export interface Schema$Folder {
+    /**
+     * The name of the bucket containing this folder.
+     */
+    bucket?: string | null;
+    /**
+     * The ID of the folder, including the bucket name, folder name.
+     */
+    id?: string | null;
+    /**
+     * The kind of item this is. For folders, this is always storage#folder.
+     */
+    kind?: string | null;
+    /**
+     * User-provided metadata, in key/value pairs.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The version of the metadata for this folder. Used for preconditions and for detecting changes in metadata.
+     */
+    metageneration?: string | null;
+    /**
+     * The name of the folder. Required if not specified by URL parameter.
+     */
+    name?: string | null;
+    /**
+     * Only present if the folder is part of an ongoing rename folder operation. Contains information which can be used to query the operation status.
+     */
+    pendingRenameInfo?: {operationId?: string} | null;
+    /**
+     * The link to this folder.
+     */
+    selfLink?: string | null;
+    /**
+     * The creation time of the folder in RFC 3339 format.
+     */
+    timeCreated?: string | null;
+    /**
+     * The modification time of the folder metadata in RFC 3339 format.
+     */
+    updated?: string | null;
+  }
+  /**
+   * A list of folders.
+   */
+  export interface Schema$Folders {
+    /**
+     * The list of items.
+     */
+    items?: Schema$Folder[];
+    /**
+     * The kind of item this is. For lists of folders, this is always storage#folders.
+     */
+    kind?: string | null;
+    /**
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response message for storage.buckets.operations.list.
@@ -1174,7 +1246,7 @@ export namespace storage_v1 {
     permissions?: string[] | null;
   }
 
-  export class Resource$Anywherecache {
+  export class Resource$Anywherecaches {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1189,31 +1261,31 @@ export namespace storage_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     disable(
-      params: Params$Resource$Anywherecache$Disable,
+      params: Params$Resource$Anywherecaches$Disable,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     disable(
-      params?: Params$Resource$Anywherecache$Disable,
+      params?: Params$Resource$Anywherecaches$Disable,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnywhereCache>;
     disable(
-      params: Params$Resource$Anywherecache$Disable,
+      params: Params$Resource$Anywherecaches$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     disable(
-      params: Params$Resource$Anywherecache$Disable,
+      params: Params$Resource$Anywherecaches$Disable,
       options: MethodOptions | BodyResponseCallback<Schema$AnywhereCache>,
       callback: BodyResponseCallback<Schema$AnywhereCache>
     ): void;
     disable(
-      params: Params$Resource$Anywherecache$Disable,
+      params: Params$Resource$Anywherecaches$Disable,
       callback: BodyResponseCallback<Schema$AnywhereCache>
     ): void;
     disable(callback: BodyResponseCallback<Schema$AnywhereCache>): void;
     disable(
       paramsOrCallback?:
-        | Params$Resource$Anywherecache$Disable
+        | Params$Resource$Anywherecaches$Disable
         | BodyResponseCallback<Schema$AnywhereCache>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1226,12 +1298,12 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Anywherecache$Disable;
+        {}) as Params$Resource$Anywherecaches$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Anywherecache$Disable;
+        params = {} as Params$Resource$Anywherecaches$Disable;
         options = {};
       }
 
@@ -1276,31 +1348,31 @@ export namespace storage_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
-      params: Params$Resource$Anywherecache$Get,
+      params: Params$Resource$Anywherecaches$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     get(
-      params?: Params$Resource$Anywherecache$Get,
+      params?: Params$Resource$Anywherecaches$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnywhereCache>;
     get(
-      params: Params$Resource$Anywherecache$Get,
+      params: Params$Resource$Anywherecaches$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Anywherecache$Get,
+      params: Params$Resource$Anywherecaches$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AnywhereCache>,
       callback: BodyResponseCallback<Schema$AnywhereCache>
     ): void;
     get(
-      params: Params$Resource$Anywherecache$Get,
+      params: Params$Resource$Anywherecaches$Get,
       callback: BodyResponseCallback<Schema$AnywhereCache>
     ): void;
     get(callback: BodyResponseCallback<Schema$AnywhereCache>): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Anywherecache$Get
+        | Params$Resource$Anywherecaches$Get
         | BodyResponseCallback<Schema$AnywhereCache>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1313,12 +1385,12 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Anywherecache$Get;
+        {}) as Params$Resource$Anywherecaches$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Anywherecache$Get;
+        params = {} as Params$Resource$Anywherecaches$Get;
         options = {};
       }
 
@@ -1363,27 +1435,27 @@ export namespace storage_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
-      params: Params$Resource$Anywherecache$Insert,
+      params: Params$Resource$Anywherecaches$Insert,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     insert(
-      params?: Params$Resource$Anywherecache$Insert,
+      params?: Params$Resource$Anywherecaches$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     insert(
-      params: Params$Resource$Anywherecache$Insert,
+      params: Params$Resource$Anywherecaches$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     insert(
-      params: Params$Resource$Anywherecache$Insert,
+      params: Params$Resource$Anywherecaches$Insert,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     insert(
-      params: Params$Resource$Anywherecache$Insert,
+      params: Params$Resource$Anywherecaches$Insert,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     insert(
@@ -1391,7 +1463,7 @@ export namespace storage_v1 {
     ): void;
     insert(
       paramsOrCallback?:
-        | Params$Resource$Anywherecache$Insert
+        | Params$Resource$Anywherecaches$Insert
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1407,12 +1479,12 @@ export namespace storage_v1 {
       | GaxiosPromise<Schema$GoogleLongrunningOperation>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Anywherecache$Insert;
+        {}) as Params$Resource$Anywherecaches$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Anywherecache$Insert;
+        params = {} as Params$Resource$Anywherecaches$Insert;
         options = {};
       }
 
@@ -1457,31 +1529,31 @@ export namespace storage_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
-      params: Params$Resource$Anywherecache$List,
+      params: Params$Resource$Anywherecaches$List,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     list(
-      params?: Params$Resource$Anywherecache$List,
+      params?: Params$Resource$Anywherecaches$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnywhereCaches>;
     list(
-      params: Params$Resource$Anywherecache$List,
+      params: Params$Resource$Anywherecaches$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Anywherecache$List,
+      params: Params$Resource$Anywherecaches$List,
       options: MethodOptions | BodyResponseCallback<Schema$AnywhereCaches>,
       callback: BodyResponseCallback<Schema$AnywhereCaches>
     ): void;
     list(
-      params: Params$Resource$Anywherecache$List,
+      params: Params$Resource$Anywherecaches$List,
       callback: BodyResponseCallback<Schema$AnywhereCaches>
     ): void;
     list(callback: BodyResponseCallback<Schema$AnywhereCaches>): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Anywherecache$List
+        | Params$Resource$Anywherecaches$List
         | BodyResponseCallback<Schema$AnywhereCaches>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1494,12 +1566,12 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$AnywhereCaches> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Anywherecache$List;
+        {}) as Params$Resource$Anywherecaches$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Anywherecache$List;
+        params = {} as Params$Resource$Anywherecaches$List;
         options = {};
       }
 
@@ -1544,31 +1616,31 @@ export namespace storage_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     pause(
-      params: Params$Resource$Anywherecache$Pause,
+      params: Params$Resource$Anywherecaches$Pause,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     pause(
-      params?: Params$Resource$Anywherecache$Pause,
+      params?: Params$Resource$Anywherecaches$Pause,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnywhereCache>;
     pause(
-      params: Params$Resource$Anywherecache$Pause,
+      params: Params$Resource$Anywherecaches$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     pause(
-      params: Params$Resource$Anywherecache$Pause,
+      params: Params$Resource$Anywherecaches$Pause,
       options: MethodOptions | BodyResponseCallback<Schema$AnywhereCache>,
       callback: BodyResponseCallback<Schema$AnywhereCache>
     ): void;
     pause(
-      params: Params$Resource$Anywherecache$Pause,
+      params: Params$Resource$Anywherecaches$Pause,
       callback: BodyResponseCallback<Schema$AnywhereCache>
     ): void;
     pause(callback: BodyResponseCallback<Schema$AnywhereCache>): void;
     pause(
       paramsOrCallback?:
-        | Params$Resource$Anywherecache$Pause
+        | Params$Resource$Anywherecaches$Pause
         | BodyResponseCallback<Schema$AnywhereCache>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1581,12 +1653,12 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Anywherecache$Pause;
+        {}) as Params$Resource$Anywherecaches$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Anywherecache$Pause;
+        params = {} as Params$Resource$Anywherecaches$Pause;
         options = {};
       }
 
@@ -1631,31 +1703,31 @@ export namespace storage_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     resume(
-      params: Params$Resource$Anywherecache$Resume,
+      params: Params$Resource$Anywherecaches$Resume,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     resume(
-      params?: Params$Resource$Anywherecache$Resume,
+      params?: Params$Resource$Anywherecaches$Resume,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnywhereCache>;
     resume(
-      params: Params$Resource$Anywherecache$Resume,
+      params: Params$Resource$Anywherecaches$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     resume(
-      params: Params$Resource$Anywherecache$Resume,
+      params: Params$Resource$Anywherecaches$Resume,
       options: MethodOptions | BodyResponseCallback<Schema$AnywhereCache>,
       callback: BodyResponseCallback<Schema$AnywhereCache>
     ): void;
     resume(
-      params: Params$Resource$Anywherecache$Resume,
+      params: Params$Resource$Anywherecaches$Resume,
       callback: BodyResponseCallback<Schema$AnywhereCache>
     ): void;
     resume(callback: BodyResponseCallback<Schema$AnywhereCache>): void;
     resume(
       paramsOrCallback?:
-        | Params$Resource$Anywherecache$Resume
+        | Params$Resource$Anywherecaches$Resume
         | BodyResponseCallback<Schema$AnywhereCache>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1668,12 +1740,12 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Anywherecache$Resume;
+        {}) as Params$Resource$Anywherecaches$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Anywherecache$Resume;
+        params = {} as Params$Resource$Anywherecaches$Resume;
         options = {};
       }
 
@@ -1718,27 +1790,27 @@ export namespace storage_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
-      params: Params$Resource$Anywherecache$Update,
+      params: Params$Resource$Anywherecaches$Update,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     update(
-      params?: Params$Resource$Anywherecache$Update,
+      params?: Params$Resource$Anywherecaches$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     update(
-      params: Params$Resource$Anywherecache$Update,
+      params: Params$Resource$Anywherecaches$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     update(
-      params: Params$Resource$Anywherecache$Update,
+      params: Params$Resource$Anywherecaches$Update,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     update(
-      params: Params$Resource$Anywherecache$Update,
+      params: Params$Resource$Anywherecaches$Update,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     update(
@@ -1746,7 +1818,7 @@ export namespace storage_v1 {
     ): void;
     update(
       paramsOrCallback?:
-        | Params$Resource$Anywherecache$Update
+        | Params$Resource$Anywherecaches$Update
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1762,12 +1834,12 @@ export namespace storage_v1 {
       | GaxiosPromise<Schema$GoogleLongrunningOperation>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Anywherecache$Update;
+        {}) as Params$Resource$Anywherecaches$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Anywherecache$Update;
+        params = {} as Params$Resource$Anywherecaches$Update;
         options = {};
       }
 
@@ -1804,32 +1876,32 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Anywherecache$Disable
+  export interface Params$Resource$Anywherecaches$Disable
     extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
     anywhereCacheId?: string;
     /**
-     * Name of the partent bucket
+     * Name of the parent bucket.
      */
     bucket?: string;
   }
-  export interface Params$Resource$Anywherecache$Get
+  export interface Params$Resource$Anywherecaches$Get
     extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
     anywhereCacheId?: string;
     /**
-     * Name of the partent bucket
+     * Name of the parent bucket.
      */
     bucket?: string;
   }
-  export interface Params$Resource$Anywherecache$Insert
+  export interface Params$Resource$Anywherecaches$Insert
     extends StandardParameters {
     /**
-     * Name of the partent bucket
+     * Name of the parent bucket.
      */
     bucket?: string;
 
@@ -1838,14 +1910,14 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$AnywhereCache;
   }
-  export interface Params$Resource$Anywherecache$List
+  export interface Params$Resource$Anywherecaches$List
     extends StandardParameters {
     /**
-     * Name of the partent bucket
+     * Name of the parent bucket.
      */
     bucket?: string;
     /**
-     * Maximum number of items return in a single page of responses. Maximum 1000.
+     * Maximum number of items to return in a single page of responses. Maximum 1000.
      */
     pageSize?: number;
     /**
@@ -1853,36 +1925,36 @@ export namespace storage_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Anywherecache$Pause
+  export interface Params$Resource$Anywherecaches$Pause
     extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
     anywhereCacheId?: string;
     /**
-     * Name of the partent bucket
+     * Name of the parent bucket.
      */
     bucket?: string;
   }
-  export interface Params$Resource$Anywherecache$Resume
+  export interface Params$Resource$Anywherecaches$Resume
     extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
     anywhereCacheId?: string;
     /**
-     * Name of the partent bucket
+     * Name of the parent bucket.
      */
     bucket?: string;
   }
-  export interface Params$Resource$Anywherecache$Update
+  export interface Params$Resource$Anywherecaches$Update
     extends StandardParameters {
     /**
      * The ID of requested Anywhere Cache instance.
      */
     anywhereCacheId?: string;
     /**
-     * Name of the partent bucket
+     * Name of the parent bucket.
      */
     bucket?: string;
 
@@ -4375,6 +4447,552 @@ export namespace storage_v1 {
     requestBody?: Schema$ObjectAccessControl;
   }
 
+  export class Resource$Folders {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Permanently deletes a folder. Only applicable to buckets with hierarchical namespace enabled.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Folders$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Folders$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Folders$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/folders/{folder}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'folder'],
+        pathParams: ['bucket', 'folder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Returns metadata for the specified folder. Only applicable to buckets with hierarchical namespace enabled.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folder>;
+    get(
+      params: Params$Resource$Folders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Get,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Folder>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Get
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/folders/{folder}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'folder'],
+        pathParams: ['bucket', 'folder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Folder>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new folder. Only applicable to buckets with hierarchical namespace enabled.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Folders$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Folders$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folder>;
+    insert(
+      params: Params$Resource$Folders$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Folders$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    insert(
+      params: Params$Resource$Folders$Insert,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Folder>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Insert
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/folders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Folder>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of folders matching the criteria. Only applicable to buckets with hierarchical namespace enabled.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folders>;
+    list(
+      params: Params$Resource$Folders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Folders>,
+      callback: BodyResponseCallback<Schema$Folders>
+    ): void;
+    list(
+      params: Params$Resource$Folders$List,
+      callback: BodyResponseCallback<Schema$Folders>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$Folders>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$List
+        | BodyResponseCallback<Schema$Folders>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folders>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folders>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folders> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/folders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Folders>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Folders>(parameters);
+      }
+    }
+
+    /**
+     * Renames a source folder to a destination folder. Only applicable to buckets with hierarchical namespace enabled.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rename(
+      params: Params$Resource$Folders$Rename,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rename(
+      params?: Params$Resource$Folders$Rename,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    rename(
+      params: Params$Resource$Folders$Rename,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rename(
+      params: Params$Resource$Folders$Rename,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    rename(
+      params: Params$Resource$Folders$Rename,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    rename(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    rename(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Rename
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Folders$Rename;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Rename;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/folders/{sourceFolder}/renameTo/folders/{destinationFolder}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'sourceFolder', 'destinationFolder'],
+        pathParams: ['bucket', 'destinationFolder', 'sourceFolder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Delete extends StandardParameters {
+    /**
+     * Name of the bucket in which the folder resides.
+     */
+    bucket?: string;
+    /**
+     * Name of a folder.
+     */
+    folder?: string;
+    /**
+     * If set, only deletes the folder if its metageneration matches this value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * If set, only deletes the folder if its metageneration does not match this value.
+     */
+    ifMetagenerationNotMatch?: string;
+  }
+  export interface Params$Resource$Folders$Get extends StandardParameters {
+    /**
+     * Name of the bucket in which the folder resides.
+     */
+    bucket?: string;
+    /**
+     * Name of a folder.
+     */
+    folder?: string;
+    /**
+     * Makes the return of the folder metadata conditional on whether the folder's current metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the return of the folder metadata conditional on whether the folder's current metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+  }
+  export interface Params$Resource$Folders$Insert extends StandardParameters {
+    /**
+     * Name of the bucket in which the folder resides.
+     */
+    bucket?: string;
+    /**
+     * If true, any parent folder which doesn’t exist will be created automatically.
+     */
+    recursive?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Folder;
+  }
+  export interface Params$Resource$Folders$List extends StandardParameters {
+    /**
+     * Name of the bucket in which to look for folders.
+     */
+    bucket?: string;
+    /**
+     * Returns results in a directory-like mode. The only supported value is '/'. If set, items will only contain folders that either exactly match the prefix, or are one level below the prefix.
+     */
+    delimiter?: string;
+    /**
+     * Filter results to folders whose names are lexicographically before endOffset. If startOffset is also set, the folders listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     */
+    endOffset?: string;
+    /**
+     * Maximum number of items to return in a single page of responses.
+     */
+    pageSize?: number;
+    /**
+     * A previously-returned page token representing part of the larger set of results to view.
+     */
+    pageToken?: string;
+    /**
+     * Filter results to folders whose paths begin with this prefix. If set, the value must either be an empty string or end with a '/'.
+     */
+    prefix?: string;
+    /**
+     * Filter results to folders whose names are lexicographically equal to or after startOffset. If endOffset is also set, the folders listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     */
+    startOffset?: string;
+  }
+  export interface Params$Resource$Folders$Rename extends StandardParameters {
+    /**
+     * Name of the bucket in which the folders are in.
+     */
+    bucket?: string;
+    /**
+     * Name of the destination folder.
+     */
+    destinationFolder?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current metageneration matches the given value.
+     */
+    ifSourceMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current metageneration does not match the given value.
+     */
+    ifSourceMetagenerationNotMatch?: string;
+    /**
+     * Name of the source folder.
+     */
+    sourceFolder?: string;
+  }
+
   export class Resource$Managedfolders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5070,7 +5688,7 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * Maximum number of items return in a single page of responses.
+     * Maximum number of items to return in a single page of responses.
      */
     pageSize?: number;
     /**
