@@ -336,11 +336,11 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlay {
     /**
-     * The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.
+     * Optional. The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.
      */
     customConstraints?: Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayCustomConstraintOverlay[];
     /**
-     * The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.
+     * Optional. The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.
      */
     policies?: Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayPolicyOverlay[];
   }
@@ -349,11 +349,11 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayCustomConstraintOverlay {
     /**
-     * The new or updated custom constraint.
+     * Optional. The new or updated custom constraint.
      */
     customConstraint?: Schema$GoogleCloudOrgpolicyV2CustomConstraint;
     /**
-     * Resource the constraint is attached to. Example: "organization/987654"
+     * Optional. Resource the constraint is attached to. Example: "organization/987654"
      */
     customConstraintParent?: string | null;
   }
@@ -362,11 +362,11 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayPolicyOverlay {
     /**
-     * The new or updated OrgPolicy.
+     * Optional. The new or updated OrgPolicy.
      */
     policy?: Schema$GoogleCloudOrgpolicyV2Policy;
     /**
-     * The parent of the policy we are attaching to. Example: "projects/123456"
+     * Optional. The parent of the policy we are attaching to. Example: "projects/123456"
      */
     policyParent?: string | null;
   }
@@ -408,23 +408,23 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreviewResourceCounts {
     /**
-     * Number of scanned resources with zero violations.
+     * Output only. Number of scanned resources with zero violations.
      */
     compliant?: number | null;
     /**
-     * Number of resources that returned an error when scanned.
+     * Output only. Number of resources that returned an error when scanned.
      */
     errors?: number | null;
     /**
-     * Number of scanned resources with at least one violation.
+     * Output only. Number of scanned resources with at least one violation.
      */
     noncompliant?: number | null;
     /**
-     * Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error
+     * Output only. Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error
      */
     scanned?: number | null;
     /**
-     * Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.
+     * Output only. Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.
      */
     unenforced?: number | null;
   }
@@ -462,11 +462,11 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay {
     /**
-     * The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.
+     * Optional. The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.
      */
     customConstraints?: Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay[];
     /**
-     * The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.
+     * Optional. The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.
      */
     policies?: Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay[];
   }
@@ -475,11 +475,11 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay {
     /**
-     * The new or updated custom constraint.
+     * Optional. The new or updated custom constraint.
      */
     customConstraint?: Schema$GoogleCloudOrgpolicyV2CustomConstraint;
     /**
-     * Resource the constraint is attached to. Example: "organization/987654"
+     * Optional. Resource the constraint is attached to. Example: "organization/987654"
      */
     customConstraintParent?: string | null;
   }
@@ -488,11 +488,11 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay {
     /**
-     * The new or updated OrgPolicy.
+     * Optional. The new or updated OrgPolicy.
      */
     policy?: Schema$GoogleCloudOrgpolicyV2Policy;
     /**
-     * The parent of the policy we are attaching to. Example: "projects/123456"
+     * Optional. The parent of the policy we are attaching to. Example: "projects/123456"
      */
     policyParent?: string | null;
   }
@@ -534,23 +534,23 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts {
     /**
-     * Number of scanned resources with zero violations.
+     * Output only. Number of scanned resources with zero violations.
      */
     compliant?: number | null;
     /**
-     * Number of resources that returned an error when scanned.
+     * Output only. Number of resources that returned an error when scanned.
      */
     errors?: number | null;
     /**
-     * Number of scanned resources with at least one violation.
+     * Output only. Number of scanned resources with at least one violation.
      */
     noncompliant?: number | null;
     /**
-     * Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error
+     * Output only. Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error
      */
     scanned?: number | null;
     /**
-     * Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.
+     * Output only. Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.
      */
     unenforced?: number | null;
   }
@@ -808,7 +808,7 @@ export namespace policysimulator_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }

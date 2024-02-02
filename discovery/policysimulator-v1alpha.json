@@ -457,6 +457,34 @@
           "resources": {
             "orgPolicyViolationsPreviews": {
               "methods": {
+                "generate": {
+                  "description": "GenerateOrgPolicyViolationsPreview generates an OrgPolicyViolationsPreview for the proposed changes in the provided OrgPolicyViolationsPreview.OrgPolicyOverlay. The changes to OrgPolicy are specified by this `OrgPolicyOverlay`. The resources to scan are inferred from these specified changes.",
+                  "flatPath": "v1alpha/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews:generate",
+                  "httpMethod": "POST",
+                  "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.generate",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The organization under which this OrgPolicyViolationsPreview will be created. Example: `organizations/my-example-org/locations/global`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/orgPolicyViolationsPreviews:generate",
+                  "request": {
+                    "$ref": "GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreview"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "GetOrgPolicyViolationsPreview gets the specified OrgPolicyViolationsPreview. Each OrgPolicyViolationsPreview is available for at least 7 days.",
                   "flatPath": "v1alpha/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreviewsId}",
@@ -492,13 +520,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 5 items will be returned. The maximum value is 10; values above 10 will be coerced to 10.",
+                      "description": "Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 5 items will be returned. The maximum value is 10; values above 10 will be coerced to 10.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.",
+                      "description": "Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -561,13 +589,13 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 50 items will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "description": "Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 50 items will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.",
+                          "description": "Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1047,7 +1075,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240128",
   "rootUrl": "https://policysimulator.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -1754,14 +1782,14 @@
       "id": "GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlay",
       "properties": {
         "customConstraints": {
-          "description": "The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.",
+          "description": "Optional. The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.",
           "items": {
             "$ref": "GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayCustomConstraintOverlay"
           },
           "type": "array"
         },
         "policies": {
-          "description": "The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.",
+          "description": "Optional. The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.",
           "items": {
             "$ref": "GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayPolicyOverlay"
           },
@@ -1776,10 +1804,10 @@
       "properties": {
         "customConstraint": {
           "$ref": "GoogleCloudOrgpolicyV2CustomConstraint",
-          "description": "The new or updated custom constraint."
+          "description": "Optional. The new or updated custom constraint."
         },
         "customConstraintParent": {
-          "description": "Resource the constraint is attached to. Example: \"organization/987654\"",
+          "description": "Optional. Resource the constraint is attached to. Example: \"organization/987654\"",
           "type": "string"
         }
       },
@@ -1791,10 +1819,10 @@
       "properties": {
         "policy": {
           "$ref": "GoogleCloudOrgpolicyV2Policy",
-          "description": "The new or updated OrgPolicy."
+          "description": "Optional. The new or updated OrgPolicy."
         },
         "policyParent": {
-          "description": "The parent of the policy we are attaching to. Example: \"projects/123456\"",
+          "description": "Optional. The parent of the policy we are attaching to. Example: \"projects/123456\"",
           "type": "string"
         }
       },
@@ -1888,28 +1916,33 @@
       "id": "GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreviewResourceCounts",
       "properties": {
         "compliant": {
-          "description": "Number of scanned resources with zero violations.",
+          "description": "Output only. Number of scanned resources with zero violations.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "errors": {
-          "description": "Number of resources that returned an error when scanned.",
+          "description": "Output only. Number of resources that returned an error when scanned.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "noncompliant": {
-          "description": "Number of scanned resources with at least one violation.",
+          "description": "Output only. Number of scanned resources with at least one violation.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "scanned": {
-          "description": "Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error",
+          "description": "Output only. Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "unenforced": {
-          "description": "Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.",
+          "description": "Output only. Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -2135,14 +2168,14 @@
       "id": "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay",
       "properties": {
         "customConstraints": {
-          "description": "The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.",
+          "description": "Optional. The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.",
           "items": {
             "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay"
           },
           "type": "array"
         },
         "policies": {
-          "description": "The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.",
+          "description": "Optional. The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.",
           "items": {
             "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay"
           },
@@ -2157,10 +2190,10 @@
       "properties": {
         "customConstraint": {
           "$ref": "GoogleCloudOrgpolicyV2CustomConstraint",
-          "description": "The new or updated custom constraint."
+          "description": "Optional. The new or updated custom constraint."
         },
         "customConstraintParent": {
-          "description": "Resource the constraint is attached to. Example: \"organization/987654\"",
+          "description": "Optional. Resource the constraint is attached to. Example: \"organization/987654\"",
           "type": "string"
         }
       },
@@ -2172,10 +2205,10 @@
       "properties": {
         "policy": {
           "$ref": "GoogleCloudOrgpolicyV2Policy",
-          "description": "The new or updated OrgPolicy."
+          "description": "Optional. The new or updated OrgPolicy."
         },
         "policyParent": {
-          "description": "The parent of the policy we are attaching to. Example: \"projects/123456\"",
+          "description": "Optional. The parent of the policy we are attaching to. Example: \"projects/123456\"",
           "type": "string"
         }
       },
@@ -2246,28 +2279,33 @@
       "id": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts",
       "properties": {
         "compliant": {
-          "description": "Number of scanned resources with zero violations.",
+          "description": "Output only. Number of scanned resources with zero violations.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "errors": {
-          "description": "Number of resources that returned an error when scanned.",
+          "description": "Output only. Number of resources that returned an error when scanned.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "noncompliant": {
-          "description": "Number of scanned resources with at least one violation.",
+          "description": "Output only. Number of scanned resources with at least one violation.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "scanned": {
-          "description": "Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error",
+          "description": "Output only. Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "unenforced": {
-          "description": "Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.",
+          "description": "Output only. Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -2337,7 +2375,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
