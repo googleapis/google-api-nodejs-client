@@ -105,6 +105,35 @@
   "protocol": "rest",
   "resources": {
     "applications": {
+      "methods": {
+        "dataSafety": {
+          "description": "Writes the Safety Labels declaration of an app.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/dataSafety",
+          "httpMethod": "POST",
+          "id": "androidpublisher.applications.dataSafety",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Required. Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/dataSafety",
+          "request": {
+            "$ref": "SafetyLabelsUpdateRequest"
+          },
+          "response": {
+            "$ref": "SafetyLabelsUpdateResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      },
       "resources": {
         "deviceTierConfigs": {
           "methods": {
@@ -208,6 +237,172 @@
               ]
             }
           }
+        }
+      }
+    },
+    "apprecovery": {
+      "methods": {
+        "addTargeting": {
+          "description": "Incrementally update targeting for a recovery action. Note that only the criteria selected during the creation of recovery action can be expanded.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:addTargeting",
+          "httpMethod": "POST",
+          "id": "androidpublisher.apprecovery.addTargeting",
+          "parameterOrder": [
+            "packageName",
+            "appRecoveryId"
+          ],
+          "parameters": {
+            "appRecoveryId": {
+              "description": "Required. ID corresponding to the app recovery action.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Required. Package name of the app for which recovery action is to be updated.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:addTargeting",
+          "request": {
+            "$ref": "AddTargetingRequest"
+          },
+          "response": {
+            "$ref": "AddTargetingResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "appRecoveries": {
+          "description": "List all app recovery action resources associated with a particular package name and app version.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries",
+          "httpMethod": "POST",
+          "id": "androidpublisher.apprecovery.appRecoveries",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Required. Package name of the app for which list of recovery actions is requested.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "versionCode": {
+              "description": "Required. Version code targeted by the list of recovery actions.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/appRecoveries",
+          "response": {
+            "$ref": "ListAppRecoveriesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "cancel": {
+          "description": "Cancel an already executing app recovery action. Note that this action changes status of the recovery action to CANCELED.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:cancel",
+          "httpMethod": "POST",
+          "id": "androidpublisher.apprecovery.cancel",
+          "parameterOrder": [
+            "packageName",
+            "appRecoveryId"
+          ],
+          "parameters": {
+            "appRecoveryId": {
+              "description": "Required. ID corresponding to the app recovery action.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Required. Package name of the app for which recovery action cancellation is requested.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:cancel",
+          "request": {
+            "$ref": "CancelAppRecoveryRequest"
+          },
+          "response": {
+            "$ref": "CancelAppRecoveryResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "create": {
+          "description": "Create an app recovery action with recovery status as DRAFT. Note that this action does not execute the recovery action.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries",
+          "httpMethod": "POST",
+          "id": "androidpublisher.apprecovery.create",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Required. Package name of the app on which recovery action is performed.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/appRecoveries",
+          "request": {
+            "$ref": "CreateDraftAppRecoveryRequest"
+          },
+          "response": {
+            "$ref": "AppRecoveryAction"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "deploy": {
+          "description": "Deploy an already created app recovery action with recovery status DRAFT. Note that this action activates the recovery action for all targeted users and changes its status to ACTIVE.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:deploy",
+          "httpMethod": "POST",
+          "id": "androidpublisher.apprecovery.deploy",
+          "parameterOrder": [
+            "packageName",
+            "appRecoveryId"
+          ],
+          "parameters": {
+            "appRecoveryId": {
+              "description": "Required. ID corresponding to the app recovery action to deploy.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Required. Package name of the app for which recovery action is deployed.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:deploy",
+          "request": {
+            "$ref": "DeployAppRecoveryRequest"
+          },
+          "response": {
+            "$ref": "DeployAppRecoveryResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
         }
       }
     },
@@ -4028,6 +4223,40 @@
               "scopes": [
                 "https://www.googleapis.com/auth/androidpublisher"
               ]
+            },
+            "revoke": {
+              "description": "Revoke a subscription purchase for the user.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:revoke",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.subscriptionsv2.revoke",
+              "parameterOrder": [
+                "packageName",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "Required. The token provided to the user's device when the subscription was purchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:revoke",
+              "request": {
+                "$ref": "RevokeSubscriptionPurchaseRequest"
+              },
+              "response": {
+                "$ref": "RevokeSubscriptionPurchaseResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
             }
           }
         },
@@ -4495,7 +4724,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240131",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -4625,6 +4854,49 @@
         "productId": {
           "description": "Required. The parent subscription (ID) of the offer to activate.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddTargetingRequest": {
+      "description": "Request message for AddTargeting.",
+      "id": "AddTargetingRequest",
+      "properties": {
+        "targetingUpdate": {
+          "$ref": "TargetingUpdate",
+          "description": "Specifies targeting updates such as regions, android sdk versions etc."
+        }
+      },
+      "type": "object"
+    },
+    "AddTargetingResponse": {
+      "description": "Response message for AddTargeting.",
+      "id": "AddTargetingResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "AllUsers": {
+      "description": "Object representation to describe all set of users.",
+      "id": "AllUsers",
+      "properties": {
+        "isAllUsersRequested": {
+          "description": "Required. Set to true if all set of users are needed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AndroidSdks": {
+      "description": "Android api level targeting data for app recovery action targeting.",
+      "id": "AndroidSdks",
+      "properties": {
+        "sdkLevels": {
+          "description": "Android api levels of devices targeted by recovery action. See https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels for different api levels in android.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4815,6 +5087,94 @@
         "id": {
           "description": "Output only. Identifier of the edit. Can be used in subsequent API calls.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppRecoveryAction": {
+      "description": "Information about an app recovery action.",
+      "id": "AppRecoveryAction",
+      "properties": {
+        "appRecoveryId": {
+          "description": "ID corresponding to the app recovery action.",
+          "format": "int64",
+          "type": "string"
+        },
+        "cancelTime": {
+          "description": "Timestamp of when the app recovery action is canceled by the developer. Only set if the recovery action has been canceled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp of when the app recovery action is created by the developer. It is always set after creation of the recovery action.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "deployTime": {
+          "description": "Timestamp of when the app recovery action is deployed to the users. Only set if the recovery action has been deployed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "lastUpdateTime": {
+          "description": "Timestamp of when the developer last updated recovery action. In case the action is cancelled, it corresponds to cancellation time. It is always set after creation of the recovery action.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "remoteInAppUpdateData": {
+          "$ref": "RemoteInAppUpdateData",
+          "description": "Data about the remote in-app update action such as such as recovered user base, recoverable user base etc. Set only if the recovery action type is Remote In-App Update."
+        },
+        "status": {
+          "description": "The status of the recovery action.",
+          "enum": [
+            "RECOVERY_STATUS_UNSPECIFIED",
+            "RECOVERY_STATUS_ACTIVE",
+            "RECOVERY_STATUS_CANCELED",
+            "RECOVERY_STATUS_DRAFT"
+          ],
+          "enumDescriptions": [
+            "RecoveryStatus is unspecified.",
+            "The app recovery action has not been canceled since it has been created.",
+            "The recovery action has been canceled. The action cannot be resumed.",
+            "The recovery action is in the draft state and has not yet been deployed to users."
+          ],
+          "type": "string"
+        },
+        "targeting": {
+          "$ref": "Targeting",
+          "description": "Specifies targeting criteria for the recovery action such as regions, android sdk versions, app versions etc."
+        }
+      },
+      "type": "object"
+    },
+    "AppVersionList": {
+      "description": "Data format for a list of app versions. Only one app version is supported for now.",
+      "id": "AppVersionList",
+      "properties": {
+        "versionCodes": {
+          "description": "List of app version codes.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AppVersionRange": {
+      "description": "Data format for a continuous range of app versions.",
+      "id": "AppVersionRange",
+      "properties": {
+        "versionCodeEnd": {
+          "description": "Highest app version in the range, inclusive.",
+          "format": "int64",
+          "type": "string"
+        },
+        "versionCodeStart": {
+          "description": "Lowest app version in the range, inclusive.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -5210,6 +5570,18 @@
       },
       "type": "object"
     },
+    "CancelAppRecoveryRequest": {
+      "description": "Request message for CancelAppRecovery.",
+      "id": "CancelAppRecoveryRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CancelAppRecoveryResponse": {
+      "description": "Response message for CancelAppRecovery.",
+      "id": "CancelAppRecoveryResponse",
+      "properties": {},
+      "type": "object"
+    },
     "CancelSurveyResult": {
       "description": "Result of the cancel survey when the subscription was canceled by the user.",
       "id": "CancelSurveyResult",
@@ -5360,6 +5732,21 @@
       },
       "type": "object"
     },
+    "CreateDraftAppRecoveryRequest": {
+      "description": "Request message for CreateDraftAppRecovery.",
+      "id": "CreateDraftAppRecoveryRequest",
+      "properties": {
+        "remoteInAppUpdate": {
+          "$ref": "RemoteInAppUpdate",
+          "description": "Action type is remote in-app update. As a consequence of this action, a downloadable recovery module is also created for testing purposes."
+        },
+        "targeting": {
+          "$ref": "Targeting",
+          "description": "Specifies targeting criteria for the recovery action such as regions, android sdk versions, app versions etc."
+        }
+      },
+      "type": "object"
+    },
     "DeactivateBasePlanRequest": {
       "description": "Request message for DeactivateBasePlan.",
       "id": "DeactivateBasePlanRequest",
@@ -5471,6 +5858,18 @@
           "description": "The uploaded Deobfuscation File configuration."
         }
       },
+      "type": "object"
+    },
+    "DeployAppRecoveryRequest": {
+      "description": "Request message for DeployAppRecovery.",
+      "id": "DeployAppRecoveryRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "DeployAppRecoveryResponse": {
+      "description": "Response message for DeployAppRecovery.",
+      "id": "DeployAppRecoveryResponse",
+      "properties": {},
       "type": "object"
     },
     "DeveloperComment": {
@@ -6041,6 +6440,13 @@
           },
           "type": "array"
         },
+        "generatedRecoveryModules": {
+          "description": "Generated recovery apks for recovery actions signed with a key corresponding to certificate_sha256_hash. This includes all generated recovery APKs, also those in draft or cancelled state. This field is not set if no recovery actions were created for this signing key.",
+          "items": {
+            "$ref": "GeneratedRecoveryApk"
+          },
+          "type": "array"
+        },
         "generatedSplitApks": {
           "description": "List of generated split APKs, signed with a key corresponding to certificate_sha256_hash.",
           "items": {
@@ -6085,6 +6491,42 @@
         "version": {
           "description": "Asset module version.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GeneratedRecoveryApk": {
+      "description": "Download metadata for an app recovery module.",
+      "id": "GeneratedRecoveryApk",
+      "properties": {
+        "downloadId": {
+          "description": "Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.",
+          "type": "string"
+        },
+        "moduleName": {
+          "description": "Name of the module which recovery apk belongs to.",
+          "type": "string"
+        },
+        "recoveryId": {
+          "description": "ID of the recovery action.",
+          "format": "int64",
+          "type": "string"
+        },
+        "recoveryStatus": {
+          "description": "The status of the recovery action corresponding to the recovery apk.",
+          "enum": [
+            "RECOVERY_STATUS_UNSPECIFIED",
+            "RECOVERY_STATUS_ACTIVE",
+            "RECOVERY_STATUS_CANCELED",
+            "RECOVERY_STATUS_DRAFT"
+          ],
+          "enumDescriptions": [
+            "RecoveryStatus is unspecified.",
+            "The app recovery action has not been canceled since it has been created.",
+            "The recovery action has been canceled. The action cannot be resumed.",
+            "The recovery action is in the draft state and has not yet been deployed to users."
+          ],
           "type": "string"
         }
       },
@@ -6615,6 +7057,20 @@
           "description": "ISO-639: 2 or 3 letter language code.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListAppRecoveriesResponse": {
+      "description": "Response message for ListAppRecoveries. -- api-linter: core::0158::response-next-page-token-field=disabled",
+      "id": "ListAppRecoveriesResponse",
+      "properties": {
+        "recoveryActions": {
+          "description": "List of recovery actions associated with the requested package name.",
+          "items": {
+            "$ref": "AppRecoveryAction"
           },
           "type": "array"
         }
@@ -7447,12 +7903,73 @@
       },
       "type": "object"
     },
+    "Regions": {
+      "description": "Region targeting data for app recovery action targeting.",
+      "id": "Regions",
+      "properties": {
+        "regionCode": {
+          "description": "Regions targeted by the recovery action. Region codes are ISO 3166 Alpha-2 country codes. For example, US stands for United States of America. See https://www.iso.org/iso-3166-country-codes.html for the complete list of country codes.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RegionsVersion": {
       "description": "The version of the available regions being used for the specified resource.",
       "id": "RegionsVersion",
       "properties": {
         "version": {
           "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemoteInAppUpdate": {
+      "description": "Object representation for Remote in-app update action type.",
+      "id": "RemoteInAppUpdate",
+      "properties": {
+        "isRemoteInAppUpdateRequested": {
+          "description": "Required. Set to true if Remote In-App Update action type is needed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RemoteInAppUpdateData": {
+      "description": "Data related to Remote In-App Update action such as recovered user count, affected user count etc.",
+      "id": "RemoteInAppUpdateData",
+      "properties": {
+        "remoteAppUpdateDataPerBundle": {
+          "description": "Data related to the recovery action at bundle level.",
+          "items": {
+            "$ref": "RemoteInAppUpdateDataPerBundle"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RemoteInAppUpdateDataPerBundle": {
+      "description": "Data related to the recovery action at bundle level.",
+      "id": "RemoteInAppUpdateDataPerBundle",
+      "properties": {
+        "recoveredDeviceCount": {
+          "description": "Total number of devices which have been rescued.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalDeviceCount": {
+          "description": "Total number of devices affected by this recovery action associated with bundle of the app.",
+          "format": "int64",
+          "type": "string"
+        },
+        "versionCode": {
+          "description": "Version Code corresponding to the target bundle.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -7543,6 +8060,57 @@
           "description": "The result of replying/updating a reply to review."
         }
       },
+      "type": "object"
+    },
+    "RevocationContext": {
+      "description": "Revocation context of the purchases.subscriptionsv2.revoke API.",
+      "id": "RevocationContext",
+      "properties": {
+        "proratedRefund": {
+          "$ref": "RevocationContextProratedRefund",
+          "description": "Optional. Used when users should be refunded a prorated amount they paid for their subscription based on the amount of time remaining in a subscription."
+        }
+      },
+      "type": "object"
+    },
+    "RevocationContextProratedRefund": {
+      "description": "Used to determine if the refund type in the RevocationContext is a prorated refund.",
+      "id": "RevocationContextProratedRefund",
+      "properties": {},
+      "type": "object"
+    },
+    "RevokeSubscriptionPurchaseRequest": {
+      "description": "Request for the purchases.subscriptionsv2.revoke API.",
+      "id": "RevokeSubscriptionPurchaseRequest",
+      "properties": {
+        "revocationContext": {
+          "$ref": "RevocationContext",
+          "description": "Required. Additional details around the subscription revocation."
+        }
+      },
+      "type": "object"
+    },
+    "RevokeSubscriptionPurchaseResponse": {
+      "description": "Response for the purchases.subscriptionsv2.revoke API.",
+      "id": "RevokeSubscriptionPurchaseResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "SafetyLabelsUpdateRequest": {
+      "description": "Request to update Safety Labels of an app.",
+      "id": "SafetyLabelsUpdateRequest",
+      "properties": {
+        "safetyLabels": {
+          "description": "Required. Contents of the CSV file containing Data Safety responses. For the format of this file, see the Help Center documentation at https://support.google.com/googleplay/android-developer/answer/10787469?hl=en#zippy=%2Cunderstand-the-csv-format To download an up to date template, follow the steps at https://support.google.com/googleplay/android-developer/answer/10787469?hl=en#zippy=%2Cexport-to-a-csv-file",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SafetyLabelsUpdateResponse": {
+      "description": "Response for SafetyLabelsUpdate rpc.",
+      "id": "SafetyLabelsUpdateResponse",
+      "properties": {},
       "type": "object"
     },
     "ScreenDensity": {
@@ -8362,6 +8930,33 @@
       "properties": {},
       "type": "object"
     },
+    "Targeting": {
+      "description": "Targeting details for a recovery action such as regions, android sdk levels, app versions etc.",
+      "id": "Targeting",
+      "properties": {
+        "allUsers": {
+          "$ref": "AllUsers",
+          "description": "All users are targeted."
+        },
+        "androidSdks": {
+          "$ref": "AndroidSdks",
+          "description": "Targeting is based on android api levels of devices."
+        },
+        "regions": {
+          "$ref": "Regions",
+          "description": "Targeting is based on the user account region."
+        },
+        "versionList": {
+          "$ref": "AppVersionList",
+          "description": "Target version codes as a list."
+        },
+        "versionRange": {
+          "$ref": "AppVersionRange",
+          "description": "Target version codes as a range."
+        }
+      },
+      "type": "object"
+    },
     "TargetingInfo": {
       "description": "Targeting information about the generated apks.",
       "id": "TargetingInfo",
@@ -8394,6 +8989,25 @@
         "specificSubscriptionInApp": {
           "description": "The scope of the current targeting rule is the subscription with the specified subscription ID. Must be a subscription within the same parent app.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TargetingUpdate": {
+      "description": "Update type for targeting. Note it is always a subset Targeting.",
+      "id": "TargetingUpdate",
+      "properties": {
+        "allUsers": {
+          "$ref": "AllUsers",
+          "description": "All users are targeted."
+        },
+        "androidSdks": {
+          "$ref": "AndroidSdks",
+          "description": "Additional android sdk levels are targeted by the recovery action."
+        },
+        "regions": {
+          "$ref": "Regions",
+          "description": "Additional regions are targeted by the recovery action."
         }
       },
       "type": "object"

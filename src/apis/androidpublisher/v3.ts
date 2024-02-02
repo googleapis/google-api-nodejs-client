@@ -113,6 +113,7 @@ export namespace androidpublisher_v3 {
   export class Androidpublisher {
     context: APIRequestContext;
     applications: Resource$Applications;
+    apprecovery: Resource$Apprecovery;
     edits: Resource$Edits;
     externaltransactions: Resource$Externaltransactions;
     generatedapks: Resource$Generatedapks;
@@ -133,6 +134,7 @@ export namespace androidpublisher_v3 {
       };
 
       this.applications = new Resource$Applications(this.context);
+      this.apprecovery = new Resource$Apprecovery(this.context);
       this.edits = new Resource$Edits(this.context);
       this.externaltransactions = new Resource$Externaltransactions(
         this.context
@@ -227,6 +229,37 @@ export namespace androidpublisher_v3 {
      * Required. The parent subscription (ID) of the offer to activate.
      */
     productId?: string | null;
+  }
+  /**
+   * Request message for AddTargeting.
+   */
+  export interface Schema$AddTargetingRequest {
+    /**
+     * Specifies targeting updates such as regions, android sdk versions etc.
+     */
+    targetingUpdate?: Schema$TargetingUpdate;
+  }
+  /**
+   * Response message for AddTargeting.
+   */
+  export interface Schema$AddTargetingResponse {}
+  /**
+   * Object representation to describe all set of users.
+   */
+  export interface Schema$AllUsers {
+    /**
+     * Required. Set to true if all set of users are needed.
+     */
+    isAllUsersRequested?: boolean | null;
+  }
+  /**
+   * Android api level targeting data for app recovery action targeting.
+   */
+  export interface Schema$AndroidSdks {
+    /**
+     * Android api levels of devices targeted by recovery action. See https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels for different api levels in android.
+     */
+    sdkLevels?: string[] | null;
   }
   /**
    * Information about an APK. The resource for ApksService.
@@ -389,6 +422,65 @@ export namespace androidpublisher_v3 {
      * Output only. Identifier of the edit. Can be used in subsequent API calls.
      */
     id?: string | null;
+  }
+  /**
+   * Information about an app recovery action.
+   */
+  export interface Schema$AppRecoveryAction {
+    /**
+     * ID corresponding to the app recovery action.
+     */
+    appRecoveryId?: string | null;
+    /**
+     * Timestamp of when the app recovery action is canceled by the developer. Only set if the recovery action has been canceled.
+     */
+    cancelTime?: string | null;
+    /**
+     * Timestamp of when the app recovery action is created by the developer. It is always set after creation of the recovery action.
+     */
+    createTime?: string | null;
+    /**
+     * Timestamp of when the app recovery action is deployed to the users. Only set if the recovery action has been deployed.
+     */
+    deployTime?: string | null;
+    /**
+     * Timestamp of when the developer last updated recovery action. In case the action is cancelled, it corresponds to cancellation time. It is always set after creation of the recovery action.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * Data about the remote in-app update action such as such as recovered user base, recoverable user base etc. Set only if the recovery action type is Remote In-App Update.
+     */
+    remoteInAppUpdateData?: Schema$RemoteInAppUpdateData;
+    /**
+     * The status of the recovery action.
+     */
+    status?: string | null;
+    /**
+     * Specifies targeting criteria for the recovery action such as regions, android sdk versions, app versions etc.
+     */
+    targeting?: Schema$Targeting;
+  }
+  /**
+   * Data format for a list of app versions. Only one app version is supported for now.
+   */
+  export interface Schema$AppVersionList {
+    /**
+     * List of app version codes.
+     */
+    versionCodes?: string[] | null;
+  }
+  /**
+   * Data format for a continuous range of app versions.
+   */
+  export interface Schema$AppVersionRange {
+    /**
+     * Highest app version in the range, inclusive.
+     */
+    versionCodeEnd?: string | null;
+    /**
+     * Lowest app version in the range, inclusive.
+     */
+    versionCodeStart?: string | null;
   }
   /**
    * Request message for ArchiveSubscription.
@@ -640,6 +732,14 @@ export namespace androidpublisher_v3 {
     kind?: string | null;
   }
   /**
+   * Request message for CancelAppRecovery.
+   */
+  export interface Schema$CancelAppRecoveryRequest {}
+  /**
+   * Response message for CancelAppRecovery.
+   */
+  export interface Schema$CancelAppRecoveryResponse {}
+  /**
    * Information specific to a subscription in canceled state.
    */
   export interface Schema$CanceledStateContext {
@@ -752,6 +852,19 @@ export namespace androidpublisher_v3 {
     includeRestOfWorld?: boolean | null;
   }
   /**
+   * Request message for CreateDraftAppRecovery.
+   */
+  export interface Schema$CreateDraftAppRecoveryRequest {
+    /**
+     * Action type is remote in-app update. As a consequence of this action, a downloadable recovery module is also created for testing purposes.
+     */
+    remoteInAppUpdate?: Schema$RemoteInAppUpdate;
+    /**
+     * Specifies targeting criteria for the recovery action such as regions, android sdk versions, app versions etc.
+     */
+    targeting?: Schema$Targeting;
+  }
+  /**
    * Request message for DeactivateBasePlan.
    */
   export interface Schema$DeactivateBasePlanRequest {
@@ -824,6 +937,14 @@ export namespace androidpublisher_v3 {
      */
     deobfuscationFile?: Schema$DeobfuscationFile;
   }
+  /**
+   * Request message for DeployAppRecovery.
+   */
+  export interface Schema$DeployAppRecoveryRequest {}
+  /**
+   * Response message for DeployAppRecovery.
+   */
+  export interface Schema$DeployAppRecoveryResponse {}
   /**
    * Developer entry from conversation between user and developer.
    */
@@ -1249,6 +1370,10 @@ export namespace androidpublisher_v3 {
      */
     generatedAssetPackSlices?: Schema$GeneratedAssetPackSlice[];
     /**
+     * Generated recovery apks for recovery actions signed with a key corresponding to certificate_sha256_hash. This includes all generated recovery APKs, also those in draft or cancelled state. This field is not set if no recovery actions were created for this signing key.
+     */
+    generatedRecoveryModules?: Schema$GeneratedRecoveryApk[];
+    /**
      * List of generated split APKs, signed with a key corresponding to certificate_sha256_hash.
      */
     generatedSplitApks?: Schema$GeneratedSplitApk[];
@@ -1285,6 +1410,27 @@ export namespace androidpublisher_v3 {
      * Asset module version.
      */
     version?: string | null;
+  }
+  /**
+   * Download metadata for an app recovery module.
+   */
+  export interface Schema$GeneratedRecoveryApk {
+    /**
+     * Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.
+     */
+    downloadId?: string | null;
+    /**
+     * Name of the module which recovery apk belongs to.
+     */
+    moduleName?: string | null;
+    /**
+     * ID of the recovery action.
+     */
+    recoveryId?: string | null;
+    /**
+     * The status of the recovery action corresponding to the recovery apk.
+     */
+    recoveryStatus?: string | null;
   }
   /**
    * Download metadata for a split APK.
@@ -1642,6 +1788,15 @@ export namespace androidpublisher_v3 {
      * ISO-639: 2 or 3 letter language code.
      */
     value?: string[] | null;
+  }
+  /**
+   * Response message for ListAppRecoveries. -- api-linter: core::0158::response-next-page-token-field=disabled
+   */
+  export interface Schema$ListAppRecoveriesResponse {
+    /**
+     * List of recovery actions associated with the requested package name.
+     */
+    recoveryActions?: Schema$AppRecoveryAction[];
   }
   /**
    * Response listing existing device tier configs.
@@ -2238,6 +2393,15 @@ export namespace androidpublisher_v3 {
     taxTier?: string | null;
   }
   /**
+   * Region targeting data for app recovery action targeting.
+   */
+  export interface Schema$Regions {
+    /**
+     * Regions targeted by the recovery action. Region codes are ISO 3166 Alpha-2 country codes. For example, US stands for United States of America. See https://www.iso.org/iso-3166-country-codes.html for the complete list of country codes.
+     */
+    regionCode?: string[] | null;
+  }
+  /**
    * The version of the available regions being used for the specified resource.
    */
   export interface Schema$RegionsVersion {
@@ -2245,6 +2409,41 @@ export namespace androidpublisher_v3 {
      * Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.
      */
     version?: string | null;
+  }
+  /**
+   * Object representation for Remote in-app update action type.
+   */
+  export interface Schema$RemoteInAppUpdate {
+    /**
+     * Required. Set to true if Remote In-App Update action type is needed.
+     */
+    isRemoteInAppUpdateRequested?: boolean | null;
+  }
+  /**
+   * Data related to Remote In-App Update action such as recovered user count, affected user count etc.
+   */
+  export interface Schema$RemoteInAppUpdateData {
+    /**
+     * Data related to the recovery action at bundle level.
+     */
+    remoteAppUpdateDataPerBundle?: Schema$RemoteInAppUpdateDataPerBundle[];
+  }
+  /**
+   * Data related to the recovery action at bundle level.
+   */
+  export interface Schema$RemoteInAppUpdateDataPerBundle {
+    /**
+     * Total number of devices which have been rescued.
+     */
+    recoveredDeviceCount?: string | null;
+    /**
+     * Total number of devices affected by this recovery action associated with bundle of the app.
+     */
+    totalDeviceCount?: string | null;
+    /**
+     * Version Code corresponding to the target bundle.
+     */
+    versionCode?: string | null;
   }
   /**
    * Information specific to cancellations caused by subscription replacement.
@@ -2315,6 +2514,45 @@ export namespace androidpublisher_v3 {
      */
     result?: Schema$ReviewReplyResult;
   }
+  /**
+   * Revocation context of the purchases.subscriptionsv2.revoke API.
+   */
+  export interface Schema$RevocationContext {
+    /**
+     * Optional. Used when users should be refunded a prorated amount they paid for their subscription based on the amount of time remaining in a subscription.
+     */
+    proratedRefund?: Schema$RevocationContextProratedRefund;
+  }
+  /**
+   * Used to determine if the refund type in the RevocationContext is a prorated refund.
+   */
+  export interface Schema$RevocationContextProratedRefund {}
+  /**
+   * Request for the purchases.subscriptionsv2.revoke API.
+   */
+  export interface Schema$RevokeSubscriptionPurchaseRequest {
+    /**
+     * Required. Additional details around the subscription revocation.
+     */
+    revocationContext?: Schema$RevocationContext;
+  }
+  /**
+   * Response for the purchases.subscriptionsv2.revoke API.
+   */
+  export interface Schema$RevokeSubscriptionPurchaseResponse {}
+  /**
+   * Request to update Safety Labels of an app.
+   */
+  export interface Schema$SafetyLabelsUpdateRequest {
+    /**
+     * Required. Contents of the CSV file containing Data Safety responses. For the format of this file, see the Help Center documentation at https://support.google.com/googleplay/android-developer/answer/10787469?hl=en#zippy=%2Cunderstand-the-csv-format To download an up to date template, follow the steps at https://support.google.com/googleplay/android-developer/answer/10787469?hl=en#zippy=%2Cexport-to-a-csv-file
+     */
+    safetyLabels?: string | null;
+  }
+  /**
+   * Response for SafetyLabelsUpdate rpc.
+   */
+  export interface Schema$SafetyLabelsUpdateResponse {}
   /**
    * Represents a screen density.
    */
@@ -2909,6 +3147,31 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$SystemInitiatedCancellation {}
   /**
+   * Targeting details for a recovery action such as regions, android sdk levels, app versions etc.
+   */
+  export interface Schema$Targeting {
+    /**
+     * All users are targeted.
+     */
+    allUsers?: Schema$AllUsers;
+    /**
+     * Targeting is based on android api levels of devices.
+     */
+    androidSdks?: Schema$AndroidSdks;
+    /**
+     * Targeting is based on the user account region.
+     */
+    regions?: Schema$Regions;
+    /**
+     * Target version codes as a list.
+     */
+    versionList?: Schema$AppVersionList;
+    /**
+     * Target version codes as a range.
+     */
+    versionRange?: Schema$AppVersionRange;
+  }
+  /**
    * Targeting information about the generated apks.
    */
   export interface Schema$TargetingInfo {
@@ -2933,6 +3196,23 @@ export namespace androidpublisher_v3 {
      * The scope of the current targeting rule is the subscription with the specified subscription ID. Must be a subscription within the same parent app.
      */
     specificSubscriptionInApp?: string | null;
+  }
+  /**
+   * Update type for targeting. Note it is always a subset Targeting.
+   */
+  export interface Schema$TargetingUpdate {
+    /**
+     * All users are targeted.
+     */
+    allUsers?: Schema$AllUsers;
+    /**
+     * Additional android sdk levels are targeted by the recovery action.
+     */
+    androidSdks?: Schema$AndroidSdks;
+    /**
+     * Additional regions are targeted by the recovery action.
+     */
+    regions?: Schema$Regions;
   }
   /**
    * The testers of an app. The resource for TestersService. Note: while it is possible in the Play Console UI to add testers via email lists, email lists are not supported by this resource.
@@ -3424,6 +3704,114 @@ export namespace androidpublisher_v3 {
         this.context
       );
     }
+
+    /**
+     * Writes the Safety Labels declaration of an app.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    dataSafety(
+      params: Params$Resource$Applications$Datasafety,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dataSafety(
+      params?: Params$Resource$Applications$Datasafety,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SafetyLabelsUpdateResponse>;
+    dataSafety(
+      params: Params$Resource$Applications$Datasafety,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    dataSafety(
+      params: Params$Resource$Applications$Datasafety,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>,
+      callback: BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>
+    ): void;
+    dataSafety(
+      params: Params$Resource$Applications$Datasafety,
+      callback: BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>
+    ): void;
+    dataSafety(
+      callback: BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>
+    ): void;
+    dataSafety(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Datasafety
+        | BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SafetyLabelsUpdateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SafetyLabelsUpdateResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Datasafety;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Datasafety;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/dataSafety'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SafetyLabelsUpdateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SafetyLabelsUpdateResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Applications$Datasafety
+    extends StandardParameters {
+    /**
+     * Required. Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SafetyLabelsUpdateRequest;
   }
 
   export class Resource$Applications$Devicetierconfigs {
@@ -3747,6 +4135,556 @@ export namespace androidpublisher_v3 {
      * A page token, received from a previous `ListDeviceTierConfigs` call. Provide this to retrieve the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Apprecovery {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Incrementally update targeting for a recovery action. Note that only the criteria selected during the creation of recovery action can be expanded.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addTargeting(
+      params: Params$Resource$Apprecovery$Addtargeting,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addTargeting(
+      params?: Params$Resource$Apprecovery$Addtargeting,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddTargetingResponse>;
+    addTargeting(
+      params: Params$Resource$Apprecovery$Addtargeting,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addTargeting(
+      params: Params$Resource$Apprecovery$Addtargeting,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AddTargetingResponse>,
+      callback: BodyResponseCallback<Schema$AddTargetingResponse>
+    ): void;
+    addTargeting(
+      params: Params$Resource$Apprecovery$Addtargeting,
+      callback: BodyResponseCallback<Schema$AddTargetingResponse>
+    ): void;
+    addTargeting(
+      callback: BodyResponseCallback<Schema$AddTargetingResponse>
+    ): void;
+    addTargeting(
+      paramsOrCallback?:
+        | Params$Resource$Apprecovery$Addtargeting
+        | BodyResponseCallback<Schema$AddTargetingResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddTargetingResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddTargetingResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddTargetingResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apprecovery$Addtargeting;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apprecovery$Addtargeting;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:addTargeting'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'appRecoveryId'],
+        pathParams: ['appRecoveryId', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddTargetingResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddTargetingResponse>(parameters);
+      }
+    }
+
+    /**
+     * List all app recovery action resources associated with a particular package name and app version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    appRecoveries(
+      params: Params$Resource$Apprecovery$Apprecoveries,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    appRecoveries(
+      params?: Params$Resource$Apprecovery$Apprecoveries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAppRecoveriesResponse>;
+    appRecoveries(
+      params: Params$Resource$Apprecovery$Apprecoveries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    appRecoveries(
+      params: Params$Resource$Apprecovery$Apprecoveries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>,
+      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+    ): void;
+    appRecoveries(
+      params: Params$Resource$Apprecovery$Apprecoveries,
+      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+    ): void;
+    appRecoveries(
+      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+    ): void;
+    appRecoveries(
+      paramsOrCallback?:
+        | Params$Resource$Apprecovery$Apprecoveries
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAppRecoveriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apprecovery$Apprecoveries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apprecovery$Apprecoveries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/appRecoveries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAppRecoveriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAppRecoveriesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Cancel an already executing app recovery action. Note that this action changes status of the recovery action to CANCELED.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Apprecovery$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Apprecovery$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CancelAppRecoveryResponse>;
+    cancel(
+      params: Params$Resource$Apprecovery$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Apprecovery$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelAppRecoveryResponse>,
+      callback: BodyResponseCallback<Schema$CancelAppRecoveryResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Apprecovery$Cancel,
+      callback: BodyResponseCallback<Schema$CancelAppRecoveryResponse>
+    ): void;
+    cancel(
+      callback: BodyResponseCallback<Schema$CancelAppRecoveryResponse>
+    ): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Apprecovery$Cancel
+        | BodyResponseCallback<Schema$CancelAppRecoveryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CancelAppRecoveryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CancelAppRecoveryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CancelAppRecoveryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apprecovery$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apprecovery$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'appRecoveryId'],
+        pathParams: ['appRecoveryId', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CancelAppRecoveryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CancelAppRecoveryResponse>(parameters);
+      }
+    }
+
+    /**
+     * Create an app recovery action with recovery status as DRAFT. Note that this action does not execute the recovery action.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Apprecovery$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Apprecovery$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppRecoveryAction>;
+    create(
+      params: Params$Resource$Apprecovery$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Apprecovery$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AppRecoveryAction>,
+      callback: BodyResponseCallback<Schema$AppRecoveryAction>
+    ): void;
+    create(
+      params: Params$Resource$Apprecovery$Create,
+      callback: BodyResponseCallback<Schema$AppRecoveryAction>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AppRecoveryAction>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Apprecovery$Create
+        | BodyResponseCallback<Schema$AppRecoveryAction>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppRecoveryAction>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppRecoveryAction>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AppRecoveryAction>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apprecovery$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apprecovery$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/appRecoveries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AppRecoveryAction>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AppRecoveryAction>(parameters);
+      }
+    }
+
+    /**
+     * Deploy an already created app recovery action with recovery status DRAFT. Note that this action activates the recovery action for all targeted users and changes its status to ACTIVE.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deploy(
+      params: Params$Resource$Apprecovery$Deploy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deploy(
+      params?: Params$Resource$Apprecovery$Deploy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeployAppRecoveryResponse>;
+    deploy(
+      params: Params$Resource$Apprecovery$Deploy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deploy(
+      params: Params$Resource$Apprecovery$Deploy,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeployAppRecoveryResponse>,
+      callback: BodyResponseCallback<Schema$DeployAppRecoveryResponse>
+    ): void;
+    deploy(
+      params: Params$Resource$Apprecovery$Deploy,
+      callback: BodyResponseCallback<Schema$DeployAppRecoveryResponse>
+    ): void;
+    deploy(
+      callback: BodyResponseCallback<Schema$DeployAppRecoveryResponse>
+    ): void;
+    deploy(
+      paramsOrCallback?:
+        | Params$Resource$Apprecovery$Deploy
+        | BodyResponseCallback<Schema$DeployAppRecoveryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeployAppRecoveryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeployAppRecoveryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeployAppRecoveryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apprecovery$Deploy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apprecovery$Deploy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:deploy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'appRecoveryId'],
+        pathParams: ['appRecoveryId', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeployAppRecoveryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeployAppRecoveryResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Apprecovery$Addtargeting
+    extends StandardParameters {
+    /**
+     * Required. ID corresponding to the app recovery action.
+     */
+    appRecoveryId?: string;
+    /**
+     * Required. Package name of the app for which recovery action is to be updated.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddTargetingRequest;
+  }
+  export interface Params$Resource$Apprecovery$Apprecoveries
+    extends StandardParameters {
+    /**
+     * Required. Package name of the app for which list of recovery actions is requested.
+     */
+    packageName?: string;
+    /**
+     * Required. Version code targeted by the list of recovery actions.
+     */
+    versionCode?: string;
+  }
+  export interface Params$Resource$Apprecovery$Cancel
+    extends StandardParameters {
+    /**
+     * Required. ID corresponding to the app recovery action.
+     */
+    appRecoveryId?: string;
+    /**
+     * Required. Package name of the app for which recovery action cancellation is requested.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelAppRecoveryRequest;
+  }
+  export interface Params$Resource$Apprecovery$Create
+    extends StandardParameters {
+    /**
+     * Required. Package name of the app on which recovery action is performed.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateDraftAppRecoveryRequest;
+  }
+  export interface Params$Resource$Apprecovery$Deploy
+    extends StandardParameters {
+    /**
+     * Required. ID corresponding to the app recovery action to deploy.
+     */
+    appRecoveryId?: string;
+    /**
+     * Required. Package name of the app for which recovery action is deployed.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeployAppRecoveryRequest;
   }
 
   export class Resource$Edits {
@@ -14037,6 +14975,103 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$SubscriptionPurchaseV2>(parameters);
       }
     }
+
+    /**
+     * Revoke a subscription purchase for the user.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    revoke(
+      params: Params$Resource$Purchases$Subscriptionsv2$Revoke,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revoke(
+      params?: Params$Resource$Purchases$Subscriptionsv2$Revoke,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevokeSubscriptionPurchaseResponse>;
+    revoke(
+      params: Params$Resource$Purchases$Subscriptionsv2$Revoke,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    revoke(
+      params: Params$Resource$Purchases$Subscriptionsv2$Revoke,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevokeSubscriptionPurchaseResponse>,
+      callback: BodyResponseCallback<Schema$RevokeSubscriptionPurchaseResponse>
+    ): void;
+    revoke(
+      params: Params$Resource$Purchases$Subscriptionsv2$Revoke,
+      callback: BodyResponseCallback<Schema$RevokeSubscriptionPurchaseResponse>
+    ): void;
+    revoke(
+      callback: BodyResponseCallback<Schema$RevokeSubscriptionPurchaseResponse>
+    ): void;
+    revoke(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptionsv2$Revoke
+        | BodyResponseCallback<Schema$RevokeSubscriptionPurchaseResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevokeSubscriptionPurchaseResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevokeSubscriptionPurchaseResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevokeSubscriptionPurchaseResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptionsv2$Revoke;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Purchases$Subscriptionsv2$Revoke;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:revoke'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'token'],
+        pathParams: ['packageName', 'token'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RevokeSubscriptionPurchaseResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RevokeSubscriptionPurchaseResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Purchases$Subscriptionsv2$Get
@@ -14049,6 +15084,22 @@ export namespace androidpublisher_v3 {
      * Required. The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
+  }
+  export interface Params$Resource$Purchases$Subscriptionsv2$Revoke
+    extends StandardParameters {
+    /**
+     * Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * Required. The token provided to the user's device when the subscription was purchased.
+     */
+    token?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RevokeSubscriptionPurchaseRequest;
   }
 
   export class Resource$Purchases$Voidedpurchases {
