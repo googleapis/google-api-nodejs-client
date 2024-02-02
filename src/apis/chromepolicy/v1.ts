@@ -281,6 +281,10 @@ export namespace chromepolicy_v1 {
      * The allowed range for numeric fields.
      */
     numericRangeConstraint?: Schema$GoogleChromePolicyVersionsV1NumericRangeConstraint;
+    /**
+     * Constraints on the uploaded file of a file policy. If present, this policy requires a URL that can be fetched by uploading a file with the constraints specified in this proto.
+     */
+    uploadedFileConstraints?: Schema$GoogleChromePolicyVersionsV1UploadedFileConstraints;
   }
   /**
    * Request parameters for inheriting policy value of a specific org unit target from the policy value of its parent org unit.
@@ -788,6 +792,19 @@ export namespace chromepolicy_v1 {
      * Required. The key of the target for which we want to update the group priority ordering. The target resource must point to an app.
      */
     policyTargetKey?: Schema$GoogleChromePolicyVersionsV1PolicyTargetKey;
+  }
+  /**
+   * Constraints on the uploaded file of a file policy.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1UploadedFileConstraints {
+    /**
+     * The size limit of uploaded files for a setting, in bytes.
+     */
+    sizeLimitBytes?: string | null;
+    /**
+     * File types that can be uploaded for a setting.
+     */
+    supportedContentTypes?: string[] | null;
   }
   /**
    * Request message for uploading a file for a policy.
