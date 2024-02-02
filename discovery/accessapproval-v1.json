@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20231208",
+  "revision": "20240126",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -1028,7 +1028,7 @@
             "Google initiated service for security, fraud, abuse, or compliance purposes.",
             "The principal was compelled to access customer data in order to respond to a legal third party data request or process, including legal processes from customers themselves.",
             "The principal accessed customer data in order to diagnose or resolve a suspected issue in services or a known outage.",
-            "Similar to 'GOOGLE_INITIATED_SERVICE' or 'GOOGLE_INITIATED_REVIEW', but meant to reflect when the cloud operator is not Google (namely, a TPC operator), and accessed customer data in order to diagnose or resolve a suspected issue in services or a known outage, or for security, fraud, abuse, or compliance review purposes."
+            "Similar to 'GOOGLE_INITIATED_SERVICE' or 'GOOGLE_INITIATED_REVIEW', but with universe agnostic naming. The principal accessed customer data in order to diagnose or resolve a suspected issue in services or a known outage, or for security, fraud, abuse, or compliance review purposes."
           ],
           "type": "string"
         }

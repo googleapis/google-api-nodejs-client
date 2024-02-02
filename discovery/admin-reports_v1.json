@@ -149,7 +149,8 @@
                 "context_aware_access",
                 "chrome",
                 "data_studio",
-                "keep"
+                "keep",
+                "vault"
               ],
               "enumDescriptions": [
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
@@ -172,10 +173,11 @@
                 "The Context-aware access activity reports return information about users' access denied events due to Context-aware access rules.",
                 "The Chrome activity reports return information about Chrome browser and Chrome OS events.",
                 "The Data Studio activity reports return information about various types of Data Studio activity events.",
-                "The Keep application's activity reports return information about various Google Keep activity events. The Keep activity report is only available for Google Workspace Business and Enterprise customers."
+                "The Keep application's activity reports return information about various Google Keep activity events. The Keep activity report is only available for Google Workspace Business and Enterprise customers.",
+                "The Vault activity reports return information about various types of Vault activity events."
               ],
               "location": "path",
-              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)",
+              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)|(vault)",
               "required": true,
               "type": "string"
             },
@@ -623,7 +625,7 @@
       }
     }
   },
-  "revision": "20230619",
+  "revision": "20240130",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -688,7 +690,7 @@
           "items": {
             "properties": {
               "name": {
-                "description": "Name of the event. This is the specific name of the activity reported by the API. And each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. For `eventName` request parameters in general: - If no `eventName` is given, the report returns all possible instances of an `eventName`. - When you request an `eventName`, the API's response returns all activities which contain that `eventName`. It is possible that the returned activities will have other `eventName` properties in addition to the one requested. For more information about `eventName` properties, see the list of event names for various applications above in `applicationName`.",
+                "description": "Name of the event. This is the specific name of the activity reported by the API. And each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. For `eventName` request parameters in general: - If no `eventName` is given, the report returns all possible instances of an `eventName`. - When you request an `eventName`, the API's response returns all activities which contain that `eventName`. For more information about `eventName` properties, see the list of event names for various applications above in `applicationName`.",
                 "type": "string"
               },
               "parameters": {

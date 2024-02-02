@@ -249,6 +249,10 @@ import {
   datapipelines,
 } from './datapipelines';
 import {VERSIONS as dataplexVersions, dataplex} from './dataplex';
+import {
+  VERSIONS as dataportabilityVersions,
+  dataportability,
+} from './dataportability';
 import {VERSIONS as dataprocVersions, dataproc} from './dataproc';
 import {VERSIONS as datastoreVersions, datastore} from './datastore';
 import {VERSIONS as datastreamVersions, datastream} from './datastream';
@@ -664,6 +668,10 @@ import {
   VERSIONS as workloadmanagerVersions,
   workloadmanager,
 } from './workloadmanager';
+import {
+  VERSIONS as workspaceeventsVersions,
+  workspaceevents,
+} from './workspaceevents';
 import {VERSIONS as workstationsVersions, workstations} from './workstations';
 import {VERSIONS as youtubeVersions, youtube} from './youtube';
 import {
@@ -780,6 +788,7 @@ export const APIS: APIList = {
   datamigration: datamigrationVersions,
   datapipelines: datapipelinesVersions,
   dataplex: dataplexVersions,
+  dataportability: dataportabilityVersions,
   dataproc: dataprocVersions,
   datastore: datastoreVersions,
   datastream: datastreamVersions,
@@ -961,6 +970,7 @@ export const APIS: APIList = {
   workflowexecutions: workflowexecutionsVersions,
   workflows: workflowsVersions,
   workloadmanager: workloadmanagerVersions,
+  workspaceevents: workspaceeventsVersions,
   workstations: workstationsVersions,
   youtube: youtubeVersions,
   youtubeAnalytics: youtubeAnalyticsVersions,
@@ -1067,6 +1077,7 @@ export class GeneratedAPIs {
   datamigration = datamigration;
   datapipelines = datapipelines;
   dataplex = dataplex;
+  dataportability = dataportability;
   dataproc = dataproc;
   datastore = datastore;
   datastream = datastream;
@@ -1248,6 +1259,7 @@ export class GeneratedAPIs {
   workflowexecutions = workflowexecutions;
   workflows = workflows;
   workloadmanager = workloadmanager;
+  workspaceevents = workspaceevents;
   workstations = workstations;
   youtube = youtube;
   youtubeAnalytics = youtubeAnalytics;

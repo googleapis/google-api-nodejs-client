@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20221220",
+  "revision": "20240131",
   "rootUrl": "https://versionhistory.googleapis.com/",
   "schemas": {
     "Channel": {
@@ -288,7 +288,9 @@
             "CANARY",
             "CANARY_ASAN",
             "ALL",
-            "EXTENDED"
+            "EXTENDED",
+            "LTS",
+            "LTC"
           ],
           "enumDescriptions": [
             "",
@@ -298,7 +300,9 @@
             "",
             "",
             "",
-            ""
+            "",
+            "The Long-term support channel for ChromeOS.",
+            "The Long-term support candidate channel for ChromeOS."
           ],
           "type": "string"
         },
