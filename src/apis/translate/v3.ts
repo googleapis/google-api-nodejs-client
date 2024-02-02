@@ -174,7 +174,7 @@ export namespace translate_v3 {
      */
     entryCount?: number | null;
     /**
-     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/files/{file\}`
+     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}`
      */
     name?: string | null;
     /**
@@ -191,7 +191,7 @@ export namespace translate_v3 {
      */
     createTime?: string | null;
     /**
-     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/files/{file\}/sentences/{sentence\}`
+     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}/adaptiveMtSentences/{sentence\}`
      */
     name?: string | null;
     /**
@@ -3560,14 +3560,14 @@ export namespace translate_v3 {
   export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the file to delete, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/files/{file\}`
+     * Required. The resource name of the file to delete, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Adaptivemtdatasets$Adaptivemtfiles$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/files/{file\}`
+     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}`
      */
     name?: string;
   }
