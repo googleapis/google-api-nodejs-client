@@ -965,7 +965,7 @@
       }
     }
   },
-  "revision": "20231218",
+  "revision": "20240118",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1478,6 +1478,11 @@
         "network": {
           "description": "The name of the network for the TPU node. It must be a preexisting Google Compute Engine network. If none is provided, \"default\" will be used.",
           "type": "string"
+        },
+        "queueCount": {
+          "description": "Optional. Specifies networking queue count for TPU VM instance's network interface.",
+          "format": "int32",
+          "type": "integer"
         },
         "subnetwork": {
           "description": "The name of the subnetwork for the TPU node. It must be a preexisting Google Compute Engine subnetwork. If none is provided, \"default\" will be used.",

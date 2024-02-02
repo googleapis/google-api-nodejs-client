@@ -373,6 +373,10 @@ export namespace tpu_v2 {
      */
     network?: string | null;
     /**
+     * Optional. Specifies networking queue count for TPU VM instance's network interface.
+     */
+    queueCount?: number | null;
+    /**
      * The name of the subnetwork for the TPU node. It must be a preexisting Google Compute Engine subnetwork. If none is provided, "default" will be used.
      */
     subnetwork?: string | null;
