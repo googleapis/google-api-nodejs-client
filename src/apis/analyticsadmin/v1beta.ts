@@ -592,7 +592,7 @@ export namespace analyticsadmin_v1beta {
    */
   export interface Schema$GoogleAnalyticsAdminV1betaConversionEventDefaultConversionValue {
     /**
-     * When a conversion event for this event_name has no set currency, this currency will be applied as the default. Must be in ISO 4217 currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for more.
+     * When a conversion event for this event_name has no set currency, this currency will be applied as the default. Must be in ISO 4217 currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for more information.
      */
     currencyCode?: string | null;
     /**
@@ -1205,7 +1205,7 @@ export namespace analyticsadmin_v1beta {
      */
     pageToken?: string | null;
     /**
-     * Optional. Resource name for a child property. If set, only return changes made to this property or its child resources.
+     * Optional. Resource name for a child property. If set, only return changes made to this property or its child resources. Format: properties/{propertyId\} Example: "properties/100"
      */
     property?: string | null;
     /**
@@ -2058,7 +2058,7 @@ export namespace analyticsadmin_v1beta {
   export interface Params$Resource$Accounts$Searchchangehistoryevents
     extends StandardParameters {
     /**
-     * Required. The account resource for which to return change history resources.
+     * Required. The account resource for which to return change history resources. Format: accounts/{account\} Example: "accounts/100"
      */
     account?: string;
 

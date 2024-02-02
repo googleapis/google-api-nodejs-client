@@ -902,6 +902,43 @@ export namespace analyticsadmin_v1alpha {
     streamingExportEnabled?: boolean | null;
   }
   /**
+   * A definition for a calculated metric.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric {
+    /**
+     * Output only. The ID to use for the calculated metric. In the UI, this is referred to as the "API name." The calculated_metric_id is used when referencing this calculated metric from external APIs. For example, "calcMetric:{calculated_metric_id\}".
+     */
+    calculatedMetricId?: string | null;
+    /**
+     * Optional. Description for this calculated metric. Max length of 4096 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. Display name for this calculated metric as shown in the Google Analytics UI. Max length 82 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The calculated metric's definition. Maximum number of unique referenced custom metrics is 5. Formulas supports the following operations: + (addition), - (subtraction), - (negative), * (multiplication), / (division), () (parenthesis). Any valid real numbers are acceptable that fit in a Long (64bit integer) or a Double (64 bit floating point number). Example formula: "( customEvent:parameter_name + cartPurchaseQuantity ) / 2.0"
+     */
+    formula?: string | null;
+    /**
+     * Output only. If true, this calculated metric has a invalid metric reference. Anything using a calculated metric with invalid_metric_reference set to true may fail, produce warnings, or produce unexpected results.
+     */
+    invalidMetricReference?: boolean | null;
+    /**
+     * Required. The type for the calculated metric's value.
+     */
+    metricUnit?: string | null;
+    /**
+     * Output only. Resource name for this CalculatedMetric. Format: 'properties/{property_id\}/calculatedMetrics/{calculated_metric_id\}'
+     */
+    name?: string | null;
+    /**
+     * Output only. Types of restricted data that this metric contains.
+     */
+    restrictedMetricType?: string[] | null;
+  }
+  /**
    * Request message for CancelDisplayVideo360AdvertiserLinkProposal RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest {}
@@ -950,6 +987,10 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of a BigQuery link resource in change history.
      */
     bigqueryLink?: Schema$GoogleAnalyticsAdminV1alphaBigQueryLink;
+    /**
+     * A snapshot of a CalculatedMetric resource in change history.
+     */
+    calculatedMetric?: Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric;
     /**
      * A snapshot of a ChannelGroup resource in change history.
      */
@@ -1201,7 +1242,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue {
     /**
-     * When a conversion event for this event_name has no set currency, this currency will be applied as the default. Must be in ISO 4217 currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for more.
+     * When a conversion event for this event_name has no set currency, this currency will be applied as the default. Must be in ISO 4217 currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for more information.
      */
     currencyCode?: string | null;
     /**
@@ -2038,6 +2079,19 @@ export namespace analyticsadmin_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListCalculatedMetrics RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse {
+    /**
+     * List of CalculatedMetrics.
+     */
+    calculatedMetrics?: Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ListChannelGroups RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse {
@@ -2606,7 +2660,7 @@ export namespace analyticsadmin_v1alpha {
      */
     pageToken?: string | null;
     /**
-     * Optional. Resource name for a child property. If set, only return changes made to this property or its child resources.
+     * Optional. Resource name for a child property. If set, only return changes made to this property or its child resources. Format: properties/{propertyId\} Example: "properties/100"
      */
     property?: string | null;
     /**
@@ -3602,7 +3656,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Accounts$Searchchangehistoryevents
     extends StandardParameters {
     /**
-     * Required. The account resource for which to return change history resources.
+     * Required. The account resource for which to return change history resources. Format: accounts/{account\} Example: "accounts/100"
      */
     account?: string;
 
@@ -4692,6 +4746,7 @@ export namespace analyticsadmin_v1alpha {
     adSenseLinks: Resource$Properties$Adsenselinks;
     audiences: Resource$Properties$Audiences;
     bigQueryLinks: Resource$Properties$Bigquerylinks;
+    calculatedMetrics: Resource$Properties$Calculatedmetrics;
     channelGroups: Resource$Properties$Channelgroups;
     conversionEvents: Resource$Properties$Conversionevents;
     customDimensions: Resource$Properties$Customdimensions;
@@ -4713,6 +4768,9 @@ export namespace analyticsadmin_v1alpha {
       this.adSenseLinks = new Resource$Properties$Adsenselinks(this.context);
       this.audiences = new Resource$Properties$Audiences(this.context);
       this.bigQueryLinks = new Resource$Properties$Bigquerylinks(this.context);
+      this.calculatedMetrics = new Resource$Properties$Calculatedmetrics(
+        this.context
+      );
       this.channelGroups = new Resource$Properties$Channelgroups(this.context);
       this.conversionEvents = new Resource$Properties$Conversionevents(
         this.context
@@ -9092,6 +9150,545 @@ export namespace analyticsadmin_v1alpha {
      * Required. The name of the property to list BigQuery links under. Format: properties/{property_id\} Example: properties/1234
      */
     parent?: string;
+  }
+
+  export class Resource$Properties$Calculatedmetrics {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a CalculatedMetric.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Calculatedmetrics$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Calculatedmetrics$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>;
+    create(
+      params: Params$Resource$Properties$Calculatedmetrics$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Calculatedmetrics$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Calculatedmetrics$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Calculatedmetrics$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Calculatedmetrics$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Calculatedmetrics$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/calculatedMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a CalculatedMetric on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Calculatedmetrics$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Calculatedmetrics$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Calculatedmetrics$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Calculatedmetrics$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Calculatedmetrics$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Calculatedmetrics$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Calculatedmetrics$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Calculatedmetrics$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Lookup for a single CalculatedMetric.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Calculatedmetrics$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Calculatedmetrics$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>;
+    get(
+      params: Params$Resource$Properties$Calculatedmetrics$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Calculatedmetrics$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Calculatedmetrics$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Calculatedmetrics$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Calculatedmetrics$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Calculatedmetrics$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists CalculatedMetrics on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Calculatedmetrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Calculatedmetrics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>;
+    list(
+      params: Params$Resource$Properties$Calculatedmetrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Calculatedmetrics$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Calculatedmetrics$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Calculatedmetrics$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Calculatedmetrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Calculatedmetrics$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/calculatedMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a CalculatedMetric on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Calculatedmetrics$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Calculatedmetrics$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>;
+    patch(
+      params: Params$Resource$Properties$Calculatedmetrics$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Calculatedmetrics$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Calculatedmetrics$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Calculatedmetrics$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Calculatedmetrics$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Calculatedmetrics$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Calculatedmetrics$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the calculated metric which will become the final component of the calculated metric's resource name. This value should be 1-80 characters and valid characters are /[a-zA-Z0-9_]/, no spaces allowed. calculated_metric_id must be unique between all calculated metrics under a property. The calculated_metric_id is used when referencing this calculated metric from external APIs, for example, "calcMetric:{calculated_metric_id\}".
+     */
+    calculatedMetricId?: string;
+    /**
+     * Required. Format: properties/{property_id\} Example: properties/1234
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric;
+  }
+  export interface Params$Resource$Properties$Calculatedmetrics$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the CalculatedMetric to delete. Format: properties/{property_id\}/calculatedMetrics/{calculated_metric_id\} Example: properties/1234/calculatedMetrics/Metric01
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Calculatedmetrics$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the CalculatedMetric to get. Format: properties/{property_id\}/calculatedMetrics/{calculated_metric_id\} Example: properties/1234/calculatedMetrics/Metric01
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Calculatedmetrics$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListCalculatedMetrics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCalculatedMetrics` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Example format: properties/1234
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Calculatedmetrics$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name for this CalculatedMetric. Format: 'properties/{property_id\}/calculatedMetrics/{calculated_metric_id\}'
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric;
   }
 
   export class Resource$Properties$Channelgroups {
