@@ -470,6 +470,10 @@ export namespace migrationcenter_v1 {
      * Preferences concerning the machine types to consider on Compute Engine.
      */
     machinePreferences?: Schema$MachinePreferences;
+    /**
+     * Persistent disk type to use. If unspecified (default), all types are considered, based on available usage data.
+     */
+    persistentDiskType?: string | null;
   }
   /**
    * Compute Engine target shape descriptor.

@@ -2099,7 +2099,7 @@
       }
     }
   },
-  "revision": "20231215",
+  "revision": "20240122",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2595,6 +2595,22 @@
         "machinePreferences": {
           "$ref": "MachinePreferences",
           "description": "Preferences concerning the machine types to consider on Compute Engine."
+        },
+        "persistentDiskType": {
+          "description": "Persistent disk type to use. If unspecified (default), all types are considered, based on available usage data.",
+          "enum": [
+            "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+            "PERSISTENT_DISK_TYPE_STANDARD",
+            "PERSISTENT_DISK_TYPE_BALANCED",
+            "PERSISTENT_DISK_TYPE_SSD"
+          ],
+          "enumDescriptions": [
+            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Standard HDD Persistent Disk.",
+            "Balanced Persistent Disk.",
+            "SSD Persistent Disk."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
