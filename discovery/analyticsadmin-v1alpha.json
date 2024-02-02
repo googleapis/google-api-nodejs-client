@@ -349,7 +349,7 @@
           ],
           "parameters": {
             "account": {
-              "description": "Required. The account resource for which to return change history resources.",
+              "description": "Required. The account resource for which to return change history resources. Format: accounts/{account} Example: \"accounts/100\"",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -1771,6 +1771,165 @@
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit",
                 "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            }
+          }
+        },
+        "calculatedMetrics": {
+          "methods": {
+            "create": {
+              "description": "Creates a CalculatedMetric.",
+              "flatPath": "v1alpha/properties/{propertiesId}/calculatedMetrics",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.calculatedMetrics.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "calculatedMetricId": {
+                  "description": "Required. The ID to use for the calculated metric which will become the final component of the calculated metric's resource name. This value should be 1-80 characters and valid characters are /[a-zA-Z0-9_]/, no spaces allowed. calculated_metric_id must be unique between all calculated metrics under a property. The calculated_metric_id is used when referencing this calculated metric from external APIs, for example, \"calcMetric:{calculated_metric_id}\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Format: properties/{property_id} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/calculatedMetrics",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaCalculatedMetric"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaCalculatedMetric"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a CalculatedMetric on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/calculatedMetrics/{calculatedMetricsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.calculatedMetrics.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the CalculatedMetric to delete. Format: properties/{property_id}/calculatedMetrics/{calculated_metric_id} Example: properties/1234/calculatedMetrics/Metric01",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/calculatedMetrics/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single CalculatedMetric.",
+              "flatPath": "v1alpha/properties/{propertiesId}/calculatedMetrics/{calculatedMetricsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.calculatedMetrics.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the CalculatedMetric to get. Format: properties/{property_id}/calculatedMetrics/{calculated_metric_id} Example: properties/1234/calculatedMetrics/Metric01",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/calculatedMetrics/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaCalculatedMetric"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists CalculatedMetrics on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/calculatedMetrics",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.calculatedMetrics.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListCalculatedMetrics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCalculatedMetrics` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/calculatedMetrics",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a CalculatedMetric on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/calculatedMetrics/{calculatedMetricsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.calculatedMetrics.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name for this CalculatedMetric. Format: 'properties/{property_id}/calculatedMetrics/{calculated_metric_id}'",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/calculatedMetrics/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaCalculatedMetric"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaCalculatedMetric"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
               ]
             }
           }
@@ -4298,7 +4457,7 @@
       }
     }
   },
-  "revision": "20231212",
+  "revision": "20240131",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5444,6 +5603,88 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaCalculatedMetric": {
+      "description": "A definition for a calculated metric.",
+      "id": "GoogleAnalyticsAdminV1alphaCalculatedMetric",
+      "properties": {
+        "calculatedMetricId": {
+          "description": "Output only. The ID to use for the calculated metric. In the UI, this is referred to as the \"API name.\" The calculated_metric_id is used when referencing this calculated metric from external APIs. For example, \"calcMetric:{calculated_metric_id}\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description for this calculated metric. Max length of 4096 characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. Display name for this calculated metric as shown in the Google Analytics UI. Max length 82 characters.",
+          "type": "string"
+        },
+        "formula": {
+          "description": "Required. The calculated metric's definition. Maximum number of unique referenced custom metrics is 5. Formulas supports the following operations: + (addition), - (subtraction), - (negative), * (multiplication), / (division), () (parenthesis). Any valid real numbers are acceptable that fit in a Long (64bit integer) or a Double (64 bit floating point number). Example formula: \"( customEvent:parameter_name + cartPurchaseQuantity ) / 2.0\"",
+          "type": "string"
+        },
+        "invalidMetricReference": {
+          "description": "Output only. If true, this calculated metric has a invalid metric reference. Anything using a calculated metric with invalid_metric_reference set to true may fail, produce warnings, or produce unexpected results.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "metricUnit": {
+          "description": "Required. The type for the calculated metric's value.",
+          "enum": [
+            "METRIC_UNIT_UNSPECIFIED",
+            "STANDARD",
+            "CURRENCY",
+            "FEET",
+            "MILES",
+            "METERS",
+            "KILOMETERS",
+            "MILLISECONDS",
+            "SECONDS",
+            "MINUTES",
+            "HOURS"
+          ],
+          "enumDescriptions": [
+            "MetricUnit unspecified or missing.",
+            "This metric uses default units.",
+            "This metric measures a currency.",
+            "This metric measures feet.",
+            "This metric measures miles.",
+            "This metric measures meters.",
+            "This metric measures kilometers.",
+            "This metric measures milliseconds.",
+            "This metric measures seconds.",
+            "This metric measures minutes.",
+            "This metric measures hours."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name for this CalculatedMetric. Format: 'properties/{property_id}/calculatedMetrics/{calculated_metric_id}'",
+          "readOnly": true,
+          "type": "string"
+        },
+        "restrictedMetricType": {
+          "description": "Output only. Types of restricted data that this metric contains.",
+          "items": {
+            "enum": [
+              "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
+              "COST_DATA",
+              "REVENUE_DATA"
+            ],
+            "enumDescriptions": [
+              "Type unknown or unspecified.",
+              "Metric reports cost data.",
+              "Metric reports revenue data."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest": {
       "description": "Request message for CancelDisplayVideo360AdvertiserLinkProposal RPC.",
       "id": "GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest",
@@ -5508,6 +5749,10 @@
         "bigqueryLink": {
           "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink",
           "description": "A snapshot of a BigQuery link resource in change history."
+        },
+        "calculatedMetric": {
+          "$ref": "GoogleAnalyticsAdminV1alphaCalculatedMetric",
+          "description": "A snapshot of a CalculatedMetric resource in change history."
         },
         "channelGroup": {
           "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup",
@@ -5840,7 +6085,7 @@
       "id": "GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue",
       "properties": {
         "currencyCode": {
-          "description": "When a conversion event for this event_name has no set currency, this currency will be applied as the default. Must be in ISO 4217 currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for more.",
+          "description": "When a conversion event for this event_name has no set currency, this currency will be applied as the default. Must be in ISO 4217 currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for more information.",
           "type": "string"
         },
         "value": {
@@ -7019,6 +7264,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse": {
+      "description": "Response message for ListCalculatedMetrics RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse",
+      "properties": {
+        "calculatedMetrics": {
+          "description": "List of CalculatedMetrics.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCalculatedMetric"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListChannelGroupsResponse": {
       "description": "Response message for ListChannelGroups RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListChannelGroupsResponse",
@@ -7925,7 +8188,7 @@
           "type": "string"
         },
         "property": {
-          "description": "Optional. Resource name for a child property. If set, only return changes made to this property or its child resources.",
+          "description": "Optional. Resource name for a child property. If set, only return changes made to this property or its child resources. Format: properties/{propertyId} Example: \"properties/100\"",
           "type": "string"
         },
         "resourceType": {
@@ -7955,7 +8218,8 @@
               "SKADNETWORK_CONVERSION_VALUE_SCHEMA",
               "ADSENSE_LINK",
               "AUDIENCE",
-              "EVENT_CREATE_RULE"
+              "EVENT_CREATE_RULE",
+              "CALCULATED_METRIC"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -7981,7 +8245,8 @@
               "SKAdNetworkConversionValueSchema resource",
               "AdSenseLink resource",
               "Audience resource",
-              "EventCreateRule resource"
+              "EventCreateRule resource",
+              "CalculatedMetric resource"
             ],
             "type": "string"
           },
