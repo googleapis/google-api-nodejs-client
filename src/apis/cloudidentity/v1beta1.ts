@@ -225,6 +225,84 @@ export namespace cloudidentity_v1beta1 {
     deviceUser?: Schema$DeviceUser;
   }
   /**
+   * Contains information about browser profiles reported by the Endpoint Verification extension.
+   */
+  export interface Schema$BrowserAttributes {
+    /**
+     * Represents the current state of the [Chrome browser attributes](https://cloud.google.com/access-context-manager/docs/browser-attributes) sent by the Endpoint Verification extension.
+     */
+    chromeBrowserInfo?: Schema$BrowserInfo;
+    /**
+     * Chrome profile ID that is exposed by the Chrome API. It is unique for each device.
+     */
+    chromeProfileId?: string | null;
+    /**
+     * Timestamp in milliseconds since Epoch when the profile/gcm id was last synced.
+     */
+    lastProfileSyncTime?: string | null;
+  }
+  /**
+   * Browser-specific fields reported by the Endpoint Verification extension. See go/additionalattributesdesign and go/caa-webprotect-attributes-extension LINT.IfChange
+   */
+  export interface Schema$BrowserInfo {
+    /**
+     * Output only. Browser's management state.
+     */
+    browserManagementState?: string | null;
+    /**
+     * Version of the request initiating browser.
+     */
+    browserVersion?: string | null;
+    /**
+     * Current state of [built-in DNS client](https://chromeenterprise.google/policies/#BuiltInDnsClientEnabled).
+     */
+    isBuiltInDnsClientEnabled?: boolean | null;
+    /**
+     * Current state of [bulk data analysis](https://chromeenterprise.google/policies/#OnBulkDataEntryEnterpriseConnector). Set to true if provider list from Chrome is non-empty.
+     */
+    isBulkDataEntryAnalysisEnabled?: boolean | null;
+    /**
+     * Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).
+     */
+    isChromeCleanupEnabled?: boolean | null;
+    /**
+     * Current state of [Chrome Remote Desktop app](https://chromeenterprise.google/policies/#URLBlocklist).
+     */
+    isChromeRemoteDesktopAppBlocked?: boolean | null;
+    /**
+     * Current state of [file download analysis](https://chromeenterprise.google/policies/#OnFileDownloadedEnterpriseConnector). Set to true if provider list from Chrome is non-empty.
+     */
+    isFileDownloadAnalysisEnabled?: boolean | null;
+    /**
+     * Current state of [file upload analysis](https://chromeenterprise.google/policies/#OnFileAttachedEnterpriseConnector). Set to true if provider list from Chrome is non-empty.
+     */
+    isFileUploadAnalysisEnabled?: boolean | null;
+    /**
+     * Current state of [real-time URL check](https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode). Set to true if provider list from Chrome is non-empty.
+     */
+    isRealtimeUrlCheckEnabled?: boolean | null;
+    /**
+     * Current state of [security event analysis](https://chromeenterprise.google/policies/#OnSecurityEventEnterpriseConnector). Set to true if provider list from Chrome is non-empty.
+     */
+    isSecurityEventAnalysisEnabled?: boolean | null;
+    /**
+     * Current state of [site isolation](https://chromeenterprise.google/policies/?policy=IsolateOrigins).
+     */
+    isSiteIsolationEnabled?: boolean | null;
+    /**
+     * Current state of [third-party blocking](https://chromeenterprise.google/policies/#ThirdPartyBlockingEnabled).
+     */
+    isThirdPartyBlockingEnabled?: boolean | null;
+    /**
+     * Current state of [password protection trigger](https://chromeenterprise.google/policies/#PasswordProtectionWarningTrigger).
+     */
+    passwordProtectionWarningTrigger?: string | null;
+    /**
+     * Current state of [Safe Browsing protection level](https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel).
+     */
+    safeBrowsingProtectionLevel?: string | null;
+  }
+  /**
    * Request to cancel sent invitation for target email in UserInvitation.
    */
   export interface Schema$CancelUserInvitationRequest {}
@@ -495,7 +573,7 @@ export namespace cloudidentity_v1beta1 {
      */
     encryptionState?: string | null;
     /**
-     * Output only. Attributes specific to Endpoint Verification devices.
+     * Output only. Attributes specific to [Endpoint Verification](https://cloud.google.com/endpoint-verification/docs/overview) devices.
      */
     endpointVerificationSpecificAttributes?: Schema$EndpointVerificationSpecificAttributes;
     /**
@@ -658,9 +736,17 @@ export namespace cloudidentity_v1beta1 {
     statusTime?: string | null;
   }
   /**
-   * Resource representing the Endpoint Verification-specific attributes of a Device. https://cloud.google.com/endpoint-verification/docs/overview
+   * Resource representing the [Endpoint Verification-specific attributes](https://cloud.google.com/endpoint-verification/docs/device-information) of a device.
    */
   export interface Schema$EndpointVerificationSpecificAttributes {
+    /**
+     * Additional signals reported by Endpoint Verification. It includes the following attributes: 1. Non-configurable attributes: hotfixes, av_installed, av_enabled, windows_domain_name, is_os_native_firewall_enabled, and is_secure_boot_enabled. 2. Configurable attributes: file_config, registry_config, and plist_config.
+     */
+    additionalSignals?: {[key: string]: any} | null;
+    /**
+     * Details of browser profiles reported by Endpoint Verification.
+     */
+    browserAttributes?: Schema$BrowserAttributes[];
     /**
      * Details of certificates.
      */
