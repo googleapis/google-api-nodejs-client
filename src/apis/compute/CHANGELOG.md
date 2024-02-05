@@ -1,5 +1,16 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v7.0.0...compute-v8.0.0) (2024-02-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **compute:** This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([014e200](https://github.com/googleapis/google-api-nodejs-client/commit/014e200c79aa90dd08ec2bd2bdefae97560b0686))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v6.1.0...compute-v7.0.0) (2024-01-05)
 
 

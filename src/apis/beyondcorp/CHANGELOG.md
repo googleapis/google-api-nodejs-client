@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v7.0.0...beyondcorp-v7.0.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* **beyondcorp:** update the API ([4cd4b2c](https://github.com/googleapis/google-api-nodejs-client/commit/4cd4b2c617e6922fe4fa77039c3e9fce42416166))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v6.0.0...beyondcorp-v7.0.0) (2023-11-30)
 
 

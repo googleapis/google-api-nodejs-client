@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v5.0.0...analyticsadmin-v5.1.0) (2024-02-02)
+
+
+### Features
+
+* **analyticsadmin:** update the API ([88bd2db](https://github.com/googleapis/google-api-nodejs-client/commit/88bd2db2f6ddc0b0f8bc1f9d3da19db3766d4de3))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v4.0.1...analyticsadmin-v5.0.0) (2024-01-05)
 
 

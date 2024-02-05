@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v4.0.0...cloudasset-v4.1.0) (2024-02-02)
+
+
+### Features
+
+* **cloudasset:** update the API ([c1e4ab0](https://github.com/googleapis/google-api-nodejs-client/commit/c1e4ab0341851388657390bac164e19ef9d75b7a))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v3.0.1...cloudasset-v4.0.0) (2024-01-05)
 
 

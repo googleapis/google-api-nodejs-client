@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflowexecutions-v7.0.0...workflowexecutions-v7.1.0) (2024-02-02)
+
+
+### Features
+
+* **workflowexecutions:** update the API ([22dabc5](https://github.com/googleapis/google-api-nodejs-client/commit/22dabc50c8b31479412f4eb854247fcc8e79daa3))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflowexecutions-v6.0.1...workflowexecutions-v7.0.0) (2024-01-05)
 
 

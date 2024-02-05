@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/eventarc",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "eventarc",
   "main": "build/index.js",
   "types": "build/index.d.ts",

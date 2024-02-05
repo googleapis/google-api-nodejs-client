@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v4.0.0...contactcenterinsights-v4.1.0) (2024-02-02)
+
+
+### Features
+
+* **contactcenterinsights:** update the API ([c4aa133](https://github.com/googleapis/google-api-nodejs-client/commit/c4aa133219803f8a5e1a24241077f4885ee2366f))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v3.0.1...contactcenterinsights-v4.0.0) (2024-01-05)
 
 
