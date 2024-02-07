@@ -950,7 +950,7 @@
       }
     }
   },
-  "revision": "20240117",
+  "revision": "20240131",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2253,21 +2253,6 @@
       },
       "type": "object"
     },
-    "QueryPlan": {
-      "description": "Plan for the query.",
-      "id": "QueryPlan",
-      "properties": {
-        "planInfo": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "Planning phase information for the query. It will include: { \"indexes_used\": [ {\"query_scope\": \"Collection\", \"properties\": \"(foo ASC, __name__ ASC)\"}, {\"query_scope\": \"Collection\", \"properties\": \"(bar ASC, __name__ ASC)\"} ] }",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "QueryTarget": {
       "description": "A target specified by a query.",
       "id": "QueryTarget",
@@ -2307,25 +2292,6 @@
       },
       "type": "object"
     },
-    "ResultSetStats": {
-      "description": "Planning and execution statistics for the query.",
-      "id": "ResultSetStats",
-      "properties": {
-        "queryPlan": {
-          "$ref": "QueryPlan",
-          "description": "Plan for the query."
-        },
-        "queryStats": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "Aggregated statistics from the execution of the query. This will only be present when the request specifies `PROFILE` mode. For example, a query will return the statistics including: { \"results_returned\": \"20\", \"documents_scanned\": \"20\", \"indexes_entries_scanned\": \"10050\", \"total_execution_time\": \"100.7 msecs\" }",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "RollbackRequest": {
       "description": "The request for Firestore.Rollback.",
       "id": "RollbackRequest",
@@ -2342,20 +2308,6 @@
       "description": "The request for Firestore.RunAggregationQuery.",
       "id": "RunAggregationQueryRequest",
       "properties": {
-        "mode": {
-          "description": "Optional. The mode in which the query request is processed. This field is optional, and when not provided, it defaults to `NORMAL` mode where no additional statistics will be returned with the query results.",
-          "enum": [
-            "NORMAL",
-            "PLAN",
-            "PROFILE"
-          ],
-          "enumDescriptions": [
-            "The default mode. Only the query results are returned.",
-            "This mode returns only the query plan, without any results or execution statistics information.",
-            "This mode returns both the query plan and the execution statistics along with the results."
-          ],
-          "type": "string"
-        },
         "newTransaction": {
           "$ref": "TransactionOptions",
           "description": "Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream."
@@ -2390,10 +2342,6 @@
           "$ref": "AggregationResult",
           "description": "A single aggregation result. Not present when reporting partial progress."
         },
-        "stats": {
-          "$ref": "ResultSetStats",
-          "description": "Query plan and execution statistics. Note that the returned stats are subject to change as Firestore evolves. This is only present when the request specifies a mode other than `NORMAL` and is sent only once with the last response in the stream."
-        },
         "transaction": {
           "description": "The transaction that was started as part of this request. Only present on the first response when the request requested to start a new transaction.",
           "format": "byte",
@@ -2406,20 +2354,6 @@
       "description": "The request for Firestore.RunQuery.",
       "id": "RunQueryRequest",
       "properties": {
-        "mode": {
-          "description": "Optional. The mode in which the query request is processed. This field is optional, and when not provided, it defaults to `NORMAL` mode where no additional statistics will be returned with the query results.",
-          "enum": [
-            "NORMAL",
-            "PLAN",
-            "PROFILE"
-          ],
-          "enumDescriptions": [
-            "The default mode. Only the query results are returned.",
-            "This mode returns only the query plan, without any results or execution statistics information.",
-            "This mode returns both the query plan and the execution statistics along with the results."
-          ],
-          "type": "string"
-        },
         "newTransaction": {
           "$ref": "TransactionOptions",
           "description": "Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream."
@@ -2462,10 +2396,6 @@
           "description": "The number of results that have been skipped due to an offset between the last response and the current response.",
           "format": "int32",
           "type": "integer"
-        },
-        "stats": {
-          "$ref": "ResultSetStats",
-          "description": "Query plan and execution statistics. Note that the returned stats are subject to change as Firestore evolves. This is only present when the request specifies a mode other than `NORMAL` and is sent only once with the last response in the stream."
         },
         "transaction": {
           "description": "The transaction that was started as part of this request. Can only be set in the first response, and only if RunQueryRequest.new_transaction was set in the request. If set, no other fields will be set in this response.",

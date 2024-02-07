@@ -453,7 +453,7 @@ export namespace networksecurity_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -547,6 +547,10 @@ export namespace networksecurity_v1 {
      * Rule priority of the FirewallPolicy that is using the Address Group.
      */
     rulePriority?: number | null;
+    /**
+     * Cloud Armor SecurityPolicy that is using the Address Group.
+     */
+    securityPolicy?: string | null;
   }
   /**
    * Response returned by the ListAddressGroups method.

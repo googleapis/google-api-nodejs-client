@@ -343,7 +343,7 @@ export namespace workflowexecutions_v1 {
      */
     data?: string | null;
     /**
-     * Optional. ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
+     * ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
      */
     messageId?: string | null;
     /**
@@ -351,7 +351,7 @@ export namespace workflowexecutions_v1 {
      */
     orderingKey?: string | null;
     /**
-     * Optional. The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
+     * The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
      */
     publishTime?: string | null;
   }
@@ -1146,11 +1146,11 @@ export namespace workflowexecutions_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$Executions$List
     extends StandardParameters {
     /**
-     * Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, and `label`. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `startTime\>"2023-08-01" AND state="FAILED"`
+     * Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, and `label`. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `startTime\>"2023-08-01" AND state="FAILED"`
      */
     filter?: string;
     /**
-     * Optional. Comma-separated list of fields that specify the ordering applied to the `[Executions.ListExecutions]` results. By default the ordering is based on descending `startTime`. The following fields are supported for ordering: `executionId`, `state`, `startTime`, `endTime`, `duration`, and `workflowRevisionId`. For details, see AIP-132.
+     * Optional. Comma-separated list of fields that specify the ordering applied to the `[Executions.ListExecutions]` results. By default the ordering is based on descending `createTime`. The following fields are supported for ordering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, and `workflowRevisionId`. For details, see AIP-132.
      */
     orderBy?: string;
     /**

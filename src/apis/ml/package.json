@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/ml",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "description": "ml",
   "main": "build/index.js",
   "types": "build/index.d.ts",

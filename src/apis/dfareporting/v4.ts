@@ -1740,6 +1740,10 @@ export namespace dfareporting_v4 {
    */
   export interface Schema$Conversion {
     /**
+     * This represents consent for ad user data.
+     */
+    adUserDataConsent?: string | null;
+    /**
      * Whether this particular request may come from a user under the age of 13, under COPPA compliance.
      */
     childDirectedTreatment?: boolean | null;
@@ -4963,6 +4967,10 @@ export namespace dfareporting_v4 {
      */
     contentCategoryId?: string | null;
     /**
+     * Optional. Conversion domain overrides for a placement.
+     */
+    conversionDomainOverride?: Schema$PlacementConversionDomainOverride;
+    /**
      * Information about the creation of this placement. This is a read-only field.
      */
     createInfo?: Schema$LastModifiedInfo;
@@ -5112,6 +5120,9 @@ export namespace dfareporting_v4 {
      */
     sslRequired?: boolean | null;
   }
+  export interface Schema$PlacementConversionDomainOverride {
+    conversionDomains?: Schema$PlacementSingleConversionDomain[];
+  }
   /**
    * Contains properties of a package or roadblock.
    */
@@ -5250,6 +5261,10 @@ export namespace dfareporting_v4 {
      * Set of generated tags for the specified placements.
      */
     placementTags?: Schema$PlacementTag[];
+  }
+  export interface Schema$PlacementSingleConversionDomain {
+    conversionDomainId?: string | null;
+    conversionDomainValue?: string | null;
   }
   /**
    * Placement List Response
@@ -6434,7 +6449,7 @@ export namespace dfareporting_v4 {
      */
     additionalKeyValues?: string | null;
     /**
-     * Whether static landing page URLs should be included in the tags. This setting applies only to placements.
+     * Whether static landing page URLs should be included in the tags. New placements will default to the value set on their site.
      */
     includeClickThroughUrls?: boolean | null;
     /**

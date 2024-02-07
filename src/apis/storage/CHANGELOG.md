@@ -1,5 +1,16 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v8.0.0...storage-v9.0.0) (2024-02-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **storage:** This release has breaking changes.
+
+### Features
+
+* **storage:** update the API ([5bc62e5](https://github.com/googleapis/google-api-nodejs-client/commit/5bc62e590c1b44ced15de06dc08c53445fcd00d0))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v7.1.0...storage-v8.0.0) (2024-01-05)
 
 

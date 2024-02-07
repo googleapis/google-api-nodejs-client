@@ -173,6 +173,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "exportAnalyticsMetrics": {
+                  "description": "Exports analytics metrics. `Operation.response` is of type `ExportAnalyticsMetricsResponse`. `Operation.metadata` is of type `ExportMetadata`.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}:exportAnalyticsMetrics",
+                  "httpMethod": "POST",
+                  "id": "retail.projects.locations.catalogs.exportAnalyticsMetrics",
+                  "parameterOrder": [
+                    "catalog"
+                  ],
+                  "parameters": {
+                    "catalog": {
+                      "description": "Required. Full resource name of the parent catalog. Expected format: `projects/*/locations/*/catalogs/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+catalog}:exportAnalyticsMetrics",
+                  "request": {
+                    "$ref": "GoogleCloudRetailV2ExportAnalyticsMetricsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getAttributesConfig": {
                   "description": "Gets an AttributesConfig.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/attributesConfig",
@@ -2059,7 +2087,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240205",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2363,6 +2391,21 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2BigQueryOutputResult": {
+      "description": "A BigQuery output result.",
+      "id": "GoogleCloudRetailV2BigQueryOutputResult",
+      "properties": {
+        "datasetId": {
+          "description": "The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "The ID of a BigQuery Table.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2998,6 +3041,54 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2ExportAnalyticsMetricsRequest": {
+      "description": "Request message for the `ExportAnalyticsMetrics` method.",
+      "id": "GoogleCloudRetailV2ExportAnalyticsMetricsRequest",
+      "properties": {
+        "filter": {
+          "description": "A filtering expression to specify restrictions on returned metrics. The expression is a sequence of terms. Each term applies a restriction to the returned metrics. Use this expression to restrict results to a specific time range. Currently we expect only one types of fields: * `timestamp`: This can be specified twice, once with a less than operator and once with a greater than operator. The `timestamp` restriction should result in one, contiguous, valid, `timestamp` range. Some examples of valid filters expressions: * Example 1: `timestamp > \"2012-04-23T18:25:43.511Z\" timestamp < \"2012-04-23T18:30:43.511Z\"` * Example 2: `timestamp > \"2012-04-23T18:25:43.511Z\"`",
+          "type": "string"
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudRetailV2OutputConfig",
+          "description": "Required. The output location of the data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ExportAnalyticsMetricsResponse": {
+      "description": "Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
+      "id": "GoogleCloudRetailV2ExportAnalyticsMetricsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "errorsConfig": {
+          "$ref": "GoogleCloudRetailV2ExportErrorsConfig",
+          "description": "This field is never set."
+        },
+        "outputResult": {
+          "$ref": "GoogleCloudRetailV2OutputResult",
+          "description": "Output result indicating where the data were exported to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ExportErrorsConfig": {
+      "description": "Configuration of destination for Export related errors.",
+      "id": "GoogleCloudRetailV2ExportErrorsConfig",
+      "properties": {
+        "gcsPrefix": {
+          "description": "Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Export errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2FulfillmentInfo": {
       "description": "Fulfillment information, such as the store IDs for in-store pickup or region IDs for different shipping methods.",
       "id": "GoogleCloudRetailV2FulfillmentInfo",
@@ -3011,6 +3102,17 @@
         },
         "type": {
           "description": "The fulfillment type, including commonly used types (such as pickup in store and same day delivery), and custom types. Customers have to map custom types to their display names before rendering UI. Supported values: * \"pickup-in-store\" * \"ship-to-store\" * \"same-day-delivery\" * \"next-day-delivery\" * \"custom-type-1\" * \"custom-type-2\" * \"custom-type-3\" * \"custom-type-4\" * \"custom-type-5\" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2GcsOutputResult": {
+      "description": "A Gcs output result.",
+      "id": "GoogleCloudRetailV2GcsOutputResult",
+      "properties": {
+        "outputUri": {
+          "description": "The uri of Gcs output",
           "type": "string"
         }
       },
@@ -3569,6 +3671,72 @@
           "description": "Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2OutputConfig": {
+      "description": "The output configuration setting.",
+      "id": "GoogleCloudRetailV2OutputConfig",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudRetailV2OutputConfigBigQueryDestination",
+          "description": "The BigQuery location where the output is to be written to."
+        },
+        "gcsDestination": {
+          "$ref": "GoogleCloudRetailV2OutputConfigGcsDestination",
+          "description": "The Google Cloud Storage location where the output is to be written to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2OutputConfigBigQueryDestination": {
+      "description": "The BigQuery output destination configuration.",
+      "id": "GoogleCloudRetailV2OutputConfigBigQueryDestination",
+      "properties": {
+        "datasetId": {
+          "description": "Required. The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableIdPrefix": {
+          "description": "Required. The prefix of exported BigQuery tables.",
+          "type": "string"
+        },
+        "tableType": {
+          "description": "Required. Describes the table type. The following values are supported: * `table`: A BigQuery native table. * `view`: A virtual table defined by a SQL query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2OutputConfigGcsDestination": {
+      "description": "The Google Cloud Storage output destination configuration.",
+      "id": "GoogleCloudRetailV2OutputConfigGcsDestination",
+      "properties": {
+        "outputUriPrefix": {
+          "description": "Required. The output uri prefix for saving output data to json files. Some mapping examples are as follows: output_uri_prefix sample output(assuming the object is foo.json) ======================== ============================================= gs://bucket/ gs://bucket/foo.json gs://bucket/folder/ gs://bucket/folder/foo.json gs://bucket/folder/item_ gs://bucket/folder/item_foo.json",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2OutputResult": {
+      "description": "Output result that stores the information about where the exported data is stored.",
+      "id": "GoogleCloudRetailV2OutputResult",
+      "properties": {
+        "bigqueryResult": {
+          "description": "The BigQuery location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2BigQueryOutputResult"
+          },
+          "type": "array"
+        },
+        "gcsResult": {
+          "description": "The Google Cloud Storage location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2GcsOutputResult"
           },
           "type": "array"
         }

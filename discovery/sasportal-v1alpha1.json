@@ -109,22 +109,6 @@
   "resources": {
     "customers": {
       "methods": {
-        "checkHasProvisionedDeployment": {
-          "description": "Checks whether a SAS deployment for the authentication context exists.",
-          "flatPath": "v1alpha1/customers:checkHasProvisionedDeployment",
-          "httpMethod": "GET",
-          "id": "sasportal.customers.checkHasProvisionedDeployment",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha1/customers:checkHasProvisionedDeployment",
-          "response": {
-            "$ref": "SasPortalCheckHasProvisionedDeploymentResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/sasportal"
-          ]
-        },
         "get": {
           "description": "Returns a requested customer.",
           "flatPath": "v1alpha1/customers/{customersId}",
@@ -179,8 +163,24 @@
             "https://www.googleapis.com/auth/sasportal"
           ]
         },
+        "listGcpProjectDeployments": {
+          "description": "Returns a list of SAS deployments associated with current GCP project. Includes whether SAS analytics has been enabled or not.",
+          "flatPath": "v1alpha1/customers:listGcpProjectDeployments",
+          "httpMethod": "GET",
+          "id": "sasportal.customers.listGcpProjectDeployments",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha1/customers:listGcpProjectDeployments",
+          "response": {
+            "$ref": "SasPortalListGcpProjectDeploymentsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sasportal"
+          ]
+        },
         "listLegacyOrganizations": {
-          "description": "Checks whether account is legacy.",
+          "description": "Returns a list of legacy organizations.",
           "flatPath": "v1alpha1/customers:listLegacyOrganizations",
           "httpMethod": "GET",
           "id": "sasportal.customers.listLegacyOrganizations",
@@ -2652,7 +2652,7 @@
       }
     }
   },
-  "revision": "20240111",
+  "revision": "20240204",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2685,17 +2685,6 @@
           "description": "The channel score, normalized to be in the range [0,100].",
           "format": "double",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "SasPortalCheckHasProvisionedDeploymentResponse": {
-      "description": "Response for [CheckHasProvisionedDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.CheckHasProvisionedDeployment].",
-      "id": "SasPortalCheckHasProvisionedDeploymentResponse",
-      "properties": {
-        "hasProvisionedDeployment": {
-          "description": "Whether a SAS deployment for the authentication context exists.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -3148,6 +3137,21 @@
       },
       "type": "object"
     },
+    "SasPortalGcpProjectDeployment": {
+      "description": "Deployment associated with the GCP project. Includes whether SAS analytics has been enabled or not.",
+      "id": "SasPortalGcpProjectDeployment",
+      "properties": {
+        "deployment": {
+          "$ref": "SasPortalDeployment",
+          "description": "Deployment associated with the GCP project."
+        },
+        "hasEnabledAnalytics": {
+          "description": "Whether SAS analytics has been enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "SasPortalGenerateSecretRequest": {
       "description": "Request for GenerateSecret.",
       "id": "SasPortalGenerateSecretRequest",
@@ -3309,6 +3313,20 @@
         "nextPageToken": {
           "description": "A pagination token returned from a previous call to ListDevices that indicates from where listing should continue. If the field is missing or empty, it means there is no more devices.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalListGcpProjectDeploymentsResponse": {
+      "description": "Response for [ListGcpProjectDeployments].",
+      "id": "SasPortalListGcpProjectDeploymentsResponse",
+      "properties": {
+        "deployments": {
+          "description": "Optional. Deployments associated with the GCP project",
+          "items": {
+            "$ref": "SasPortalGcpProjectDeployment"
+          },
+          "type": "array"
         }
       },
       "type": "object"

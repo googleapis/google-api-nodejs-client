@@ -210,7 +210,7 @@ export namespace networkmanagement_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -791,6 +791,10 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$LoadBalancerBackendInfo {
     /**
+     * URI of the backend bucket this backend targets (if applicable).
+     */
+    backendBucketUri?: string | null;
+    /**
      * URI of the backend service this backend belongs to (if applicable).
      */
     backendServiceUri?: string | null;
@@ -818,6 +822,14 @@ export namespace networkmanagement_v1 {
      * URI of the network endpoint group this backend belongs to (if applicable).
      */
     networkEndpointGroupUri?: string | null;
+    /**
+     * PSC Google API target this PSC NEG backend targets (if applicable).
+     */
+    pscGoogleApiTarget?: string | null;
+    /**
+     * URI of the PSC service attachment this PSC NEG backend targets (if applicable).
+     */
+    pscServiceAttachmentUri?: string | null;
   }
   /**
    * For display only. Metadata associated with a load balancer.
@@ -1305,7 +1317,7 @@ export namespace networkmanagement_v1 {
      */
     instance?: Schema$InstanceInfo;
     /**
-     * Display information of the load balancers.
+     * Display information of the load balancers. Deprecated in favor of the `load_balancer_backend_info` field, not used in new tests.
      */
     loadBalancer?: Schema$LoadBalancerInfo;
     /**

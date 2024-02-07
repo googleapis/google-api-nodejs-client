@@ -125,6 +125,10 @@ export namespace cloudfunctions_v2alpha {
   }
 
   /**
+   * Request for the `AbortFunctionUpgrade` method.
+   */
+  export interface Schema$AbortFunctionUpgradeRequest {}
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -228,6 +232,10 @@ export namespace cloudfunctions_v2alpha {
      */
     workerPool?: string | null;
   }
+  /**
+   * Request for the `CommitFunctionUpgrade` method.
+   */
+  export interface Schema$CommitFunctionUpgradeRequest {}
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
@@ -333,6 +341,10 @@ export namespace cloudfunctions_v2alpha {
      */
     buildConfig?: Schema$BuildConfig;
     /**
+     * Output only. The create timestamp of a Cloud Function. This is only applicable to 2nd Gen functions.
+     */
+    createTime?: string | null;
+    /**
      * User-provided description of a function.
      */
     description?: string | null;
@@ -376,6 +388,10 @@ export namespace cloudfunctions_v2alpha {
      * Output only. The last update timestamp of a Cloud Function.
      */
     updateTime?: string | null;
+    /**
+     * Output only. UpgradeInfo for this Cloud Function
+     */
+    upgradeInfo?: Schema$UpgradeInfo;
     /**
      * Output only. The deployed url for the function.
      */
@@ -902,6 +918,10 @@ export namespace cloudfunctions_v2alpha {
     version?: number | null;
   }
   /**
+   * Request for the `RedirectFunctionUpgradeTraffic` method.
+   */
+  export interface Schema$RedirectFunctionUpgradeTrafficRequest {}
+  /**
    * Location of the source in a Google Cloud Source Repository.
    */
   export interface Schema$RepoSource {
@@ -930,6 +950,10 @@ export namespace cloudfunctions_v2alpha {
      */
     tagName?: string | null;
   }
+  /**
+   * Request for the `RollbackFunctionUpgradeTraffic` method.
+   */
+  export interface Schema$RollbackFunctionUpgradeTrafficRequest {}
   /**
    * Describes a runtime and any special information (e.g., deprecation status) related to it.
    */
@@ -1109,6 +1133,10 @@ export namespace cloudfunctions_v2alpha {
     updateMask?: string | null;
   }
   /**
+   * Request for the `SetupFunctionUpgradeConfig` method.
+   */
+  export interface Schema$SetupFunctionUpgradeConfigRequest {}
+  /**
    * The location of the function source code.
    */
   export interface Schema$Source {
@@ -1193,6 +1221,27 @@ export namespace cloudfunctions_v2alpha {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration * Current state of migration for function undergoing migration.
+   */
+  export interface Schema$UpgradeInfo {
+    /**
+     * Describes the Build step of the function that builds a container to prepare for 2nd gen upgrade.
+     */
+    buildConfig?: Schema$BuildConfig;
+    /**
+     * Describes the Event trigger which has been setup to prepare for 2nd gen upgrade.
+     */
+    eventTrigger?: Schema$EventTrigger;
+    /**
+     * Describes the Cloud Run service which has been setup to prepare for 2nd gen upgrade.
+     */
+    serviceConfig?: Schema$ServiceConfig;
+    /**
+     * UpgradeState of the function
+     */
+    upgradeState?: string | null;
   }
 
   export class Resource$Projects {
@@ -1336,6 +1385,188 @@ export namespace cloudfunctions_v2alpha {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Aborts generation upgrade process for a function with the given name from the specified project. Deletes all 2nd Gen copy related configuration and resources which were created during the upgrade process.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    abortFunctionUpgrade(
+      params: Params$Resource$Projects$Locations$Functions$Abortfunctionupgrade,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    abortFunctionUpgrade(
+      params?: Params$Resource$Projects$Locations$Functions$Abortfunctionupgrade,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    abortFunctionUpgrade(
+      params: Params$Resource$Projects$Locations$Functions$Abortfunctionupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    abortFunctionUpgrade(
+      params: Params$Resource$Projects$Locations$Functions$Abortfunctionupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    abortFunctionUpgrade(
+      params: Params$Resource$Projects$Locations$Functions$Abortfunctionupgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    abortFunctionUpgrade(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    abortFunctionUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Abortfunctionupgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Abortfunctionupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Abortfunctionupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}:abortFunctionUpgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Finalizes the upgrade after which function upgrade can not be rolled back. This is the last step of the multi step process to upgrade 1st Gen functions to 2nd Gen. Deletes all original 1st Gen related configuration and resources.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    commitFunctionUpgrade(
+      params: Params$Resource$Projects$Locations$Functions$Commitfunctionupgrade,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commitFunctionUpgrade(
+      params?: Params$Resource$Projects$Locations$Functions$Commitfunctionupgrade,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    commitFunctionUpgrade(
+      params: Params$Resource$Projects$Locations$Functions$Commitfunctionupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    commitFunctionUpgrade(
+      params: Params$Resource$Projects$Locations$Functions$Commitfunctionupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commitFunctionUpgrade(
+      params: Params$Resource$Projects$Locations$Functions$Commitfunctionupgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commitFunctionUpgrade(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commitFunctionUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Commitfunctionupgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Commitfunctionupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Commitfunctionupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}:commitFunctionUpgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
     /**
@@ -2055,6 +2286,186 @@ export namespace cloudfunctions_v2alpha {
     }
 
     /**
+     * Changes the traffic target of a function from the original 1st Gen function to the 2nd Gen copy. This is the second step of the multi step process to upgrade 1st Gen functions to 2nd Gen. After this operation, all new traffic will be served by 2nd Gen copy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    redirectFunctionUpgradeTraffic(
+      params: Params$Resource$Projects$Locations$Functions$Redirectfunctionupgradetraffic,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    redirectFunctionUpgradeTraffic(
+      params?: Params$Resource$Projects$Locations$Functions$Redirectfunctionupgradetraffic,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    redirectFunctionUpgradeTraffic(
+      params: Params$Resource$Projects$Locations$Functions$Redirectfunctionupgradetraffic,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    redirectFunctionUpgradeTraffic(
+      params: Params$Resource$Projects$Locations$Functions$Redirectfunctionupgradetraffic,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    redirectFunctionUpgradeTraffic(
+      params: Params$Resource$Projects$Locations$Functions$Redirectfunctionupgradetraffic,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    redirectFunctionUpgradeTraffic(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    redirectFunctionUpgradeTraffic(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Redirectfunctionupgradetraffic
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Redirectfunctionupgradetraffic;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Redirectfunctionupgradetraffic;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha/{+name}:redirectFunctionUpgradeTraffic'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Reverts the traffic target of a function from the 2nd Gen copy to the original 1st Gen function. After this operation, all new traffic would be served by the 1st Gen.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rollbackFunctionUpgradeTraffic(
+      params: Params$Resource$Projects$Locations$Functions$Rollbackfunctionupgradetraffic,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rollbackFunctionUpgradeTraffic(
+      params?: Params$Resource$Projects$Locations$Functions$Rollbackfunctionupgradetraffic,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rollbackFunctionUpgradeTraffic(
+      params: Params$Resource$Projects$Locations$Functions$Rollbackfunctionupgradetraffic,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rollbackFunctionUpgradeTraffic(
+      params: Params$Resource$Projects$Locations$Functions$Rollbackfunctionupgradetraffic,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollbackFunctionUpgradeTraffic(
+      params: Params$Resource$Projects$Locations$Functions$Rollbackfunctionupgradetraffic,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollbackFunctionUpgradeTraffic(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollbackFunctionUpgradeTraffic(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Rollbackfunctionupgradetraffic
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Rollbackfunctionupgradetraffic;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Rollbackfunctionupgradetraffic;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha/{+name}:rollbackFunctionUpgradeTraffic'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -2140,6 +2551,96 @@ export namespace cloudfunctions_v2alpha {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Creates a 2nd Gen copy of the function configuration based on the 1st Gen function with the given name. This is the first step of the multi step process to upgrade 1st Gen functions to 2nd Gen. Only 2nd Gen configuration is setup as part of this request and traffic continues to be served by 1st Gen.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setupFunctionUpgradeConfig(
+      params: Params$Resource$Projects$Locations$Functions$Setupfunctionupgradeconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setupFunctionUpgradeConfig(
+      params?: Params$Resource$Projects$Locations$Functions$Setupfunctionupgradeconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setupFunctionUpgradeConfig(
+      params: Params$Resource$Projects$Locations$Functions$Setupfunctionupgradeconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setupFunctionUpgradeConfig(
+      params: Params$Resource$Projects$Locations$Functions$Setupfunctionupgradeconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setupFunctionUpgradeConfig(
+      params: Params$Resource$Projects$Locations$Functions$Setupfunctionupgradeconfig,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setupFunctionUpgradeConfig(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setupFunctionUpgradeConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Setupfunctionupgradeconfig
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Setupfunctionupgradeconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Setupfunctionupgradeconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha/{+name}:setupFunctionUpgradeConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -2240,6 +2741,30 @@ export namespace cloudfunctions_v2alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Functions$Abortfunctionupgrade
+    extends StandardParameters {
+    /**
+     * Required. The name of the function for which upgrade should be aborted.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AbortFunctionUpgradeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Commitfunctionupgrade
+    extends StandardParameters {
+    /**
+     * Required. The name of the function for which upgrade should be finalized.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommitFunctionUpgradeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Functions$Create
     extends StandardParameters {
     /**
@@ -2344,6 +2869,30 @@ export namespace cloudfunctions_v2alpha {
      */
     requestBody?: Schema$Function;
   }
+  export interface Params$Resource$Projects$Locations$Functions$Redirectfunctionupgradetraffic
+    extends StandardParameters {
+    /**
+     * Required. The name of the function for which traffic target should be changed to 2nd Gen from 1st Gen.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RedirectFunctionUpgradeTrafficRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Rollbackfunctionupgradetraffic
+    extends StandardParameters {
+    /**
+     * Required. The name of the function for which traffic target should be changed back to 1st Gen from 2nd Gen.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RollbackFunctionUpgradeTrafficRequest;
+  }
   export interface Params$Resource$Projects$Locations$Functions$Setiampolicy
     extends StandardParameters {
     /**
@@ -2355,6 +2904,18 @@ export namespace cloudfunctions_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Setupfunctionupgradeconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the function which should have configuration copied for upgrade.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetupFunctionUpgradeConfigRequest;
   }
   export interface Params$Resource$Projects$Locations$Functions$Testiampermissions
     extends StandardParameters {

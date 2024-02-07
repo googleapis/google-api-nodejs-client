@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v0.2.0...vmwareengine-v1.0.0) (2024-02-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **vmwareengine:** This release has breaking changes.
+
+### Features
+
+* **vmwareengine:** update the API ([8f0ad46](https://github.com/googleapis/google-api-nodejs-client/commit/8f0ad460fc53a7df8e234d6cd7ab500caefdd6a7))
+
 ## [0.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v0.1.0...vmwareengine-v0.2.0) (2023-11-27)
 
 

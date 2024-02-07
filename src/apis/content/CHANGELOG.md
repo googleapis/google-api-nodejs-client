@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v20.0.0...content-v20.0.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* **content:** update the API ([6715e9e](https://github.com/googleapis/google-api-nodejs-client/commit/6715e9e0736f4e3312104e2dad27198837fb70f6))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v19.0.0...content-v20.0.0) (2024-01-05)
 
 

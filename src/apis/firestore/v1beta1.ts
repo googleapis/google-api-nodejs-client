@@ -1016,15 +1016,6 @@ export namespace firestore_v1beta1 {
     fields?: Schema$FieldReference[];
   }
   /**
-   * Plan for the query.
-   */
-  export interface Schema$QueryPlan {
-    /**
-     * Planning phase information for the query. It will include: { "indexes_used": [ {"query_scope": "Collection", "properties": "(foo ASC, __name__ ASC)"\}, {"query_scope": "Collection", "properties": "(bar ASC, __name__ ASC)"\} ] \}
-     */
-    planInfo?: {[key: string]: any} | null;
-  }
-  /**
    * A target specified by a query.
    */
   export interface Schema$QueryTarget {
@@ -1056,19 +1047,6 @@ export namespace firestore_v1beta1 {
     retryTransaction?: string | null;
   }
   /**
-   * Planning and execution statistics for the query.
-   */
-  export interface Schema$ResultSetStats {
-    /**
-     * Plan for the query.
-     */
-    queryPlan?: Schema$QueryPlan;
-    /**
-     * Aggregated statistics from the execution of the query. This will only be present when the request specifies `PROFILE` mode. For example, a query will return the statistics including: { "results_returned": "20", "documents_scanned": "20", "indexes_entries_scanned": "10050", "total_execution_time": "100.7 msecs" \}
-     */
-    queryStats?: {[key: string]: any} | null;
-  }
-  /**
    * The request for Firestore.Rollback.
    */
   export interface Schema$RollbackRequest {
@@ -1081,10 +1059,6 @@ export namespace firestore_v1beta1 {
    * The request for Firestore.RunAggregationQuery.
    */
   export interface Schema$RunAggregationQueryRequest {
-    /**
-     * Optional. The mode in which the query request is processed. This field is optional, and when not provided, it defaults to `NORMAL` mode where no additional statistics will be returned with the query results.
-     */
-    mode?: string | null;
     /**
      * Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream.
      */
@@ -1115,10 +1089,6 @@ export namespace firestore_v1beta1 {
      */
     result?: Schema$AggregationResult;
     /**
-     * Query plan and execution statistics. Note that the returned stats are subject to change as Firestore evolves. This is only present when the request specifies a mode other than `NORMAL` and is sent only once with the last response in the stream.
-     */
-    stats?: Schema$ResultSetStats;
-    /**
      * The transaction that was started as part of this request. Only present on the first response when the request requested to start a new transaction.
      */
     transaction?: string | null;
@@ -1127,10 +1097,6 @@ export namespace firestore_v1beta1 {
    * The request for Firestore.RunQuery.
    */
   export interface Schema$RunQueryRequest {
-    /**
-     * Optional. The mode in which the query request is processed. This field is optional, and when not provided, it defaults to `NORMAL` mode where no additional statistics will be returned with the query results.
-     */
-    mode?: string | null;
     /**
      * Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream.
      */
@@ -1168,10 +1134,6 @@ export namespace firestore_v1beta1 {
      * The number of results that have been skipped due to an offset between the last response and the current response.
      */
     skippedResults?: number | null;
-    /**
-     * Query plan and execution statistics. Note that the returned stats are subject to change as Firestore evolves. This is only present when the request specifies a mode other than `NORMAL` and is sent only once with the last response in the stream.
-     */
-    stats?: Schema$ResultSetStats;
     /**
      * The transaction that was started as part of this request. Can only be set in the first response, and only if RunQueryRequest.new_transaction was set in the request. If set, no other fields will be set in this response.
      */

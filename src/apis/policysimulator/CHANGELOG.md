@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v5.4.0...policysimulator-v5.5.0) (2024-02-02)
+
+
+### Features
+
+* **policysimulator:** update the API ([499a27d](https://github.com/googleapis/google-api-nodejs-client/commit/499a27dfb99a9436944fa31e942e2239791f2839))
+
 ## [5.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v5.3.0...policysimulator-v5.4.0) (2024-01-05)
 
 

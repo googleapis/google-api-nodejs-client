@@ -572,6 +572,10 @@ export namespace workloadmanager_v1 {
      */
     severity?: string | null;
     /**
+     * List of user-defined tags
+     */
+    tags?: string[] | null;
+    /**
      * the docuement url for the rule
      */
     uri?: string | null;
@@ -806,6 +810,10 @@ export namespace workloadmanager_v1 {
      * resource name
      */
     resource?: string | null;
+    /**
+     * resource type
+     */
+    type?: string | null;
   }
   /**
    * A presentation of SQLServer workload insight. The schema of SqlServer workloads validation related data.

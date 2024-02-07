@@ -159,15 +159,6 @@ export namespace sasportal_v1alpha1 {
     score?: number | null;
   }
   /**
-   * Response for [CheckHasProvisionedDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.CheckHasProvisionedDeployment].
-   */
-  export interface Schema$SasPortalCheckHasProvisionedDeploymentResponse {
-    /**
-     * Whether a SAS deployment for the authentication context exists.
-     */
-    hasProvisionedDeployment?: boolean | null;
-  }
-  /**
    * Request for CreateSignedDevice.
    */
   export interface Schema$SasPortalCreateSignedDeviceRequest {
@@ -457,6 +448,19 @@ export namespace sasportal_v1alpha1 {
     lowFrequencyMhz?: number | null;
   }
   /**
+   * Deployment associated with the GCP project. Includes whether SAS analytics has been enabled or not.
+   */
+  export interface Schema$SasPortalGcpProjectDeployment {
+    /**
+     * Deployment associated with the GCP project.
+     */
+    deployment?: Schema$SasPortalDeployment;
+    /**
+     * Whether SAS analytics has been enabled.
+     */
+    hasEnabledAnalytics?: boolean | null;
+  }
+  /**
    * Request for GenerateSecret.
    */
   export interface Schema$SasPortalGenerateSecretRequest {}
@@ -577,6 +581,15 @@ export namespace sasportal_v1alpha1 {
      * A pagination token returned from a previous call to ListDevices that indicates from where listing should continue. If the field is missing or empty, it means there is no more devices.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response for [ListGcpProjectDeployments].
+   */
+  export interface Schema$SasPortalListGcpProjectDeploymentsResponse {
+    /**
+     * Optional. Deployments associated with the GCP project
+     */
+    deployments?: Schema$SasPortalGcpProjectDeployment[];
   }
   /**
    * Response for [ListLegacyOrganizations]. [spectrum.sas.portal.v1alpha1.Provisioning.ListLegacyOrganizations].
@@ -903,101 +916,6 @@ export namespace sasportal_v1alpha1 {
     }
 
     /**
-     * Checks whether a SAS deployment for the authentication context exists.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    checkHasProvisionedDeployment(
-      params: Params$Resource$Customers$Checkhasprovisioneddeployment,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    checkHasProvisionedDeployment(
-      params?: Params$Resource$Customers$Checkhasprovisioneddeployment,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalCheckHasProvisionedDeploymentResponse>;
-    checkHasProvisionedDeployment(
-      params: Params$Resource$Customers$Checkhasprovisioneddeployment,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    checkHasProvisionedDeployment(
-      params: Params$Resource$Customers$Checkhasprovisioneddeployment,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>,
-      callback: BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
-    ): void;
-    checkHasProvisionedDeployment(
-      params: Params$Resource$Customers$Checkhasprovisioneddeployment,
-      callback: BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
-    ): void;
-    checkHasProvisionedDeployment(
-      callback: BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
-    ): void;
-    checkHasProvisionedDeployment(
-      paramsOrCallback?:
-        | Params$Resource$Customers$Checkhasprovisioneddeployment
-        | BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Customers$Checkhasprovisioneddeployment;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Checkhasprovisioneddeployment;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha1/customers:checkHasProvisionedDeployment'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SasPortalCheckHasProvisionedDeploymentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SasPortalCheckHasProvisionedDeploymentResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Returns a requested customer.
      *
      * @param params - Parameters for request
@@ -1179,7 +1097,102 @@ export namespace sasportal_v1alpha1 {
     }
 
     /**
-     * Checks whether account is legacy.
+     * Returns a list of SAS deployments associated with current GCP project. Includes whether SAS analytics has been enabled or not.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listGcpProjectDeployments(
+      params: Params$Resource$Customers$Listgcpprojectdeployments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listGcpProjectDeployments(
+      params?: Params$Resource$Customers$Listgcpprojectdeployments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListGcpProjectDeploymentsResponse>;
+    listGcpProjectDeployments(
+      params: Params$Resource$Customers$Listgcpprojectdeployments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listGcpProjectDeployments(
+      params: Params$Resource$Customers$Listgcpprojectdeployments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListGcpProjectDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListGcpProjectDeploymentsResponse>
+    ): void;
+    listGcpProjectDeployments(
+      params: Params$Resource$Customers$Listgcpprojectdeployments,
+      callback: BodyResponseCallback<Schema$SasPortalListGcpProjectDeploymentsResponse>
+    ): void;
+    listGcpProjectDeployments(
+      callback: BodyResponseCallback<Schema$SasPortalListGcpProjectDeploymentsResponse>
+    ): void;
+    listGcpProjectDeployments(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Listgcpprojectdeployments
+        | BodyResponseCallback<Schema$SasPortalListGcpProjectDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListGcpProjectDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListGcpProjectDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListGcpProjectDeploymentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Listgcpprojectdeployments;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Listgcpprojectdeployments;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha1/customers:listGcpProjectDeployments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListGcpProjectDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListGcpProjectDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns a list of legacy organizations.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1640,8 +1653,6 @@ export namespace sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Customers$Checkhasprovisioneddeployment
-    extends StandardParameters {}
   export interface Params$Resource$Customers$Get extends StandardParameters {
     /**
      * Required. The name of the customer.
@@ -1658,6 +1669,8 @@ export namespace sasportal_v1alpha1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Customers$Listgcpprojectdeployments
+    extends StandardParameters {}
   export interface Params$Resource$Customers$Listlegacyorganizations
     extends StandardParameters {}
   export interface Params$Resource$Customers$Migrateorganization

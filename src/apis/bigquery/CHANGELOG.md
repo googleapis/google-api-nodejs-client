@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v6.0.0...bigquery-v7.0.0) (2024-02-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **bigquery:** This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([489bf2f](https://github.com/googleapis/google-api-nodejs-client/commit/489bf2ffd8ceb4f4269ed5240f1d85ba8de7f8c9))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v5.1.0...bigquery-v6.0.0) (2024-01-05)
 
 

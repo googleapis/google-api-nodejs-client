@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v5.0.0...redis-v5.0.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* **redis:** update the API ([1b34fef](https://github.com/googleapis/google-api-nodejs-client/commit/1b34feff070dcc231e9a8a7c4c070e50efbbe7ad))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v4.1.0...redis-v5.0.0) (2024-01-05)
 
 

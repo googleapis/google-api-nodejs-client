@@ -694,7 +694,7 @@ export namespace securitycenter_v1 {
     errors?: Schema$CustomModuleValidationError[];
   }
   /**
-   * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
+   * CVE stands for Common Vulnerabilities and Exposures. Information from the [CVE record](https://www.cve.org/ResourcesSupport/Glossary) that describes this vulnerability.
    */
   export interface Schema$Cve {
     /**
@@ -1667,6 +1667,10 @@ export namespace securitycenter_v1 {
      */
     scope?: string | null;
     /**
+     * A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. "bigquery.googleapis.com/Dataset".
+     */
+    sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping;
+    /**
      * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
@@ -1720,6 +1724,19 @@ export namespace securitycenter_v1 {
      * Output only. The time at which the custom module was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Resource value mapping for Sensitive Data Protection findings. If any of these mappings have a resource value that is not unspecified, the resource_value field will be ignored when reading this configuration.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping {
+    /**
+     * Resource value mapping for high-sensitivity Sensitive Data Protection findings
+     */
+    highSensitivityMapping?: string | null;
+    /**
+     * Resource value mapping for medium-sensitivity Sensitive Data Protection findings
+     */
+    mediumSensitivityMapping?: string | null;
   }
   /**
    * Request message for grouping by assets.

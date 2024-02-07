@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v4.0.0...dataplex-v4.0.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* **dataplex:** update the API ([2ed8677](https://github.com/googleapis/google-api-nodejs-client/commit/2ed867728ebfa48f8133bb21cb4a2400a2be2f7c))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v3.1.0...dataplex-v4.0.0) (2024-01-05)
 
 

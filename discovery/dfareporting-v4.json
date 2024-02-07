@@ -10067,7 +10067,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20240201",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -12094,6 +12094,18 @@
       "description": "A Conversion represents when a user successfully performs a desired action after seeing an ad.",
       "id": "Conversion",
       "properties": {
+        "adUserDataConsent": {
+          "description": "This represents consent for ad user data.",
+          "enum": [
+            "GRANTED",
+            "DENIED"
+          ],
+          "enumDescriptions": [
+            "Granted.",
+            "Denied."
+          ],
+          "type": "string"
+        },
         "childDirectedTreatment": {
           "description": "Whether this particular request may come from a user under the age of 13, under COPPA compliance.",
           "type": "boolean"
@@ -17861,6 +17873,10 @@
           "format": "int64",
           "type": "string"
         },
+        "conversionDomainOverride": {
+          "$ref": "PlacementConversionDomainOverride",
+          "description": "Optional. Conversion domain overrides for a placement."
+        },
         "createInfo": {
           "$ref": "LastModifiedInfo",
           "description": "Information about the creation of this placement. This is a read-only field."
@@ -18105,6 +18121,18 @@
       },
       "type": "object"
     },
+    "PlacementConversionDomainOverride": {
+      "id": "PlacementConversionDomainOverride",
+      "properties": {
+        "conversionDomains": {
+          "items": {
+            "$ref": "PlacementSingleConversionDomain"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PlacementGroup": {
       "description": "Contains properties of a package or roadblock.",
       "id": "PlacementGroup",
@@ -18270,6 +18298,19 @@
             "$ref": "PlacementGroup"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PlacementSingleConversionDomain": {
+      "id": "PlacementSingleConversionDomain",
+      "properties": {
+        "conversionDomainId": {
+          "format": "int64",
+          "type": "string"
+        },
+        "conversionDomainValue": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -20351,7 +20392,7 @@
           "type": "string"
         },
         "includeClickThroughUrls": {
-          "description": "Whether static landing page URLs should be included in the tags. This setting applies only to placements.",
+          "description": "Whether static landing page URLs should be included in the tags. New placements will default to the value set on their site.",
           "type": "boolean"
         },
         "includeClickTracking": {
@@ -20759,9 +20800,11 @@
             "OTHER",
             "AD_ID_OFFICIAL",
             "CLEARCAST",
-            "DCM"
+            "DCM",
+            "ARPP"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

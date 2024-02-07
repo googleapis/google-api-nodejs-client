@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v8.2.0...workloadmanager-v8.3.0) (2024-02-02)
+
+
+### Features
+
+* **workloadmanager:** update the API ([a399523](https://github.com/googleapis/google-api-nodejs-client/commit/a399523589a85d344b5ba0ecc56de9aec322932f))
+
 ## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v8.1.0...workloadmanager-v8.2.0) (2024-01-05)
 
 

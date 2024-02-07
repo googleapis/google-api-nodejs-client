@@ -772,7 +772,7 @@
       "name": "batch",
       "version": "v1",
       "title": "Batch API",
-      "description": "An API to manage the running of batch jobs on Google Cloud Platform.",
+      "description": "An API to manage the running of batch resources on Google Cloud Platform.",
       "discoveryRestUrl": "https://batch.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2559,8 +2559,8 @@
       "id": "dlp:v2",
       "name": "dlp",
       "version": "v2",
-      "title": "Cloud Data Loss Prevention (DLP)",
-      "description": "Provides methods for detection, risk analysis, and de-identification of privacy-sensitive fragments in text, images, and Google Cloud Platform storage repositories.",
+      "title": "Sensitive Data Protection (DLP)",
+      "description": "Discover and protect your sensitive data. A fully managed service designed to help you discover, classify, and protect your valuable data assets with ease.",
       "discoveryRestUrl": "https://dlp.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",

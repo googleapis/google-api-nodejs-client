@@ -5820,7 +5820,7 @@
       }
     }
   },
-  "revision": "20240124",
+  "revision": "20240130",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -6596,7 +6596,7 @@
       "type": "object"
     },
     "Cve": {
-      "description": "CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org",
+      "description": "CVE stands for Common Vulnerabilities and Exposures. Information from the [CVE record](https://www.cve.org/ResourcesSupport/Glossary) that describes this vulnerability.",
       "id": "Cve",
       "properties": {
         "cvssv3": {
@@ -7799,6 +7799,10 @@
           "description": "Project or folder to scope this config to. For example, \"project/456\" would apply this config only to resources in \"project/456\" scope will be checked with \"AND\" of other resources.",
           "type": "string"
         },
+        "sensitiveDataProtectionMapping": {
+          "$ref": "GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping",
+          "description": "A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. \"bigquery.googleapis.com/Dataset\"."
+        },
         "tagValues": {
           "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" E.g. [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
           "items": {
@@ -7889,6 +7893,49 @@
           "description": "Output only. The time at which the custom module was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping": {
+      "description": "Resource value mapping for Sensitive Data Protection findings. If any of these mappings have a resource value that is not unspecified, the resource_value field will be ignored when reading this configuration.",
+      "id": "GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping",
+      "properties": {
+        "highSensitivityMapping": {
+          "description": "Resource value mapping for high-sensitivity Sensitive Data Protection findings",
+          "enum": [
+            "RESOURCE_VALUE_UNSPECIFIED",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecific value",
+            "High resource value",
+            "Medium resource value",
+            "Low resource value",
+            "No resource value, e.g. ignore these resources"
+          ],
+          "type": "string"
+        },
+        "mediumSensitivityMapping": {
+          "description": "Resource value mapping for medium-sensitivity Sensitive Data Protection findings",
+          "enum": [
+            "RESOURCE_VALUE_UNSPECIFIED",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecific value",
+            "High resource value",
+            "Medium resource value",
+            "Low resource value",
+            "No resource value, e.g. ignore these resources"
+          ],
           "type": "string"
         }
       },

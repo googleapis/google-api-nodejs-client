@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v4.0.0...dataproc-v4.0.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* **dataproc:** update the API ([d983519](https://github.com/googleapis/google-api-nodejs-client/commit/d983519273d7e4cbf8f8bace7bbb0ade075e8305))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v3.1.0...dataproc-v4.0.0) (2024-01-05)
 
 

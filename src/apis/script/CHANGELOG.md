@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/script-v3.2.0...script-v4.0.0) (2024-02-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **script:** This release has breaking changes.
+
+### Features
+
+* **script:** update the API ([1c78889](https://github.com/googleapis/google-api-nodejs-client/commit/1c78889c764603a51718fc6f73c7f7eacf7fb6da))
+
 ## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/script-v3.1.0...script-v3.2.0) (2024-01-05)
 
 

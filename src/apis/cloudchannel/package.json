@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudchannel",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "cloudchannel",
   "main": "build/index.js",
   "types": "build/index.d.ts",

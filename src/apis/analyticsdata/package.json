@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/analyticsdata",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "analyticsdata",
   "main": "build/index.js",
   "types": "build/index.d.ts",

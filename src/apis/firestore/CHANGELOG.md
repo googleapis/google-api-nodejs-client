@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v4.0.0...firestore-v4.1.0) (2024-02-02)
+
+
+### Features
+
+* **firestore:** update the API ([ccbb1f0](https://github.com/googleapis/google-api-nodejs-client/commit/ccbb1f08c6cad820c2a71d1a060bd9c3099032c3))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v3.1.0...firestore-v4.0.0) (2023-11-30)
 
 

@@ -552,7 +552,7 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20240205",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -691,6 +691,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "buildServiceAccount": {
+          "description": "Optional. A service account the user provides for use with Cloud Build.",
+          "type": "string"
+        },
         "buildWorkerPool": {
           "description": "Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where `{project}` and `{region}` are the project id and region respectively where the worker pool is defined and `{workerPool}` is the short name of the worker pool. If the project id is not the same as the function, then the Cloud Functions Service Agent (`service-@gcf-admin-robot.iam.gserviceaccount.com`) must be granted the role Cloud Build Custom Workers Builder (`roles/cloudbuild.customworkers.builder`) in the project.",
           "type": "string"
@@ -700,7 +704,7 @@
           "type": "string"
         },
         "dockerRegistry": {
-          "description": "Docker Registry to use for this deployment. If `docker_repository` field is specified, this field will be automatically set as `ARTIFACT_REGISTRY`. If unspecified, it currently defaults to `CONTAINER_REGISTRY`. This field may be overridden by the backend for eligible deployments.",
+          "description": "Docker Registry to use for this deployment. If unspecified, it defaults to `ARTIFACT_REGISTRY`. If `docker_repository` field is specified, this field should either be left unspecified or set to `ARTIFACT_REGISTRY`.",
           "enum": [
             "DOCKER_REGISTRY_UNSPECIFIED",
             "CONTAINER_REGISTRY",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v8.0.0...gkehub-v8.1.0) (2024-02-02)
+
+
+### Features
+
+* **gkehub:** update the API ([c7e634b](https://github.com/googleapis/google-api-nodejs-client/commit/c7e634b035e736693d504697775eff3e8f4726f2))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v7.0.0...gkehub-v8.0.0) (2024-01-05)
 
 
