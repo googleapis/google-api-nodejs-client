@@ -707,7 +707,7 @@
       }
     }
   },
-  "revision": "20240103",
+  "revision": "20240117",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "BigQueryDestination": {
@@ -1329,6 +1329,13 @@
           "description": "the severity of the rule",
           "type": "string"
         },
+        "tags": {
+          "description": "List of user-defined tags",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "uri": {
           "description": "the docuement url for the rule",
           "type": "string"
@@ -1695,6 +1702,10 @@
       "properties": {
         "resource": {
           "description": "resource name",
+          "type": "string"
+        },
+        "type": {
+          "description": "resource type",
           "type": "string"
         }
       },
