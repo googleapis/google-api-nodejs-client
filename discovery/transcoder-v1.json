@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20240124",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -921,6 +921,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "hlg": {
+          "$ref": "H264ColorFormatHLG",
+          "description": "Optional. HLG color format setting for H264."
+        },
         "pixelFormat": {
           "description": "Pixel format to use. The default is `yuv420p`. Supported pixel formats: - `yuv420p` pixel format - `yuv422p` pixel format - `yuv444p` pixel format - `yuv420p10` 10-bit HDR pixel format - `yuv422p10` 10-bit HDR pixel format - `yuv444p10` 10-bit HDR pixel format - `yuv420p12` 12-bit HDR pixel format - `yuv422p12` 12-bit HDR pixel format - `yuv444p12` 12-bit HDR pixel format",
           "type": "string"
@@ -936,6 +940,10 @@
         "rateControlMode": {
           "description": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
           "type": "string"
+        },
+        "sdr": {
+          "$ref": "H264ColorFormatSDR",
+          "description": "Optional. SDR color format setting for H264."
         },
         "tune": {
           "description": "Enforces the specified codec tune. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.264#Tune). Note that certain values for this field may cause the transcoder to override other fields you set in the `H264CodecSettings` message.",
@@ -957,6 +965,18 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "H264ColorFormatHLG": {
+      "description": "Convert the input video to a Hybrid Log Gamma (HLG) video.",
+      "id": "H264ColorFormatHLG",
+      "properties": {},
+      "type": "object"
+    },
+    "H264ColorFormatSDR": {
+      "description": "Convert the input video to a Standard Dynamic Range (SDR) video.",
+      "id": "H264ColorFormatSDR",
+      "properties": {},
       "type": "object"
     },
     "H265CodecSettings": {
@@ -1010,10 +1030,18 @@
           "format": "int32",
           "type": "integer"
         },
+        "hdr10": {
+          "$ref": "H265ColorFormatHDR10",
+          "description": "Optional. HDR10 color format setting for H265."
+        },
         "heightPixels": {
           "description": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
+        },
+        "hlg": {
+          "$ref": "H265ColorFormatHLG",
+          "description": "Optional. HLG color format setting for H265."
         },
         "pixelFormat": {
           "description": "Pixel format to use. The default is `yuv420p`. Supported pixel formats: - `yuv420p` pixel format - `yuv422p` pixel format - `yuv444p` pixel format - `yuv420p10` 10-bit HDR pixel format - `yuv422p10` 10-bit HDR pixel format - `yuv444p10` 10-bit HDR pixel format - `yuv420p12` 12-bit HDR pixel format - `yuv422p12` 12-bit HDR pixel format - `yuv444p12` 12-bit HDR pixel format",
@@ -1030,6 +1058,10 @@
         "rateControlMode": {
           "description": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
           "type": "string"
+        },
+        "sdr": {
+          "$ref": "H265ColorFormatSDR",
+          "description": "Optional. SDR color format setting for H265."
         },
         "tune": {
           "description": "Enforces the specified codec tune. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265). Note that certain values for this field may cause the transcoder to override other fields you set in the `H265CodecSettings` message.",
@@ -1051,6 +1083,24 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "H265ColorFormatHDR10": {
+      "description": "Convert the input video to a High Dynamic Range 10 (HDR10) video.",
+      "id": "H265ColorFormatHDR10",
+      "properties": {},
+      "type": "object"
+    },
+    "H265ColorFormatHLG": {
+      "description": "Convert the input video to a Hybrid Log Gamma (HLG) video.",
+      "id": "H265ColorFormatHLG",
+      "properties": {},
+      "type": "object"
+    },
+    "H265ColorFormatSDR": {
+      "description": "Convert the input video to a Standard Dynamic Range (SDR) video.",
+      "id": "H265ColorFormatSDR",
+      "properties": {},
       "type": "object"
     },
     "Image": {
@@ -1785,6 +1835,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "hlg": {
+          "$ref": "Vp9ColorFormatHLG",
+          "description": "Optional. HLG color format setting for VP9."
+        },
         "pixelFormat": {
           "description": "Pixel format to use. The default is `yuv420p`. Supported pixel formats: - `yuv420p` pixel format - `yuv422p` pixel format - `yuv444p` pixel format - `yuv420p10` 10-bit HDR pixel format - `yuv422p10` 10-bit HDR pixel format - `yuv444p10` 10-bit HDR pixel format - `yuv420p12` 12-bit HDR pixel format - `yuv422p12` 12-bit HDR pixel format - `yuv444p12` 12-bit HDR pixel format",
           "type": "string"
@@ -1797,12 +1851,28 @@
           "description": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate",
           "type": "string"
         },
+        "sdr": {
+          "$ref": "Vp9ColorFormatSDR",
+          "description": "Optional. SDR color format setting for VP9."
+        },
         "widthPixels": {
           "description": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "Vp9ColorFormatHLG": {
+      "description": "Convert the input video to a Hybrid Log Gamma (HLG) video.",
+      "id": "Vp9ColorFormatHLG",
+      "properties": {},
+      "type": "object"
+    },
+    "Vp9ColorFormatSDR": {
+      "description": "Convert the input video to a Standard Dynamic Range (SDR) video.",
+      "id": "Vp9ColorFormatSDR",
+      "properties": {},
       "type": "object"
     },
     "Widevine": {
