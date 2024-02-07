@@ -194,12 +194,12 @@
                   ],
                   "parameters": {
                     "datasetId": {
-                      "description": "The ID of the dataset that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
+                      "description": "Required. The ID of the dataset that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The name of the project where the server creates the dataset. For example, `projects/{project_id}/locations/{location_id}`.",
+                      "description": "Required. The name of the project where the server creates the dataset. For example, `projects/{project_id}/locations/{location_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -257,7 +257,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the dataset to delete. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+                      "description": "Required. The name of the dataset to delete. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                       "required": true,
@@ -283,7 +283,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the dataset to read. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+                      "description": "Required. The name of the dataset to read. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                       "required": true,
@@ -352,7 +352,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The name of the project whose datasets should be listed. For example, `projects/{project_id}/locations/{location_id}`.",
+                      "description": "Required. The name of the project whose datasets should be listed. For example, `projects/{project_id}/locations/{location_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -378,14 +378,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+                      "description": "Identifier. Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -475,12 +475,12 @@
                       ],
                       "parameters": {
                         "annotationStoreId": {
-                          "description": "The ID of the Annotation store that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
+                          "description": "Required. The ID of the Annotation store that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "The name of the dataset this Annotation store belongs to.",
+                          "description": "Required. The name of the dataset this Annotation store belongs to.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                           "required": true,
@@ -509,7 +509,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the Annotation store to delete.",
+                          "description": "Required. The resource name of the Annotation store to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                           "required": true,
@@ -535,7 +535,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "description": "Required. The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                           "required": true,
@@ -564,7 +564,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "description": "Required. The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                           "required": true,
@@ -593,7 +593,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the Annotation store to get.",
+                          "description": "Required. The resource name of the Annotation store to get.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                           "required": true,
@@ -651,7 +651,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "description": "Required. The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                           "required": true,
@@ -696,7 +696,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Name of the dataset.",
+                          "description": "Required. Name of the dataset.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                           "required": true,
@@ -722,14 +722,14 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "description": "Identifier. Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                          "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -819,7 +819,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "The name of the Annotation store this annotation belongs to. For example, `projects/my-project/locations/us-central1/datasets/mydataset/annotationStores/myannotationstore`.",
+                              "description": "Required. The name of the Annotation store this annotation belongs to. For example, `projects/my-project/locations/us-central1/datasets/mydataset/annotationStores/myannotationstore`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                               "required": true,
@@ -848,7 +848,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "The resource name of the Annotation to delete.",
+                              "description": "Required. The resource name of the Annotation to delete.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+/annotations/[^/]+$",
                               "required": true,
@@ -874,7 +874,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "The resource name of the Annotation to retrieve.",
+                              "description": "Required. The resource name of the Annotation to retrieve.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+/annotations/[^/]+$",
                               "required": true,
@@ -916,7 +916,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Name of the Annotation store to retrieve Annotations from.",
+                              "description": "Required. Name of the Annotation store to retrieve Annotations from.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                               "required": true,
@@ -957,14 +957,14 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Resource name of the Annotation, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.",
+                              "description": "Identifier. Resource name of the Annotation, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+/annotations/[^/]+$",
                               "required": true,
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                              "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -1856,7 +1856,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. Cannot be changed after creation.",
+                              "description": "Identifier. Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. Cannot be changed after creation.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/consentStores/[^/]+/consents/[^/]+$",
                               "required": true,
@@ -3585,6 +3585,37 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "explainDataAccess": {
+                      "description": "Explains all the permitted/denied actor, purpose and environment for a given resource.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:explainDataAccess",
+                      "httpMethod": "GET",
+                      "id": "healthcare.projects.locations.datasets.fhirStores.explainDataAccess",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the FHIR store to enforce, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "resourceId": {
+                          "description": "Required. The ID (`{resourceType}/{id}`) of the resource to explain data access on.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:explainDataAccess",
+                      "response": {
+                        "$ref": "ExplainDataAccessResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-healthcare",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "export": {
                       "description": "Export resources from the FHIR store to the specified destination. This method returns an Operation that can be used to track the status of the export by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ExportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:export",
@@ -4722,12 +4753,12 @@
                       ],
                       "parameters": {
                         "hl7V2StoreId": {
-                          "description": "The ID of the HL7v2 store that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
+                          "description": "Required. The ID of the HL7v2 store that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "The name of the dataset this HL7v2 store belongs to.",
+                          "description": "Required. The name of the dataset this HL7v2 store belongs to.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                           "required": true,
@@ -4756,7 +4787,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the HL7v2 store to delete.",
+                          "description": "Required. The resource name of the HL7v2 store to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -4782,7 +4813,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the source HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
+                          "description": "Required. The name of the source HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -4811,7 +4842,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the HL7v2 store to get.",
+                          "description": "Required. The resource name of the HL7v2 store to get.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -4837,7 +4868,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the HL7v2 store to get metrics for, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
+                          "description": "Required. The resource name of the HL7v2 store to get metrics for, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -4895,7 +4926,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the target HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
+                          "description": "Required. The name of the target HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -4940,7 +4971,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Name of the dataset.",
+                          "description": "Required. Name of the dataset.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                           "required": true,
@@ -4966,14 +4997,14 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Resource name of the HL7v2 store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
+                          "description": "Identifier. Resource name of the HL7v2 store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                          "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -5069,7 +5100,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Name of the HL7v2 store to retrieve messages from, in the format: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`.",
+                              "description": "Required. Name of the HL7v2 store to retrieve messages from, in the format: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                               "required": true,
@@ -5116,7 +5147,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "The name of the HL7v2 store this message belongs to.",
+                              "description": "Required. The name of the HL7v2 store this message belongs to.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                               "required": true,
@@ -5145,7 +5176,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "The resource name of the HL7v2 message to delete.",
+                              "description": "Required. The resource name of the HL7v2 message to delete.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+/messages/[^/]+$",
                               "required": true,
@@ -5171,7 +5202,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "The resource name of the HL7v2 message to retrieve.",
+                              "description": "Required. The resource name of the HL7v2 message to retrieve.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+/messages/[^/]+$",
                               "required": true,
@@ -5218,7 +5249,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "The name of the HL7v2 store this message belongs to.",
+                              "description": "Required. The name of the HL7v2 store this message belongs to.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                               "required": true,
@@ -5268,7 +5299,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Name of the HL7v2 store to retrieve messages from.",
+                              "description": "Required. Name of the HL7v2 store to retrieve messages from.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                               "required": true,
@@ -5315,14 +5346,14 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+                              "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+/messages/[^/]+$",
                               "required": true,
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                              "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -5489,7 +5520,7 @@
       }
     }
   },
-  "revision": "20240112",
+  "revision": "20240130",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -5507,8 +5538,8 @@
           "enumDescriptions": [
             "No log level specified. This value is unused.",
             "No additional consent-related logging is added to audit logs.",
-            "The following information is included: - One of the following [`consentMode`](https://cloud.google.com/healthcare-api/docs/fhir-consent#audit_logs) fields: (`off`|`emptyScope`|`enforced`|`btg`|`bypass`). - The accessor's request headers - The `log_level` of the [AccessDeterminationLogConfig](google.cloud.healthcare.v1beta1.fhir.FhirStore.ConsentConfig.AccessDeterminationLogConfig) - The final consent evaluation (`PERMIT`, `DENY`, or `NO_CONSENT`) - A human-readable summary of the evaluation",
-            "Includes `MINIMUM` and, for each resource owner, returns: - The resource owner's name - Most specific part of the `X-Consent-Scope` resulting in consensual determination - Timestamp of the applied enforcement leading to the decision - Enforcement version at the time the applicable consents were applied - The Consent resource name - The timestamp of the Consent resource used for enforcement - Policy type (PATIENT or ADMIN) Note that this mode adds some overhead to CRUD operations."
+            "The following information is included: * One of the following [`consentMode`](https://cloud.google.com/healthcare-api/docs/fhir-consent#audit_logs) fields: (`off`|`emptyScope`|`enforced`|`btg`|`bypass`). * The accessor's request headers * The `log_level` of the [AccessDeterminationLogConfig](https://cloud.google.com/healthcare-api/docs/reference/rest/v1beta1/projects.locations.datasets.fhirStores#AccessDeterminationLogConfig) * The final consent evaluation (`PERMIT`, `DENY`, or `NO_CONSENT`) * A human-readable summary of the evaluation",
+            "Includes `MINIMUM` and, for each resource owner, returns: * The resource owner's name * Most specific part of the `X-Consent-Scope` resulting in consensual determination * Timestamp of the applied enforcement leading to the decision * Enforcement version at the time the applicable consents were applied * The Consent resource name * The timestamp of the Consent resource used for enforcement * Policy type (`PATIENT` or `ADMIN`) Note that this mode adds some overhead to CRUD operations."
           ],
           "type": "string"
         }
@@ -5674,7 +5705,7 @@
       "properties": {
         "annotationSource": {
           "$ref": "AnnotationSource",
-          "description": "Details of the source."
+          "description": "Required. Details of the source."
         },
         "customData": {
           "additionalProperties": {
@@ -5688,7 +5719,7 @@
           "description": "Annotations for images. For example, bounding polygons."
         },
         "name": {
-          "description": "Resource name of the Annotation, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.",
+          "description": "Identifier. Resource name of the Annotation, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.",
           "type": "string"
         },
         "resourceAnnotation": {
@@ -5740,7 +5771,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "description": "Identifier. Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
           "type": "string"
         }
       },
@@ -5984,7 +6015,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -6213,7 +6244,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. Cannot be changed after creation.",
+          "description": "Identifier. Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. Cannot be changed after creation.",
           "type": "string"
         },
         "policies": {
@@ -6261,6 +6292,25 @@
         },
         "userId": {
           "description": "Required. User's UUID provided by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConsentAccessorScope": {
+      "description": "The accessor scope that describes who can access, for what purpose, in which environment.",
+      "id": "ConsentAccessorScope",
+      "properties": {
+        "actor": {
+          "description": "An individual, group, or access role that identifies the accessor or a characteristic of the accessor. This can be a resource ID (such as `{resourceType}/{id}`) or an external URI. This value must be present.",
+          "type": "string"
+        },
+        "environment": {
+          "description": "An abstract identifier that describes the environment or conditions under which the accessor is acting. Can be “*” if it applies to all environments.",
+          "type": "string"
+        },
+        "purpose": {
+          "description": "The intent of data use. Can be “*” if it applies to all purposes.",
           "type": "string"
         }
       },
@@ -6448,7 +6498,7 @@
       "properties": {
         "message": {
           "$ref": "Message",
-          "description": "HL7v2 message."
+          "description": "Required. HL7v2 message."
         }
       },
       "type": "object"
@@ -6480,7 +6530,7 @@
       "id": "Dataset",
       "properties": {
         "name": {
-          "description": "Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+          "description": "Identifier. Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
           "type": "string"
         },
         "timeZone": {
@@ -6948,7 +6998,7 @@
           "type": "object"
         },
         "goldenStore": {
-          "description": "The Annotation store to use as ground truth, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "description": "Required. The Annotation store to use as ground truth, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
           "type": "string"
         },
         "infoTypeConfig": {
@@ -7028,6 +7078,128 @@
             "$ref": "Result"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExplainDataAccessConsentInfo": {
+      "description": "The enforcing consent's metadata.",
+      "id": "ExplainDataAccessConsentInfo",
+      "properties": {
+        "cascadeOrigins": {
+          "description": "The compartment base resources that matched a cascading policy. Each resource has the following format: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/{resource_type}/{resource_id}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "consentResource": {
+          "description": "The resource name of this consent resource. Format: `projects/{projectId}/datasets/{datasetId}/fhirStores/{fhirStoreId}/fhir/{resourceType}/{id}`.",
+          "type": "string"
+        },
+        "enforcementTime": {
+          "description": "Last enforcement timestamp of this consent resource.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "matchingAccessorScopes": {
+          "description": "A list of all the matching accessor scopes of this consent policy that enforced ExplainDataAccessConsentScope.accessor_scope.",
+          "items": {
+            "$ref": "ConsentAccessorScope"
+          },
+          "type": "array"
+        },
+        "patientConsentOwner": {
+          "description": "The patient owning the consent (only applicable for patient consents), in the format: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Patient/{patient_id}`",
+          "type": "string"
+        },
+        "type": {
+          "description": "The policy type of consent resource (e.g. PATIENT, ADMIN).",
+          "enum": [
+            "CONSENT_POLICY_TYPE_UNSPECIFIED",
+            "CONSENT_POLICY_TYPE_PATIENT",
+            "CONSENT_POLICY_TYPE_ADMIN"
+          ],
+          "enumDescriptions": [
+            "Unspecified policy type.",
+            "Consent represent a patient consent.",
+            "Consent represent an admin consent."
+          ],
+          "type": "string"
+        },
+        "variants": {
+          "description": "The consent's variant combinations. A single consent may have multiple variants.",
+          "items": {
+            "enum": [
+              "VARIANT_UNSPECIFIED",
+              "VARIANT_STANDARD",
+              "VARIANT_CASCADE"
+            ],
+            "enumDescriptions": [
+              "Consent variant unspecified.",
+              "Consent is a standard patient or admin consent.",
+              "Consent is a cascading consent."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExplainDataAccessConsentScope": {
+      "description": "A single consent scope that provides info on who has access to the requested resource scope for a particular purpose and environment, enforced by which consent.",
+      "id": "ExplainDataAccessConsentScope",
+      "properties": {
+        "accessorScope": {
+          "$ref": "ConsentAccessorScope",
+          "description": "The accessor scope that describes who can access, for what purpose, and in which environment."
+        },
+        "decision": {
+          "description": "Whether the current consent scope is permitted or denied access on the requested resource.",
+          "enum": [
+            "CONSENT_DECISION_TYPE_UNSPECIFIED",
+            "CONSENT_DECISION_TYPE_PERMIT",
+            "CONSENT_DECISION_TYPE_DENY"
+          ],
+          "enumDescriptions": [
+            "Unspecified consent decision type.",
+            "Consent permitted access.",
+            "Consent denied access."
+          ],
+          "type": "string"
+        },
+        "enforcingConsents": {
+          "description": "Metadata of the consent resources that enforce the consent scope's access.",
+          "items": {
+            "$ref": "ExplainDataAccessConsentInfo"
+          },
+          "type": "array"
+        },
+        "exceptions": {
+          "description": "Other consent scopes that created exceptions within this scope.",
+          "items": {
+            "$ref": "ExplainDataAccessConsentScope"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExplainDataAccessResponse": {
+      "description": "List of consent scopes that are applicable to the explained access on a given resource.",
+      "id": "ExplainDataAccessResponse",
+      "properties": {
+        "consentScopes": {
+          "description": "List of applicable consent scopes. Sorted in order of actor such that scopes belonging to the same actor will be adjacent to each other in the list.",
+          "items": {
+            "$ref": "ExplainDataAccessConsentScope"
+          },
+          "type": "array"
+        },
+        "warning": {
+          "description": "Warnings associated with this response. It inform user with exceeded scope limit errors.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7303,7 +7475,7 @@
           "type": "boolean"
         },
         "enableHistoryModifications": {
-          "description": "Optional. Whether to allow the [ImportResourcesHistory] and [ExecuteBundle] APIs to accept history bundles, and directly insert and overwrite historical resource versions into the FHIR store. Importing resource histories creates resource interactions that have occurred in the past that clients might not allow. If set to false, using history bundles fail with an error.",
+          "description": "Optional. Whether to allow ExecuteBundle to accept history bundles, and directly insert and overwrite historical resource versions into the FHIR store. If set to false, using history bundles fails with an error.",
           "type": "boolean"
         },
         "enableUpdateCreate": {
@@ -7947,7 +8119,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Resource name of the HL7v2 store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
+          "description": "Identifier. Resource name of the HL7v2 store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
           "type": "string"
         },
         "notificationConfig": {
@@ -8253,7 +8425,7 @@
       "properties": {
         "message": {
           "$ref": "Message",
-          "description": "HL7v2 message to ingest."
+          "description": "Required. HL7v2 message to ingest."
         }
       },
       "type": "object"
@@ -8628,7 +8800,7 @@
           "type": "string"
         },
         "data": {
-          "description": "Raw message bytes.",
+          "description": "Required. Raw message bytes.",
           "format": "byte",
           "type": "string"
         },
@@ -8644,7 +8816,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+          "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+          "readOnly": true,
           "type": "string"
         },
         "parsedData": {

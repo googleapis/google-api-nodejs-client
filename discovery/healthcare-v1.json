@@ -194,12 +194,12 @@
                   ],
                   "parameters": {
                     "datasetId": {
-                      "description": "The ID of the dataset that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
+                      "description": "Required. The ID of the dataset that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The name of the project where the server creates the dataset. For example, `projects/{project_id}/locations/{location_id}`.",
+                      "description": "Required. The name of the project where the server creates the dataset. For example, `projects/{project_id}/locations/{location_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -257,7 +257,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the dataset to delete. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+                      "description": "Required. The name of the dataset to delete. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                       "required": true,
@@ -283,7 +283,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the dataset to read. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+                      "description": "Required. The name of the dataset to read. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                       "required": true,
@@ -352,7 +352,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The name of the project whose datasets should be listed. For example, `projects/{project_id}/locations/{location_id}`.",
+                      "description": "Required. The name of the project whose datasets should be listed. For example, `projects/{project_id}/locations/{location_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -378,14 +378,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+                      "description": "Identifier. Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -693,7 +693,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Resource name of the consent store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`. Cannot be changed after creation.",
+                          "description": "Identifier. Resource name of the consent store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`. Cannot be changed after creation.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/consentStores/[^/]+$",
                           "required": true,
@@ -1333,7 +1333,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. Cannot be changed after creation.",
+                              "description": "Identifier. Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. Cannot be changed after creation.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/consentStores/[^/]+/consents/[^/]+$",
                               "required": true,
@@ -3746,12 +3746,12 @@
                       ],
                       "parameters": {
                         "hl7V2StoreId": {
-                          "description": "The ID of the HL7v2 store that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
+                          "description": "Required. The ID of the HL7v2 store that is being created. The string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "The name of the dataset this HL7v2 store belongs to.",
+                          "description": "Required. The name of the dataset this HL7v2 store belongs to.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                           "required": true,
@@ -3780,7 +3780,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the HL7v2 store to delete.",
+                          "description": "Required. The resource name of the HL7v2 store to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -3806,7 +3806,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the source HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
+                          "description": "Required. The name of the source HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -3835,7 +3835,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the HL7v2 store to get.",
+                          "description": "Required. The resource name of the HL7v2 store to get.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -3861,7 +3861,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the HL7v2 store to get metrics for, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
+                          "description": "Required. The resource name of the HL7v2 store to get metrics for, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -3919,7 +3919,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the target HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
+                          "description": "Required. The name of the target HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -3964,7 +3964,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Name of the dataset.",
+                          "description": "Required. Name of the dataset.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                           "required": true,
@@ -3990,14 +3990,14 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Resource name of the HL7v2 store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
+                          "description": "Identifier. Resource name of the HL7v2 store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                          "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -4087,7 +4087,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "The name of the HL7v2 store this message belongs to.",
+                              "description": "Required. The name of the HL7v2 store this message belongs to.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                               "required": true,
@@ -4116,7 +4116,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "The resource name of the HL7v2 message to delete.",
+                              "description": "Required. The resource name of the HL7v2 message to delete.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+/messages/[^/]+$",
                               "required": true,
@@ -4142,7 +4142,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "The resource name of the HL7v2 message to retrieve.",
+                              "description": "Required. The resource name of the HL7v2 message to retrieve.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+/messages/[^/]+$",
                               "required": true,
@@ -4189,7 +4189,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "The name of the HL7v2 store this message belongs to.",
+                              "description": "Required. The name of the HL7v2 store this message belongs to.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                               "required": true,
@@ -4239,7 +4239,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Name of the HL7v2 store to retrieve messages from.",
+                              "description": "Required. Name of the HL7v2 store to retrieve messages from.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                               "required": true,
@@ -4286,14 +4286,14 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+                              "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+/messages/[^/]+$",
                               "required": true,
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                              "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -4460,7 +4460,7 @@
       }
     }
   },
-  "revision": "20240112",
+  "revision": "20240130",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -4697,7 +4697,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -4795,7 +4795,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. Cannot be changed after creation.",
+          "description": "Identifier. Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`. Cannot be changed after creation.",
           "type": "string"
         },
         "policies": {
@@ -4953,7 +4953,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Resource name of the consent store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`. Cannot be changed after creation.",
+          "description": "Identifier. Resource name of the consent store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}`. Cannot be changed after creation.",
           "type": "string"
         }
       },
@@ -4965,7 +4965,7 @@
       "properties": {
         "message": {
           "$ref": "Message",
-          "description": "HL7v2 message."
+          "description": "Required. HL7v2 message."
         }
       },
       "type": "object"
@@ -4991,7 +4991,7 @@
       "id": "Dataset",
       "properties": {
         "name": {
-          "description": "Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+          "description": "Identifier. Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
           "type": "string"
         },
         "timeZone": {
@@ -6066,7 +6066,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Resource name of the HL7v2 store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
+          "description": "Identifier. Resource name of the HL7v2 store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
           "type": "string"
         },
         "notificationConfigs": {
@@ -6301,7 +6301,7 @@
       "properties": {
         "message": {
           "$ref": "Message",
-          "description": "HL7v2 message to ingest."
+          "description": "Required. HL7v2 message to ingest."
         }
       },
       "type": "object"
@@ -6622,7 +6622,7 @@
           "type": "string"
         },
         "data": {
-          "description": "Raw message bytes.",
+          "description": "Required. Raw message bytes.",
           "format": "byte",
           "type": "string"
         },
@@ -6638,7 +6638,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+          "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+          "readOnly": true,
           "type": "string"
         },
         "parsedData": {
