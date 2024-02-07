@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20231214",
+  "revision": "20240122",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1116,7 +1116,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
