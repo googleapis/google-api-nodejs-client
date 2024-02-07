@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/datamigration",
-  "version": "4.6.1",
+  "version": "4.6.2",
   "description": "datamigration",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v6.1.0...dlp-v6.1.1) (2024-02-07)
+
+
+### Bug Fixes
+
+* **dlp:** update the API ([81466f2](https://github.com/googleapis/google-api-nodejs-client/commit/81466f2b97f39409c2bd4aa428755bb6aad85a2f))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v6.0.0...dlp-v6.1.0) (2024-02-02)
 
 
