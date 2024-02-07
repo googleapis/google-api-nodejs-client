@@ -655,6 +655,15 @@ export namespace bigquerydatatransfer_v1 {
     userId?: string | null;
   }
   /**
+   * A request to unenroll a set of data sources so they are no longer visible in the BigQuery UI's `Transfer` tab.
+   */
+  export interface Schema$UnenrollDataSourcesRequest {
+    /**
+     * Data sources that are unenrolled. It is required to provide at least one data source id.
+     */
+    dataSourceIds?: string[] | null;
+  }
+  /**
    * Information about a user.
    */
   export interface Schema$UserInfo {
@@ -1374,6 +1383,94 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Unenroll data sources in a user project. This allows users to remove transfer configurations for these data sources. They will no longer appear in the ListDataSources RPC and will also no longer appear in the [BigQuery UI](https://console.cloud.google.com/bigquery).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    unenrollDataSources(
+      params: Params$Resource$Projects$Locations$Unenrolldatasources,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unenrollDataSources(
+      params?: Params$Resource$Projects$Locations$Unenrolldatasources,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    unenrollDataSources(
+      params: Params$Resource$Projects$Locations$Unenrolldatasources,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    unenrollDataSources(
+      params: Params$Resource$Projects$Locations$Unenrolldatasources,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    unenrollDataSources(
+      params: Params$Resource$Projects$Locations$Unenrolldatasources,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    unenrollDataSources(callback: BodyResponseCallback<Schema$Empty>): void;
+    unenrollDataSources(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Unenrolldatasources
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Unenrolldatasources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Unenrolldatasources;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:unenrollDataSources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Enrolldatasources
@@ -1413,6 +1510,18 @@ export namespace bigquerydatatransfer_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Unenrolldatasources
+    extends StandardParameters {
+    /**
+     * The name of the project resource in the form: `projects/{project_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnenrollDataSourcesRequest;
   }
 
   export class Resource$Projects$Locations$Datasources {
