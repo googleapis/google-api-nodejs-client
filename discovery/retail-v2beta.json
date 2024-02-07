@@ -2115,7 +2115,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240205",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2292,12 +2292,71 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudRetailV2BigQueryOutputResult": {
+      "description": "A BigQuery output result.",
+      "id": "GoogleCloudRetailV2BigQueryOutputResult",
+      "properties": {
+        "datasetId": {
+          "description": "The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "The ID of a BigQuery Table.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2CreateModelMetadata": {
       "description": "Metadata associated with a create operation.",
       "id": "GoogleCloudRetailV2CreateModelMetadata",
       "properties": {
         "model": {
           "description": "The resource name of the model that this create applies to. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ExportAnalyticsMetricsResponse": {
+      "description": "Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
+      "id": "GoogleCloudRetailV2ExportAnalyticsMetricsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "errorsConfig": {
+          "$ref": "GoogleCloudRetailV2ExportErrorsConfig",
+          "description": "This field is never set."
+        },
+        "outputResult": {
+          "$ref": "GoogleCloudRetailV2OutputResult",
+          "description": "Output result indicating where the data were exported to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ExportErrorsConfig": {
+      "description": "Configuration of destination for Export related errors.",
+      "id": "GoogleCloudRetailV2ExportErrorsConfig",
+      "properties": {
+        "gcsPrefix": {
+          "description": "Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Export errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2GcsOutputResult": {
+      "description": "A Gcs output result.",
+      "id": "GoogleCloudRetailV2GcsOutputResult",
+      "properties": {
+        "outputUri": {
+          "description": "The uri of Gcs output",
           "type": "string"
         }
       },
@@ -2578,6 +2637,27 @@
           "description": "Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2OutputResult": {
+      "description": "Output result that stores the information about where the exported data is stored.",
+      "id": "GoogleCloudRetailV2OutputResult",
+      "properties": {
+        "bigqueryResult": {
+          "description": "The BigQuery location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2BigQueryOutputResult"
+          },
+          "type": "array"
+        },
+        "gcsResult": {
+          "description": "The Google Cloud Storage location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2GcsOutputResult"
           },
           "type": "array"
         }

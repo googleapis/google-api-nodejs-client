@@ -3558,6 +3558,19 @@ export namespace retail_v2alpha {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * A BigQuery output result.
+   */
+  export interface Schema$GoogleCloudRetailV2BigQueryOutputResult {
+    /**
+     * The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * The ID of a BigQuery Table.
+     */
+    tableId?: string | null;
+  }
+  /**
    * Metadata associated with a create operation.
    */
   export interface Schema$GoogleCloudRetailV2CreateModelMetadata {
@@ -3565,6 +3578,41 @@ export namespace retail_v2alpha {
      * The resource name of the model that this create applies to. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
      */
     model?: string | null;
+  }
+  /**
+   * Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
+   */
+  export interface Schema$GoogleCloudRetailV2ExportAnalyticsMetricsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * This field is never set.
+     */
+    errorsConfig?: Schema$GoogleCloudRetailV2ExportErrorsConfig;
+    /**
+     * Output result indicating where the data were exported to.
+     */
+    outputResult?: Schema$GoogleCloudRetailV2OutputResult;
+  }
+  /**
+   * Configuration of destination for Export related errors.
+   */
+  export interface Schema$GoogleCloudRetailV2ExportErrorsConfig {
+    /**
+     * Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Export errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.
+     */
+    gcsPrefix?: string | null;
+  }
+  /**
+   * A Gcs output result.
+   */
+  export interface Schema$GoogleCloudRetailV2GcsOutputResult {
+    /**
+     * The uri of Gcs output
+     */
+    outputUri?: string | null;
   }
   /**
    * Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
@@ -3734,6 +3782,19 @@ export namespace retail_v2alpha {
      * Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.
      */
     servingConfigIds?: string[] | null;
+  }
+  /**
+   * Output result that stores the information about where the exported data is stored.
+   */
+  export interface Schema$GoogleCloudRetailV2OutputResult {
+    /**
+     * The BigQuery location where the result is stored.
+     */
+    bigqueryResult?: Schema$GoogleCloudRetailV2BigQueryOutputResult[];
+    /**
+     * The Google Cloud Storage location where the result is stored.
+     */
+    gcsResult?: Schema$GoogleCloudRetailV2GcsOutputResult[];
   }
   /**
    * Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.

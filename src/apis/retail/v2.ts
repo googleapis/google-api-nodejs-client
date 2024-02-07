@@ -1395,6 +1395,19 @@ export namespace retail_v2 {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * A BigQuery output result.
+   */
+  export interface Schema$GoogleCloudRetailV2BigQueryOutputResult {
+    /**
+     * The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * The ID of a BigQuery Table.
+     */
+    tableId?: string | null;
+  }
+  /**
    * BigQuery source import data from.
    */
   export interface Schema$GoogleCloudRetailV2BigQuerySource {
@@ -1820,6 +1833,45 @@ export namespace retail_v2 {
     originalServingConfig?: string | null;
   }
   /**
+   * Request message for the `ExportAnalyticsMetrics` method.
+   */
+  export interface Schema$GoogleCloudRetailV2ExportAnalyticsMetricsRequest {
+    /**
+     * A filtering expression to specify restrictions on returned metrics. The expression is a sequence of terms. Each term applies a restriction to the returned metrics. Use this expression to restrict results to a specific time range. Currently we expect only one types of fields: * `timestamp`: This can be specified twice, once with a less than operator and once with a greater than operator. The `timestamp` restriction should result in one, contiguous, valid, `timestamp` range. Some examples of valid filters expressions: * Example 1: `timestamp \> "2012-04-23T18:25:43.511Z" timestamp < "2012-04-23T18:30:43.511Z"` * Example 2: `timestamp \> "2012-04-23T18:25:43.511Z"`
+     */
+    filter?: string | null;
+    /**
+     * Required. The output location of the data.
+     */
+    outputConfig?: Schema$GoogleCloudRetailV2OutputConfig;
+  }
+  /**
+   * Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
+   */
+  export interface Schema$GoogleCloudRetailV2ExportAnalyticsMetricsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * This field is never set.
+     */
+    errorsConfig?: Schema$GoogleCloudRetailV2ExportErrorsConfig;
+    /**
+     * Output result indicating where the data were exported to.
+     */
+    outputResult?: Schema$GoogleCloudRetailV2OutputResult;
+  }
+  /**
+   * Configuration of destination for Export related errors.
+   */
+  export interface Schema$GoogleCloudRetailV2ExportErrorsConfig {
+    /**
+     * Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Export errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.
+     */
+    gcsPrefix?: string | null;
+  }
+  /**
    * Fulfillment information, such as the store IDs for in-store pickup or region IDs for different shipping methods.
    */
   export interface Schema$GoogleCloudRetailV2FulfillmentInfo {
@@ -1831,6 +1883,15 @@ export namespace retail_v2 {
      * The fulfillment type, including commonly used types (such as pickup in store and same day delivery), and custom types. Customers have to map custom types to their display names before rendering UI. Supported values: * "pickup-in-store" * "ship-to-store" * "same-day-delivery" * "next-day-delivery" * "custom-type-1" * "custom-type-2" * "custom-type-3" * "custom-type-4" * "custom-type-5" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned.
      */
     type?: string | null;
+  }
+  /**
+   * A Gcs output result.
+   */
+  export interface Schema$GoogleCloudRetailV2GcsOutputResult {
+    /**
+     * The uri of Gcs output
+     */
+    outputUri?: string | null;
   }
   /**
    * Google Cloud Storage location for input content.
@@ -2211,6 +2272,58 @@ export namespace retail_v2 {
      * Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.
      */
     servingConfigIds?: string[] | null;
+  }
+  /**
+   * The output configuration setting.
+   */
+  export interface Schema$GoogleCloudRetailV2OutputConfig {
+    /**
+     * The BigQuery location where the output is to be written to.
+     */
+    bigqueryDestination?: Schema$GoogleCloudRetailV2OutputConfigBigQueryDestination;
+    /**
+     * The Google Cloud Storage location where the output is to be written to.
+     */
+    gcsDestination?: Schema$GoogleCloudRetailV2OutputConfigGcsDestination;
+  }
+  /**
+   * The BigQuery output destination configuration.
+   */
+  export interface Schema$GoogleCloudRetailV2OutputConfigBigQueryDestination {
+    /**
+     * Required. The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * Required. The prefix of exported BigQuery tables.
+     */
+    tableIdPrefix?: string | null;
+    /**
+     * Required. Describes the table type. The following values are supported: * `table`: A BigQuery native table. * `view`: A virtual table defined by a SQL query.
+     */
+    tableType?: string | null;
+  }
+  /**
+   * The Google Cloud Storage output destination configuration.
+   */
+  export interface Schema$GoogleCloudRetailV2OutputConfigGcsDestination {
+    /**
+     * Required. The output uri prefix for saving output data to json files. Some mapping examples are as follows: output_uri_prefix sample output(assuming the object is foo.json) ======================== ============================================= gs://bucket/ gs://bucket/foo.json gs://bucket/folder/ gs://bucket/folder/foo.json gs://bucket/folder/item_ gs://bucket/folder/item_foo.json
+     */
+    outputUriPrefix?: string | null;
+  }
+  /**
+   * Output result that stores the information about where the exported data is stored.
+   */
+  export interface Schema$GoogleCloudRetailV2OutputResult {
+    /**
+     * The BigQuery location where the result is stored.
+     */
+    bigqueryResult?: Schema$GoogleCloudRetailV2BigQueryOutputResult[];
+    /**
+     * The Google Cloud Storage location where the result is stored.
+     */
+    gcsResult?: Schema$GoogleCloudRetailV2GcsOutputResult[];
   }
   /**
    * Request for pausing training of a model.
@@ -3822,6 +3935,101 @@ export namespace retail_v2 {
     }
 
     /**
+     * Exports analytics metrics. `Operation.response` is of type `ExportAnalyticsMetricsResponse`. `Operation.metadata` is of type `ExportMetadata`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportAnalyticsMetrics(
+      params?: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportAnalyticsMetrics(
+      params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportAnalyticsMetrics(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportAnalyticsMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+catalog}:exportAnalyticsMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Gets an AttributesConfig.
      *
      * @param params - Parameters for request
@@ -4609,6 +4817,18 @@ export namespace retail_v2 {
      * Required field. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     visitorId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of the parent catalog. Expected format: `projects/x/locations/x/catalogs/x`
+     */
+    catalog?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2ExportAnalyticsMetricsRequest;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Getattributesconfig
     extends StandardParameters {
