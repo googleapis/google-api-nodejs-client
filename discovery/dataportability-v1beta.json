@@ -5,6 +5,30 @@
         "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations": {
           "description": "Move a copy of messages between you and the businesses you have conversations with."
         },
+        "https://www.googleapis.com/auth/dataportability.maps.commute_routes": {
+          "description": "Move a copy of your pinned trips on Maps."
+        },
+        "https://www.googleapis.com/auth/dataportability.maps.commute_settings": {
+          "description": "Move a copy of your commute settings on Maps."
+        },
+        "https://www.googleapis.com/auth/dataportability.maps.ev_profile": {
+          "description": "Move a copy of your electric vehicle profile on Maps."
+        },
+        "https://www.googleapis.com/auth/dataportability.maps.offering_contributions": {
+          "description": "Move a copy of your updates to places on Maps."
+        },
+        "https://www.googleapis.com/auth/dataportability.maps.photos_videos": {
+          "description": "Move a copy of the photos and videos you posted on Maps."
+        },
+        "https://www.googleapis.com/auth/dataportability.maps.reviews": {
+          "description": "Move a copy of your reviews and posts on Maps."
+        },
+        "https://www.googleapis.com/auth/dataportability.maps.starred_places": {
+          "description": "Move a copy of your Starred places list on Maps."
+        },
+        "https://www.googleapis.com/auth/dataportability.myactivity.maps": {
+          "description": "Move a copy of your Maps activity."
+        },
         "https://www.googleapis.com/auth/dataportability.myactivity.search": {
           "description": "Move a copy of your search activity."
         },
@@ -21,40 +45,40 @@
           "description": "Move a copy of reviews you wrote about products or online stores."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.channel": {
-          "description": "Move a copy of information about your channel."
+          "description": "Move a copy of information about your YouTube channel."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.comments": {
-          "description": "Move a copy of your comments."
+          "description": "Move a copy of your YouTube comments."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.live_chat": {
-          "description": "Move a copy of your messages in live chat."
+          "description": "Move a copy of your YouTube messages in live chat."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.music": {
-          "description": "Move a copy of your uploaded YouTube Music tracks and your YouTube Music library."
+          "description": "Move a copy of your uploaded YouTube music tracks and your YouTube music library."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.private_playlists": {
-          "description": "Move a copy of your private playlists."
+          "description": "Move a copy of your YouTube private playlists."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.private_videos": {
-          "description": "Move a copy of your private videos and information about them."
+          "description": "Move a copy of your private YouTube videos and information about them."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.public_playlists": {
-          "description": "Move a copy of your public playlists."
+          "description": "Move a copy of your public YouTube playlists."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.public_videos": {
-          "description": "Move a copy of your public videos and information about them."
+          "description": "Move a copy of your public YouTube videos and information about them."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.shopping": {
-          "description": "Move a copy of YouTube Shopping Wishlists, and wishlist items."
+          "description": "Move a copy of your YouTube shopping wishlists, and wishlist items."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.subscriptions": {
-          "description": "Move a copy of your channel subscriptions, even if they're private."
+          "description": "Move a copy of your YouTube channel subscriptions, even if they're private."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists": {
-          "description": "Move a copy of your unlisted playlists."
+          "description": "Move a copy of your unlisted YouTube playlists."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos": {
-          "description": "Move a copy of your unlisted videos and information about them."
+          "description": "Move a copy of your unlisted YouTube videos and information about them."
         }
       }
     }
@@ -181,6 +205,14 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
+            "https://www.googleapis.com/auth/dataportability.maps.commute_routes",
+            "https://www.googleapis.com/auth/dataportability.maps.commute_settings",
+            "https://www.googleapis.com/auth/dataportability.maps.ev_profile",
+            "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
+            "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
+            "https://www.googleapis.com/auth/dataportability.maps.reviews",
+            "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.search",
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
@@ -226,6 +258,14 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
+            "https://www.googleapis.com/auth/dataportability.maps.commute_routes",
+            "https://www.googleapis.com/auth/dataportability.maps.commute_settings",
+            "https://www.googleapis.com/auth/dataportability.maps.ev_profile",
+            "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
+            "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
+            "https://www.googleapis.com/auth/dataportability.maps.reviews",
+            "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.search",
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
@@ -265,6 +305,14 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
+            "https://www.googleapis.com/auth/dataportability.maps.commute_routes",
+            "https://www.googleapis.com/auth/dataportability.maps.commute_settings",
+            "https://www.googleapis.com/auth/dataportability.maps.ev_profile",
+            "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
+            "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
+            "https://www.googleapis.com/auth/dataportability.maps.reviews",
+            "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.search",
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
@@ -304,6 +352,14 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
+            "https://www.googleapis.com/auth/dataportability.maps.commute_routes",
+            "https://www.googleapis.com/auth/dataportability.maps.commute_settings",
+            "https://www.googleapis.com/auth/dataportability.maps.ev_profile",
+            "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
+            "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
+            "https://www.googleapis.com/auth/dataportability.maps.reviews",
+            "https://www.googleapis.com/auth/dataportability.maps.starred_places",
+            "https://www.googleapis.com/auth/dataportability.myactivity.maps",
             "https://www.googleapis.com/auth/dataportability.myactivity.search",
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
@@ -326,7 +382,7 @@
       }
     }
   },
-  "revision": "20240131",
+  "revision": "20240204",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "Empty": {

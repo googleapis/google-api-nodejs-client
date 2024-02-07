@@ -39,7 +39,7 @@
           "description": "View messages and reactions in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.spaces": {
-          "description": "Create conversations and spaces and view or update metadata (including history settings) in Google Chat"
+          "description": "Create conversations and spaces and see or edit metadata (including history settings and access settings) in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.spaces.create": {
           "description": "Create new conversations in Google Chat"
@@ -990,7 +990,7 @@
       }
     }
   },
-  "revision": "20240128",
+  "revision": "20240201",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
