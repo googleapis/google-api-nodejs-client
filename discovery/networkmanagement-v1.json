@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240117",
+  "revision": "20240124",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -764,7 +764,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -1050,6 +1050,7 @@
             "PSC_CONNECTION_NOT_ACCEPTED",
             "PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK",
             "PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS",
+            "PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS",
             "CLOUD_RUN_REVISION_NOT_READY",
             "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
             "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
@@ -1106,6 +1107,7 @@
             "The Private Service Connect endpoint is in a project that is not approved to connect to the service.",
             "The packet is sent to the Private Service Connect endpoint over the peering, but [it's not supported](https://cloud.google.com/vpc/docs/configure-private-service-connect-services#on-premises).",
             "The packet is sent to the Private Service Connect backend (network endpoint group), but the producer PSC forwarding rule does not have global access enabled.",
+            "The packet is sent to the Private Service Connect backend (network endpoint group), but the producer PSC forwarding rule has multiple ports specified.",
             "Packet sent from a Cloud Run revision that is not ready.",
             "Packet was dropped inside Private Service Connect service producer.",
             "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found.",
@@ -1734,6 +1736,10 @@
       "description": "For display only. Metadata associated with the load balancer backend.",
       "id": "LoadBalancerBackendInfo",
       "properties": {
+        "backendBucketUri": {
+          "description": "URI of the backend bucket this backend targets (if applicable).",
+          "type": "string"
+        },
         "backendServiceUri": {
           "description": "URI of the backend service this backend belongs to (if applicable).",
           "type": "string"
@@ -1775,6 +1781,14 @@
         },
         "networkEndpointGroupUri": {
           "description": "URI of the network endpoint group this backend belongs to (if applicable).",
+          "type": "string"
+        },
+        "pscGoogleApiTarget": {
+          "description": "PSC Google API target this PSC NEG backend targets (if applicable).",
+          "type": "string"
+        },
+        "pscServiceAttachmentUri": {
+          "description": "URI of the PSC service attachment this PSC NEG backend targets (if applicable).",
           "type": "string"
         }
       },
@@ -2501,7 +2515,8 @@
         },
         "loadBalancer": {
           "$ref": "LoadBalancerInfo",
-          "description": "Display information of the load balancers."
+          "deprecated": true,
+          "description": "Display information of the load balancers. Deprecated in favor of the `load_balancer_backend_info` field, not used in new tests."
         },
         "loadBalancerBackendInfo": {
           "$ref": "LoadBalancerBackendInfo",
@@ -2561,6 +2576,39 @@
             "FORWARD",
             "ABORT",
             "VIEWER_PERMISSION_MISSING"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unspecified state.",
