@@ -268,7 +268,7 @@ export namespace healthcare_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -336,7 +336,7 @@ export namespace healthcare_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. Cannot be changed after creation.
+     * Identifier. Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. Cannot be changed after creation.
      */
     name?: string | null;
     /**
@@ -436,7 +436,7 @@ export namespace healthcare_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Resource name of the consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. Cannot be changed after creation.
+     * Identifier. Resource name of the consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. Cannot be changed after creation.
      */
     name?: string | null;
   }
@@ -445,7 +445,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$CreateMessageRequest {
     /**
-     * HL7v2 message.
+     * Required. HL7v2 message.
      */
     message?: Schema$Message;
   }
@@ -467,7 +467,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$Dataset {
     /**
-     * Resource name of the dataset, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
+     * Identifier. Resource name of the dataset, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
      */
     name?: string | null;
     /**
@@ -1254,7 +1254,7 @@ export namespace healthcare_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Resource name of the HL7v2 store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
+     * Identifier. Resource name of the HL7v2 store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
      */
     name?: string | null;
     /**
@@ -1416,7 +1416,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$IngestMessageRequest {
     /**
-     * HL7v2 message to ingest.
+     * Required. HL7v2 message to ingest.
      */
     message?: Schema$Message;
   }
@@ -1640,7 +1640,7 @@ export namespace healthcare_v1 {
      */
     createTime?: string | null;
     /**
-     * Raw message bytes.
+     * Required. Raw message bytes.
      */
     data?: string | null;
     /**
@@ -1652,7 +1652,7 @@ export namespace healthcare_v1 {
      */
     messageType?: string | null;
     /**
-     * Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
+     * Output only. Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
      */
     name?: string | null;
     /**
@@ -3386,11 +3386,11 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Create
     extends StandardParameters {
     /**
-     * The ID of the dataset that is being created. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`.
+     * Required. The ID of the dataset that is being created. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`.
      */
     datasetId?: string;
     /**
-     * The name of the project where the server creates the dataset. For example, `projects/{project_id\}/locations/{location_id\}`.
+     * Required. The name of the project where the server creates the dataset. For example, `projects/{project_id\}/locations/{location_id\}`.
      */
     parent?: string;
 
@@ -3414,14 +3414,14 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Delete
     extends StandardParameters {
     /**
-     * The name of the dataset to delete. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
+     * Required. The name of the dataset to delete. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Get
     extends StandardParameters {
     /**
-     * The name of the dataset to read. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
+     * Required. The name of the dataset to read. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
      */
     name?: string;
   }
@@ -3447,18 +3447,18 @@ export namespace healthcare_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the project whose datasets should be listed. For example, `projects/{project_id\}/locations/{location_id\}`.
+     * Required. The name of the project whose datasets should be listed. For example, `projects/{project_id\}/locations/{location_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Patch
     extends StandardParameters {
     /**
-     * Resource name of the dataset, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
+     * Identifier. Resource name of the dataset, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
      */
     name?: string;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -4595,7 +4595,7 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Patch
     extends StandardParameters {
     /**
-     * Resource name of the consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. Cannot be changed after creation.
+     * Identifier. Resource name of the consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. Cannot be changed after creation.
      */
     name?: string;
     /**
@@ -6547,7 +6547,7 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch
     extends StandardParameters {
     /**
-     * Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. Cannot be changed after creation.
+     * Identifier. Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. Cannot be changed after creation.
      */
     name?: string;
     /**
@@ -14693,11 +14693,11 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create
     extends StandardParameters {
     /**
-     * The ID of the HL7v2 store that is being created. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`.
+     * Required. The ID of the HL7v2 store that is being created. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`.
      */
     hl7V2StoreId?: string;
     /**
-     * The name of the dataset this HL7v2 store belongs to.
+     * Required. The name of the dataset this HL7v2 store belongs to.
      */
     parent?: string;
 
@@ -14709,14 +14709,14 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete
     extends StandardParameters {
     /**
-     * The resource name of the HL7v2 store to delete.
+     * Required. The resource name of the HL7v2 store to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Export
     extends StandardParameters {
     /**
-     * The name of the source HL7v2 store, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7v2Stores/{hl7v2_store_id\}`
+     * Required. The name of the source HL7v2 store, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7v2Stores/{hl7v2_store_id\}`
      */
     name?: string;
 
@@ -14728,14 +14728,14 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get
     extends StandardParameters {
     /**
-     * The resource name of the HL7v2 store to get.
+     * Required. The resource name of the HL7v2 store to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics
     extends StandardParameters {
     /**
-     * The resource name of the HL7v2 store to get metrics for, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
+     * Required. The resource name of the HL7v2 store to get metrics for, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
      */
     name?: string;
   }
@@ -14753,7 +14753,7 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import
     extends StandardParameters {
     /**
-     * The name of the target HL7v2 store, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7v2Stores/{hl7v2_store_id\}`
+     * Required. The name of the target HL7v2 store, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7v2Stores/{hl7v2_store_id\}`
      */
     name?: string;
 
@@ -14777,18 +14777,18 @@ export namespace healthcare_v1 {
      */
     pageToken?: string;
     /**
-     * Name of the dataset.
+     * Required. Name of the dataset.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch
     extends StandardParameters {
     /**
-     * Resource name of the HL7v2 store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
+     * Identifier. Resource name of the HL7v2 store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
      */
     name?: string;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -15361,7 +15361,7 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create
     extends StandardParameters {
     /**
-     * The name of the HL7v2 store this message belongs to.
+     * Required. The name of the HL7v2 store this message belongs to.
      */
     parent?: string;
 
@@ -15373,14 +15373,14 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete
     extends StandardParameters {
     /**
-     * The resource name of the HL7v2 message to delete.
+     * Required. The resource name of the HL7v2 message to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get
     extends StandardParameters {
     /**
-     * The resource name of the HL7v2 message to retrieve.
+     * Required. The resource name of the HL7v2 message to retrieve.
      */
     name?: string;
     /**
@@ -15391,7 +15391,7 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest
     extends StandardParameters {
     /**
-     * The name of the HL7v2 store this message belongs to.
+     * Required. The name of the HL7v2 store this message belongs to.
      */
     parent?: string;
 
@@ -15419,7 +15419,7 @@ export namespace healthcare_v1 {
      */
     pageToken?: string;
     /**
-     * Name of the HL7v2 store to retrieve messages from.
+     * Required. Name of the HL7v2 store to retrieve messages from.
      */
     parent?: string;
     /**
@@ -15430,11 +15430,11 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch
     extends StandardParameters {
     /**
-     * Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
+     * Output only. Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
      */
     name?: string;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
