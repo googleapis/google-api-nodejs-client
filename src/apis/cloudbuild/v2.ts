@@ -181,7 +181,7 @@ export namespace cloudbuild_v2 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -845,6 +845,10 @@ export namespace cloudbuild_v2 {
      */
     finallyStartTime?: string | null;
     /**
+     * Output only. GCB default params.
+     */
+    gcbParams?: {[key: string]: string} | null;
+    /**
      * Output only. The `PipelineRun` name with format `projects/{project\}/locations/{location\}/pipelineRuns/{pipeline_run\}`
      */
     name?: string | null;
@@ -865,9 +869,17 @@ export namespace cloudbuild_v2 {
      */
     pipelineSpec?: Schema$PipelineSpec;
     /**
+     * Optional. Provenance configuration.
+     */
+    provenance?: Schema$Provenance;
+    /**
      * Output only. The exact PipelineSpec used to instantiate the run.
      */
     resolvedPipelineSpec?: Schema$PipelineSpec;
+    /**
+     * Optional. Security configuration.
+     */
+    security?: Schema$Security;
     /**
      * Service account used in the Pipeline.
      */
@@ -892,6 +904,10 @@ export namespace cloudbuild_v2 {
      * Output only. Time at which the request to update the `PipelineRun` was received.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Worker configuration.
+     */
+    worker?: Schema$Worker;
     /**
      * Output only. The WorkerPool used to run this PipelineRun.
      */
@@ -1032,6 +1048,23 @@ export namespace cloudbuild_v2 {
     type?: string | null;
   }
   /**
+   * Provenance configuration.
+   */
+  export interface Schema$Provenance {
+    /**
+     * Optional. Provenance push mode.
+     */
+    enabled?: string | null;
+    /**
+     * Optional. Provenance region.
+     */
+    region?: string | null;
+    /**
+     * Optional. Where provenance is stored.
+     */
+    storage?: string | null;
+  }
+  /**
    * A repository associated to a parent connection.
    */
   export interface Schema$Repository {
@@ -1109,6 +1142,19 @@ export namespace cloudbuild_v2 {
      * Output only. Resource name of the SecretVersion. In format: projects/x/secrets/x/versions/x
      */
     secretVersion?: string | null;
+  }
+  /**
+   * Security configuration.
+   */
+  export interface Schema$Security {
+    /**
+     * Optional. Privilege mode.
+     */
+    privilegeMode?: string | null;
+    /**
+     * IAM service account whose credentials will be used at runtime.
+     */
+    serviceAccount?: string | null;
   }
   /**
    * Security options the container should be run with.
@@ -1479,6 +1525,15 @@ export namespace cloudbuild_v2 {
      * Values is an array of strings, which is compared against the input, for guard checking.
      */
     values?: string[] | null;
+  }
+  /**
+   * Configuration for the worker.
+   */
+  export interface Schema$Worker {
+    /**
+     * Optional. Machine type of a worker, default is "e2-standard-2".
+     */
+    machineType?: string | null;
   }
   /**
    * WorkspaceBinding maps a workspace to a Volume. PipelineRef can be used to refer to a specific instance of a Pipeline.

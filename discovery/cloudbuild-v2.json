@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20231231",
+  "revision": "20240130",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -939,7 +939,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -1867,6 +1867,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "gcbParams": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. GCB default params.",
+          "readOnly": true,
+          "type": "object"
+        },
         "name": {
           "description": "Output only. The `PipelineRun` name with format `projects/{project}/locations/{location}/pipelineRuns/{pipeline_run}`",
           "readOnly": true,
@@ -1899,10 +1907,18 @@
           "$ref": "PipelineSpec",
           "description": "PipelineSpec defines the desired state of Pipeline."
         },
+        "provenance": {
+          "$ref": "Provenance",
+          "description": "Optional. Provenance configuration."
+        },
         "resolvedPipelineSpec": {
           "$ref": "PipelineSpec",
           "description": "Output only. The exact PipelineSpec used to instantiate the run.",
           "readOnly": true
+        },
+        "security": {
+          "$ref": "Security",
+          "description": "Optional. Security configuration."
         },
         "serviceAccount": {
           "description": "Service account used in the Pipeline.",
@@ -1936,6 +1952,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "worker": {
+          "$ref": "Worker",
+          "description": "Optional. Worker configuration."
         },
         "workerPool": {
           "description": "Output only. The WorkerPool used to run this PipelineRun.",
@@ -2139,6 +2159,57 @@
       },
       "type": "object"
     },
+    "Provenance": {
+      "description": "Provenance configuration.",
+      "id": "Provenance",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Provenance push mode.",
+          "enum": [
+            "ENABLED_UNSPECIFIED",
+            "REQUIRED",
+            "OPTIMISTIC",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default to disabled (before AA regionalization), optimistic after",
+            "Provenance failures would fail the run",
+            "GCB will attempt to push to artifact analaysis and build state would not be impacted by the push failures.",
+            "Disable the provenance push entirely."
+          ],
+          "type": "string"
+        },
+        "region": {
+          "description": "Optional. Provenance region.",
+          "enum": [
+            "REGION_UNSPECIFIED",
+            "GLOBAL"
+          ],
+          "enumDescriptions": [
+            "The PipelineRun/TaskRun/Workflow will be rejected. Update this comment to push to the same region as the run in Artifact Analysis when it's regionalized.",
+            "Push provenance to Artifact Analysis in global region."
+          ],
+          "type": "string"
+        },
+        "storage": {
+          "description": "Optional. Where provenance is stored.",
+          "enum": [
+            "STORAGE_UNSPECIFIED",
+            "PREFER_ARTIFACT_PROJECT",
+            "ARTIFACT_PROJECT_ONLY",
+            "BUILD_PROJECT_ONLY"
+          ],
+          "enumDescriptions": [
+            "Default PREFER_ARTIFACT_PROJECT.",
+            "GCB will attempt to push provenance to the artifact project. If it is not available, fallback to build project.",
+            "Only push to artifact project.",
+            "Only push to build project."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Repository": {
       "description": "A repository associated to a parent connection.",
       "id": "Repository",
@@ -2237,6 +2308,31 @@
         "secretVersion": {
           "description": "Output only. Resource name of the SecretVersion. In format: projects/*/secrets/*/versions/*",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Security": {
+      "description": "Security configuration.",
+      "id": "Security",
+      "properties": {
+        "privilegeMode": {
+          "description": "Optional. Privilege mode.",
+          "enum": [
+            "PRIVILEGE_MODE_UNSPECIFIED",
+            "PRIVILEGED",
+            "UNPRIVILEGED"
+          ],
+          "enumDescriptions": [
+            "Default to PRIVILEGED.",
+            "Privileged mode.",
+            "Unprivileged mode."
+          ],
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "IAM service account whose credentials will be used at runtime.",
           "type": "string"
         }
       },
@@ -2773,6 +2869,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Worker": {
+      "description": "Configuration for the worker.",
+      "id": "Worker",
+      "properties": {
+        "machineType": {
+          "description": "Optional. Machine type of a worker, default is \"e2-standard-2\".",
+          "type": "string"
         }
       },
       "type": "object"
