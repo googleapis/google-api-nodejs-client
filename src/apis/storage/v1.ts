@@ -604,10 +604,6 @@ export namespace storage_v1 {
      */
     kind?: string | null;
     /**
-     * User-provided metadata, in key/value pairs.
-     */
-    metadata?: {[key: string]: string} | null;
-    /**
      * The version of the metadata for this folder. Used for preconditions and for detecting changes in metadata.
      */
     metageneration?: string | null;
