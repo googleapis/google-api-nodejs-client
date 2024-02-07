@@ -142,7 +142,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$AdbShellInteractiveEvent {}
   /**
-   * Security policies set to secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values.
+   * Advanced security settings. In most cases, setting these is not needed.
    */
   export interface Schema$AdvancedSecurityOverrides {
     /**
@@ -347,6 +347,14 @@ export namespace androidmanagement_v1 {
      * Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app.
      */
     extensionConfig?: Schema$ExtensionConfig;
+    /**
+     * Optional. The constraints for installing the app. You can specify a maximum of one InstallConstraint. Multiple constraints are rejected.
+     */
+    installConstraint?: Schema$InstallConstraint[];
+    /**
+     * Optional. Amongst apps with installTypeset to:FORCE_INSTALLEDPREINSTALLED this controls the relative priority of installation. A value of 0 (default) means this app has no priority over other apps. For values between 1 and 10,000, a lower value means a higher priority. Values outside of the range 0 to 10,000 inclusive are rejected.
+     */
+    installPriority?: number | null;
     /**
      * The type of installation to perform.
      */
@@ -920,7 +928,7 @@ export namespace androidmanagement_v1 {
      */
     managementMode?: string | null;
     /**
-     * Events related to memory and storage measurements in chronological order. This information is only available if memoryInfoEnabled is true in the device's policy.
+     * Events related to memory and storage measurements in chronological order. This information is only available if memoryInfoEnabled is true in the device's policy.Events are retained for a certain period of time and old events are deleted.
      */
     memoryEvents?: Schema$MemoryEvent[];
     /**
@@ -1384,6 +1392,23 @@ export namespace androidmanagement_v1 {
     skinTemperatures?: number[] | null;
   }
   /**
+   * Amongst apps with InstallTypeset to:FORCE_INSTALLEDPREINSTALLED this defines a set of restrictions for the app installation. At least one of the fields must be set. When multiple fields are set, then all the constraints need to be satisfied for the app to be installed.
+   */
+  export interface Schema$InstallConstraint {
+    /**
+     * Optional. Charging constraint.
+     */
+    chargingConstraint?: string | null;
+    /**
+     * Optional. Device idle constraint.
+     */
+    deviceIdleConstraint?: string | null;
+    /**
+     * Optional. Network type constraint.
+     */
+    networkTypeConstraint?: string | null;
+  }
+  /**
    * Response on issuing a command. This is currently empty as a placeholder.
    */
   export interface Schema$IssueCommandResponse {}
@@ -1754,7 +1779,7 @@ export namespace androidmanagement_v1 {
     volumeLabel?: string | null;
   }
   /**
-   * An event related to memory and storage measurements.
+   * An event related to memory and storage measurements.To distinguish between new and old events, we recommend using the createTime field.
    */
   export interface Schema$MemoryEvent {
     /**
@@ -2152,7 +2177,7 @@ export namespace androidmanagement_v1 {
      */
     adjustVolumeDisabled?: boolean | null;
     /**
-     * Security policies set to secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values.
+     * Advanced security settings. In most cases, setting these is not needed.
      */
     advancedSecurityOverrides?: Schema$AdvancedSecurityOverrides;
     /**
@@ -2160,7 +2185,7 @@ export namespace androidmanagement_v1 {
      */
     alwaysOnVpnPackage?: Schema$AlwaysOnVpnPackage;
     /**
-     * The app tracks for Android Device Policy the device can access. The device receives the latest version among all accessible tracks. If no tracks are specified, then the device only uses the production track.
+     * This setting is not supported. Any value is ignored.
      */
     androidDevicePolicyTracks?: string[] | null;
     /**
@@ -4419,91 +4444,6 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Enterprises$Devices$Operations$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Enterprises$Devices$Operations$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    delete(
-      params: Params$Resource$Enterprises$Devices$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Enterprises$Devices$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Enterprises$Devices$Operations$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Enterprises$Devices$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Enterprises$Devices$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Enterprises$Devices$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://androidmanagement.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      *
      * @param params - Parameters for request
@@ -4683,13 +4623,6 @@ export namespace androidmanagement_v1 {
     extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Enterprises$Devices$Operations$Delete
-    extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
      */
     name?: string;
   }

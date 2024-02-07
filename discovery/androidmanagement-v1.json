@@ -512,31 +512,6 @@
                     "https://www.googleapis.com/auth/androidmanagement"
                   ]
                 },
-                "delete": {
-                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.",
-                  "flatPath": "v1/enterprises/{enterprisesId}/devices/{devicesId}/operations/{operationsId}",
-                  "httpMethod": "DELETE",
-                  "id": "androidmanagement.enterprises.devices.operations.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "The name of the operation resource to be deleted.",
-                      "location": "path",
-                      "pattern": "^enterprises/[^/]+/devices/[^/]+/operations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "Empty"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/androidmanagement"
-                  ]
-                },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                   "flatPath": "v1/enterprises/{enterprisesId}/devices/{devicesId}/operations/{operationsId}",
@@ -1188,7 +1163,7 @@
       }
     }
   },
-  "revision": "20240115",
+  "revision": "20240129",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1209,7 +1184,7 @@
       "type": "object"
     },
     "AdvancedSecurityOverrides": {
-      "description": "Security policies set to secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values.",
+      "description": "Advanced security settings. In most cases, setting these is not needed.",
       "id": "AdvancedSecurityOverrides",
       "properties": {
         "commonCriteriaMode": {
@@ -1692,7 +1667,7 @@
           "enumDescriptions": [
             "Policy not specified. If no policy is specified for a permission at any level, then the PROMPT behavior is used by default.",
             "Prompt the user to grant a permission.",
-            "Automatically grant a permission.",
+            "Automatically grant a permission.On Android 12 and above, Manifest.permission.READ_SMS (https://developer.android.com/reference/android/Manifest.permission#READ_SMS) and following sensor-related permissions can only be granted on fully managed devices: Manifest.permission.ACCESS_FINE_LOCATION (https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION) Manifest.permission.ACCESS_BACKGROUND_LOCATION (https://developer.android.com/reference/android/Manifest.permission#ACCESS_BACKGROUND_LOCATION) Manifest.permission.ACCESS_COARSE_LOCATION (https://developer.android.com/reference/android/Manifest.permission#ACCESS_COARSE_LOCATION) Manifest.permission.CAMERA (https://developer.android.com/reference/android/Manifest.permission#CAMERA) Manifest.permission.RECORD_AUDIO (https://developer.android.com/reference/android/Manifest.permission#RECORD_AUDIO) Manifest.permission.ACTIVITY_RECOGNITION (https://developer.android.com/reference/android/Manifest.permission#ACTIVITY_RECOGNITION) Manifest.permission.BODY_SENSORS (https://developer.android.com/reference/android/Manifest.permission#BODY_SENSORS)",
             "Automatically deny a permission."
           ],
           "type": "string"
@@ -1735,6 +1710,18 @@
         "extensionConfig": {
           "$ref": "ExtensionConfig",
           "description": "Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app."
+        },
+        "installConstraint": {
+          "description": "Optional. The constraints for installing the app. You can specify a maximum of one InstallConstraint. Multiple constraints are rejected.",
+          "items": {
+            "$ref": "InstallConstraint"
+          },
+          "type": "array"
+        },
+        "installPriority": {
+          "description": "Optional. Amongst apps with installTypeset to:FORCE_INSTALLEDPREINSTALLED this controls the relative priority of installation. A value of 0 (default) means this app has no priority over other apps. For values between 1 and 10,000, a lower value means a higher priority. Values outside of the range 0 to 10,000 inclusive are rejected.",
+          "format": "int32",
+          "type": "integer"
         },
         "installType": {
           "description": "The type of installation to perform.",
@@ -2547,7 +2534,7 @@
           "type": "string"
         },
         "memoryEvents": {
-          "description": "Events related to memory and storage measurements in chronological order. This information is only available if memoryInfoEnabled is true in the device's policy.",
+          "description": "Events related to memory and storage measurements in chronological order. This information is only available if memoryInfoEnabled is true in the device's policy.Events are retained for a certain period of time and old events are deleted.",
           "items": {
             "$ref": "MemoryEvent"
           },
@@ -3340,6 +3327,55 @@
       },
       "type": "object"
     },
+    "InstallConstraint": {
+      "description": "Amongst apps with InstallTypeset to:FORCE_INSTALLEDPREINSTALLED this defines a set of restrictions for the app installation. At least one of the fields must be set. When multiple fields are set, then all the constraints need to be satisfied for the app to be installed.",
+      "id": "InstallConstraint",
+      "properties": {
+        "chargingConstraint": {
+          "description": "Optional. Charging constraint.",
+          "enum": [
+            "CHARGING_CONSTRAINT_UNSPECIFIED",
+            "CHARGING_NOT_REQUIRED",
+            "INSTALL_ONLY_WHEN_CHARGING"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Default to CHARGING_NOT_REQUIRED.",
+            "Device doesn't have to be charging.",
+            "Device has to be charging."
+          ],
+          "type": "string"
+        },
+        "deviceIdleConstraint": {
+          "description": "Optional. Device idle constraint.",
+          "enum": [
+            "DEVICE_IDLE_CONSTRAINT_UNSPECIFIED",
+            "DEVICE_IDLE_NOT_REQUIRED",
+            "INSTALL_ONLY_WHEN_DEVICE_IDLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Default to DEVICE_IDLE_NOT_REQUIRED.",
+            "Device doesn't have to be idle, app can be installed while the user is interacting with the device.",
+            "Device has to be idle."
+          ],
+          "type": "string"
+        },
+        "networkTypeConstraint": {
+          "description": "Optional. Network type constraint.",
+          "enum": [
+            "NETWORK_TYPE_CONSTRAINT_UNSPECIFIED",
+            "INSTALL_ON_ANY_NETWORK",
+            "INSTALL_ONLY_ON_UNMETERED_NETWORK"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Default to INSTALL_ON_ANY_NETWORK.",
+            "Any active networks (Wi-Fi, cellular, etc.).",
+            "Any unmetered network (e.g. Wi-FI)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IssueCommandResponse": {
       "description": "Response on issuing a command. This is currently empty as a placeholder.",
       "id": "IssueCommandResponse",
@@ -3894,7 +3930,7 @@
       "type": "object"
     },
     "MemoryEvent": {
-      "description": "An event related to memory and storage measurements.",
+      "description": "An event related to memory and storage measurements.To distinguish between new and old events, we recommend using the createTime field.",
       "id": "MemoryEvent",
       "properties": {
         "byteCount": {
@@ -4530,7 +4566,7 @@
           "enumDescriptions": [
             "Policy not specified. If no policy is specified for a permission at any level, then the PROMPT behavior is used by default.",
             "Prompt the user to grant a permission.",
-            "Automatically grant a permission.",
+            "Automatically grant a permission.On Android 12 and above, Manifest.permission.READ_SMS (https://developer.android.com/reference/android/Manifest.permission#READ_SMS) and following sensor-related permissions can only be granted on fully managed devices: Manifest.permission.ACCESS_FINE_LOCATION (https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION) Manifest.permission.ACCESS_BACKGROUND_LOCATION (https://developer.android.com/reference/android/Manifest.permission#ACCESS_BACKGROUND_LOCATION) Manifest.permission.ACCESS_COARSE_LOCATION (https://developer.android.com/reference/android/Manifest.permission#ACCESS_COARSE_LOCATION) Manifest.permission.CAMERA (https://developer.android.com/reference/android/Manifest.permission#CAMERA) Manifest.permission.RECORD_AUDIO (https://developer.android.com/reference/android/Manifest.permission#RECORD_AUDIO) Manifest.permission.ACTIVITY_RECOGNITION (https://developer.android.com/reference/android/Manifest.permission#ACTIVITY_RECOGNITION) Manifest.permission.BODY_SENSORS (https://developer.android.com/reference/android/Manifest.permission#BODY_SENSORS)",
             "Automatically deny a permission."
           ],
           "type": "string"
@@ -4665,14 +4701,15 @@
         },
         "advancedSecurityOverrides": {
           "$ref": "AdvancedSecurityOverrides",
-          "description": "Security policies set to secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values."
+          "description": "Advanced security settings. In most cases, setting these is not needed."
         },
         "alwaysOnVpnPackage": {
           "$ref": "AlwaysOnVpnPackage",
           "description": "Configuration for an always-on VPN connection. Use with vpn_config_disabled to prevent modification of this setting."
         },
         "androidDevicePolicyTracks": {
-          "description": "The app tracks for Android Device Policy the device can access. The device receives the latest version among all accessible tracks. If no tracks are specified, then the device only uses the production track.",
+          "deprecated": true,
+          "description": "This setting is not supported. Any value is ignored.",
           "items": {
             "enum": [
               "APP_TRACK_UNSPECIFIED",
@@ -4821,7 +4858,7 @@
           "enumDescriptions": [
             "Policy not specified. If no policy is specified for a permission at any level, then the PROMPT behavior is used by default.",
             "Prompt the user to grant a permission.",
-            "Automatically grant a permission.",
+            "Automatically grant a permission.On Android 12 and above, Manifest.permission.READ_SMS (https://developer.android.com/reference/android/Manifest.permission#READ_SMS) and following sensor-related permissions can only be granted on fully managed devices: Manifest.permission.ACCESS_FINE_LOCATION (https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION) Manifest.permission.ACCESS_BACKGROUND_LOCATION (https://developer.android.com/reference/android/Manifest.permission#ACCESS_BACKGROUND_LOCATION) Manifest.permission.ACCESS_COARSE_LOCATION (https://developer.android.com/reference/android/Manifest.permission#ACCESS_COARSE_LOCATION) Manifest.permission.CAMERA (https://developer.android.com/reference/android/Manifest.permission#CAMERA) Manifest.permission.RECORD_AUDIO (https://developer.android.com/reference/android/Manifest.permission#RECORD_AUDIO) Manifest.permission.ACTIVITY_RECOGNITION (https://developer.android.com/reference/android/Manifest.permission#ACTIVITY_RECOGNITION) Manifest.permission.BODY_SENSORS (https://developer.android.com/reference/android/Manifest.permission#BODY_SENSORS)",
             "Automatically deny a permission."
           ],
           "type": "string"
