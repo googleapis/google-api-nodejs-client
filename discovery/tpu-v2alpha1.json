@@ -965,7 +965,7 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20240126",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2018,6 +2018,10 @@
         },
         "reserved": {
           "description": "Whether the node is created under a reservation.",
+          "type": "boolean"
+        },
+        "spot": {
+          "description": "Optional. Defines whether the node is Spot VM.",
           "type": "boolean"
         }
       },
