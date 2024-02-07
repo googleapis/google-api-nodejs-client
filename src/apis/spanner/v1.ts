@@ -325,7 +325,7 @@ export namespace spanner_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -350,6 +350,10 @@ export namespace spanner_v1 {
    * The request for Commit.
    */
   export interface Schema$CommitRequest {
+    /**
+     * Optional. The amount of latency this request is willing to incur in order to improve throughput. If this field is not set, Spanner assumes requests are relatively latency sensitive and automatically determines an appropriate delay time. You can specify a batching delay value between 0 and 500 ms.
+     */
+    maxCommitDelay?: string | null;
     /**
      * The mutations to be executed when this transaction commits. All mutations are applied atomically, in the order they appear in this list.
      */
@@ -1864,7 +1868,7 @@ export namespace spanner_v1 {
      */
     defaultLeaderLocation?: boolean | null;
     /**
-     * The location of the serving resources, e.g. "us-central1".
+     * The location of the serving resources, e.g., "us-central1".
      */
     location?: string | null;
     /**
