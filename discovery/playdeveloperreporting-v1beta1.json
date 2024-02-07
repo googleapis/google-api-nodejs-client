@@ -941,7 +941,7 @@
       }
     }
   },
-  "revision": "20240103",
+  "revision": "20240205",
   "rootUrl": "https://playdeveloperreporting.googleapis.com/",
   "schemas": {
     "GooglePlayDeveloperReportingV1beta1Anomaly": {
@@ -1175,7 +1175,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the issue. Format: apps/{app}/errorIssues/{issue}",
+          "description": "Identifier. The resource name of the issue. Format: apps/{app}/{issue}",
           "type": "string"
         },
         "type": {
@@ -1217,7 +1217,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the report. Format: apps/{app}/errorReports/{report}",
+          "description": "The resource name of the report. Format: apps/{app}/{report}",
           "type": "string"
         },
         "osVersion": {

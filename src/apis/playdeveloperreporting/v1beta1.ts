@@ -331,7 +331,7 @@ export namespace playdeveloperreporting_v1beta1 {
      */
     location?: string | null;
     /**
-     * Identifier. The resource name of the issue. Format: apps/{app\}/errorIssues/{issue\}
+     * Identifier. The resource name of the issue. Format: apps/{app\}/{issue\}
      */
     name?: string | null;
     /**
@@ -360,7 +360,7 @@ export namespace playdeveloperreporting_v1beta1 {
      */
     issue?: string | null;
     /**
-     * The resource name of the report. Format: apps/{app\}/errorReports/{report\}
+     * The resource name of the report. Format: apps/{app\}/{report\}
      */
     name?: string | null;
     /**
