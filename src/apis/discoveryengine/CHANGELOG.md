@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v6.0.0...discoveryengine-v6.1.0) (2024-02-07)
+
+
+### Features
+
+* **discoveryengine:** update the API ([64f2232](https://github.com/googleapis/google-api-nodejs-client/commit/64f2232f3ba37f9fe96e34e241172b4979383cc2))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v5.0.0...discoveryengine-v6.0.0) (2024-02-02)
 
 

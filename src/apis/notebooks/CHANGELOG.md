@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v5.1.0...notebooks-v5.1.1) (2024-02-07)
+
+
+### Bug Fixes
+
+* **notebooks:** update the API ([f0122fe](https://github.com/googleapis/google-api-nodejs-client/commit/f0122feb5a9bf795307763d7345c65e142ca2ab2))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v5.0.0...notebooks-v5.1.0) (2024-02-02)
 
 

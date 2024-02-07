@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/workloadmanager",
-  "version": "8.3.0",
+  "version": "8.4.0",
   "description": "workloadmanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",
