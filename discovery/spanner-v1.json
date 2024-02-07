@@ -2729,7 +2729,7 @@
       }
     }
   },
-  "revision": "20240120",
+  "revision": "20240131",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AutoscalingConfig": {
@@ -3013,7 +3013,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -3043,6 +3043,11 @@
       "description": "The request for Commit.",
       "id": "CommitRequest",
       "properties": {
+        "maxCommitDelay": {
+          "description": "Optional. The amount of latency this request is willing to incur in order to improve throughput. If this field is not set, Spanner assumes requests are relatively latency sensitive and automatically determines an appropriate delay time. You can specify a batching delay value between 0 and 500 ms.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "mutations": {
           "description": "The mutations to be executed when this transaction commits. All mutations are applied atomically, in the order they appear in this list.",
           "items": {
@@ -5182,7 +5187,7 @@
           "type": "boolean"
         },
         "location": {
-          "description": "The location of the serving resources, e.g. \"us-central1\".",
+          "description": "The location of the serving resources, e.g., \"us-central1\".",
           "type": "string"
         },
         "type": {
@@ -5740,6 +5745,7 @@
             "BOOL",
             "INT64",
             "FLOAT64",
+            "FLOAT32",
             "TIMESTAMP",
             "DATE",
             "STRING",
@@ -5755,6 +5761,7 @@
             "Not specified.",
             "Encoded as JSON `true` or `false`.",
             "Encoded as `string`, in decimal format.",
+            "Encoded as `number`, or the strings `\"NaN\"`, `\"Infinity\"`, or `\"-Infinity\"`.",
             "Encoded as `number`, or the strings `\"NaN\"`, `\"Infinity\"`, or `\"-Infinity\"`.",
             "Encoded as `string` in RFC 3339 timestamp format. The time zone must be present, and must be `\"Z\"`. If the schema has the column option `allow_commit_timestamp=true`, the placeholder string `\"spanner.commit_timestamp()\"` can be used to instruct the system to insert the commit timestamp associated with the transaction commit.",
             "Encoded as `string` in RFC 3339 date format.",
