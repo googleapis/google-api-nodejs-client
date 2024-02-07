@@ -1707,6 +1707,15 @@ export namespace discoveryengine_v1beta {
     values?: number[] | null;
   }
   /**
+   * Defines embedding config, used for bring your own embeddings feature.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEmbeddingConfig {
+    /**
+     * Full field path in the schema mapped as embedding field.
+     */
+    fieldPath?: string | null;
+  }
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchMetadata {
@@ -2165,6 +2174,19 @@ export namespace discoveryengine_v1beta {
      * The Schemas.
      */
     schemas?: Schema$GoogleCloudDiscoveryengineV1betaSchema[];
+  }
+  /**
+   * Response for ListServingConfigs method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse {
+    /**
+     * Pagination token, if not returned indicates the last page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * All the ServingConfigs for a given dataStore.
+     */
+    servingConfigs?: Schema$GoogleCloudDiscoveryengineV1betaServingConfig[];
   }
   /**
    * Response message for SiteSearchEngineService.ListTargetSites method.
@@ -2676,7 +2698,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec {
     /**
-     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English.
+     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. LINT.IfChange * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English. LINT.ThenChange(//depot/google3/cloud/console/web/ai/unified_cloud_search/pages/configurations/widget_tab.ts)
      */
     version?: string | null;
   }
@@ -3041,6 +3063,118 @@ export namespace discoveryengine_v1beta {
      * Summary text with no citation information.
      */
     summary?: string | null;
+  }
+  /**
+   * Configures metadata that is used to generate serving time results (e.g. search results or recommendation predictions). The ServingConfig is passed in the search and predict request and generates results.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaServingConfig {
+    /**
+     * Boost controls to use in serving path. All triggered boost controls will be applied. Boost controls must be in the same data store as the serving config. Maximum of 20 boost controls.
+     */
+    boostControlIds?: string[] | null;
+    /**
+     * Output only. ServingConfig created timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The human readable serving config display name. Used in Discovery UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    displayName?: string | null;
+    /**
+     * Condition do not associate specifications. If multiple do not associate conditions match, all matching do not associate controls in the list will execute. Order does not matter. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    dissociateControlIds?: string[] | null;
+    /**
+     * How much diversity to use in recommendation model results e.g. `medium-diversity` or `high-diversity`. Currently supported values: * `no-diversity` * `low-diversity` * `medium-diversity` * `high-diversity` * `auto-diversity` If not specified, we choose default based on recommendation model type. Default value: `no-diversity`. Can only be set if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     */
+    diversityLevel?: string | null;
+    /**
+     * Bring your own embedding config. The config is used for search semantic retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embeddings that are provided by this EmbeddingConfig. If SearchRequest.EmbeddingSpec.EmbeddingVector.vector is provided, it overrides this ServingConfig.embedding_config.
+     */
+    embeddingConfig?: Schema$GoogleCloudDiscoveryengineV1betaEmbeddingConfig;
+    /**
+     * Filter controls to use in serving path. All triggered filter controls will be applied. Filter controls must be in the same data store as the serving config. Maximum of 20 filter controls.
+     */
+    filterControlIds?: string[] | null;
+    /**
+     * The GenericConfig of the serving configuration.
+     */
+    genericConfig?: Schema$GoogleCloudDiscoveryengineV1betaServingConfigGenericConfig;
+    /**
+     * Condition ignore specifications. If multiple ignore conditions match, all matching ignore controls in the list will execute. Order does not matter. Maximum number of specifications is 100.
+     */
+    ignoreControlIds?: string[] | null;
+    /**
+     * The MediaConfig of the serving configuration.
+     */
+    mediaConfig?: Schema$GoogleCloudDiscoveryengineV1betaServingConfigMediaConfig;
+    /**
+     * The id of the model to use at serving time. Currently only RecommendationModels are supported. Can be changed but only to a compatible model (e.g. others-you-may-like CTR to others-you-may-like CVR). Required when SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     */
+    modelId?: string | null;
+    /**
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string | null;
+    /**
+     * Condition oneway synonyms specifications. If multiple oneway synonyms conditions match, all matching oneway synonyms controls in the list will execute. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    onewaySynonymsControlIds?: string[] | null;
+    rankingExpression?: string | null;
+    /**
+     * IDs of the redirect controls. Only the first triggered redirect action is applied, even if multiple apply. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    redirectControlIds?: string[] | null;
+    /**
+     * Condition replacement specifications. Applied according to the order in the list. A previously replaced term can not be re-replaced. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    replacementControlIds?: string[] | null;
+    /**
+     * Required. Immutable. Specifies the solution type that a serving config can be associated with.
+     */
+    solutionType?: string | null;
+    /**
+     * Condition synonyms specifications. If multiple synonyms conditions match, all matching synonyms controls in the list will execute. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    synonymsControlIds?: string[] | null;
+    /**
+     * Output only. ServingConfig updated timestamp.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Specifies the configurations needed for Generic Discovery.Currently we support: * `content_search_spec`: configuration for generic content search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaServingConfigGenericConfig {
+    /**
+     * Specifies the expected behavior of content search. Only valid for content-search enabled data store.
+     */
+    contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec;
+  }
+  /**
+   * Specifies the configurations needed for Media Discovery. Currently we support: * `demote_content_watched`: Threshold for watched content demotion. Customers can specify if using watched content demotion or use viewed detail page. Using the content watched demotion, customers need to specify the watched minutes or percentage exceeds the threshold, the content will be demoted in the recommendation result. * `promote_fresh_content`: cutoff days for fresh content promotion. Customers can specify if using content freshness promotion. If the content was published within the cutoff days, the content will be promoted in the recommendation result. Can only be set if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaServingConfigMediaConfig {
+    /**
+     * Specifies the content freshness used for recommendation result. Contents will be demoted if contents were published for more than content freshness cutoff days.
+     */
+    contentFreshnessCutoffDays?: number | null;
+    /**
+     * Specifies the content watched minutes threshold for demotion.
+     */
+    contentWatchedMinutesThreshold?: number | null;
+    /**
+     * Specifies the content watched percentage threshold for demotion. Threshold value must be between [0, 1.0] inclusive.
+     */
+    contentWatchedPercentageThreshold?: number | null;
+    /**
+     * Specifies the content watched minutes threshold for demotion.
+     */
+    contentWatchedSecondsThreshold?: number | null;
+    /**
+     * Specifies the event type used for demoting recommendation result. Currently supported values: * `view-item`: Item viewed. * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. If unset, watch history demotion will not be applied. Content freshness demotion will still be applied.
+     */
+    demotionEventType?: string | null;
   }
   /**
    * SiteSearchEngine captures DataStore level site search persisting configurations. It is a singleton value per data store.
@@ -7956,6 +8090,294 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all ServingConfigs linked to this dataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Makes a recommendation, which requires a contextual user event.
      *
      * @param params - Parameters for request
@@ -8152,6 +8574,44 @@ export namespace discoveryengine_v1beta {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The dataStore resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaServingConfig;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Recommend
     extends StandardParameters {
     /**
@@ -11850,6 +12310,294 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all ServingConfigs linked to this dataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Makes a recommendation, which requires a contextual user event.
      *
      * @param params - Parameters for request
@@ -12046,6 +12794,44 @@ export namespace discoveryengine_v1beta {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The dataStore resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaServingConfig;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend
     extends StandardParameters {
     /**
@@ -15777,6 +16563,294 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all ServingConfigs linked to this dataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Servingconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Servingconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Servingconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListServingConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Makes a recommendation, which requires a contextual user event.
      *
      * @param params - Parameters for request
@@ -15973,6 +17047,44 @@ export namespace discoveryengine_v1beta {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The dataStore resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaServingConfig;
+  }
   export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Recommend
     extends StandardParameters {
     /**
