@@ -2,7 +2,7 @@
 
 # dlp
 
-> Provides methods for detection, risk analysis, and de-identification of privacy-sensitive fragments in text, images, and Google Cloud Platform storage repositories.
+> Discover and protect your sensitive data. A fully managed service designed to help you discover, classify, and protect your valuable data assets with ease.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
