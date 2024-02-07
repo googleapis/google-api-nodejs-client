@@ -1088,6 +1088,10 @@ export namespace run_v2 {
      */
     customAudiences?: string[] | null;
     /**
+     * Optional. Disables public resolution of the default URI of this service.
+     */
+    defaultUriDisabled?: boolean | null;
+    /**
      * Output only. The deletion time.
      */
     deleteTime?: string | null;

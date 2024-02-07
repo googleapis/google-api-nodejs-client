@@ -1312,7 +1312,7 @@
       }
     }
   },
-  "revision": "20240121",
+  "revision": "20240128",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2782,6 +2782,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "defaultUriDisabled": {
+          "description": "Optional. Disables public resolution of the default URI of this service.",
+          "type": "boolean"
         },
         "deleteTime": {
           "description": "Output only. The deletion time.",
