@@ -2632,24 +2632,6 @@
           "resources": {
             "privateContent": {
               "methods": {
-                "setPassUpdateNotice": {
-                  "description": "Provide Google with information about awaiting private pass update. This will allow Google to provide the update notification to the device that currently holds this pass.",
-                  "flatPath": "walletobjects/v1/privateContent/setPassUpdateNotice",
-                  "httpMethod": "POST",
-                  "id": "walletobjects.walletobjects.v1.privateContent.setPassUpdateNotice",
-                  "parameterOrder": [],
-                  "parameters": {},
-                  "path": "walletobjects/v1/privateContent/setPassUpdateNotice",
-                  "request": {
-                    "$ref": "SetPassUpdateNoticeRequest"
-                  },
-                  "response": {
-                    "$ref": "SetPassUpdateNoticeResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/wallet_object.issuer"
-                  ]
-                },
                 "uploadPrivateData": {
                   "description": "Upload private data (text or URI) and returns an Id to be used in its place.",
                   "flatPath": "walletobjects/v1/privateContent/uploadPrivateData",
@@ -2675,7 +2657,7 @@
       }
     }
   },
-  "revision": "20240201",
+  "revision": "20240206",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -2805,7 +2787,8 @@
       "id": "AppLinkDataAppLinkInfoAppTarget",
       "properties": {
         "targetUri": {
-          "$ref": "Uri"
+          "$ref": "Uri",
+          "description": "URI for AppTarget. The description on the URI must be set."
         }
       },
       "type": "object"
@@ -8088,18 +8071,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "SetPassUpdateNoticeRequest": {
-      "description": "Request to send a private pass update notice information to Google, so that devices can then fetch the notice prompting the user to update a pass.",
-      "id": "SetPassUpdateNoticeRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "SetPassUpdateNoticeResponse": {
-      "description": "A response to a request to notify Google of an awaiting update to a private pass.",
-      "id": "SetPassUpdateNoticeResponse",
-      "properties": {},
       "type": "object"
     },
     "SignUpInfo": {
