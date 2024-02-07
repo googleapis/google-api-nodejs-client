@@ -860,6 +860,10 @@ export namespace tpu_v2alpha1 {
      * Whether the node is created under a reservation.
      */
     reserved?: boolean | null;
+    /**
+     * Optional. Defines whether the node is Spot VM.
+     */
+    spot?: boolean | null;
   }
   /**
    * A service account.
