@@ -1153,6 +1153,10 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$Repository {
     /**
+     * Output only. The timestamp of when the repository was created.
+     */
+    createTime?: string | null;
+    /**
      * Optional. The repository's user-friendly name.
      */
     displayName?: string | null;
