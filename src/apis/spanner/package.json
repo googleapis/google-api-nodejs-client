@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/spanner",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "spanner",
   "main": "build/index.js",
   "types": "build/index.d.ts",

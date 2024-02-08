@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v13.1.0...healthcare-v13.2.0) (2024-02-07)
+
+
+### Features
+
+* **healthcare:** update the API ([901e2cc](https://github.com/googleapis/google-api-nodejs-client/commit/901e2cc714c65d63441b4c2acc0646eff50b991b))
+
 ## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v13.0.0...healthcare-v13.1.0) (2024-02-02)
 
 
