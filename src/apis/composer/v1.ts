@@ -596,6 +596,32 @@ export namespace composer_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * The user workloads ConfigMaps for a given environment.
+   */
+  export interface Schema$ListUserWorkloadsConfigMapsResponse {
+    /**
+     * The page token used to query for the next page if one exists.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of ConfigMaps returned by a ListUserWorkloadsConfigMapsRequest.
+     */
+    userWorkloadsConfigMaps?: Schema$UserWorkloadsConfigMap[];
+  }
+  /**
+   * The user workloads Secrets for a given environment.
+   */
+  export interface Schema$ListUserWorkloadsSecretsResponse {
+    /**
+     * The page token used to query for the next page if one exists.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of Secrets returned by a ListUserWorkloadsSecretsRequest.
+     */
+    userWorkloadsSecrets?: Schema$UserWorkloadsSecret[];
+  }
+  /**
    * Response to ListWorkloadsRequest.
    */
   export interface Schema$ListWorkloadsResponse {
@@ -1080,6 +1106,32 @@ export namespace composer_v1 {
     memoryGb?: number | null;
   }
   /**
+   * User workloads ConfigMap used by Airflow tasks that run with Kubernetes executor or KubernetesPodOperator.
+   */
+  export interface Schema$UserWorkloadsConfigMap {
+    /**
+     * Optional. The "data" field of Kubernetes ConfigMap, organized in key-value pairs. For details see: https://kubernetes.io/docs/concepts/configuration/configmap/
+     */
+    data?: {[key: string]: string} | null;
+    /**
+     * Identifier. The resource name of the ConfigMap, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId\}"
+     */
+    name?: string | null;
+  }
+  /**
+   * User workloads Secret used by Airflow tasks that run with Kubernetes executor or KubernetesPodOperator.
+   */
+  export interface Schema$UserWorkloadsSecret {
+    /**
+     * Optional. The "data" field of Kubernetes Secret, organized in key-value pairs, which can contain sensitive values such as a password, a token, or a key. The values for all keys have to be base64-encoded strings. For details see: https://kubernetes.io/docs/concepts/configuration/secret/
+     */
+    data?: {[key: string]: string} | null;
+    /**
+     * Identifier. The resource name of the Secret, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsSecrets/{userWorkloadsSecretId\}"
+     */
+    name?: string | null;
+  }
+  /**
    * The configuration settings for the Airflow web server App Engine instance. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*
    */
   export interface Schema$WebServerConfig {
@@ -1195,9 +1247,19 @@ export namespace composer_v1 {
 
   export class Resource$Projects$Locations$Environments {
     context: APIRequestContext;
+    userWorkloadsConfigMaps: Resource$Projects$Locations$Environments$Userworkloadsconfigmaps;
+    userWorkloadsSecrets: Resource$Projects$Locations$Environments$Userworkloadssecrets;
     workloads: Resource$Projects$Locations$Environments$Workloads;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.userWorkloadsConfigMaps =
+        new Resource$Projects$Locations$Environments$Userworkloadsconfigmaps(
+          this.context
+        );
+      this.userWorkloadsSecrets =
+        new Resource$Projects$Locations$Environments$Userworkloadssecrets(
+          this.context
+        );
       this.workloads = new Resource$Projects$Locations$Environments$Workloads(
         this.context
       );
@@ -2417,6 +2479,1032 @@ export namespace composer_v1 {
      * Request body metadata
      */
     requestBody?: Schema$StopAirflowCommandRequest;
+  }
+
+  export class Resource$Projects$Locations$Environments$Userworkloadsconfigmaps {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserWorkloadsConfigMap>;
+    create(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>,
+      callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create,
+      callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UserWorkloadsConfigMap>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userWorkloadsConfigMaps').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserWorkloadsConfigMap>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserWorkloadsConfigMap>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets an existing user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserWorkloadsConfigMap>;
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>,
+      callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get,
+      callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UserWorkloadsConfigMap>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserWorkloadsConfigMap>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserWorkloadsConfigMap>(parameters);
+      }
+    }
+
+    /**
+     * Lists user workloads ConfigMaps. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUserWorkloadsConfigMapsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserWorkloadsConfigMapsResponse>,
+      callback: BodyResponseCallback<Schema$ListUserWorkloadsConfigMapsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List,
+      callback: BodyResponseCallback<Schema$ListUserWorkloadsConfigMapsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUserWorkloadsConfigMapsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List
+        | BodyResponseCallback<Schema$ListUserWorkloadsConfigMapsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserWorkloadsConfigMapsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserWorkloadsConfigMapsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUserWorkloadsConfigMapsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userWorkloadsConfigMaps').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUserWorkloadsConfigMapsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUserWorkloadsConfigMapsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserWorkloadsConfigMap>;
+    update(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>,
+      callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update,
+      callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UserWorkloadsConfigMap>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserWorkloadsConfigMap>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserWorkloadsConfigMap>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create
+    extends StandardParameters {
+    /**
+     * Required. The environment name to create a ConfigMap for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserWorkloadsConfigMap;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ConfigMap to delete, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId\}"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ConfigMap to get, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId\}"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of ConfigMaps to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. List ConfigMaps in the given environment, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the ConfigMap, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId\}"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserWorkloadsConfigMap;
+  }
+
+  export class Resource$Projects$Locations$Environments$Userworkloadssecrets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserWorkloadsSecret>;
+    create(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$UserWorkloadsSecret>,
+      callback: BodyResponseCallback<Schema$UserWorkloadsSecret>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create,
+      callback: BodyResponseCallback<Schema$UserWorkloadsSecret>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$UserWorkloadsSecret>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create
+        | BodyResponseCallback<Schema$UserWorkloadsSecret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserWorkloadsSecret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserWorkloadsSecret>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UserWorkloadsSecret>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userWorkloadsSecrets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserWorkloadsSecret>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserWorkloadsSecret>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets an existing user workloads Secret. Values of the "data" field in the response are cleared. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserWorkloadsSecret>;
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserWorkloadsSecret>,
+      callback: BodyResponseCallback<Schema$UserWorkloadsSecret>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get,
+      callback: BodyResponseCallback<Schema$UserWorkloadsSecret>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UserWorkloadsSecret>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get
+        | BodyResponseCallback<Schema$UserWorkloadsSecret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserWorkloadsSecret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserWorkloadsSecret>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UserWorkloadsSecret>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserWorkloadsSecret>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserWorkloadsSecret>(parameters);
+      }
+    }
+
+    /**
+     * Lists user workloads Secrets. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUserWorkloadsSecretsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserWorkloadsSecretsResponse>,
+      callback: BodyResponseCallback<Schema$ListUserWorkloadsSecretsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List,
+      callback: BodyResponseCallback<Schema$ListUserWorkloadsSecretsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUserWorkloadsSecretsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List
+        | BodyResponseCallback<Schema$ListUserWorkloadsSecretsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserWorkloadsSecretsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserWorkloadsSecretsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUserWorkloadsSecretsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userWorkloadsSecrets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUserWorkloadsSecretsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUserWorkloadsSecretsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserWorkloadsSecret>;
+    update(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$UserWorkloadsSecret>,
+      callback: BodyResponseCallback<Schema$UserWorkloadsSecret>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update,
+      callback: BodyResponseCallback<Schema$UserWorkloadsSecret>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$UserWorkloadsSecret>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update
+        | BodyResponseCallback<Schema$UserWorkloadsSecret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserWorkloadsSecret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserWorkloadsSecret>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UserWorkloadsSecret>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserWorkloadsSecret>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserWorkloadsSecret>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create
+    extends StandardParameters {
+    /**
+     * Required. The environment name to create a Secret for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserWorkloadsSecret;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete
+    extends StandardParameters {
+    /**
+     * Required. The Secret to delete, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsSecrets/{userWorkloadsSecretId\}"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Secret to get, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsSecrets/{userWorkloadsSecretId\}"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of Secrets to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. List Secrets in the given environment, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the Secret, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsSecrets/{userWorkloadsSecretId\}"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserWorkloadsSecret;
   }
 
   export class Resource$Projects$Locations$Environments$Workloads {
