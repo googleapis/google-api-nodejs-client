@@ -17,6 +17,11 @@
   "documentationLink": "https://cloud.google.com/run/",
   "endpoints": [
     {
+      "endpointUrl": "https://africa-south1-run.googleapis.com/",
+      "location": "africa-south1",
+      "description": "Locational Endpoint"
+    },
+    {
       "endpointUrl": "https://asia-east1-run.googleapis.com/",
       "location": "asia-east1",
       "description": "Locational Endpoint"
@@ -1312,7 +1317,7 @@
       }
     }
   },
-  "revision": "20240128",
+  "revision": "20240204",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
