@@ -517,6 +517,10 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$AutoRenewingBasePlanType {
     /**
+     * Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in DAYS and in the range P0D (zero days) to P30D (30 days). If not specified, the default value is P30D (30 days).
+     */
+    accountHoldDuration?: string | null;
+    /**
      * Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.
      */
     billingPeriodDuration?: string | null;
