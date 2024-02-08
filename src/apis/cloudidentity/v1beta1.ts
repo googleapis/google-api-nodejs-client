@@ -242,7 +242,7 @@ export namespace cloudidentity_v1beta1 {
     lastProfileSyncTime?: string | null;
   }
   /**
-   * Browser-specific fields reported by the Endpoint Verification extension. See go/additionalattributesdesign and go/caa-webprotect-attributes-extension LINT.IfChange
+   * Browser-specific fields reported by the Endpoint Verification extension. LINT.IfChange
    */
   export interface Schema$BrowserInfo {
     /**
