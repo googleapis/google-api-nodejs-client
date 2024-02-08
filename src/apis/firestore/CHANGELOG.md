@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v4.1.0...firestore-v5.0.0) (2024-02-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firestore:** This release has breaking changes.
+
+### Features
+
+* **firestore:** update the API ([f9334eb](https://github.com/googleapis/google-api-nodejs-client/commit/f9334eb195565032f973c6c484daa3b7ffdfecc2))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v4.0.0...firestore-v4.1.0) (2024-02-02)
 
 

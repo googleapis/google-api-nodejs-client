@@ -2015,7 +2015,7 @@
       }
     }
   },
-  "revision": "20240201",
+  "revision": "20240206",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2151,7 +2151,7 @@
       "type": "object"
     },
     "BrowserInfo": {
-      "description": "Browser-specific fields reported by the Endpoint Verification extension. See go/additionalattributesdesign and go/caa-webprotect-attributes-extension LINT.IfChange",
+      "description": "Browser-specific fields reported by the Endpoint Verification extension. LINT.IfChange",
       "id": "BrowserInfo",
       "properties": {
         "browserManagementState": {

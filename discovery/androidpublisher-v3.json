@@ -4724,7 +4724,7 @@
       }
     }
   },
-  "revision": "20240131",
+  "revision": "20240207",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -5235,6 +5235,10 @@
       "description": "Represents a base plan that automatically renews at the end of its subscription period.",
       "id": "AutoRenewingBasePlanType",
       "properties": {
+        "accountHoldDuration": {
+          "description": "Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in DAYS and in the range P0D (zero days) to P30D (30 days). If not specified, the default value is P30D (30 days).",
+          "type": "string"
+        },
         "billingPeriodDuration": {
           "description": "Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.",
           "type": "string"

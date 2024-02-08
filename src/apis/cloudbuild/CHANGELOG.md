@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v6.0.1...cloudbuild-v6.1.0) (2024-02-07)
+
+
+### Features
+
+* **cloudbuild:** update the API ([b6dd51c](https://github.com/googleapis/google-api-nodejs-client/commit/b6dd51c59572421639c7defb015d56690d5c6df5))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v6.0.0...cloudbuild-v6.0.1) (2024-02-02)
 
 

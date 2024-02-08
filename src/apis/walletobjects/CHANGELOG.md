@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/walletobjects-v0.2.0...walletobjects-v1.0.0) (2024-02-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **walletobjects:** This release has breaking changes.
+
+### Features
+
+* **walletobjects:** update the API ([675ee54](https://github.com/googleapis/google-api-nodejs-client/commit/675ee54401a7ef8708b677d15839331daa410541))
+
 ## [0.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/walletobjects-v0.1.0...walletobjects-v0.2.0) (2024-02-02)
 
 

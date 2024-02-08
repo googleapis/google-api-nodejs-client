@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/dfareporting",
-  "version": "5.0.5",
+  "version": "5.1.0",
   "description": "dfareporting",
   "main": "build/index.js",
   "types": "build/index.d.ts",

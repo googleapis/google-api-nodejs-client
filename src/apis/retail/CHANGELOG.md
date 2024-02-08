@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v5.1.0...retail-v5.2.0) (2024-02-07)
+
+
+### Features
+
+* **retail:** update the API ([4140165](https://github.com/googleapis/google-api-nodejs-client/commit/41401655d33fef14afd88ee7fed70a607eed3f7f))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v5.0.0...retail-v5.1.0) (2024-02-02)
 
 
