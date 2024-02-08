@@ -514,9 +514,17 @@ export namespace retail_v2alpha {
      */
     ignoredFacetValues?: Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigIgnoredFacetValues[];
     /**
+     * Use this field only if you want to merge a facet key into another facet key.
+     */
+    mergedFacet?: Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacet;
+    /**
      * Each instance replaces a list of facet values by a merged facet value. If a facet value is not in any list, then it will stay the same. To avoid conflicts, only paths of length 1 are accepted. In other words, if "dark_blue" merged into "BLUE", then the latter can't merge into "blues" because this would create a path of length 2. The maximum number of instances of MergedFacetValue per CatalogAttribute is 100. This feature is available only for textual custom attributes.
      */
     mergedFacetValues?: Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacetValue[];
+    /**
+     * Set this field only if you want to rerank based on facet values engaged by the user for the current key. This option is only possible for custom facetable textual keys.
+     */
+    rerankConfig?: Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigRerankConfig;
   }
   /**
    * Facet values to ignore on facets during the specified time range for the given SearchResponse.Facet.key attribute.
@@ -536,6 +544,19 @@ export namespace retail_v2alpha {
     values?: string[] | null;
   }
   /**
+   * The current facet key (i.e. attribute config) maps into the merged_facet_key. A facet key can have at most one child. The current facet key and the merged facet key need both to be textual custom attributes or both numerical custom attributes (same type).
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacet {
+    /**
+     * The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.
+     */
+    mergedFacetKey?: string | null;
+    /**
+     * Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.
+     */
+    mergedFacetValues?: Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacetValue[];
+  }
+  /**
    * Replaces a set of textual facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute. This feature is available only for textual custom attributes.
    */
   export interface Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacetValue {
@@ -547,6 +568,19 @@ export namespace retail_v2alpha {
      * All the facet values that are replaces by the same merged_value that follows. The maximum number of values per MergedFacetValue is 25. Each value can have up to 128 characters.
      */
     values?: string[] | null;
+  }
+  /**
+   * Options to rerank based on facet values engaged by the user for the current key. That key needs to be a custom textual key and facetable. To use this control, you also need to pass all the facet keys engaged by the user in the request using the field [SearchRequest.FacetSpec]. In particular, if you don't pass the facet keys engaged that you want to rerank on, this control won't be effective. Moreover, to obtain better results, the facet values that you want to rerank on should be close to English (ideally made of words, underscores, and spaces).
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigRerankConfig {
+    /**
+     * If empty, rerank on all facet values for the current key. Otherwise, will rerank on the facet values from this list only.
+     */
+    facetValues?: string[] | null;
+    /**
+     * If set to true, then we also rerank the dynamic facets based on the facet values engaged by the user for the current attribute key during serving.
+     */
+    rerankFacet?: boolean | null;
   }
   /**
    * The color information of a Product.
@@ -1117,7 +1151,7 @@ export namespace retail_v2alpha {
      */
     skipDefaultBranchProtection?: boolean | null;
     /**
-     * Indicates which fields in the provided imported `products` to update. If not set, all fields are updated.
+     * Indicates which fields in the provided imported `products` to update. If not set, all fields are updated. If provided, only the existing product fields are updated. Missing products will not be created.
      */
     updateMask?: string | null;
   }
@@ -3092,6 +3126,23 @@ export namespace retail_v2alpha {
     model?: string | null;
   }
   /**
+   * Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
+   */
+  export interface Schema$GoogleCloudRetailV2betaExportAnalyticsMetricsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * This field is never set.
+     */
+    errorsConfig?: Schema$GoogleCloudRetailV2betaExportErrorsConfig;
+    /**
+     * Output result indicating where the data were exported to.
+     */
+    outputResult?: Schema$GoogleCloudRetailV2betaOutputResult;
+  }
+  /**
    * Configuration of destination for Export related errors.
    */
   export interface Schema$GoogleCloudRetailV2betaExportErrorsConfig {
@@ -3507,6 +3558,19 @@ export namespace retail_v2alpha {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * A BigQuery output result.
+   */
+  export interface Schema$GoogleCloudRetailV2BigQueryOutputResult {
+    /**
+     * The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * The ID of a BigQuery Table.
+     */
+    tableId?: string | null;
+  }
+  /**
    * Metadata associated with a create operation.
    */
   export interface Schema$GoogleCloudRetailV2CreateModelMetadata {
@@ -3514,6 +3578,41 @@ export namespace retail_v2alpha {
      * The resource name of the model that this create applies to. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
      */
     model?: string | null;
+  }
+  /**
+   * Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
+   */
+  export interface Schema$GoogleCloudRetailV2ExportAnalyticsMetricsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * This field is never set.
+     */
+    errorsConfig?: Schema$GoogleCloudRetailV2ExportErrorsConfig;
+    /**
+     * Output result indicating where the data were exported to.
+     */
+    outputResult?: Schema$GoogleCloudRetailV2OutputResult;
+  }
+  /**
+   * Configuration of destination for Export related errors.
+   */
+  export interface Schema$GoogleCloudRetailV2ExportErrorsConfig {
+    /**
+     * Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Export errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.
+     */
+    gcsPrefix?: string | null;
+  }
+  /**
+   * A Gcs output result.
+   */
+  export interface Schema$GoogleCloudRetailV2GcsOutputResult {
+    /**
+     * The uri of Gcs output
+     */
+    outputUri?: string | null;
   }
   /**
    * Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
@@ -3683,6 +3782,19 @@ export namespace retail_v2alpha {
      * Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.
      */
     servingConfigIds?: string[] | null;
+  }
+  /**
+   * Output result that stores the information about where the exported data is stored.
+   */
+  export interface Schema$GoogleCloudRetailV2OutputResult {
+    /**
+     * The BigQuery location where the result is stored.
+     */
+    bigqueryResult?: Schema$GoogleCloudRetailV2BigQueryOutputResult[];
+    /**
+     * The Google Cloud Storage location where the result is stored.
+     */
+    gcsResult?: Schema$GoogleCloudRetailV2GcsOutputResult[];
   }
   /**
    * Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.

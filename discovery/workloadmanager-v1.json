@@ -707,9 +707,24 @@
       }
     }
   },
-  "revision": "20231211",
+  "revision": "20240117",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
+    "BigQueryDestination": {
+      "description": "Message describing big query destination",
+      "id": "BigQueryDestination",
+      "properties": {
+        "createNewResultsTable": {
+          "description": "Optional. determine if results will be saved in a new table",
+          "type": "boolean"
+        },
+        "destinationDataset": {
+          "description": "Optional. destination dataset to save evaluation results",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -726,6 +741,10 @@
       "description": "LINT.IfChange Message describing Evaluation object",
       "id": "Evaluation",
       "properties": {
+        "bigQueryDestination": {
+          "$ref": "BigQueryDestination",
+          "description": "Optional. BigQuery destination"
+        },
         "createTime": {
           "description": "Output only. [Output only] Create time stamp",
           "format": "google-datetime",
@@ -1310,6 +1329,13 @@
           "description": "the severity of the rule",
           "type": "string"
         },
+        "tags": {
+          "description": "List of user-defined tags",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "uri": {
           "description": "the docuement url for the rule",
           "type": "string"
@@ -1676,6 +1702,10 @@
       "properties": {
         "resource": {
           "description": "resource name",
+          "type": "string"
+        },
+        "type": {
+          "description": "resource type",
           "type": "string"
         }
       },

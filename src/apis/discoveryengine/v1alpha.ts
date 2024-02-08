@@ -251,7 +251,7 @@ export namespace discoveryengine_v1alpha {
     token?: string | null;
   }
   /**
-   * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.
+   * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata {
     /**
@@ -264,7 +264,7 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * Request message for SiteSearchEngineService.s method.
+   * Request message for SiteSearchEngineService.BatchCreateTargetSites method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesRequest {
     /**
@@ -331,7 +331,7 @@ export namespace discoveryengine_v1alpha {
      */
     query?: string | null;
     /**
-     * Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
+     * Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
      */
     queryModel?: string | null;
     /**
@@ -574,6 +574,15 @@ export namespace discoveryengine_v1alpha {
     text?: string[] | null;
   }
   /**
+   * Defines custom fine tuning spec.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec {
+    /**
+     * Whether or not to enable and include custom fine tuned search adaptor model.
+     */
+    enableSearchAdaptor?: boolean | null;
+  }
+  /**
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStore {
@@ -659,6 +668,10 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * The digital parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig {}
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata {
@@ -729,7 +742,7 @@ export namespace discoveryengine_v1alpha {
      */
     rawBytes?: string | null;
     /**
-     * The URI of the content. Only Cloud Storage URIs (e.g. `gs://bucket-name/path/to/file`) are supported. The maximum file size is 100 MB.
+     * The URI of the content. Only Cloud Storage URIs (e.g. `gs://bucket-name/path/to/file`) are supported. The maximum file size is 2.5 MB for text-based formats, 100 MB for other formats.
      */
     uri?: string | null;
   }
@@ -763,13 +776,42 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig {
     /**
-     * Output only. The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
+     * Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing.
+     */
+    defaultParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig;
+    /**
+     * The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
      */
     name?: string | null;
     /**
-     * The OCR config. Currently it only applies to PDFs.
+     * [DEPRECATED] This field is deprecated. To specify OCR parsing config, please specify `ocr_parsing_config` in `default_parsing_config` field The OCR config. Currently it only applies to PDFs.
      */
     ocrConfig?: Schema$GoogleCloudDiscoveryengineV1alphaOcrConfig;
+    /**
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported.
+     */
+    parsingConfigOverrides?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig;
+    } | null;
+  }
+  /**
+   * Related configurations applied to a specific type of document parser.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig {
+    /**
+     * Configurations applied to digital parser.
+     */
+    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig;
+    /**
+     * Configurations applied to layout parser.
+     */
+    layoutParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig;
+    /**
+     * Configurations applied to OCR parser. Currently it only applies to PDFs.
+     */
+    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaOcrParsingConfig;
   }
   /**
    * Double list.
@@ -779,6 +821,15 @@ export namespace discoveryengine_v1alpha {
      * Double values.
      */
     values?: number[] | null;
+  }
+  /**
+   * Defines embedding config, used for bring your own embeddings feature.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEmbeddingConfig {
+    /**
+     * Full field path in the schema mapped as embedding field.
+     */
+    fieldPath?: string | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -822,7 +873,7 @@ export namespace discoveryengine_v1alpha {
      */
     createTime?: string | null;
     /**
-     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary intializations.
+     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
      */
     dataStoreIds?: string[] | null;
     /**
@@ -871,7 +922,7 @@ export namespace discoveryengine_v1alpha {
      */
     agentCreationConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfigAgentCreationConfig;
     /**
-     * The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Please use chat_engine_metadata.dialogflow_agent for actual agent association after Engine is created.
+     * The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Please use ChatEngineMetadata.dialogflow_agent for actual agent association after Engine is created.
      */
     dialogflowAgentToLink?: string | null;
   }
@@ -887,6 +938,10 @@ export namespace discoveryengine_v1alpha {
      * Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.
      */
     defaultLanguageCode?: string | null;
+    /**
+     * Agent location for Agent creation, supported values: global/us/eu. If not provided, us Engine will create Agent using us-central-1 by default; eu Engine will create Agent using eu-west-1 by default.
+     */
+    location?: string | null;
     /**
      * Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
      */
@@ -906,7 +961,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineCommonConfig {
     /**
-     * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
+     * Immutable. The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
   }
@@ -915,7 +970,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig {
     /**
-     * The optimization objective e.g. `cvr`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `ctr`, `cvr`. If not specified, we choose default based on engine type. Default depends on type of recommendation: `recommended-for-you` =\> `ctr` `others-you-may-like` =\> `ctr`
+     * The optimization objective. e.g., `cvr`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `ctr`, `cvr`. If not specified, we choose default based on engine type. Default depends on type of recommendation: `recommended-for-you` =\> `ctr` `others-you-may-like` =\> `ctr`
      */
     optimizationObjective?: string | null;
     /**
@@ -927,7 +982,7 @@ export namespace discoveryengine_v1alpha {
      */
     trainingState?: string | null;
     /**
-     * Required. The type of engine e.g. `recommended-for-you`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `recommended-for-you`, `others-you-may-like`, `more-like-this`, `most-popular-items`.
+     * Required. The type of engine. e.g., `recommended-for-you`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `recommended-for-you`, `others-you-may-like`, `more-like-this`, `most-popular-items`.
      */
     type?: string | null;
   }
@@ -1005,7 +1060,7 @@ export namespace discoveryengine_v1alpha {
     websiteDataSource?: Schema$GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestWebsiteDataSource;
   }
   /**
-   * Data source contains files either in GCS or BigQuery.
+   * Data source contains files either in Cloud Storage or BigQuery.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestFileDataSource {
     /**
@@ -1128,6 +1183,23 @@ export namespace discoveryengine_v1alpha {
     inputUris?: string[] | null;
   }
   /**
+   * Defines guided search spec.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaGuidedSearchSpec {
+    /**
+     * Whether or not to enable and include refinement attributes in gudied search result.
+     */
+    enableRefinementAttributes?: boolean | null;
+    /**
+     * Whether or not to enable and include related questions in search response.
+     */
+    enableRelatedQuestions?: boolean | null;
+    /**
+     * Max number of related questions to be returned. The valid range is [1, 5]. If enable_related_questions is true, the default value is 3.
+     */
+    maxRelatedQuestions?: number | null;
+  }
+  /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata {
@@ -1211,6 +1283,58 @@ export namespace discoveryengine_v1alpha {
      * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
      */
     gcsPrefix?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the ImportSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for CompletionService.ImportSuggestionDenyListEntries method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesRequest {
+    /**
+     * Cloud Storage location for the input content. Only 1 file can be specified that contains all entries to import. Supported values `gcs_source.schema` for autocomplete suggestion deny list entry imports: * `suggestion_deny_list` (default): One JSON [SuggestionDenyListEntry] per line.
+     */
+    gcsSource?: Schema$GoogleCloudDiscoveryengineV1alphaGcsSource;
+    /**
+     * The Inline source for the input content for suggestion deny list entries.
+     */
+    inlineSource?: Schema$GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesRequestInlineSource;
+  }
+  /**
+   * The inline source for SuggestionDenyListEntry.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesRequestInlineSource {
+    /**
+     * Required. A list of all denylist entries to import. Max of 1000 items.
+     */
+    entries?: Schema$GoogleCloudDiscoveryengineV1alphaSuggestionDenyListEntry[];
+  }
+  /**
+   * Response message for CompletionService.ImportSuggestionDenyListEntries method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Count of deny list entries that failed to be imported.
+     */
+    failedEntriesCount?: string | null;
+    /**
+     * Count of deny list entries successfully imported.
+     */
+    importedEntriesCount?: string | null;
   }
   /**
    * Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -1306,6 +1430,10 @@ export namespace discoveryengine_v1alpha {
     minimum?: number | null;
   }
   /**
+   * The layout parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig {}
+  /**
    * Response for ListConversations method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListConversationsResponse {
@@ -1371,6 +1499,19 @@ export namespace discoveryengine_v1alpha {
     schemas?: Schema$GoogleCloudDiscoveryengineV1alphaSchema[];
   }
   /**
+   * Response for ListServingConfigs method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse {
+    /**
+     * Pagination token, if not returned indicates the last page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * All the ServingConfigs for a given dataStore.
+     */
+    servingConfigs?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfig[];
+  }
+  /**
    * Response message for SiteSearchEngineService.ListTargetSites method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListTargetSitesResponse {
@@ -1423,9 +1564,22 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaOcrConfig {
     /**
-     * Required. If OCR is enabled or not. OCR must be enabled for other OcrConfig options to apply.
+     * Required. If OCR is enabled or not. OCR must be enabled for other OcrConfig options to apply. We will only perform OCR on the first 80 pages of the PDF files.
      */
     enabled?: boolean | null;
+    /**
+     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
+     */
+    enhancedDocumentElements?: string[] | null;
+    /**
+     * If true, will use native text instead of OCR text on pages containing native text.
+     */
+    useNativeText?: boolean | null;
+  }
+  /**
+   * The OCR parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOcrParsingConfig {
     /**
      * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
      */
@@ -1527,6 +1681,36 @@ export namespace discoveryengine_v1alpha {
      * A sample of document names that will be deleted. Only populated if `force` is set to false. A max of 100 names will be returned and the names are chosen at random.
      */
     purgeSample?: string[] | null;
+  }
+  /**
+   * Metadata related to the progress of the PurgeSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeSuggestionDenyListEntriesMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for CompletionService.PurgeSuggestionDenyListEntries method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeSuggestionDenyListEntriesRequest {}
+  /**
+   * Response message for CompletionService.PurgeSuggestionDenyListEntries method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeSuggestionDenyListEntriesResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Number of suggestion deny list entries purged.
+     */
+    purgeCount?: string | null;
   }
   /**
    * Metadata related to the progress of the PurgeUserEvents operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -1707,7 +1891,7 @@ export namespace discoveryengine_v1alpha {
     uri?: string | null;
   }
   /**
-   * Details about why crawling failed for a particular CorpusType, e.g. DESKTOP and MOBILE crawling may fail for different reasons.
+   * Details about why crawling failed for a particular CorpusType, e.g., DESKTOP and MOBILE crawling may fail for different reasons.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaRecrawlUrisResponseFailureInfoFailureReason {
     /**
@@ -1820,7 +2004,7 @@ export namespace discoveryengine_v1alpha {
      */
     contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec;
     /**
-     * Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.embedding_spec.embedding_vectors.vector and the document embedding that is provided in SearchRequest.embedding_spec.embedding_vectors.field_path. If SearchRequest.embedding_spec.embedding_vectors.field_path is not provided, it will use ServingConfig.embedding_config.field_paths.
+     * Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embedding that is provided in SearchRequest.EmbeddingSpec.EmbeddingVector.field_path. If SearchRequest.EmbeddingSpec.EmbeddingVector.field_path is not provided, it will use ServingConfig.EmbeddingConfig.field_path.
      */
     embeddingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpec;
     /**
@@ -1936,7 +2120,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecExtractiveContentSpec {
     /**
-     * The maximum number of extractive answers returned in each search result. An extractive answer is a verbatim answer extracted from the original document, which provides a precise and contextually relevant answer to the search query. If the number of matching answers is less than the `max_extractive_answer_count`, return all of the answers. Otherwise, return the `max_extractive_answer_count`. At most one answer is returned for each SearchResult.
+     * The maximum number of extractive answers returned in each search result. An extractive answer is a verbatim answer extracted from the original document, which provides a precise and contextually relevant answer to the search query. If the number of matching answers is less than the `max_extractive_answer_count`, return all of the answers. Otherwise, return the `max_extractive_answer_count`. At most five answers are returned for each SearchResult.
      */
     maxExtractiveAnswerCount?: number | null;
     /**
@@ -2016,7 +2200,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec {
     /**
-     * The string format of the model version. e.g. stable, preview, etc.
+     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. LINT.IfChange * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English. LINT.ThenChange(//depot/google3/cloud/console/web/ai/unified_cloud_search/pages/configurations/widget_tab.ts)
      */
     version?: string | null;
   }
@@ -2348,7 +2532,7 @@ export namespace discoveryengine_v1alpha {
      */
     title?: string | null;
     /**
-     * GCS or HTTP uri for the document.
+     * Cloud Storage or HTTP uri for the document.
      */
     uri?: string | null;
   }
@@ -2383,6 +2567,126 @@ export namespace discoveryengine_v1alpha {
     summary?: string | null;
   }
   /**
+   * Configures metadata that is used to generate serving time results (e.g. search results or recommendation predictions). The ServingConfig is passed in the search and predict request and generates results.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaServingConfig {
+    /**
+     * Boost controls to use in serving path. All triggered boost controls will be applied. Boost controls must be in the same data store as the serving config. Maximum of 20 boost controls.
+     */
+    boostControlIds?: string[] | null;
+    /**
+     * Output only. ServingConfig created timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Custom fine tuning configs.
+     */
+    customFineTuningSpec?: Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec;
+    /**
+     * Required. The human readable serving config display name. Used in Discovery UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    displayName?: string | null;
+    /**
+     * Condition do not associate specifications. If multiple do not associate conditions match, all matching do not associate controls in the list will execute. Order does not matter. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    dissociateControlIds?: string[] | null;
+    /**
+     * How much diversity to use in recommendation model results e.g. `medium-diversity` or `high-diversity`. Currently supported values: * `no-diversity` * `low-diversity` * `medium-diversity` * `high-diversity` * `auto-diversity` If not specified, we choose default based on recommendation model type. Default value: `no-diversity`. Can only be set if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     */
+    diversityLevel?: string | null;
+    /**
+     * Bring your own embedding config. The config is used for search semantic retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embeddings that are provided by this EmbeddingConfig. If SearchRequest.EmbeddingSpec.EmbeddingVector.vector is provided, it overrides this ServingConfig.embedding_config.
+     */
+    embeddingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEmbeddingConfig;
+    /**
+     * Filter controls to use in serving path. All triggered filter controls will be applied. Filter controls must be in the same data store as the serving config. Maximum of 20 filter controls.
+     */
+    filterControlIds?: string[] | null;
+    /**
+     * The GenericConfig of the serving configuration.
+     */
+    genericConfig?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfigGenericConfig;
+    /**
+     * Guided search configs.
+     */
+    guidedSearchSpec?: Schema$GoogleCloudDiscoveryengineV1alphaGuidedSearchSpec;
+    /**
+     * Condition ignore specifications. If multiple ignore conditions match, all matching ignore controls in the list will execute. Order does not matter. Maximum number of specifications is 100.
+     */
+    ignoreControlIds?: string[] | null;
+    /**
+     * The MediaConfig of the serving configuration.
+     */
+    mediaConfig?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfigMediaConfig;
+    /**
+     * The id of the model to use at serving time. Currently only RecommendationModels are supported. Can be changed but only to a compatible model (e.g. others-you-may-like CTR to others-you-may-like CVR). Required when SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     */
+    modelId?: string | null;
+    /**
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string | null;
+    /**
+     * Condition oneway synonyms specifications. If multiple oneway synonyms conditions match, all matching oneway synonyms controls in the list will execute. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    onewaySynonymsControlIds?: string[] | null;
+    rankingExpression?: string | null;
+    /**
+     * IDs of the redirect controls. Only the first triggered redirect action is applied, even if multiple apply. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    redirectControlIds?: string[] | null;
+    /**
+     * Condition replacement specifications. Applied according to the order in the list. A previously replaced term can not be re-replaced. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    replacementControlIds?: string[] | null;
+    /**
+     * Required. Immutable. Specifies the solution type that a serving config can be associated with.
+     */
+    solutionType?: string | null;
+    /**
+     * Condition synonyms specifications. If multiple synonyms conditions match, all matching synonyms controls in the list will execute. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
+     */
+    synonymsControlIds?: string[] | null;
+    /**
+     * Output only. ServingConfig updated timestamp.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Specifies the configurations needed for Generic Discovery.Currently we support: * `content_search_spec`: configuration for generic content search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaServingConfigGenericConfig {
+    /**
+     * Specifies the expected behavior of content search. Only valid for content-search enabled data store.
+     */
+    contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec;
+  }
+  /**
+   * Specifies the configurations needed for Media Discovery. Currently we support: * `demote_content_watched`: Threshold for watched content demotion. Customers can specify if using watched content demotion or use viewed detail page. Using the content watched demotion, customers need to specify the watched minutes or percentage exceeds the threshold, the content will be demoted in the recommendation result. * `promote_fresh_content`: cutoff days for fresh content promotion. Customers can specify if using content freshness promotion. If the content was published within the cutoff days, the content will be promoted in the recommendation result. Can only be set if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaServingConfigMediaConfig {
+    /**
+     * Specifies the content freshness used for recommendation result. Contents will be demoted if contents were published for more than content freshness cutoff days.
+     */
+    contentFreshnessCutoffDays?: number | null;
+    /**
+     * Specifies the content watched minutes threshold for demotion.
+     */
+    contentWatchedMinutesThreshold?: number | null;
+    /**
+     * Specifies the content watched percentage threshold for demotion. Threshold value must be between [0, 1.0] inclusive.
+     */
+    contentWatchedPercentageThreshold?: number | null;
+    /**
+     * Specifies the content watched minutes threshold for demotion.
+     */
+    contentWatchedSecondsThreshold?: number | null;
+    /**
+     * Specifies the event type used for demoting recommendation result. Currently supported values: * `view-item`: Item viewed. * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. If unset, watch history demotion will not be applied. Content freshness demotion will still be applied.
+     */
+    demotionEventType?: string | null;
+  }
+  /**
    * SiteSearchEngine captures DataStore level site search persisting configurations. It is a singleton value per data store.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSiteSearchEngine {
@@ -2403,6 +2707,19 @@ export namespace discoveryengine_v1alpha {
      * Latest site verification time.
      */
     verifyTime?: string | null;
+  }
+  /**
+   * Suggestion deny list entry identifying the phrase to block from suggestions and the applied operation for the phrase.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSuggestionDenyListEntry {
+    /**
+     * Required. Phrase to block from suggestions served. Can be maximum 125 characters.
+     */
+    blockPhrase?: string | null;
+    /**
+     * Required. The match operator to apply for this phrase. Whether to block the exact phrase, or block any suggestions containing this phrase.
+     */
+    matchOperator?: string | null;
   }
   /**
    * A target site for the SiteSearchEngine.
@@ -2437,7 +2754,7 @@ export namespace discoveryengine_v1alpha {
      */
     siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo;
     /**
-     * The type of the target site, e.g. whether the site is to be included or excluded.
+     * The type of the target site, e.g., whether the site is to be included or excluded.
      */
     type?: string | null;
     /**
@@ -2454,7 +2771,12 @@ export namespace discoveryengine_v1alpha {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure;
   }
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure {}
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure {
+    /**
+     * This number is an estimation on how much total quota this project needs to successfully complete indexing.
+     */
+    totalRequiredQuota?: string | null;
+  }
   /**
    * Defines text input.
    */
@@ -2490,7 +2812,7 @@ export namespace discoveryengine_v1alpha {
      */
     errorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaImportErrorConfig;
     /**
-     * Gcs training input.
+     * Cloud Storage training input.
      */
     gcsTrainingInput?: Schema$GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput;
     /**
@@ -2499,23 +2821,23 @@ export namespace discoveryengine_v1alpha {
     modelType?: string | null;
   }
   /**
-   * Gcs training data input.
+   * Cloud Storage training data input.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput {
     /**
-     * The gcs corpus data which could be associated in train data. The data path format is gs:///. A newline delimited jsonl/ndjson file. * For search-tuning model, each line should have the _id, title and text. Example: {"_id": "doc1", title: "relevant doc", "text": "relevant text"\}
+     * The Cloud Storage corpus data which could be associated in train data. The data path format is gs:///. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id, title and text. Example: {"_id": "doc1", title: "relevant doc", "text": "relevant text"\}
      */
     corpusDataPath?: string | null;
     /**
-     * The gcs query data which could be associated in train data. The data path format is gs:///. A newline delimited jsonl/ndjson file. * For search-tuning model, each line should have the _id and text. Example: {"_id": "query1", "text": "example query"\}
+     * The gcs query data which could be associated in train data. The data path format is gs:///. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id and text. Example: {"_id": "query1", "text": "example query"\}
      */
     queryDataPath?: string | null;
     /**
-     * Gcs test data. Same format as train_data_path. If not provided, a random 80/20 train/test split will be performed on train_data_path.
+     * Cloud Storage test data. Same format as train_data_path. If not provided, a random 80/20 train/test split will be performed on train_data_path.
      */
     testDataPath?: string | null;
     /**
-     * Gcs training data path whose format should be gs:///. The file should be in tsv format. Each line should have the doc_id and query_id and score (number). * For search-tuning model, it should have the query-id corpus-id score as tsv file header. The score should be a number in [0, inf+). The larger the number is, the more relevant the pair is. Example: query-id\tcorpus-id\tscore query1\tdoc1\t1
+     * Cloud Storage training data path whose format should be gs:///. The file should be in tsv format. Each line should have the doc_id and query_id and score (number). For search-tuning model, it should have the query-id corpus-id score as tsv file header. The score should be a number in [0, inf+). The larger the number is, the more relevant the pair is. Example: query-id\tcorpus-id\tscore query1\tdoc1\t1
      */
     trainDataPath?: string | null;
   }
@@ -2643,7 +2965,7 @@ export namespace discoveryengine_v1alpha {
      */
     eventType?: string | null;
     /**
-     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendationService.RecommendRequest, this field may be populated directly from RecommendationService.RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendRequest, this field may be populated directly from RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     filter?: string | null;
     /**
@@ -2812,6 +3134,10 @@ export namespace discoveryengine_v1alpha {
       ]: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField;
     } | null;
     /**
+     * Output only. The industry vertical that the WidgetConfig registers. The WidgetConfig industry vertical is based on the associated Engine.
+     */
+    industryVertical?: string | null;
+    /**
      * Output only. Whether LLM is enabled in the corresponding data store.
      */
     llmEnabled?: boolean | null;
@@ -2935,9 +3261,151 @@ export namespace discoveryengine_v1alpha {
     uToken?: string | null;
   }
   /**
+   * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.BatchCreateTargetSites method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1BatchCreateTargetSitesResponse {
+    /**
+     * TargetSites created.
+     */
+    targetSites?: Schema$GoogleCloudDiscoveryengineV1TargetSite[];
+  }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.BatchCreateTargetSites method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaBatchCreateTargetSitesResponse {
+    /**
+     * TargetSites created.
+     */
+    targetSites?: Schema$GoogleCloudDiscoveryengineV1betaTargetSite[];
+  }
+  /**
+   * Metadata related to the progress of the DataStoreService.CreateDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaCreateDataStoreMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the EngineService.CreateEngine operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaCreateEngineMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata for Create Schema LRO.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaCreateSchemaMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.CreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaCreateTargetSiteMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * DataStore captures global settings and configs at the DataStore level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDataStore {
+    /**
+     * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
+     */
+    contentConfig?: string | null;
+    /**
+     * Output only. Timestamp the DataStore was created at.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The id of the default Schema asscociated to this data store.
+     */
+    defaultSchemaId?: string | null;
+    /**
+     * Required. The data store display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    displayName?: string | null;
+    /**
+     * Immutable. The industry vertical that the data store registers.
+     */
+    industryVertical?: string | null;
+    /**
+     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
+     */
+    solutionTypes?: string[] | null;
+  }
+  /**
+   * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDeleteDataStoreMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the EngineService.DeleteEngine operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDeleteEngineMetadata {
     /**
      * Operation create time.
      */
@@ -2959,6 +3427,167 @@ export namespace discoveryengine_v1alpha {
      * Operation last update time. If the operation is done, this is also the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.DeleteTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDeleteTargetSiteMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchResponse {}
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.EnableAdvancedSiteSearch method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchResponse {}
+  /**
+   * Metadata that describes the training and serving parameters of an Engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngine {
+    /**
+     * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
+     */
+    chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig;
+    /**
+     * Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
+     */
+    chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata;
+    /**
+     * Common config spec that specifies the metadata of the engine.
+     */
+    commonConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineCommonConfig;
+    /**
+     * Output only. Timestamp the Recommendation Engine was created at.
+     */
+    createTime?: string | null;
+    /**
+     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
+     */
+    dataStoreIds?: string[] | null;
+    /**
+     * Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.
+     */
+    displayName?: string | null;
+    /**
+     * The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore liniked to the engine.
+     */
+    industryVertical?: string | null;
+    /**
+     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    name?: string | null;
+    /**
+     * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
+     */
+    searchEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig;
+    /**
+     * Required. The solutions of the engine.
+     */
+    solutionType?: string | null;
+    /**
+     * Output only. Timestamp the Recommendation Engine was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Configurations for a Chat Engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig {
+    /**
+     * The configurationt generate the Dialogflow agent that is associated to this Engine. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.
+     */
+    agentCreationConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineConfigAgentCreationConfig;
+    /**
+     * The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Please use ChatEngineMetadata.dialogflow_agent for actual agent association after Engine is created.
+     */
+    dialogflowAgentToLink?: string | null;
+  }
+  /**
+   * Configurations for generating a Dialogflow agent. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineConfigAgentCreationConfig {
+    /**
+     * Name of the company, organization or other entity that the agent represents. Used for knowledge connector LLM prompt and for knowledge search.
+     */
+    business?: string | null;
+    /**
+     * Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.
+     */
+    defaultLanguageCode?: string | null;
+    /**
+     * Agent location for Agent creation, supported values: global/us/eu. If not provided, us Engine will create Agent using us-central-1 by default; eu Engine will create Agent using eu-west-1 by default.
+     */
+    location?: string | null;
+    /**
+     * Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
+     */
+    timeZone?: string | null;
+  }
+  /**
+   * Additional information of a Chat Engine. Fields in this message are output only.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineMetadata {
+    /**
+     * The resource name of a Dialogflow agent, that this Chat Engine refers to. Format: `projects//locations//agents/`.
+     */
+    dialogflowAgent?: string | null;
+  }
+  /**
+   * Common configurations for an Engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineCommonConfig {
+    /**
+     * Immutable. The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
+     */
+    companyName?: string | null;
+  }
+  /**
+   * Configurations for a Search Engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig {
+    /**
+     * The add-on that this search engine enables.
+     */
+    searchAddOns?: string[] | null;
+    /**
+     * The search feature tier of this engine. Different tiers might have different pricing. To learn more, please check the pricing documentation. Defaults to SearchTier.SEARCH_TIER_STANDARD if not specified.
+     */
+    searchTier?: string | null;
   }
   /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -3002,6 +3631,36 @@ export namespace discoveryengine_v1alpha {
      * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
      */
     gcsPrefix?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the ImportSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for CompletionService.ImportSuggestionDenyListEntries method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Count of deny list entries that failed to be imported.
+     */
+    failedEntriesCount?: string | null;
+    /**
+     * Count of deny list entries successfully imported.
+     */
+    importedEntriesCount?: string | null;
   }
   /**
    * Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -3080,6 +3739,32 @@ export namespace discoveryengine_v1alpha {
     purgeSample?: string[] | null;
   }
   /**
+   * Metadata related to the progress of the PurgeSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for CompletionService.PurgeSuggestionDenyListEntries method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaPurgeSuggestionDenyListEntriesResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Number of suggestion deny list entries purged.
+     */
+    purgeCount?: string | null;
+  }
+  /**
    * Defines the structure and layout of a type of document data.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSchema {
@@ -3097,9 +3782,117 @@ export namespace discoveryengine_v1alpha {
     structSchema?: {[key: string]: any} | null;
   }
   /**
+   * Verification information for target sites in advanced site search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSiteVerificationInfo {
+    /**
+     * Site verification state indicating the ownership and validity.
+     */
+    siteVerificationState?: string | null;
+    /**
+     * Latest site verification time.
+     */
+    verifyTime?: string | null;
+  }
+  /**
+   * A target site for the SiteSearchEngine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTargetSite {
+    /**
+     * Input only. If set to false, a uri_pattern is generated to include all pages whose address contains the provided_uri_pattern. If set to true, an uri_pattern is generated to try to be an exact match of the provided_uri_pattern or just the specific page if the provided_uri_pattern is a specific one. provided_uri_pattern is always normalized to generate the URI pattern to be used by the search engine.
+     */
+    exactMatch?: boolean | null;
+    /**
+     * Output only. Failure reason.
+     */
+    failureReason?: Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReason;
+    /**
+     * Output only. This is system-generated based on the provided_uri_pattern.
+     */
+    generatedUriPattern?: string | null;
+    /**
+     * Output only. Indexing status.
+     */
+    indexingStatus?: string | null;
+    /**
+     * Output only. The fully qualified resource name of the target site. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}` The `target_site_id` is system-generated.
+     */
+    name?: string | null;
+    /**
+     * Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.
+     */
+    providedUriPattern?: string | null;
+    /**
+     * Output only. Site ownership and validity verification status.
+     */
+    siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1betaSiteVerificationInfo;
+    /**
+     * The type of the target site, e.g., whether the site is to be included or excluded.
+     */
+    type?: string | null;
+    /**
+     * Output only. The target site's last updated time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Site search indexing failure reasons.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReason {
+    /**
+     * Failed due to insufficient quota.
+     */
+    quotaFailure?: Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure;
+  }
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure {
+    /**
+     * This number is an estimation on how much total quota this project needs to successfully complete indexing.
+     */
+    totalRequiredQuota?: string | null;
+  }
+  /**
    * Metadata for UpdateSchema LRO.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaUpdateSchemaMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.UpdateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaUpdateTargetSiteMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the DataStoreService.CreateDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1CreateDataStoreMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the EngineService.CreateEngine operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1CreateEngineMetadata {
     /**
      * Operation create time.
      */
@@ -3123,6 +3916,78 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * Metadata related to the progress of the SiteSearchEngineService.CreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1CreateTargetSiteMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * DataStore captures global settings and configs at the DataStore level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataStore {
+    /**
+     * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
+     */
+    contentConfig?: string | null;
+    /**
+     * Output only. Timestamp the DataStore was created at.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The id of the default Schema asscociated to this data store.
+     */
+    defaultSchemaId?: string | null;
+    /**
+     * Required. The data store display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    displayName?: string | null;
+    /**
+     * Immutable. The industry vertical that the data store registers.
+     */
+    industryVertical?: string | null;
+    /**
+     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
+     */
+    solutionTypes?: string[] | null;
+  }
+  /**
+   * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DeleteDataStoreMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the EngineService.DeleteEngine operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DeleteEngineMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata for DeleteSchema LRO.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DeleteSchemaMetadata {
@@ -3134,6 +3999,167 @@ export namespace discoveryengine_v1alpha {
      * Operation last update time. If the operation is done, this is also the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.DeleteTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DeleteTargetSiteMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchResponse {}
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.EnableAdvancedSiteSearch method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchResponse {}
+  /**
+   * Metadata that describes the training and serving parameters of an Engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1Engine {
+    /**
+     * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
+     */
+    chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineConfig;
+    /**
+     * Output only. Additional information of the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
+     */
+    chatEngineMetadata?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineMetadata;
+    /**
+     * Common config spec that specifies the metadata of the engine.
+     */
+    commonConfig?: Schema$GoogleCloudDiscoveryengineV1EngineCommonConfig;
+    /**
+     * Output only. Timestamp the Recommendation Engine was created at.
+     */
+    createTime?: string | null;
+    /**
+     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
+     */
+    dataStoreIds?: string[] | null;
+    /**
+     * Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.
+     */
+    displayName?: string | null;
+    /**
+     * The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore liniked to the engine.
+     */
+    industryVertical?: string | null;
+    /**
+     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    name?: string | null;
+    /**
+     * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
+     */
+    searchEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineSearchEngineConfig;
+    /**
+     * Required. The solutions of the engine.
+     */
+    solutionType?: string | null;
+    /**
+     * Output only. Timestamp the Recommendation Engine was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Configurations for a Chat Engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineChatEngineConfig {
+    /**
+     * The configurationt generate the Dialogflow agent that is associated to this Engine. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.
+     */
+    agentCreationConfig?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineConfigAgentCreationConfig;
+    /**
+     * The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Please use ChatEngineMetadata.dialogflow_agent for actual agent association after Engine is created.
+     */
+    dialogflowAgentToLink?: string | null;
+  }
+  /**
+   * Configurations for generating a Dialogflow agent. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineChatEngineConfigAgentCreationConfig {
+    /**
+     * Name of the company, organization or other entity that the agent represents. Used for knowledge connector LLM prompt and for knowledge search.
+     */
+    business?: string | null;
+    /**
+     * Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.
+     */
+    defaultLanguageCode?: string | null;
+    /**
+     * Agent location for Agent creation, supported values: global/us/eu. If not provided, us Engine will create Agent using us-central-1 by default; eu Engine will create Agent using eu-west-1 by default.
+     */
+    location?: string | null;
+    /**
+     * Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
+     */
+    timeZone?: string | null;
+  }
+  /**
+   * Additional information of a Chat Engine. Fields in this message are output only.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineChatEngineMetadata {
+    /**
+     * The resource name of a Dialogflow agent, that this Chat Engine refers to. Format: `projects//locations//agents/`.
+     */
+    dialogflowAgent?: string | null;
+  }
+  /**
+   * Common configurations for an Engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineCommonConfig {
+    /**
+     * Immutable. The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
+     */
+    companyName?: string | null;
+  }
+  /**
+   * Configurations for a Search Engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineSearchEngineConfig {
+    /**
+     * The add-on that this search engine enables.
+     */
+    searchAddOns?: string[] | null;
+    /**
+     * The search feature tier of this engine. Different tiers might have different pricing. To learn more, please check the pricing documentation. Defaults to SearchTier.SEARCH_TIER_STANDARD if not specified.
+     */
+    searchTier?: string | null;
   }
   /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -3177,6 +4203,36 @@ export namespace discoveryengine_v1alpha {
      * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
      */
     gcsPrefix?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the ImportSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportSuggestionDenyListEntriesMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for CompletionService.ImportSuggestionDenyListEntries method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportSuggestionDenyListEntriesResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Count of deny list entries that failed to be imported.
+     */
+    failedEntriesCount?: string | null;
+    /**
+     * Count of deny list entries successfully imported.
+     */
+    importedEntriesCount?: string | null;
   }
   /**
    * Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -3255,6 +4311,32 @@ export namespace discoveryengine_v1alpha {
     purgeSample?: string[] | null;
   }
   /**
+   * Metadata related to the progress of the PurgeSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1PurgeSuggestionDenyListEntriesMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for CompletionService.PurgeSuggestionDenyListEntries method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1PurgeSuggestionDenyListEntriesResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Number of suggestion deny list entries purged.
+     */
+    purgeCount?: string | null;
+  }
+  /**
    * Defines the structure and layout of a type of document data.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Schema {
@@ -3272,9 +4354,91 @@ export namespace discoveryengine_v1alpha {
     structSchema?: {[key: string]: any} | null;
   }
   /**
+   * Verification information for target sites in advanced site search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SiteVerificationInfo {
+    /**
+     * Site verification state indicating the ownership and validity.
+     */
+    siteVerificationState?: string | null;
+    /**
+     * Latest site verification time.
+     */
+    verifyTime?: string | null;
+  }
+  /**
+   * A target site for the SiteSearchEngine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1TargetSite {
+    /**
+     * Input only. If set to false, a uri_pattern is generated to include all pages whose address contains the provided_uri_pattern. If set to true, an uri_pattern is generated to try to be an exact match of the provided_uri_pattern or just the specific page if the provided_uri_pattern is a specific one. provided_uri_pattern is always normalized to generate the URI pattern to be used by the search engine.
+     */
+    exactMatch?: boolean | null;
+    /**
+     * Output only. Failure reason.
+     */
+    failureReason?: Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReason;
+    /**
+     * Output only. This is system-generated based on the provided_uri_pattern.
+     */
+    generatedUriPattern?: string | null;
+    /**
+     * Output only. Indexing status.
+     */
+    indexingStatus?: string | null;
+    /**
+     * Output only. The fully qualified resource name of the target site. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}` The `target_site_id` is system-generated.
+     */
+    name?: string | null;
+    /**
+     * Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.
+     */
+    providedUriPattern?: string | null;
+    /**
+     * Output only. Site ownership and validity verification status.
+     */
+    siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1SiteVerificationInfo;
+    /**
+     * The type of the target site, e.g., whether the site is to be included or excluded.
+     */
+    type?: string | null;
+    /**
+     * Output only. The target site's last updated time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Site search indexing failure reasons.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReason {
+    /**
+     * Failed due to insufficient quota.
+     */
+    quotaFailure?: Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure;
+  }
+  export interface Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure {
+    /**
+     * This number is an estimation on how much total quota this project needs to successfully complete indexing.
+     */
+    totalRequiredQuota?: string | null;
+  }
+  /**
    * Metadata for UpdateSchema LRO.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1UpdateSchemaMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.UpdateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1UpdateTargetSiteMetadata {
     /**
      * Operation create time.
      */
@@ -3932,7 +5096,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Estimatedatasize
     extends StandardParameters {
     /**
-     * Required. Full resource name of the Location, such as `projects/{project\}/locations/{location\}`.
+     * Required. Full resource name of the location, such as `projects/{project\}/locations/{location\}`.
      */
     location?: string;
 
@@ -4210,6 +5374,7 @@ export namespace discoveryengine_v1alpha {
     schemas: Resource$Projects$Locations$Collections$Datastores$Schemas;
     servingConfigs: Resource$Projects$Locations$Collections$Datastores$Servingconfigs;
     siteSearchEngine: Resource$Projects$Locations$Collections$Datastores$Sitesearchengine;
+    suggestionDenyListEntries: Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries;
     userEvents: Resource$Projects$Locations$Collections$Datastores$Userevents;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -4239,6 +5404,10 @@ export namespace discoveryengine_v1alpha {
         );
       this.siteSearchEngine =
         new Resource$Projects$Locations$Collections$Datastores$Sitesearchengine(
+          this.context
+        );
+      this.suggestionDenyListEntries =
+        new Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries(
           this.context
         );
       this.userEvents =
@@ -5219,7 +6388,7 @@ export namespace discoveryengine_v1alpha {
      */
     query?: string;
     /**
-     * Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
+     * Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
      */
     queryModel?: string;
     /**
@@ -5290,7 +6459,7 @@ export namespace discoveryengine_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}`. If the caller does not have permission to list DataStoress under this location, regardless of whether or not this data store exists, a PERMISSION_DENIED error is returned.
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}`. If the caller does not have permission to list DataStores under this location, regardless of whether or not this data store exists, a PERMISSION_DENIED error is returned.
      */
     parent?: string;
   }
@@ -5325,11 +6494,11 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Updatedocumentprocessingconfig
     extends StandardParameters {
     /**
-     * Output only. The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
+     * The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
      */
     name?: string;
     /**
-     * Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.orc_config If not set, all supported fields are updated.
+     * Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.ocr_config If not set, all supported fields are updated.
      */
     updateMask?: string;
 
@@ -6989,7 +8158,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.
+     * Indicates which fields in the provided Conversation to update. The following are NOT supported: * Conversation.name If not set or empty, all supported fields are updated.
      */
     updateMask?: string;
 
@@ -8242,6 +9411,294 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all ServingConfigs linked to this dataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Makes a recommendation, which requires a contextual user event.
      *
      * @param params - Parameters for request
@@ -8438,10 +9895,48 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The dataStore resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfig;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Recommend
     extends StandardParameters {
     /**
-     * Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your Recommend requests.
+     * Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.
      */
     servingConfig?: string;
 
@@ -10121,6 +11616,228 @@ export namespace discoveryengine_v1alpha {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports all SuggestionDenyListEntry for a DataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/suggestionDenyListEntries:import'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Permanently deletes all SuggestionDenyListEntry for a DataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    purge(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    purge(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    purge(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    purge(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/suggestionDenyListEntries:purge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Import
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Suggestiondenylistentries$Purge
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaPurgeSuggestionDenyListEntriesRequest;
+  }
+
   export class Resource$Projects$Locations$Collections$Datastores$Userevents {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -11065,7 +12782,7 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * Pauses the training of an existing engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.
+     * Pauses the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11163,7 +12880,7 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * Resumes the training of an existing engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.
+     * Resumes the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11261,7 +12978,7 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * Tunes an existing engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.
+     * Tunes an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12107,7 +13824,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.
+     * Indicates which fields in the provided Conversation to update. The following are NOT supported: * Conversation.name If not set or empty, all supported fields are updated.
      */
     updateMask?: string;
 
@@ -12349,6 +14066,294 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all ServingConfigs linked to this dataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Makes a recommendation, which requires a contextual user event.
      *
      * @param params - Parameters for request
@@ -12545,10 +14550,48 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The dataStore resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfig;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Recommend
     extends StandardParameters {
     /**
-     * Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your Recommend requests.
+     * Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.
      */
     servingConfig?: string;
 
@@ -12804,6 +14847,7 @@ export namespace discoveryengine_v1alpha {
     schemas: Resource$Projects$Locations$Datastores$Schemas;
     servingConfigs: Resource$Projects$Locations$Datastores$Servingconfigs;
     siteSearchEngine: Resource$Projects$Locations$Datastores$Sitesearchengine;
+    suggestionDenyListEntries: Resource$Projects$Locations$Datastores$Suggestiondenylistentries;
     userEvents: Resource$Projects$Locations$Datastores$Userevents;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -12825,6 +14869,10 @@ export namespace discoveryengine_v1alpha {
         new Resource$Projects$Locations$Datastores$Servingconfigs(this.context);
       this.siteSearchEngine =
         new Resource$Projects$Locations$Datastores$Sitesearchengine(
+          this.context
+        );
+      this.suggestionDenyListEntries =
+        new Resource$Projects$Locations$Datastores$Suggestiondenylistentries(
           this.context
         );
       this.userEvents = new Resource$Projects$Locations$Datastores$Userevents(
@@ -13703,7 +15751,7 @@ export namespace discoveryengine_v1alpha {
      */
     query?: string;
     /**
-     * Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
+     * Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
      */
     queryModel?: string;
     /**
@@ -13774,7 +15822,7 @@ export namespace discoveryengine_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}`. If the caller does not have permission to list DataStoress under this location, regardless of whether or not this data store exists, a PERMISSION_DENIED error is returned.
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}`. If the caller does not have permission to list DataStores under this location, regardless of whether or not this data store exists, a PERMISSION_DENIED error is returned.
      */
     parent?: string;
   }
@@ -13797,11 +15845,11 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Datastores$Updatedocumentprocessingconfig
     extends StandardParameters {
     /**
-     * Output only. The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
+     * The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
      */
     name?: string;
     /**
-     * Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.orc_config If not set, all supported fields are updated.
+     * Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.ocr_config If not set, all supported fields are updated.
      */
     updateMask?: string;
 
@@ -15461,7 +17509,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.
+     * Indicates which fields in the provided Conversation to update. The following are NOT supported: * Conversation.name If not set or empty, all supported fields are updated.
      */
     updateMask?: string;
 
@@ -16484,6 +18532,294 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all ServingConfigs linked to this dataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Servingconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Servingconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Servingconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListServingConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Makes a recommendation, which requires a contextual user event.
      *
      * @param params - Parameters for request
@@ -16680,10 +19016,48 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The dataStore resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfig;
+  }
   export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Recommend
     extends StandardParameters {
     /**
-     * Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your Recommend requests.
+     * Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.
      */
     servingConfig?: string;
 
@@ -17681,6 +20055,228 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSite;
+  }
+
+  export class Resource$Projects$Locations$Datastores$Suggestiondenylistentries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports all SuggestionDenyListEntry for a DataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/suggestionDenyListEntries:import'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Permanently deletes all SuggestionDenyListEntry for a DataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    purge(
+      params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    purge(
+      params?: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    purge(
+      params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    purge(
+      params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      params: Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/suggestionDenyListEntries:purge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Import
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Suggestiondenylistentries$Purge
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaPurgeSuggestionDenyListEntriesRequest;
   }
 
   export class Resource$Projects$Locations$Datastores$Userevents {

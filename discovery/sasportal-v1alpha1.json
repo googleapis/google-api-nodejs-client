@@ -109,22 +109,6 @@
   "resources": {
     "customers": {
       "methods": {
-        "checkHasProvisionedDeployment": {
-          "description": "Checks whether a SAS deployment for the authentication context exists.",
-          "flatPath": "v1alpha1/customers:checkHasProvisionedDeployment",
-          "httpMethod": "GET",
-          "id": "sasportal.customers.checkHasProvisionedDeployment",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha1/customers:checkHasProvisionedDeployment",
-          "response": {
-            "$ref": "SasPortalCheckHasProvisionedDeploymentResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/sasportal"
-          ]
-        },
         "get": {
           "description": "Returns a requested customer.",
           "flatPath": "v1alpha1/customers/{customersId}",
@@ -179,8 +163,24 @@
             "https://www.googleapis.com/auth/sasportal"
           ]
         },
+        "listGcpProjectDeployments": {
+          "description": "Returns a list of SAS deployments associated with current GCP project. Includes whether SAS analytics has been enabled or not.",
+          "flatPath": "v1alpha1/customers:listGcpProjectDeployments",
+          "httpMethod": "GET",
+          "id": "sasportal.customers.listGcpProjectDeployments",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha1/customers:listGcpProjectDeployments",
+          "response": {
+            "$ref": "SasPortalListGcpProjectDeploymentsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sasportal"
+          ]
+        },
         "listLegacyOrganizations": {
-          "description": "Checks whether account is legacy.",
+          "description": "Returns a list of legacy organizations.",
           "flatPath": "v1alpha1/customers:listLegacyOrganizations",
           "httpMethod": "GET",
           "id": "sasportal.customers.listLegacyOrganizations",
@@ -2652,7 +2652,7 @@
       }
     }
   },
-  "revision": "20231220",
+  "revision": "20240204",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2685,17 +2685,6 @@
           "description": "The channel score, normalized to be in the range [0,100].",
           "format": "double",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "SasPortalCheckHasProvisionedDeploymentResponse": {
-      "description": "Response for [CheckHasProvisionedDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.CheckHasProvisionedDeployment].",
-      "id": "SasPortalCheckHasProvisionedDeploymentResponse",
-      "properties": {
-        "hasProvisionedDeployment": {
-          "description": "Whether a SAS deployment for the authentication context exists.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -2809,7 +2798,7 @@
           "type": "string"
         },
         "fccId": {
-          "description": "The FCC identifier of the device.",
+          "description": "The FCC identifier of the device. Refer to https://www.fcc.gov/oet/ea/fccid for FccID format.",
           "type": "string"
         },
         "grantRangeAllowlists": {
@@ -3148,6 +3137,21 @@
       },
       "type": "object"
     },
+    "SasPortalGcpProjectDeployment": {
+      "description": "Deployment associated with the GCP project. Includes whether SAS analytics has been enabled or not.",
+      "id": "SasPortalGcpProjectDeployment",
+      "properties": {
+        "deployment": {
+          "$ref": "SasPortalDeployment",
+          "description": "Deployment associated with the GCP project."
+        },
+        "hasEnabledAnalytics": {
+          "description": "Whether SAS analytics has been enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "SasPortalGenerateSecretRequest": {
       "description": "Request for GenerateSecret.",
       "id": "SasPortalGenerateSecretRequest",
@@ -3313,15 +3317,28 @@
       },
       "type": "object"
     },
+    "SasPortalListGcpProjectDeploymentsResponse": {
+      "description": "Response for [ListGcpProjectDeployments].",
+      "id": "SasPortalListGcpProjectDeploymentsResponse",
+      "properties": {
+        "deployments": {
+          "description": "Optional. Deployments associated with the GCP project",
+          "items": {
+            "$ref": "SasPortalGcpProjectDeployment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SasPortalListLegacyOrganizationsResponse": {
       "description": "Response for [ListLegacyOrganizations]. [spectrum.sas.portal.v1alpha1.Provisioning.ListLegacyOrganizations].",
       "id": "SasPortalListLegacyOrganizationsResponse",
       "properties": {
-        "organizationIds": {
-          "description": "Optional. IDs of legacy SAS organizations.",
+        "organizations": {
+          "description": "Optional. Legacy SAS organizations.",
           "items": {
-            "format": "int64",
-            "type": "string"
+            "$ref": "SasPortalOrganization"
           },
           "type": "array"
         }
@@ -3523,6 +3540,22 @@
           },
           "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalOrganization": {
+      "description": "Organization details.",
+      "id": "SasPortalOrganization",
+      "properties": {
+        "displayName": {
+          "description": "Name of organization",
+          "type": "string"
+        },
+        "id": {
+          "description": "Id of organization",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"

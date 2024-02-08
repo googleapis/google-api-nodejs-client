@@ -1312,7 +1312,7 @@
                   ]
                 },
                 "demoteDestination": {
-                  "description": "Demotes the destination database to become a read replica of the source. This is applicable for the following migrations: 1. MySQL to Cloud SQL (for MySQL) 2. PostgreSQL to Cloud SQL (for PostgreSQL) 3. PostgreSQL to AlloyDB.",
+                  "description": "Demotes the destination database to become a read replica of the source. This is applicable for the following migrations: 1. MySQL to Cloud SQL for MySQL 2. PostgreSQL to Cloud SQL for PostgreSQL 3. PostgreSQL to AlloyDB for PostgreSQL.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}:demoteDestination",
                   "httpMethod": "POST",
                   "id": "datamigration.projects.locations.migrationJobs.demoteDestination",
@@ -2125,7 +2125,7 @@
       }
     }
   },
-  "revision": "20231214",
+  "revision": "20240122",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2396,7 +2396,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },

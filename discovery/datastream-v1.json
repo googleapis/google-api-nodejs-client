@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20231206",
+  "revision": "20240117",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -2372,6 +2372,18 @@
       },
       "type": "object"
     },
+    "OracleScnPosition": {
+      "description": "Oracle SCN position",
+      "id": "OracleScnPosition",
+      "properties": {
+        "scn": {
+          "description": "Required. SCN number from where Logs will be read",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OracleSourceConfig": {
       "description": "Oracle data source configuration",
       "id": "OracleSourceConfig",
@@ -2400,7 +2412,7 @@
         },
         "streamLargeObjects": {
           "$ref": "StreamLargeObjects",
-          "description": "Stream large object values. NOTE: This feature is currently experimental."
+          "description": "Stream large object values."
         }
       },
       "type": "object"
@@ -2805,6 +2817,10 @@
         "mysqlLogPosition": {
           "$ref": "MysqlLogPosition",
           "description": "MySQL specific log position to start replicating from."
+        },
+        "oracleScnPosition": {
+          "$ref": "OracleScnPosition",
+          "description": "Oracle SCN to start replicating from."
         }
       },
       "type": "object"

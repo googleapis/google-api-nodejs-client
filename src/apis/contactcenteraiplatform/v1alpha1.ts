@@ -142,7 +142,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Message describing ContactCenter object Next ID: 16
+   * Message describing ContactCenter object Next ID: 18
    */
   export interface Schema$ContactCenter {
     /**
@@ -181,6 +181,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * name of resource
      */
     name?: string | null;
+    /**
+     * Output only. A list of UJET components that should be privately accessed. This field is set by reading settings from the data plane. For more information about the format of the component please refer to go/ccaip-vpc-sc-org-policy. This field is must be fully populated only for Create/Update resource operations. The main use case for this field is OrgPolicy checks via CPE.
+     */
+    privateComponents?: string[] | null;
     /**
      * Optional. Params that sets up Google as IdP.
      */

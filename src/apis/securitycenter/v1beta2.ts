@@ -228,7 +228,7 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$AttackExposure {
     /**
-     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/attackExposureResults/456
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789
      */
     attackExposureResult?: string | null;
     /**
@@ -480,7 +480,7 @@ export namespace securitycenter_v1beta2 {
     updateTime?: string | null;
   }
   /**
-   * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
+   * CVE stands for Common Vulnerabilities and Exposures. Information from the [CVE record](https://www.cve.org/ResourcesSupport/Glossary) that describes this vulnerability.
    */
   export interface Schema$Cve {
     /**
@@ -1083,6 +1083,18 @@ export namespace securitycenter_v1beta2 {
      */
     assignees?: string[] | null;
     /**
+     * The priority of the finding's corresponding case in the external system.
+     */
+    casePriority?: string | null;
+    /**
+     * The SLA of the finding's corresponding case in the external system.
+     */
+    caseSla?: string | null;
+    /**
+     * The link to the finding's corresponding case in the external system.
+     */
+    caseUri?: string | null;
+    /**
      * The time when the case was last updated, as reported by the external system.
      */
     externalSystemUpdateTime?: string | null;
@@ -1098,6 +1110,10 @@ export namespace securitycenter_v1beta2 {
      * The most recent status of the finding's corresponding case, as reported by the external system.
      */
     status?: string | null;
+    /**
+     * Information about the ticket, if any, that is being used to track the resolution of the issue that is identified by this finding.
+     */
+    ticketInfo?: Schema$TicketInfo;
   }
   /**
    * A mute config is a Cloud SCC resource that contains the configuration to mute create/update events of findings.
@@ -1383,6 +1399,10 @@ export namespace securitycenter_v1beta2 {
      */
     scope?: string | null;
     /**
+     * A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. "bigquery.googleapis.com/Dataset".
+     */
+    sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping;
+    /**
      * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
@@ -1436,6 +1456,19 @@ export namespace securitycenter_v1beta2 {
      * Output only. The time at which the custom module was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Resource value mapping for Sensitive Data Protection findings. If any of these mappings have a resource value that is not unspecified, the resource_value field will be ignored when reading this configuration.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping {
+    /**
+     * Resource value mapping for high-sensitivity Sensitive Data Protection findings
+     */
+    highSensitivityMapping?: string | null;
+    /**
+     * Resource value mapping for medium-sensitivity Sensitive Data Protection findings
+     */
+    mediumSensitivityMapping?: string | null;
   }
   /**
    * Represents a particular IAM binding, which captures a member's role addition, removal, or state.
@@ -1717,6 +1750,23 @@ export namespace securitycenter_v1beta2 {
     ns?: string | null;
   }
   /**
+   * The policy field that violates the deployed posture and its expected and and detected values.
+   */
+  export interface Schema$PolicyDriftDetails {
+    /**
+     * The detected value that violates the deployed posture, for example, `false` or `allowed_values={"projects/22831892”\}`.
+     */
+    detectedValue?: string | null;
+    /**
+     * The value of this field that was configured in a posture, for example, `true` or `allowed_values={"projects/29831892”\}`.
+     */
+    expectedValue?: string | null;
+    /**
+     * The name of the updated field, for example constraint.implementation.policy_rules[0].enforce
+     */
+    field?: string | null;
+  }
+  /**
    * Represents an operating system process.
    */
   export interface Schema$Process {
@@ -1914,19 +1964,31 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$SecurityPosture {
     /**
-     * The name of the policy that has been updated, for example, `projects/{project_id\}/policies/{constraint_name\}`.
+     * The name of the updated policy, for example, `projects/{project_id\}/policies/{constraint_name\}`.
      */
     changedPolicy?: string | null;
     /**
-     * Name of the posture, for example, `organizations/{org_id\}/locations/{location\}/postures/{posture_name\}`.
+     * Name of the posture, for example, `CIS-Posture`.
      */
     name?: string | null;
     /**
-     * The name of the posture deployment, for example, `projects/{project_id\}/posturedeployments/{posture_deployment_id\}`.
+     * The ID of the updated policy, for example, `compute-policy-1`.
+     */
+    policy?: string | null;
+    /**
+     * The details about a change in an updated policy that violates the deployed posture.
+     */
+    policyDriftDetails?: Schema$PolicyDriftDetails[];
+    /**
+     * The name of the updated policyset, for example, `cis-policyset`.
+     */
+    policySet?: string | null;
+    /**
+     * The name of the posture deployment, for example, `organizations/{org_id\}/posturedeployments/{posture_deployment_id\}`.
      */
     postureDeployment?: string | null;
     /**
-     * The project, folder, or organization on which the posture is deployed, for example, `projects/{project_id\}`.
+     * The project, folder, or organization on which the posture is deployed, for example, `projects/{project_number\}`.
      */
     postureDeploymentResource?: string | null;
     /**
@@ -1980,6 +2042,35 @@ export namespace securitycenter_v1beta2 {
      * The tier of SCC features this organization currently has access to.
      */
     tier?: string | null;
+  }
+  /**
+   * Information about the ticket, if any, that is being used to track the resolution of the issue that is identified by this finding.
+   */
+  export interface Schema$TicketInfo {
+    /**
+     * The assignee of the ticket in the ticket system.
+     */
+    assignee?: string | null;
+    /**
+     * The description of the ticket in the ticket system.
+     */
+    description?: string | null;
+    /**
+     * The identifier of the ticket in the ticket system.
+     */
+    id?: string | null;
+    /**
+     * The latest status of the ticket, as reported by the ticket system.
+     */
+    status?: string | null;
+    /**
+     * The time when the ticket was last updated, as reported by the ticket system.
+     */
+    updateTime?: string | null;
+    /**
+     * The link to the ticket in the ticket system.
+     */
+    uri?: string | null;
   }
   /**
    * Resource capturing the settings for the Virtual Machine Threat Detection service.

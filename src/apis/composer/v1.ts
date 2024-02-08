@@ -176,6 +176,70 @@ export namespace composer_v1 {
     displayName?: string | null;
   }
   /**
+   * Configuration for Cloud Data Lineage integration.
+   */
+  export interface Schema$CloudDataLineageIntegration {
+    /**
+     * Optional. Whether or not Cloud Data Lineage integration is enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Information about a single workload.
+   */
+  export interface Schema$ComposerWorkload {
+    /**
+     * Name of a workload.
+     */
+    name?: string | null;
+    /**
+     * Output only. Status of a workload.
+     */
+    status?: Schema$ComposerWorkloadStatus;
+    /**
+     * Type of a workload.
+     */
+    type?: string | null;
+  }
+  /**
+   * Workload status.
+   */
+  export interface Schema$ComposerWorkloadStatus {
+    /**
+     * Output only. Detailed message of the status.
+     */
+    detailedStatusMessage?: string | null;
+    /**
+     * Output only. Workload state.
+     */
+    state?: string | null;
+    /**
+     * Output only. Text to provide more descriptive status.
+     */
+    statusMessage?: string | null;
+  }
+  /**
+   * Configuration for resources used by Airflow DAG processors.
+   */
+  export interface Schema$DagProcessorResource {
+    /**
+     * Optional. The number of DAG processors. If not provided or set to 0, a single DAG processor instance will be created.
+     */
+    count?: number | null;
+    /**
+     * Optional. CPU request and limit for a single Airflow DAG processor replica.
+     */
+    cpu?: number | null;
+    /**
+     * Optional. Memory (GB) request and limit for a single Airflow DAG processor replica.
+     */
+    memoryGb?: number | null;
+    /**
+     * Optional. Storage (GB) request and limit for a single Airflow DAG processor replica.
+     */
+    storageGb?: number | null;
+  }
+  /**
    * The configuration of Cloud SQL instance that is used by the Apache Airflow software.
    */
   export interface Schema$DatabaseConfig {
@@ -196,6 +260,15 @@ export namespace composer_v1 {
    * Response for DatabaseFailoverRequest.
    */
   export interface Schema$DatabaseFailoverResponse {}
+  /**
+   * The configuration setting for Airflow database data retention mechanism.
+   */
+  export interface Schema$DataRetentionConfig {
+    /**
+     * Optional. The configuration settings for task logs retention
+     */
+    taskLogsRetentionConfig?: Schema$TaskLogsRetentionConfig;
+  }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
@@ -287,6 +360,10 @@ export namespace composer_v1 {
      * Optional. The configuration settings for Cloud SQL instance used internally by Apache Airflow software.
      */
     databaseConfig?: Schema$DatabaseConfig;
+    /**
+     * Optional. The configuration setting for Airflow database data retention mechanism.
+     */
+    dataRetentionConfig?: Schema$DataRetentionConfig;
     /**
      * Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated.
      */
@@ -519,6 +596,19 @@ export namespace composer_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response to ListWorkloadsRequest.
+   */
+  export interface Schema$ListWorkloadsResponse {
+    /**
+     * The page token used to query for the next page if one exists.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of environment workloads.
+     */
+    workloads?: Schema$ComposerWorkload[];
+  }
+  /**
    * Request to load a snapshot into a Cloud Composer environment.
    */
   export interface Schema$LoadSnapshotRequest {
@@ -590,6 +680,14 @@ export namespace composer_v1 {
    * The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.
    */
   export interface Schema$NodeConfig {
+    /**
+     * Optional. The IP range in CIDR notation to use internally by Cloud Composer. IP addresses are not reserved - and the same range can be used by multiple Cloud Composer environments. In case of overlap, IPs from this range will not be accessible in the user's VPC network. Cannot be updated. If not specified, the default value of '100.64.128.0/20' is used. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     */
+    composerInternalIpv4CidrBlock?: string | null;
+    /**
+     * Optional. Network Attachment that Cloud Composer environment is connected to, which provides connectivity with a user's VPC network. Takes precedence over network and subnetwork settings. If not provided, but network and subnetwork are defined during environment, it will be provisioned. If not provided and network and subnetwork are also empty, then connectivity to user's VPC network is disabled. Network attachment must be provided in format projects/{project\}/regions/{region\}/networkAttachments/{networkAttachment\}. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     */
+    composerNetworkAttachment?: string | null;
     /**
      * Optional. The disk size in GB used for node VMs. Minimum size is 30GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
      */
@@ -761,6 +859,10 @@ export namespace composer_v1 {
      */
     cloudSqlIpv4CidrBlock?: string | null;
     /**
+     * Optional. If `true`, builds performed during operations that install Python packages have only private connectivity to Google services (including Artifact Registry) and VPC network (if either `NodeConfig.network` and `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment` field are specified). If `false`, the builds also have access to the internet. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     */
+    enablePrivateBuildsOnly?: boolean | null;
+    /**
      * Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
      */
     enablePrivateEnvironment?: boolean | null;
@@ -863,6 +965,10 @@ export namespace composer_v1 {
      */
     airflowConfigOverrides?: {[key: string]: string} | null;
     /**
+     * Optional. The configuration for Cloud Data Lineage integration.
+     */
+    cloudDataLineageIntegration?: Schema$CloudDataLineageIntegration;
+    /**
      * Optional. Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes. Environment variable names must match the regular expression `a-zA-Z_*`. They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names: * `AIRFLOW_HOME` * `C_FORCE_ROOT` * `CONTAINER_NAME` * `DAGS_FOLDER` * `GCP_PROJECT` * `GCS_BUCKET` * `GKE_CLUSTER_NAME` * `SQL_DATABASE` * `SQL_INSTANCE` * `SQL_PASSWORD` * `SQL_PROJECT` * `SQL_REGION` * `SQL_USER`
      */
     envVariables?: {[key: string]: string} | null;
@@ -882,6 +988,10 @@ export namespace composer_v1 {
      * Optional. The number of schedulers for Airflow. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-2.*.*.
      */
     schedulerCount?: number | null;
+    /**
+     * Optional. Whether or not the web server uses custom plugins. If unspecified, the field defaults to `PLUGINS_ENABLED`. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     */
+    webServerPluginsMode?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -942,6 +1052,15 @@ export namespace composer_v1 {
      * Optional. The name of the Cloud Storage bucket used by the environment. No `gs://` prefix.
      */
     bucket?: string | null;
+  }
+  /**
+   * The configuration setting for Task Logs.
+   */
+  export interface Schema$TaskLogsRetentionConfig {
+    /**
+     * Optional. The mode of storage for Airflow workers task logs. For details, see go/composer-store-task-logs-in-cloud-logging-only-design-doc
+     */
+    storageMode?: string | null;
   }
   /**
    * Configuration for resources used by Airflow triggerers.
@@ -1025,6 +1144,10 @@ export namespace composer_v1 {
    */
   export interface Schema$WorkloadsConfig {
     /**
+     * Optional. Resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     */
+    dagProcessor?: Schema$DagProcessorResource;
+    /**
      * Optional. Resources used by Airflow schedulers.
      */
     scheduler?: Schema$SchedulerResource;
@@ -1072,8 +1195,12 @@ export namespace composer_v1 {
 
   export class Resource$Projects$Locations$Environments {
     context: APIRequestContext;
+    workloads: Resource$Projects$Locations$Environments$Workloads;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.workloads = new Resource$Projects$Locations$Environments$Workloads(
+        this.context
+      );
     }
 
     /**
@@ -2290,6 +2417,126 @@ export namespace composer_v1 {
      * Request body metadata
      */
     requestBody?: Schema$StopAirflowCommandRequest;
+  }
+
+  export class Resource$Projects$Locations$Environments$Workloads {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists workloads in a Cloud Composer environment. Workload is a unit that runs a single Composer component. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Workloads$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Environments$Workloads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkloadsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Workloads$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Workloads$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkloadsResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkloadsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Environments$Workloads$List,
+      callback: BodyResponseCallback<Schema$ListWorkloadsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListWorkloadsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Workloads$List
+        | BodyResponseCallback<Schema$ListWorkloadsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkloadsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkloadsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkloadsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Workloads$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Workloads$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/workloads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkloadsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkloadsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Environments$Workloads$List
+    extends StandardParameters {
+    /**
+     * Optional. The list filter. Currently only supports equality on the type field. The value of a field specified in the filter expression must be one ComposerWorkloadType enum option. It's possible to get multiple types using "OR" operator, e.g.: "type=SCHEDULER OR type=CELERY_WORKER". If not specified, all items are returned.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of environments to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The environment name to get workloads for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Imageversions {

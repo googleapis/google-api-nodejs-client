@@ -370,6 +370,9 @@ export namespace firestore_v1 {
      * Output only. The time at which the document was created. This value increases monotonically when a document is deleted then recreated. It can also be compared to values from other documents and the `read_time` of a query.
      */
     createTime?: string | null;
+    /**
+     * The document's fields. The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The field names, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty. Field paths may be used in other contexts to refer to structured fields defined here. For `map_value`, the field path is represented by a dot-delimited (`.`) string of segments. Each segment is either a simple field name (defined below) or a quoted field name. For example, the structured field `"foo" : { map_value: { "x&y" : { string_value: "hello" \}\}\}` would be represented by the field path `` foo.`x&y` ``. A simple field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`, or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`. A quoted field name starts and ends with `` ` `` and may contain any character. Some characters, including `` ` ``, must be escaped using a `\`. For example, `` `x&y` `` represents `x&y` and `` `bak\`tik` `` represents `` bak`tik ``.
+     */
     fields?: {[key: string]: Schema$Value} | null;
     /**
      * The resource name of the document, for example `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
@@ -689,6 +692,19 @@ export namespace firestore_v1 {
      * Output only. The period during which past versions of data are retained in the database. Any read or query can specify a `read_time` within this window, and will read the state of the database at that time. If the PITR feature is enabled, the retention period is 7 days. Otherwise, the retention period is 1 hour.
      */
     versionRetentionPeriod?: string | null;
+  }
+  /**
+   * A consistent snapshot of a database at a specific point in time.
+   */
+  export interface Schema$GoogleFirestoreAdminV1DatabaseSnapshot {
+    /**
+     * Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
+     */
+    database?: string | null;
+    /**
+     * Required. The timestamp at which the database snapshot is taken. The requested timestamp must be a whole minute within the PITR window.
+     */
+    snapshotTime?: string | null;
   }
   /**
    * Metadata related to the delete database operation.
@@ -1105,6 +1121,10 @@ export namespace firestore_v1 {
      * Required. The ID to use for the database, which will become the final component of the database's resource name. This database id must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
      */
     databaseId?: string | null;
+    /**
+     * Database snapshot to restore from. The source database must exist and have enabled PITR. The restored database will be created in the same location as the source database.
+     */
+    databaseSnapshot?: Schema$GoogleFirestoreAdminV1DatabaseSnapshot;
   }
   /**
    * Backup specific statistics.
@@ -1582,7 +1602,7 @@ export namespace firestore_v1 {
     structuredQuery?: Schema$StructuredQuery;
   }
   /**
-   * A Firestore query.
+   * A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit
    */
   export interface Schema$StructuredQuery {
     /**
@@ -3353,7 +3373,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false or `ttlConfig:*`.
+     * Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false` or `ttlConfig:*`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

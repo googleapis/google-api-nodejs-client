@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/dataplex",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "dataplex",
   "main": "build/index.js",
   "types": "build/index.d.ts",

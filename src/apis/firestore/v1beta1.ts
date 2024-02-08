@@ -370,6 +370,9 @@ export namespace firestore_v1beta1 {
      * Output only. The time at which the document was created. This value increases monotonically when a document is deleted then recreated. It can also be compared to values from other documents and the `read_time` of a query.
      */
     createTime?: string | null;
+    /**
+     * The document's fields. The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The field names, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty. Field paths may be used in other contexts to refer to structured fields defined here. For `map_value`, the field path is represented by a dot-delimited (`.`) string of segments. Each segment is either a simple field name (defined below) or a quoted field name. For example, the structured field `"foo" : { map_value: { "x&y" : { string_value: "hello" \}\}\}` would be represented by the field path `` foo.`x&y` ``. A simple field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`, or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`. A quoted field name starts and ends with `` ` `` and may contain any character. Some characters, including `` ` ``, must be escaped using a `\`. For example, `` `x&y` `` represents `x&y` and `` `bak\`tik` `` represents `` bak`tik ``.
+     */
     fields?: {[key: string]: Schema$Value} | null;
     /**
      * The resource name of the document, for example `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
@@ -1167,7 +1170,7 @@ export namespace firestore_v1beta1 {
     structuredQuery?: Schema$StructuredQuery;
   }
   /**
-   * A Firestore query.
+   * A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit
    */
   export interface Schema$StructuredQuery {
     /**

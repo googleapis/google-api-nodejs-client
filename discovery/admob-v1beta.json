@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20231122",
+  "revision": "20240201",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdSource": {
@@ -1489,12 +1489,18 @@
           "enum": [
             "VARIANT_LEADER_UNSPECIFIED",
             "CONTROL",
-            "TREATMENT"
+            "TREATMENT",
+            "INSUFFICIENT_DATA",
+            "TOO_EARLY_TO_CALL",
+            "NO_VARIANT_LEADER"
           ],
           "enumDescriptions": [
             "Default value of the enum. Do not use.",
             "The control leading the experiment.",
-            "The treatment leading the experiment."
+            "The treatment leading the experiment.",
+            "Collected data (impressions) are insufficient to determine a leader.",
+            "Experiment hasn't run long enough to determine a leader.",
+            "Neither variant is a decisive winner in the observed data."
           ],
           "readOnly": true,
           "type": "string"

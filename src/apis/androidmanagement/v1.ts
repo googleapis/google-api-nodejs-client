@@ -142,7 +142,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$AdbShellInteractiveEvent {}
   /**
-   * Security policies set to secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values.
+   * Advanced security settings. In most cases, setting these is not needed.
    */
   export interface Schema$AdvancedSecurityOverrides {
     /**
@@ -347,6 +347,14 @@ export namespace androidmanagement_v1 {
      * Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app.
      */
     extensionConfig?: Schema$ExtensionConfig;
+    /**
+     * Optional. The constraints for installing the app. You can specify a maximum of one InstallConstraint. Multiple constraints are rejected.
+     */
+    installConstraint?: Schema$InstallConstraint[];
+    /**
+     * Optional. Amongst apps with installTypeset to:FORCE_INSTALLEDPREINSTALLED this controls the relative priority of installation. A value of 0 (default) means this app has no priority over other apps. For values between 1 and 10,000, a lower value means a higher priority. Values outside of the range 0 to 10,000 inclusive are rejected.
+     */
+    installPriority?: number | null;
     /**
      * The type of installation to perform.
      */
@@ -880,6 +888,10 @@ export namespace androidmanagement_v1 {
      */
     displays?: Schema$Display[];
     /**
+     * Output only. Information related to whether this device was migrated from being managed by another Device Policy Controller (DPC).
+     */
+    dpcMigrationInfo?: Schema$DpcMigrationInfo;
+    /**
      * The time of device enrollment.
      */
     enrollmentTime?: string | null;
@@ -916,7 +928,7 @@ export namespace androidmanagement_v1 {
      */
     managementMode?: string | null;
     /**
-     * Events related to memory and storage measurements in chronological order. This information is only available if memoryInfoEnabled is true in the device's policy.
+     * Events related to memory and storage measurements in chronological order. This information is only available if memoryInfoEnabled is true in the device's policy.Events are retained for a certain period of time and old events are deleted.
      */
     memoryEvents?: Schema$MemoryEvent[];
     /**
@@ -1014,6 +1026,10 @@ export namespace androidmanagement_v1 {
      */
     cellularTwoGState?: string | null;
     /**
+     * The minimum required security level of Wi-Fi networks that the device can connect to.
+     */
+    minimumWifiSecurityLevel?: string | null;
+    /**
      * Controls the state of the ultra wideband setting and whether the user can toggle it on or off.
      */
     ultraWidebandState?: string | null;
@@ -1108,6 +1124,19 @@ export namespace androidmanagement_v1 {
      * The number of IP addresses returned from the DNS lookup event. May be higher than the amount of ip_addresses if there were too many addresses to log.
      */
     totalIpAddressesReturned?: string | null;
+  }
+  /**
+   * Information related to whether this device was migrated from being managed by another Device Policy Controller (DPC).
+   */
+  export interface Schema$DpcMigrationInfo {
+    /**
+     * Output only. If this device was migrated from another DPC, the additionalData field of the migration token is populated here.
+     */
+    additionalData?: string | null;
+    /**
+     * Output only. If this device was migrated from another DPC, this is its package name. Not populated otherwise.
+     */
+    previousDpc?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1363,6 +1392,23 @@ export namespace androidmanagement_v1 {
     skinTemperatures?: number[] | null;
   }
   /**
+   * Amongst apps with InstallTypeset to:FORCE_INSTALLEDPREINSTALLED this defines a set of restrictions for the app installation. At least one of the fields must be set. When multiple fields are set, then all the constraints need to be satisfied for the app to be installed.
+   */
+  export interface Schema$InstallConstraint {
+    /**
+     * Optional. Charging constraint.
+     */
+    chargingConstraint?: string | null;
+    /**
+     * Optional. Device idle constraint.
+     */
+    deviceIdleConstraint?: string | null;
+    /**
+     * Optional. Network type constraint.
+     */
+    networkTypeConstraint?: string | null;
+  }
+  /**
    * Response on issuing a command. This is currently empty as a placeholder.
    */
   export interface Schema$IssueCommandResponse {}
@@ -1554,6 +1600,19 @@ export namespace androidmanagement_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response to a request to list migration tokens for a given enterprise.
+   */
+  export interface Schema$ListMigrationTokensResponse {
+    /**
+     * The migration tokens from the specified enterprise.
+     */
+    migrationTokens?: Schema$MigrationToken[];
+    /**
+     * A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1720,7 +1779,7 @@ export namespace androidmanagement_v1 {
     volumeLabel?: string | null;
   }
   /**
-   * An event related to memory and storage measurements.
+   * An event related to memory and storage measurements.To distinguish between new and old events, we recommend using the createTime field.
    */
   export interface Schema$MemoryEvent {
     /**
@@ -1748,6 +1807,55 @@ export namespace androidmanagement_v1 {
      * Total RAM on device in bytes.
      */
     totalRam?: string | null;
+  }
+  /**
+   * A token to initiate the migration of a device from being managed by a third-party DPC to being managed by Android Management API. A migration token is valid only for a single device.
+   */
+  export interface Schema$MigrationToken {
+    /**
+     * Immutable. Optional EMM-specified additional data. Once the device is migrated this will be populated in the migrationAdditionalData field of the Device resource. This must be at most 1024 characters.
+     */
+    additionalData?: string | null;
+    /**
+     * Output only. Time when this migration token was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Once this migration token is used to migrate a device, the name of the resulting Device resource will be populated here, in the form enterprises/{enterprise\}/devices/{device\}.
+     */
+    device?: string | null;
+    /**
+     * Required. Immutable. The id of the device, as in the Play EMM API. This corresponds to the deviceId parameter in Play EMM API's Devices.get (https://developers.google.com/android/work/play/emm-api/v1/devices/get#parameters) call.
+     */
+    deviceId?: string | null;
+    /**
+     * Immutable. The time when this migration token expires. This can be at most seven days from the time of creation. The migration token is deleted seven days after it expires.
+     */
+    expireTime?: string | null;
+    /**
+     * Required. Immutable. The management mode of the device or profile being migrated.
+     */
+    managementMode?: string | null;
+    /**
+     * Output only. The name of the migration token, which is generated by the server during creation, in the form enterprises/{enterprise\}/migrationTokens/{migration_token\}.
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. The name of the policy initially applied to the enrolled device, in the form enterprises/{enterprise\}/policies/{policy\}.
+     */
+    policy?: string | null;
+    /**
+     * Input only. The time that this migration token is valid for. This is input-only, and for returning a migration token the server will populate the expireTime field. This can be at most seven days. The default is seven days.
+     */
+    ttl?: string | null;
+    /**
+     * Required. Immutable. The user id of the Managed Google Play account on the device, as in the Play EMM API. This corresponds to the userId parameter in Play EMM API's Devices.get (https://developers.google.com/android/work/play/emm-api/v1/devices/get#parameters) call.
+     */
+    userId?: string | null;
+    /**
+     * Output only. The value of the migration token.
+     */
+    value?: string | null;
   }
   /**
    * Device network info.
@@ -2069,7 +2177,7 @@ export namespace androidmanagement_v1 {
      */
     adjustVolumeDisabled?: boolean | null;
     /**
-     * Security policies set to secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values.
+     * Advanced security settings. In most cases, setting these is not needed.
      */
     advancedSecurityOverrides?: Schema$AdvancedSecurityOverrides;
     /**
@@ -2077,7 +2185,7 @@ export namespace androidmanagement_v1 {
      */
     alwaysOnVpnPackage?: Schema$AlwaysOnVpnPackage;
     /**
-     * The app tracks for Android Device Policy the device can access. The device receives the latest version among all accessible tracks. If no tracks are specified, then the device only uses the production track.
+     * This setting is not supported. Any value is ignored.
      */
     androidDevicePolicyTracks?: string[] | null;
     /**
@@ -3109,6 +3217,7 @@ export namespace androidmanagement_v1 {
     applications: Resource$Enterprises$Applications;
     devices: Resource$Enterprises$Devices;
     enrollmentTokens: Resource$Enterprises$Enrollmenttokens;
+    migrationTokens: Resource$Enterprises$Migrationtokens;
     policies: Resource$Enterprises$Policies;
     webApps: Resource$Enterprises$Webapps;
     webTokens: Resource$Enterprises$Webtokens;
@@ -3117,6 +3226,9 @@ export namespace androidmanagement_v1 {
       this.applications = new Resource$Enterprises$Applications(this.context);
       this.devices = new Resource$Enterprises$Devices(this.context);
       this.enrollmentTokens = new Resource$Enterprises$Enrollmenttokens(
+        this.context
+      );
+      this.migrationTokens = new Resource$Enterprises$Migrationtokens(
         this.context
       );
       this.policies = new Resource$Enterprises$Policies(this.context);
@@ -4332,91 +4444,6 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Enterprises$Devices$Operations$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Enterprises$Devices$Operations$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    delete(
-      params: Params$Resource$Enterprises$Devices$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Enterprises$Devices$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Enterprises$Devices$Operations$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Enterprises$Devices$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Enterprises$Devices$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Enterprises$Devices$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://androidmanagement.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      *
      * @param params - Parameters for request
@@ -4596,13 +4623,6 @@ export namespace androidmanagement_v1 {
     extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Enterprises$Devices$Operations$Delete
-    extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
      */
     name?: string;
   }
@@ -5033,6 +5053,316 @@ export namespace androidmanagement_v1 {
     pageToken?: string;
     /**
      * Required. The name of the enterprise in the form enterprises/{enterpriseId\}.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Enterprises$Migrationtokens {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a migration token, to migrate an existing device from being managed by the EMM's Device Policy Controller (DPC) to being managed by the Android Management API.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Enterprises$Migrationtokens$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Enterprises$Migrationtokens$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MigrationToken>;
+    create(
+      params: Params$Resource$Enterprises$Migrationtokens$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Enterprises$Migrationtokens$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$MigrationToken>,
+      callback: BodyResponseCallback<Schema$MigrationToken>
+    ): void;
+    create(
+      params: Params$Resource$Enterprises$Migrationtokens$Create,
+      callback: BodyResponseCallback<Schema$MigrationToken>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$MigrationToken>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Migrationtokens$Create
+        | BodyResponseCallback<Schema$MigrationToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MigrationToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MigrationToken>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MigrationToken> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Migrationtokens$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Enterprises$Migrationtokens$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/migrationTokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MigrationToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MigrationToken>(parameters);
+      }
+    }
+
+    /**
+     * Gets a migration token.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Enterprises$Migrationtokens$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Enterprises$Migrationtokens$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MigrationToken>;
+    get(
+      params: Params$Resource$Enterprises$Migrationtokens$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Enterprises$Migrationtokens$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MigrationToken>,
+      callback: BodyResponseCallback<Schema$MigrationToken>
+    ): void;
+    get(
+      params: Params$Resource$Enterprises$Migrationtokens$Get,
+      callback: BodyResponseCallback<Schema$MigrationToken>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MigrationToken>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Migrationtokens$Get
+        | BodyResponseCallback<Schema$MigrationToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MigrationToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MigrationToken>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MigrationToken> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Migrationtokens$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Enterprises$Migrationtokens$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MigrationToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MigrationToken>(parameters);
+      }
+    }
+
+    /**
+     * Lists migration tokens.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Enterprises$Migrationtokens$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Enterprises$Migrationtokens$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMigrationTokensResponse>;
+    list(
+      params: Params$Resource$Enterprises$Migrationtokens$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Enterprises$Migrationtokens$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMigrationTokensResponse>,
+      callback: BodyResponseCallback<Schema$ListMigrationTokensResponse>
+    ): void;
+    list(
+      params: Params$Resource$Enterprises$Migrationtokens$List,
+      callback: BodyResponseCallback<Schema$ListMigrationTokensResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMigrationTokensResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Migrationtokens$List
+        | BodyResponseCallback<Schema$ListMigrationTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMigrationTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMigrationTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMigrationTokensResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Migrationtokens$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Enterprises$Migrationtokens$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/migrationTokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMigrationTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMigrationTokensResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Enterprises$Migrationtokens$Create
+    extends StandardParameters {
+    /**
+     * Required. The enterprise in which this migration token will be created. Format: enterprises/{enterprise\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MigrationToken;
+  }
+  export interface Params$Resource$Enterprises$Migrationtokens$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the migration token to retrieve. Format: enterprises/{enterprise\}/migrationTokens/{migration_token\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Enterprises$Migrationtokens$List
+    extends StandardParameters {
+    /**
+     * The maximum number of migration tokens to return. Fewer migration tokens may be returned. If unspecified, at most 100 migration tokens will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous ListMigrationTokens call. Provide this to retrieve the subsequent page.When paginating, all other parameters provided to ListMigrationTokens must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The enterprise which the migration tokens belong to. Format: enterprises/{enterprise\}
      */
     parent?: string;
   }

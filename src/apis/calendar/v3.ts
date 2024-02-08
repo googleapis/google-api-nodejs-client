@@ -4464,7 +4464,7 @@ export namespace calendar_v3 {
   }
   export interface Params$Resource$Events$List extends StandardParameters {
     /**
-     * Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     * Deprecated and ignored.
      */
     alwaysIncludeEmail?: boolean;
     /**
@@ -4472,11 +4472,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Event types to return. Optional. Possible values are:
-     * - "default"
-     * - "focusTime"
-     * - "outOfOffice"
-     * - "workingLocation"This parameter can be repeated multiple times to return events of different types. The default is ["default", "focusTime", "outOfOffice"].
+     * Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. The default is ["default", "focusTime", "outOfOffice"].
      */
     eventTypes?: string[];
     /**
@@ -4511,6 +4507,8 @@ export namespace calendar_v3 {
      * - location
      * - attendee's displayName
      * - attendee's email
+     * - organizer's displayName
+     * - organizer's email
      * - workingLocationProperties.officeLocation.buildingId
      * - workingLocationProperties.officeLocation.deskId
      * - workingLocationProperties.officeLocation.label
@@ -4696,7 +4694,7 @@ export namespace calendar_v3 {
   }
   export interface Params$Resource$Events$Watch extends StandardParameters {
     /**
-     * Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     * Deprecated and ignored.
      */
     alwaysIncludeEmail?: boolean;
     /**
@@ -4704,11 +4702,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Event types to return. Optional. Possible values are:
-     * - "default"
-     * - "focusTime"
-     * - "outOfOffice"
-     * - "workingLocation"This parameter can be repeated multiple times to return events of different types. The default is ["default", "focusTime", "outOfOffice"].
+     * Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. The default is ["default", "focusTime", "outOfOffice"].
      */
     eventTypes?: string[];
     /**
@@ -4743,6 +4737,8 @@ export namespace calendar_v3 {
      * - location
      * - attendee's displayName
      * - attendee's email
+     * - organizer's displayName
+     * - organizer's email
      * - workingLocationProperties.officeLocation.buildingId
      * - workingLocationProperties.officeLocation.deskId
      * - workingLocationProperties.officeLocation.label

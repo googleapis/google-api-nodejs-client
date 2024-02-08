@@ -284,12 +284,12 @@
                     "name": {
                       "description": "Required. Redis cluster certificate authority resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}/certificateAuthority` where `location_id` refers to a GCP region.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+/certificateAuthority$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}/certificateAuthority",
+                  "path": "v1beta1/{+name}",
                   "response": {
                     "$ref": "CertificateAuthority"
                   },
@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20231212",
+  "revision": "20240118",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "CertChain": {
@@ -1284,7 +1284,7 @@
           "type": "object"
         },
         "redisVersion": {
-          "description": "Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_X` for Redis 6.x compatibility",
+          "description": "Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_X` for Redis 6.x compatibility * `REDIS_7_0` for Redis 7.0 compatibility",
           "type": "string"
         },
         "replicaCount": {
@@ -1297,12 +1297,12 @@
           "type": "string"
         },
         "satisfiesPzi": {
-          "description": "Optional. Output only. Reserved for future use. Zone Isolation compliance state of the instance. Field name and documentation is obfuscated according to go/per-resource-zi-bit-semantics.",
+          "description": "Optional. Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Optional. Output only. Reserved for future use. Zone Separation compliance state of the instance. Field name and documentation is obfuscated according to go/zs-resource-status.",
+          "description": "Optional. Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },

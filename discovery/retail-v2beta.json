@@ -173,6 +173,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "exportAnalyticsMetrics": {
+                  "description": "Exports analytics metrics. `Operation.response` is of type `ExportAnalyticsMetricsResponse`. `Operation.metadata` is of type `ExportMetadata`.",
+                  "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}:exportAnalyticsMetrics",
+                  "httpMethod": "POST",
+                  "id": "retail.projects.locations.catalogs.exportAnalyticsMetrics",
+                  "parameterOrder": [
+                    "catalog"
+                  ],
+                  "parameters": {
+                    "catalog": {
+                      "description": "Required. Full resource name of the parent catalog. Expected format: `projects/*/locations/*/catalogs/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta/{+catalog}:exportAnalyticsMetrics",
+                  "request": {
+                    "$ref": "GoogleCloudRetailV2betaExportAnalyticsMetricsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getAttributesConfig": {
                   "description": "Gets an AttributesConfig.",
                   "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/attributesConfig",
@@ -2087,7 +2115,7 @@
       }
     }
   },
-  "revision": "20231214",
+  "revision": "20240205",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2264,12 +2292,71 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudRetailV2BigQueryOutputResult": {
+      "description": "A BigQuery output result.",
+      "id": "GoogleCloudRetailV2BigQueryOutputResult",
+      "properties": {
+        "datasetId": {
+          "description": "The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "The ID of a BigQuery Table.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2CreateModelMetadata": {
       "description": "Metadata associated with a create operation.",
       "id": "GoogleCloudRetailV2CreateModelMetadata",
       "properties": {
         "model": {
           "description": "The resource name of the model that this create applies to. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ExportAnalyticsMetricsResponse": {
+      "description": "Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
+      "id": "GoogleCloudRetailV2ExportAnalyticsMetricsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "errorsConfig": {
+          "$ref": "GoogleCloudRetailV2ExportErrorsConfig",
+          "description": "This field is never set."
+        },
+        "outputResult": {
+          "$ref": "GoogleCloudRetailV2OutputResult",
+          "description": "Output result indicating where the data were exported to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ExportErrorsConfig": {
+      "description": "Configuration of destination for Export related errors.",
+      "id": "GoogleCloudRetailV2ExportErrorsConfig",
+      "properties": {
+        "gcsPrefix": {
+          "description": "Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Export errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2GcsOutputResult": {
+      "description": "A Gcs output result.",
+      "id": "GoogleCloudRetailV2GcsOutputResult",
+      "properties": {
+        "outputUri": {
+          "description": "The uri of Gcs output",
           "type": "string"
         }
       },
@@ -2550,6 +2637,27 @@
           "description": "Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2OutputResult": {
+      "description": "Output result that stores the information about where the exported data is stored.",
+      "id": "GoogleCloudRetailV2OutputResult",
+      "properties": {
+        "bigqueryResult": {
+          "description": "The BigQuery location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2BigQueryOutputResult"
+          },
+          "type": "array"
+        },
+        "gcsResult": {
+          "description": "The Google Cloud Storage location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2GcsOutputResult"
           },
           "type": "array"
         }
@@ -3934,12 +4042,20 @@
           },
           "type": "array"
         },
+        "mergedFacet": {
+          "$ref": "GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacet",
+          "description": "Use this field only if you want to merge a facet key into another facet key."
+        },
         "mergedFacetValues": {
           "description": "Each instance replaces a list of facet values by a merged facet value. If a facet value is not in any list, then it will stay the same. To avoid conflicts, only paths of length 1 are accepted. In other words, if \"dark_blue\" merged into \"BLUE\", then the latter can't merge into \"blues\" because this would create a path of length 2. The maximum number of instances of MergedFacetValue per CatalogAttribute is 100. This feature is available only for textual custom attributes.",
           "items": {
             "$ref": "GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue"
           },
           "type": "array"
+        },
+        "rerankConfig": {
+          "$ref": "GoogleCloudRetailV2betaCatalogAttributeFacetConfigRerankConfig",
+          "description": "Set this field only if you want to rerank based on facet values engaged by the user for the current key. This option is only possible for custom facetable textual keys."
         }
       },
       "type": "object"
@@ -3968,6 +4084,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacet": {
+      "description": "The current facet key (i.e. attribute config) maps into the merged_facet_key. A facet key can have at most one child. The current facet key and the merged facet key need both to be textual custom attributes or both numerical custom attributes (same type).",
+      "id": "GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacet",
+      "properties": {
+        "mergedFacetKey": {
+          "description": "The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.",
+          "type": "string"
+        },
+        "mergedFacetValues": {
+          "deprecated": true,
+          "description": "Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue": {
       "description": "Replaces a set of textual facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute. This feature is available only for textual custom attributes.",
       "id": "GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue",
@@ -3982,6 +4117,24 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaCatalogAttributeFacetConfigRerankConfig": {
+      "description": "Options to rerank based on facet values engaged by the user for the current key. That key needs to be a custom textual key and facetable. To use this control, you also need to pass all the facet keys engaged by the user in the request using the field [SearchRequest.FacetSpec]. In particular, if you don't pass the facet keys engaged that you want to rerank on, this control won't be effective. Moreover, to obtain better results, the facet values that you want to rerank on should be close to English (ideally made of words, underscores, and spaces).",
+      "id": "GoogleCloudRetailV2betaCatalogAttributeFacetConfigRerankConfig",
+      "properties": {
+        "facetValues": {
+          "description": "If empty, rerank on all facet values for the current key. Otherwise, will rerank on the facet values from this list only.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rerankFacet": {
+          "description": "If set to true, then we also rerank the dynamic facets based on the facet values engaged by the user for the current attribute key during serving.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4369,6 +4522,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2betaExportAnalyticsMetricsRequest": {
+      "description": "Request message for the `ExportAnalyticsMetrics` method.",
+      "id": "GoogleCloudRetailV2betaExportAnalyticsMetricsRequest",
+      "properties": {
+        "filter": {
+          "description": "A filtering expression to specify restrictions on returned metrics. The expression is a sequence of terms. Each term applies a restriction to the returned metrics. Use this expression to restrict results to a specific time range. Currently we expect only one types of fields: * `timestamp`: This can be specified twice, once with a less than operator and once with a greater than operator. The `timestamp` restriction should result in one, contiguous, valid, `timestamp` range. Some examples of valid filters expressions: * Example 1: `timestamp > \"2012-04-23T18:25:43.511Z\" timestamp < \"2012-04-23T18:30:43.511Z\"` * Example 2: `timestamp > \"2012-04-23T18:25:43.511Z\"`",
+          "type": "string"
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudRetailV2betaOutputConfig",
+          "description": "Required. The output location of the data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaExportAnalyticsMetricsResponse": {
+      "description": "Response of the ExportAnalyticsMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
+      "id": "GoogleCloudRetailV2betaExportAnalyticsMetricsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "errorsConfig": {
+          "$ref": "GoogleCloudRetailV2betaExportErrorsConfig",
+          "description": "This field is never set."
+        },
+        "outputResult": {
+          "$ref": "GoogleCloudRetailV2betaOutputResult",
+          "description": "Output result indicating where the data were exported to."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaExportErrorsConfig": {
       "description": "Configuration of destination for Export related errors.",
       "id": "GoogleCloudRetailV2betaExportErrorsConfig",
@@ -4641,7 +4831,7 @@
           "type": "string"
         },
         "updateMask": {
-          "description": "Indicates which fields in the provided imported `products` to update. If not set, all fields are updated.",
+          "description": "Indicates which fields in the provided imported `products` to update. If not set, all fields are updated. If provided, only the existing product fields are updated. Missing products will not be created.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -5176,6 +5366,51 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaOutputConfig": {
+      "description": "The output configuration setting.",
+      "id": "GoogleCloudRetailV2betaOutputConfig",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudRetailV2betaOutputConfigBigQueryDestination",
+          "description": "The BigQuery location where the output is to be written to."
+        },
+        "gcsDestination": {
+          "$ref": "GoogleCloudRetailV2betaOutputConfigGcsDestination",
+          "description": "The Google Cloud Storage location where the output is to be written to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaOutputConfigBigQueryDestination": {
+      "description": "The BigQuery output destination configuration.",
+      "id": "GoogleCloudRetailV2betaOutputConfigBigQueryDestination",
+      "properties": {
+        "datasetId": {
+          "description": "Required. The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableIdPrefix": {
+          "description": "Required. The prefix of exported BigQuery tables.",
+          "type": "string"
+        },
+        "tableType": {
+          "description": "Required. Describes the table type. The following values are supported: * `table`: A BigQuery native table. * `view`: A virtual table defined by a SQL query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaOutputConfigGcsDestination": {
+      "description": "The Google Cloud Storage output destination configuration.",
+      "id": "GoogleCloudRetailV2betaOutputConfigGcsDestination",
+      "properties": {
+        "outputUriPrefix": {
+          "description": "Required. The output uri prefix for saving output data to json files. Some mapping examples are as follows: output_uri_prefix sample output(assuming the object is foo.json) ======================== ============================================= gs://bucket/ gs://bucket/foo.json gs://bucket/folder/ gs://bucket/folder/foo.json gs://bucket/folder/item_ gs://bucket/folder/item_foo.json",
+          "type": "string"
         }
       },
       "type": "object"

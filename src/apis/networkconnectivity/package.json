@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/networkconnectivity",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "networkconnectivity",
   "main": "build/index.js",
   "types": "build/index.d.ts",

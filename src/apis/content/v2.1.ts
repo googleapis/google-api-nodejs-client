@@ -681,11 +681,11 @@ export namespace content_v2_1 {
      */
     linkedAccountId?: string | null;
     /**
-     * Type of the link between the two accounts. Acceptable values are: - "`channelPartner`" - "`eCommercePlatform`" - "`paymentServiceProvider`"
+     * Type of the link between the two accounts. Acceptable values are: - "`channelPartner`" - "`eCommercePlatform`" - "`paymentServiceProvider`" - "`localProductManager`"
      */
     linkType?: string | null;
     /**
-     * Provided services. Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`" - "`paymentProcessing`"
+     * Provided services. Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`" - "`paymentProcessing`" - "`localProductManagement`"
      */
     services?: string[] | null;
   }
@@ -5608,7 +5608,7 @@ export namespace content_v2_1 {
      */
     matchingStatus?: string | null;
     /**
-     * Output only. The hint of why the matching has failed. This is only set when matching_status=failed. Possible values are: - "`linked-store-not-found`": There aren't any Google Business Profile stores available for matching. Connect your Merchant Center account with the Google Business Profile account. Or add a new Google Business Profile store corresponding to the POS store. - "`store-match-not-found`": The provided POS store couldn't be matched to any of the connected Google Business Profile stores. Merchant Center account is connected correctly and stores are available on Google Business Profile, but POS store location address does not match with Google Business Profile stores' addresses. Update POS store address or Google Business Profile store address to match correctly.
+     * Output only. The hint of why the matching has failed. This is only set when matching_status=failed. Possible values are: - "`linked-store-not-found`": There aren't any Google Business Profile stores available for matching. Connect your Merchant Center account with the Google Business Profile account. Or add a new Google Business Profile store corresponding to the POS store. - "`store-match-not-found`": The provided POS store couldn't be matched to any of the connected Google Business Profile stores. Merchant Center account is connected correctly and stores are available on Google Business Profile, but POS store location address does not match with Google Business Profile stores' addresses. Update POS store address or Google Business Profile store address to match correctly. - "`store-match-unverified`": The provided POS store couldn't be matched to any of the connected Google Business Profile stores, as the matched Google Business Profile store is unverified. Go through the Google Business Profile verification process to match correctly.
      */
     matchingStatusHint?: string | null;
     /**
@@ -6933,7 +6933,7 @@ export namespace content_v2_1 {
      */
     getThisQuantityDiscounted?: number | null;
     /**
-     * Required. Output only. The REST promotion ID to uniquely identify the promotion. Content API methods that operate on promotions take this as their `promotionId` parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The `channel` field has a value of `"online"`, `"in_store"`, or `"online_in_store"`.
+     * Output only. The REST promotion ID to uniquely identify the promotion. Content API methods that operate on promotions take this as their `promotionId` parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The `channel` field has a value of `"online"`, `"in_store"`, or `"online_in_store"`.
      */
     id?: string | null;
     /**
@@ -17539,7 +17539,7 @@ export namespace content_v2_1 {
   export interface Params$Resource$Merchantsupport$Renderaccountissues
     extends StandardParameters {
     /**
-     * Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language ('en-US').
+     * Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language `en-US`.
      */
     languageCode?: string;
     /**
@@ -17559,7 +17559,7 @@ export namespace content_v2_1 {
   export interface Params$Resource$Merchantsupport$Renderproductissues
     extends StandardParameters {
     /**
-     * Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language ('en-US').
+     * Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language `en-US`.
      */
     languageCode?: string;
     /**
@@ -24900,7 +24900,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Retrieves merchant performance mertrics matching the search query and optionally segmented by selected dimensions.
+     * Retrieves merchant performance metrics matching the search query and optionally segmented by selected dimensions.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

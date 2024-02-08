@@ -864,8 +864,10 @@ export namespace sqladmin_v1beta4 {
      */
     sqlExportOptions?: {
       mysqlExportOptions?: {masterData?: number};
+      parallel?: boolean;
       schemaOnly?: boolean;
       tables?: string[];
+      threads?: number;
     } | null;
     /**
      * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form `gs://bucketName/fileName`. If the file already exists, the request succeeds, but the operation fails. If `fileType` is `SQL` and the filename ends with .gz, the contents are compressed.
@@ -1225,7 +1227,7 @@ export namespace sqladmin_v1beta4 {
      */
     requireSsl?: boolean | null;
     /**
-     * SQL Server uses the `require_ssl` flag. You can set the value for this flag to 'true' or 'false'.
+     * Specify how SSL/TLS is enforced in database connections. MySQL and PostgreSQL use the `ssl_mode` flag. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` The value of `ssl_mode` gets priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, the `ssl_mode=ENCRYPTED_ONLY` means only accept SSL connections, while the `require_ssl=false` means accept both non-SSL and SSL connections. MySQL and PostgreSQL databases respect `ssl_mode` in this case and accept only SSL connections. SQL Server uses the `require_ssl` flag. You can set the value for this flag to `true` or `false`.
      */
     sslMode?: string | null;
   }

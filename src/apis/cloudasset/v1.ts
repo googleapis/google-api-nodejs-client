@@ -446,7 +446,7 @@ export namespace cloudasset_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -702,6 +702,10 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy {
     /**
+     * The asset type of the AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource. Example: `cloudresourcemanager.googleapis.com/Project` See [Cloud Asset Inventory Supported Asset Types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for all supported asset types.
+     */
+    assetType?: string | null;
+    /**
      * The full resource name of the resource on which this IAM policy is set. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.
      */
     attachedResource?: string | null;
@@ -726,6 +730,14 @@ export namespace cloudasset_v1 {
    * The Google Cloud resources governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.
    */
   export interface Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource {
+    /**
+     * The asset type of the AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource.full_resource_name Example: `cloudresourcemanager.googleapis.com/Project` See [Cloud Asset Inventory Supported Asset Types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for all supported asset types.
+     */
+    assetType?: string | null;
+    /**
+     * The effective tags on this resource.
+     */
+    effectiveTags?: Schema$EffectiveTagDetails[];
     /**
      * The folder(s) that this resource belongs to, in the format of folders/{FOLDER_NUMBER\}. This field is available when the resource belongs (directly or cascadingly) to one or more folders.
      */
@@ -865,9 +877,21 @@ export namespace cloudasset_v1 {
      */
     consolidatedPolicy?: Schema$AnalyzerOrgPolicy;
     /**
+     * The effective tags on this resource.
+     */
+    effectiveTags?: Schema$EffectiveTagDetails[];
+    /**
+     * The folder(s) that this resource belongs to, in the format of folders/{FOLDER_NUMBER\}. This field is available when the resource belongs (directly or cascadingly) to one or more folders.
+     */
+    folders?: string[] | null;
+    /**
      * The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of an organization/folder/project resource.
      */
     fullResourceName?: string | null;
+    /**
+     * The organization that this resource belongs to, in the format of organizations/{ORGANIZATION_NUMBER\}. This field is available when the resource belongs (directly or cascadingly) to an organization.
+     */
+    organization?: string | null;
     /**
      * The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of the parent of AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.full_resource_name.
      */
@@ -876,6 +900,10 @@ export namespace cloudasset_v1 {
      * The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.
      */
     policyBundle?: Schema$AnalyzerOrgPolicy[];
+    /**
+     * The project that this resource belongs to, in the format of projects/{PROJECT_NUMBER\}. This field is available when the resource belongs to a project.
+     */
+    project?: string | null;
   }
   /**
    * An identity under analysis.
@@ -1091,6 +1119,10 @@ export namespace cloudasset_v1 {
      * The evaluating condition for this rule.
      */
     condition?: Schema$Expr;
+    /**
+     * The condition evaluation result for this rule. Only populated if it meets all the following criteria: * there is a condition defined for this rule * this rule is within a consolidated_policy * the consolidated_policy is within AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer or AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource
+     */
+    conditionEvaluation?: Schema$ConditionEvaluation;
     /**
      * Setting this to true means that all values are denied. This field can be set only in Policies for list constraints.
      */
@@ -1340,7 +1372,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressFrom {
     /**
-     * A list of identities that are allowed access through this [EgressPolicy]. Should be in the format of email address. The email address should represent individual user or service account only.
+     * A list of identities that are allowed access through this [EgressPolicy], in the format of `user:{email_id\}` or `serviceAccount:{email_id\}`.
      */
     identities?: string[] | null;
     /**
@@ -1400,7 +1432,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressFrom {
     /**
-     * A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.
+     * A list of identities that are allowed access through this ingress policy, in the format of `user:{email_id\}` or `serviceAccount:{email_id\}`.
      */
     identities?: string[] | null;
     /**
@@ -1456,11 +1488,11 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1MethodSelector {
     /**
-     * Value for `method` should be a valid method name for the corresponding `service_name` in ApiOperation. If `*` used as value for `method`, then ALL methods and permissions are allowed.
+     * A valid method name for the corresponding `service_name` in ApiOperation. If `*` is used as the value for the `method`, then ALL methods and permissions are allowed.
      */
     method?: string | null;
     /**
-     * Value for `permission` should be a valid Cloud IAM permission for the corresponding `service_name` in ApiOperation.
+     * A valid Cloud IAM permission for the corresponding `service_name` in ApiOperation.
      */
     permission?: string | null;
   }
@@ -1913,9 +1945,21 @@ export namespace cloudasset_v1 {
      */
     consolidatedPolicy?: Schema$AnalyzerOrgPolicy;
     /**
+     * The folder(s) that this consolidated policy belongs to, in the format of folders/{FOLDER_NUMBER\}. This field is available when the consolidated policy belongs (directly or cascadingly) to one or more folders.
+     */
+    folders?: string[] | null;
+    /**
+     * The organization that this consolidated policy belongs to, in the format of organizations/{ORGANIZATION_NUMBER\}. This field is available when the consolidated policy belongs (directly or cascadingly) to an organization.
+     */
+    organization?: string | null;
+    /**
      * The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.
      */
     policyBundle?: Schema$AnalyzerOrgPolicy[];
+    /**
+     * The project that this consolidated policy belongs to, in the format of projects/{PROJECT_NUMBER\}. This field is available when the consolidated policy belongs to a project.
+     */
+    project?: string | null;
   }
   /**
    * Operating system information for the VM.
@@ -4419,7 +4463,7 @@ export namespace cloudasset_v1 {
     }
 
     /**
-     * Analyzes organization policies governed assets (Google Cloud resources or policies) under a scope. This RPC supports custom constraints and the following 10 canned constraints: * storage.uniformBucketLevelAccess * iam.disableServiceAccountKeyCreation * iam.allowedPolicyMemberDomains * compute.vmExternalIpAccess * appengine.enforceServiceAccountActAsCheck * gcp.resourceLocations * compute.trustedImageProjects * compute.skipDefaultNetworkCreation * compute.requireOsLogin * compute.disableNestedVirtualization This RPC only returns either resources of types [supported by search APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types) or IAM policies.
+     * Analyzes organization policies governed assets (Google Cloud resources or policies) under a scope. This RPC supports custom constraints and the following canned constraints: * constraints/ainotebooks.accessMode * constraints/ainotebooks.disableFileDownloads * constraints/ainotebooks.disableRootAccess * constraints/ainotebooks.disableTerminal * constraints/ainotebooks.environmentOptions * constraints/ainotebooks.requireAutoUpgradeSchedule * constraints/ainotebooks.restrictVpcNetworks * constraints/compute.disableGuestAttributesAccess * constraints/compute.disableInstanceDataAccessApis * constraints/compute.disableNestedVirtualization * constraints/compute.disableSerialPortAccess * constraints/compute.disableSerialPortLogging * constraints/compute.disableVpcExternalIpv6 * constraints/compute.requireOsLogin * constraints/compute.requireShieldedVm * constraints/compute.restrictLoadBalancerCreationForTypes * constraints/compute.restrictProtocolForwardingCreationForTypes * constraints/compute.restrictXpnProjectLienRemoval * constraints/compute.setNewProjectDefaultToZonalDNSOnly * constraints/compute.skipDefaultNetworkCreation * constraints/compute.trustedImageProjects * constraints/compute.vmCanIpForward * constraints/compute.vmExternalIpAccess * constraints/gcp.detailedAuditLoggingMode * constraints/gcp.resourceLocations * constraints/iam.allowedPolicyMemberDomains * constraints/iam.automaticIamGrantsForDefaultServiceAccounts * constraints/iam.disableServiceAccountCreation * constraints/iam.disableServiceAccountKeyCreation * constraints/iam.disableServiceAccountKeyUpload * constraints/iam.restrictCrossProjectServiceAccountLienRemoval * constraints/iam.serviceAccountKeyExpiryHours * constraints/resourcemanager.accessBoundaries * constraints/resourcemanager.allowedExportDestinations * constraints/sql.restrictAuthorizedNetworks * constraints/sql.restrictNoncompliantDiagnosticDataAccess * constraints/sql.restrictNoncompliantResourceCreation * constraints/sql.restrictPublicIp * constraints/storage.publicAccessPrevention * constraints/storage.restrictAuthTypes * constraints/storage.uniformBucketLevelAccess This RPC only returns either resources of types [supported by search APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types) or IAM policies.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -150,7 +150,7 @@ export namespace notebooks_v2 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -673,6 +673,19 @@ export namespace notebooks_v2 {
    * Request for resetting a notebook instance
    */
   export interface Schema$ResetInstanceRequest {}
+  /**
+   * Request for resizing the notebook instance disks
+   */
+  export interface Schema$ResizeDiskRequest {
+    /**
+     * Required. The boot disk to be resized. Only disk_size_gb will be used.
+     */
+    bootDisk?: Schema$BootDisk;
+    /**
+     * Required. The data disk to be resized. Only disk_size_gb will be used.
+     */
+    dataDisk?: Schema$DataDisk;
+  }
   /**
    * Request for rollbacking a notebook instance
    */
@@ -2046,6 +2059,93 @@ export namespace notebooks_v2 {
     }
 
     /**
+     * Resize a notebook instance disk to a higher capacity.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resizeDisk(
+      params: Params$Resource$Projects$Locations$Instances$Resizedisk,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resizeDisk(
+      params?: Params$Resource$Projects$Locations$Instances$Resizedisk,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    resizeDisk(
+      params: Params$Resource$Projects$Locations$Instances$Resizedisk,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resizeDisk(
+      params: Params$Resource$Projects$Locations$Instances$Resizedisk,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resizeDisk(
+      params: Params$Resource$Projects$Locations$Instances$Resizedisk,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resizeDisk(callback: BodyResponseCallback<Schema$Operation>): void;
+    resizeDisk(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Resizedisk
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Resizedisk;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Resizedisk;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+notebookInstance}:resizeDisk').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['notebookInstance'],
+        pathParams: ['notebookInstance'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Rollbacks a notebook instance to the previous version.
      *
      * @param params - Parameters for request
@@ -2800,6 +2900,18 @@ export namespace notebooks_v2 {
      * Request body metadata
      */
     requestBody?: Schema$ResetInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Resizedisk
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    notebookInstance?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResizeDiskRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Rollback
     extends StandardParameters {

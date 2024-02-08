@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v3.0.0...analyticshub-v3.0.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* **analyticshub:** update the API ([7df077f](https://github.com/googleapis/google-api-nodejs-client/commit/7df077f664f2e7353eb417fbe085391425dd8d2e))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v2.1.0...analyticshub-v3.0.0) (2024-01-05)
 
 

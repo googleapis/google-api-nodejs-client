@@ -3483,6 +3483,11 @@
                           "location": "query",
                           "type": "string"
                         },
+                        "orderBy": {
+                          "description": "Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a \" ASC\" or a \" DESC\" suffix, respectively; for example: `exposed_score DESC`.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
                           "format": "int32",
@@ -3597,6 +3602,11 @@
                   "parameters": {
                     "filter": {
                       "description": "The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a \" ASC\" or a \" DESC\" suffix, respectively; for example: `exposed_score DESC`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -5810,7 +5820,7 @@
       }
     }
   },
-  "revision": "20231218",
+  "revision": "20240130",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -6001,7 +6011,7 @@
       "id": "AttackExposure",
       "properties": {
         "attackExposureResult": {
-          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/attackExposureResults/456",
+          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789",
           "type": "string"
         },
         "exposedHighValueResourcesCount": {
@@ -6316,7 +6326,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -6586,7 +6596,7 @@
       "type": "object"
     },
     "Cve": {
-      "description": "CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org",
+      "description": "CVE stands for Common Vulnerabilities and Exposures. Information from the [CVE record](https://www.cve.org/ResourcesSupport/Glossary) that describes this vulnerability.",
       "id": "Cve",
       "properties": {
         "cvssv3": {
@@ -7569,6 +7579,19 @@
           },
           "type": "array"
         },
+        "casePriority": {
+          "description": "The priority of the finding's corresponding case in the external system.",
+          "type": "string"
+        },
+        "caseSla": {
+          "description": "The SLA of the finding's corresponding case in the external system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "caseUri": {
+          "description": "The link to the finding's corresponding case in the external system.",
+          "type": "string"
+        },
         "externalSystemUpdateTime": {
           "description": "The time when the case was last updated, as reported by the external system.",
           "format": "google-datetime",
@@ -7585,6 +7608,10 @@
         "status": {
           "description": "The most recent status of the finding's corresponding case, as reported by the external system.",
           "type": "string"
+        },
+        "ticketInfo": {
+          "$ref": "TicketInfo",
+          "description": "Information about the ticket, if any, that is being used to track the resolution of the issue that is identified by this finding."
         }
       },
       "type": "object"
@@ -7772,6 +7799,10 @@
           "description": "Project or folder to scope this config to. For example, \"project/456\" would apply this config only to resources in \"project/456\" scope will be checked with \"AND\" of other resources.",
           "type": "string"
         },
+        "sensitiveDataProtectionMapping": {
+          "$ref": "GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping",
+          "description": "A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. \"bigquery.googleapis.com/Dataset\"."
+        },
         "tagValues": {
           "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" E.g. [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
           "items": {
@@ -7862,6 +7893,49 @@
           "description": "Output only. The time at which the custom module was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping": {
+      "description": "Resource value mapping for Sensitive Data Protection findings. If any of these mappings have a resource value that is not unspecified, the resource_value field will be ignored when reading this configuration.",
+      "id": "GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping",
+      "properties": {
+        "highSensitivityMapping": {
+          "description": "Resource value mapping for high-sensitivity Sensitive Data Protection findings",
+          "enum": [
+            "RESOURCE_VALUE_UNSPECIFIED",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecific value",
+            "High resource value",
+            "Medium resource value",
+            "Low resource value",
+            "No resource value, e.g. ignore these resources"
+          ],
+          "type": "string"
+        },
+        "mediumSensitivityMapping": {
+          "description": "Resource value mapping for medium-sensitivity Sensitive Data Protection findings",
+          "enum": [
+            "RESOURCE_VALUE_UNSPECIFIED",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecific value",
+            "High resource value",
+            "Medium resource value",
+            "Low resource value",
+            "No resource value, e.g. ignore these resources"
+          ],
           "type": "string"
         }
       },
@@ -9359,6 +9433,25 @@
       },
       "type": "object"
     },
+    "PolicyDriftDetails": {
+      "description": "The policy field that violates the deployed posture and its expected and and detected values.",
+      "id": "PolicyDriftDetails",
+      "properties": {
+        "detectedValue": {
+          "description": "The detected value that violates the deployed posture, for example, `false` or `allowed_values={\"projects/22831892”}`.",
+          "type": "string"
+        },
+        "expectedValue": {
+          "description": "The value of this field that was configured in a posture, for example, `true` or `allowed_values={\"projects/29831892”}`.",
+          "type": "string"
+        },
+        "field": {
+          "description": "The name of the updated field, for example constraint.implementation.policy_rules[0].enforce",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Position": {
       "description": "A position in the uploaded text version of a module.",
       "id": "Position",
@@ -9660,19 +9753,34 @@
       "id": "SecurityPosture",
       "properties": {
         "changedPolicy": {
-          "description": "The name of the policy that has been updated, for example, `projects/{project_id}/policies/{constraint_name}`.",
+          "description": "The name of the updated policy, for example, `projects/{project_id}/policies/{constraint_name}`.",
           "type": "string"
         },
         "name": {
-          "description": "Name of the posture, for example, `organizations/{org_id}/locations/{location}/postures/{posture_name}`.",
+          "description": "Name of the posture, for example, `CIS-Posture`.",
+          "type": "string"
+        },
+        "policy": {
+          "description": "The ID of the updated policy, for example, `compute-policy-1`.",
+          "type": "string"
+        },
+        "policyDriftDetails": {
+          "description": "The details about a change in an updated policy that violates the deployed posture.",
+          "items": {
+            "$ref": "PolicyDriftDetails"
+          },
+          "type": "array"
+        },
+        "policySet": {
+          "description": "The name of the updated policyset, for example, `cis-policyset`.",
           "type": "string"
         },
         "postureDeployment": {
-          "description": "The name of the posture deployment, for example, `projects/{project_id}/posturedeployments/{posture_deployment_id}`.",
+          "description": "The name of the posture deployment, for example, `organizations/{org_id}/posturedeployments/{posture_deployment_id}`.",
           "type": "string"
         },
         "postureDeploymentResource": {
-          "description": "The project, folder, or organization on which the posture is deployed, for example, `projects/{project_id}`.",
+          "description": "The project, folder, or organization on which the posture is deployed, for example, `projects/{project_number}`.",
           "type": "string"
         },
         "revisionId": {
@@ -9970,6 +10078,38 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TicketInfo": {
+      "description": "Information about the ticket, if any, that is being used to track the resolution of the issue that is identified by this finding.",
+      "id": "TicketInfo",
+      "properties": {
+        "assignee": {
+          "description": "The assignee of the ticket in the ticket system.",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the ticket in the ticket system.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The identifier of the ticket in the ticket system.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The latest status of the ticket, as reported by the ticket system.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The time when the ticket was last updated, as reported by the ticket system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The link to the ticket in the ticket system.",
+          "type": "string"
         }
       },
       "type": "object"

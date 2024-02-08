@@ -763,7 +763,7 @@
           ]
         },
         "analyzeOrgPolicyGovernedAssets": {
-          "description": "Analyzes organization policies governed assets (Google Cloud resources or policies) under a scope. This RPC supports custom constraints and the following 10 canned constraints: * storage.uniformBucketLevelAccess * iam.disableServiceAccountKeyCreation * iam.allowedPolicyMemberDomains * compute.vmExternalIpAccess * appengine.enforceServiceAccountActAsCheck * gcp.resourceLocations * compute.trustedImageProjects * compute.skipDefaultNetworkCreation * compute.requireOsLogin * compute.disableNestedVirtualization This RPC only returns either resources of types [supported by search APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types) or IAM policies.",
+          "description": "Analyzes organization policies governed assets (Google Cloud resources or policies) under a scope. This RPC supports custom constraints and the following canned constraints: * constraints/ainotebooks.accessMode * constraints/ainotebooks.disableFileDownloads * constraints/ainotebooks.disableRootAccess * constraints/ainotebooks.disableTerminal * constraints/ainotebooks.environmentOptions * constraints/ainotebooks.requireAutoUpgradeSchedule * constraints/ainotebooks.restrictVpcNetworks * constraints/compute.disableGuestAttributesAccess * constraints/compute.disableInstanceDataAccessApis * constraints/compute.disableNestedVirtualization * constraints/compute.disableSerialPortAccess * constraints/compute.disableSerialPortLogging * constraints/compute.disableVpcExternalIpv6 * constraints/compute.requireOsLogin * constraints/compute.requireShieldedVm * constraints/compute.restrictLoadBalancerCreationForTypes * constraints/compute.restrictProtocolForwardingCreationForTypes * constraints/compute.restrictXpnProjectLienRemoval * constraints/compute.setNewProjectDefaultToZonalDNSOnly * constraints/compute.skipDefaultNetworkCreation * constraints/compute.trustedImageProjects * constraints/compute.vmCanIpForward * constraints/compute.vmExternalIpAccess * constraints/gcp.detailedAuditLoggingMode * constraints/gcp.resourceLocations * constraints/iam.allowedPolicyMemberDomains * constraints/iam.automaticIamGrantsForDefaultServiceAccounts * constraints/iam.disableServiceAccountCreation * constraints/iam.disableServiceAccountKeyCreation * constraints/iam.disableServiceAccountKeyUpload * constraints/iam.restrictCrossProjectServiceAccountLienRemoval * constraints/iam.serviceAccountKeyExpiryHours * constraints/resourcemanager.accessBoundaries * constraints/resourcemanager.allowedExportDestinations * constraints/sql.restrictAuthorizedNetworks * constraints/sql.restrictNoncompliantDiagnosticDataAccess * constraints/sql.restrictNoncompliantResourceCreation * constraints/sql.restrictPublicIp * constraints/storage.publicAccessPrevention * constraints/storage.restrictAuthTypes * constraints/storage.uniformBucketLevelAccess This RPC only returns either resources of types [supported by search APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types) or IAM policies.",
           "flatPath": "v1/{v1Id}/{v1Id1}:analyzeOrgPolicyGovernedAssets",
           "httpMethod": "GET",
           "id": "cloudasset.analyzeOrgPolicyGovernedAssets",
@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20231220",
+  "revision": "20240130",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -1508,7 +1508,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -1886,6 +1886,10 @@
       "description": "The IAM policies governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.",
       "id": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy",
       "properties": {
+        "assetType": {
+          "description": "The asset type of the AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource. Example: `cloudresourcemanager.googleapis.com/Project` See [Cloud Asset Inventory Supported Asset Types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for all supported asset types.",
+          "type": "string"
+        },
         "attachedResource": {
           "description": "The full resource name of the resource on which this IAM policy is set. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.",
           "type": "string"
@@ -1916,6 +1920,17 @@
       "description": "The Google Cloud resources governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.",
       "id": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource",
       "properties": {
+        "assetType": {
+          "description": "The asset type of the AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource.full_resource_name Example: `cloudresourcemanager.googleapis.com/Project` See [Cloud Asset Inventory Supported Asset Types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for all supported asset types.",
+          "type": "string"
+        },
+        "effectiveTags": {
+          "description": "The effective tags on this resource.",
+          "items": {
+            "$ref": "EffectiveTagDetails"
+          },
+          "type": "array"
+        },
         "folders": {
           "description": "The folder(s) that this resource belongs to, in the format of folders/{FOLDER_NUMBER}. This field is available when the resource belongs (directly or cascadingly) to one or more folders.",
           "items": {
@@ -2117,8 +2132,26 @@
           "$ref": "AnalyzerOrgPolicy",
           "description": "The consolidated organization policy for the analyzed resource. The consolidated organization policy is computed by merging and evaluating AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy)."
         },
+        "effectiveTags": {
+          "description": "The effective tags on this resource.",
+          "items": {
+            "$ref": "EffectiveTagDetails"
+          },
+          "type": "array"
+        },
+        "folders": {
+          "description": "The folder(s) that this resource belongs to, in the format of folders/{FOLDER_NUMBER}. This field is available when the resource belongs (directly or cascadingly) to one or more folders.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "fullResourceName": {
           "description": "The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of an organization/folder/project resource.",
+          "type": "string"
+        },
+        "organization": {
+          "description": "The organization that this resource belongs to, in the format of organizations/{ORGANIZATION_NUMBER}. This field is available when the resource belongs (directly or cascadingly) to an organization.",
           "type": "string"
         },
         "parent": {
@@ -2131,6 +2164,10 @@
             "$ref": "AnalyzerOrgPolicy"
           },
           "type": "array"
+        },
+        "project": {
+          "description": "The project that this resource belongs to, in the format of projects/{PROJECT_NUMBER}. This field is available when the resource belongs to a project.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2231,6 +2268,10 @@
         "condition": {
           "$ref": "Expr",
           "description": "The evaluating condition for this rule."
+        },
+        "conditionEvaluation": {
+          "$ref": "ConditionEvaluation",
+          "description": "The condition evaluation result for this rule. Only populated if it meets all the following criteria: * there is a condition defined for this rule * this rule is within a consolidated_policy * the consolidated_policy is within AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer or AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource"
         },
         "denyAll": {
           "description": "Setting this to true means that all values are denied. This field can be set only in Policies for list constraints.",
@@ -2757,7 +2798,7 @@
       "id": "GoogleIdentityAccesscontextmanagerV1EgressFrom",
       "properties": {
         "identities": {
-          "description": "A list of identities that are allowed access through this [EgressPolicy]. Should be in the format of email address. The email address should represent individual user or service account only.",
+          "description": "A list of identities that are allowed access through this [EgressPolicy], in the format of `user:{email_id}` or `serviceAccount:{email_id}`.",
           "items": {
             "type": "string"
           },
@@ -2862,7 +2903,7 @@
       "id": "GoogleIdentityAccesscontextmanagerV1IngressFrom",
       "properties": {
         "identities": {
-          "description": "A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.",
+          "description": "A list of identities that are allowed access through this ingress policy, in the format of `user:{email_id}` or `serviceAccount:{email_id}`.",
           "items": {
             "type": "string"
           },
@@ -2950,11 +2991,11 @@
       "id": "GoogleIdentityAccesscontextmanagerV1MethodSelector",
       "properties": {
         "method": {
-          "description": "Value for `method` should be a valid method name for the corresponding `service_name` in ApiOperation. If `*` used as value for `method`, then ALL methods and permissions are allowed.",
+          "description": "A valid method name for the corresponding `service_name` in ApiOperation. If `*` is used as the value for the `method`, then ALL methods and permissions are allowed.",
           "type": "string"
         },
         "permission": {
-          "description": "Value for `permission` should be a valid Cloud IAM permission for the corresponding `service_name` in ApiOperation.",
+          "description": "A valid Cloud IAM permission for the corresponding `service_name` in ApiOperation.",
           "type": "string"
         }
       },
@@ -3603,12 +3644,27 @@
           "$ref": "AnalyzerOrgPolicy",
           "description": "The consolidated organization policy for the analyzed resource. The consolidated organization policy is computed by merging and evaluating AnalyzeOrgPoliciesResponse.policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy)."
         },
+        "folders": {
+          "description": "The folder(s) that this consolidated policy belongs to, in the format of folders/{FOLDER_NUMBER}. This field is available when the consolidated policy belongs (directly or cascadingly) to one or more folders.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "organization": {
+          "description": "The organization that this consolidated policy belongs to, in the format of organizations/{ORGANIZATION_NUMBER}. This field is available when the consolidated policy belongs (directly or cascadingly) to an organization.",
+          "type": "string"
+        },
         "policyBundle": {
           "description": "The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
           "items": {
             "$ref": "AnalyzerOrgPolicy"
           },
           "type": "array"
+        },
+        "project": {
+          "description": "The project that this consolidated policy belongs to, in the format of projects/{PROJECT_NUMBER}. This field is available when the consolidated policy belongs to a project.",
+          "type": "string"
         }
       },
       "type": "object"

@@ -772,7 +772,7 @@
       "name": "batch",
       "version": "v1",
       "title": "Batch API",
-      "description": "An API to manage the running of batch jobs on Google Cloud Platform.",
+      "description": "An API to manage the running of batch resources on Google Cloud Platform.",
       "discoveryRestUrl": "https://batch.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -853,7 +853,22 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/bigquery/",
+      "documentationLink": "https://cloud.google.com/bigquery/docs/connections-api-intro",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "bigqueryconnection:v1",
+      "name": "bigqueryconnection",
+      "version": "v1",
+      "title": "BigQuery Connection API",
+      "description": "Allows users to manage BigQuery connections to external data sources.",
+      "discoveryRestUrl": "https://bigqueryconnection.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/bigquery/docs/connections-api-intro",
       "preferred": true
     },
     {
@@ -2181,6 +2196,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "dataportability:v1beta",
+      "name": "dataportability",
+      "version": "v1beta",
+      "title": "Data Portability API",
+      "description": "The Data Portability API lets you build applications that request authorization from a user to move a copy of data from Google services into your application. This enables data portability and facilitates switching services.",
+      "discoveryRestUrl": "https://dataportability.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/data-portability",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "dataproc:v1",
       "name": "dataproc",
       "version": "v1",
@@ -2507,6 +2537,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/display-video/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "displayvideo:v4",
+      "name": "displayvideo",
+      "version": "v4",
+      "title": "Display & Video 360 API",
+      "description": "Display & Video 360 API allows users to automate complex Display & Video 360 workflows, such as creating insertion orders and setting targeting options for individual line items.",
+      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v4",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/display-video/",
       "preferred": true
     },
     {
@@ -2514,8 +2559,8 @@
       "id": "dlp:v2",
       "name": "dlp",
       "version": "v2",
-      "title": "Cloud Data Loss Prevention (DLP)",
-      "description": "Provides methods for detection, risk analysis, and de-identification of privacy-sensitive fragments in text, images, and Google Cloud Platform storage repositories.",
+      "title": "Sensitive Data Protection (DLP)",
+      "description": "Discover and protect your sensitive data. A fully managed service designed to help you discover, classify, and protect your valuable data assets with ease.",
       "discoveryRestUrl": "https://dlp.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -6410,6 +6455,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/workload-manager/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "workspaceevents:v1",
+      "name": "workspaceevents",
+      "version": "v1",
+      "title": "Google Workspace Events API",
+      "description": "The Google Workspace Events API lets you subscribe to events and manage change notifications across Google Workspace applications.",
+      "discoveryRestUrl": "https://workspaceevents.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/workspace/events",
       "preferred": true
     },
     {

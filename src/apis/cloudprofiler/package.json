@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudprofiler",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "cloudprofiler",
   "main": "build/index.js",
   "types": "build/index.d.ts",

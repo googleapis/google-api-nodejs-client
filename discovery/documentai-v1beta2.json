@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20231116",
+  "revision": "20240126",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -4723,7 +4723,7 @@
         "documentWarehouseConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig",
           "deprecated": true,
-          "description": "Optional. Derepcated. Warehouse-based dataset configuration is not supported today."
+          "description": "Optional. Deprecated. Warehouse-based dataset configuration is not supported."
         },
         "gcsManagedConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3DatasetGCSManagedConfig",

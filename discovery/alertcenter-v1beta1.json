@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20240129",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -1140,6 +1140,41 @@
         },
         "deviceType": {
           "description": "The type of the device.",
+          "type": "string"
+        },
+        "iosVendorId": {
+          "description": "Required for iOS, empty for others.",
+          "type": "string"
+        },
+        "resourceId": {
+          "description": "The device resource ID.",
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "The serial number of the device.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceManagementRule": {
+      "description": "Alerts from Device Management Rules configured by Admin.",
+      "id": "DeviceManagementRule",
+      "properties": {
+        "deviceId": {
+          "description": "Required. The device ID.",
+          "type": "string"
+        },
+        "deviceModel": {
+          "description": "The model of the device.",
+          "type": "string"
+        },
+        "deviceType": {
+          "description": "The type of the device.",
+          "type": "string"
+        },
+        "email": {
+          "description": "The email of the user this alert was created for.",
           "type": "string"
         },
         "iosVendorId": {

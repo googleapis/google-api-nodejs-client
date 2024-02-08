@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v1.0.3...apigateway-v1.0.4) (2024-02-02)
+
+
+### Bug Fixes
+
+* **apigateway:** update the API ([6bb703f](https://github.com/googleapis/google-api-nodejs-client/commit/6bb703fa399a2517879f76a859e3c0fc854d078e))
+
 ## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v1.0.2...apigateway-v1.0.3) (2023-10-11)
 
 

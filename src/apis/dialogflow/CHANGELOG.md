@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v5.0.0...dialogflow-v5.1.0) (2024-02-02)
+
+
+### Features
+
+* **dialogflow:** update the API ([e8db16f](https://github.com/googleapis/google-api-nodejs-client/commit/e8db16f0b664a4236e1223b95ce694f53408dc28))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v4.0.0...dialogflow-v5.0.0) (2024-01-05)
 
 

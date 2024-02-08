@@ -261,7 +261,7 @@
       }
     }
   },
-  "revision": "20231113",
+  "revision": "20240118",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -350,6 +350,12 @@
       "description": "Metadata for response returned by the `SynthesizeLongAudio` method.",
       "id": "GoogleCloudTexttospeechV1beta1SynthesizeLongAudioMetadata",
       "properties": {
+        "lastUpdateTime": {
+          "deprecated": true,
+          "description": "Deprecated. Do not use.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "progressPercentage": {
           "description": "The progress of the most recent processing update in percentage, ie. 70.0%.",
           "format": "double",
@@ -476,6 +482,12 @@
       "description": "Metadata for response returned by the `SynthesizeLongAudio` method.",
       "id": "SynthesizeLongAudioMetadata",
       "properties": {
+        "lastUpdateTime": {
+          "deprecated": true,
+          "description": "Deprecated. Do not use.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "progressPercentage": {
           "description": "The progress of the most recent processing update in percentage, ie. 70.0%.",
           "format": "double",

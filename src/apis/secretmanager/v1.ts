@@ -129,7 +129,7 @@ export namespace secretmanager_v1 {
    */
   export interface Schema$AccessSecretVersionResponse {
     /**
-     * The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`.
+     * The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
      */
     name?: string | null;
     /**
@@ -203,7 +203,7 @@ export namespace secretmanager_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -464,7 +464,7 @@ export namespace secretmanager_v1 {
      */
     name?: string | null;
     /**
-     * Required. Immutable. The replication policy of the secret data attached to the Secret. The replication policy cannot be changed after the Secret has been created.
+     * Optional. Immutable. The replication policy of the secret data attached to the Secret. The replication policy cannot be changed after the Secret has been created.
      */
     replication?: Schema$Replication;
     /**
@@ -480,7 +480,7 @@ export namespace secretmanager_v1 {
      */
     ttl?: string | null;
     /**
-     * Optional. Mapping from version alias to version name. A version alias is a string with a maximum length of 63 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore ('_') characters. An alias string must start with a letter and cannot be the string 'latest' or 'NEW'. No more than 50 aliases can be assigned to a given secret. Version-Alias pairs will be viewable via GetSecret and modifiable via UpdateSecret. At launch Access by Allias will only be supported on GetSecretVersion and AccessSecretVersion.
+     * Optional. Mapping from version alias to version name. A version alias is a string with a maximum length of 63 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore ('_') characters. An alias string must start with a letter and cannot be the string 'latest' or 'NEW'. No more than 50 aliases can be assigned to a given secret. Version-Alias pairs will be viewable via GetSecret and modifiable via UpdateSecret. Access by alias is only be supported on GetSecretVersion and AccessSecretVersion.
      */
     versionAliases?: {[key: string]: string} | null;
   }
@@ -602,8 +602,10 @@ export namespace secretmanager_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    secrets: Resource$Projects$Locations$Secrets;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.secrets = new Resource$Projects$Locations$Secrets(this.context);
     }
 
     /**
@@ -810,6 +812,1542 @@ export namespace secretmanager_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Secrets {
+    context: APIRequestContext;
+    versions: Resource$Projects$Locations$Secrets$Versions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.versions = new Resource$Projects$Locations$Secrets$Versions(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a new SecretVersion containing secret data and attaches it to an existing Secret.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addVersion(
+      params: Params$Resource$Projects$Locations$Secrets$Addversion,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addVersion(
+      params?: Params$Resource$Projects$Locations$Secrets$Addversion,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecretVersion>;
+    addVersion(
+      params: Params$Resource$Projects$Locations$Secrets$Addversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addVersion(
+      params: Params$Resource$Projects$Locations$Secrets$Addversion,
+      options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    addVersion(
+      params: Params$Resource$Projects$Locations$Secrets$Addversion,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    addVersion(callback: BodyResponseCallback<Schema$SecretVersion>): void;
+    addVersion(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Addversion
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Addversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Addversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:addVersion').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecretVersion>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new Secret containing no SecretVersions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Secrets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Secrets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Secret>;
+    create(
+      params: Params$Resource$Projects$Locations$Secrets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Secrets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Secrets$Create,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Secret>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Create
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/secrets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Secret>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Secret.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Secrets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Secrets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Secrets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Secrets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Secrets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets metadata for a given Secret.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Secrets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Secret>;
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Get,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Secret>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Get
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Secret>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+
+    /**
+     * Gets the access control policy for a secret. Returns empty policy if the secret exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists Secrets.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Secrets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Secrets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSecretsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Secrets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Secrets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSecretsResponse>,
+      callback: BodyResponseCallback<Schema$ListSecretsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Secrets$List,
+      callback: BodyResponseCallback<Schema$ListSecretsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSecretsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$List
+        | BodyResponseCallback<Schema$ListSecretsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSecretsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSecretsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSecretsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/secrets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSecretsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSecretsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates metadata of an existing Secret.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Secrets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Secrets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Secret>;
+    patch(
+      params: Params$Resource$Projects$Locations$Secrets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Secrets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Secrets$Patch,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Secret>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Patch
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Secret>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified secret. Replaces any existing policy. Permissions on SecretVersions are enforced according to the policy set on the associated Secret.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has for the specified secret. If the secret does not exist, this call returns an empty set of permissions, not a NOT_FOUND error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Secrets$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Secrets$Addversion
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddSecretVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the project to associate with the Secret, in the format `projects/x` or `projects/x/locations/x`.
+     */
+    parent?: string;
+    /**
+     * Required. This must be unique within the project. A secret ID is a string with a maximum length of 255 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore (`_`) characters.
+     */
+    secretId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Secret;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Delete
+    extends StandardParameters {
+    /**
+     * Optional. Etag of the Secret. The request succeeds if it matches the etag of the currently stored secret object. If the etag is omitted, the request succeeds.
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the Secret to delete in the format `projects/x/secrets/x`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Secret, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter string, adhering to the rules in [List-operation filtering](https://cloud.google.com/secret-manager/docs/filtering). List only secrets matching the filter. If filter is empty, all secrets are listed.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Pagination token, returned earlier via ListSecretsResponse.next_page_token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the project associated with the Secrets, in the format `projects/x` or `projects/x/locations/x`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the Secret in the format `projects/x/secrets/x`.
+     */
+    name?: string;
+    /**
+     * Required. Specifies the fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Secret;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Secrets$Versions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Accesses a SecretVersion. This call returns the secret data. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    access(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Access,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    access(
+      params?: Params$Resource$Projects$Locations$Secrets$Versions$Access,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSecretVersionResponse>;
+    access(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Access,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    access(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Access,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSecretVersionResponse>,
+      callback: BodyResponseCallback<Schema$AccessSecretVersionResponse>
+    ): void;
+    access(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Access,
+      callback: BodyResponseCallback<Schema$AccessSecretVersionResponse>
+    ): void;
+    access(
+      callback: BodyResponseCallback<Schema$AccessSecretVersionResponse>
+    ): void;
+    access(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Versions$Access
+        | BodyResponseCallback<Schema$AccessSecretVersionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSecretVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSecretVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSecretVersionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Versions$Access;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Secrets$Versions$Access;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:access').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSecretVersionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSecretVersionResponse>(parameters);
+      }
+    }
+
+    /**
+     * Destroys a SecretVersion. Sets the state of the SecretVersion to DESTROYED and irrevocably destroys the secret data.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    destroy(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    destroy(
+      params?: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecretVersion>;
+    destroy(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    destroy(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
+      options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    destroy(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    destroy(callback: BodyResponseCallback<Schema$SecretVersion>): void;
+    destroy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Versions$Destroy
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Versions$Destroy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Secrets$Versions$Destroy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:destroy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecretVersion>(parameters);
+      }
+    }
+
+    /**
+     * Disables a SecretVersion. Sets the state of the SecretVersion to DISABLED.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disable(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    disable(
+      params?: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecretVersion>;
+    disable(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disable(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
+      options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    disable(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    disable(callback: BodyResponseCallback<Schema$SecretVersion>): void;
+    disable(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Versions$Disable
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Versions$Disable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Secrets$Versions$Disable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:disable').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecretVersion>(parameters);
+      }
+    }
+
+    /**
+     * Enables a SecretVersion. Sets the state of the SecretVersion to ENABLED.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enable(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enable(
+      params?: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecretVersion>;
+    enable(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enable(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
+      options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    enable(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    enable(callback: BodyResponseCallback<Schema$SecretVersion>): void;
+    enable(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Versions$Enable
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Versions$Enable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Secrets$Versions$Enable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:enable').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecretVersion>(parameters);
+      }
+    }
+
+    /**
+     * Gets metadata for a SecretVersion. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Secrets$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecretVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$Get,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SecretVersion>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Versions$Get
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Versions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecretVersion>(parameters);
+      }
+    }
+
+    /**
+     * Lists SecretVersions. This call does not return secret data.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Secrets$Versions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSecretVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListSecretVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Secrets$Versions$List,
+      callback: BodyResponseCallback<Schema$ListSecretVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSecretVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Versions$List
+        | BodyResponseCallback<Schema$ListSecretVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSecretVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSecretVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSecretVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Versions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSecretVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSecretVersionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Secrets$Versions$Access
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` or `projects/x/locations/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Versions$Destroy
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the SecretVersion to destroy in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DestroySecretVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Versions$Disable
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the SecretVersion to disable in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisableSecretVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Versions$Enable
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the SecretVersion to enable in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnableSecretVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Versions$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` or `projects/x/locations/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Versions$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter string, adhering to the rules in [List-operation filtering](https://cloud.google.com/secret-manager/docs/filtering). List only secret versions matching the filter. If filter is empty, all secret versions are listed.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Pagination token, returned earlier via ListSecretVersionsResponse.next_page_token][].
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Secret associated with the SecretVersions to list, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Secrets {
@@ -1617,7 +3155,7 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Addversion
     extends StandardParameters {
     /**
-     * Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x`.
+     * Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
      */
     parent?: string;
 
@@ -1629,7 +3167,7 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Create
     extends StandardParameters {
     /**
-     * Required. The resource name of the project to associate with the Secret, in the format `projects/x`.
+     * Required. The resource name of the project to associate with the Secret, in the format `projects/x` or `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -1656,7 +3194,7 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Secret, in the format `projects/x/secrets/x`.
+     * Required. The resource name of the Secret, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
      */
     name?: string;
   }
@@ -1686,7 +3224,7 @@ export namespace secretmanager_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the project associated with the Secrets, in the format `projects/x`.
+     * Required. The resource name of the project associated with the Secrets, in the format `projects/x` or `projects/x/locations/x`
      */
     parent?: string;
   }
@@ -2274,14 +3812,14 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Versions$Access
     extends StandardParameters {
     /**
-     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` or `projects/x/locations/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Secrets$Versions$Destroy
     extends StandardParameters {
     /**
-     * Required. The resource name of the SecretVersion to destroy in the format `projects/x/secrets/x/versions/x`.
+     * Required. The resource name of the SecretVersion to destroy in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
      */
     name?: string;
 
@@ -2293,7 +3831,7 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Versions$Disable
     extends StandardParameters {
     /**
-     * Required. The resource name of the SecretVersion to disable in the format `projects/x/secrets/x/versions/x`.
+     * Required. The resource name of the SecretVersion to disable in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
      */
     name?: string;
 
@@ -2305,7 +3843,7 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Versions$Enable
     extends StandardParameters {
     /**
-     * Required. The resource name of the SecretVersion to enable in the format `projects/x/secrets/x/versions/x`.
+     * Required. The resource name of the SecretVersion to enable in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
      */
     name?: string;
 
@@ -2317,7 +3855,7 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Versions$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` or `projects/x/locations/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
      */
     name?: string;
   }
@@ -2336,7 +3874,7 @@ export namespace secretmanager_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Secret associated with the SecretVersions to list, in the format `projects/x/secrets/x`.
+     * Required. The resource name of the Secret associated with the SecretVersions to list, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
      */
     parent?: string;
   }

@@ -2015,7 +2015,7 @@
       }
     }
   },
-  "revision": "20240101",
+  "revision": "20240201",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2126,6 +2126,128 @@
         "deviceUser": {
           "$ref": "DeviceUser",
           "description": "Resultant DeviceUser object for the action."
+        }
+      },
+      "type": "object"
+    },
+    "BrowserAttributes": {
+      "description": "Contains information about browser profiles reported by the Endpoint Verification extension.",
+      "id": "BrowserAttributes",
+      "properties": {
+        "chromeBrowserInfo": {
+          "$ref": "BrowserInfo",
+          "description": "Represents the current state of the [Chrome browser attributes](https://cloud.google.com/access-context-manager/docs/browser-attributes) sent by the Endpoint Verification extension."
+        },
+        "chromeProfileId": {
+          "description": "Chrome profile ID that is exposed by the Chrome API. It is unique for each device.",
+          "type": "string"
+        },
+        "lastProfileSyncTime": {
+          "description": "Timestamp in milliseconds since Epoch when the profile/gcm id was last synced.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BrowserInfo": {
+      "description": "Browser-specific fields reported by the Endpoint Verification extension. See go/additionalattributesdesign and go/caa-webprotect-attributes-extension LINT.IfChange",
+      "id": "BrowserInfo",
+      "properties": {
+        "browserManagementState": {
+          "description": "Output only. Browser's management state.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNMANAGED",
+            "MANAGED_BY_OTHER_DOMAIN",
+            "PROFILE_MANAGED",
+            "BROWSER_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Management state is not specified.",
+            "Browser/Profile is not managed by any customer.",
+            "Browser/Profile is managed, but by some other customer.",
+            "Profile is managed by customer.",
+            "Browser is managed by customer."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "browserVersion": {
+          "description": "Version of the request initiating browser.",
+          "type": "string"
+        },
+        "isBuiltInDnsClientEnabled": {
+          "description": "Current state of [built-in DNS client](https://chromeenterprise.google/policies/#BuiltInDnsClientEnabled).",
+          "type": "boolean"
+        },
+        "isBulkDataEntryAnalysisEnabled": {
+          "description": "Current state of [bulk data analysis](https://chromeenterprise.google/policies/#OnBulkDataEntryEnterpriseConnector). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isChromeCleanupEnabled": {
+          "description": "Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).",
+          "type": "boolean"
+        },
+        "isChromeRemoteDesktopAppBlocked": {
+          "description": "Current state of [Chrome Remote Desktop app](https://chromeenterprise.google/policies/#URLBlocklist).",
+          "type": "boolean"
+        },
+        "isFileDownloadAnalysisEnabled": {
+          "description": "Current state of [file download analysis](https://chromeenterprise.google/policies/#OnFileDownloadedEnterpriseConnector). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isFileUploadAnalysisEnabled": {
+          "description": "Current state of [file upload analysis](https://chromeenterprise.google/policies/#OnFileAttachedEnterpriseConnector). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isRealtimeUrlCheckEnabled": {
+          "description": "Current state of [real-time URL check](https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isSecurityEventAnalysisEnabled": {
+          "description": "Current state of [security event analysis](https://chromeenterprise.google/policies/#OnSecurityEventEnterpriseConnector). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isSiteIsolationEnabled": {
+          "description": "Current state of [site isolation](https://chromeenterprise.google/policies/?policy=IsolateOrigins).",
+          "type": "boolean"
+        },
+        "isThirdPartyBlockingEnabled": {
+          "description": "Current state of [third-party blocking](https://chromeenterprise.google/policies/#ThirdPartyBlockingEnabled).",
+          "type": "boolean"
+        },
+        "passwordProtectionWarningTrigger": {
+          "description": "Current state of [password protection trigger](https://chromeenterprise.google/policies/#PasswordProtectionWarningTrigger).",
+          "enum": [
+            "PASSWORD_PROTECTION_TRIGGER_UNSPECIFIED",
+            "PROTECTION_OFF",
+            "PASSWORD_REUSE",
+            "PHISHING_REUSE"
+          ],
+          "enumDescriptions": [
+            "Password protection is not specified.",
+            "Password reuse is never detected.",
+            "Warning is shown when the user reuses their protected password on a non-allowed site.",
+            "Warning is shown when the user reuses their protected password on a phishing site."
+          ],
+          "type": "string"
+        },
+        "safeBrowsingProtectionLevel": {
+          "description": "Current state of [Safe Browsing protection level](https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel).",
+          "enum": [
+            "SAFE_BROWSING_LEVEL_UNSPECIFIED",
+            "DISABLED",
+            "STANDARD",
+            "ENHANCED"
+          ],
+          "enumDescriptions": [
+            "Browser protection level is not specified.",
+            "No protection against dangerous websites, downloads, and extensions.",
+            "Standard protection against websites, downloads, and extensions that are known to be dangerous.",
+            "Faster, proactive protection against dangerous websites, downloads, and extensions."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2580,7 +2702,7 @@
         },
         "endpointVerificationSpecificAttributes": {
           "$ref": "EndpointVerificationSpecificAttributes",
-          "description": "Output only. Attributes specific to Endpoint Verification devices.",
+          "description": "Output only. Attributes specific to [Endpoint Verification](https://cloud.google.com/endpoint-verification/docs/overview) devices.",
           "readOnly": true
         },
         "hostname": {
@@ -2879,9 +3001,24 @@
       "type": "object"
     },
     "EndpointVerificationSpecificAttributes": {
-      "description": "Resource representing the Endpoint Verification-specific attributes of a Device. https://cloud.google.com/endpoint-verification/docs/overview",
+      "description": "Resource representing the [Endpoint Verification-specific attributes](https://cloud.google.com/endpoint-verification/docs/device-information) of a device.",
       "id": "EndpointVerificationSpecificAttributes",
       "properties": {
+        "additionalSignals": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional signals reported by Endpoint Verification. It includes the following attributes: 1. Non-configurable attributes: hotfixes, av_installed, av_enabled, windows_domain_name, is_os_native_firewall_enabled, and is_secure_boot_enabled. 2. Configurable attributes: file_config, registry_config, and plist_config.",
+          "type": "object"
+        },
+        "browserAttributes": {
+          "description": "Details of browser profiles reported by Endpoint Verification.",
+          "items": {
+            "$ref": "BrowserAttributes"
+          },
+          "type": "array"
+        },
         "certificateAttributes": {
           "description": "Details of certificates.",
           "items": {

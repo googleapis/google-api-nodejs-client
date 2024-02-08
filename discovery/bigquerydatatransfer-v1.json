@@ -343,6 +343,35 @@
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/cloud-platform.read-only"
               ]
+            },
+            "unenrollDataSources": {
+              "description": "Unenroll data sources in a user project. This allows users to remove transfer configurations for these data sources. They will no longer appear in the ListDataSources RPC and will also no longer appear in the [BigQuery UI](https://console.cloud.google.com/bigquery).",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:unenrollDataSources",
+              "httpMethod": "POST",
+              "id": "bigquerydatatransfer.projects.locations.unenrollDataSources",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The name of the project resource in the form: `projects/{project_id}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:unenrollDataSources",
+              "request": {
+                "$ref": "UnenrollDataSourcesRequest"
+              },
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
           "resources": {
@@ -1342,7 +1371,7 @@
       }
     }
   },
-  "revision": "20230905",
+  "revision": "20240130",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {
@@ -2121,6 +2150,20 @@
           "description": "Deprecated. Unique ID of the user on whose behalf transfer is done.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UnenrollDataSourcesRequest": {
+      "description": "A request to unenroll a set of data sources so they are no longer visible in the BigQuery UI's `Transfer` tab.",
+      "id": "UnenrollDataSourcesRequest",
+      "properties": {
+        "dataSourceIds": {
+          "description": "Data sources that are unenrolled. It is required to provide at least one data source id.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

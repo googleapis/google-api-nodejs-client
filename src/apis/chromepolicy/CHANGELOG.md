@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v9.0.0...chromepolicy-v9.1.0) (2024-02-02)
+
+
+### Features
+
+* **chromepolicy:** update the API ([57109aa](https://github.com/googleapis/google-api-nodejs-client/commit/57109aabfc88521583898cc475a99367c24d5135))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v8.0.1...chromepolicy-v9.0.0) (2024-01-05)
 
 

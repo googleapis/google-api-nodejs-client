@@ -481,7 +481,7 @@ export namespace paymentsresellersubscription_v1 {
     startTime?: string | null;
   }
   /**
-   * A Subscription resource managed by 3P Partners.
+   * A subscription serves as a central billing entity between an external partner and Google. The underlying Google services rely on the subscription state to grant or revoke the user's service entitlement. It's important to note that the subscription state may not always perfectly align with the user's service entitlement. For example, some Google services may continue providing access to the user until the current billing cycle ends, even if the subscription has been immediately canceled. However, other services may not do the same. To fully understand the specific details, please consult the relevant contract or product policy.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription {
     /**
@@ -700,6 +700,10 @@ export namespace paymentsresellersubscription_v1 {
      * The list of eligibility_ids which are applicable for the line item.
      */
     partnerEligibilityIds?: string[] | null;
+    /**
+     * Optional. Specifies the plan type offered to the end user by the partner.
+     */
+    partnerPlanType?: string | null;
   }
   /**
    * Localized variant of a text in a particular language.

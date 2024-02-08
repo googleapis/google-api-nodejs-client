@@ -205,7 +205,7 @@ export namespace cloudbilling_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -1260,7 +1260,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Create
     extends StandardParameters {
     /**
-     * Optional. The parent to create a billing account from. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
+     * Optional. The parent to create a billing account from. Format: - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string;
 
@@ -1669,7 +1669,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Subaccounts$Create
     extends StandardParameters {
     /**
-     * Optional. The parent to create a billing account from. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
+     * Optional. The parent to create a billing account from. Format: - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string;
 
@@ -1987,7 +1987,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Organizations$Billingaccounts$Create
     extends StandardParameters {
     /**
-     * Optional. The parent to create a billing account from. Format: - `organizations/{organization_id\}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
+     * Optional. The parent to create a billing account from. Format: - `billingAccounts/{billing_account_id\}`, for example, `billingAccounts/012345-567890-ABCDEF`
      */
     parent?: string;
 

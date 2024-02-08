@@ -286,6 +286,8 @@
     "src/apis/looker": {},
     "src/apis/bigquerydatapolicy": {},
     "src/apis/walletobjects": {},
-    "src/apis/apphub": {}
+    "src/apis/apphub": {},
+    "src/apis/dataportability": {},
+    "src/apis/workspaceevents": {}
   }
 }

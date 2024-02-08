@@ -392,7 +392,7 @@
                   ]
                 },
                 "getJwks": {
-                  "description": "Gets the public component of the cluster signing keys in JSON Web Key format. This API is not yet intended for general use, and is not available for all clusters.",
+                  "description": "Gets the public component of the cluster signing keys in JSON Web Key format.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/jwks",
                   "httpMethod": "GET",
                   "id": "container.projects.locations.clusters.getJwks",
@@ -1133,7 +1133,7 @@
                 "well-known": {
                   "methods": {
                     "getOpenid-configuration": {
-                      "description": "Gets the OIDC discovery document for the cluster. See the [OpenID Connect Discovery 1.0 specification](https://openid.net/specs/openid-connect-discovery-1_0.html) for details. This API is not yet intended for general use, and is not available for all clusters.",
+                      "description": "Gets the OIDC discovery document for the cluster. See the [OpenID Connect Discovery 1.0 specification](https://openid.net/specs/openid-connect-discovery-1_0.html) for details.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/.well-known/openid-configuration",
                       "httpMethod": "GET",
                       "id": "container.projects.locations.clusters.well-known.getOpenid-configuration",
@@ -2565,7 +2565,7 @@
       }
     }
   },
-  "revision": "20231201",
+  "revision": "20240117",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2716,6 +2716,10 @@
         "networkPolicyConfig": {
           "$ref": "NetworkPolicyConfig",
           "description": "Configuration for NetworkPolicy. This only tracks whether the addon is enabled or not on the Master, it does not track whether network policy is enabled for the nodes."
+        },
+        "statefulHaConfig": {
+          "$ref": "StatefulHAConfig",
+          "description": "Optional. Configuration for the StatefulHA add-on."
         }
       },
       "type": "object"
@@ -2799,7 +2803,8 @@
       "properties": {
         "conversionStatus": {
           "$ref": "AutopilotConversionStatus",
-          "description": "ConversionStatus shows conversion status."
+          "description": "Output only. ConversionStatus shows conversion status.",
+          "readOnly": true
         },
         "enabled": {
           "description": "Enable Autopilot",
@@ -7389,6 +7394,17 @@
           "deprecated": true,
           "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StatefulHAConfig": {
+      "description": "Configuration for the Stateful HA add-on.",
+      "id": "StatefulHAConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the Stateful HA add-on is enabled for this cluster.",
+          "type": "boolean"
         }
       },
       "type": "object"

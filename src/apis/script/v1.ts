@@ -137,10 +137,6 @@ export namespace script_v1 {
      */
     files?: Schema$File[];
     /**
-     * Set to true if called from revert flume to allow deletion of system generated manifest file while validating content request. This value is false by default.
-     */
-    revertFlumeInvoked?: boolean | null;
-    /**
      * The script project's Drive ID.
      */
     scriptId?: string | null;

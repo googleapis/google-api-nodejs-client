@@ -632,6 +632,10 @@ export namespace speech_v1p1beta1 {
      * When available, billed audio seconds for the corresponding request.
      */
     totalBilledTime?: string | null;
+    /**
+     * Whether request used legacy asr models (was not automatically migrated to use conformer models).
+     */
+    usingLegacyModels?: boolean | null;
   }
   /**
    * Config to enable speaker diarization.

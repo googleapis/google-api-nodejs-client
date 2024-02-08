@@ -1686,7 +1686,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240128",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1CostProjection": {
@@ -2203,6 +2203,13 @@
         "stateInfo": {
           "$ref": "GoogleCloudRecommenderV1RecommendationStateInfo",
           "description": "Information for state. Contains state and metadata."
+        },
+        "targetResources": {
+          "description": "Fully qualified resource names that this recommendation is targeting.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "xorGroupId": {
           "description": "Corresponds to a mutually exclusive group ID within a recommender. A non-empty ID indicates that the recommendation belongs to a mutually exclusive group. This means that only one recommendation within the group is suggested to be applied.",

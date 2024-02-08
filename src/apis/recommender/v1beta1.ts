@@ -135,6 +135,44 @@ export namespace recommender_v1beta1 {
   }
 
   /**
+   * The response message for Locations.ListLocations.
+   */
+  export interface Schema$GoogleCloudLocationListLocationsResponse {
+    /**
+     * A list of locations that matches the specified filter in the request.
+     */
+    locations?: Schema$GoogleCloudLocationLocation[];
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * A resource that represents a Google Cloud location.
+   */
+  export interface Schema$GoogleCloudLocationLocation {
+    /**
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
+     */
+    displayName?: string | null;
+    /**
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The canonical id for this location. For example: `"us-east1"`.
+     */
+    locationId?: string | null;
+    /**
+     * Service-specific metadata. For example the available capacity at the given location.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
+     */
+    name?: string | null;
+  }
+  /**
    * Contains metadata about how much money a recommendation can save or incur.
    */
   export interface Schema$GoogleCloudRecommenderV1beta1CostProjection {
@@ -702,6 +740,122 @@ export namespace recommender_v1beta1 {
         this.context
       );
     }
+
+    /**
+     * Lists locations with recommendations or insights.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$List
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Locations$List
+    extends StandardParameters {
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If not set, the service selects a default.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Billingaccounts$Locations$Insighttypes {
@@ -2177,6 +2331,122 @@ export namespace recommender_v1beta1 {
         this.context
       );
     }
+
+    /**
+     * Lists locations with recommendations or insights.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>;
+    list(
+      params: Params$Resource$Folders$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$List
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$List
+    extends StandardParameters {
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If not set, the service selects a default.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Folders$Locations$Insighttypes {
@@ -3334,6 +3604,122 @@ export namespace recommender_v1beta1 {
         this.context
       );
     }
+
+    /**
+     * Lists locations with recommendations or insights.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$List
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$List
+    extends StandardParameters {
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If not set, the service selects a default.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Organizations$Locations$Insighttypes {
@@ -4809,6 +5195,122 @@ export namespace recommender_v1beta1 {
         this.context
       );
     }
+
+    /**
+     * Lists locations with recommendations or insights.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If not set, the service selects a default.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Projects$Locations$Insighttypes {

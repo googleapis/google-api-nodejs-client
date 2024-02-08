@@ -260,7 +260,7 @@ export namespace metastore_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of members, or principals. For example, roles/viewer, roles/editor, or roles/owner.
+     * Role that is assigned to the list of members, or principals. For example, roles/viewer, roles/editor, or roles/owner.For an overview of the IAM roles and permissions, see the IAM documentation (https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see here (https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -870,7 +870,7 @@ export namespace metastore_v1 {
    */
   export interface Schema$RestoreServiceRequest {
     /**
-     * Required. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
+     * Optional. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}. Mutually exclusive with backup_location, and exactly one of the two must be set.
      */
     backup?: string | null;
     /**

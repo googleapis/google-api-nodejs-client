@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/run-v14.1.0...run-v14.1.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* **run:** update the API ([d6e4c9e](https://github.com/googleapis/google-api-nodejs-client/commit/d6e4c9edd6aa66a3c2d4f13acb6ad45a0ac14218))
+
 ## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v14.0.0...run-v14.1.0) (2024-01-03)
 
 

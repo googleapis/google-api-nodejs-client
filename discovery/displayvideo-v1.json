@@ -8146,7 +8146,7 @@
       }
     }
   },
-  "revision": "20240104",
+  "revision": "20240201",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8416,7 +8416,7 @@
           "type": "string"
         },
         "obaComplianceDisabled": {
-          "description": "Whether or not to use DV360's Online Behavioral Advertising (OBA) compliance. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.",
+          "description": "Whether or not to use DV360's Online Behavioral Advertising (OBA) compliance. Starting on February 9, 2024, this field will be affected by an update to the Display & Video 360 API Terms of Service. See our [announcement](//ads-developers.googleblog.com/2024/01/update-to-display-video-360-api-terms.html) for more detail. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.",
           "type": "boolean"
         },
         "videoCreativeDataSharingAuthorized": {
@@ -10226,6 +10226,15 @@
           "format": "int64",
           "type": "string"
         },
+        "cmAdvertiserIds": {
+          "description": "Output only. The set of CM360 Advertiser IDs sharing the CM360 Floodlight configuration.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "cmFloodlightConfigId": {
           "description": "Required. Immutable. ID of the CM360 Floodlight configuration linked with the DV360 advertiser.",
           "format": "int64",
@@ -10337,7 +10346,7 @@
             "CONSENT_STATUS_DENIED"
           ],
           "enumDescriptions": [
-            "Not specified.",
+            "Type value is not specified or is unknown in this version.",
             "Consent is granted.",
             "Consent is denied."
           ],
@@ -10351,7 +10360,7 @@
             "CONSENT_STATUS_DENIED"
           ],
           "enumDescriptions": [
-            "Not specified.",
+            "Type value is not specified or is unknown in this version.",
             "Consent is granted.",
             "Consent is denied."
           ],
@@ -10406,7 +10415,7 @@
       "properties": {
         "consent": {
           "$ref": "Consent",
-          "description": "Input only. The consent setting for the users in contact_infos."
+          "description": "Input only. The consent setting for the users in contact_infos. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error."
         },
         "contactInfos": {
           "description": "A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.",
@@ -16406,7 +16415,7 @@
       "properties": {
         "consent": {
           "$ref": "Consent",
-          "description": "Input only. The consent setting for the users in mobile_device_ids."
+          "description": "Input only. The consent setting for the users in mobile_device_ids. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error."
         },
         "mobileDeviceIds": {
           "description": "A list of mobile device IDs defining Customer Match audience members. The size of mobile_device_ids mustn't be greater than 500,000.",

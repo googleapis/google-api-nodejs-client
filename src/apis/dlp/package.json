@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/dlp",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "dlp",
   "main": "build/index.js",
   "types": "build/index.d.ts",

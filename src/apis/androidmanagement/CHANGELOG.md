@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v13.0.0...androidmanagement-v13.1.0) (2024-02-02)
+
+
+### Features
+
+* **androidmanagement:** update the API ([80c827b](https://github.com/googleapis/google-api-nodejs-client/commit/80c827b2ff5530fd12d5d3f92a880b27857604af))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v12.0.1...androidmanagement-v13.0.0) (2024-01-05)
 
 

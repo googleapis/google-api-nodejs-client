@@ -848,7 +848,7 @@
       }
     }
   },
-  "revision": "20231108",
+  "revision": "20240125",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -919,14 +919,14 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -1051,7 +1051,7 @@
           "enumDescriptions": [
             "The contact privacy settings are undefined.",
             "All the data from `ContactSettings` is publicly available. When setting this option, you must also provide a `PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT` in the `contact_notices` field of the request.",
-            "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
+            "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
             "The organization name (if provided) and limited non-identifying data from `ContactSettings` is available to the public (e.g. country and state). The remaining data is marked as `REDACTED FOR PRIVACY` in the WHOIS database. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
           ],
           "type": "string"
@@ -1106,7 +1106,7 @@
         "googleDomainsDns": {
           "$ref": "GoogleDomainsDns",
           "deprecated": true,
-          "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) The free DNS zone provided by [Google Domains](https://domains.google/)."
+          "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). The free DNS zone provided by [Google Domains](https://domains.google/)."
         }
       },
       "type": "object"
@@ -1226,7 +1226,7 @@
     },
     "ExportRegistrationRequest": {
       "deprecated": true,
-      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Request for the `ExportRegistration` method.",
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Request for the `ExportRegistration` method.",
       "id": "ExportRegistrationRequest",
       "properties": {},
       "type": "object"
@@ -1281,7 +1281,7 @@
     },
     "GoogleDomainsDns": {
       "deprecated": true,
-      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Configuration for using the free DNS zone provided by Google Domains as a `Registration`'s `dns_provider`. You cannot configure the DNS zone itself using the API. To configure the DNS zone, go to [Google Domains](https://domains.google/).",
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Configuration for using the free DNS zone provided by Google Domains as a `Registration`'s `dns_provider`. You cannot configure the DNS zone itself using the API. To configure the DNS zone, go to [Google Domains](https://domains.google/).",
       "id": "GoogleDomainsDns",
       "properties": {
         "dsRecords": {
@@ -1319,7 +1319,7 @@
     },
     "ImportDomainRequest": {
       "deprecated": true,
-      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Request for the `ImportDomain` method.",
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Request for the `ImportDomain` method.",
       "id": "ImportDomainRequest",
       "properties": {
         "domainName": {
@@ -1429,7 +1429,7 @@
       "id": "ManagementSettings",
       "properties": {
         "preferredRenewalMethod": {
-          "description": "Optional. The desired renewal method for this `Registration`. The actual `renewal_method` is automatically updated to reflect this choice. If unset or equal to `RENEWAL_METHOD_UNSPECIFIED`, it will be treated as if it were set to `AUTOMATIC_RENEWAL`. Can't be set to `RENEWAL_DISABLED` during resource creation and can only be updated when the `Registration` resource has state `ACTIVE` or `SUSPENDED`. When `preferred_renewal_method` is set to `AUTOMATIC_RENEWAL` the actual `renewal_method` can be set to `RENEWAL_DISABLED` in case of e.g. problems with the Billing Account or reported domain abuse. In such cases check the `issues` field on the `Registration`. After the problem is resolved the `renewal_method` will be automatically updated to `preferred_renewal_method` in a few hours.",
+          "description": "Optional. The desired renewal method for this `Registration`. The actual `renewal_method` is automatically updated to reflect this choice. If unset or equal to `RENEWAL_METHOD_UNSPECIFIED`, the actual `renewalMethod` is treated as if it were set to `AUTOMATIC_RENEWAL`. You cannot use `RENEWAL_DISABLED` during resource creation, and you can update the renewal status only when the `Registration` resource has state `ACTIVE` or `SUSPENDED`. When `preferred_renewal_method` is set to `AUTOMATIC_RENEWAL`, the actual `renewal_method` can be set to `RENEWAL_DISABLED` in case of problems with the billing account or reported domain abuse. In such cases, check the `issues` field on the `Registration`. After the problem is resolved, the `renewal_method` is automatically updated to `preferred_renewal_method` in a few hours.",
           "enum": [
             "RENEWAL_METHOD_UNSPECIFIED",
             "AUTOMATIC_RENEWAL",
@@ -1445,13 +1445,13 @@
           "enumDescriptions": [
             "The renewal method is undefined.",
             "The domain is automatically renewed each year.",
-            "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) This option was never used. Use RENEWAL_DISABLED instead.",
+            "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). This option was never used. Use `RENEWAL_DISABLED` instead.",
             "The domain won't be renewed and will expire at its expiration time."
           ],
           "type": "string"
         },
         "renewalMethod": {
-          "description": "Output only. The actual renewal method for this `Registration`. When `preferred_renewal_method` is set to `AUTOMATIC_RENEWAL` the actual `renewal_method` can be equal to `RENEWAL_DISABLED` in case of e.g. problems with the Billing Account or reported domain abuse. In such cases check the `issues` field on the `Registration`. After the problem is resolved the `renewal_method` will be automatically updated to `preferred_renewal_method` in a few hours.",
+          "description": "Output only. The actual renewal method for this `Registration`. When `preferred_renewal_method` is set to `AUTOMATIC_RENEWAL`, the actual `renewal_method` can be equal to `RENEWAL_DISABLED`—for example, when there are problems with the billing account or reported domain abuse. In such cases, check the `issues` field on the `Registration`. After the problem is resolved, the `renewal_method` is automatically updated to `preferred_renewal_method` in a few hours.",
           "enum": [
             "RENEWAL_METHOD_UNSPECIFIED",
             "AUTOMATIC_RENEWAL",
@@ -1467,7 +1467,7 @@
           "enumDescriptions": [
             "The renewal method is undefined.",
             "The domain is automatically renewed each year.",
-            "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) This option was never used. Use RENEWAL_DISABLED instead.",
+            "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). This option was never used. Use `RENEWAL_DISABLED` instead.",
             "The domain won't be renewed and will expire at its expiration time."
           ],
           "readOnly": true,
@@ -1776,7 +1776,7 @@
             "enumDescriptions": [
               "The contact privacy settings are undefined.",
               "All the data from `ContactSettings` is publicly available. When setting this option, you must also provide a `PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT` in the `contact_notices` field of the request.",
-              "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
+              "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
               "The organization name (if provided) and limited non-identifying data from `ContactSettings` is available to the public (e.g. country and state). The remaining data is marked as `REDACTED FOR PRIVACY` in the WHOIS database. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
             ],
             "type": "string"
@@ -1831,7 +1831,7 @@
               "The issue is undefined.",
               "Contact the Cloud Support team to resolve a problem with this domain.",
               "[ICANN](https://icann.org/) requires verification of the email address in the `Registration`'s `contact_settings.registrant_contact` field. To verify the email address, follow the instructions in the email the `registrant_contact` receives following registration. If you do not complete email verification within 15 days of registration, the domain is suspended. To resend the verification email, call ConfigureContactSettings and provide the current `registrant_contact.email`.",
-              "Billing account is not in good standing. The domain will not automatically renew at its expiration time unless you resolve problems with your billing account."
+              "The billing account is not in good standing. The domain is not automatically renewed at its expiration time unless you resolve problems with your billing account."
             ],
             "type": "string"
           },
@@ -1909,7 +1909,7 @@
             "The domain is being transferred from another registrar to Cloud Domains.",
             "The attempt to transfer the domain from another registrar to Cloud Domains failed. You can delete resources in this state and retry the transfer.",
             "The domain is being imported from Google Domains to Cloud Domains.",
-            "The domain is registered and operational. The domain renews automatically as long as it remains in this state and the RenewalMethod is set to AUTOMATIC_RENEWAL.",
+            "The domain is registered and operational. The domain renews automatically as long as it remains in this state and the `RenewalMethod` is set to `AUTOMATIC_RENEWAL`.",
             "The domain is suspended and inoperative. For more details, see the `issues` field.",
             "The domain is no longer managed with Cloud Domains. It may have been transferred to another registrar or exported for management in [Google Domains](https://domains.google/). You can no longer update it with this API, and information shown about it may be stale. Domains in this state are not automatically renewed by Cloud Domains.",
             "The domain is expired."
@@ -1935,7 +1935,7 @@
             "enumDescriptions": [
               "The contact privacy settings are undefined.",
               "All the data from `ContactSettings` is publicly available. When setting this option, you must also provide a `PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT` in the `contact_notices` field of the request.",
-              "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
+              "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
               "The organization name (if provided) and limited non-identifying data from `ContactSettings` is available to the public (e.g. country and state). The remaining data is marked as `REDACTED FOR PRIVACY` in the WHOIS database. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
             ],
             "type": "string"
@@ -1945,7 +1945,7 @@
         },
         "transferFailureReason": {
           "deprecated": true,
-          "description": "Output only. Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) The reason the domain transfer failed. Only set for domains in TRANSFER_FAILED state.",
+          "description": "Output only. Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). The reason the domain transfer failed. Only set for domains in TRANSFER_FAILED state.",
           "enum": [
             "TRANSFER_FAILURE_REASON_UNSPECIFIED",
             "TRANSFER_FAILURE_REASON_UNKNOWN",
@@ -1986,7 +1986,7 @@
     },
     "RetrieveImportableDomainsResponse": {
       "deprecated": true,
-      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Response for the `RetrieveImportableDomains` method.",
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Response for the `RetrieveImportableDomains` method.",
       "id": "RetrieveImportableDomainsResponse",
       "properties": {
         "domains": {
@@ -2016,7 +2016,7 @@
     },
     "RetrieveTransferParametersResponse": {
       "deprecated": true,
-      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Response for the `RetrieveTransferParameters` method.",
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Response for the `RetrieveTransferParameters` method.",
       "id": "RetrieveTransferParametersResponse",
       "properties": {
         "transferParameters": {
@@ -2113,7 +2113,7 @@
     },
     "TransferDomainRequest": {
       "deprecated": true,
-      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Request for the `TransferDomain` method.",
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Request for the `TransferDomain` method.",
       "id": "TransferDomainRequest",
       "properties": {
         "authorizationCode": {
@@ -2152,7 +2152,7 @@
     },
     "TransferParameters": {
       "deprecated": true,
-      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) Parameters required to transfer a domain from another registrar.",
+      "description": "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Parameters required to transfer a domain from another registrar.",
       "id": "TransferParameters",
       "properties": {
         "currentRegistrar": {
@@ -2192,7 +2192,7 @@
             "enumDescriptions": [
               "The contact privacy settings are undefined.",
               "All the data from `ContactSettings` is publicly available. When setting this option, you must also provide a `PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT` in the `contact_notices` field of the request.",
-              "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations) None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
+              "Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
               "The organization name (if provided) and limited non-identifying data from `ContactSettings` is available to the public (e.g. country and state). The remaining data is marked as `REDACTED FOR PRIVACY` in the WHOIS database. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
             ],
             "type": "string"

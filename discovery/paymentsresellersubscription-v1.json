@@ -435,7 +435,7 @@
       }
     }
   },
-  "revision": "20231212",
+  "revision": "20240205",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -1018,7 +1018,7 @@
       "type": "object"
     },
     "GoogleCloudPaymentsResellerSubscriptionV1Subscription": {
-      "description": "A Subscription resource managed by 3P Partners.",
+      "description": "A subscription serves as a central billing entity between an external partner and Google. The underlying Google services rely on the subscription state to grant or revoke the user's service entitlement. It's important to note that the subscription state may not always perfectly align with the user's service entitlement. For example, some Google services may continue providing access to the user until the current billing cycle ends, even if the subscription has been immediately canceled. However, other services may not do the same. To fully understand the specific details, please consult the relevant contract or product policy.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1Subscription",
       "properties": {
         "cancellationDetails": {
@@ -1409,6 +1409,22 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "partnerPlanType": {
+          "description": "Optional. Specifies the plan type offered to the end user by the partner.",
+          "enum": [
+            "PARTNER_PLAN_TYPE_UNSPECIFIED",
+            "PARTNER_PLAN_TYPE_STANDALONE",
+            "PARTNER_PLAN_TYPE_HARD_BUNDLE",
+            "PARTNER_PLAN_TYPE_SOFT_BUNDLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Should not use, reserved as an invalid value.",
+            "This item is offered as a standalone product to the user.",
+            "This item is bundled with another partner offering, the item is provisioned at purchase time.",
+            "This item is bundled with another partner offering, the item is provisioned after puchase, when the user opts in this Google service."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

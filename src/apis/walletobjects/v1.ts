@@ -242,6 +242,9 @@ export namespace walletobjects_v1 {
     title?: Schema$LocalizedString;
   }
   export interface Schema$AppLinkDataAppLinkInfoAppTarget {
+    /**
+     * URI for AppTarget. The description on the URI must be set.
+     */
     targetUri?: Schema$Uri;
   }
   export interface Schema$AuthenticationKey {
@@ -1129,7 +1132,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$FlightCarrier {
     /**
-     * A logo for the airline alliance, displayed above the QR code that the passenger scans to board.
+     * A logo for the airline alliance, displayed below the QR code that the passenger scans to board.
      */
     airlineAllianceLogo?: Schema$Image;
     /**
@@ -2025,6 +2028,10 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$Issuer {
     /**
+     * Allows the issuer to provide their callback settings.
+     */
+    callbackOptions?: Schema$CallbackOptions;
+    /**
      * Issuer contact information.
      */
     contactInfo?: Schema$IssuerContactInfo;
@@ -2146,15 +2153,15 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$ListTemplateOverride {
     /**
-     * Specifies from a predefined set of options or from a reference to the field what will be displayed in the first row.
+     * Specifies from a predefined set of options or from a reference to the field what will be displayed in the first row. To set this override, set the FirstRowOption.fieldOption to the FieldSelector of your choice.
      */
     firstRowOption?: Schema$FirstRowOption;
     /**
-     * A reference to the field to be displayed in the second row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the second row will always display a field shared by all objects.
+     * A reference to the field to be displayed in the second row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the second row will always display a field shared by all objects. To set this override, please set secondRowOption to the FieldSelector of you choice.
      */
     secondRowOption?: Schema$FieldSelector;
     /**
-     * A reference to the field to be displayed in the third row. This option is only displayed if there are not multiple user objects in a group. If there is a group, the third row will always display the number of objects in the group. Eg: "3 passes"
+     * An unused/deprecated field. Setting it will have no effect on what the user sees.
      */
     thirdRowOption?: Schema$FieldSelector;
   }
@@ -3288,14 +3295,6 @@ export namespace walletobjects_v1 {
      */
     animationType?: string | null;
   }
-  /**
-   * Request to send a private pass update notice information to Google, so that devices can then fetch the notice prompting the user to update a pass.
-   */
-  export interface Schema$SetPassUpdateNoticeRequest {}
-  /**
-   * A response to a request to notify Google of an awaiting update to a private pass.
-   */
-  export interface Schema$SetPassUpdateNoticeResponse {}
   export interface Schema$SignUpInfo {
     /**
      * ID of the class the user can sign up for.
@@ -13701,101 +13700,6 @@ export namespace walletobjects_v1 {
     }
 
     /**
-     * Provide Google with information about awaiting private pass update. This will allow Google to provide the update notification to the device that currently holds this pass.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setPassUpdateNotice(
-      params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setPassUpdateNotice(
-      params?: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SetPassUpdateNoticeResponse>;
-    setPassUpdateNotice(
-      params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setPassUpdateNotice(
-      params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>,
-      callback: BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
-    ): void;
-    setPassUpdateNotice(
-      params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
-      callback: BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
-    ): void;
-    setPassUpdateNotice(
-      callback: BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
-    ): void;
-    setPassUpdateNotice(
-      paramsOrCallback?:
-        | Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice
-        | BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$SetPassUpdateNoticeResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://walletobjects.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/walletobjects/v1/privateContent/setPassUpdateNotice'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SetPassUpdateNoticeResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SetPassUpdateNoticeResponse>(parameters);
-      }
-    }
-
-    /**
      * Upload private data (text or URI) and returns an Id to be used in its place.
      *
      * @param params - Parameters for request
@@ -13891,13 +13795,6 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice
-    extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetPassUpdateNoticeRequest;
-  }
   export interface Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata
     extends StandardParameters {
     /**

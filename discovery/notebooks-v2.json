@@ -522,6 +522,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "resizeDisk": {
+                  "description": "Resize a notebook instance disk to a higher capacity.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:resizeDisk",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.instances.resizeDisk",
+                  "parameterOrder": [
+                    "notebookInstance"
+                  ],
+                  "parameters": {
+                    "notebookInstance": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+notebookInstance}:resizeDisk",
+                  "request": {
+                    "$ref": "ResizeDiskRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "rollback": {
                   "description": "Rollbacks a notebook instance to the previous version.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:rollback",
@@ -848,7 +876,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240118",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -909,7 +937,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -1691,6 +1719,21 @@
       "description": "Request for resetting a notebook instance",
       "id": "ResetInstanceRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ResizeDiskRequest": {
+      "description": "Request for resizing the notebook instance disks",
+      "id": "ResizeDiskRequest",
+      "properties": {
+        "bootDisk": {
+          "$ref": "BootDisk",
+          "description": "Required. The boot disk to be resized. Only disk_size_gb will be used."
+        },
+        "dataDisk": {
+          "$ref": "DataDisk",
+          "description": "Required. The data disk to be resized. Only disk_size_gb will be used."
+        }
+      },
       "type": "object"
     },
     "RollbackInstanceRequest": {

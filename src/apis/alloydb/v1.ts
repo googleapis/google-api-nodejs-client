@@ -1165,6 +1165,31 @@ export namespace alloydb_v1 {
     version?: string | null;
   }
   /**
+   * Any custom metadata associated with the resource. i.e. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData {
+    databaseMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseMetadata[];
+  }
+  /**
+   * Metadata for individual databases created in an instance. i.e. spanner instance can have multiple databases with unique configuration settings.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseMetadata {
+    /**
+     * Backup configuration for this database
+     */
+    backupConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration;
+    /**
+     * Information about the last backup attempt for this database
+     */
+    backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
+    product?: Schema$StorageDatabasecenterProtoCommonProduct;
+    resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
+    /**
+     * Required. Database name. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+  }
+  /**
    * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed {
@@ -1286,9 +1311,9 @@ export namespace alloydb_v1 {
      */
     currentState?: string | null;
     /**
-     * Any custom metadata associated with the resource (a JSON field)
+     * Any custom metadata associated with the resource
      */
-    customMetadata?: {[key: string]: any} | null;
+    customMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData;
     /**
      * The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.
      */

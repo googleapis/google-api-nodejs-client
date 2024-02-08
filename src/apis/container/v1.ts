@@ -240,6 +240,10 @@ export namespace container_v1 {
      * Configuration for NetworkPolicy. This only tracks whether the addon is enabled or not on the Master, it does not track whether network policy is enabled for the nodes.
      */
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
+    /**
+     * Optional. Configuration for the StatefulHA add-on.
+     */
+    statefulHaConfig?: Schema$StatefulHAConfig;
   }
   /**
    * AdvancedDatapathObservabilityConfig specifies configuration of observability features of advanced datapath.
@@ -917,6 +921,10 @@ export namespace container_v1 {
      * The desired config of Intra-node visibility.
      */
     desiredIntraNodeVisibilityConfig?: Schema$IntraNodeVisibilityConfig;
+    /**
+     * Specify the details of in-transit encryption.
+     */
+    desiredInTransitEncryptionConfig?: string | null;
     /**
      * Desired Beta APIs to be enabled for cluster.
      */
@@ -1904,6 +1912,10 @@ export namespace container_v1 {
      * GatewayAPIConfig contains the desired config of Gateway API on this cluster.
      */
     gatewayApiConfig?: Schema$GatewayAPIConfig;
+    /**
+     * Specify the details of in-transit encryption.
+     */
+    inTransitEncryptionConfig?: string | null;
     /**
      * Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */
@@ -3266,6 +3278,15 @@ export namespace container_v1 {
     zone?: string | null;
   }
   /**
+   * Configuration for the Stateful HA add-on.
+   */
+  export interface Schema$StatefulHAConfig {
+    /**
+     * Whether the Stateful HA add-on is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -4377,7 +4398,7 @@ export namespace container_v1 {
     }
 
     /**
-     * Gets the public component of the cluster signing keys in JSON Web Key format. This API is not yet intended for general use, and is not available for all clusters.
+     * Gets the public component of the cluster signing keys in JSON Web Key format.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6886,7 +6907,7 @@ export namespace container_v1 {
     }
 
     /**
-     * Gets the OIDC discovery document for the cluster. See the [OpenID Connect Discovery 1.0 specification](https://openid.net/specs/openid-connect-discovery-1_0.html) for details. This API is not yet intended for general use, and is not available for all clusters.
+     * Gets the OIDC discovery document for the cluster. See the [OpenID Connect Discovery 1.0 specification](https://openid.net/specs/openid-connect-discovery-1_0.html) for details.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

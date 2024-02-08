@@ -524,7 +524,7 @@
       }
     }
   },
-  "revision": "20231115",
+  "revision": "20240130",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ABNFGrammar": {
@@ -1268,6 +1268,10 @@
           "description": "When available, billed audio seconds for the corresponding request.",
           "format": "google-duration",
           "type": "string"
+        },
+        "usingLegacyModels": {
+          "description": "Whether request used legacy asr models (was not automatically migrated to use conformer models).",
+          "type": "boolean"
         }
       },
       "type": "object"
