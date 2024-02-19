@@ -114,7 +114,13 @@
           "httpMethod": "POST",
           "id": "testing.applicationDetailService.getApkDetails",
           "parameterOrder": [],
-          "parameters": {},
+          "parameters": {
+            "bundleLocation.gcsPath": {
+              "description": "A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app%40debug-unaligned.apk These paths are expected to be url encoded (percent encoding)",
+              "location": "query",
+              "type": "string"
+            }
+          },
           "path": "v1/applicationDetailService/getApkDetails",
           "request": {
             "$ref": "FileReference"
@@ -442,7 +448,7 @@
       }
     }
   },
-  "revision": "20231113",
+  "revision": "20240206",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -896,7 +902,7 @@
       "type": "object"
     },
     "ApkDetail": {
-      "description": "Android application details based on application manifest and apk archive contents.",
+      "description": "Android application details based on application manifest and archive contents.",
       "id": "ApkDetail",
       "properties": {
         "apkManifest": {
@@ -1327,12 +1333,12 @@
       "type": "object"
     },
     "GetApkDetailsResponse": {
-      "description": "Response containing the details of the specified Android application APK.",
+      "description": "Response containing the details of the specified Android application.",
       "id": "GetApkDetailsResponse",
       "properties": {
         "apkDetail": {
           "$ref": "ApkDetail",
-          "description": "Details of the Android APK."
+          "description": "Details of the Android App."
         }
       },
       "type": "object"
@@ -1758,6 +1764,23 @@
             "$ref": "TestTargetsForShard"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MatrixErrorDetail": {
+      "description": "Describes a single error or issue with a matrix.",
+      "id": "MatrixErrorDetail",
+      "properties": {
+        "message": {
+          "description": "Output only. A human-readable message about how the error in the TestMatrix. Expands on the `reason` field with additional details and possible options to fix the issue.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reason": {
+          "description": "Output only. The reason for the error. This is a constant value in UPPER_SNAKE_CASE that identifies the cause of the error.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2308,6 +2331,14 @@
         "environmentMatrix": {
           "$ref": "EnvironmentMatrix",
           "description": "Required. The devices the tests are being executed on."
+        },
+        "extendedInvalidMatrixDetails": {
+          "description": "Output only. Details about why a matrix was deemed invalid. If multiple checks can be safely performed, they will be reported but no assumptions should be made about the length of this list.",
+          "items": {
+            "$ref": "MatrixErrorDetail"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "failFast": {
           "description": "If true, only a single attempt at most will be made to run each execution/shard in the matrix. Flaky test attempts are not affected. Normally, 2 or more attempts are made if a potential infrastructure issue is detected. This feature is for latency sensitive workloads. The incidence of execution failures may be significantly greater for fail-fast matrices and support is more limited because of that expectation.",

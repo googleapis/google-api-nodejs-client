@@ -449,7 +449,7 @@ export namespace testing_v1 {
     packageName?: string | null;
   }
   /**
-   * Android application details based on application manifest and apk archive contents.
+   * Android application details based on application manifest and archive contents.
    */
   export interface Schema$ApkDetail {
     apkManifest?: Schema$ApkManifest;
@@ -736,11 +736,11 @@ export namespace testing_v1 {
     gcsPath?: string | null;
   }
   /**
-   * Response containing the details of the specified Android application APK.
+   * Response containing the details of the specified Android application.
    */
   export interface Schema$GetApkDetailsResponse {
     /**
-     * Details of the Android APK.
+     * Details of the Android App.
      */
     apkDetail?: Schema$ApkDetail;
   }
@@ -1051,6 +1051,19 @@ export namespace testing_v1 {
      * Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 200. When you select only x86 virtual devices, it must be <= 500.
      */
     testTargetsForShard?: Schema$TestTargetsForShard[];
+  }
+  /**
+   * Describes a single error or issue with a matrix.
+   */
+  export interface Schema$MatrixErrorDetail {
+    /**
+     * Output only. A human-readable message about how the error in the TestMatrix. Expands on the `reason` field with additional details and possible options to fix the issue.
+     */
+    message?: string | null;
+    /**
+     * Output only. The reason for the error. This is a constant value in UPPER_SNAKE_CASE that identifies the cause of the error.
+     */
+    reason?: string | null;
   }
   /**
    * A tag within a manifest. https://developer.android.com/guide/topics/manifest/meta-data-element.html
@@ -1427,6 +1440,10 @@ export namespace testing_v1 {
      */
     environmentMatrix?: Schema$EnvironmentMatrix;
     /**
+     * Output only. Details about why a matrix was deemed invalid. If multiple checks can be safely performed, they will be reported but no assumptions should be made about the length of this list.
+     */
+    extendedInvalidMatrixDetails?: Schema$MatrixErrorDetail[];
+    /**
      * If true, only a single attempt at most will be made to run each execution/shard in the matrix. Flaky test attempts are not affected. Normally, 2 or more attempts are made if a potential infrastructure issue is detected. This feature is for latency sensitive workloads. The incidence of execution failures may be significantly greater for fail-fast matrices and support is more limited because of that expectation.
      */
     failFast?: boolean | null;
@@ -1784,6 +1801,11 @@ export namespace testing_v1 {
 
   export interface Params$Resource$Applicationdetailservice$Getapkdetails
     extends StandardParameters {
+    /**
+     * A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app%40debug-unaligned.apk These paths are expected to be url encoded (percent encoding)
+     */
+    'bundleLocation.gcsPath'?: string;
+
     /**
      * Request body metadata
      */

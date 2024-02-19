@@ -413,11 +413,11 @@ export namespace bigquerydatatransfer_v1 {
      */
     disableAutoScheduling?: boolean | null;
     /**
-     * Defines time to stop scheduling transfer runs. A transfer run cannot be scheduled at or after the end time. The end time can be changed at any moment. The time when a data transfer can be trigerred manually is not limited by this option.
+     * Defines time to stop scheduling transfer runs. A transfer run cannot be scheduled at or after the end time. The end time can be changed at any moment. The time when a data transfer can be triggered manually is not limited by this option.
      */
     endTime?: string | null;
     /**
-     * Specifies time to start scheduling transfer runs. The first run will be scheduled at or after the start time according to a recurrence pattern defined in the schedule string. The start time can be changed at any moment. The time when a data transfer can be trigerred manually is not limited by this option.
+     * Specifies time to start scheduling transfer runs. The first run will be scheduled at or after the start time according to a recurrence pattern defined in the schedule string. The start time can be changed at any moment. The time when a data transfer can be triggered manually is not limited by this option.
      */
     startTime?: string | null;
   }
@@ -516,7 +516,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     destinationDatasetId?: string | null;
     /**
-     * Is this config disabled. When set to true, no runs are scheduled for a given transfer.
+     * Is this config disabled. When set to true, no runs will be scheduled for this transfer config.
      */
     disabled?: boolean | null;
     /**
@@ -540,7 +540,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     nextRunTime?: string | null;
     /**
-     * Pub/Sub topic where notifications will be sent after transfer runs associated with this transfer config finish. The format for specifying a pubsub topic is: `projects/{project\}/topics/{topic\}`
+     * Pub/Sub topic where notifications will be sent after transfer runs associated with this transfer config finish. The format for specifying a pubsub topic is: `projects/{project_id\}/topics/{topic_id\}`
      */
     notificationPubsubTopic?: string | null;
     /**
@@ -618,7 +618,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes. The format for specifying a pubsub topic is: `projects/{project\}/topics/{topic\}`
+     * Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes. The format for specifying a pubsub topic is: `projects/{project_id\}/topics/{topic_id\}`
      */
     notificationPubsubTopic?: string | null;
     /**
@@ -1385,7 +1385,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Unenroll data sources in a user project. This allows users to remove transfer configurations for these data sources. They will no longer appear in the ListDataSources RPC and will also no longer appear in the [BigQuery UI](https://console.cloud.google.com/bigquery).
+     * Unenroll data sources in a user project. This allows users to remove transfer configurations for these data sources. They will no longer appear in the ListDataSources RPC and will also no longer appear in the [BigQuery UI](https://console.cloud.google.com/bigquery). Data transfers configurations of unenrolled data sources will not be scheduled.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -2103,7 +2103,7 @@
       }
     }
   },
-  "revision": "20240127",
+  "revision": "20240203",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -3480,6 +3480,12 @@
       "description": "Represents a Dataform Git repository.",
       "id": "Repository",
       "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp of when the repository was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "displayName": {
           "description": "Optional. The repository's user-friendly name.",
           "type": "string"
