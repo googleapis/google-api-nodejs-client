@@ -2200,7 +2200,7 @@
       }
     }
   },
-  "revision": "20240115",
+  "revision": "20240219",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3122,7 +3122,7 @@
           "type": "string"
         },
         "region": {
-          "description": "The geographical region. Can be: * `us-central` (`FIRST_GEN` instances only) * `us-central1` (`SECOND_GEN` instances only) * `asia-east1` or `europe-west1`. Defaults to `us-central` or `us-central1` depending on the instance type. The region cannot be changed after instance creation.",
+          "description": "The geographical region of the Cloud SQL instance. It can be one of the [regions](https://cloud.google.com/sql/docs/mysql/locations#location-r) where Cloud SQL operates: For example, `asia-east1`, `europe-west1`, and `us-central1`. The default value is `us-central1`.",
           "type": "string"
         },
         "replicaConfiguration": {
@@ -4203,7 +4203,7 @@
             "The SSL mode is unknown.",
             "Allow non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. When this value is used, the legacy `require_ssl` flag must be false or cleared to avoid the conflict between values of two flags.",
             "Only allow connections encrypted with SSL/TLS. When this value is used, the legacy `require_ssl` flag must be false or cleared to avoid the conflict between values of two flags.",
-            "Only allow connections encrypted with SSL/TLS and with valid client certificates. When this value is used, the legacy `require_ssl` flag must be true or cleared to avoid the conflict between values of two flags."
+            "Only allow connections encrypted with SSL/TLS and with valid client certificates. When this value is used, the legacy `require_ssl` flag must be true or cleared to avoid the conflict between values of two flags. PostgreSQL clients or users that connect using IAM database authentication must use either the [Cloud SQL Auth Proxy](https://cloud.google.com/sql/docs/postgres/connect-auth-proxy) or [Cloud SQL Connectors](https://cloud.google.com/sql/docs/postgres/connect-connectors) to enforce client identity verification."
           ],
           "type": "string"
         }
@@ -4763,7 +4763,8 @@
           "type": "string"
         },
         "disallowCompromisedCredentials": {
-          "description": "Disallow credentials that have been previously compromised by a public data breach.",
+          "deprecated": true,
+          "description": "This field is deprecated and will be removed in a future version of the API.",
           "type": "boolean"
         },
         "disallowUsernameSubstring": {
@@ -5220,7 +5221,11 @@
             "INCOMPATIBLE_DATABASE_MINOR_VERSION",
             "SOURCE_MAX_SUBSCRIPTIONS",
             "UNABLE_TO_VERIFY_DEFINERS",
-            "SUBSCRIPTION_CALCULATION_STATUS"
+            "SUBSCRIPTION_CALCULATION_STATUS",
+            "PG_SUBSCRIPTION_COUNT",
+            "PG_SYNC_PARALLEL_LEVEL",
+            "INSUFFICIENT_DISK_SIZE",
+            "INSUFFICIENT_MACHINE_TIER"
           ],
           "enumDescriptions": [
             "",
@@ -5263,7 +5268,11 @@
             "The minor version of replica database is incompatible with the source.",
             "This warning message indicates that Cloud SQL uses the maximum number of subscriptions to migrate data from the source to the destination.",
             "Unable to verify definers on the source for MySQL.",
-            "If a time out occurs while the subscription counts are calculated, then this value is set to 1. Otherwise, this value is set to 2."
+            "If a time out occurs while the subscription counts are calculated, then this value is set to 1. Otherwise, this value is set to 2.",
+            "Count of subscriptions needed to sync source data for PostgreSQL database.",
+            "Final parallel level that is used to do migration.",
+            "The disk size of the replica instance is smaller than the data size of the source instance.",
+            "The data size of the source instance is greater than 1 TB, the number of cores of the replica instance is less than 8, and the memory of the replica is less than 32 GB."
           ],
           "type": "string"
         }
