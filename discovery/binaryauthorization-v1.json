@@ -430,6 +430,42 @@
         },
         "platforms": {
           "resources": {
+            "gke": {
+              "resources": {
+                "policies": {
+                  "methods": {
+                    "evaluate": {
+                      "description": "Evaluates a Kubernetes object versus a GKE platform policy. Returns `NOT_FOUND` if the policy doesn't exist, `INVALID_ARGUMENT` if the policy or request is malformed and `PERMISSION_DENIED` if the client does not have sufficient permissions.",
+                      "flatPath": "v1/projects/{projectsId}/platforms/gke/policies/{policiesId}:evaluate",
+                      "httpMethod": "POST",
+                      "id": "binaryauthorization.projects.platforms.gke.policies.evaluate",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the platform policy to evaluate in the format `projects/*/platforms/*/policies/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/platforms/gke/policies/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:evaluate",
+                      "request": {
+                        "$ref": "EvaluateGkePolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "EvaluateGkePolicyResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "policies": {
               "methods": {
                 "create": {
@@ -706,7 +742,7 @@
       }
     }
   },
-  "revision": "20240119",
+  "revision": "20240220",
   "rootUrl": "https://binaryauthorization.googleapis.com/",
   "schemas": {
     "AdmissionRule": {
@@ -764,6 +800,17 @@
       },
       "type": "object"
     },
+    "AllowlistResult": {
+      "description": "Result of evaluating an image name allowlist.",
+      "id": "AllowlistResult",
+      "properties": {
+        "matchedPattern": {
+          "description": "The allowlist pattern that the image matched.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AttestationAuthenticator": {
       "description": "An attestation authenticator that will be used to verify attestations. Typically this is just a set of public keys. Conceptually, an authenticator can be treated as always returning either \"authenticated\" or \"not authenticated\" when presented with a signed attestation (almost always assumed to be a [DSSE](https://github.com/secure-systems-lab/dsse) attestation). The details of how an authenticator makes this decision are specific to the type of 'authenticator' that this message wraps.",
       "id": "AttestationAuthenticator",
@@ -810,7 +857,7 @@
       "id": "AttestationSource",
       "properties": {
         "containerAnalysisAttestationProjects": {
-          "description": "The IDs of the GCP projects storing the SLSA attestations as Container Analysis Occurrences, in the format `projects/[PROJECT_ID]`. Maximum number of `container_analysis_attestation_projects` allowed in each `AttestationSource` is 10.",
+          "description": "The IDs of the Google Cloud projects that store the SLSA attestations as Container Analysis Occurrences, in the format `projects/[PROJECT_ID]`. Maximum number of `container_analysis_attestation_projects` allowed in each `AttestationSource` is 10.",
           "items": {
             "type": "string"
           },
@@ -913,6 +960,10 @@
           "$ref": "ImageFreshnessCheck",
           "description": "Optional. Require that an image is no older than a configured expiration time. Image age is determined by its upload time."
         },
+        "sigstoreSignatureCheck": {
+          "$ref": "SigstoreSignatureCheck",
+          "description": "Optional. Require that an image was signed by Cosign with a trusted key. This check requires that both the image and signature are stored in Artifact Registry."
+        },
         "simpleSigningAttestationCheck": {
           "$ref": "SimpleSigningAttestationCheck",
           "description": "Optional. Require a SimpleSigning-type attestation for every image in the deployment."
@@ -928,6 +979,52 @@
         "vulnerabilityCheck": {
           "$ref": "VulnerabilityCheck",
           "description": "Optional. Require that an image does not contain vulnerabilities that violate the configured rules, such as based on severity levels."
+        }
+      },
+      "type": "object"
+    },
+    "CheckResult": {
+      "description": "Result of evaluating one check.",
+      "id": "CheckResult",
+      "properties": {
+        "allowlistResult": {
+          "$ref": "AllowlistResult",
+          "description": "If the image was exempted by an allow_pattern in the check, contains the pattern that the image name matched."
+        },
+        "displayName": {
+          "description": "The name of the check.",
+          "type": "string"
+        },
+        "evaluationResult": {
+          "$ref": "EvaluationResult",
+          "description": "If a check was evaluated, contains the result of the check."
+        },
+        "explanation": {
+          "description": "Explanation of this check result.",
+          "type": "string"
+        },
+        "index": {
+          "description": "The index of the check.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the check.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckResults": {
+      "description": "Result of evaluating one or more checks.",
+      "id": "CheckResults",
+      "properties": {
+        "results": {
+          "description": "Per-check details.",
+          "items": {
+            "$ref": "CheckResult"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -958,10 +1055,110 @@
       },
       "type": "object"
     },
+    "CheckSetResult": {
+      "description": "Result of evaluating one check set.",
+      "id": "CheckSetResult",
+      "properties": {
+        "allowlistResult": {
+          "$ref": "AllowlistResult",
+          "description": "If the image was exempted by an allow_pattern in the check set, contains the pattern that the image name matched."
+        },
+        "checkResults": {
+          "$ref": "CheckResults",
+          "description": "If checks were evaluated, contains the results of evaluating each check."
+        },
+        "displayName": {
+          "description": "The name of the check set.",
+          "type": "string"
+        },
+        "explanation": {
+          "description": "Explanation of this check set result. Only populated if no checks were evaluated.",
+          "type": "string"
+        },
+        "index": {
+          "description": "The index of the check set.",
+          "format": "int64",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "Scope",
+          "description": "The scope of the check set."
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EvaluateGkePolicyRequest": {
+      "description": "Request message for PlatformPolicyEvaluationService.EvaluateGkePolicy.",
+      "id": "EvaluateGkePolicyRequest",
+      "properties": {
+        "resource": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. JSON or YAML blob representing a Kubernetes resource.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "EvaluateGkePolicyResponse": {
+      "description": "Response message for PlatformPolicyEvaluationService.EvaluateGkePolicy.",
+      "id": "EvaluateGkePolicyResponse",
+      "properties": {
+        "results": {
+          "description": "Evaluation result for each Pod contained in the request.",
+          "items": {
+            "$ref": "PodResult"
+          },
+          "type": "array"
+        },
+        "verdict": {
+          "description": "The result of evaluating all Pods in the request.",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "CONFORMANT",
+            "NON_CONFORMANT",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Not specified. This should never be used.",
+            "All Pods in the request conform to the policy.",
+            "At least one Pod does not conform to the policy.",
+            "Encountered at least one error evaluating a Pod and all other Pods conform to the policy. Non-conformance has precedence over errors."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EvaluationResult": {
+      "description": "Result of evaluating one check.",
+      "id": "EvaluationResult",
+      "properties": {
+        "verdict": {
+          "description": "The result of evaluating this check.",
+          "enum": [
+            "CHECK_VERDICT_UNSPECIFIED",
+            "CONFORMANT",
+            "NON_CONFORMANT",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Not specified. This should never be used.",
+            "The check was successfully evaluated and the image satisfied the check.",
+            "The check was successfully evaluated and the image did not satisfy the check.",
+            "The check was not successfully evaluated."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Expr": {
@@ -1051,6 +1248,45 @@
           "description": "Required. The max number of days that is allowed since the image was uploaded. Must be greater than zero.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ImageResult": {
+      "description": "Result of evaluating one image.",
+      "id": "ImageResult",
+      "properties": {
+        "allowlistResult": {
+          "$ref": "AllowlistResult",
+          "description": "If the image was exempted by a top-level allow_pattern, contains the allowlist pattern that the image name matched."
+        },
+        "checkSetResult": {
+          "$ref": "CheckSetResult",
+          "description": "If a check set was evaluated, contains the result of the check set. Empty if there were no check sets."
+        },
+        "explanation": {
+          "description": "Explanation of this image result. Only populated if no check sets were evaluated.",
+          "type": "string"
+        },
+        "imageUri": {
+          "description": "Image URI from the request.",
+          "type": "string"
+        },
+        "verdict": {
+          "description": "The result of evaluating this image.",
+          "enum": [
+            "IMAGE_VERDICT_UNSPECIFIED",
+            "CONFORMANT",
+            "NON_CONFORMANT",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Not specified. This should never be used.",
+            "Image conforms to the policy.",
+            "Image does not conform to the policy.",
+            "Error evaluating the image. Non-conformance has precedence over errors."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1202,6 +1438,48 @@
       },
       "type": "object"
     },
+    "PodResult": {
+      "description": "Result of evaluating the whole GKE policy for one Pod.",
+      "id": "PodResult",
+      "properties": {
+        "imageResults": {
+          "description": "Per-image details.",
+          "items": {
+            "$ref": "ImageResult"
+          },
+          "type": "array"
+        },
+        "kubernetesNamespace": {
+          "description": "The Kubernetes namespace of the Pod.",
+          "type": "string"
+        },
+        "kubernetesServiceAccount": {
+          "description": "The Kubernetes service account of the Pod.",
+          "type": "string"
+        },
+        "podName": {
+          "description": "The name of the Pod.",
+          "type": "string"
+        },
+        "verdict": {
+          "description": "The result of evaluating this Pod.",
+          "enum": [
+            "POD_VERDICT_UNSPECIFIED",
+            "CONFORMANT",
+            "NON_CONFORMANT",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Not specified. This should never be used.",
+            "All images conform to the policy.",
+            "At least one image does not conform to the policy.",
+            "Encountered at least one error evaluating an image and all other images with non-error verdicts conform to the policy. Non-conformance has precedence over errors."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "A policy for container image binary authorization.",
       "id": "Policy",
@@ -1319,6 +1597,60 @@
           "description": "The content of the signature, an opaque bytestring. The payload that this signature verifies MUST be unambiguously provided with the Signature during verification. A wrapper message might provide the payload explicitly. Alternatively, a message might have a canonical serialization that can always be unambiguously computed to derive the payload.",
           "format": "byte",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SigstoreAuthority": {
+      "description": "A Sigstore authority, used to verify signatures that are created by Sigstore. An authority is analogous to an attestation authenticator, verifying that a signature is valid or invalid.",
+      "id": "SigstoreAuthority",
+      "properties": {
+        "displayName": {
+          "description": "Optional. A user-provided name for this `SigstoreAuthority`. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
+          "type": "string"
+        },
+        "publicKeySet": {
+          "$ref": "SigstorePublicKeySet",
+          "description": "Required. A simple set of public keys. A signature is considered valid if any keys in the set validate the signature."
+        }
+      },
+      "type": "object"
+    },
+    "SigstorePublicKey": {
+      "description": "A Sigstore public key. `SigstorePublicKey` is the public key material used to authenticate Sigstore signatures.",
+      "id": "SigstorePublicKey",
+      "properties": {
+        "publicKeyPem": {
+          "description": "The public key material in PEM format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SigstorePublicKeySet": {
+      "description": "A bundle of Sigstore public keys, used to verify Sigstore signatures. A signature is authenticated by a `SigstorePublicKeySet` if any of the keys verify it.",
+      "id": "SigstorePublicKeySet",
+      "properties": {
+        "publicKeys": {
+          "description": "Required. `public_keys` must have at least one entry.",
+          "items": {
+            "$ref": "SigstorePublicKey"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SigstoreSignatureCheck": {
+      "description": "A Sigstore signature check, which verifies the Sigstore signature associated with an image.",
+      "id": "SigstoreSignatureCheck",
+      "properties": {
+        "sigstoreAuthorities": {
+          "description": "Required. The authorities required by this check to verify the signature. A signature only needs to be verified by one authority to pass the check.",
+          "items": {
+            "$ref": "SigstoreAuthority"
+          },
+          "type": "array"
         }
       },
       "type": "object"
