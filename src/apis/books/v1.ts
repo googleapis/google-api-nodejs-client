@@ -4142,6 +4142,10 @@ export namespace books_v1 {
      */
     layerIds?: string[];
     /**
+     * Optional. String to identify the originator of this request.
+     */
+    source?: string;
+    /**
      * Volume id to get the summary for.
      */
     volumeId?: string;
