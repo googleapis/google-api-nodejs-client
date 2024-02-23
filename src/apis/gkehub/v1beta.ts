@@ -629,6 +629,10 @@ export namespace gkehub_v1beta {
      */
     rootsyncCrd?: string | null;
     /**
+     * The state of CS This field summarizes the other fields in this message.
+     */
+    state?: string | null;
+    /**
      * The state of ConfigSync's process to sync configs to a cluster
      */
     syncState?: Schema$ConfigManagementSyncState;
@@ -847,6 +851,10 @@ export namespace gkehub_v1beta {
      * Hierarchy Controller configuration for the cluster.
      */
     hierarchyController?: Schema$ConfigManagementHierarchyControllerConfig;
+    /**
+     * Enables automatic Feature management.
+     */
+    management?: string | null;
     /**
      * Policy Controller configuration for the cluster.
      */

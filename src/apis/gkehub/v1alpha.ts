@@ -709,6 +709,10 @@ export namespace gkehub_v1alpha {
      */
     rootsyncCrd?: string | null;
     /**
+     * The state of CS This field summarizes the other fields in this message.
+     */
+    state?: string | null;
+    /**
      * The state of ConfigSync's process to sync configs to a cluster
      */
     syncState?: Schema$ConfigManagementSyncState;
@@ -927,6 +931,10 @@ export namespace gkehub_v1alpha {
      * Hierarchy Controller configuration for the cluster.
      */
     hierarchyController?: Schema$ConfigManagementHierarchyControllerConfig;
+    /**
+     * Enables automatic Feature management.
+     */
+    management?: string | null;
     /**
      * Policy Controller configuration for the cluster.
      */
@@ -1824,6 +1832,19 @@ export namespace gkehub_v1alpha {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * List of permitted Scopes.
+   */
+  export interface Schema$ListPermittedScopesResponse {
+    /**
+     * A token to request the next page of resources from the `ListPermittedScopes` method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of permitted Scopes
+     */
+    scopes?: Schema$Scope[];
   }
   /**
    * List of fleet namespaces.
@@ -7885,6 +7906,100 @@ export namespace gkehub_v1alpha {
     }
 
     /**
+     * Lists permitted Scopes.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listPermitted(
+      params: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listPermitted(
+      params?: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPermittedScopesResponse>;
+    listPermitted(
+      params: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listPermitted(
+      params: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPermittedScopesResponse>,
+      callback: BodyResponseCallback<Schema$ListPermittedScopesResponse>
+    ): void;
+    listPermitted(
+      params: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      callback: BodyResponseCallback<Schema$ListPermittedScopesResponse>
+    ): void;
+    listPermitted(
+      callback: BodyResponseCallback<Schema$ListPermittedScopesResponse>
+    ): void;
+    listPermitted(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Scopes$Listpermitted
+        | BodyResponseCallback<Schema$ListPermittedScopesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPermittedScopesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPermittedScopesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPermittedScopesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Scopes$Listpermitted;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Scopes$Listpermitted;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/scopes:listPermitted').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPermittedScopesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPermittedScopesResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates a scopes.
      *
      * @param params - Parameters for request
@@ -8200,6 +8315,21 @@ export namespace gkehub_v1alpha {
     pageSize?: number;
     /**
      * Optional. Token returned by previous call to `ListScopes` which specifies the position in the list from where to continue listing the resources.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent (project and location) where the Scope will be listed. Specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Scopes$Listpermitted
+    extends StandardParameters {
+    /**
+     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token returned by previous call to `ListPermittedScopes` which specifies the position in the list from where to continue listing the resources.
      */
     pageToken?: string;
     /**
