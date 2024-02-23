@@ -1247,7 +1247,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$AttributionSettings {
     /**
-     * Required. Lookback windows (in days) used for attribution in this source. Supported values are 7, 30, 60, 90.
+     * Required. Lookback windows (in days) used for attribution in this source. Supported values are 7, 30, 40.
      */
     attributionLookbackWindowInDays?: number | null;
     /**
