@@ -1163,7 +1163,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240213",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1226,6 +1226,22 @@
             "Unspecified. Defaults to VERIFY_APPS_ENFORCED.",
             "Default. Force-enables app verification.",
             "Allows the user to choose whether to enable app verification."
+          ],
+          "type": "string"
+        },
+        "mtePolicy": {
+          "description": "Optional. Controls Memory Tagging Extension (MTE) (https://source.android.com/docs/security/test/memory-safety/arm-mte) on the device. The device needs to be rebooted to apply changes to the MTE policy.",
+          "enum": [
+            "MTE_POLICY_UNSPECIFIED",
+            "MTE_USER_CHOICE",
+            "MTE_ENFORCED",
+            "MTE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to MTE_USER_CHOICE.",
+            "The user can choose to enable or disable MTE on the device if the device supports this.",
+            "MTE is enabled on the device and the user is not allowed to change this setting. This can be set on fully managed devices and work profiles on company-owned devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for other management modes. A nonComplianceDetail with DEVICE_INCOMPATIBLE is reported if the device does not support MTE.Supported on Android 14 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 14.",
+            "MTE is disabled on the device and the user is not allowed to change this setting. This applies only on fully managed devices. In other cases, a nonComplianceDetail with MANAGEMENT_MODE is reported. A nonComplianceDetail with DEVICE_INCOMPATIBLE is reported if the device does not support MTE.Supported on Android 14 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 14."
           ],
           "type": "string"
         },
@@ -1656,6 +1672,18 @@
           ],
           "type": "string"
         },
+        "credentialProviderPolicy": {
+          "description": "Optional. Whether the app is allowed to act as a credential provider on Android 14 and above.",
+          "enum": [
+            "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED",
+            "CREDENTIAL_PROVIDER_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. The behaviour is governed by credentialProviderPolicyDefault.",
+            "App is allowed to act as a credential provider."
+          ],
+          "type": "string"
+        },
         "defaultPermissionPolicy": {
           "description": "The default policy for all permissions requested by the app. If specified, this overrides the policy-level default_permission_policy which applies to all apps. It does not override the permission_grants which applies to all apps.",
           "enum": [
@@ -1719,7 +1747,7 @@
           "type": "array"
         },
         "installPriority": {
-          "description": "Optional. Amongst apps with installTypeset to:FORCE_INSTALLEDPREINSTALLED this controls the relative priority of installation. A value of 0 (default) means this app has no priority over other apps. For values between 1 and 10,000, a lower value means a higher priority. Values outside of the range 0 to 10,000 inclusive are rejected.",
+          "description": "Optional. Amongst apps with installType set to: FORCE_INSTALLED PREINSTALLEDthis controls the relative priority of installation. A value of 0 (default) means this app has no priority over other apps. For values between 1 and 10,000, a lower value means a higher priority. Values outside of the range 0 to 10,000 inclusive are rejected.",
           "format": "int32",
           "type": "integer"
         },
@@ -3328,7 +3356,7 @@
       "type": "object"
     },
     "InstallConstraint": {
-      "description": "Amongst apps with InstallTypeset to:FORCE_INSTALLEDPREINSTALLED this defines a set of restrictions for the app installation. At least one of the fields must be set. When multiple fields are set, then all the constraints need to be satisfied for the app to be installed.",
+      "description": "Amongst apps with InstallType set to: FORCE_INSTALLED PREINSTALLEDthis defines a set of restrictions for the app installation. At least one of the fields must be set. When multiple fields are set, then all the constraints need to be satisfied for the app to be installed.",
       "id": "InstallConstraint",
       "properties": {
         "chargingConstraint": {
@@ -4184,7 +4212,8 @@
             "ONC_WIFI_INVALID_VALUE",
             "ONC_WIFI_API_LEVEL",
             "ONC_WIFI_INVALID_ENTERPRISE_CONFIG",
-            "ONC_WIFI_USER_SHOULD_REMOVE_NETWORK"
+            "ONC_WIFI_USER_SHOULD_REMOVE_NETWORK",
+            "ONC_WIFI_KEY_PAIR_ALIAS_NOT_CORRESPONDING_TO_EXISTING_KEY"
           ],
           "enumDescriptions": [
             "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
@@ -4194,7 +4223,8 @@
             "There is an incorrect value in ONC Wi-Fi configuration. fieldPath specifies which field value is incorrect. oncWifiContext is set. nonComplianceReason is set to INVALID_VALUE.",
             "The ONC Wi-Fi setting is not supported in the API level of the Android version running on the device. fieldPath specifies which field value is not supported. oncWifiContext is set. nonComplianceReason is set to API_LEVEL.",
             "The enterprise Wi-Fi network is missing either the root CA or domain name. nonComplianceReason is set to INVALID_VALUE.",
-            "User needs to remove the configured Wi-Fi network manually. This is applicable only on work profiles on personally-owned devices. nonComplianceReason is set to USER_ACTION."
+            "User needs to remove the configured Wi-Fi network manually. This is applicable only on work profiles on personally-owned devices. nonComplianceReason is set to USER_ACTION.",
+            "Key pair alias specified via ClientCertKeyPairAlias (https://chromium.googlesource.com/chromium/src/+/main/components/onc/docs/onc_spec.md#eap-type) field in openNetworkConfiguration does not correspond to an existing key installed on the device. nonComplianceReason is set to INVALID_VALUE."
           ],
           "type": "string"
         }
@@ -4830,6 +4860,20 @@
           "description": "Whether creating windows besides app windows is disabled.",
           "type": "boolean"
         },
+        "credentialProviderPolicyDefault": {
+          "description": "Controls which apps are allowed to act as credential providers on Android 14 and above. These apps store credentials, see this (https://developer.android.com/training/sign-in/passkeys) and this (https://developer.android.com/reference/androidx/credentials/CredentialManager) for details. See also credentialProviderPolicy.",
+          "enum": [
+            "CREDENTIAL_PROVIDER_POLICY_DEFAULT_UNSPECIFIED",
+            "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED",
+            "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED.",
+            "Apps with credentialProviderPolicy unspecified are not allowed to act as a credential provider.",
+            "Apps with credentialProviderPolicy unspecified are not allowed to act as a credential provider except for the OEM default credential providers. OEM default credential providers are always allowed to act as credential providers."
+          ],
+          "type": "string"
+        },
         "credentialsConfigDisabled": {
           "description": "Whether configuring user credentials is disabled.",
           "type": "boolean"
@@ -5146,6 +5190,20 @@
             "Unspecified. Defaults to PREFERENTIAL_NETWORK_SERVICES_DISABLED.",
             "Preferential network service is disabled on the work profile.",
             "Preferential network service is enabled on the work profile."
+          ],
+          "type": "string"
+        },
+        "printingPolicy": {
+          "description": "Optional. Controls whether printing is allowed. This is supported on devices running Android 9 and above. .",
+          "enum": [
+            "PRINTING_POLICY_UNSPECIFIED",
+            "PRINTING_DISALLOWED",
+            "PRINTING_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to PRINTING_ALLOWED.",
+            "Printing is disallowed. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 9.",
+            "Printing is allowed."
           ],
           "type": "string"
         },
