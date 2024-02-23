@@ -2200,7 +2200,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec {
     /**
-     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. LINT.IfChange * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English. LINT.ThenChange(//depot/google3/cloud/console/web/ai/unified_cloud_search/pages/configurations/widget_tab.ts)
+     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English.
      */
     version?: string | null;
   }
@@ -2482,6 +2482,9 @@ export namespace discoveryengine_v1alpha {
      * The summary content.
      */
     summaryText?: string | null;
+    /**
+     * Summary with metadata information.
+     */
     summaryWithMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySummaryWithMetadata;
   }
   /**
@@ -2630,6 +2633,9 @@ export namespace discoveryengine_v1alpha {
      * Condition oneway synonyms specifications. If multiple oneway synonyms conditions match, all matching oneway synonyms controls in the list will execute. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
      */
     onewaySynonymsControlIds?: string[] | null;
+    /**
+     * The ranking expression controls the customized ranking on retrieval documents. To leverage this, document embedding is required. The ranking expression setting in ServingConfig applies to all search requests served by the serving config. However, if SearchRequest.ranking_expression is specified, it overrides the ServingConfig ranking expression. The ranking expression is a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: relevance_score: pre-defined keywords, used for measure relevance between query and document. embedding_field_path: the document embedding field used with query embedding vector. dotProduct: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be 0.5 * relevance_score + 0.3 * dotProduct(doc_embedding).
+     */
     rankingExpression?: string | null;
     /**
      * IDs of the redirect controls. Only the first triggered redirect action is applied, even if multiple apply. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
@@ -2771,6 +2777,9 @@ export namespace discoveryengine_v1alpha {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure;
   }
+  /**
+   * Failed due to insufficient quota.
+   */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure {
     /**
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
@@ -3844,6 +3853,9 @@ export namespace discoveryengine_v1alpha {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure;
   }
+  /**
+   * Failed due to insufficient quota.
+   */
   export interface Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure {
     /**
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
@@ -4416,6 +4428,9 @@ export namespace discoveryengine_v1alpha {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure;
   }
+  /**
+   * Failed due to insufficient quota.
+   */
   export interface Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure {
     /**
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
