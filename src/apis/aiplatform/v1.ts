@@ -550,26 +550,9 @@ export namespace aiplatform_v1 {
      */
     endOffset?: string | null;
     /**
-     * Internal only model level metadata.
-     */
-    modelLevelMetaData?: Schema$CloudAiNlLlmProtoServicePartVideoMetadataModelLevelMetadata;
-    /**
      * The start offset of the video.
      */
     startOffset?: string | null;
-  }
-  /**
-   * Internal only fields
-   */
-  export interface Schema$CloudAiNlLlmProtoServicePartVideoMetadataModelLevelMetadata {
-    /**
-     * Frame rate to decode from this video.
-     */
-    fps?: number | null;
-    /**
-     * Number of frames to decode from this video.
-     */
-    numFrames?: number | null;
   }
   /**
    * Content filter results for a prompt sent in the request.
@@ -663,9 +646,46 @@ export namespace aiplatform_v1 {
      */
     category?: string | null;
     /**
+     * The influential terms that could potentially block the response.
+     */
+    influentialTerms?: Schema$CloudAiNlLlmProtoServiceSafetyRatingInfluentialTerm[];
+    /**
      * Harm probability levels in the content.
      */
     probability?: string | null;
+    /**
+     * Harm probability score.
+     */
+    probabilityScore?: number | null;
+    /**
+     * Harm severity levels in the content.
+     */
+    severity?: string | null;
+    /**
+     * Harm severity score.
+     */
+    severityScore?: number | null;
+  }
+  /**
+   * The influential term that could potentially block the response.
+   */
+  export interface Schema$CloudAiNlLlmProtoServiceSafetyRatingInfluentialTerm {
+    /**
+     * The beginning offset of the influential term.
+     */
+    beginOffset?: number | null;
+    /**
+     * The confidence score of the influential term.
+     */
+    confidence?: number | null;
+    /**
+     * The source of the influential term, prompt or response.
+     */
+    source?: string | null;
+    /**
+     * The influential term.
+     */
+    term?: string | null;
   }
   /**
    * Usage metadata about response(s).
@@ -1512,6 +1532,10 @@ export namespace aiplatform_v1 {
      */
     finishReason?: string | null;
     /**
+     * Output only. Metadata specifies sources used to ground generated content.
+     */
+    groundingMetadata?: Schema$GoogleCloudAiplatformV1GroundingMetadata;
+    /**
      * Output only. Index of the candidate.
      */
     index?: number | null;
@@ -1985,10 +2009,6 @@ export namespace aiplatform_v1 {
      * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.
      */
     pipelineJobId?: string | null;
-    /**
-     * Optional. Whether to do component level validations before job creation. Currently we only support Google First Party Component/Pipelines.
-     */
-    preflightValidations?: boolean | null;
   }
   /**
    * Details of operations that perform create FeatureGroup.
@@ -2896,6 +2916,10 @@ export namespace aiplatform_v1 {
      * Configures the request-response logging for online prediction.
      */
     predictRequestResponseLoggingConfig?: Schema$GoogleCloudAiplatformV1PredictRequestResponseLoggingConfig;
+    /**
+     * Optional. Configuration for private service connect. network and private_service_connect_config are mutually exclusive.
+     */
+    privateServiceConnectConfig?: Schema$GoogleCloudAiplatformV1PrivateServiceConnectConfig;
     /**
      * A map from a DeployedModel's ID to the percentage of this Endpoint's traffic that should be forwarded to that DeployedModel. If a DeployedModel's ID is not listed in this map, then it receives no traffic. The traffic percentage values must add up to 100, or map must be empty if the Endpoint is to not accept any traffic at a moment.
      */
@@ -4231,6 +4255,10 @@ export namespace aiplatform_v1 {
      * Required. List of features that need to be synced to Online Store.
      */
     featureGroups?: Schema$GoogleCloudAiplatformV1FeatureViewFeatureRegistrySourceFeatureGroup[];
+    /**
+     * Optional. The project number of the parent project of the Feature Groups.
+     */
+    projectNumber?: string | null;
   }
   /**
    * Features belonging to a single feature group that will be synced to Online Store.
@@ -4265,6 +4293,10 @@ export namespace aiplatform_v1 {
      * Output only. Time when this FeatureViewSync is finished.
      */
     runTime?: Schema$GoogleTypeInterval;
+    /**
+     * Output only. Summary of the sync job.
+     */
+    syncSummary?: Schema$GoogleCloudAiplatformV1FeatureViewSyncSyncSummary;
   }
   /**
    * Configuration for Sync. Only one option is set.
@@ -4274,6 +4306,19 @@ export namespace aiplatform_v1 {
      * Cron schedule (https://en.wikipedia.org/wiki/Cron) to launch scheduled runs. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, "CRON_TZ=America/New_York 1 * * * *", or "TZ=America/New_York 1 * * * *".
      */
     cron?: string | null;
+  }
+  /**
+   * Summary from the Sync job. For continuous syncs, the summary is updated periodically. For batch syncs, it gets updated on completion of the sync.
+   */
+  export interface Schema$GoogleCloudAiplatformV1FeatureViewSyncSyncSummary {
+    /**
+     * Output only. Total number of rows synced.
+     */
+    rowSynced?: string | null;
+    /**
+     * Output only. BigQuery slot milliseconds consumed for the sync job.
+     */
+    totalSlot?: string | null;
   }
   /**
    * Request message for FeatureOnlineStoreService.FetchFeatureValues. All the features under the requested feature view will be returned.
@@ -4525,7 +4570,7 @@ export namespace aiplatform_v1 {
      */
     safetySettings?: Schema$GoogleCloudAiplatformV1SafetySetting[];
     /**
-     * Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. The only supported tool is currently `Function`
+     * Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
      */
     tools?: Schema$GoogleCloudAiplatformV1Tool[];
   }
@@ -4622,6 +4667,58 @@ export namespace aiplatform_v1 {
      * Output only. Time when the operation was updated for the last time. If the operation has finished (successfully or not), this is the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Tool to retrieve public web data for grounding, powered by Google.
+   */
+  export interface Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval {
+    /**
+     * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
+     */
+    disableAttribution?: boolean | null;
+  }
+  /**
+   * Grounding attribution.
+   */
+  export interface Schema$GoogleCloudAiplatformV1GroundingAttribution {
+    /**
+     * Optional. Output only. Confidence score of the attribution. Ranges from 0 to 1. 1 is the most confident.
+     */
+    confidenceScore?: number | null;
+    /**
+     * Output only. Segment of the content this attribution belongs to.
+     */
+    segment?: Schema$GoogleCloudAiplatformV1Segment;
+    /**
+     * Optional. Attribution from the web.
+     */
+    web?: Schema$GoogleCloudAiplatformV1GroundingAttributionWeb;
+  }
+  /**
+   * Attribution from the web.
+   */
+  export interface Schema$GoogleCloudAiplatformV1GroundingAttributionWeb {
+    /**
+     * Output only. Title of the attribution.
+     */
+    title?: string | null;
+    /**
+     * Output only. URI reference of the attribution.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Metadata returned to client when grounding is enabled.
+   */
+  export interface Schema$GoogleCloudAiplatformV1GroundingMetadata {
+    /**
+     * Optional. List of grounding attributions.
+     */
+    groundingAttributions?: Schema$GoogleCloudAiplatformV1GroundingAttribution[];
+    /**
+     * Optional. Web search queries for the following-up web search.
+     */
+    webSearchQueries?: string[] | null;
   }
   /**
    * Represents a HyperparameterTuningJob. A HyperparameterTuningJob has a Study specification and multiple CustomJobs with identical CustomJob specification.
@@ -6125,11 +6222,11 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1Model {
     /**
-     * Immutable. The path to the directory containing the Model artifact and any of its supporting files. Not present for AutoML Models or Large Models.
+     * Immutable. The path to the directory containing the Model artifact and any of its supporting files. Not required for AutoML Models.
      */
     artifactUri?: string | null;
     /**
-     * Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not present for AutoML Models or Large Models.
+     * Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models.
      */
     containerSpec?: Schema$GoogleCloudAiplatformV1ModelContainerSpec;
     /**
@@ -6343,6 +6440,10 @@ export namespace aiplatform_v1 {
      * The type of log.
      */
     logType?: string | null;
+    /**
+     * Output only. The schema version of the request/response logging BigQuery table. Default to v1 if unset.
+     */
+    requestResponseLoggingSchemaVersion?: string | null;
   }
   /**
    * Represents a job that runs periodically to monitor the deployed models in an endpoint. It will analyze the logged training & prediction data to detect any abnormal behaviors.
@@ -6663,6 +6764,9 @@ export namespace aiplatform_v1 {
      */
     id?: string | null;
   }
+  /**
+   * The alert config for model monitoring.
+   */
   export interface Schema$GoogleCloudAiplatformV1ModelMonitoringAlertConfig {
     /**
      * Email alert config.
@@ -7140,6 +7244,83 @@ export namespace aiplatform_v1 {
     trainTrial?: Schema$GoogleCloudAiplatformV1NasTrial;
   }
   /**
+   * A query to find a number of similar entities.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NearestNeighborQuery {
+    /**
+     * Optional. The embedding vector that be used for similar search.
+     */
+    embedding?: Schema$GoogleCloudAiplatformV1NearestNeighborQueryEmbedding;
+    /**
+     * Optional. The entity id whose similar entities should be searched for. If embedding is set, search will use embedding instead of entity_id.
+     */
+    entityId?: string | null;
+    /**
+     * Optional. The number of similar entities to be retrieved from feature view for each query.
+     */
+    neighborCount?: number | null;
+    /**
+     * Optional. Parameters that can be set to tune query on the fly.
+     */
+    parameters?: Schema$GoogleCloudAiplatformV1NearestNeighborQueryParameters;
+    /**
+     * Optional. Crowding is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than sper_crowding_attribute_neighbor_count of the k neighbors returned have the same value of crowding_attribute. It's used for improving result diversity.
+     */
+    perCrowdingAttributeNeighborCount?: number | null;
+    /**
+     * Optional. The list of string filters.
+     */
+    stringFilters?: Schema$GoogleCloudAiplatformV1NearestNeighborQueryStringFilter[];
+  }
+  /**
+   * The embedding vector.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NearestNeighborQueryEmbedding {
+    /**
+     * Optional. Individual value in the embedding.
+     */
+    value?: number[] | null;
+  }
+  /**
+   * Parameters that can be overrided in each query to tune query latency and recall.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NearestNeighborQueryParameters {
+    /**
+     * Optional. The number of neighbors to find via approximate search before exact reordering is performed; if set, this value must be \> neighbor_count.
+     */
+    approximateNeighborCandidates?: number | null;
+    /**
+     * Optional. The fraction of the number of leaves to search, set at query time allows user to tune search performance. This value increase result in both search accuracy and latency increase. The value should be between 0.0 and 1.0.
+     */
+    leafNodesSearchFraction?: number | null;
+  }
+  /**
+   * String filter is used to search a subset of the entities by using boolean rules on string columns. For example: if a query specifies string filter with 'name = color, allow_tokens = {red, blue\}, deny_tokens = {purple\}',' then that query will match entities that are red or blue, but if those points are also purple, then they will be excluded even if they are red/blue. Only string filter is supported for now, numeric filter will be supported in the near future.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NearestNeighborQueryStringFilter {
+    /**
+     * Optional. The allowed tokens.
+     */
+    allowTokens?: string[] | null;
+    /**
+     * Optional. The denied tokens.
+     */
+    denyTokens?: string[] | null;
+    /**
+     * Required. Column names in BigQuery that used as filters.
+     */
+    name?: string | null;
+  }
+  /**
+   * Nearest neighbors for one query.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NearestNeighbors {
+    /**
+     * All its neighbors.
+     */
+    neighbors?: Schema$GoogleCloudAiplatformV1NearestNeighborsNeighbor[];
+  }
+  /**
    * Runtime operation metadata with regard to Matching Engine Index.
    */
   export interface Schema$GoogleCloudAiplatformV1NearestNeighborSearchOperationMetadata {
@@ -7191,6 +7372,23 @@ export namespace aiplatform_v1 {
      * Cloud Storage URI pointing to the original file in user's bucket.
      */
     sourceGcsUri?: string | null;
+  }
+  /**
+   * A neighbor of the query vector.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NearestNeighborsNeighbor {
+    /**
+     * The distance between the neighbor and the query vector.
+     */
+    distance?: number | null;
+    /**
+     * The id of the similar entity.
+     */
+    entityId?: string | null;
+    /**
+     * The attributes of the neighbor, e.g. filters, crowding and metadata Note that full entities are returned only when "return_full_entity" is set to true. Otherwise, only the "entity_id" and "distance" fields are populated.
+     */
+    entityKeyValues?: Schema$GoogleCloudAiplatformV1FetchFeatureValuesResponse;
   }
   /**
    * Neighbors for example-based explanations.
@@ -7598,10 +7796,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1PipelineJobRuntimeConfig {
     /**
-     * Optional. The default runtime for the PipelineJob. If not provided, Vertex Custom Job is used as the runtime. For Vertex Custom Job, please refer to https://cloud.google.com/vertex-ai/docs/training/overview
-     */
-    defaultRuntime?: Schema$GoogleCloudAiplatformV1PipelineJobRuntimeConfigDefaultRuntime;
-    /**
      * Represents the failure policy of a pipeline. Currently, the default of a pipeline is that the pipeline will continue to run until no more tasks can be executed, also known as PIPELINE_FAILURE_POLICY_FAIL_SLOW. However, if a pipeline is set to PIPELINE_FAILURE_POLICY_FAIL_FAST, it will stop scheduling any new tasks when a task has failed. Any scheduled tasks will continue to completion.
      */
     failurePolicy?: string | null;
@@ -7627,15 +7821,6 @@ export namespace aiplatform_v1 {
     parameterValues?: {[key: string]: any} | null;
   }
   /**
-   * The default runtime for the PipelineJob.
-   */
-  export interface Schema$GoogleCloudAiplatformV1PipelineJobRuntimeConfigDefaultRuntime {
-    /**
-     * Persistent resource based runtime detail.
-     */
-    persistentResourceRuntimeDetail?: Schema$GoogleCloudAiplatformV1PipelineJobRuntimeConfigPersistentResourceRuntimeDetail;
-  }
-  /**
    * The type of an input artifact.
    */
   export interface Schema$GoogleCloudAiplatformV1PipelineJobRuntimeConfigInputArtifact {
@@ -7643,15 +7828,6 @@ export namespace aiplatform_v1 {
      * Artifact resource id from MLMD. Which is the last portion of an artifact resource name: `projects/{project\}/locations/{location\}/metadataStores/default/artifacts/{artifact_id\}`. The artifact must stay within the same project, location and default metadatastore as the pipeline.
      */
     artifactId?: string | null;
-  }
-  /**
-   * Persistent resource based runtime detail. For more information, refer to https://cloud.google.com/vertex-ai/docs/training/persistent-resource-overview
-   */
-  export interface Schema$GoogleCloudAiplatformV1PipelineJobRuntimeConfigPersistentResourceRuntimeDetail {
-    /**
-     * Persistent resource name. Format: `projects/{project\}/locations/{location\}/persistentResources/{persistent_resource\}`
-     */
-    persistentResourceName?: string | null;
   }
   /**
    * The runtime detail of a task execution.
@@ -8038,6 +8214,10 @@ export namespace aiplatform_v1 {
      */
     deploy?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeploy;
     /**
+     * Optional. Deploy PublisherModel to Google Kubernetes Engine.
+     */
+    deployGke?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke;
+    /**
      * Optional. Open evaluation pipeline of the PublisherModel.
      */
     openEvaluationPipeline?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences;
@@ -8118,6 +8298,15 @@ export namespace aiplatform_v1 {
      * Required. The title of the regional resource reference.
      */
     title?: string | null;
+  }
+  /**
+   * Configurations for PublisherModel GKE deployment
+   */
+  export interface Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke {
+    /**
+     * Optional. GKE deployment configuration in yaml format.
+     */
+    gkeYamlConfigs?: string[] | null;
   }
   /**
    * Open fine tuning pipelines.
@@ -8593,6 +8782,19 @@ export namespace aiplatform_v1 {
     catchUp?: boolean | null;
   }
   /**
+   * Defines a retrieval tool that model can call to access external knowledge.
+   */
+  export interface Schema$GoogleCloudAiplatformV1Retrieval {
+    /**
+     * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
+     */
+    disableAttribution?: boolean | null;
+    /**
+     * Set to use data source powered by Vertex AI Search.
+     */
+    vertexAiSearch?: Schema$GoogleCloudAiplatformV1VertexAISearch;
+  }
+  /**
    * Safety rating corresponding to the generated content.
    */
   export interface Schema$GoogleCloudAiplatformV1SafetyRating {
@@ -8818,10 +9020,6 @@ export namespace aiplatform_v1 {
      * Optional. Indicates if the job should retry for internal errors after the job starts running. If true, overrides `Scheduling.restart_job_on_worker_restart` to false.
      */
     disableRetries?: boolean | null;
-    /**
-     * Optional. This is the maximum time a user will wait in the QRM queue for resources. Default is 1 day
-     */
-    maxWaitDuration?: string | null;
     /**
      * Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.
      */
@@ -11521,6 +11719,45 @@ export namespace aiplatform_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The request message for FeatureOnlineStoreService.SearchNearestEntities.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SearchNearestEntitiesRequest {
+    /**
+     * Required. The query.
+     */
+    query?: Schema$GoogleCloudAiplatformV1NearestNeighborQuery;
+    /**
+     * Optional. If set to true, the full entities (including all vector values and metadata) of the nearest neighbors are returned; otherwise only entity id of the nearest neighbors will be returned. Note that returning full entities will significantly increase the latency and cost of the query.
+     */
+    returnFullEntity?: boolean | null;
+  }
+  /**
+   * Response message for FeatureOnlineStoreService.SearchNearestEntities
+   */
+  export interface Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse {
+    /**
+     * The nearest neighbors of the query entity.
+     */
+    nearestNeighbors?: Schema$GoogleCloudAiplatformV1NearestNeighbors;
+  }
+  /**
+   * Segment of the content.
+   */
+  export interface Schema$GoogleCloudAiplatformV1Segment {
+    /**
+     * Output only. End index in the given Part, measured in bytes. Offset from the start of the Part, exclusive, starting at zero.
+     */
+    endIndex?: number | null;
+    /**
+     * Output only. The index of a Part object within its parent Content object.
+     */
+    partIndex?: number | null;
+    /**
+     * Output only. Start index in the given Part, measured in bytes. Offset from the start of the Part, inclusive, starting at zero.
+     */
+    startIndex?: number | null;
+  }
+  /**
    * A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm).
    */
   export interface Schema$GoogleCloudAiplatformV1ShieldedVmConfig {
@@ -12444,13 +12681,21 @@ export namespace aiplatform_v1 {
     tokens?: string[] | null;
   }
   /**
-   * Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
+   * Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool.
    */
   export interface Schema$GoogleCloudAiplatformV1Tool {
     /**
      * Optional. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1FunctionDeclaration[];
+    /**
+     * Optional. Specialized retrieval tool that is powered by Google search.
+     */
+    googleSearchRetrieval?: Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval;
+    /**
+     * Optional. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
+     */
+    retrieval?: Schema$GoogleCloudAiplatformV1Retrieval;
   }
   /**
    * CMLE training config. For every active learning labeling iteration, system will train a machine learning model on CMLE. The trained model will be used by data sampling algorithm to select DataItems.
@@ -12866,6 +13111,10 @@ export namespace aiplatform_v1 {
      * A list of datapoints to be created/updated.
      */
     datapoints?: Schema$GoogleCloudAiplatformV1IndexDatapoint[];
+    /**
+     * Optional. Update mask is used to specify the fields to be overwritten in the datapoints by the update. The fields specified in the update_mask are relative to each IndexDatapoint inside datapoints, not the full request. Updatable fields: * Use `all_restricts` to update both restricts and numeric_restricts.
+     */
+    updateMask?: string | null;
   }
   /**
    * Response message for IndexService.UpsertDatapoints
@@ -12904,6 +13153,15 @@ export namespace aiplatform_v1 {
      * A string value.
      */
     stringValue?: string | null;
+  }
+  /**
+   * Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/vertex-ai-search-and-conversation
+   */
+  export interface Schema$GoogleCloudAiplatformV1VertexAISearch {
+    /**
+     * Required. Fully-qualified Vertex AI Search's datastore resource ID. projects/<\>/locations/<\>/collections/<\>/dataStores/<\>
+     */
+    datastore?: string | null;
   }
   /**
    * Metadata describes the input video content.
@@ -13375,7 +13633,7 @@ export namespace aiplatform_v1 {
   export interface Schema$LanguageLabsAidaTrustRecitationProtoRecitationResult {
     dynamicSegmentResults?: Schema$LanguageLabsAidaTrustRecitationProtoSegmentResult[];
     /**
-     * The recitation action for one given input. When its segments contain different actions, the overall action will be returned in the precedence of BLOCK \> CITE \> NO_ACTION.
+     * The recitation action for one given input. When its segments contain different actions, the overall action will be returned in the precedence of BLOCK \> CITE \> NO_ACTION. When the given input is not found in any source, the recitation action will not be specified.
      */
     recitationAction?: string | null;
     trainingSegmentResults?: Schema$LanguageLabsAidaTrustRecitationProtoSegmentResult[];
@@ -13504,7 +13762,7 @@ export namespace aiplatform_v1 {
   export interface Schema$LearningGenaiRecitationRecitationResult {
     dynamicSegmentResults?: Schema$LearningGenaiRecitationSegmentResult[];
     /**
-     * The recitation action for one given input. When its segments contain different actions, the overall action will be returned in the precedence of BLOCK \> CITE \> NO_ACTION.
+     * The recitation action for one given input. When its segments contain different actions, the overall action will be returned in the precedence of BLOCK \> CITE \> NO_ACTION. When the given input is not found in any source, the recitation action will be NO_ACTION.
      */
     recitationAction?: string | null;
     trainingSegmentResults?: Schema$LearningGenaiRecitationSegmentResult[];
@@ -13674,6 +13932,9 @@ export namespace aiplatform_v1 {
     imageViolence?: boolean | null;
     pqc?: boolean | null;
     safetycat?: Schema$LearningGenaiRootHarmSafetyCatCategories;
+    /**
+     * Spii Filter uses buckets http://google3/google/privacy/dlp/v2/storage.proto;l=77;rcl=584719820 to classify the input. LMRoot converts the bucket into double score. For example the score for "POSSIBLE" is 3 / 5 = 0.6 .
+     */
     spii?: Schema$LearningGenaiRootHarmSpiiFilter;
     threshold?: number | null;
     videoFrameCsam?: boolean | null;
@@ -13970,6 +14231,10 @@ export namespace aiplatform_v1 {
      */
     finishReason?: string | null;
     groundingMetadata?: Schema$LearningGenaiRootGroundingMetadata;
+    /**
+     * Applies to streaming response message only. Whether the message is a code.
+     */
+    isCode?: boolean | null;
     /**
      * Applies to Response message only. Indicates whether the message is a fallback and the response would have otherwise been empty.
      */
@@ -23307,7 +23572,7 @@ export namespace aiplatform_v1 {
     }
 
     /**
-     * Perform an unary online prediction request for Vertex first-party products and frameworks.
+     * Perform an unary online prediction request to a gRPC model server for Vertex first-party products and frameworks.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23404,7 +23669,7 @@ export namespace aiplatform_v1 {
     }
 
     /**
-     * Perform an online prediction request through gRPC.
+     * Perform an unary online prediction request to a gRPC model server for custom containers.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23591,6 +23856,103 @@ export namespace aiplatform_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudAiplatformV1ExplainResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Generate content with multimodal inputs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateContent(
+      params: Params$Resource$Projects$Locations$Endpoints$Generatecontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateContent(
+      params?: Params$Resource$Projects$Locations$Endpoints$Generatecontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    generateContent(
+      params: Params$Resource$Projects$Locations$Endpoints$Generatecontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateContent(
+      params: Params$Resource$Projects$Locations$Endpoints$Generatecontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      params: Params$Resource$Projects$Locations$Endpoints$Generatecontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Endpoints$Generatecontent
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Endpoints$Generatecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Endpoints$Generatecontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+model}:generateContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['model'],
+        pathParams: ['model'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
           parameters
         );
       }
@@ -24354,6 +24716,7 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Perform a streaming online prediction with an arbitrary HTTP payload.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24635,6 +24998,18 @@ export namespace aiplatform_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1ExplainRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Endpoints$Generatecontent
+    extends StandardParameters {
+    /**
+     * Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
+     */
+    model?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1GenerateContentRequest;
   }
   export interface Params$Resource$Projects$Locations$Endpoints$Get
     extends StandardParameters {
@@ -27787,7 +28162,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `big_query_source` * `labels` * `sync_config`
+     * Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `big_query_source` * `bigtable` * `labels` * `sync_config`
      */
     updateMask?: string;
 
@@ -28381,6 +28756,103 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Search the nearest entities under a FeatureView. Search only works for indexable feature view; if a feature view isn't indexable, returns Invalid argument response.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchNearestEntities(
+      params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchNearestEntities(
+      params?: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>;
+    searchNearestEntities(
+      params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchNearestEntities(
+      params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>
+    ): void;
+    searchNearestEntities(
+      params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>
+    ): void;
+    searchNearestEntities(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>
+    ): void;
+    searchNearestEntities(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+featureView}:searchNearestEntities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['featureView'],
+        pathParams: ['featureView'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1SearchNearestEntitiesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Triggers on-demand sync for the FeatureView.
      *
      * @param params - Parameters for request
@@ -28554,7 +29026,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels`
+     * Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `serviceAgentType`
      */
     updateMask?: string;
 
@@ -28562,6 +29034,18 @@ export namespace aiplatform_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1FeatureView;
+  }
+  export interface Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Searchnearestentities
+    extends StandardParameters {
+    /**
+     * Required. FeatureView resource format `projects/{project\}/locations/{location\}/featureOnlineStores/{featureOnlineStore\}/featureViews/{featureView\}`
+     */
+    featureView?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1SearchNearestEntitiesRequest;
   }
   export interface Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Sync
     extends StandardParameters {
@@ -46631,6 +47115,98 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Models$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Models$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Models$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Models$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Models$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Models$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Models$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Models$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
      * Lists Models in a Location.
      *
      * @param params - Parameters for request
@@ -47013,6 +47589,195 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Models$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Models$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Models$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Models$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Models$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Models$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Models$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Models$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Models$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Models$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Models$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Models$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Models$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Models$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Models$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Models$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Incrementally update the dataset used for an examples model.
      *
      * @param params - Parameters for request
@@ -47247,6 +48012,17 @@ export namespace aiplatform_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Models$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Projects$Locations$Models$List
     extends StandardParameters {
     /**
@@ -47328,6 +48104,29 @@ export namespace aiplatform_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1Model;
+  }
+  export interface Params$Resource$Projects$Locations$Models$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Models$Testiampermissions
+    extends StandardParameters {
+    /**
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     */
+    permissions?: string[];
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Models$Updateexplanationdataset
     extends StandardParameters {
@@ -52241,10 +53040,6 @@ export namespace aiplatform_v1 {
      * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.
      */
     pipelineJobId?: string;
-    /**
-     * Optional. Whether to do component level validations before job creation. Currently we only support Google First Party Component/Pipelines.
-     */
-    preflightValidations?: boolean;
 
     /**
      * Request body metadata
@@ -53021,6 +53816,103 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Generate content with multimodal inputs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateContent(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateContent(
+      params?: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    generateContent(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateContent(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Publishers$Models$Generatecontent
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Publishers$Models$Generatecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Publishers$Models$Generatecontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+model}:generateContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['model'],
+        pathParams: ['model'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Perform an online prediction.
      *
      * @param params - Parameters for request
@@ -53403,6 +54295,7 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Perform a streaming online prediction with an arbitrary HTTP payload.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -53518,6 +54411,18 @@ export namespace aiplatform_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1CountTokensRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Publishers$Models$Generatecontent
+    extends StandardParameters {
+    /**
+     * Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
+     */
+    model?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1GenerateContentRequest;
   }
   export interface Params$Resource$Projects$Locations$Publishers$Models$Predict
     extends StandardParameters {
