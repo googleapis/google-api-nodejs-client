@@ -694,7 +694,7 @@
       }
     }
   },
-  "revision": "20240120",
+  "revision": "20240218",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1098,6 +1098,10 @@
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction",
           "description": "This action will deny access to a given page. The user will get an HTTP error code."
         },
+        "includeRecaptchaScript": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction",
+          "description": "This action will inject reCAPTCHA JavaScript code into the HTML page returned by the site backend."
+        },
         "redirect": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction",
           "description": "This action will redirect the request to a ReCaptcha interstitial to attach a token."
@@ -1122,6 +1126,12 @@
     "GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction": {
       "description": "A block action serves an HTTP error code a prevents the request from hitting the backend.",
       "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction": {
+      "description": "An include reCAPTCHA script action involves injecting reCAPTCHA JavaScript code into the HTML returned by the site backend. This reCAPTCHA script is tasked with collecting user signals on the requested web page, issuing tokens as a cookie within the site domain, and enabling their utilization in subsequent page requests.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction",
       "properties": {},
       "type": "object"
     },
@@ -2143,12 +2153,14 @@
           "enum": [
             "WAF_SERVICE_UNSPECIFIED",
             "CA",
-            "FASTLY"
+            "FASTLY",
+            "CLOUDFLARE"
           ],
           "enumDescriptions": [
             "Undefined WAF",
             "Cloud Armor",
-            "Fastly"
+            "Fastly",
+            "Cloudflare"
           ],
           "type": "string"
         }
