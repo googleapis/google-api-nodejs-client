@@ -598,6 +598,23 @@ export namespace dialogflow_v2 {
     commitSha?: string | null;
   }
   /**
+   * Metadata returned for the EntityTypes.ExportEntityTypes long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportEntityTypesMetadata {}
+  /**
+   * The response message for EntityTypes.ExportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportEntityTypesResponse {
+    /**
+     * Uncompressed byte content for entity types. This field is populated only if `entity_types_content_inline` is set to true in ExportEntityTypesRequest.
+     */
+    entityTypesContent?: Schema$GoogleCloudDialogflowCxV3beta1InlineDestination;
+    /**
+     * The URI to a file containing the exported entity types. This field is populated only if `entity_types_uri` is specified in ExportEntityTypesRequest.
+     */
+    entityTypesUri?: string | null;
+  }
+  /**
    * The response message for Flows.ExportFlow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportFlowResponse {
@@ -823,6 +840,36 @@ export namespace dialogflow_v2 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Metadata returned for the EntityTypes.ImportEntityTypes long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportEntityTypesMetadata {}
+  /**
+   * The response message for EntityTypes.ImportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponse {
+    /**
+     * Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportEntityTypesRequest.
+     */
+    conflictingResources?: Schema$GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources;
+    /**
+     * The unique identifier of the imported entity types. Format: `projects//locations//agents//entity_types/`.
+     */
+    entityTypes?: string[] | null;
+  }
+  /**
+   * Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources {
+    /**
+     * Display names of conflicting entities.
+     */
+    entityDisplayNames?: string[] | null;
+    /**
+     * Display names of conflicting entity types.
+     */
+    entityTypeDisplayNames?: string[] | null;
   }
   /**
    * The response message for Flows.ImportFlow.
@@ -2140,6 +2187,23 @@ export namespace dialogflow_v2 {
     commitSha?: string | null;
   }
   /**
+   * Metadata returned for the EntityTypes.ExportEntityTypes long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportEntityTypesMetadata {}
+  /**
+   * The response message for EntityTypes.ExportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportEntityTypesResponse {
+    /**
+     * Uncompressed byte content for entity types. This field is populated only if `entity_types_content_inline` is set to true in ExportEntityTypesRequest.
+     */
+    entityTypesContent?: Schema$GoogleCloudDialogflowCxV3InlineDestination;
+    /**
+     * The URI to a file containing the exported entity types. This field is populated only if `entity_types_uri` is specified in ExportEntityTypesRequest.
+     */
+    entityTypesUri?: string | null;
+  }
+  /**
    * The response message for Flows.ExportFlow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportFlowResponse {
@@ -2365,6 +2429,36 @@ export namespace dialogflow_v2 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Metadata returned for the EntityTypes.ImportEntityTypes long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportEntityTypesMetadata {}
+  /**
+   * The response message for EntityTypes.ImportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportEntityTypesResponse {
+    /**
+     * Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportEntityTypesRequest.
+     */
+    conflictingResources?: Schema$GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources;
+    /**
+     * The unique identifier of the imported entity types. Format: `projects//locations//agents//entity_types/`.
+     */
+    entityTypes?: string[] | null;
+  }
+  /**
+   * Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources {
+    /**
+     * Display names of conflicting entities.
+     */
+    entityDisplayNames?: string[] | null;
+    /**
+     * Display names of conflicting entity types.
+     */
+    entityTypeDisplayNames?: string[] | null;
   }
   /**
    * The response message for Flows.ImportFlow.
@@ -3501,6 +3595,10 @@ export namespace dialogflow_v2 {
      * Text of actual submitted summary.
      */
     summaryText?: string | null;
+    /**
+     * Optional. Actual text sections of submitted summary.
+     */
+    textSections?: {[key: string]: string} | null;
   }
   /**
    * Represents a record of a human agent assist answer.

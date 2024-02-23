@@ -792,6 +792,23 @@ export namespace dialogflow_v3 {
     commitSha?: string | null;
   }
   /**
+   * Metadata returned for the EntityTypes.ExportEntityTypes long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportEntityTypesMetadata {}
+  /**
+   * The response message for EntityTypes.ExportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportEntityTypesResponse {
+    /**
+     * Uncompressed byte content for entity types. This field is populated only if `entity_types_content_inline` is set to true in ExportEntityTypesRequest.
+     */
+    entityTypesContent?: Schema$GoogleCloudDialogflowCxV3beta1InlineDestination;
+    /**
+     * The URI to a file containing the exported entity types. This field is populated only if `entity_types_uri` is specified in ExportEntityTypesRequest.
+     */
+    entityTypesUri?: string | null;
+  }
+  /**
    * The response message for Flows.ExportFlow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportFlowResponse {
@@ -1017,6 +1034,36 @@ export namespace dialogflow_v3 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Metadata returned for the EntityTypes.ImportEntityTypes long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportEntityTypesMetadata {}
+  /**
+   * The response message for EntityTypes.ImportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponse {
+    /**
+     * Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportEntityTypesRequest.
+     */
+    conflictingResources?: Schema$GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources;
+    /**
+     * The unique identifier of the imported entity types. Format: `projects//locations//agents//entity_types/`.
+     */
+    entityTypes?: string[] | null;
+  }
+  /**
+   * Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources {
+    /**
+     * Display names of conflicting entities.
+     */
+    entityDisplayNames?: string[] | null;
+    /**
+     * Display names of conflicting entity types.
+     */
+    entityTypeDisplayNames?: string[] | null;
   }
   /**
    * The response message for Flows.ImportFlow.
@@ -2115,6 +2162,10 @@ export namespace dialogflow_v3 {
      */
     displayName?: string | null;
     /**
+     * The affected language code of the change.
+     */
+    languageCode?: string | null;
+    /**
      * The unique identifier of the changelog. Format: `projects//locations//agents//changelogs/`.
      */
     name?: string | null;
@@ -2801,6 +2852,48 @@ export namespace dialogflow_v3 {
     commitSha?: string | null;
   }
   /**
+   * Metadata returned for the EntityTypes.ExportEntityTypes long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportEntityTypesMetadata {}
+  /**
+   * The request message for EntityTypes.ExportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportEntityTypesRequest {
+    /**
+     * Optional. The data format of the exported entity types. If not specified, `BLOB` is assumed.
+     */
+    dataFormat?: string | null;
+    /**
+     * Required. The name of the entity types to export. Format: `projects//locations//agents//entityTypes/`.
+     */
+    entityTypes?: string[] | null;
+    /**
+     * Optional. The option to return the serialized entity types inline.
+     */
+    entityTypesContentInline?: boolean | null;
+    /**
+     * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the entity types to. The format of this URI must be `gs:///`. Dialogflow performs a write operation for the Cloud Storage object on the caller's behalf, so your request authentication must have write permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
+     */
+    entityTypesUri?: string | null;
+    /**
+     * Optional. The language to retrieve the entity type for. The following fields are language dependent: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, all language dependent fields will be retrieved. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     */
+    languageCode?: string | null;
+  }
+  /**
+   * The response message for EntityTypes.ExportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportEntityTypesResponse {
+    /**
+     * Uncompressed byte content for entity types. This field is populated only if `entity_types_content_inline` is set to true in ExportEntityTypesRequest.
+     */
+    entityTypesContent?: Schema$GoogleCloudDialogflowCxV3InlineDestination;
+    /**
+     * The URI to a file containing the exported entity types. This field is populated only if `entity_types_uri` is specified in ExportEntityTypesRequest.
+     */
+    entityTypesUri?: string | null;
+  }
+  /**
    * The request message for Flows.ExportFlow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportFlowRequest {
@@ -3313,6 +3406,57 @@ export namespace dialogflow_v3 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Metadata returned for the EntityTypes.ImportEntityTypes long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportEntityTypesMetadata {}
+  /**
+   * The request message for EntityTypes.ImportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportEntityTypesRequest {
+    /**
+     * Uncompressed byte content of entity types.
+     */
+    entityTypesContent?: Schema$GoogleCloudDialogflowCxV3InlineSource;
+    /**
+     * The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to import entity types from. The format of this URI must be `gs:///`. Dialogflow performs a read operation for the Cloud Storage object on the caller's behalf, so your request authentication must have read permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
+     */
+    entityTypesUri?: string | null;
+    /**
+     * Required. Merge option for importing entity types.
+     */
+    mergeOption?: string | null;
+    /**
+     * Optional. The target entity type to import into. Format: `projects//locations//agents//entity_types/`. If set, there should be only one entity type included in entity_types, of which the type should match the type of the target entity type. All entities in the imported entity type will be added to the target entity type.
+     */
+    targetEntityType?: string | null;
+  }
+  /**
+   * The response message for EntityTypes.ImportEntityTypes.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportEntityTypesResponse {
+    /**
+     * Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportEntityTypesRequest.
+     */
+    conflictingResources?: Schema$GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources;
+    /**
+     * The unique identifier of the imported entity types. Format: `projects//locations//agents//entity_types/`.
+     */
+    entityTypes?: string[] | null;
+  }
+  /**
+   * Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources {
+    /**
+     * Display names of conflicting entities.
+     */
+    entityDisplayNames?: string[] | null;
+    /**
+     * Display names of conflicting entity types.
+     */
+    entityTypeDisplayNames?: string[] | null;
   }
   /**
    * The request message for Flows.ImportFlow.
@@ -10656,6 +10800,101 @@ export namespace dialogflow_v3 {
     }
 
     /**
+     * Exports the selected entity types.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Entitytypes$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Agents$Entitytypes$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Entitytypes$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Entitytypes$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Entitytypes$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Entitytypes$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Entitytypes$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/entityTypes:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves the specified entity type.
      *
      * @param params - Parameters for request
@@ -10746,6 +10985,101 @@ export namespace dialogflow_v3 {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3EntityType>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Imports the specified entitytypes into the agent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Entitytypes$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Agents$Entitytypes$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Entitytypes$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Entitytypes$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Entitytypes$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Entitytypes$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Entitytypes$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/entityTypes:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -10968,6 +11302,18 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Export
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent agent to export entity types. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3ExportEntityTypesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Get
     extends StandardParameters {
     /**
@@ -10978,6 +11324,18 @@ export namespace dialogflow_v3 {
      * Required. The name of the entity type. Format: `projects//locations//agents//entityTypes/`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Entitytypes$Import
+    extends StandardParameters {
+    /**
+     * Required. The agent to import the entity types into. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3ImportEntityTypesRequest;
   }
   export interface Params$Resource$Projects$Locations$Agents$Entitytypes$List
     extends StandardParameters {
