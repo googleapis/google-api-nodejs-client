@@ -100,9 +100,9 @@ export namespace retail_v2 {
   }
 
   /**
-   * Retail API
+   * Vertex AI Search for Retail API
    *
-   * Cloud Retail service enables customers to build end-to-end personalized recommendation systems without requiring a high level of expertise in machine learning, recommendation system, or Google Cloud.
+   * Vertex AI Search for Retail API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.
    *
    * @example
    * ```js
@@ -1870,6 +1870,19 @@ export namespace retail_v2 {
      * Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Export errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.
      */
     gcsPrefix?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudRetailV2ExportMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
   }
   /**
    * Fulfillment information, such as the store IDs for in-store pickup or region IDs for different shipping methods.
