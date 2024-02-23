@@ -460,7 +460,7 @@ export namespace cloudasset_v1 {
     accessTime?: string | null;
   }
   /**
-   * The Condition evaluation.
+   * The condition evaluation.
    */
   export interface Schema$ConditionEvaluation {
     /**
@@ -1120,7 +1120,7 @@ export namespace cloudasset_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * The condition evaluation result for this rule. Only populated if it meets all the following criteria: * there is a condition defined for this rule * this rule is within a consolidated_policy * the consolidated_policy is within AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer or AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource
+     * The condition evaluation result for this rule. Only populated if it meets all the following criteria: * There is a condition defined for this rule. * This rule is within AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.consolidated_policy, or AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset.consolidated_policy when the AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset has AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset.governed_resource.
      */
     conditionEvaluation?: Schema$ConditionEvaluation;
     /**
@@ -1132,7 +1132,7 @@ export namespace cloudasset_v1 {
      */
     enforce?: boolean | null;
     /**
-     * List of values to be used for this PolicyRule. This field can be set only in Policies for list constraints.
+     * List of values to be used for this policy rule. This field can be set only in policies for list constraints.
      */
     values?: Schema$GoogleCloudAssetV1StringValues;
   }
@@ -1669,7 +1669,7 @@ export namespace cloudasset_v1 {
      */
     resourceSelector?: Schema$ResourceSelector;
     /**
-     * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      */
     scope?: string | null;
   }
@@ -2557,7 +2557,7 @@ export namespace cloudasset_v1 {
     fields?: Schema$TableFieldSchema[];
   }
   /**
-   * The key and value for a [tag](https://cloud.google.com/resource-manager/docs/tags/tags-overview),
+   * The key and value for a [tag](https://cloud.google.com/resource-manager/docs/tags/tags-overview).
    */
   export interface Schema$Tag {
     /**
@@ -3012,7 +3012,7 @@ export namespace cloudasset_v1 {
      */
     names?: string[];
     /**
-     * Required. Only IAM policies on or below the scope will be returned. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * Required. Only IAM policies on or below the scope will be returned. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      */
     scope?: string;
   }
@@ -5171,14 +5171,14 @@ export namespace cloudasset_v1 {
      */
     savedAnalysisQuery?: string;
     /**
-     * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      */
     scope?: string;
   }
   export interface Params$Resource$V1$Analyzeiampolicylongrunning
     extends StandardParameters {
     /**
-     * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project ID, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      */
     scope?: string;
 
