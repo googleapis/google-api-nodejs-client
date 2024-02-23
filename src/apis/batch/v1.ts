@@ -716,7 +716,7 @@ export namespace batch_v1 {
      */
     taskGroups?: Schema$TaskGroup[];
     /**
-     * Output only. A system generated unique ID (in UUID4 format) for the Job.
+     * Output only. A system generated unique ID for the Job.
      */
     uid?: string | null;
     /**
