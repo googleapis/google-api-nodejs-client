@@ -790,6 +790,10 @@ export namespace connectors_v1 {
      */
     specLocation?: string | null;
     /**
+     * Output only. State of the custom connector version.
+     */
+    state?: string | null;
+    /**
      * Output only. Updated time.
      */
     updateTime?: string | null;
