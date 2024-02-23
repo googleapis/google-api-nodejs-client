@@ -155,6 +155,10 @@ export namespace tpu_v2 {
     type?: string | null;
   }
   /**
+   * Further data for the accepted state.
+   */
+  export interface Schema$AcceptedData {}
+  /**
    * An access config attached to the TPU worker.
    */
   export interface Schema$AccessConfig {
@@ -163,6 +167,10 @@ export namespace tpu_v2 {
      */
     externalIp?: string | null;
   }
+  /**
+   * Further data for the active state.
+   */
+  export interface Schema$ActiveData {}
   /**
    * A node-attached disk resource. Next ID: 8;
    */
@@ -177,9 +185,26 @@ export namespace tpu_v2 {
     sourceDisk?: string | null;
   }
   /**
+   * Further data for the creating state.
+   */
+  export interface Schema$CreatingData {}
+  /**
+   * Further data for the deleting state.
+   */
+  export interface Schema$DeletingData {}
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Further data for the failed state.
+   */
+  export interface Schema$FailedData {
+    /**
+     * Output only. The error that caused the queued resource to enter the FAILED state.
+     */
+    error?: Schema$Status;
+  }
   /**
    * Request for GenerateServiceIdentity.
    */
@@ -214,6 +239,15 @@ export namespace tpu_v2 {
      * The guest attributes for the TPU workers.
      */
     guestAttributes?: Schema$GuestAttributes[];
+  }
+  /**
+   * Guaranteed tier definition.
+   */
+  export interface Schema$Guaranteed {
+    /**
+     * Optional. Defines the minimum duration of the guarantee. If specified, the requested resources will only be provisioned if they can be allocated for at least the given duration.
+     */
+    minDuration?: string | null;
   }
   /**
    * A guest attributes.
@@ -253,6 +287,19 @@ export namespace tpu_v2 {
      * The list of guest attributes entries.
      */
     items?: Schema$GuestAttributesEntry[];
+  }
+  /**
+   * Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.
+   */
+  export interface Schema$Interval {
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    startTime?: string | null;
   }
   /**
    * Response for ListAcceleratorTypes.
@@ -315,6 +362,23 @@ export namespace tpu_v2 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response for ListQueuedResources.
+   */
+  export interface Schema$ListQueuedResourcesResponse {
+    /**
+     * The next page token or empty if none.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The listed queued resources.
+     */
+    queuedResources?: Schema$QueuedResource[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response for ListRuntimeVersions.
    */
   export interface Schema$ListRuntimeVersionsResponse {
@@ -355,6 +419,19 @@ export namespace tpu_v2 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Parameters to specify for multislice QueuedResource requests. This message must be populated in case of multislice requests instead of node_id.
+   */
+  export interface Schema$MultisliceParams {
+    /**
+     * Required. Number of nodes with this spec. The system will attempt to provison "node_count" nodes as part of the request. This needs to be \> 1.
+     */
+    nodeCount?: number | null;
+    /**
+     * Optional. Prefix of node_ids in case of multislice request. Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format. If node_count = 3 and node_id_prefix = "np", node ids of nodes created will be "np-0", "np-1", "np-2". If this field is not provided we use queued_resource_id as the node_id_prefix.
+     */
+    nodeIdPrefix?: string | null;
   }
   /**
    * Network related configurations.
@@ -500,6 +577,27 @@ export namespace tpu_v2 {
     tags?: string[] | null;
   }
   /**
+   * Details of the TPU node(s) being requested. Users can request either a single node or multiple nodes. NodeSpec provides the specification for node(s) to be created.
+   */
+  export interface Schema$NodeSpec {
+    /**
+     * Optional. Fields to specify in case of multislice request.
+     */
+    multisliceParams?: Schema$MultisliceParams;
+    /**
+     * Required. The node.
+     */
+    node?: Schema$Node;
+    /**
+     * Optional. The unqualified resource name. Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format. This is only specified when requesting a single node. In case of multislice requests, multislice_params must be populated instead.
+     */
+    nodeId?: string | null;
+    /**
+     * Required. The parent resource name.
+     */
+    parent?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -557,6 +655,121 @@ export namespace tpu_v2 {
      */
     verb?: string | null;
   }
+  /**
+   * Further data for the provisioning state.
+   */
+  export interface Schema$ProvisioningData {}
+  /**
+   * A QueuedResource represents a request for resources that will be placed in a queue and fulfilled when the necessary resources are available.
+   */
+  export interface Schema$QueuedResource {
+    /**
+     * Output only. The time when the QueuedResource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The Guaranteed tier
+     */
+    guaranteed?: Schema$Guaranteed;
+    /**
+     * Output only. Immutable. The name of the QueuedResource.
+     */
+    name?: string | null;
+    /**
+     * Optional. The queueing policy of the QueuedRequest.
+     */
+    queueingPolicy?: Schema$QueueingPolicy;
+    /**
+     * Optional. Name of the reservation in which the resource should be provisioned. Format: projects/{project\}/locations/{zone\}/reservations/{reservation\}
+     */
+    reservationName?: string | null;
+    /**
+     * Optional. The Spot tier.
+     */
+    spot?: Schema$Spot;
+    /**
+     * Output only. State of the QueuedResource request.
+     */
+    state?: Schema$QueuedResourceState;
+    /**
+     * Optional. Defines a TPU resource.
+     */
+    tpu?: Schema$Tpu;
+  }
+  /**
+   * QueuedResourceState defines the details of the QueuedResource request.
+   */
+  export interface Schema$QueuedResourceState {
+    /**
+     * Output only. Further data for the accepted state.
+     */
+    acceptedData?: Schema$AcceptedData;
+    /**
+     * Output only. Further data for the active state.
+     */
+    activeData?: Schema$ActiveData;
+    /**
+     * Output only. Further data for the creating state.
+     */
+    creatingData?: Schema$CreatingData;
+    /**
+     * Output only. Further data for the deleting state.
+     */
+    deletingData?: Schema$DeletingData;
+    /**
+     * Output only. Further data for the failed state.
+     */
+    failedData?: Schema$FailedData;
+    /**
+     * Output only. Further data for the provisioning state.
+     */
+    provisioningData?: Schema$ProvisioningData;
+    /**
+     * Output only. State of the QueuedResource request.
+     */
+    state?: string | null;
+    /**
+     * Output only. The initiator of the QueuedResources's current state. Used to indicate whether the SUSPENDING/SUSPENDED state was initiated by the user or the service.
+     */
+    stateInitiator?: string | null;
+    /**
+     * Output only. Further data for the suspended state.
+     */
+    suspendedData?: Schema$SuspendedData;
+    /**
+     * Output only. Further data for the suspending state.
+     */
+    suspendingData?: Schema$SuspendingData;
+  }
+  /**
+   * Defines the policy of the QueuedRequest.
+   */
+  export interface Schema$QueueingPolicy {
+    /**
+     * Optional. A relative time after which resources may be created.
+     */
+    validAfterDuration?: string | null;
+    /**
+     * Optional. An absolute time after which resources may be created.
+     */
+    validAfterTime?: string | null;
+    /**
+     * Optional. An absolute time interval within which resources may be created.
+     */
+    validInterval?: Schema$Interval;
+    /**
+     * Optional. A relative time after which resources should not be created. If the request cannot be fulfilled by this time the request will be failed.
+     */
+    validUntilDuration?: string | null;
+    /**
+     * Optional. An absolute time after which resources should not be created. If the request cannot be fulfilled by this time the request will be failed.
+     */
+    validUntilTime?: string | null;
+  }
+  /**
+   * Request for ResetQueuedResource.
+   */
+  export interface Schema$ResetQueuedResourceRequest {}
   /**
    * A runtime version that a Node can be configured with.
    */
@@ -619,6 +832,10 @@ export namespace tpu_v2 {
     enableSecureBoot?: boolean | null;
   }
   /**
+   * Spot tier definition.
+   */
+  export interface Schema$Spot {}
+  /**
    * Request for StartNode.
    */
   export interface Schema$StartNodeRequest {}
@@ -644,6 +861,14 @@ export namespace tpu_v2 {
    */
   export interface Schema$StopNodeRequest {}
   /**
+   * Further data for the suspended state.
+   */
+  export interface Schema$SuspendedData {}
+  /**
+   * Further data for the suspending state.
+   */
+  export interface Schema$SuspendingData {}
+  /**
    * A Symptom instance.
    */
   export interface Schema$Symptom {
@@ -664,6 +889,15 @@ export namespace tpu_v2 {
      */
     workerId?: string | null;
   }
+  /**
+   * Details of the TPU resource(s) being requested.
+   */
+  export interface Schema$Tpu {
+    /**
+     * Optional. The TPU node(s) being requested.
+     */
+    nodeSpec?: Schema$NodeSpec[];
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -679,6 +913,7 @@ export namespace tpu_v2 {
     acceleratorTypes: Resource$Projects$Locations$Acceleratortypes;
     nodes: Resource$Projects$Locations$Nodes;
     operations: Resource$Projects$Locations$Operations;
+    queuedResources: Resource$Projects$Locations$Queuedresources;
     runtimeVersions: Resource$Projects$Locations$Runtimeversions;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -687,6 +922,9 @@ export namespace tpu_v2 {
       );
       this.nodes = new Resource$Projects$Locations$Nodes(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.queuedResources = new Resource$Projects$Locations$Queuedresources(
         this.context
       );
       this.runtimeVersions = new Resource$Projects$Locations$Runtimeversions(
@@ -2412,6 +2650,518 @@ export namespace tpu_v2 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Queuedresources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a QueuedResource TPU instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Queuedresources$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Queuedresources$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Queuedresources$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Queuedresources$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Queuedresources$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Queuedresources$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/queuedResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a QueuedResource TPU instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Queuedresources$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a queued resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Queuedresources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Queuedresources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueuedResource>;
+    get(
+      params: Params$Resource$Projects$Locations$Queuedresources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Queuedresources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$QueuedResource>,
+      callback: BodyResponseCallback<Schema$QueuedResource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Queuedresources$Get,
+      callback: BodyResponseCallback<Schema$QueuedResource>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$QueuedResource>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$Get
+        | BodyResponseCallback<Schema$QueuedResource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueuedResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueuedResource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$QueuedResource> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queuedresources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueuedResource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueuedResource>(parameters);
+      }
+    }
+
+    /**
+     * Lists queued resources.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Queuedresources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Queuedresources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListQueuedResourcesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Queuedresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Queuedresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListQueuedResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Queuedresources$List,
+      callback: BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$List
+        | BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListQueuedResourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queuedresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/queuedResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListQueuedResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListQueuedResourcesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Resets a QueuedResource TPU instance
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reset(
+      params: Params$Resource$Projects$Locations$Queuedresources$Reset,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reset(
+      params?: Params$Resource$Projects$Locations$Queuedresources$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    reset(
+      params: Params$Resource$Projects$Locations$Queuedresources$Reset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reset(
+      params: Params$Resource$Projects$Locations$Queuedresources$Reset,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reset(
+      params: Params$Resource$Projects$Locations$Queuedresources$Reset,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reset(callback: BodyResponseCallback<Schema$Operation>): void;
+    reset(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$Reset
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queuedresources$Reset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:reset').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Queuedresources$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name.
+     */
+    parent?: string;
+    /**
+     * Optional. The unqualified resource name. Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format.
+     */
+    queuedResourceId?: string;
+    /**
+     * Optional. Idempotent request UUID.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueuedResource;
+  }
+  export interface Params$Resource$Projects$Locations$Queuedresources$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, all running nodes belonging to this queued resource will be deleted first and then the queued resource will be deleted. Otherwise (i.e. force=false), the queued resource will only be deleted if its nodes have already been deleted or the queued resource is in the ACCEPTED, FAILED, or SUSPENDED state.
+     */
+    force?: boolean;
+    /**
+     * Required. The resource name.
+     */
+    name?: string;
+    /**
+     * Optional. Idempotent request UUID.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queuedresources$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queuedresources$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queuedresources$Reset
+    extends StandardParameters {
+    /**
+     * Required. The name of the queued resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResetQueuedResourceRequest;
   }
 
   export class Resource$Projects$Locations$Runtimeversions {

@@ -965,7 +965,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240208",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1917,7 +1917,7 @@
           "type": "string"
         },
         "stateInitiator": {
-          "description": "Output only. The initiator of the QueuedResources's current state.",
+          "description": "Output only. The initiator of the QueuedResources's current state. Used to indicate whether the SUSPENDING/SUSPENDED state was initiated by the user or the service.",
           "enum": [
             "STATE_INITIATOR_UNSPECIFIED",
             "USER",
