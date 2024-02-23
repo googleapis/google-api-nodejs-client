@@ -2023,6 +2023,10 @@ export namespace container_v1 {
      */
     diskType?: string | null;
     /**
+     * Optional. Reserved for future use.
+     */
+    enableConfidentialStorage?: boolean | null;
+    /**
      * Parameters for the node ephemeral storage using Local SSDs. If unspecified, ephemeral storage is backed by the boot disk.
      */
     ephemeralStorageLocalSsdConfig?: Schema$EphemeralStorageLocalSsdConfig;
@@ -3480,6 +3484,10 @@ export namespace container_v1 {
      * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
+    /**
+     * Specifies the configuration of queued provisioning.
+     */
+    queuedProvisioning?: Schema$QueuedProvisioning;
     /**
      * The resource labels for the node pool to use to annotate any related Google Compute Engine resources.
      */
