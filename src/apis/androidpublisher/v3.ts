@@ -461,7 +461,7 @@ export namespace androidpublisher_v3 {
     targeting?: Schema$Targeting;
   }
   /**
-   * Data format for a list of app versions. Only one app version is supported for now.
+   * Data format for a list of app versions.
    */
   export interface Schema$AppVersionList {
     /**
@@ -483,7 +483,7 @@ export namespace androidpublisher_v3 {
     versionCodeStart?: string | null;
   }
   /**
-   * Request message for ArchiveSubscription.
+   * Deprecated: subscription archiving is not supported.
    */
   export interface Schema$ArchiveSubscriptionRequest {}
   /**
@@ -2384,7 +2384,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$RegionalTaxRateInfo {
     /**
-     * You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in United States.
+     * You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in the United States.
      */
     eligibleForStreamingServiceTaxRate?: boolean | null;
     /**
@@ -2549,7 +2549,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$SafetyLabelsUpdateRequest {
     /**
-     * Required. Contents of the CSV file containing Data Safety responses. For the format of this file, see the Help Center documentation at https://support.google.com/googleplay/android-developer/answer/10787469?hl=en#zippy=%2Cunderstand-the-csv-format To download an up to date template, follow the steps at https://support.google.com/googleplay/android-developer/answer/10787469?hl=en#zippy=%2Cexport-to-a-csv-file
+     * Required. Contents of the CSV file containing Data Safety responses. For the format of this file, see the Help Center documentation at https://support.google.com/googleplay/android-developer/answer/10787469?#zippy=%2Cunderstand-the-csv-format To download an up to date template, follow the steps at https://support.google.com/googleplay/android-developer/answer/10787469?#zippy=%2Cexport-to-a-csv-file
      */
     safetyLabels?: string | null;
   }
@@ -2674,7 +2674,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$Subscription {
     /**
-     * Output only. Whether this subscription is archived. Archived subscriptions are not available to any subscriber any longer, cannot be updated, and are not returned in list requests unless the show archived flag is passed in.
+     * Output only. Deprecated: subscription archiving is not supported.
      */
     archived?: boolean | null;
     /**
@@ -11073,7 +11073,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Archives a subscription. Can only be done if at least one base plan was active in the past, and no base plan is available for new or existing subscribers currently. This action is irreversible, and the subscription ID will remain reserved.
+     * Deprecated: subscription archiving is not supported.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11896,7 +11896,7 @@ export namespace androidpublisher_v3 {
      */
     pageToken?: string;
     /**
-     * Whether archived subscriptions should be included in the response. Defaults to false.
+     * Deprecated: subscription archiving is not supported.
      */
     showArchived?: boolean;
   }
