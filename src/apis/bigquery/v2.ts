@@ -916,7 +916,7 @@ export namespace bigquery_v2 {
      */
     etag?: string | null;
     /**
-     * Optional. Information about the external metadata storage where the dataset is defined. Filled out when the dataset type is EXTERNAL.
+     * Optional. Reference to a read-only external dataset defined in data catalogs outside of BigQuery. Filled out when the dataset type is EXTERNAL.
      */
     externalDatasetReference?: Schema$ExternalDatasetReference;
     /**
@@ -955,6 +955,10 @@ export namespace bigquery_v2 {
      * Optional. Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days). The default value is 168 hours if this is not set.
      */
     maxTimeTravelHours?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. Reserved for future use.
      */
@@ -2106,6 +2110,10 @@ export namespace bigquery_v2 {
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
+     * Optional. [Experimental] Configures the load job to only copy files to the destination BigLake managed table with an external storage_uri, without reading file content and writing them to new files. Copying files only is supported when: * source_uris are in the same external storage system as the destination table but they do not overlap with storage_uri of the destination table. * source_format is the same file format as the destination table. * destination_table is an existing BigLake managed table. Its schema does not have default value expression. It schema does not have type parameters other than precision and scale. * No options other than the above are specified.
+     */
+    copyFilesOnly?: boolean | null;
+    /**
      * Optional. Specifies whether the job is allowed to create new tables. The following values are supported: * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. * CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
@@ -2704,7 +2712,7 @@ export namespace bigquery_v2 {
      */
     undeclaredQueryParameters?: Schema$QueryParameter[];
     /**
-     * Output only. Search query specific statistics.
+     * Output only. Vector Search query specific statistics.
      */
     vectorSearchStatistics?: Schema$VectorSearchStatistics;
   }

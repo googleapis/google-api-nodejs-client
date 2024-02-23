@@ -1552,6 +1552,10 @@ export namespace logging_v2 {
    */
   export interface Schema$Settings {
     /**
+     * Optional. The default analytics mode of an org or folder which is inherited by all newly created child project buckets.
+     */
+    analyticsMode?: string | null;
+    /**
      * Optional. Overrides the built-in configuration for _Default sink.
      */
     defaultSinkConfig?: Schema$DefaultSinkConfig;

@@ -1685,6 +1685,42 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "listPermitted": {
+                  "description": "Lists permitted Scopes.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes:listPermitted",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.scopes.listPermitted",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Token returned by previous call to `ListPermittedScopes` which specifies the position in the list from where to continue listing the resources.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent (project and location) where the Scope will be listed. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/scopes:listPermitted",
+                  "response": {
+                    "$ref": "ListPermittedScopesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "patch": {
                   "description": "Updates a scopes.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes/{scopesId}",
@@ -2098,7 +2134,7 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20240216",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -3012,6 +3048,24 @@
           ],
           "type": "string"
         },
+        "state": {
+          "description": "The state of CS This field summarizes the other fields in this message.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CONFIG_SYNC_NOT_INSTALLED",
+            "CONFIG_SYNC_INSTALLED",
+            "CONFIG_SYNC_ERROR",
+            "CONFIG_SYNC_PENDING"
+          ],
+          "enumDescriptions": [
+            "CS's state cannot be determined.",
+            "CS is not installed.",
+            "The expected CS version is installed successfully.",
+            "CS encounters errors.",
+            "CS is installing or terminating."
+          ],
+          "type": "string"
+        },
         "syncState": {
           "$ref": "ConfigManagementSyncState",
           "description": "The state of ConfigSync's process to sync configs to a cluster"
@@ -3324,6 +3378,20 @@
         "hierarchyController": {
           "$ref": "ConfigManagementHierarchyControllerConfig",
           "description": "Hierarchy Controller configuration for the cluster."
+        },
+        "management": {
+          "description": "Enables automatic Feature management.",
+          "enum": [
+            "MANAGEMENT_UNSPECIFIED",
+            "MANAGEMENT_AUTOMATIC",
+            "MANAGEMENT_MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Google will manage the Feature for the cluster.",
+            "User will manually manage the Feature for the cluster."
+          ],
+          "type": "string"
         },
         "policyController": {
           "$ref": "ConfigManagementPolicyController",
@@ -4595,6 +4663,24 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListPermittedScopesResponse": {
+      "description": "List of permitted Scopes.",
+      "id": "ListPermittedScopesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to request the next page of resources from the `ListPermittedScopes` method. The value of an empty string means that there are no more resources to return.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "The list of permitted Scopes",
+          "items": {
+            "$ref": "Scope"
           },
           "type": "array"
         }

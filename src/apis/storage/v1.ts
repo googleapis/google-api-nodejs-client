@@ -596,6 +596,10 @@ export namespace storage_v1 {
      */
     bucket?: string | null;
     /**
+     * The creation time of the folder in RFC 3339 format.
+     */
+    createTime?: string | null;
+    /**
      * The ID of the folder, including the bucket name, folder name.
      */
     id?: string | null;
@@ -620,13 +624,9 @@ export namespace storage_v1 {
      */
     selfLink?: string | null;
     /**
-     * The creation time of the folder in RFC 3339 format.
-     */
-    timeCreated?: string | null;
-    /**
      * The modification time of the folder metadata in RFC 3339 format.
      */
-    updated?: string | null;
+    updateTime?: string | null;
   }
   /**
    * A list of folders.

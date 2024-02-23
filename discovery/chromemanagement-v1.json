@@ -1040,7 +1040,7 @@
       }
     }
   },
-  "revision": "20231114",
+  "revision": "20240221",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1340,9 +1340,9 @@
           ],
           "enumDescriptions": [
             "Health unknown.",
-            "Battery is healthy.",
-            "Battery is moderately unhealthy and should be replaced soon.",
-            "Battery is unhealthy and should be replaced."
+            "Battery is healthy, full charge capacity / design capacity > 80%",
+            "Battery is moderately unhealthy and suggested to be replaced soon, full charge capacity / design capacity 75% - 80%",
+            "Battery is unhealthy and suggested to be replaced, full charge capacity / design capacity < 75%"
           ],
           "readOnly": true,
           "type": "string"

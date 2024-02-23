@@ -1042,6 +1042,49 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponse {}
   /**
+   * Metadata used for export issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelMetadata {
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original export request.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequest;
+  }
+  /**
+   * Request to export an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequest {
+    /**
+     * Google Cloud Storage URI to export the Issue Model to.
+     */
+    gcsDestination?: Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination;
+    /**
+     * Required. The issue model to export
+     */
+    name?: string | null;
+  }
+  /**
+   * Google Cloud Storage Object URI to save the issue model to.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination {
+    /**
+     * Required. Format: `gs:///`
+     */
+    objectUri?: string | null;
+  }
+  /**
+   * Response from export issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelResponse {}
+  /**
    * Agent Assist frequently-asked-question answer data.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData {
@@ -1087,6 +1130,53 @@ export namespace contactcenterinsights_v1 {
    * The data for a hold annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1HoldData {}
+  /**
+   * Metadata used for import issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelMetadata {
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original import request.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest;
+  }
+  /**
+   * Request to import an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest {
+    /**
+     * Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
+     */
+    createNewModel?: boolean | null;
+    /**
+     * Google Cloud Storage source message.
+     */
+    gcsSource?: Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequestGcsSource;
+    /**
+     * Required. The parent resource of the issue model.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Google Cloud Storage Object URI to get the issue model file from.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequestGcsSource {
+    /**
+     * Required. Format: `gs:///`
+     */
+    objectUri?: string | null;
+  }
+  /**
+   * Response from import issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelResponse {}
   /**
    * The metadata for an IngestConversations operation.
    */
@@ -1191,6 +1281,14 @@ export namespace contactcenterinsights_v1 {
      * Required. The Cloud Storage bucket containing source objects.
      */
     bucketUri?: string | null;
+    /**
+     * Optional. Custom keys to extract as conversation labels from metadata files in `metadata_bucket_uri`. Keys not included in this field will be ignored. Note that there is a limit of 20 labels per conversation.
+     */
+    customMetadataKeys?: string[] | null;
+    /**
+     * Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested
+     */
+    metadataBucketUri?: string | null;
   }
   /**
    * Configuration for processing transcript objects.
@@ -2592,6 +2690,49 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ExportInsightsDataResponse {}
   /**
+   * Metadata used for export issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelMetadata {
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original export request.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequest;
+  }
+  /**
+   * Request to export an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequest {
+    /**
+     * Google Cloud Storage URI to export the Issue Model to.
+     */
+    gcsDestination?: Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination;
+    /**
+     * Required. The issue model to export
+     */
+    name?: string | null;
+  }
+  /**
+   * Google Cloud Storage Object URI to save the issue model to.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination {
+    /**
+     * Required. Format: `gs:///`
+     */
+    objectUri?: string | null;
+  }
+  /**
+   * Response from export issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelResponse {}
+  /**
    * Agent Assist frequently-asked-question answer data.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1FaqAnswerData {
@@ -2637,6 +2778,53 @@ export namespace contactcenterinsights_v1 {
    * The data for a hold annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1HoldData {}
+  /**
+   * Metadata used for import issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelMetadata {
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original import request.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelRequest;
+  }
+  /**
+   * Request to import an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelRequest {
+    /**
+     * Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
+     */
+    createNewModel?: boolean | null;
+    /**
+     * Google Cloud Storage source message.
+     */
+    gcsSource?: Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelRequestGcsSource;
+    /**
+     * Required. The parent resource of the issue model.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Google Cloud Storage Object URI to get the issue model file from.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelRequestGcsSource {
+    /**
+     * Required. Format: `gs:///`
+     */
+    objectUri?: string | null;
+  }
+  /**
+   * Response from import issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelResponse {}
   /**
    * The metadata for an IngestConversations operation.
    */
@@ -2741,6 +2929,14 @@ export namespace contactcenterinsights_v1 {
      * Required. The Cloud Storage bucket containing source objects.
      */
     bucketUri?: string | null;
+    /**
+     * Optional. Custom keys to extract as conversation labels from metadata files in `metadata_bucket_uri`. Keys not included in this field will be ignored. Note that there is a limit of 20 labels per conversation.
+     */
+    customMetadataKeys?: string[] | null;
+    /**
+     * Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested
+     */
+    metadataBucketUri?: string | null;
   }
   /**
    * Configuration for processing transcript objects.
@@ -3216,7 +3412,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * "all-triggers": Notify each time any of the supported triggers occurs. * "create-analysis": Notify each time an analysis is created. * "create-conversation": Notify each time a conversation is created. * "export-insights-data": Notify each time an export is complete. * "update-conversation": Notify each time a conversation is updated via UpdateConversation. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project\}/topics/{topic\}
+     * A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * "all-triggers": Notify each time any of the supported triggers occurs. * "create-analysis": Notify each time an analysis is created. * "create-conversation": Notify each time a conversation is created. * "export-insights-data": Notify each time an export is complete. * "update-conversation": Notify each time a conversation is updated via UpdateConversation. * "upload-conversation": Notify when an UploadConversation LRO completes. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project\}/topics/{topic\}
      */
     pubsubNotificationSettings?: {[key: string]: string} | null;
     /**
@@ -4771,6 +4967,10 @@ export namespace contactcenterinsights_v1 {
      */
     filter?: string;
     /**
+     * Optional. The attribute by which to order conversations in the response. If empty, conversations will be ordered by descending creation time. Supported values are one of the following: * create_time * customer_satisfaction_rating * duration * latest_analysis * start_time * turn_count The default sort order is ascending. To specify order, append `asc` or `desc`, i.e. `create_time desc`. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
      * The maximum number of conversations to return in the response. A valid page size ranges from 0 to 1,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.
      */
     pageSize?: number;
@@ -5749,6 +5949,98 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
+     * Exports an issue model to the provided destination.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Issuemodels$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Issuemodels$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Locations$Issuemodels$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Issuemodels$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Issuemodels$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Issuemodels$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Issuemodels$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Issuemodels$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Gets an issue model.
      *
      * @param params - Parameters for request
@@ -5839,6 +6131,101 @@ export namespace contactcenterinsights_v1 {
         return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1IssueModel>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Imports an issue model from a Cloud Storage bucket.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Issuemodels$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Issuemodels$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Issuemodels$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Issuemodels$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Issuemodels$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Issuemodels$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Issuemodels$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Issuemodels$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/issueModels:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -6167,12 +6554,36 @@ export namespace contactcenterinsights_v1 {
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1DeployIssueModelRequest;
   }
+  export interface Params$Resource$Projects$Locations$Issuemodels$Export
+    extends StandardParameters {
+    /**
+     * Required. The issue model to export
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequest;
+  }
   export interface Params$Resource$Projects$Locations$Issuemodels$Get
     extends StandardParameters {
     /**
      * Required. The name of the issue model to get.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Issuemodels$Import
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the issue model.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelRequest;
   }
   export interface Params$Resource$Projects$Locations$Issuemodels$List
     extends StandardParameters {

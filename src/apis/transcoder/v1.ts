@@ -533,9 +533,13 @@ export namespace transcoder_v1 {
      */
     entropyCoder?: string | null;
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120. Will default to the input frame rate if larger than the input frame rate. The API will generate an output FPS that is divisible by the input FPS, and smaller or equal to the target FPS. See [Calculating frame rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for more information.
+     * Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120.
      */
     frameRate?: number | null;
+    /**
+     * Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`.
+     */
+    frameRateConversionStrategy?: string | null;
     /**
      * Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.
      */
@@ -630,9 +634,13 @@ export namespace transcoder_v1 {
      */
     enableTwoPass?: boolean | null;
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120. Will default to the input frame rate if larger than the input frame rate. The API will generate an output FPS that is divisible by the input FPS, and smaller or equal to the target FPS. See [Calculating frame rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for more information.
+     * Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120.
      */
     frameRate?: number | null;
+    /**
+     * Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`.
+     */
+    frameRateConversionStrategy?: string | null;
     /**
      * Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.
      */
@@ -1226,9 +1234,13 @@ export namespace transcoder_v1 {
      */
     crfLevel?: number | null;
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120. Will default to the input frame rate if larger than the input frame rate. The API will generate an output FPS that is divisible by the input FPS, and smaller or equal to the target FPS. See [Calculating frame rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for more information.
+     * Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120.
      */
     frameRate?: number | null;
+    /**
+     * Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`.
+     */
+    frameRateConversionStrategy?: string | null;
     /**
      * Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.
      */

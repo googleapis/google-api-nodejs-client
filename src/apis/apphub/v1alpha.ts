@@ -137,11 +137,11 @@ export namespace apphub_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Optional. User-defined description of an Application.
+     * Optional. User-defined description of an Application. Can have a maximum length of 2048 characters.
      */
     description?: string | null;
     /**
-     * Optional. User-defined name for the Application.
+     * Optional. User-defined name for the Application. Can have a maximum length of 63 characters.
      */
     displayName?: string | null;
     /**
@@ -255,7 +255,7 @@ export namespace apphub_v1alpha {
      */
     channel?: Schema$Channel;
     /**
-     * Optional. Contact's name.
+     * Optional. Contact's name. Can have a maximum length of 63 characters.
      */
     displayName?: string | null;
     /**
@@ -268,13 +268,17 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$Criticality {
     /**
-     * Required. Criticality level.
+     * Optional. Criticality level. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters.
      */
     level?: string | null;
     /**
-     * Required. Indicates mission-critical Application, Service, or Workload.
+     * Optional. Indicates mission-critical Application, Service, or Workload.
      */
     missionCritical?: boolean | null;
+    /**
+     * Required. Criticality Type.
+     */
+    type?: string | null;
   }
   /**
    * Request for DetachServiceProjectAttachment.
@@ -327,9 +331,13 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$Environment {
     /**
-     * Required. Environment name.
+     * Optional. Environment name. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters.
      */
     environment?: string | null;
+    /**
+     * Required. Environment Type.
+     */
+    type?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -351,40 +359,6 @@ export namespace apphub_v1alpha {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
-  }
-  /**
-   * Response for FindDiscoveredServices.
-   */
-  export interface Schema$FindDiscoveredServicesResponse {
-    /**
-     * List of discovered services.
-     */
-    discoveredServices?: Schema$DiscoveredService[];
-    /**
-     * A token identifying a page of results the server should return.
-     */
-    nextPageToken?: string | null;
-    /**
-     * Locations that could not be reached.
-     */
-    unreachable?: string[] | null;
-  }
-  /**
-   * Response for FindDiscoveredWorkloads.
-   */
-  export interface Schema$FindDiscoveredWorkloadsResponse {
-    /**
-     * List of discovered workloads.
-     */
-    discoveredWorkloads?: Schema$DiscoveredWorkload[];
-    /**
-     * A token identifying a page of results the server should return.
-     */
-    nextPageToken?: string | null;
-    /**
-     * Locations that could not be reached.
-     */
-    unreachable?: string[] | null;
   }
   /**
    * Response for FindUnregisteredServices.
@@ -683,7 +657,7 @@ export namespace apphub_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Optional. User-defined description of a Service.
+     * Optional. User-defined description of a Service. Can have a maximum length of 2048 characters.
      */
     description?: string | null;
     /**
@@ -691,7 +665,7 @@ export namespace apphub_v1alpha {
      */
     discoveredService?: string | null;
     /**
-     * Optional. User-defined name for the Service.
+     * Optional. User-defined name for the Service. Can have a maximum length of 63 characters.
      */
     displayName?: string | null;
     /**
@@ -835,7 +809,7 @@ export namespace apphub_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Optional. User-defined description of a Workload.
+     * Optional. User-defined description of a Workload. Can have a maximum length of 2048 characters.
      */
     description?: string | null;
     /**
@@ -843,7 +817,7 @@ export namespace apphub_v1alpha {
      */
     discoveredWorkload?: string | null;
     /**
-     * Optional. User-defined name for the Workload.
+     * Optional. User-defined name for the Workload. Can have a maximum length of 63 characters.
      */
     displayName?: string | null;
     /**
@@ -2065,7 +2039,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$Create
     extends StandardParameters {
     /**
-     * Required. The Application identifier.
+     * Required. The Application identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.
      */
     applicationId?: string;
     /**
@@ -2633,7 +2607,7 @@ export namespace apphub_v1alpha {
      */
     requestId?: string;
     /**
-     * Required. The Service identifier.
+     * Required. The Service identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.
      */
     serviceId?: string;
 
@@ -3158,7 +3132,7 @@ export namespace apphub_v1alpha {
      */
     requestId?: string;
     /**
-     * Required. The Workload identifier.
+     * Required. The Workload identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.
      */
     workloadId?: string;
 
@@ -3233,102 +3207,6 @@ export namespace apphub_v1alpha {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * Finds discovered services that could be added to an application in a host project and location.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    find(
-      params: Params$Resource$Projects$Locations$Discoveredservices$Find,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    find(
-      params?: Params$Resource$Projects$Locations$Discoveredservices$Find,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$FindDiscoveredServicesResponse>;
-    find(
-      params: Params$Resource$Projects$Locations$Discoveredservices$Find,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    find(
-      params: Params$Resource$Projects$Locations$Discoveredservices$Find,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FindDiscoveredServicesResponse>,
-      callback: BodyResponseCallback<Schema$FindDiscoveredServicesResponse>
-    ): void;
-    find(
-      params: Params$Resource$Projects$Locations$Discoveredservices$Find,
-      callback: BodyResponseCallback<Schema$FindDiscoveredServicesResponse>
-    ): void;
-    find(
-      callback: BodyResponseCallback<Schema$FindDiscoveredServicesResponse>
-    ): void;
-    find(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Discoveredservices$Find
-        | BodyResponseCallback<Schema$FindDiscoveredServicesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$FindDiscoveredServicesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$FindDiscoveredServicesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$FindDiscoveredServicesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Discoveredservices$Find;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Discoveredservices$Find;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}/discoveredServices:find'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$FindDiscoveredServicesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$FindDiscoveredServicesResponse>(
-          parameters
-        );
-      }
     }
 
     /**
@@ -3516,7 +3394,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Lists discovered services in a host project and location.
+     * Lists discovered services that can be added to an application in a host project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3613,29 +3491,6 @@ export namespace apphub_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveredservices$Find
-    extends StandardParameters {
-    /**
-     * Optional. Filtering results
-     */
-    filter?: string;
-    /**
-     * Optional. Hint for how to order the results
-     */
-    orderBy?: string;
-    /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token identifying a page of results the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. Value for parent.
-     */
-    parent?: string;
-  }
   export interface Params$Resource$Projects$Locations$Discoveredservices$Findunregistered
     extends StandardParameters {
     /**
@@ -3694,102 +3549,6 @@ export namespace apphub_v1alpha {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * Finds discovered workloads that could be added to an application in a host project and location.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    find(
-      params: Params$Resource$Projects$Locations$Discoveredworkloads$Find,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    find(
-      params?: Params$Resource$Projects$Locations$Discoveredworkloads$Find,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$FindDiscoveredWorkloadsResponse>;
-    find(
-      params: Params$Resource$Projects$Locations$Discoveredworkloads$Find,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    find(
-      params: Params$Resource$Projects$Locations$Discoveredworkloads$Find,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FindDiscoveredWorkloadsResponse>,
-      callback: BodyResponseCallback<Schema$FindDiscoveredWorkloadsResponse>
-    ): void;
-    find(
-      params: Params$Resource$Projects$Locations$Discoveredworkloads$Find,
-      callback: BodyResponseCallback<Schema$FindDiscoveredWorkloadsResponse>
-    ): void;
-    find(
-      callback: BodyResponseCallback<Schema$FindDiscoveredWorkloadsResponse>
-    ): void;
-    find(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Discoveredworkloads$Find
-        | BodyResponseCallback<Schema$FindDiscoveredWorkloadsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$FindDiscoveredWorkloadsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$FindDiscoveredWorkloadsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$FindDiscoveredWorkloadsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Discoveredworkloads$Find;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Discoveredworkloads$Find;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}/discoveredWorkloads:find'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$FindDiscoveredWorkloadsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$FindDiscoveredWorkloadsResponse>(
-          parameters
-        );
-      }
     }
 
     /**
@@ -3978,7 +3737,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Lists discovered workloads in a host project and location.
+     * Lists discovered workloads that can be added to an application in a host project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4075,29 +3834,6 @@ export namespace apphub_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveredworkloads$Find
-    extends StandardParameters {
-    /**
-     * Optional. Filtering results
-     */
-    filter?: string;
-    /**
-     * Optional. Hint for how to order the results
-     */
-    orderBy?: string;
-    /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token identifying a page of results the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. Value for parent.
-     */
-    parent?: string;
-  }
   export interface Params$Resource$Projects$Locations$Discoveredworkloads$Findunregistered
     extends StandardParameters {
     /**

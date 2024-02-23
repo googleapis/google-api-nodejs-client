@@ -6186,7 +6186,7 @@
       }
     }
   },
-  "revision": "20240131",
+  "revision": "20240219",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -7592,7 +7592,7 @@
       "id": "AttributionSettings",
       "properties": {
         "attributionLookbackWindowInDays": {
-          "description": "Required. Lookback windows (in days) used for attribution in this source. Supported values are 7, 30, 60, 90.",
+          "description": "Required. Lookback windows (in days) used for attribution in this source. Supported values are 7, 30, 40.",
           "format": "int32",
           "type": "integer"
         },

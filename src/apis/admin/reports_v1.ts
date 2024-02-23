@@ -617,7 +617,7 @@ export namespace admin_reports_v1 {
      */
     maxResults?: number;
     /**
-     * ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
+     * `Deprecated`. This field is deprecated and is no longer supported. ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
      */
     orgUnitID?: string;
     /**

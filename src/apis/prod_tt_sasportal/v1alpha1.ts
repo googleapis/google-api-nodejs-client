@@ -240,7 +240,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * The FCC identifier of the device. Refer to https://www.fcc.gov/oet/ea/fccid for FccID format.
+     * The FCC identifier of the device. Refer to https://www.fcc.gov/oet/ea/fccid for FccID format. Accept underscores and periods because some test-SAS customers use them.
      */
     fccId?: string | null;
     /**

@@ -131,7 +131,6 @@ export namespace walletobjects_v1 {
     smarttap: Resource$Smarttap;
     transitclass: Resource$Transitclass;
     transitobject: Resource$Transitobject;
-    walletobjects: Resource$Walletobjects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -158,7 +157,6 @@ export namespace walletobjects_v1 {
       this.smarttap = new Resource$Smarttap(this.context);
       this.transitclass = new Resource$Transitclass(this.context);
       this.transitobject = new Resource$Transitobject(this.context);
-      this.walletobjects = new Resource$Walletobjects(this.context);
     }
   }
 
@@ -243,7 +241,11 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$AppLinkDataAppLinkInfoAppTarget {
     /**
-     * URI for AppTarget. The description on the URI must be set.
+     * Package name for AppTarget. For example: com.google.android.gm
+     */
+    packageName?: string | null;
+    /**
+     * URI for AppTarget. The description on the URI must be set. Prefer setting package field instead, if this target is defined for your application.
      */
     targetUri?: Schema$Uri;
   }
@@ -1529,6 +1531,10 @@ export namespace walletobjects_v1 {
      */
     linksModuleData?: Schema$LinksModuleData;
     /**
+     * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
+     */
+    messages?: Schema$Message[];
+    /**
      * Identifies whether multiple users and devices will save the same object referencing this class.
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
@@ -1548,6 +1554,15 @@ export namespace walletobjects_v1 {
      * View Unlock Requirement options for the generic pass.
      */
     viewUnlockRequirement?: string | null;
+  }
+  /**
+   * Response to adding a new issuer message to the class. This contains the entire updated GenericClass.
+   */
+  export interface Schema$GenericClassAddMessageResponse {
+    /**
+     * The updated EventTicketClass resource.
+     */
+    resource?: Schema$GenericClass;
   }
   /**
    * List response which contains the list of all generic classes for a given issuer ID.
@@ -1658,6 +1673,15 @@ export namespace walletobjects_v1 {
      * The wide logo of the pass. When provided, this will be used in place of the logo in the top left of the card view.
      */
     wideLogo?: Schema$Image;
+  }
+  /**
+   * Response to adding a new issuer message to the object. This contains the entire updated GenericObject.
+   */
+  export interface Schema$GenericObjectAddMessageResponse {
+    /**
+     * The updated GenericObject resource.
+     */
+    resource?: Schema$GenericObject;
   }
   /**
    * List response which contains the list of all generic objects for a given issuer ID.
@@ -2730,7 +2754,7 @@ export namespace walletobjects_v1 {
      */
     localizedHeader?: Schema$LocalizedString;
     /**
-     * The type of the message. Currently, this can only be set for offers.
+     * The message type.
      */
     messageType?: string | null;
   }
@@ -3128,32 +3152,6 @@ export namespace walletobjects_v1 {
      * The complete list of permissions for the issuer account.
      */
     permissions?: Schema$Permission[];
-  }
-  /**
-   * Private data for TextModule. This data will be rendered as a TextModule for a pass.
-   */
-  export interface Schema$PrivateText {
-    /**
-     * Translated strings for the body.
-     */
-    body?: Schema$LocalizedString;
-    /**
-     * Translated strings for the header.
-     */
-    header?: Schema$LocalizedString;
-  }
-  /**
-   * Private data for LinkModule. This data will be rendered as the LinkModule for a pass.
-   */
-  export interface Schema$PrivateUri {
-    /**
-     * The URI's title appearing in the app as text and its translated strings. Recommended maximum is 20 characters to ensure the full string is displayed on smaller screens.
-     */
-    description?: Schema$LocalizedString;
-    /**
-     * The location of a web page, image, or other resource. URIs in the `LinksModuleData` can have different prefixes indicating the type of URI (a link to a web page, a link to a map, a telephone number, or an email address).
-     */
-    uri?: string | null;
   }
   export interface Schema$PurchaseDetails {
     /**
@@ -3929,54 +3927,6 @@ export namespace walletobjects_v1 {
      * Indicates if the object needs to have upcoming notification enabled.
      */
     enableNotification?: boolean | null;
-  }
-  /**
-   * Request for sending user private Text or URI by the Issuer.
-   */
-  export interface Schema$UploadPrivateDataRequest {
-    /**
-     * The ID of the issuer sending the data.
-     */
-    issuerId?: string | null;
-    /**
-     * Private text data of the user.
-     */
-    text?: Schema$PrivateText;
-    /**
-     * Private URIs of the user.
-     */
-    uri?: Schema$PrivateUri;
-  }
-  /**
-   * Response for uploading user private data (text or URIs)
-   */
-  export interface Schema$UploadPrivateDataResponse {
-    /**
-     * A 64-bit content id for the private data that was uploaded by the Issuer.
-     */
-    privateContentId?: string | null;
-  }
-  /**
-   * Request to upload user's private images by Issuers to be used in passes.
-   */
-  export interface Schema$UploadPrivateImageRequest {
-    /**
-     * A reference to the image payload that was uploaded by Scotty.
-     */
-    blob?: Schema$Media;
-    /**
-     * Extra information about the uploaded media.
-     */
-    mediaRequestInfo?: Schema$MediaRequestInfo;
-  }
-  /**
-   * Response for uploading the private image
-   */
-  export interface Schema$UploadPrivateImageResponse {
-    /**
-     * A 64-bit content id for the image that was uploaded by the Issuer.
-     */
-    privateContentId?: string | null;
   }
   export interface Schema$Uri {
     /**
@@ -6574,6 +6524,102 @@ export namespace walletobjects_v1 {
     }
 
     /**
+     * Adds a message to the generic class referenced by the given class ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addmessage(
+      params: Params$Resource$Genericclass$Addmessage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addmessage(
+      params?: Params$Resource$Genericclass$Addmessage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenericClassAddMessageResponse>;
+    addmessage(
+      params: Params$Resource$Genericclass$Addmessage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addmessage(
+      params: Params$Resource$Genericclass$Addmessage,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenericClassAddMessageResponse>,
+      callback: BodyResponseCallback<Schema$GenericClassAddMessageResponse>
+    ): void;
+    addmessage(
+      params: Params$Resource$Genericclass$Addmessage,
+      callback: BodyResponseCallback<Schema$GenericClassAddMessageResponse>
+    ): void;
+    addmessage(
+      callback: BodyResponseCallback<Schema$GenericClassAddMessageResponse>
+    ): void;
+    addmessage(
+      paramsOrCallback?:
+        | Params$Resource$Genericclass$Addmessage
+        | BodyResponseCallback<Schema$GenericClassAddMessageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenericClassAddMessageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenericClassAddMessageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenericClassAddMessageResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Genericclass$Addmessage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Genericclass$Addmessage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://walletobjects.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/walletobjects/v1/genericClass/{resourceId}/addMessage'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resourceId'],
+        pathParams: ['resourceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenericClassAddMessageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenericClassAddMessageResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns the generic class with the given class ID.
      *
      * @param params - Parameters for request
@@ -7015,6 +7061,18 @@ export namespace walletobjects_v1 {
     }
   }
 
+  export interface Params$Resource$Genericclass$Addmessage
+    extends StandardParameters {
+    /**
+     * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     */
+    resourceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddMessageRequest;
+  }
   export interface Params$Resource$Genericclass$Get extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
@@ -7072,6 +7130,103 @@ export namespace walletobjects_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Adds a message to the generic object referenced by the given object ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addmessage(
+      params: Params$Resource$Genericobject$Addmessage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addmessage(
+      params?: Params$Resource$Genericobject$Addmessage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenericObjectAddMessageResponse>;
+    addmessage(
+      params: Params$Resource$Genericobject$Addmessage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addmessage(
+      params: Params$Resource$Genericobject$Addmessage,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenericObjectAddMessageResponse>,
+      callback: BodyResponseCallback<Schema$GenericObjectAddMessageResponse>
+    ): void;
+    addmessage(
+      params: Params$Resource$Genericobject$Addmessage,
+      callback: BodyResponseCallback<Schema$GenericObjectAddMessageResponse>
+    ): void;
+    addmessage(
+      callback: BodyResponseCallback<Schema$GenericObjectAddMessageResponse>
+    ): void;
+    addmessage(
+      paramsOrCallback?:
+        | Params$Resource$Genericobject$Addmessage
+        | BodyResponseCallback<Schema$GenericObjectAddMessageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenericObjectAddMessageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenericObjectAddMessageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenericObjectAddMessageResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Genericobject$Addmessage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Genericobject$Addmessage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://walletobjects.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/walletobjects/v1/genericObject/{resourceId}/addMessage'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resourceId'],
+        pathParams: ['resourceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenericObjectAddMessageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenericObjectAddMessageResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -7519,6 +7674,18 @@ export namespace walletobjects_v1 {
     }
   }
 
+  export interface Params$Resource$Genericobject$Addmessage
+    extends StandardParameters {
+    /**
+     * The unique identifier for an object. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     */
+    resourceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddMessageRequest;
+  }
   export interface Params$Resource$Genericobject$Get
     extends StandardParameters {
     /**
@@ -13671,135 +13838,5 @@ export namespace walletobjects_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TransitObject;
-  }
-
-  export class Resource$Walletobjects {
-    context: APIRequestContext;
-    v1: Resource$Walletobjects$V1;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.v1 = new Resource$Walletobjects$V1(this.context);
-    }
-  }
-
-  export class Resource$Walletobjects$V1 {
-    context: APIRequestContext;
-    privateContent: Resource$Walletobjects$V1$Privatecontent;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.privateContent = new Resource$Walletobjects$V1$Privatecontent(
-        this.context
-      );
-    }
-  }
-
-  export class Resource$Walletobjects$V1$Privatecontent {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Upload private data (text or URI) and returns an Id to be used in its place.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    uploadPrivateData(
-      params: Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    uploadPrivateData(
-      params?: Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadPrivateDataResponse>;
-    uploadPrivateData(
-      params: Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    uploadPrivateData(
-      params: Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UploadPrivateDataResponse>,
-      callback: BodyResponseCallback<Schema$UploadPrivateDataResponse>
-    ): void;
-    uploadPrivateData(
-      params: Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata,
-      callback: BodyResponseCallback<Schema$UploadPrivateDataResponse>
-    ): void;
-    uploadPrivateData(
-      callback: BodyResponseCallback<Schema$UploadPrivateDataResponse>
-    ): void;
-    uploadPrivateData(
-      paramsOrCallback?:
-        | Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata
-        | BodyResponseCallback<Schema$UploadPrivateDataResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$UploadPrivateDataResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$UploadPrivateDataResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$UploadPrivateDataResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://walletobjects.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/walletobjects/v1/privateContent/uploadPrivateData'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$UploadPrivateDataResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$UploadPrivateDataResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Walletobjects$V1$Privatecontent$Uploadprivatedata
-    extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$UploadPrivateDataRequest;
   }
 }

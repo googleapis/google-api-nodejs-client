@@ -420,6 +420,14 @@ export namespace looker_v1 {
      */
     privateIpEnabled?: boolean | null;
     /**
+     * Optional. PSC configuration. Used when `enable_private_ip` and `psc_enabled` are both true.
+     */
+    pscConfig?: Schema$PscConfig;
+    /**
+     * Optional. Whether to use Private Service Connect (PSC) for private IP connectivity. If true, VPC peering (PSA) will not be used.
+     */
+    pscEnabled?: boolean | null;
+    /**
      * Whether public IP is enabled on the Looker instance.
      */
     publicIpEnabled?: boolean | null;
@@ -627,9 +635,43 @@ export namespace looker_v1 {
     version?: number | null;
   }
   /**
+   * Information for Private Service Connect (PSC) setup for a Looker instance.
+   */
+  export interface Schema$PscConfig {
+    /**
+     * Optional. List of VPCs that are allowed ingress into looker. Format: projects/{project\}/global/networks/{network\}
+     */
+    allowedVpcs?: string[] | null;
+    /**
+     * Output only. URI of the Looker service attachment.
+     */
+    lookerServiceAttachmentUri?: string | null;
+    /**
+     * Optional. List of egress service attachment configurations.
+     */
+    serviceAttachments?: Schema$ServiceAttachment[];
+  }
+  /**
    * Request options for restarting an instance.
    */
   export interface Schema$RestartInstanceRequest {}
+  /**
+   * Service attachment configuration.
+   */
+  export interface Schema$ServiceAttachment {
+    /**
+     * Output only. Connection status.
+     */
+    connectionStatus?: string | null;
+    /**
+     * Required. Fully qualified domain name that will be used in the private DNS record created for the service attachment.
+     */
+    localFqdn?: string | null;
+    /**
+     * Required. URI of the service attachment to connect to. Format: projects/{project\}/regions/{region\}/serviceAttachments/{service_attachment\}
+     */
+    targetServiceAttachmentUri?: string | null;
+  }
   /**
    * Request message for `SetIamPolicy` method.
    */

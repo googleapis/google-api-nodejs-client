@@ -378,6 +378,10 @@ export namespace recaptchaenterprise_v1 {
      */
     block?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction;
     /**
+     * This action will inject reCAPTCHA JavaScript code into the HTML page returned by the site backend.
+     */
+    includeRecaptchaScript?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction;
+    /**
      * This action will redirect the request to a ReCaptcha interstitial to attach a token.
      */
     redirect?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction;
@@ -398,6 +402,10 @@ export namespace recaptchaenterprise_v1 {
    * A block action serves an HTTP error code a prevents the request from hitting the backend.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction {}
+  /**
+   * An include reCAPTCHA script action involves injecting reCAPTCHA JavaScript code into the HTML returned by the site backend. This reCAPTCHA script is tasked with collecting user signals on the requested web page, issuing tokens as a cookie within the site domain, and enabling their utilization in subsequent page requests.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction {}
   /**
    * A redirect action returns a 307 (temporary redirect) response, pointing the user to a ReCaptcha interstitial page to attach a token.
    */

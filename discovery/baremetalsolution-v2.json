@@ -1638,7 +1638,7 @@
       }
     }
   },
-  "revision": "20231130",
+  "revision": "20240214",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -3561,13 +3561,15 @@
             "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
             "VOLUME_PERFORMANCE_TIER_SHARED",
             "VOLUME_PERFORMANCE_TIER_ASSIGNED",
-            "VOLUME_PERFORMANCE_TIER_HT"
+            "VOLUME_PERFORMANCE_TIER_HT",
+            "VOLUME_PERFORMANCE_TIER_QOS2_PERFORMANCE"
           ],
           "enumDescriptions": [
             "Value is not specified.",
             "Regular volumes, shared aggregates.",
             "Assigned aggregates.",
-            "High throughput aggregates."
+            "High throughput aggregates.",
+            "QoS 2.0 high performance storage."
           ],
           "type": "string"
         },
@@ -3719,13 +3721,15 @@
             "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
             "VOLUME_PERFORMANCE_TIER_SHARED",
             "VOLUME_PERFORMANCE_TIER_ASSIGNED",
-            "VOLUME_PERFORMANCE_TIER_HT"
+            "VOLUME_PERFORMANCE_TIER_HT",
+            "VOLUME_PERFORMANCE_TIER_QOS2_PERFORMANCE"
           ],
           "enumDescriptions": [
             "Value is not specified.",
             "Regular volumes, shared aggregates.",
             "Assigned aggregates.",
-            "High throughput aggregates."
+            "High throughput aggregates.",
+            "QoS 2.0 high performance storage."
           ],
           "type": "string"
         },

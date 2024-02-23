@@ -784,7 +784,7 @@ export namespace tpu_v2alpha1 {
      */
     state?: string | null;
     /**
-     * Output only. The initiator of the QueuedResources's current state.
+     * Output only. The initiator of the QueuedResources's current state. Used to indicate whether the SUSPENDING/SUSPENDED state was initiated by the user or the service.
      */
     stateInitiator?: string | null;
     /**
