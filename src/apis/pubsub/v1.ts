@@ -176,6 +176,10 @@ export namespace pubsub_v1 {
      */
     dropUnknownFields?: boolean | null;
     /**
+     * Optional. The service account to use to write to BigQuery. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     */
+    serviceAccountEmail?: string | null;
+    /**
      * Output only. An output-only field that indicates whether or not the subscription can receive messages.
      */
     state?: string | null;
@@ -241,6 +245,10 @@ export namespace pubsub_v1 {
      * Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.
      */
     maxDuration?: string | null;
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     */
+    serviceAccountEmail?: string | null;
     /**
      * Output only. An output-only field that indicates whether or not the subscription can receive messages.
      */
