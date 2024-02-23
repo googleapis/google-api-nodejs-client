@@ -1143,6 +1143,10 @@ export namespace youtube_v3 {
    */
   export interface Schema$ChannelToStoreLinkDetails {
     /**
+     * Information specific to billing (read-only).
+     */
+    billingDetails?: Schema$ChannelToStoreLinkDetailsBillingDetails;
+    /**
      * Google Merchant Center id of the store.
      */
     merchantId?: string | null;
@@ -1154,6 +1158,15 @@ export namespace youtube_v3 {
      * Landing page of the store.
      */
     storeUrl?: string | null;
+  }
+  /**
+   * Information specific to billing.
+   */
+  export interface Schema$ChannelToStoreLinkDetailsBillingDetails {
+    /**
+     * The current billing profile status.
+     */
+    billingStatus?: string | null;
   }
   /**
    * A *comment* represents a single YouTube comment.
@@ -2441,11 +2454,11 @@ export namespace youtube_v3 {
     retractedMessageId?: string | null;
   }
   /**
-   * Next ID: 33
+   * Next ID: 34
    */
   export interface Schema$LiveChatMessageSnippet {
     /**
-     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message membershipGiftingEvent - the user that made the purchase giftMembershipReceivedEvent - the user that received the gift membership messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase
+     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message membershipGiftingEvent - the user that made the purchase giftMembershipReceivedEvent - the user that received the gift membership messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase pollEvent - the user that created the poll
      */
     authorChannelId?: string | null;
     /**
@@ -2479,6 +2492,10 @@ export namespace youtube_v3 {
      * Details about the New Member Announcement event, this is only set if the type is 'newSponsorEvent'. Please note that "member" is the new term for "sponsor".
      */
     newSponsorDetails?: Schema$LiveChatNewSponsorDetails;
+    /**
+     * Details about the poll event, this is only set if the type is 'pollEvent'.
+     */
+    pollDetails?: Schema$LiveChatPollDetails;
     /**
      * The date and time when the message was orignally published.
      */
@@ -2576,6 +2593,21 @@ export namespace youtube_v3 {
      * The name of the Level that the viewer just had joined. The Level names are defined by the YouTube channel offering the Membership. In some situations this field isn't filled.
      */
     memberLevelName?: string | null;
+  }
+  export interface Schema$LiveChatPollDetails {
+    metadata?: Schema$LiveChatPollDetailsPollMetadata;
+    status?: string | null;
+  }
+  export interface Schema$LiveChatPollDetailsPollMetadata {
+    /**
+     * The options will be returned in the order that is displayed in 1P
+     */
+    options?: Schema$LiveChatPollDetailsPollMetadataPollOption[];
+    questionText?: string | null;
+  }
+  export interface Schema$LiveChatPollDetailsPollMetadataPollOption {
+    optionText?: string | null;
+    tally?: string | null;
   }
   export interface Schema$LiveChatSuperChatDetails {
     /**
