@@ -1844,7 +1844,7 @@
       }
     }
   },
-  "revision": "20240124",
+  "revision": "20240211",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -3106,7 +3106,7 @@
         },
         "externalDatasetReference": {
           "$ref": "ExternalDatasetReference",
-          "description": "Optional. Information about the external metadata storage where the dataset is defined. Filled out when the dataset type is EXTERNAL."
+          "description": "Optional. Reference to a read-only external dataset defined in data catalogs outside of BigQuery. Filled out when the dataset type is EXTERNAL."
         },
         "friendlyName": {
           "description": "Optional. A descriptive name for the dataset.",
@@ -3152,6 +3152,11 @@
           "description": "Optional. Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days). The default value is 168 hours if this is not set.",
           "format": "int64",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
@@ -4359,8 +4364,8 @@
             "ESTIMATED_PERFORMANCE_GAIN_TOO_LOW",
             "NOT_SUPPORTED_IN_STANDARD_EDITION",
             "INDEX_SUPPRESSED_BY_FUNCTION_OPTION",
-            "INTERNAL_ERROR",
             "QUERY_CACHE_HIT",
+            "INTERNAL_ERROR",
             "OTHER_REASON"
           ],
           "enumDescriptions": [
@@ -4378,11 +4383,11 @@
             "Indicates that the search index and the search function call do not have the same text analyzer.",
             "Indicates the base table is too small (below a certain threshold). The index does not provide noticeable search performance gains when the base table is too small.",
             "Indicates that the total size of indexed base tables in your organization exceeds your region's limit and the index is not used in the query. To index larger base tables, you can use your own reservation for index-management jobs.",
-            "Indicates that the esitmated performance gain from using the search index is too low for the given search query.",
+            "Indicates that the estimated performance gain from using the search index is too low for the given search query.",
             "Indicates that search indexes can not be used for search query with STANDARD edition.",
             "Indicates that an option in the search function that cannot make use of the index has been selected.",
-            "Indicates an internal error that causes the search index to be unused.",
             "Indicates that the query was cached, and thus the search index was not used.",
+            "Indicates an internal error that causes the search index to be unused.",
             "Indicates that the reason search indexes cannot be used in the query is not covered by any of the other IndexUnusedReason options."
           ],
           "type": "string"
@@ -4732,6 +4737,10 @@
             "$ref": "ConnectionProperty"
           },
           "type": "array"
+        },
+        "copyFilesOnly": {
+          "description": "Optional. [Experimental] Configures the load job to only copy files to the destination BigLake managed table with an external storage_uri, without reading file content and writing them to new files. Copying files only is supported when: * source_uris are in the same external storage system as the destination table but they do not overlap with storage_uri of the destination table. * source_format is the same file format as the destination table. * destination_table is an existing BigLake managed table. Its schema does not have default value expression. It schema does not have type parameters other than precision and scale. * No options other than the above are specified.",
+          "type": "boolean"
         },
         "createDisposition": {
           "description": "Optional. Specifies whether the job is allowed to create new tables. The following values are supported: * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. * CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.",
@@ -5620,7 +5629,7 @@
         },
         "vectorSearchStatistics": {
           "$ref": "VectorSearchStatistics",
-          "description": "Output only. Search query specific statistics.",
+          "description": "Output only. Vector Search query specific statistics.",
           "readOnly": true
         }
       },
