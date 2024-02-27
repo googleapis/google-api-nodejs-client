@@ -524,7 +524,7 @@ export namespace spanner_v1 {
      */
     extraStatements?: string[] | null;
     /**
-     * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in 'extra_statements' above. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run """ $protoc --proto_path=/app_path --proto_path=/lib_path \ --include_imports \ --descriptor_set_out=descriptors.data \ moon/shot/app.proto """ For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in 'extra_statements' above. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run ``` $protoc --proto_path=/app_path --proto_path=/lib_path \ --include_imports \ --descriptor_set_out=descriptors.data \ moon/shot/app.proto ``` For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
      */
     protoDescriptors?: string | null;
   }
@@ -574,6 +574,10 @@ export namespace spanner_v1 {
      * The time at which this operation failed or was completed successfully.
      */
     endTime?: string | null;
+    /**
+     * The expected fulfillment period of this create operation.
+     */
+    expectedFulfillmentPeriod?: string | null;
     /**
      * The instance being created.
      */
@@ -740,7 +744,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$DirectedReadOptions {
     /**
-     * Exclude_replicas indicates that should be excluded from serving requests. Spanner will not route requests to the replicas in this list.
+     * Exclude_replicas indicates that specified replicas should be excluded from serving requests. Spanner will not route requests to the replicas in this list.
      */
     excludeReplicas?: Schema$ExcludeReplicas;
     /**
@@ -1877,7 +1881,7 @@ export namespace spanner_v1 {
     type?: string | null;
   }
   /**
-   * The directed read replica selector. Callers must provide one or more of the following fields for replica selection: * `location` - The location must be one of the regions within the multi-region configuration of your database. * `type` - The type of the replica. Some examples of using replica_selectors are: * `location:us-east1` --\> The "us-east1" replica(s) of any available type will be used to process the request. * `type:READ_ONLY` --\> The "READ_ONLY" type replica(s) in nearest . available location will be used to process the request. * `location:us-east1 type:READ_ONLY` --\> The "READ_ONLY" type replica(s) in location "us-east1" will be used to process the request.
+   * The directed read replica selector. Callers must provide one or more of the following fields for replica selection: * `location` - The location must be one of the regions within the multi-region configuration of your database. * `type` - The type of the replica. Some examples of using replica_selectors are: * `location:us-east1` --\> The "us-east1" replica(s) of any available type will be used to process the request. * `type:READ_ONLY` --\> The "READ_ONLY" type replica(s) in nearest available location will be used to process the request. * `location:us-east1 type:READ_ONLY` --\> The "READ_ONLY" type replica(s) in location "us-east1" will be used to process the request.
    */
   export interface Schema$ReplicaSelection {
     /**
@@ -2302,7 +2306,7 @@ export namespace spanner_v1 {
      */
     operationId?: string | null;
     /**
-     * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run """ $protoc --proto_path=/app_path --proto_path=/lib_path \ --include_imports \ --descriptor_set_out=descriptors.data \ moon/shot/app.proto """ For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run ``` $protoc --proto_path=/app_path --proto_path=/lib_path \ --include_imports \ --descriptor_set_out=descriptors.data \ moon/shot/app.proto ``` For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
      */
     protoDescriptors?: string | null;
     /**
@@ -2386,6 +2390,10 @@ export namespace spanner_v1 {
      * The time at which this operation failed or was completed successfully.
      */
     endTime?: string | null;
+    /**
+     * The expected fulfillment period of this update operation.
+     */
+    expectedFulfillmentPeriod?: string | null;
     /**
      * The desired end state of the update.
      */

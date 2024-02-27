@@ -772,6 +772,33 @@
     },
     "genericclass": {
       "methods": {
+        "addmessage": {
+          "description": "Adds a message to the generic class referenced by the given class ID.",
+          "flatPath": "walletobjects/v1/genericClass/{resourceId}/addMessage",
+          "httpMethod": "POST",
+          "id": "walletobjects.genericclass.addmessage",
+          "parameterOrder": [
+            "resourceId"
+          ],
+          "parameters": {
+            "resourceId": {
+              "description": "The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "walletobjects/v1/genericClass/{resourceId}/addMessage",
+          "request": {
+            "$ref": "AddMessageRequest"
+          },
+          "response": {
+            "$ref": "GenericClassAddMessageResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/wallet_object.issuer"
+          ]
+        },
         "get": {
           "description": "Returns the generic class with the given class ID.",
           "flatPath": "walletobjects/v1/genericClass/{resourceId}",
@@ -905,6 +932,33 @@
     },
     "genericobject": {
       "methods": {
+        "addmessage": {
+          "description": "Adds a message to the generic object referenced by the given object ID.",
+          "flatPath": "walletobjects/v1/genericObject/{resourceId}/addMessage",
+          "httpMethod": "POST",
+          "id": "walletobjects.genericobject.addmessage",
+          "parameterOrder": [
+            "resourceId"
+          ],
+          "parameters": {
+            "resourceId": {
+              "description": "The unique identifier for an object. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "walletobjects/v1/genericObject/{resourceId}/addMessage",
+          "request": {
+            "$ref": "AddMessageRequest"
+          },
+          "response": {
+            "$ref": "GenericObjectAddMessageResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/wallet_object.issuer"
+          ]
+        },
         "get": {
           "description": "Returns the generic object with the given object ID.",
           "flatPath": "walletobjects/v1/genericObject/{resourceId}",
@@ -2625,39 +2679,9 @@
           ]
         }
       }
-    },
-    "walletobjects": {
-      "resources": {
-        "v1": {
-          "resources": {
-            "privateContent": {
-              "methods": {
-                "uploadPrivateData": {
-                  "description": "Upload private data (text or URI) and returns an Id to be used in its place.",
-                  "flatPath": "walletobjects/v1/privateContent/uploadPrivateData",
-                  "httpMethod": "POST",
-                  "id": "walletobjects.walletobjects.v1.privateContent.uploadPrivateData",
-                  "parameterOrder": [],
-                  "parameters": {},
-                  "path": "walletobjects/v1/privateContent/uploadPrivateData",
-                  "request": {
-                    "$ref": "UploadPrivateDataRequest"
-                  },
-                  "response": {
-                    "$ref": "UploadPrivateDataResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/wallet_object.issuer"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
-  "revision": "20240206",
+  "revision": "20240222",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -2786,9 +2810,13 @@
     "AppLinkDataAppLinkInfoAppTarget": {
       "id": "AppLinkDataAppLinkInfoAppTarget",
       "properties": {
+        "packageName": {
+          "description": "Package name for AppTarget. For example: com.google.android.gm",
+          "type": "string"
+        },
         "targetUri": {
           "$ref": "Uri",
-          "description": "URI for AppTarget. The description on the URI must be set."
+          "description": "URI for AppTarget. The description on the URI must be set. Prefer setting package field instead, if this target is defined for your application."
         }
       },
       "type": "object"
@@ -3909,7 +3937,7 @@
           ],
           "enumDescriptions": [
             "Unspecified preference.",
-            "The same object can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
+            "The Pass object is shareable by a user and can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
             "An object can only be saved by one user, but this user can view and use it on multiple of their devices. Once the first user saves the object, no other user will be allowed to view or save it.",
             "An object can only be saved by one user on a single device. Intended for use by select partners in limited circumstances. An example use case is a transit ticket that should be \"device pinned\", meaning it can be saved, viewed and used only by a single user on a single device. Contact support for additional information.",
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
@@ -4685,7 +4713,7 @@
           ],
           "enumDescriptions": [
             "Unspecified preference.",
-            "The same object can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
+            "The Pass object is shareable by a user and can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
             "An object can only be saved by one user, but this user can view and use it on multiple of their devices. Once the first user saves the object, no other user will be allowed to view or save it.",
             "An object can only be saved by one user on a single device. Intended for use by select partners in limited circumstances. An example use case is a transit ticket that should be \"device pinned\", meaning it can be saved, viewed and used only by a single user on a single device. Contact support for additional information.",
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
@@ -5087,6 +5115,13 @@
           "$ref": "LinksModuleData",
           "description": "Links module data. If `linksModuleData` is also defined on the object, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object."
         },
+        "messages": {
+          "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
+          "items": {
+            "$ref": "Message"
+          },
+          "type": "array"
+        },
         "multipleDevicesAndHoldersAllowedStatus": {
           "description": "Identifies whether multiple users and devices will save the same object referencing this class.",
           "enum": [
@@ -5109,7 +5144,7 @@
           ],
           "enumDescriptions": [
             "Unspecified preference.",
-            "The same object can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
+            "The Pass object is shareable by a user and can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
             "An object can only be saved by one user, but this user can view and use it on multiple of their devices. Once the first user saves the object, no other user will be allowed to view or save it.",
             "An object can only be saved by one user on a single device. Intended for use by select partners in limited circumstances. An example use case is a transit ticket that should be \"device pinned\", meaning it can be saved, viewed and used only by a single user on a single device. Contact support for additional information.",
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
@@ -5150,6 +5185,17 @@
             "Requires the user to unlock their device each time the pass is viewed. If the user removes their device lock after saving the pass, then they will be prompted to create a device lock before the pass can be viewed."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenericClassAddMessageResponse": {
+      "description": "Response to adding a new issuer message to the class. This contains the entire updated GenericClass.",
+      "id": "GenericClassAddMessageResponse",
+      "properties": {
+        "resource": {
+          "$ref": "GenericClass",
+          "description": "The updated EventTicketClass resource."
         }
       },
       "type": "object"
@@ -5340,6 +5386,17 @@
       },
       "type": "object"
     },
+    "GenericObjectAddMessageResponse": {
+      "description": "Response to adding a new issuer message to the object. This contains the entire updated GenericObject.",
+      "id": "GenericObjectAddMessageResponse",
+      "properties": {
+        "resource": {
+          "$ref": "GenericObject",
+          "description": "The updated GenericObject resource."
+        }
+      },
+      "type": "object"
+    },
     "GenericObjectListResponse": {
       "description": "List response which contains the list of all generic objects for a given issuer ID.",
       "id": "GenericObjectListResponse",
@@ -5495,7 +5552,7 @@
           ],
           "enumDescriptions": [
             "Unspecified preference.",
-            "The same object can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
+            "The Pass object is shareable by a user and can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
             "An object can only be saved by one user, but this user can view and use it on multiple of their devices. Once the first user saves the object, no other user will be allowed to view or save it.",
             "An object can only be saved by one user on a single device. Intended for use by select partners in limited circumstances. An example use case is a transit ticket that should be \"device pinned\", meaning it can be saved, viewed and used only by a single user on a single device. Contact support for additional information.",
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
@@ -6300,7 +6357,7 @@
           ],
           "enumDescriptions": [
             "Unspecified preference.",
-            "The same object can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
+            "The Pass object is shareable by a user and can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
             "An object can only be saved by one user, but this user can view and use it on multiple of their devices. Once the first user saves the object, no other user will be allowed to view or save it.",
             "An object can only be saved by one user on a single device. Intended for use by select partners in limited circumstances. An example use case is a transit ticket that should be \"device pinned\", meaning it can be saved, viewed and used only by a single user on a single device. Contact support for additional information.",
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
@@ -6960,7 +7017,7 @@
           "description": "Translated strings for the message header."
         },
         "messageType": {
-          "description": "The type of the message. Currently, this can only be set for offers.",
+          "description": "The message type.",
           "enum": [
             "MESSAGE_TYPE_UNSPECIFIED",
             "TEXT",
@@ -7209,7 +7266,7 @@
           ],
           "enumDescriptions": [
             "Unspecified preference.",
-            "The same object can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
+            "The Pass object is shareable by a user and can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
             "An object can only be saved by one user, but this user can view and use it on multiple of their devices. Once the first user saves the object, no other user will be allowed to view or save it.",
             "An object can only be saved by one user on a single device. Intended for use by select partners in limited circumstances. An example use case is a transit ticket that should be \"device pinned\", meaning it can be saved, viewed and used only by a single user on a single device. Contact support for additional information.",
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
@@ -7676,36 +7733,6 @@
             "$ref": "Permission"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "PrivateText": {
-      "description": "Private data for TextModule. This data will be rendered as a TextModule for a pass.",
-      "id": "PrivateText",
-      "properties": {
-        "body": {
-          "$ref": "LocalizedString",
-          "description": "Translated strings for the body."
-        },
-        "header": {
-          "$ref": "LocalizedString",
-          "description": "Translated strings for the header."
-        }
-      },
-      "type": "object"
-    },
-    "PrivateUri": {
-      "description": "Private data for LinkModule. This data will be rendered as the LinkModule for a pass.",
-      "id": "PrivateUri",
-      "properties": {
-        "description": {
-          "$ref": "LocalizedString",
-          "description": "The URI's title appearing in the app as text and its translated strings. Recommended maximum is 20 characters to ensure the full string is displayed on smaller screens."
-        },
-        "uri": {
-          "description": "The location of a web page, image, or other resource. URIs in the `LinksModuleData` can have different prefixes indicating the type of URI (a link to a web page, a link to a map, a telephone number, or an email address).",
-          "type": "string"
         }
       },
       "type": "object"
@@ -8563,7 +8590,7 @@
           ],
           "enumDescriptions": [
             "Unspecified preference.",
-            "The same object can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
+            "The Pass object is shareable by a user and can be saved by any number of different users, and on any number of devices. Partners typically use this setup for passes that do not need to be restricted to a single user or pinned to a single device.",
             "An object can only be saved by one user, but this user can view and use it on multiple of their devices. Once the first user saves the object, no other user will be allowed to view or save it.",
             "An object can only be saved by one user on a single device. Intended for use by select partners in limited circumstances. An example use case is a transit ticket that should be \"device pinned\", meaning it can be saved, viewed and used only by a single user on a single device. Contact support for additional information.",
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
@@ -9120,65 +9147,6 @@
         "enableNotification": {
           "description": "Indicates if the object needs to have upcoming notification enabled.",
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "UploadPrivateDataRequest": {
-      "description": "Request for sending user private Text or URI by the Issuer.",
-      "id": "UploadPrivateDataRequest",
-      "properties": {
-        "issuerId": {
-          "description": "The ID of the issuer sending the data.",
-          "format": "int64",
-          "type": "string"
-        },
-        "text": {
-          "$ref": "PrivateText",
-          "description": "Private text data of the user."
-        },
-        "uri": {
-          "$ref": "PrivateUri",
-          "description": "Private URIs of the user."
-        }
-      },
-      "type": "object"
-    },
-    "UploadPrivateDataResponse": {
-      "description": "Response for uploading user private data (text or URIs)",
-      "id": "UploadPrivateDataResponse",
-      "properties": {
-        "privateContentId": {
-          "description": "A 64-bit content id for the private data that was uploaded by the Issuer.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "UploadPrivateImageRequest": {
-      "description": "Request to upload user's private images by Issuers to be used in passes.",
-      "id": "UploadPrivateImageRequest",
-      "properties": {
-        "blob": {
-          "$ref": "Media",
-          "description": "A reference to the image payload that was uploaded by Scotty."
-        },
-        "mediaRequestInfo": {
-          "$ref": "MediaRequestInfo",
-          "description": "Extra information about the uploaded media."
-        }
-      },
-      "type": "object"
-    },
-    "UploadPrivateImageResponse": {
-      "description": "Response for uploading the private image",
-      "id": "UploadPrivateImageResponse",
-      "properties": {
-        "privateContentId": {
-          "description": "A 64-bit content id for the image that was uploaded by the Issuer.",
-          "format": "int64",
-          "type": "string"
         }
       },
       "type": "object"

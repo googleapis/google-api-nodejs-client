@@ -2354,7 +2354,7 @@
       }
     }
   },
-  "revision": "20240122",
+  "revision": "20240207",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3441,6 +3441,21 @@
           "description": "Optional. Location of the custom connector spec.",
           "type": "string"
         },
+        "state": {
+          "description": "Output only. State of the custom connector version.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DEPRECATED"
+          ],
+          "enumDescriptions": [
+            "State Unspecified.",
+            "Active state. By default we set the state to Active.",
+            "Deprecated state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. Updated time.",
           "format": "google-datetime",
@@ -3651,9 +3666,9 @@
             "CMEK"
           ],
           "enumDescriptions": [
-            "Egress mode unspecified.",
-            "Network egress through auto assigned IPs.",
-            "Network egress through static IPs."
+            "Encryption type unspecified.",
+            "Google managed encryption keys",
+            "Customer managed encryption keys."
           ],
           "type": "string"
         },

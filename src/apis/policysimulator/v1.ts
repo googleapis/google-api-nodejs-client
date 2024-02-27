@@ -303,6 +303,35 @@ export namespace policysimulator_v1 {
     principal?: string | null;
   }
   /**
+   * CreateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1alphaCreateOrgPolicyViolationsPreviewOperationMetadata {
+    /**
+     * Time when the request was received.
+     */
+    requestTime?: string | null;
+    /**
+     * Total number of resources that need scanning. Should equal resource_scanned + resources_pending
+     */
+    resourcesFound?: number | null;
+    /**
+     * Number of resources still to scan.
+     */
+    resourcesPending?: number | null;
+    /**
+     * Number of resources already scanned.
+     */
+    resourcesScanned?: number | null;
+    /**
+     * Time when the request started processing, i.e., when the state was set to RUNNING.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The current state of the operation.
+     */
+    state?: string | null;
+  }
+  /**
    * GenerateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.
    */
   export interface Schema$GoogleCloudPolicysimulatorV1alphaGenerateOrgPolicyViolationsPreviewOperationMetadata {
@@ -427,6 +456,35 @@ export namespace policysimulator_v1 {
      * Output only. Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.
      */
     unenforced?: number | null;
+  }
+  /**
+   * CreateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1betaCreateOrgPolicyViolationsPreviewOperationMetadata {
+    /**
+     * Time when the request was received.
+     */
+    requestTime?: string | null;
+    /**
+     * Total number of resources that need scanning. Should equal resource_scanned + resources_pending
+     */
+    resourcesFound?: number | null;
+    /**
+     * Number of resources still to scan.
+     */
+    resourcesPending?: number | null;
+    /**
+     * Number of resources already scanned.
+     */
+    resourcesScanned?: number | null;
+    /**
+     * Time when the request started processing, i.e., when the state was set to RUNNING.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The current state of the operation.
+     */
+    state?: string | null;
   }
   /**
    * GenerateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.
@@ -647,6 +705,32 @@ export namespace policysimulator_v1 {
     relevance?: string | null;
   }
   /**
+   * ListOrgPolicyViolationsPreviewsResponse is the response message for OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse {
+    /**
+     * A token that you can use to retrieve the next page of results. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of OrgPolicyViolationsPreview
+     */
+    orgPolicyViolationsPreviews?: Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview[];
+  }
+  /**
+   * ListOrgPolicyViolationsResponse is the response message for OrgPolicyViolationsPreviewService.ListOrgPolicyViolations
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse {
+    /**
+     * A token that you can use to retrieve the next page of results. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of OrgPolicyViolations
+     */
+    orgPolicyViolations?: Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolation[];
+  }
+  /**
    * Response message for Simulator.ListReplayResults.
    */
   export interface Schema$GoogleCloudPolicysimulatorV1ListReplayResultsResponse {
@@ -658,6 +742,124 @@ export namespace policysimulator_v1 {
      * The results of running a Replay.
      */
     replayResults?: Schema$GoogleCloudPolicysimulatorV1ReplayResult[];
+  }
+  /**
+   * The proposed changes to OrgPolicy.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1OrgPolicyOverlay {
+    /**
+     * Optional. The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.
+     */
+    customConstraints?: Schema$GoogleCloudPolicysimulatorV1OrgPolicyOverlayCustomConstraintOverlay[];
+    /**
+     * Optional. The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.
+     */
+    policies?: Schema$GoogleCloudPolicysimulatorV1OrgPolicyOverlayPolicyOverlay[];
+  }
+  /**
+   * A change to an OrgPolicy custom constraint.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1OrgPolicyOverlayCustomConstraintOverlay {
+    /**
+     * Optional. The new or updated custom constraint.
+     */
+    customConstraint?: Schema$GoogleCloudOrgpolicyV2CustomConstraint;
+    /**
+     * Optional. Resource the constraint is attached to. Example: "organization/987654"
+     */
+    customConstraintParent?: string | null;
+  }
+  /**
+   * A change to an OrgPolicy.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1OrgPolicyOverlayPolicyOverlay {
+    /**
+     * Optional. The new or updated OrgPolicy.
+     */
+    policy?: Schema$GoogleCloudOrgpolicyV2Policy;
+    /**
+     * Optional. The parent of the policy we are attaching to. Example: "projects/123456"
+     */
+    policyParent?: string | null;
+  }
+  /**
+   * OrgPolicyViolation is a resource representing a single resource violating a single OrgPolicy constraint.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolation {
+    /**
+     * The custom constraint being violated.
+     */
+    customConstraint?: Schema$GoogleCloudOrgpolicyV2CustomConstraint;
+    /**
+     * Any error encountered during the evaluation.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * The name of the `OrgPolicyViolation`. Example: organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f/orgPolicyViolations/38ce`
+     */
+    name?: string | null;
+    /**
+     * The resource violating the constraint.
+     */
+    resource?: Schema$GoogleCloudPolicysimulatorV1ResourceContext;
+  }
+  /**
+   * OrgPolicyViolationsPreview is a resource providing a preview of the violations that will exist if an OrgPolicy change is made. The list of violations are modeled as child resources and retrieved via a ListOrgPolicyViolations API call. There are potentially more OrgPolicyViolations than could fit in an embedded field. Thus, the use of a child resource instead of a field.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview {
+    /**
+     * Output only. Time when this `OrgPolicyViolationsPreview` was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The names of the constraints against which all `OrgPolicyViolations` were evaluated. If `OrgPolicyOverlay` only contains `PolicyOverlay` then it contains the name of the configured custom constraint, applicable to the specified policies. Otherwise it contains the name of the constraint specified in `CustomConstraintOverlay`. Format: `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms`
+     */
+    customConstraints?: string[] | null;
+    /**
+     * Output only. The resource name of the `OrgPolicyViolationsPreview`. It has the following format: `organizations/{organization\}/locations/{location\}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview\}` Example: `organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f`
+     */
+    name?: string | null;
+    /**
+     * Required. The proposed changes we are previewing violations for.
+     */
+    overlay?: Schema$GoogleCloudPolicysimulatorV1OrgPolicyOverlay;
+    /**
+     * Output only. A summary of the state of all resources scanned for compliance with the changed OrgPolicy.
+     */
+    resourceCounts?: Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreviewResourceCounts;
+    /**
+     * Output only. The state of the `OrgPolicyViolationsPreview`.
+     */
+    state?: string | null;
+    /**
+     * Output only. The number of OrgPolicyViolations in this `OrgPolicyViolationsPreview`. This count may differ from `resource_summary.noncompliant_count` because each OrgPolicyViolation is specific to a resource **and** constraint. If there are multiple constraints being evaluated (i.e. multiple policies in the overlay), a single resource may violate multiple constraints.
+     */
+    violationsCount?: number | null;
+  }
+  /**
+   * A summary of the state of all resources scanned for compliance with the changed OrgPolicy.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreviewResourceCounts {
+    /**
+     * Output only. Number of scanned resources with zero violations.
+     */
+    compliant?: number | null;
+    /**
+     * Output only. Number of resources that returned an error when scanned.
+     */
+    errors?: number | null;
+    /**
+     * Output only. Number of scanned resources with at least one violation.
+     */
+    noncompliant?: number | null;
+    /**
+     * Output only. Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error
+     */
+    scanned?: number | null;
+    /**
+     * Output only. Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.
+     */
+    unenforced?: number | null;
   }
   /**
    * A resource describing a `Replay`, or simulation.
@@ -768,6 +970,23 @@ export namespace policysimulator_v1 {
      * The number of replayed log entries with no difference between baseline and simulated policies.
      */
     unchangedCount?: number | null;
+  }
+  /**
+   * ResourceContext provides the context we know about a resource. It is similar in concept to google.cloud.asset.v1.Resource, but focuses on the information specifically used by Simulator.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1ResourceContext {
+    /**
+     * The ancestry path of the resource in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. If the resource is a project, folder, or organization, the ancestry path starts from the resource itself. Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
+     */
+    ancestors?: string[] | null;
+    /**
+     * The asset type of the resource as defined by CAIS. Example: `compute.googleapis.com/Firewall` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
+     */
+    assetType?: string | null;
+    /**
+     * The full name of the resource. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
+     */
+    resource?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
@@ -1737,11 +1956,475 @@ export namespace policysimulator_v1 {
 
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
+    orgPolicyViolationsPreviews: Resource$Organizations$Locations$Orgpolicyviolationspreviews;
     replays: Resource$Organizations$Locations$Replays;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.orgPolicyViolationsPreviews =
+        new Resource$Organizations$Locations$Orgpolicyviolationspreviews(
+          this.context
+        );
       this.replays = new Resource$Organizations$Locations$Replays(this.context);
     }
+  }
+
+  export class Resource$Organizations$Locations$Orgpolicyviolationspreviews {
+    context: APIRequestContext;
+    orgPolicyViolations: Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.orgPolicyViolations =
+        new Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations(
+          this.context
+        );
+    }
+
+    /**
+     * CreateOrgPolicyViolationsPreview creates an OrgPolicyViolationsPreview for the proposed changes in the provided OrgPolicyViolationsPreview.OrgPolicyOverlay. The changes to OrgPolicy are specified by this `OrgPolicyOverlay`. The resources to scan are inferred from these specified changes.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policysimulator.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/orgPolicyViolationsPreviews'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * GetOrgPolicyViolationsPreview gets the specified OrgPolicyViolationsPreview. Each OrgPolicyViolationsPreview is available for at least 7 days.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>;
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policysimulator.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * ListOrgPolicyViolationsPreviews lists each OrgPolicyViolationsPreview in an organization. Each OrgPolicyViolationsPreview is available for at least 7 days.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policysimulator.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/orgPolicyViolationsPreviews'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Create
+    extends StandardParameters {
+    /**
+     * Optional. An optional user-specified ID for the OrgPolicyViolationsPreview. If not provided, a random ID will be generated.
+     */
+    orgPolicyViolationsPreviewId?: string;
+    /**
+     * Required. The organization under which this OrgPolicyViolationsPreview will be created. Example: `organizations/my-example-org/locations/global`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview;
+  }
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the OrgPolicyViolationsPreview to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 5 items will be returned. The maximum value is 10; values above 10 will be coerced to 10.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent the violations are scoped to. Format: `organizations/{organization\}/locations/{location\}` Example: `organizations/my-example-org/locations/global`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * ListOrgPolicyViolations lists the OrgPolicyViolations that are present in an OrgPolicyViolationsPreview.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policysimulator.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/orgPolicyViolations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 50 items will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The OrgPolicyViolationsPreview to get OrgPolicyViolations from. Format: organizations/{organization\}/locations/{location\}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview\}
+     */
+    parent?: string;
   }
 
   export class Resource$Organizations$Locations$Replays {

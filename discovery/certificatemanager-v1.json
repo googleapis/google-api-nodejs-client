@@ -1280,7 +1280,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20240209",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1644,6 +1644,20 @@
         },
         "name": {
           "description": "A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/*/locations/*/dnsAuthorizations/*`.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location global: FIXED_RECORD.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "FIXED_RECORD",
+            "PER_PROJECT_RECORD"
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "FIXED_RECORD DNS authorization uses DNS-01 validation method.",
+            "PER_PROJECT_RECORD DNS authorization allows for independent management of Google-managed certificates with DNS authorization across multiple projects."
+          ],
           "type": "string"
         },
         "updateTime": {

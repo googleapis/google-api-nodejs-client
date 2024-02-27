@@ -254,7 +254,7 @@
       }
     }
   },
-  "revision": "20240122",
+  "revision": "20240219",
   "rootUrl": "https://cloudprofiler.googleapis.com/",
   "schemas": {
     "CreateProfileRequest": {
@@ -392,6 +392,12 @@
             "Peak heap profile.",
             "Heap allocation profile. It represents the aggregation of all allocations made over the duration of the profile. All allocations are included, including those that might have been freed by the end of the profiling interval. The profile is in particular useful for garbage collecting languages to understand which parts of the code create most of the garbage collection pressure to see if those can be optimized."
           ],
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. Start time for the profile. This output is only present in response from the ListProfiles method.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

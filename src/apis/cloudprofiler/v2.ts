@@ -199,6 +199,10 @@ export namespace cloudprofiler_v2 {
      * Type of profile. For offline mode, this must be specified when creating the profile. For online mode it is assigned and returned by the server.
      */
     profileType?: string | null;
+    /**
+     * Output only. Start time for the profile. This output is only present in response from the ListProfiles method.
+     */
+    startTime?: string | null;
   }
 
   export class Resource$Projects {

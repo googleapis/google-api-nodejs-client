@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20240124",
+  "revision": "20240207",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -902,9 +902,23 @@
           "type": "string"
         },
         "frameRate": {
-          "description": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120. Will default to the input frame rate if larger than the input frame rate. The API will generate an output FPS that is divisible by the input FPS, and smaller or equal to the target FPS. See [Calculating frame rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for more information.",
+          "description": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120.",
           "format": "double",
           "type": "number"
+        },
+        "frameRateConversionStrategy": {
+          "description": "Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`.",
+          "enum": [
+            "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED",
+            "DOWNSAMPLE",
+            "DROP_DUPLICATE"
+          ],
+          "enumDescriptions": [
+            "Unspecified frame rate conversion strategy.",
+            "Selectively retain frames to reduce the output frame rate. Every _n_ th frame is kept, where `n = ceil(input frame rate / target frame rate)`. When _n_ = 1 (that is, the target frame rate is greater than the input frame rate), the output frame rate matches the input frame rate. When _n_ > 1, frames are dropped and the output frame rate is equal to `(input frame rate / n)`. For more information, see [Calculate frame rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate).",
+            "Drop or duplicate frames to match the specified frame rate."
+          ],
+          "type": "string"
         },
         "gopDuration": {
           "description": "Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.",
@@ -1016,9 +1030,23 @@
           "type": "boolean"
         },
         "frameRate": {
-          "description": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120. Will default to the input frame rate if larger than the input frame rate. The API will generate an output FPS that is divisible by the input FPS, and smaller or equal to the target FPS. See [Calculating frame rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for more information.",
+          "description": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120.",
           "format": "double",
           "type": "number"
+        },
+        "frameRateConversionStrategy": {
+          "description": "Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`.",
+          "enum": [
+            "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED",
+            "DOWNSAMPLE",
+            "DROP_DUPLICATE"
+          ],
+          "enumDescriptions": [
+            "Unspecified frame rate conversion strategy.",
+            "Selectively retain frames to reduce the output frame rate. Every _n_ th frame is kept, where `n = ceil(input frame rate / target frame rate)`. When _n_ = 1 (that is, the target frame rate is greater than the input frame rate), the output frame rate matches the input frame rate. When _n_ > 1, frames are dropped and the output frame rate is equal to `(input frame rate / n)`. For more information, see [Calculate frame rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate).",
+            "Drop or duplicate frames to match the specified frame rate."
+          ],
+          "type": "string"
         },
         "gopDuration": {
           "description": "Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.",
@@ -1816,9 +1844,23 @@
           "type": "integer"
         },
         "frameRate": {
-          "description": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120. Will default to the input frame rate if larger than the input frame rate. The API will generate an output FPS that is divisible by the input FPS, and smaller or equal to the target FPS. See [Calculating frame rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for more information.",
+          "description": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120.",
           "format": "double",
           "type": "number"
+        },
+        "frameRateConversionStrategy": {
+          "description": "Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`.",
+          "enum": [
+            "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED",
+            "DOWNSAMPLE",
+            "DROP_DUPLICATE"
+          ],
+          "enumDescriptions": [
+            "Unspecified frame rate conversion strategy.",
+            "Selectively retain frames to reduce the output frame rate. Every _n_ th frame is kept, where `n = ceil(input frame rate / target frame rate)`. When _n_ = 1 (that is, the target frame rate is greater than the input frame rate), the output frame rate matches the input frame rate. When _n_ > 1, frames are dropped and the output frame rate is equal to `(input frame rate / n)`. For more information, see [Calculate frame rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate).",
+            "Drop or duplicate frames to match the specified frame rate."
+          ],
+          "type": "string"
         },
         "gopDuration": {
           "description": "Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.",

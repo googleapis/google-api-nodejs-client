@@ -487,7 +487,7 @@
       }
     }
   },
-  "revision": "20240124",
+  "revision": "20240207",
   "rootUrl": "https://blockchainnodeengine.googleapis.com/",
   "schemas": {
     "BlockchainNode": {
@@ -960,6 +960,10 @@
       "description": "Configuration for validator-related parameters on the beacon client, and for any GCP-managed validator client.",
       "id": "ValidatorConfig",
       "properties": {
+        "beaconFeeRecipient": {
+          "description": "An Ethereum address which the beacon client will send fee rewards to if no recipient is configured in the validator client. See https://lighthouse-book.sigmaprime.io/suggested-fee-recipient.html or https://docs.prylabs.network/docs/execution-node/fee-recipient for examples of how this is used. Note that while this is often described as \"suggested\", as we run the execution node we can trust the execution node, and therefore this is considered enforced.",
+          "type": "string"
+        },
         "managedValidatorClient": {
           "description": "Immutable. When true, deploys a GCP-managed validator client alongside the beacon client.",
           "type": "boolean"

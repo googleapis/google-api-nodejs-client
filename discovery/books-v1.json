@@ -1241,6 +1241,11 @@
                   "required": true,
                   "type": "string"
                 },
+                "source": {
+                  "description": "Optional. String to identify the originator of this request.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "volumeId": {
                   "description": "Volume id to get the summary for.",
                   "location": "query",
@@ -2672,7 +2677,7 @@
       }
     }
   },
-  "revision": "20230203",
+  "revision": "20240214",
   "rootUrl": "https://books.googleapis.com/",
   "schemas": {
     "Annotation": {

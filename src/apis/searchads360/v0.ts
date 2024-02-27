@@ -556,6 +556,10 @@ export namespace searchads360_v0 {
      */
     contentRankLostImpressionShare?: number | null;
     /**
+     * The conversion custom metrics.
+     */
+    conversionCustomMetrics?: Schema$GoogleAdsSearchads360V0Common__Value[];
+    /**
      * The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.
      */
     conversions?: number | null;
@@ -687,6 +691,10 @@ export namespace searchads360_v0 {
      * The percentage of mobile clicks that go to a mobile-friendly page.
      */
     mobileFriendlyClicksPercentage?: number | null;
+    /**
+     * The raw event conversion metrics.
+     */
+    rawEventConversionMetrics?: Schema$GoogleAdsSearchads360V0Common__Value[];
     /**
      * The percentage of the customer's Shopping or Search ad impressions that are shown in the most prominent Shopping position. See https://support.google.com/sa360/answer/9566729 for details. Any value below 0.1 is reported as 0.0999.
      */
@@ -920,6 +928,10 @@ export namespace searchads360_v0 {
      */
     conversionActionName?: string | null;
     /**
+     * The conversion custom dimensions.
+     */
+    conversionCustomDimensions?: Schema$GoogleAdsSearchads360V0Common__Value[];
+    /**
      * Date to which metrics apply. yyyy-MM-dd format, for example, 2018-04-17.
      */
     date?: string | null;
@@ -1115,6 +1127,10 @@ export namespace searchads360_v0 {
      * Quarter as represented by the date of the first day of a quarter. Uses the calendar year for quarters, for example, the second quarter of 2018 starts on 2018-04-01. Formatted as yyyy-MM-dd.
      */
     quarter?: string | null;
+    /**
+     * The raw event conversion dimensions.
+     */
+    rawEventConversionDimensions?: Schema$GoogleAdsSearchads360V0Common__Value[];
     /**
      * Week as defined as Monday through Sunday, and represented by the date of Monday. Formatted as yyyy-MM-dd.
      */
@@ -1785,6 +1801,19 @@ export namespace searchads360_v0 {
      * The value to use when conversion events for this conversion action are sent with an invalid, disallowed or missing value, or when this conversion action is configured to always use the default value.
      */
     defaultValue?: number | null;
+  }
+  /**
+   * Information for Search Ads 360 Floodlight Conversion Custom Variables.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo {
+    /**
+     * Output only. Floodlight variable data type defined in Search Ads 360.
+     */
+    floodlightVariableDataType?: string | null;
+    /**
+     * Output only. Floodlight variable type defined in Search Ads 360.
+     */
+    floodlightVariableType?: string | null;
   }
   /**
    * One element of a bidding category at a certain level. Top-level categories are at level 1, their children at level 2, and so on. We currently support up to 5 levels. The user must specify a dimension type that indicates the level of the category. All cases of the same subdivision must have the same dimension type (category level).
@@ -3135,6 +3164,51 @@ export namespace searchads360_v0 {
     valueSettings?: Schema$GoogleAdsSearchads360V0Resources_ConversionAction_ValueSettings;
   }
   /**
+   * A conversion custom variable. See "About custom Floodlight metrics and dimensions in the new Search Ads 360" at https://support.google.com/sa360/answer/13567857
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__ConversionCustomVariable {
+    /**
+     * Output only. Cardinality of the conversion custom variable.
+     */
+    cardinality?: string | null;
+    /**
+     * Output only. The IDs of custom columns that use this conversion custom variable.
+     */
+    customColumnIds?: string[] | null;
+    /**
+     * Output only. Family of the conversion custom variable.
+     */
+    family?: string | null;
+    /**
+     * Output only. Fields for Search Ads 360 floodlight conversion custom variables.
+     */
+    floodlightConversionCustomVariableInfo?: Schema$GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo;
+    /**
+     * Output only. The ID of the conversion custom variable.
+     */
+    id?: string | null;
+    /**
+     * Required. The name of the conversion custom variable. Name should be unique. The maximum length of name is 100 characters. There should not be any extra spaces before and after.
+     */
+    name?: string | null;
+    /**
+     * Output only. The resource name of the customer that owns the conversion custom variable.
+     */
+    ownerCustomer?: string | null;
+    /**
+     * Immutable. The resource name of the conversion custom variable. Conversion custom variable resource names have the form: `customers/{customer_id\}/conversionCustomVariables/{conversion_custom_variable_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * The status of the conversion custom variable for conversion event accrual.
+     */
+    status?: string | null;
+    /**
+     * Required. Immutable. The tag of the conversion custom variable. Tag should be unique and consist of a "u" character directly followed with a number less than ormequal to 100. For example: "u4".
+     */
+    tag?: string | null;
+  }
+  /**
    * A collection of customer-wide settings related to Search Ads 360 Conversion Tracking.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__ConversionTrackingSetting {
@@ -3787,6 +3861,32 @@ export namespace searchads360_v0 {
     resourceName?: string | null;
   }
   /**
+   * Message for conversion custom dimension header.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Services__ConversionCustomDimensionHeader {
+    /**
+     * The conversion custom dimension ID.
+     */
+    id?: string | null;
+    /**
+     * The user defined name of the conversion custom dimension.
+     */
+    name?: string | null;
+  }
+  /**
+   * Message for conversion custom metric header.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Services__ConversionCustomMetricHeader {
+    /**
+     * The conversion custom metric ID.
+     */
+    id?: string | null;
+    /**
+     * The user defined name of the conversion custom metric.
+     */
+    name?: string | null;
+  }
+  /**
    * Message for custom column header.
    */
   export interface Schema$GoogleAdsSearchads360V0Services__CustomColumnHeader {
@@ -3820,6 +3920,32 @@ export namespace searchads360_v0 {
      * The CustomColumns owned by the provided customer.
      */
     customColumns?: Schema$GoogleAdsSearchads360V0Resources__CustomColumn[];
+  }
+  /**
+   * Message for raw event conversion dimension header.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Services__RawEventConversionDimensionHeader {
+    /**
+     * The conversion custom variable ID.
+     */
+    id?: string | null;
+    /**
+     * The user defined name of the raw event dimension.
+     */
+    name?: string | null;
+  }
+  /**
+   * Message for raw event conversion metric header.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Services__RawEventConversionMetricHeader {
+    /**
+     * The conversion custom variable ID.
+     */
+    id?: string | null;
+    /**
+     * The user defined name of the raw event metric.
+     */
+    name?: string | null;
   }
   /**
    * A returned row from the query.
@@ -3949,6 +4075,10 @@ export namespace searchads360_v0 {
      * The conversion action referenced in the query.
      */
     conversionAction?: Schema$GoogleAdsSearchads360V0Resources__ConversionAction;
+    /**
+     * The conversion custom variable referenced in the query.
+     */
+    conversionCustomVariable?: Schema$GoogleAdsSearchads360V0Resources__ConversionCustomVariable;
     /**
      * The custom columns.
      */
@@ -4102,6 +4232,14 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360Response {
     /**
+     * The headers of the conversion custom dimensions in the results.
+     */
+    conversionCustomDimensionHeaders?: Schema$GoogleAdsSearchads360V0Services__ConversionCustomDimensionHeader[];
+    /**
+     * The headers of the conversion custom metrics in the results.
+     */
+    conversionCustomMetricHeaders?: Schema$GoogleAdsSearchads360V0Services__ConversionCustomMetricHeader[];
+    /**
      * The headers of the custom columns in the results.
      */
     customColumnHeaders?: Schema$GoogleAdsSearchads360V0Services__CustomColumnHeader[];
@@ -4113,6 +4251,14 @@ export namespace searchads360_v0 {
      * Pagination token used to retrieve the next page of results. Pass the content of this string as the `page_token` attribute of the next request. `next_page_token` is not returned for the last page.
      */
     nextPageToken?: string | null;
+    /**
+     * The headers of the raw event conversion dimensions in the results.
+     */
+    rawEventConversionDimensionHeaders?: Schema$GoogleAdsSearchads360V0Services__RawEventConversionDimensionHeader[];
+    /**
+     * The headers of the raw event conversion metrics in the results.
+     */
+    rawEventConversionMetricHeaders?: Schema$GoogleAdsSearchads360V0Services__RawEventConversionMetricHeader[];
     /**
      * The list of rows that matched the query.
      */

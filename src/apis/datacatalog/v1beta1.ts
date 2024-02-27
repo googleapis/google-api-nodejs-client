@@ -1069,11 +1069,24 @@ export namespace datacatalog_v1beta1 {
      */
     ordinalPosition?: number | null;
     /**
+     * Optional. The subtype of the RANGE, if the type of this field is RANGE. If the type is RANGE, this field is required. Possible values for the field element type of a RANGE include: * DATE * DATETIME * TIMESTAMP
+     */
+    rangeElementType?: Schema$GoogleCloudDatacatalogV1ColumnSchemaFieldElementType;
+    /**
      * Optional. Schema of sub-columns. A column can have zero or more sub-columns.
      */
     subcolumns?: Schema$GoogleCloudDatacatalogV1ColumnSchema[];
     /**
      * Required. Type of the column. Must be a UTF-8 string with the maximum size of 128 bytes.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents the type of a field element.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ColumnSchemaFieldElementType {
+    /**
+     * Required. The type of a field element. See ColumnSchema.type.
      */
     type?: string | null;
   }
@@ -1312,6 +1325,10 @@ export namespace datacatalog_v1beta1 {
      */
     displayName?: string | null;
     /**
+     * FeatureonlineStore spec for Vertex AI Feature Store.
+     */
+    featureOnlineStoreSpec?: Schema$GoogleCloudDatacatalogV1FeatureOnlineStoreSpec;
+    /**
      * Specification that applies to a fileset resource. Valid only for entries with the `FILESET` type.
      */
     filesetSpec?: Schema$GoogleCloudDatacatalogV1FilesetSpec;
@@ -1396,6 +1413,15 @@ export namespace datacatalog_v1beta1 {
      * Entry overview with support for rich text. The overview must only contain Unicode characters, and should be formatted using HTML. The maximum length is 10 MiB as this value holds HTML descriptions including encoded images. The maximum length of the text without images is 100 KiB.
      */
     overview?: string | null;
+  }
+  /**
+   * Detail description of the source information of a Vertex Feature Online Store.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1FeatureOnlineStoreSpec {
+    /**
+     * Output only. Type of underelaying storage for the FeatureOnlineStore.
+     */
+    storageType?: string | null;
   }
   /**
    * Specification that applies to a fileset. Valid only for entries with the 'FILESET' type.

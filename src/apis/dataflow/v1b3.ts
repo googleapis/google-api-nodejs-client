@@ -983,7 +983,7 @@ export namespace dataflow_v1b3 {
     inputs?: Schema$InstructionInput[];
   }
   /**
-   * The environment values to be set at runtime for flex template.
+   * The environment values to be set at runtime for flex template. LINT.IfChange
    */
   export interface Schema$FlexTemplateRuntimeEnvironment {
     /**
@@ -3278,6 +3278,15 @@ export namespace dataflow_v1b3 {
     outstandingBytesCount?: number | null;
   }
   /**
+   * Contains per-user-worker streaming scaling recommendation from the backend.
+   */
+  export interface Schema$StreamingScalingReportResponse {
+    /**
+     * Maximum thread count limit;
+     */
+    maximumThreadCount?: number | null;
+  }
+  /**
    * A task which initializes part of a streaming Dataflow job.
    */
   export interface Schema$StreamingSetupTask {
@@ -3698,6 +3707,10 @@ export namespace dataflow_v1b3 {
    * A worker_message response allows the server to pass information to the sender.
    */
   export interface Schema$WorkerMessageResponse {
+    /**
+     * Service's streaming scaling response for workers.
+     */
+    streamingScalingReportResponse?: Schema$StreamingScalingReportResponse;
     /**
      * The service's response to a worker's health report.
      */

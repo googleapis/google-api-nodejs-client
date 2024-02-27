@@ -2144,7 +2144,7 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20240220",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2465,6 +2465,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "rangeElementType": {
+          "$ref": "GoogleCloudDatacatalogV1ColumnSchemaFieldElementType",
+          "description": "Optional. The subtype of the RANGE, if the type of this field is RANGE. If the type is RANGE, this field is required. Possible values for the field element type of a RANGE include: * DATE * DATETIME * TIMESTAMP"
+        },
         "subcolumns": {
           "description": "Optional. Schema of sub-columns. A column can have zero or more sub-columns.",
           "items": {
@@ -2474,6 +2478,17 @@
         },
         "type": {
           "description": "Required. Type of the column. Must be a UTF-8 string with the maximum size of 128 bytes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ColumnSchemaFieldElementType": {
+      "description": "Represents the type of a field element.",
+      "id": "GoogleCloudDatacatalogV1ColumnSchemaFieldElementType",
+      "properties": {
+        "type": {
+          "description": "Required. The type of a field element. See ColumnSchema.type.",
           "type": "string"
         }
       },
@@ -2834,6 +2849,10 @@
           "description": "Display name of an entry. The maximum size is 500 bytes when encoded in UTF-8. Default value is an empty string.",
           "type": "string"
         },
+        "featureOnlineStoreSpec": {
+          "$ref": "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec",
+          "description": "FeatureonlineStore spec for Vertex AI Feature Store."
+        },
         "filesetSpec": {
           "$ref": "GoogleCloudDatacatalogV1FilesetSpec",
           "description": "Specification that applies to a fileset resource. Valid only for entries with the `FILESET` type."
@@ -2942,7 +2961,10 @@
             "DATABASE_SCHEMA",
             "DASHBOARD",
             "EXPLORE",
-            "LOOK"
+            "LOOK",
+            "FEATURE_ONLINE_STORE",
+            "FEATURE_VIEW",
+            "FEATURE_GROUP"
           ],
           "enumDescriptions": [
             "Default unknown type.",
@@ -2960,7 +2982,10 @@
             "Schema within a relational database.",
             "A Dashboard, for example from Looker.",
             "A Looker Explore. For more information, see [Looker Explore API] (https://developers.looker.com/api/explorer/4.0/methods/LookmlModel/lookml_model_explore).",
-            "A Looker Look. For more information, see [Looker Look API] (https://developers.looker.com/api/explorer/4.0/methods/Look)."
+            "A Looker Look. For more information, see [Looker Look API] (https://developers.looker.com/api/explorer/4.0/methods/Look).",
+            "Feature Online Store resource in Vertex AI Feature Store.",
+            "Feature View resource in Vertex AI Feature Store.",
+            "Feature Group resource in Vertex AI Feature Store."
           ],
           "type": "string"
         },
@@ -3024,6 +3049,28 @@
             "$ref": "GoogleCloudDatacatalogV1SerializedTaxonomy"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec": {
+      "description": "Detail description of the source information of a Vertex Feature Online Store.",
+      "id": "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec",
+      "properties": {
+        "storageType": {
+          "description": "Output only. Type of underelaying storage for the FeatureOnlineStore.",
+          "enum": [
+            "STORAGE_TYPE_UNSPECIFIED",
+            "BIGTABLE",
+            "OPTIMIZED"
+          ],
+          "enumDescriptions": [
+            "Should not be used.",
+            "Underlsying storgae is Bigtable.",
+            "Underlaying is optimized online server (Lightning)."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
