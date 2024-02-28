@@ -2354,7 +2354,7 @@
       }
     }
   },
-  "revision": "20240207",
+  "revision": "20240221",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3337,6 +3337,13 @@
       "description": "CustomConnector represents the custom connector defined by the customer as part of byoc.",
       "id": "CustomConnector",
       "properties": {
+        "activeConnectorVersions": {
+          "description": "Optional. Active connector versions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. Created time.",
           "format": "google-datetime",
@@ -3438,7 +3445,7 @@
           "type": "string"
         },
         "specLocation": {
-          "description": "Optional. Location of the custom connector spec.",
+          "description": "Optional. Location of the custom connector spec. The location can be either a public url like `https://public-url.com/spec` Or a Google Cloud Storage location like `gs:///`",
           "type": "string"
         },
         "state": {
@@ -3979,6 +3986,13 @@
         "registrationDestinationConfig": {
           "$ref": "DestinationConfig",
           "description": "Registration endpoint for auto registration."
+        },
+        "triggerConfigVariables": {
+          "description": "Optional. Additional eventing related field values",
+          "items": {
+            "$ref": "ConfigVariable"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4049,6 +4063,13 @@
         "registrationDestinationConfig": {
           "$ref": "DestinationConfigTemplate",
           "description": "Registration host destination config template."
+        },
+        "triggerConfigVariables": {
+          "description": "Trigger Config fields that needs to be rendered",
+          "items": {
+            "$ref": "ConfigVariableTemplate"
+          },
+          "type": "array"
         }
       },
       "type": "object"
