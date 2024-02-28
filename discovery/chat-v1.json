@@ -54,7 +54,7 @@
   "baseUrl": "https://chat.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Hangouts Chat",
-  "description": "Enables apps to fetch information and perform actions in Google Chat. Authentication is a prerequisite for using the Google Chat REST API.",
+  "description": "The Google Chat API lets you build Chat apps to integrate your services with Google Chat and manage Chat resources such as spaces, members, and messages.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/hangouts/chat",
   "fullyEncodeReservedExpansion": true,
@@ -990,7 +990,7 @@
       }
     }
   },
-  "revision": "20240201",
+  "revision": "20240222",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1393,7 +1393,7 @@
           "additionalProperties": {
             "$ref": "Inputs"
           },
-          "description": "A map containing the current values of the widgets in a card. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. Depending on the input data type, a different object represents each input: For single-value widgets, `StringInput`. For multi-value widgets, an array of `StringInput` objects. For a date-time picker, a `DateTimeInput`. For a date-only picker, a `DateInput`. For a time-only picker, a `TimeInput`. Corresponds with the data entered by a user on a card in a [dialog](https://developers.google.com/chat/how-tos/dialogs).",
+          "description": "A map containing the values that a user inputs in a widget from a card or dialog. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. For details, see [Process information inputted by users](https://developers.google.com/chat/ui/read-form-data).",
           "type": "object"
         },
         "hostApp": {
@@ -2058,7 +2058,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Columns": {
-      "description": "The `Columns` widget displays up to 2 columns in a card message or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. [Google Chat apps](https://developers.google.com/chat):",
+      "description": "The `Columns` widget displays up to 2 columns in a card or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): Columns for Google Workspace Add-ons are in [Developer Preview](https://developers.google.com/workspace/preview).",
       "id": "GoogleAppsCardV1Columns",
       "properties": {
         "columnItems": {
@@ -2502,7 +2502,7 @@
             "A set of radio buttons. Users can select one radio button.",
             "A set of switches. Users can turn on one or more switches.",
             "A dropdown menu. Users can select one item from the menu.",
-            "A multiselect menu for static or dynamic data. From the menu bar, users select one or more items. Users can also input values to populate dynamic data. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To populate items for a multiselect menu, you can use one of the following types of data sources: * Static data: Items are specified as `SelectionItem` objects in the widget. Up to 100 items. * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement multiselect menus, see the [`SelectionInput` widget page](https://developers.google.com/chat/ui/widgets/selection-input#multiselect-menu). [Google Chat apps](https://developers.google.com/chat):"
+            "A multiselect menu for static or dynamic data. From the menu bar, users select one or more items. Users can also input values to populate dynamic data. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To populate items for a multiselect menu, you can use one of the following types of data sources: * Static data: Items are specified as `SelectionItem` objects in the widget. Up to 100 items. * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement multiselect menus, see the [`SelectionInput` widget page](https://developers.google.com/chat/ui/widgets/selection-input#multiselect-menu). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): multiselect for Google Workspace Add-ons are in [Developer Preview](https://developers.google.com/workspace/preview)."
           ],
           "type": "string"
         }
@@ -2890,24 +2890,24 @@
       "type": "object"
     },
     "Inputs": {
-      "description": "Types of data that users can enter on cards or dialogs. To learn how to process information from users, see [Read form data input by users on cards](https://developers.google.com/chat/ui/read-form-data).",
+      "description": "Types of data that users can [input on cards or dialogs](https://developers.google.com/chat/ui/read-form-data). The input type depends on the type of values that the widget accepts.",
       "id": "Inputs",
       "properties": {
         "dateInput": {
           "$ref": "DateInput",
-          "description": "Date input values."
+          "description": "Date input values from a [`DateTimePicker`](https://developers.google.com/chat/api/reference/rest/v1/cards#DateTimePicker) widget that only accepts date values."
         },
         "dateTimeInput": {
           "$ref": "DateTimeInput",
-          "description": "Date and time input values."
+          "description": "Date and time input values from a [`DateTimePicker`](https://developers.google.com/chat/api/reference/rest/v1/cards#DateTimePicker) widget that accepts both a date and time."
         },
         "stringInputs": {
           "$ref": "StringInputs",
-          "description": "Input parameter for regular widgets. For single-valued widgets, it is a single value list. For multi-valued widgets, such as checkbox, all the values are presented."
+          "description": "A list of strings that represent the values that the user inputs in a widget. If the widget only accepts one value, such as a [`TextInput`](https://developers.google.com/chat/api/reference/rest/v1/cards#TextInput) widget, the list contains one string object. If the widget accepts multiple values, such as a [`SelectionInput`](https://developers.google.com/chat/api/reference/rest/v1/cards#selectioninput) widget of checkboxes, the list contains a string object for each value that the user inputs or selects."
         },
         "timeInput": {
           "$ref": "TimeInput",
-          "description": "Time input values."
+          "description": "Time input values from a [`DateTimePicker`](https://developers.google.com/chat/api/reference/rest/v1/cards#DateTimePicker) widget that only accepts time values."
         }
       },
       "type": "object"
@@ -3645,7 +3645,7 @@
       "id": "StringInputs",
       "properties": {
         "value": {
-          "description": "An array of strings entered by the user.",
+          "description": "An list of strings entered by the user.",
           "items": {
             "type": "string"
           },

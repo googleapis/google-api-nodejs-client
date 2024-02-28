@@ -194,13 +194,17 @@ export namespace aiplatform_v1beta1 {
      */
     imageRaiScores?: Schema$CloudAiLargeModelsVisionImageRAIScores;
     /**
-     * RAI info for image
+     * RAI info for image.
      */
     raiInfo?: Schema$CloudAiLargeModelsVisionRaiInfo;
     /**
      * Semantic filter info for image.
      */
     semanticFilterResponse?: Schema$CloudAiLargeModelsVisionSemanticFilterResponse;
+    /**
+     * Text/Expanded text input for imagen.
+     */
+    text?: string | null;
     /**
      * Path to another storage (typically Google Cloud Storage).
      */
@@ -2079,10 +2083,6 @@ export namespace aiplatform_v1beta1 {
      * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.
      */
     pipelineJobId?: string | null;
-    /**
-     * Optional. Whether to do component level validations before job creation. Currently we only support Google First Party Component/Pipelines.
-     */
-    preflightValidations?: boolean | null;
   }
   /**
    * Details of operations that perform create FeatureGroup.
@@ -2479,9 +2479,17 @@ export namespace aiplatform_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * The user-defined name of the DatasetVersion. The name can be up to 128 characters long and can consist of any UTF-8 characters.
+     */
+    displayName?: string | null;
+    /**
      * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
+    /**
+     * Required. Additional information about the DatasetVersion.
+     */
+    metadata?: any | null;
     /**
      * Output only. The resource name of the DatasetVersion.
      */
@@ -3890,6 +3898,10 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Entity responsible for maintaining this feature. Can be comma separated list of email addresses or URIs.
+     */
+    pointOfContact?: string | null;
+    /**
      * Output only. Only applicable for Vertex AI Feature Store (Legacy). Timestamp when this EntityType was most recently updated.
      */
     updateTime?: string | null;
@@ -3944,7 +3956,7 @@ export namespace aiplatform_v1beta1 {
      */
     bigQuerySource?: Schema$GoogleCloudAiplatformV1beta1BigQuerySource;
     /**
-     * Optional. Columns to construct entity_id / row keys. Currently only supports 1 entity_id_column. If not provided defaults to `entity_id`.
+     * Optional. Columns to construct entity_id / row keys. If not provided defaults to `entity_id`.
      */
     entityIdColumns?: string[] | null;
   }
@@ -4364,6 +4376,14 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. A Service Account unique to this FeatureView. The role bigquery.dataViewer should be granted to this service account to allow Vertex AI Feature Store to sync data to the online store.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Optional. Service agent type used during data sync. By default, the Vertex AI Service Agent is used. When using an IAM Policy to isolate this FeatureView within a project (https://cloud.google.com/vertex-ai/docs/featurestore/latest/resource-policy) a separate service account should be provisioned by setting this field to `SERVICE_AGENT_TYPE_FEATURE_VIEW`. This will generate a separate service account to access the BigQuery source table.
+     */
+    serviceAgentType?: string | null;
+    /**
      * Configures when data is to be synced/updated for this FeatureView. At the end of the sync the latest featureValues for each entityId of this FeatureView are made ready for online serving.
      */
     syncConfig?: Schema$GoogleCloudAiplatformV1beta1FeatureViewSyncConfig;
@@ -4378,7 +4398,7 @@ export namespace aiplatform_v1beta1 {
   }
   export interface Schema$GoogleCloudAiplatformV1beta1FeatureViewBigQuerySource {
     /**
-     * Required. Columns to construct entity_id / row keys. Start by supporting 1 only.
+     * Required. Columns to construct entity_id / row keys.
      */
     entityIdColumns?: string[] | null;
     /**
@@ -4391,9 +4411,22 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FeatureViewDataKey {
     /**
+     * The actual Entity ID will be composed from this struct. This should match with the way ID is defined in the FeatureView spec.
+     */
+    compositeKey?: Schema$GoogleCloudAiplatformV1beta1FeatureViewDataKeyCompositeKey;
+    /**
      * String key to use for lookup.
      */
     key?: string | null;
+  }
+  /**
+   * ID that is comprised from several parts (columns).
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FeatureViewDataKeyCompositeKey {
+    /**
+     * Parts to construct Entity ID. Should match with the same ID columns as defined in FeatureView in the same order.
+     */
+    parts?: string[] | null;
   }
   /**
    * A Feature Registry source for features that need to be synced to Online Store.
@@ -4893,6 +4926,15 @@ export namespace aiplatform_v1beta1 {
      * Output only. Time when the operation was updated for the last time. If the operation has finished (successfully or not), this is the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Contains information about the source of the models generated from Generative AI Studio.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenieSource {
+    /**
+     * Required. The public base model URI.
+     */
+    baseModelUri?: string | null;
   }
   /**
    * Tool to retrieve public web data for grounding, powered by Google.
@@ -6497,6 +6539,10 @@ export namespace aiplatform_v1beta1 {
      */
     artifactUri?: string | null;
     /**
+     * Optional. User input field to specify the base model source. Currently it only supports specifing the Model Garden models and Genie models.
+     */
+    baseModelSource?: Schema$GoogleCloudAiplatformV1beta1ModelBaseModelSource;
+    /**
      * Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models.
      */
     containerSpec?: Schema$GoogleCloudAiplatformV1beta1ModelContainerSpec;
@@ -6604,6 +6650,19 @@ export namespace aiplatform_v1beta1 {
      * Output only. Timestamp when this version was most recently updated.
      */
     versionUpdateTime?: string | null;
+  }
+  /**
+   * User input field to specify the base model source. Currently it only supports specifing the Model Garden models and Genie models.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ModelBaseModelSource {
+    /**
+     * Information about the base model of Genie models.
+     */
+    genieSource?: Schema$GoogleCloudAiplatformV1beta1GenieSource;
+    /**
+     * Source information of Model Garden models.
+     */
+    modelGardenSource?: Schema$GoogleCloudAiplatformV1beta1ModelGardenSource;
   }
   /**
    * Specification of a container for serving predictions. Some fields in this message correspond to fields in the [Kubernetes Container v1 core specification](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
@@ -7006,6 +7065,15 @@ export namespace aiplatform_v1beta1 {
      * Output only. The ID of the export format. The possible format IDs are: * `tflite` Used for Android mobile devices. * `edgetpu-tflite` Used for [Edge TPU](https://cloud.google.com/edge-tpu/) devices. * `tf-saved-model` A tensorflow model in SavedModel format. * `tf-js` A [TensorFlow.js](https://www.tensorflow.org/js) model that can be used in the browser and in Node.js using JavaScript. * `core-ml` Used for iOS mobile devices. * `custom-trained` A Model that was uploaded or trained by custom code.
      */
     id?: string | null;
+  }
+  /**
+   * Contains information about the source of the models generated from Model Garden.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ModelGardenSource {
+    /**
+     * Required. The model garden source model resource name.
+     */
+    publicModelName?: string | null;
   }
   /**
    * The alert config for model monitoring.
@@ -8062,6 +8130,10 @@ export namespace aiplatform_v1beta1 {
      * The spec of the pipeline.
      */
     pipelineSpec?: {[key: string]: any} | null;
+    /**
+     * Optional. Whether to do component level validations before job creation.
+     */
+    preflightValidations?: boolean | null;
     /**
      * A list of names for the reserved ip ranges under the VPC network that can be used for this Pipeline Job's workload. If set, we will deploy the Pipeline Job's workload within the provided ip ranges. Otherwise, the job will be deployed to any ip ranges under the provided VPC network. Example: ['vertex-ai-ip-range'].
      */
@@ -9307,6 +9379,18 @@ export namespace aiplatform_v1beta1 {
      * Output only. Harm probability levels in the content.
      */
     probability?: string | null;
+    /**
+     * Output only. Harm probability score.
+     */
+    probabilityScore?: number | null;
+    /**
+     * Output only. Harm severity levels in the content.
+     */
+    severity?: string | null;
+    /**
+     * Output only. Harm severity score.
+     */
+    severityScore?: number | null;
   }
   /**
    * Safety settings.
@@ -13149,19 +13233,19 @@ export namespace aiplatform_v1beta1 {
     tokens?: string[] | null;
   }
   /**
-   * Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool.
+   * Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool (e.g FunctionDeclaration, Retrieval or GoogleSearchRetrieval).
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Tool {
     /**
-     * Optional. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.
+     * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1beta1FunctionDeclaration[];
     /**
-     * Optional. Specialized retrieval tool that is powered by Google search.
+     * Optional. GoogleSearchRetrieval tool type. Specialized retrieval tool that is powered by Google search.
      */
     googleSearchRetrieval?: Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval;
     /**
-     * Optional. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
+     * Optional. Retrieval tool type. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
      */
     retrieval?: Schema$GoogleCloudAiplatformV1beta1Retrieval;
   }
@@ -14354,6 +14438,58 @@ export namespace aiplatform_v1beta1 {
     dataProviderOutput?: Schema$LearningGenaiRootDataProviderOutput[];
     metricOutput?: Schema$LearningGenaiRootMetricOutput[];
   }
+  /**
+   * Stores all metadata relating to AIDA DoConversation.
+   */
+  export interface Schema$LearningGenaiRootCodeyChatMetadata {
+    /**
+     * Indicates the programming language of the code if the message is a code chunk.
+     */
+    codeLanguage?: string | null;
+  }
+  /**
+   * Describes a sample at a checkpoint for post-processing.
+   */
+  export interface Schema$LearningGenaiRootCodeyCheckpoint {
+    /**
+     * Metadata that describes what was truncated at this checkpoint.
+     */
+    codeyTruncatorMetadata?: Schema$LearningGenaiRootCodeyTruncatorMetadata;
+    /**
+     * Current state of the sample after truncator.
+     */
+    currentSample?: string | null;
+    /**
+     * Postprocessor run that yielded this checkpoint.
+     */
+    postInferenceStep?: string | null;
+  }
+  /**
+   * Stores all metadata relating to Completion.
+   */
+  export interface Schema$LearningGenaiRootCodeyCompletionMetadata {
+    checkpoints?: Schema$LearningGenaiRootCodeyCheckpoint[];
+  }
+  /**
+   * Top-level wrapper used to store all things codey-related.
+   */
+  export interface Schema$LearningGenaiRootCodeyOutput {
+    codeyChatMetadata?: Schema$LearningGenaiRootCodeyChatMetadata;
+    codeyCompletionMetadata?: Schema$LearningGenaiRootCodeyCompletionMetadata;
+  }
+  /**
+   * Metadata describing what was truncated at each checkpoint.
+   */
+  export interface Schema$LearningGenaiRootCodeyTruncatorMetadata {
+    /**
+     * Index of the current sample that trims off truncated text.
+     */
+    cutoffIndex?: number | null;
+    /**
+     * Text that was truncated at a specific checkpoint.
+     */
+    truncatedText?: string | null;
+  }
   export interface Schema$LearningGenaiRootDataProviderOutput {
     name?: string | null;
     /**
@@ -14730,6 +14866,10 @@ export namespace aiplatform_v1beta1 {
      * Summary of classifier output. We attach this to all messages regardless of whether classification rules triggered or not.
      */
     classifierSummary?: Schema$LearningGenaiRootClassifierOutputSummary;
+    /**
+     * Contains metadata related to Codey Processors.
+     */
+    codeyOutput?: Schema$LearningGenaiRootCodeyOutput;
     currentStreamTextLength?: number | null;
     /**
      * Whether the corresponding message has been deleted.
@@ -59341,10 +59481,6 @@ export namespace aiplatform_v1beta1 {
      * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.
      */
     pipelineJobId?: string;
-    /**
-     * Optional. Whether to do component level validations before job creation. Currently we only support Google First Party Component/Pipelines.
-     */
-    preflightValidations?: boolean;
 
     /**
      * Request body metadata

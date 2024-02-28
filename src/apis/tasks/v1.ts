@@ -1576,7 +1576,7 @@ export namespace tasks_v1 {
      */
     dueMin?: string;
     /**
-     * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
+     * Maximum number of tasks returned on one page. Optional. The default is 20 (max allowed: 100).
      */
     maxResults?: number;
     /**

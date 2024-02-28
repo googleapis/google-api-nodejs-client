@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20240220",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "CertChain": {
@@ -913,7 +913,7 @@
           "type": "integer"
         },
         "sizeGb": {
-          "description": "Output only. Redis memory size in GB for the entire cluster.",
+          "description": "Output only. Redis memory size in GB for the entire cluster rounded up to the next integer.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"

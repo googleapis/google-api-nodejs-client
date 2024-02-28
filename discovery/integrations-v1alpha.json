@@ -3299,7 +3299,7 @@
       }
     }
   },
-  "revision": "20240125",
+  "revision": "20240225",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -8532,6 +8532,13 @@
         "registrationDestinationConfig": {
           "$ref": "GoogleCloudConnectorsV1DestinationConfig",
           "description": "Registration endpoint for auto registration."
+        },
+        "triggerConfigVariables": {
+          "description": "Optional. Additional eventing related field values",
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
+          },
+          "type": "array"
         }
       },
       "type": "object"

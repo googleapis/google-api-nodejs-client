@@ -23,6 +23,16 @@
       "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/",
       "location": "me-central2",
       "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://pubsub.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://pubsub.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Regional Endpoint"
     }
   ],
   "icons": {
@@ -1573,7 +1583,7 @@
       }
     }
   },
-  "revision": "20240208",
+  "revision": "20240220",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -2551,7 +2561,7 @@
       "properties": {
         "ingestionDataSourceSettings": {
           "$ref": "IngestionDataSourceSettings",
-          "description": "Optional. Settings for managed ingestion from a data source into this topic."
+          "description": "Optional. Settings for ingestion from a data source into this topic."
         },
         "kmsKeyName": {
           "description": "Optional. The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",

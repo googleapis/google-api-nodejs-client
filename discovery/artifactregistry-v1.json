@@ -1668,7 +1668,7 @@
       }
     }
   },
-  "revision": "20240213",
+  "revision": "20240223",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2859,19 +2859,22 @@
             "REDIRECTION_STATE_UNSPECIFIED",
             "REDIRECTION_FROM_GCR_IO_DISABLED",
             "REDIRECTION_FROM_GCR_IO_ENABLED",
-            "REDIRECTION_FROM_GCR_IO_FINALIZED"
+            "REDIRECTION_FROM_GCR_IO_FINALIZED",
+            "REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
-            true
+            true,
+            false
           ],
           "enumDescriptions": [
             "No redirection status has been set.",
             "Redirection is disabled.",
             "Redirection is enabled.",
-            "Redirection is enabled, and has been finalized so cannot be reverted."
+            "Redirection is enabled, and has been finalized so cannot be reverted.",
+            "Redirection is enabled and missing images are copied from GCR"
           ],
           "type": "string"
         },

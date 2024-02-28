@@ -8013,7 +8013,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$SearchRequest {
     /**
-     * Number of ReportRows to retrieve in a single page. Defaults to the maximum of 1000. Values above 1000 are coerced to 1000.
+     * Number of ReportRows to retrieve in a single page. Defaults to 1000. Values above 5000 are coerced to 5000.
      */
     pageSize?: number | null;
     /**

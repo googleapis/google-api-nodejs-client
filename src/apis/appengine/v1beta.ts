@@ -1362,12 +1362,16 @@ export namespace appengine_v1beta {
     timeout?: string | null;
   }
   /**
-   * Containers transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API)
+   * Containers transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API) Service Activation (Service Controller)
    */
   export interface Schema$Reasons {
     abuse?: string | null;
     billing?: string | null;
     dataGovernance?: string | null;
+    /**
+     * Consumer Container denotes if the service is active within a project or not. This information could be used to clean up resources in case service in DISABLED_FULL i.e. Service is inactive \> 30 days.
+     */
+    serviceActivation?: string | null;
     serviceManagement?: string | null;
   }
   /**
@@ -6079,9 +6083,13 @@ export namespace appengine_v1beta {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    applications: Resource$Projects$Locations$Applications;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.applications = new Resource$Projects$Locations$Applications(
+        this.context
+      );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -6293,6 +6301,146 @@ export namespace appengine_v1beta {
     pageToken?: string;
     /**
      * Part of `name`. The resource that owns the locations collection, if applicable.
+     */
+    projectsId?: string;
+  }
+
+  export class Resource$Projects$Locations$Applications {
+    context: APIRequestContext;
+    authorizedDomains: Resource$Projects$Locations$Applications$Authorizeddomains;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.authorizedDomains =
+        new Resource$Projects$Locations$Applications$Authorizeddomains(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Applications$Authorizeddomains {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all domains the user is authorized to administer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Authorizeddomains$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Applications$Authorizeddomains$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Authorizeddomains$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Authorizeddomains$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Authorizeddomains$List,
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Authorizeddomains$List
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAuthorizedDomainsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Authorizeddomains$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Authorizeddomains$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedDomains'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectsId', 'locationsId', 'applicationsId'],
+        pathParams: ['applicationsId', 'locationsId', 'projectsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Applications$Authorizeddomains$List
+    extends StandardParameters {
+    /**
+     * Part of `parent`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `parent`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
     projectsId?: string;
   }
