@@ -215,11 +215,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$Application {
     /**
-     * The base URI that identifies the network location of the application in which the vulnerability was detected. Examples: http://11.22.33.44, http://foo.com, http://11.22.33.44:8080
+     * The base URI that identifies the network location of the application in which the vulnerability was detected. For example, `http://example.com`.
      */
     baseUri?: string | null;
     /**
-     * The full URI with payload that can be used to reproduce the vulnerability. Example: http://11.22.33.44/reflected/parameter/attribute/singlequoted/js?p=aMmYgI6H
+     * The full URI with payload that can be used to reproduce the vulnerability. For example, `http://example.com?p=aMmYgI6H`.
      */
     fullUri?: string | null;
   }
@@ -261,11 +261,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$BackupDisasterRecovery {
     /**
-     * The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, “backup-server-57137”.
+     * The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, `backup-server-57137`.
      */
     appliance?: string | null;
     /**
-     * The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, “centos7-01-vol00”, “centos7-01-vol01”, “centos7-01-vol02”.
+     * The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, `centos7-01-vol00`, `centos7-01-vol01`, `centos7-01-vol02`.
      */
     applications?: string[] | null;
     /**
@@ -273,31 +273,31 @@ export namespace securitycenter_v1beta2 {
      */
     backupCreateTime?: string | null;
     /**
-     * The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, “snap-ov”.
+     * The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, `snap-ov`.
      */
     backupTemplate?: string | null;
     /**
-     * The backup type of the Backup and DR image. For example, “Snapshot”, “Remote Snapshot”, “OnVault”.
+     * The backup type of the Backup and DR image. For example, `Snapshot`, `Remote Snapshot`, `OnVault`.
      */
     backupType?: string | null;
     /**
-     * The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, “centos7-01”.
+     * The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, `centos7-01`.
      */
     host?: string | null;
     /**
-     * The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, “onvaults”.
+     * The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, `onvaults`.
      */
     policies?: string[] | null;
     /**
-     * The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, “skipofflineappsincongrp, nounmap”.
+     * The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, `skipofflineappsincongrp, nounmap`.
      */
     policyOptions?: string[] | null;
     /**
-     * The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, “GCP”.
+     * The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, `GCP`.
      */
     profile?: string | null;
     /**
-     * The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, “DiskPoolOne”.
+     * The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, `DiskPoolOne`.
      */
     storagePool?: string | null;
   }
@@ -372,6 +372,43 @@ export namespace securitycenter_v1beta2 {
      * Version of the standard or benchmark, for example, 1.1
      */
     version?: string | null;
+  }
+  /**
+   * Result containing the properties and count of a ComplianceSnapshot request.
+   */
+  export interface Schema$ComplianceSnapshot {
+    /**
+     * The category of Findings matching.
+     */
+    category?: string | null;
+    /**
+     * The compliance standard (ie CIS).
+     */
+    complianceStandard?: string | null;
+    /**
+     * The compliance version (ie 1.3) in CIS 1.3.
+     */
+    complianceVersion?: string | null;
+    /**
+     * Total count of findings for the given properties.
+     */
+    count?: string | null;
+    /**
+     * The leaf container resource name that is closest to the snapshot.
+     */
+    leafContainerResource?: string | null;
+    /**
+     * The compliance snapshot name. Format: //sources//complianceSnapshots/
+     */
+    name?: string | null;
+    /**
+     * The CRM resource display name that is closest to the snapshot the Findings belong to.
+     */
+    projectDisplayName?: string | null;
+    /**
+     * The snapshot time of the snapshot.
+     */
+    snapshotTime?: string | null;
   }
   /**
    * Configuration of a module.
@@ -488,9 +525,21 @@ export namespace securitycenter_v1beta2 {
      */
     cvssv3?: Schema$Cvssv3;
     /**
+     * The exploitation activity of the vulnerability in the wild.
+     */
+    exploitationActivity?: string | null;
+    /**
      * The unique identifier for the vulnerability. e.g. CVE-2021-34527
      */
     id?: string | null;
+    /**
+     * The potential impact of the vulnerability if it was to be exploited.
+     */
+    impact?: string | null;
+    /**
+     * Whether or not the vulnerability has been observed in the wild.
+     */
+    observedInTheWild?: boolean | null;
     /**
      * Additional information about the CVE. e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
      */
@@ -499,6 +548,10 @@ export namespace securitycenter_v1beta2 {
      * Whether upstream fix is available for the CVE.
      */
     upstreamFixAvailable?: boolean | null;
+    /**
+     * Whether or not the vulnerability was zero day when the finding was published.
+     */
+    zeroDay?: boolean | null;
   }
   /**
    * Common Vulnerability Scoring System version 3.
@@ -1083,6 +1136,14 @@ export namespace securitycenter_v1beta2 {
      */
     assignees?: string[] | null;
     /**
+     * The time when the case was closed, as reported by the external system.
+     */
+    caseCloseTime?: string | null;
+    /**
+     * The time when the case was created, as reported by the external system.
+     */
+    caseCreateTime?: string | null;
+    /**
      * The priority of the finding's corresponding case in the external system.
      */
     casePriority?: string | null;
@@ -1471,6 +1532,1510 @@ export namespace securitycenter_v1beta2 {
     mediumSensitivityMapping?: string | null;
   }
   /**
+   * Represents an access event.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Access {
+    /**
+     * Caller's IP address, such as "1.1.1.1".
+     */
+    callerIp?: string | null;
+    /**
+     * The caller IP's geolocation, which identifies where the call came from.
+     */
+    callerIpGeo?: Schema$GoogleCloudSecuritycenterV2Geolocation;
+    /**
+     * The method that the service account called, e.g. "SetIamPolicy".
+     */
+    methodName?: string | null;
+    /**
+     * Associated email, such as "foo@google.com". The email address of the authenticated user or a service account acting on behalf of a third party principal making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).
+     */
+    principalEmail?: string | null;
+    /**
+     * A string that represents the principal_subject that is associated with the identity. Unlike `principal_email`, `principal_subject` supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format is `principal://iam.googleapis.com/{identity pool name\}/subject/{subject\}`. Some GKE identities, such as GKE_WORKLOAD, FREEFORM, and GKE_HUB_WORKLOAD, still use the legacy format `serviceAccount:{identity pool name\}[{subject\}]`.
+     */
+    principalSubject?: string | null;
+    /**
+     * The identity delegation history of an authenticated service account that made the request. The `serviceAccountDelegationInfo[]` object contains information about the real authorities that try to access Google Cloud resources by delegating on a service account. When multiple authorities are present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.
+     */
+    serviceAccountDelegationInfo?: Schema$GoogleCloudSecuritycenterV2ServiceAccountDelegationInfo[];
+    /**
+     * The name of the service account key that was used to create or exchange credentials when authenticating the service account that made the request. This is a scheme-less URI full resource name. For example: "//iam.googleapis.com/projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}".
+     */
+    serviceAccountKeyName?: string | null;
+    /**
+     * This is the API service that the service account made a call to, e.g. "iam.googleapis.com"
+     */
+    serviceName?: string | null;
+    /**
+     * The caller's user agent string associated with the finding.
+     */
+    userAgent?: string | null;
+    /**
+     * Type of user agent associated with the finding. For example, an operating system shell or an embedded or standalone application.
+     */
+    userAgentFamily?: string | null;
+    /**
+     * A string that represents a username. The username provided depends on the type of the finding and is likely not an IAM principal. For example, this can be a system username if the finding is related to a virtual machine, or it can be an application login username.
+     */
+    userName?: string | null;
+  }
+  /**
+   * Conveys information about a Kubernetes access review (such as one returned by a [`kubectl auth can-i`](https://kubernetes.io/docs/reference/access-authn-authz/authorization/#checking-api-access) command) that was involved in a finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AccessReview {
+    /**
+     * The API group of the resource. "*" means all.
+     */
+    group?: string | null;
+    /**
+     * The name of the resource being requested. Empty means all.
+     */
+    name?: string | null;
+    /**
+     * Namespace of the action being requested. Currently, there is no distinction between no namespace and all namespaces. Both are represented by "" (empty).
+     */
+    ns?: string | null;
+    /**
+     * The optional resource type requested. "*" means all.
+     */
+    resource?: string | null;
+    /**
+     * The optional subresource type.
+     */
+    subresource?: string | null;
+    /**
+     * A Kubernetes resource API verb, like get, list, watch, create, update, delete, proxy. "*" means all.
+     */
+    verb?: string | null;
+    /**
+     * The API version of the resource. "*" means all.
+     */
+    version?: string | null;
+  }
+  /**
+   * Represents an application associated with a finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Application {
+    /**
+     * The base URI that identifies the network location of the application in which the vulnerability was detected. For example, `http://example.com`.
+     */
+    baseUri?: string | null;
+    /**
+     * The full URI with payload that could be used to reproduce the vulnerability. For example, `http://example.com?p=aMmYgI6H`.
+     */
+    fullUri?: string | null;
+  }
+  /**
+   * An attack exposure contains the results of an attack path simulation run.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AttackExposure {
+    /**
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789
+     */
+    attackExposureResult?: string | null;
+    /**
+     * The number of high value resources that are exposed as a result of this finding.
+     */
+    exposedHighValueResourcesCount?: number | null;
+    /**
+     * The number of high value resources that are exposed as a result of this finding.
+     */
+    exposedLowValueResourcesCount?: number | null;
+    /**
+     * The number of medium value resources that are exposed as a result of this finding.
+     */
+    exposedMediumValueResourcesCount?: number | null;
+    /**
+     * The most recent time the attack exposure was updated on this finding.
+     */
+    latestCalculationTime?: string | null;
+    /**
+     * A number between 0 (inclusive) and infinity that represents how important this finding is to remediate. The higher the score, the more important it is to remediate.
+     */
+    score?: number | null;
+    /**
+     * Output only. What state this AttackExposure is in. This captures whether or not an attack exposure has been calculated or not.
+     */
+    state?: string | null;
+  }
+  /**
+   * Information related to Google Cloud Backup and DR Service findings.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2BackupDisasterRecovery {
+    /**
+     * The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, `backup-server-57137`.
+     */
+    appliance?: string | null;
+    /**
+     * The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, `centos7-01-vol00`, `centos7-01-vol01`, `centos7-01-vol02`.
+     */
+    applications?: string[] | null;
+    /**
+     * The timestamp at which the Backup and DR backup was created.
+     */
+    backupCreateTime?: string | null;
+    /**
+     * The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, `snap-ov`.
+     */
+    backupTemplate?: string | null;
+    /**
+     * The backup type of the Backup and DR image. For example, `Snapshot`, `Remote Snapshot`, `OnVault`.
+     */
+    backupType?: string | null;
+    /**
+     * The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, `centos7-01`.
+     */
+    host?: string | null;
+    /**
+     * The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, `onvaults`.
+     */
+    policies?: string[] | null;
+    /**
+     * The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, `skipofflineappsincongrp, nounmap`.
+     */
+    policyOptions?: string[] | null;
+    /**
+     * The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, `GCP`.
+     */
+    profile?: string | null;
+    /**
+     * The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, `DiskPoolOne`.
+     */
+    storagePool?: string | null;
+  }
+  /**
+   * Configures how to deliver Findings to BigQuery Instance.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2BigQueryExport {
+    /**
+     * Output only. The time at which the BigQuery export was created. This field is set by the server and will be ignored if provided on export on creation.
+     */
+    createTime?: string | null;
+    /**
+     * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery Dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
+     */
+    dataset?: string | null;
+    /**
+     * The description of the export (max of 1024 characters).
+     */
+    description?: string | null;
+    /**
+     * Expression that defines the filter to apply across create/update events of findings. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the corresponding resource. The supported operators are: * `=` for all value types. * `\>`, `<`, `\>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.
+     */
+    filter?: string | null;
+    /**
+     * Output only. Email address of the user who last edited the BigQuery export. This field is set by the server and will be ignored if provided on export creation or update.
+     */
+    mostRecentEditor?: string | null;
+    /**
+     * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `folders/{folder_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `projects/{project_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` This field is provided in responses, and is ignored when provided in create requests.
+     */
+    name?: string | null;
+    /**
+     * Output only. The service account that needs permission to create table and upload data to the BigQuery dataset.
+     */
+    principal?: string | null;
+    /**
+     * Output only. The most recent time at which the BigQuery export was updated. This field is set by the server and will be ignored if provided on export creation or update.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents a Kubernetes RoleBinding or ClusterRoleBinding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Binding {
+    /**
+     * Name for the binding.
+     */
+    name?: string | null;
+    /**
+     * Namespace for the binding.
+     */
+    ns?: string | null;
+    /**
+     * The Role or ClusterRole referenced by the binding.
+     */
+    role?: Schema$GoogleCloudSecuritycenterV2Role;
+    /**
+     * Represents one or more subjects that are bound to the role. Not always available for PATCH requests.
+     */
+    subjects?: Schema$GoogleCloudSecuritycenterV2Subject[];
+  }
+  /**
+   * The response to a BulkMute request. Contains the LRO information.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2BulkMuteFindingsResponse {}
+  /**
+   * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2CloudDlpDataProfile {
+    /**
+     * Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.
+     */
+    dataProfile?: string | null;
+    /**
+     * The resource hierarchy level at which the data profile was generated.
+     */
+    parentType?: string | null;
+  }
+  /**
+   * Details about the Cloud Data Loss Prevention (Cloud DLP) [inspection job](https://cloud.google.com/dlp/docs/concepts-job-triggers) that produced the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2CloudDlpInspection {
+    /**
+     * Whether Cloud DLP scanned the complete resource or a sampled subset.
+     */
+    fullScan?: boolean | null;
+    /**
+     * The type of information (or *[infoType](https://cloud.google.com/dlp/docs/infotypes-reference)*) found, for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.
+     */
+    infoType?: string | null;
+    /**
+     * The number of times Cloud DLP found this infoType within this job and resource.
+     */
+    infoTypeCount?: string | null;
+    /**
+     * Name of the inspection job, for example, `projects/123/locations/europe/dlpJobs/i-8383929`.
+     */
+    inspectJob?: string | null;
+  }
+  /**
+   * Metadata taken from a [Cloud Logging LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2CloudLoggingEntry {
+    /**
+     * A unique identifier for the log entry.
+     */
+    insertId?: string | null;
+    /**
+     * The type of the log (part of `log_name`. `log_name` is the resource name of the log to which this log entry belongs). For example: `cloudresourcemanager.googleapis.com/activity` Note that this field is not URL-encoded, unlike in `LogEntry`.
+     */
+    logId?: string | null;
+    /**
+     * The organization, folder, or project of the monitored resource that produced this log entry.
+     */
+    resourceContainer?: string | null;
+    /**
+     * The time the event described by the log entry occurred.
+     */
+    timestamp?: string | null;
+  }
+  /**
+   * Contains compliance information about a security standard indicating unmet recommendations.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Compliance {
+    /**
+     * Policies within the standard or benchmark, for example, A.12.4.1
+     */
+    ids?: string[] | null;
+    /**
+     * Industry-wide compliance standards or benchmarks, such as CIS, PCI, and OWASP.
+     */
+    standard?: string | null;
+    /**
+     * Version of the standard or benchmark, for example, 1.1
+     */
+    version?: string | null;
+  }
+  /**
+   * Contains information about the IP connection associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Connection {
+    /**
+     * Destination IP address. Not present for sockets that are listening and not connected.
+     */
+    destinationIp?: string | null;
+    /**
+     * Destination port. Not present for sockets that are listening and not connected.
+     */
+    destinationPort?: number | null;
+    /**
+     * IANA Internet Protocol Number such as TCP(6) and UDP(17).
+     */
+    protocol?: string | null;
+    /**
+     * Source IP address.
+     */
+    sourceIp?: string | null;
+    /**
+     * Source port.
+     */
+    sourcePort?: number | null;
+  }
+  /**
+   * The email address of a contact.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Contact {
+    /**
+     * An email address. For example, "`person123@company.com`".
+     */
+    email?: string | null;
+  }
+  /**
+   * Details about specific contacts
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ContactDetails {
+    /**
+     * A list of contacts
+     */
+    contacts?: Schema$GoogleCloudSecuritycenterV2Contact[];
+  }
+  /**
+   * Container associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Container {
+    /**
+     * The time that the container was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional container image ID, if provided by the container runtime. Uniquely identifies the container image launched using a container image digest.
+     */
+    imageId?: string | null;
+    /**
+     * Container labels, as provided by the container runtime.
+     */
+    labels?: Schema$GoogleCloudSecuritycenterV2Label[];
+    /**
+     * Name of the container.
+     */
+    name?: string | null;
+    /**
+     * Container image URI provided when configuring a pod or container. This string can identify a container image version using mutable tags.
+     */
+    uri?: string | null;
+  }
+  /**
+   * CVE stands for Common Vulnerabilities and Exposures. Information from the [CVE record](https://www.cve.org/ResourcesSupport/Glossary) that describes this vulnerability.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Cve {
+    /**
+     * Describe Common Vulnerability Scoring System specified at https://www.first.org/cvss/v3.1/specification-document
+     */
+    cvssv3?: Schema$GoogleCloudSecuritycenterV2Cvssv3;
+    /**
+     * The exploitation activity of the vulnerability in the wild.
+     */
+    exploitationActivity?: string | null;
+    /**
+     * The unique identifier for the vulnerability. e.g. CVE-2021-34527
+     */
+    id?: string | null;
+    /**
+     * The potential impact of the vulnerability if it was to be exploited.
+     */
+    impact?: string | null;
+    /**
+     * Whether or not the vulnerability has been observed in the wild.
+     */
+    observedInTheWild?: boolean | null;
+    /**
+     * Additional information about the CVE. e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
+     */
+    references?: Schema$GoogleCloudSecuritycenterV2Reference[];
+    /**
+     * Whether upstream fix is available for the CVE.
+     */
+    upstreamFixAvailable?: boolean | null;
+    /**
+     * Whether or not the vulnerability was zero day when the finding was published.
+     */
+    zeroDay?: boolean | null;
+  }
+  /**
+   * Common Vulnerability Scoring System version 3.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Cvssv3 {
+    /**
+     * This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.
+     */
+    attackComplexity?: string | null;
+    /**
+     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. This metric reflects the context by which vulnerability exploitation is possible.
+     */
+    attackVector?: string | null;
+    /**
+     * This metric measures the impact to the availability of the impacted component resulting from a successfully exploited vulnerability.
+     */
+    availabilityImpact?: string | null;
+    /**
+     * The base score is a function of the base metric scores.
+     */
+    baseScore?: number | null;
+    /**
+     * This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.
+     */
+    confidentialityImpact?: string | null;
+    /**
+     * This metric measures the impact to integrity of a successfully exploited vulnerability.
+     */
+    integrityImpact?: string | null;
+    /**
+     * This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.
+     */
+    privilegesRequired?: string | null;
+    /**
+     * The Scope metric captures whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope.
+     */
+    scope?: string | null;
+    /**
+     * This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component.
+     */
+    userInteraction?: string | null;
+  }
+  /**
+   * Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of Cloud SQL instances or Cloud Spanner instances), or the database instance itself. Some database resources might not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types, such as Cloud SQL databases, are not yet supported by Cloud Asset Inventory. In these cases only the display name is provided.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Database {
+    /**
+     * The human-readable name of the database that the user connected to.
+     */
+    displayName?: string | null;
+    /**
+     * The target usernames, roles, or groups of an SQL privilege grant, which is not an IAM policy change.
+     */
+    grantees?: string[] | null;
+    /**
+     * Some database resources may not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. Cloud SQL databases). In these cases only the display name will be provided. The [full resource name](https://google.aip.dev/122#full-resource-names) of the database that the user connected to, if it is supported by Cloud Asset Inventory.
+     */
+    name?: string | null;
+    /**
+     * The SQL statement that is associated with the database access.
+     */
+    query?: string | null;
+    /**
+     * The username used to connect to the database. The username might not be an IAM principal and does not have a set format.
+     */
+    userName?: string | null;
+    /**
+     * The version of the database, for example, POSTGRES_14. See [the complete list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
+     */
+    version?: string | null;
+  }
+  /**
+   * Memory hash detection contributing to the binary family match.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Detection {
+    /**
+     * The name of the binary associated with the memory hash signature detection.
+     */
+    binary?: string | null;
+    /**
+     * The percentage of memory page hashes in the signature that were matched.
+     */
+    percentPagesMatched?: number | null;
+  }
+  /**
+   * Path of the file in terms of underlying disk/partition identifiers.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2DiskPath {
+    /**
+     * UUID of the partition (format https://wiki.archlinux.org/title/persistent_block_device_naming#by-uuid)
+     */
+    partitionUuid?: string | null;
+    /**
+     * Relative path of the file in the partition as a JSON encoded string. Example: /home/user1/executable_file.sh
+     */
+    relativePath?: string | null;
+  }
+  /**
+   * A name-value pair representing an environment variable used in an operating system process.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2EnvironmentVariable {
+    /**
+     * Environment variable name as a JSON encoded string.
+     */
+    name?: string | null;
+    /**
+     * Environment variable value as a JSON encoded string.
+     */
+    val?: string | null;
+  }
+  /**
+   * Resource where data was exfiltrated from or exfiltrated to.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ExfilResource {
+    /**
+     * Subcomponents of the asset that was exfiltrated, like URIs used during exfiltration, table names, databases, and filenames. For example, multiple tables might have been exfiltrated from the same Cloud SQL instance, or multiple files might have been exfiltrated from the same Cloud Storage bucket.
+     */
+    components?: string[] | null;
+    /**
+     * The resource's [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name).
+     */
+    name?: string | null;
+  }
+  /**
+   * Exfiltration represents a data exfiltration attempt from one or more sources to one or more targets. The `sources` attribute lists the sources of the exfiltrated data. The `targets` attribute lists the destinations the data was copied to.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Exfiltration {
+    /**
+     * If there are multiple sources, then the data is considered "joined" between them. For instance, BigQuery can join multiple tables, and each table would be considered a source.
+     */
+    sources?: Schema$GoogleCloudSecuritycenterV2ExfilResource[];
+    /**
+     * If there are multiple targets, each target would get a complete copy of the "joined" source data.
+     */
+    targets?: Schema$GoogleCloudSecuritycenterV2ExfilResource[];
+    /**
+     * Total exfiltrated bytes processed for the entire job.
+     */
+    totalExfiltratedBytes?: string | null;
+  }
+  /**
+   * Representation of third party SIEM/SOAR fields within SCC.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ExternalSystem {
+    /**
+     * References primary/secondary etc assignees in the external system.
+     */
+    assignees?: string[] | null;
+    /**
+     * The time when the case was closed, as reported by the external system.
+     */
+    caseCloseTime?: string | null;
+    /**
+     * The time when the case was created, as reported by the external system.
+     */
+    caseCreateTime?: string | null;
+    /**
+     * The priority of the finding's corresponding case in the external system.
+     */
+    casePriority?: string | null;
+    /**
+     * The SLA of the finding's corresponding case in the external system.
+     */
+    caseSla?: string | null;
+    /**
+     * The link to the finding's corresponding case in the external system.
+     */
+    caseUri?: string | null;
+    /**
+     * The time when the case was last updated, as reported by the external system.
+     */
+    externalSystemUpdateTime?: string | null;
+    /**
+     * The identifier that's used to track the finding's corresponding case in the external system.
+     */
+    externalUid?: string | null;
+    /**
+     * Full resource name of the external system. The following list shows some examples: + `organizations/1234/sources/5678/findings/123456/externalSystems/jira` + `organizations/1234/sources/5678/locations/us/findings/123456/externalSystems/jira` + `folders/1234/sources/5678/findings/123456/externalSystems/jira` + `folders/1234/sources/5678/locations/us/findings/123456/externalSystems/jira` + `projects/1234/sources/5678/findings/123456/externalSystems/jira` + `projects/1234/sources/5678/locations/us/findings/123456/externalSystems/jira`
+     */
+    name?: string | null;
+    /**
+     * The most recent status of the finding's corresponding case, as reported by the external system.
+     */
+    status?: string | null;
+    /**
+     * Information about the ticket, if any, that is being used to track the resolution of the issue that is identified by this finding.
+     */
+    ticketInfo?: Schema$GoogleCloudSecuritycenterV2TicketInfo;
+  }
+  /**
+   * File information about the related binary/library used by an executable, or the script used by a script interpreter
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2File {
+    /**
+     * Prefix of the file contents as a JSON-encoded string.
+     */
+    contents?: string | null;
+    /**
+     * Path of the file in terms of underlying disk/partition identifiers.
+     */
+    diskPath?: Schema$GoogleCloudSecuritycenterV2DiskPath;
+    /**
+     * The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.
+     */
+    hashedSize?: string | null;
+    /**
+     * True when the hash covers only a prefix of the file.
+     */
+    partiallyHashed?: boolean | null;
+    /**
+     * Absolute path of the file as a JSON encoded string.
+     */
+    path?: string | null;
+    /**
+     * SHA256 hash of the first hashed_size bytes of the file encoded as a hex string. If hashed_size == size, sha256 represents the SHA256 hash of the entire file.
+     */
+    sha256?: string | null;
+    /**
+     * Size of the file in bytes.
+     */
+    size?: string | null;
+  }
+  /**
+   * Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Finding {
+    /**
+     * Access details associated with the finding, such as more information on the caller, which method was accessed, and from where.
+     */
+    access?: Schema$GoogleCloudSecuritycenterV2Access;
+    /**
+     * Represents an application associated with the finding.
+     */
+    application?: Schema$GoogleCloudSecuritycenterV2Application;
+    /**
+     * The results of an attack path simulation relevant to this finding.
+     */
+    attackExposure?: Schema$GoogleCloudSecuritycenterV2AttackExposure;
+    /**
+     * Fields related to Backup and DR findings.
+     */
+    backupDisasterRecovery?: Schema$GoogleCloudSecuritycenterV2BackupDisasterRecovery;
+    /**
+     * Output only. The canonical name of the finding. The following list shows some examples: + `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}` + `organizations/{organization_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}` + `folders/{folder_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}` + `projects/{project_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` The prefix is the closest CRM ancestor of the resource associated with the finding.
+     */
+    canonicalName?: string | null;
+    /**
+     * Immutable. The additional taxonomy group within findings from a given source. Example: "XSS_FLASH_INJECTION"
+     */
+    category?: string | null;
+    /**
+     * Cloud DLP data profile that is associated with the finding.
+     */
+    cloudDlpDataProfile?: Schema$GoogleCloudSecuritycenterV2CloudDlpDataProfile;
+    /**
+     * Cloud Data Loss Prevention (Cloud DLP) inspection results that are associated with the finding.
+     */
+    cloudDlpInspection?: Schema$GoogleCloudSecuritycenterV2CloudDlpInspection;
+    /**
+     * Contains compliance information for security standards associated to the finding.
+     */
+    compliances?: Schema$GoogleCloudSecuritycenterV2Compliance[];
+    /**
+     * Contains information about the IP connection associated with the finding.
+     */
+    connections?: Schema$GoogleCloudSecuritycenterV2Connection[];
+    /**
+     * Output only. Map containing the points of contact for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { "security": { "contacts": [ { "email": "person1@company.com" \}, { "email": "person2@company.com" \} ] \} \}
+     */
+    contacts?: {
+      [key: string]: Schema$GoogleCloudSecuritycenterV2ContactDetails;
+    } | null;
+    /**
+     * Containers associated with the finding. This field provides information for both Kubernetes and non-Kubernetes containers.
+     */
+    containers?: Schema$GoogleCloudSecuritycenterV2Container[];
+    /**
+     * Output only. The time at which the finding was created in Security Command Center.
+     */
+    createTime?: string | null;
+    /**
+     * Database associated with the finding.
+     */
+    database?: Schema$GoogleCloudSecuritycenterV2Database;
+    /**
+     * Contains more details about the finding.
+     */
+    description?: string | null;
+    /**
+     * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
+     */
+    eventTime?: string | null;
+    /**
+     * Represents exfiltrations associated with the finding.
+     */
+    exfiltration?: Schema$GoogleCloudSecuritycenterV2Exfiltration;
+    /**
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.
+     */
+    externalSystems?: {
+      [key: string]: Schema$GoogleCloudSecuritycenterV2ExternalSystem;
+    } | null;
+    /**
+     * The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
+     */
+    externalUri?: string | null;
+    /**
+     * File associated with the finding.
+     */
+    files?: Schema$GoogleCloudSecuritycenterV2File[];
+    /**
+     * The class of the finding.
+     */
+    findingClass?: string | null;
+    /**
+     * Represents IAM bindings associated with the finding.
+     */
+    iamBindings?: Schema$GoogleCloudSecuritycenterV2IamBinding[];
+    /**
+     * Represents what's commonly known as an *indicator of compromise* (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
+     */
+    indicator?: Schema$GoogleCloudSecuritycenterV2Indicator;
+    /**
+     * Signature of the kernel rootkit.
+     */
+    kernelRootkit?: Schema$GoogleCloudSecuritycenterV2KernelRootkit;
+    /**
+     * Kubernetes resources associated with the finding.
+     */
+    kubernetes?: Schema$GoogleCloudSecuritycenterV2Kubernetes;
+    /**
+     * The load balancers associated with the finding.
+     */
+    loadBalancers?: Schema$GoogleCloudSecuritycenterV2LoadBalancer[];
+    /**
+     * Log entries that are relevant to the finding.
+     */
+    logEntries?: Schema$GoogleCloudSecuritycenterV2LogEntry[];
+    /**
+     * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
+     */
+    mitreAttack?: Schema$GoogleCloudSecuritycenterV2MitreAttack;
+    /**
+     * Unique identifier of the module which generated the finding. Example: folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
+     */
+    moduleName?: string | null;
+    /**
+     * Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
+     */
+    mute?: string | null;
+    /**
+     * Records additional information about the mute operation, for example, the [mute configuration](https://cloud.google.com/security-command-center/docs/how-to-mute-findings) that muted the finding and the user who muted the finding.
+     */
+    muteInitiator?: string | null;
+    /**
+     * Output only. The most recent time this finding was muted or unmuted.
+     */
+    muteUpdateTime?: string | null;
+    /**
+     * The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. The following list shows some examples: + `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}` + `organizations/{organization_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}` + `folders/{folder_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}` + `projects/{project_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}`
+     */
+    name?: string | null;
+    /**
+     * Steps to address the finding.
+     */
+    nextSteps?: string | null;
+    /**
+     * Contains information about the org policies associated with the finding.
+     */
+    orgPolicies?: Schema$GoogleCloudSecuritycenterV2OrgPolicy[];
+    /**
+     * The relative resource name of the source and location the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. The following list shows some examples: + `organizations/{organization_id\}/sources/{source_id\}` + `folders/{folders_id\}/sources/{source_id\}` + `projects/{projects_id\}/sources/{source_id\}` + `organizations/{organization_id\}/sources/{source_id\}/locations/{location_id\}` + `folders/{folders_id\}/sources/{source_id\}/locations/{location_id\}` + `projects/{projects_id\}/sources/{source_id\}/locations/{location_id\}`
+     */
+    parent?: string | null;
+    /**
+     * Output only. The human readable display name of the finding source such as "Event Threat Detection" or "Security Health Analytics".
+     */
+    parentDisplayName?: string | null;
+    /**
+     * Represents operating system processes associated with the Finding.
+     */
+    processes?: Schema$GoogleCloudSecuritycenterV2Process[];
+    /**
+     * Immutable. For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string.
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
+     */
+    securityMarks?: Schema$GoogleCloudSecuritycenterV2SecurityMarks;
+    /**
+     * The security posture associated with the finding.
+     */
+    securityPosture?: Schema$GoogleCloudSecuritycenterV2SecurityPosture;
+    /**
+     * The severity of the finding. This field is managed by the source that writes the finding.
+     */
+    severity?: string | null;
+    /**
+     * Source specific properties. These properties are managed by the source that writes the finding. The key names in the source_properties map must be between 1 and 255 characters, and must start with a letter and contain alphanumeric characters or underscores only.
+     */
+    sourceProperties?: {[key: string]: any} | null;
+    /**
+     * Output only. The state of the finding.
+     */
+    state?: string | null;
+    /**
+     * Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     */
+    vulnerability?: Schema$GoogleCloudSecuritycenterV2Vulnerability;
+  }
+  /**
+   * Represents a geographical location for a given access.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Geolocation {
+    /**
+     * A CLDR.
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Represents a particular IAM binding, which captures a member's role addition, removal, or state.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IamBinding {
+    /**
+     * The action that was performed on a Binding.
+     */
+    action?: string | null;
+    /**
+     * A single identity requesting access for a Cloud Platform resource, for example, "foo@google.com".
+     */
+    member?: string | null;
+    /**
+     * Role that is assigned to "members". For example, "roles/viewer", "roles/editor", or "roles/owner".
+     */
+    role?: string | null;
+  }
+  /**
+   * Represents what's commonly known as an _indicator of compromise_ (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Indicator {
+    /**
+     * List of domains associated to the Finding.
+     */
+    domains?: string[] | null;
+    /**
+     * The list of IP addresses that are associated with the finding.
+     */
+    ipAddresses?: string[] | null;
+    /**
+     * The list of matched signatures indicating that the given process is present in the environment.
+     */
+    signatures?: Schema$GoogleCloudSecuritycenterV2ProcessSignature[];
+    /**
+     * The list of URIs associated to the Findings.
+     */
+    uris?: string[] | null;
+  }
+  /**
+   * Kernel mode rootkit signatures.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2KernelRootkit {
+    /**
+     * Rootkit name, when available.
+     */
+    name?: string | null;
+    /**
+     * True if unexpected modifications of kernel code memory are present.
+     */
+    unexpectedCodeModification?: boolean | null;
+    /**
+     * True if `ftrace` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedFtraceHandler?: boolean | null;
+    /**
+     * True if interrupt handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedInterruptHandler?: boolean | null;
+    /**
+     * True if kernel code pages that are not in the expected kernel or module code regions are present.
+     */
+    unexpectedKernelCodePages?: boolean | null;
+    /**
+     * True if `kprobe` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedKprobeHandler?: boolean | null;
+    /**
+     * True if unexpected processes in the scheduler run queue are present. Such processes are in the run queue, but not in the process task list.
+     */
+    unexpectedProcessesInRunqueue?: boolean | null;
+    /**
+     * True if unexpected modifications of kernel read-only data memory are present.
+     */
+    unexpectedReadOnlyDataModification?: boolean | null;
+    /**
+     * True if system call handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedSystemCallHandler?: boolean | null;
+  }
+  /**
+   * Kubernetes-related attributes.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Kubernetes {
+    /**
+     * Provides information on any Kubernetes access reviews (privilege checks) relevant to the finding.
+     */
+    accessReviews?: Schema$GoogleCloudSecuritycenterV2AccessReview[];
+    /**
+     * Provides Kubernetes role binding information for findings that involve [RoleBindings or ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
+     */
+    bindings?: Schema$GoogleCloudSecuritycenterV2Binding[];
+    /**
+     * GKE [node pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools) associated with the finding. This field contains node pool information for each node, when it is available.
+     */
+    nodePools?: Schema$GoogleCloudSecuritycenterV2NodePool[];
+    /**
+     * Provides Kubernetes [node](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes) information.
+     */
+    nodes?: Schema$GoogleCloudSecuritycenterV2Node[];
+    /**
+     * Kubernetes objects related to the finding.
+     */
+    objects?: Schema$GoogleCloudSecuritycenterV2Object[];
+    /**
+     * Kubernetes [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod) associated with the finding. This field contains Pod records for each container that is owned by a Pod.
+     */
+    pods?: Schema$GoogleCloudSecuritycenterV2Pod[];
+    /**
+     * Provides Kubernetes role information for findings that involve [Roles or ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
+     */
+    roles?: Schema$GoogleCloudSecuritycenterV2Role[];
+  }
+  /**
+   * Represents a generic name-value label. A label has separate name and value fields to support filtering with the `contains()` function. For more information, see [Filtering on array-type fields](https://cloud.google.com/security-command-center/docs/how-to-api-list-findings#array-contains-filtering).
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Label {
+    /**
+     * Name of the label.
+     */
+    name?: string | null;
+    /**
+     * Value that corresponds to the label's name.
+     */
+    value?: string | null;
+  }
+  /**
+   * Contains information related to the load balancer associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2LoadBalancer {
+    /**
+     * The name of the load balancer associated with the finding.
+     */
+    name?: string | null;
+  }
+  /**
+   * An individual entry in a log.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2LogEntry {
+    /**
+     * An individual entry in a log stored in Cloud Logging.
+     */
+    cloudLoggingEntry?: Schema$GoogleCloudSecuritycenterV2CloudLoggingEntry;
+  }
+  /**
+   * A signature corresponding to memory page hashes.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2MemoryHashSignature {
+    /**
+     * The binary family.
+     */
+    binaryFamily?: string | null;
+    /**
+     * The list of memory hash detections contributing to the binary family match.
+     */
+    detections?: Schema$GoogleCloudSecuritycenterV2Detection[];
+  }
+  /**
+   * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2MitreAttack {
+    /**
+     * Additional MITRE ATT&CK tactics related to this finding, if any.
+     */
+    additionalTactics?: string[] | null;
+    /**
+     * Additional MITRE ATT&CK techniques related to this finding, if any, along with any of their respective parent techniques.
+     */
+    additionalTechniques?: string[] | null;
+    /**
+     * The MITRE ATT&CK tactic most closely represented by this finding, if any.
+     */
+    primaryTactic?: string | null;
+    /**
+     * The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. `SCANNING_IP_BLOCKS`), both the sub-technique and its parent technique(s) will be listed (e.g. `SCANNING_IP_BLOCKS`, `ACTIVE_SCANNING`).
+     */
+    primaryTechniques?: string[] | null;
+    /**
+     * The MITRE ATT&CK version referenced by the above fields. E.g. "8".
+     */
+    version?: string | null;
+  }
+  /**
+   * A mute config is a Cloud SCC resource that contains the configuration to mute create/update events of findings.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2MuteConfig {
+    /**
+     * Output only. The time at which the mute config was created. This field is set by the server and will be ignored if provided on config creation.
+     */
+    createTime?: string | null;
+    /**
+     * A description of the mute config.
+     */
+    description?: string | null;
+    /**
+     * Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`
+     */
+    filter?: string | null;
+    /**
+     * Output only. Email address of the user who last edited the mute config. This field is set by the server and will be ignored if provided on config creation or update.
+     */
+    mostRecentEditor?: string | null;
+    /**
+     * This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization\}/muteConfigs/{mute_config\}` + `organizations/{organization\}locations/{location\}//muteConfigs/{mute_config\}` + `folders/{folder\}/muteConfigs/{mute_config\}` + `folders/{folder\}/locations/{location\}/muteConfigs/{mute_config\}` + `projects/{project\}/muteConfigs/{mute_config\}` + `projects/{project\}/locations/{location\}/muteConfigs/{mute_config\}`
+     */
+    name?: string | null;
+    /**
+     * Required. The type of the mute config, which determines what type of mute state the config affects. Immutable after creation.
+     */
+    type?: string | null;
+    /**
+     * Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Kubernetes nodes associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Node {
+    /**
+     * [Full resource name](https://google.aip.dev/122#full-resource-names) of the Compute Engine VM running the cluster node.
+     */
+    name?: string | null;
+  }
+  /**
+   * Provides GKE node pool information.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2NodePool {
+    /**
+     * Kubernetes node pool name.
+     */
+    name?: string | null;
+    /**
+     * Nodes associated with the finding.
+     */
+    nodes?: Schema$GoogleCloudSecuritycenterV2Node[];
+  }
+  /**
+   * Cloud SCC's Notification
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2NotificationMessage {
+    /**
+     * If it's a Finding based notification config, this field will be populated.
+     */
+    finding?: Schema$GoogleCloudSecuritycenterV2Finding;
+    /**
+     * Name of the notification config that generated current notification.
+     */
+    notificationConfigName?: string | null;
+    /**
+     * The Cloud resource tied to this notification's Finding.
+     */
+    resource?: Schema$GoogleCloudSecuritycenterV2Resource;
+  }
+  /**
+   * Kubernetes object related to the finding, uniquely identified by GKNN. Used if the object Kind is not one of Pod, Node, NodePool, Binding, or AccessReview.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Object {
+    /**
+     * Pod containers associated with this finding, if any.
+     */
+    containers?: Schema$GoogleCloudSecuritycenterV2Container[];
+    /**
+     * Kubernetes object group, such as "policy.k8s.io/v1".
+     */
+    group?: string | null;
+    /**
+     * Kubernetes object kind, such as "Namespace".
+     */
+    kind?: string | null;
+    /**
+     * Kubernetes object name. For details see https://kubernetes.io/docs/concepts/overview/working-with-objects/names/.
+     */
+    name?: string | null;
+    /**
+     * Kubernetes object namespace. Must be a valid DNS label. Named "ns" to avoid collision with C++ namespace keyword. For details see https://kubernetes.io/docs/tasks/administer-cluster/namespaces/.
+     */
+    ns?: string | null;
+  }
+  /**
+   * Contains information about the org policies associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2OrgPolicy {
+    /**
+     * The resource name of the org policy. Example: "organizations/{organization_id\}/policies/{constraint_name\}"
+     */
+    name?: string | null;
+  }
+  /**
+   * Package is a generic definition of a package.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Package {
+    /**
+     * The CPE URI where the vulnerability was detected.
+     */
+    cpeUri?: string | null;
+    /**
+     * The name of the package where the vulnerability was detected.
+     */
+    packageName?: string | null;
+    /**
+     * Type of package, for example, os, maven, or go.
+     */
+    packageType?: string | null;
+    /**
+     * The version of the package.
+     */
+    packageVersion?: string | null;
+  }
+  /**
+   * A Kubernetes Pod.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Pod {
+    /**
+     * Pod containers associated with this finding, if any.
+     */
+    containers?: Schema$GoogleCloudSecuritycenterV2Container[];
+    /**
+     * Pod labels. For Kubernetes containers, these are applied to the container.
+     */
+    labels?: Schema$GoogleCloudSecuritycenterV2Label[];
+    /**
+     * Kubernetes Pod name.
+     */
+    name?: string | null;
+    /**
+     * Kubernetes Pod namespace.
+     */
+    ns?: string | null;
+  }
+  /**
+   * The policy field that violates the deployed posture and its expected and detected values.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2PolicyDriftDetails {
+    /**
+     * The detected value that violates the deployed posture, for example, `false` or `allowed_values={"projects/22831892"\}`.
+     */
+    detectedValue?: string | null;
+    /**
+     * The value of this field that was configured in a posture, for example, `true` or `allowed_values={"projects/29831892"\}`.
+     */
+    expectedValue?: string | null;
+    /**
+     * The name of the updated field, for example constraint.implementation.policy_rules[0].enforce
+     */
+    field?: string | null;
+  }
+  /**
+   * Represents an operating system process.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Process {
+    /**
+     * Process arguments as JSON encoded strings.
+     */
+    args?: string[] | null;
+    /**
+     * True if `args` is incomplete.
+     */
+    argumentsTruncated?: boolean | null;
+    /**
+     * File information for the process executable.
+     */
+    binary?: Schema$GoogleCloudSecuritycenterV2File;
+    /**
+     * Process environment variables.
+     */
+    envVariables?: Schema$GoogleCloudSecuritycenterV2EnvironmentVariable[];
+    /**
+     * True if `env_variables` is incomplete.
+     */
+    envVariablesTruncated?: boolean | null;
+    /**
+     * File information for libraries loaded by the process.
+     */
+    libraries?: Schema$GoogleCloudSecuritycenterV2File[];
+    /**
+     * The process name, as displayed in utilities like `top` and `ps`. This name can be accessed through `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
+     */
+    name?: string | null;
+    /**
+     * The parent process ID.
+     */
+    parentPid?: string | null;
+    /**
+     * The process ID.
+     */
+    pid?: string | null;
+    /**
+     * When the process represents the invocation of a script, `binary` provides information about the interpreter, while `script` provides information about the script file provided to the interpreter.
+     */
+    script?: Schema$GoogleCloudSecuritycenterV2File;
+  }
+  /**
+   * Indicates what signature matched this process.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ProcessSignature {
+    /**
+     * Signature indicating that a binary family was matched.
+     */
+    memoryHashSignature?: Schema$GoogleCloudSecuritycenterV2MemoryHashSignature;
+    /**
+     * Describes the type of resource associated with the signature.
+     */
+    signatureType?: string | null;
+    /**
+     * Signature indicating that a YARA rule was matched.
+     */
+    yaraRuleSignature?: Schema$GoogleCloudSecuritycenterV2YaraRuleSignature;
+  }
+  /**
+   * Additional Links
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Reference {
+    /**
+     * Source of the reference e.g. NVD
+     */
+    source?: string | null;
+    /**
+     * Uri for the mentioned source e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Information related to the Google Cloud resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Resource {
+    /**
+     * The human readable name of the resource.
+     */
+    displayName?: string | null;
+    /**
+     * The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    name?: string | null;
+    /**
+     * The full resource type of the resource.
+     */
+    type?: string | null;
+  }
+  /**
+   * A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceValueConfig {
+    /**
+     * Output only. Timestamp this resource value config was created.
+     */
+    createTime?: string | null;
+    /**
+     * Description of the resource value config.
+     */
+    description?: string | null;
+    /**
+     * Name for the resource value config
+     */
+    name?: string | null;
+    /**
+     * List of resource labels to search for, evaluated with AND. E.g. "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     */
+    resourceLabelsSelector?: {[key: string]: string} | null;
+    /**
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     */
+    resourceType?: string | null;
+    /**
+     * Resource value level this expression represents Only required when there is no SDP mapping in the request
+     */
+    resourceValue?: string | null;
+    /**
+     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     */
+    scope?: string | null;
+    /**
+     * A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. "bigquery.googleapis.com/Dataset".
+     */
+    sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping;
+    /**
+     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     */
+    tagValues?: string[] | null;
+    /**
+     * Output only. Timestamp this resource value config was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Kubernetes Role or ClusterRole.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Role {
+    /**
+     * Role type.
+     */
+    kind?: string | null;
+    /**
+     * Role name.
+     */
+    name?: string | null;
+    /**
+     * Role namespace.
+     */
+    ns?: string | null;
+  }
+  /**
+   * SecurityBulletin are notifications of vulnerabilities of Google products.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2SecurityBulletin {
+    /**
+     * ID of the bulletin corresponding to the vulnerability.
+     */
+    bulletinId?: string | null;
+    /**
+     * Submission time of this Security Bulletin.
+     */
+    submissionTime?: string | null;
+    /**
+     * This represents a version that the cluster receiving this notification should be upgraded to, based on its current version. For example, 1.15.0
+     */
+    suggestedUpgradeVersion?: string | null;
+  }
+  /**
+   * User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2SecurityMarks {
+    /**
+     * The canonical name of the marks. The following list shows some examples: + `organizations/{organization_id\}/assets/{asset_id\}/securityMarks" + `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" + `organizations/{organization_id\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks" + `folders/{folder_id\}/assets/{asset_id\}/securityMarks" + `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" + `folders/{folder_id\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks" + `projects/{project_number\}/assets/{asset_id\}/securityMarks" + `projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" + `projects/{project_number\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks"
+     */
+    canonicalName?: string | null;
+    /**
+     * Mutable user specified security marks belonging to the parent resource. Constraints are as follows: * Keys and values are treated as case insensitive * Keys must be between 1 - 256 characters (inclusive) * Keys must be letters, numbers, underscores, or dashes * Values have leading and trailing whitespace trimmed, remaining characters must be between 1 - 4096 characters (inclusive)
+     */
+    marks?: {[key: string]: string} | null;
+    /**
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name The following list shows some examples: + `organizations/{organization_id\}/assets/{asset_id\}/securityMarks` + `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks` + `organizations/{organization_id\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks`
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents a posture that is deployed on Google Cloud by the Security Command Center Posture Management service. A posture contains one or more policy sets. A policy set is a group of policies that enforce a set of security rules on Google Cloud.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2SecurityPosture {
+    /**
+     * The name of the updated policy, for example, `projects/{project_id\}/policies/{constraint_name\}`.
+     */
+    changedPolicy?: string | null;
+    /**
+     * Name of the posture, for example, `CIS-Posture`.
+     */
+    name?: string | null;
+    /**
+     * The ID of the updated policy, for example, `compute-policy-1`.
+     */
+    policy?: string | null;
+    /**
+     * The details about a change in an updated policy that violates the deployed posture.
+     */
+    policyDriftDetails?: Schema$GoogleCloudSecuritycenterV2PolicyDriftDetails[];
+    /**
+     * The name of the updated policy set, for example, `cis-policyset`.
+     */
+    policySet?: string | null;
+    /**
+     * The name of the posture deployment, for example, `organizations/{org_id\}/posturedeployments/{posture_deployment_id\}`.
+     */
+    postureDeployment?: string | null;
+    /**
+     * The project, folder, or organization on which the posture is deployed, for example, `projects/{project_number\}`.
+     */
+    postureDeploymentResource?: string | null;
+    /**
+     * The version of the posture, for example, `c7cfa2a8`.
+     */
+    revisionId?: string | null;
+  }
+  /**
+   * Resource value mapping for Sensitive Data Protection findings If any of these mappings have a resource value that is not unspecified, the resource_value field will be ignored when reading this configuration.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping {
+    /**
+     * Resource value mapping for high-sensitivity Sensitive Data Protection findings
+     */
+    highSensitivityMapping?: string | null;
+    /**
+     * Resource value mapping for medium-sensitivity Sensitive Data Protection findings
+     */
+    mediumSensitivityMapping?: string | null;
+  }
+  /**
+   * Identity delegation history of an authenticated service account.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ServiceAccountDelegationInfo {
+    /**
+     * The email address of a Google account.
+     */
+    principalEmail?: string | null;
+    /**
+     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subjects/{subject\}` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     */
+    principalSubject?: string | null;
+  }
+  /**
+   * Represents a Kubernetes subject.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Subject {
+    /**
+     * Authentication type for the subject.
+     */
+    kind?: string | null;
+    /**
+     * Name for the subject.
+     */
+    name?: string | null;
+    /**
+     * Namespace for the subject.
+     */
+    ns?: string | null;
+  }
+  /**
+   * Information about the ticket, if any, that is being used to track the resolution of the issue that is identified by this finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2TicketInfo {
+    /**
+     * The assignee of the ticket in the ticket system.
+     */
+    assignee?: string | null;
+    /**
+     * The description of the ticket in the ticket system.
+     */
+    description?: string | null;
+    /**
+     * The identifier of the ticket in the ticket system.
+     */
+    id?: string | null;
+    /**
+     * The latest status of the ticket, as reported by the ticket system.
+     */
+    status?: string | null;
+    /**
+     * The time when the ticket was last updated, as reported by the ticket system.
+     */
+    updateTime?: string | null;
+    /**
+     * The link to the ticket in the ticket system.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Refers to common vulnerability fields e.g. cve, cvss, cwe etc.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Vulnerability {
+    /**
+     * CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     */
+    cve?: Schema$GoogleCloudSecuritycenterV2Cve;
+    /**
+     * The fixed package is relevant to the finding.
+     */
+    fixedPackage?: Schema$GoogleCloudSecuritycenterV2Package;
+    /**
+     * The offending package is relevant to the finding.
+     */
+    offendingPackage?: Schema$GoogleCloudSecuritycenterV2Package;
+    /**
+     * The security bulletin is relevant to this finding.
+     */
+    securityBulletin?: Schema$GoogleCloudSecuritycenterV2SecurityBulletin;
+  }
+  /**
+   * A signature corresponding to a YARA rule.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2YaraRuleSignature {
+    /**
+     * The name of the YARA rule.
+     */
+    yaraRule?: string | null;
+  }
+  /**
    * Represents a particular IAM binding, which captures a member's role addition, removal, or state.
    */
   export interface Schema$IamBinding {
@@ -1750,15 +3315,15 @@ export namespace securitycenter_v1beta2 {
     ns?: string | null;
   }
   /**
-   * The policy field that violates the deployed posture and its expected and and detected values.
+   * The policy field that violates the deployed posture and its expected and detected values.
    */
   export interface Schema$PolicyDriftDetails {
     /**
-     * The detected value that violates the deployed posture, for example, `false` or `allowed_values={"projects/22831892”\}`.
+     * The detected value that violates the deployed posture, for example, `false` or `allowed_values={"projects/22831892"\}`.
      */
     detectedValue?: string | null;
     /**
-     * The value of this field that was configured in a posture, for example, `true` or `allowed_values={"projects/29831892”\}`.
+     * The value of this field that was configured in a posture, for example, `true` or `allowed_values={"projects/29831892"\}`.
      */
     expectedValue?: string | null;
     /**

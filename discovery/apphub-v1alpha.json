@@ -242,7 +242,7 @@
                   ],
                   "parameters": {
                     "applicationId": {
-                      "description": "Required. The Application identifier.",
+                      "description": "Required. The Application identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.",
                       "location": "query",
                       "type": "string"
                     },
@@ -523,7 +523,7 @@
                           "type": "string"
                         },
                         "serviceId": {
-                          "description": "Required. The Service identifier.",
+                          "description": "Required. The Service identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.",
                           "location": "query",
                           "type": "string"
                         }
@@ -705,7 +705,7 @@
                           "type": "string"
                         },
                         "workloadId": {
-                          "description": "Required. The Workload identifier.",
+                          "description": "Required. The Workload identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.",
                           "location": "query",
                           "type": "string"
                         }
@@ -867,52 +867,6 @@
             },
             "discoveredServices": {
               "methods": {
-                "find": {
-                  "description": "Finds discovered services that could be added to an application in a host project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredServices:find",
-                  "httpMethod": "GET",
-                  "id": "apphub.projects.locations.discoveredServices.find",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "filter": {
-                      "description": "Optional. Filtering results",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. Value for parent.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/discoveredServices:find",
-                  "response": {
-                    "$ref": "FindDiscoveredServicesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "findUnregistered": {
                   "description": "Finds unregistered services in a host project and location.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredServices:findUnregistered",
@@ -985,7 +939,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists discovered services in a host project and location.",
+                  "description": "Lists discovered services that can be added to an application in a host project and location.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredServices",
                   "httpMethod": "GET",
                   "id": "apphub.projects.locations.discoveredServices.list",
@@ -1034,52 +988,6 @@
             },
             "discoveredWorkloads": {
               "methods": {
-                "find": {
-                  "description": "Finds discovered workloads that could be added to an application in a host project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredWorkloads:find",
-                  "httpMethod": "GET",
-                  "id": "apphub.projects.locations.discoveredWorkloads.find",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "filter": {
-                      "description": "Optional. Filtering results",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. Value for parent.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/discoveredWorkloads:find",
-                  "response": {
-                    "$ref": "FindDiscoveredWorkloadsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "findUnregistered": {
                   "description": "Finds unregistered workloads in a host project and location.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredWorkloads:findUnregistered",
@@ -1152,7 +1060,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists discovered workloads in a host project and location.",
+                  "description": "Lists discovered workloads that can be added to an application in a host project and location.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredWorkloads",
                   "httpMethod": "GET",
                   "id": "apphub.projects.locations.discoveredWorkloads.list",
@@ -1470,7 +1378,7 @@
       }
     }
   },
-  "revision": "20240125",
+  "revision": "20240217",
   "rootUrl": "https://apphub.googleapis.com/",
   "schemas": {
     "Application": {
@@ -1488,11 +1396,11 @@
           "type": "string"
         },
         "description": {
-          "description": "Optional. User-defined description of an Application.",
+          "description": "Optional. User-defined description of an Application. Can have a maximum length of 2048 characters.",
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User-defined name for the Application.",
+          "description": "Optional. User-defined name for the Application. Can have a maximum length of 63 characters.",
           "type": "string"
         },
         "name": {
@@ -1666,7 +1574,7 @@
           "description": "Optional. Communication channel of the contacts."
         },
         "displayName": {
-          "description": "Optional. Contact's name.",
+          "description": "Optional. Contact's name. Can have a maximum length of 63 characters.",
           "type": "string"
         },
         "email": {
@@ -1681,12 +1589,30 @@
       "id": "Criticality",
       "properties": {
         "level": {
-          "description": "Required. Criticality level.",
+          "description": "Optional. Criticality level. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters.",
           "type": "string"
         },
         "missionCritical": {
-          "description": "Required. Indicates mission-critical Application, Service, or Workload.",
+          "description": "Optional. Indicates mission-critical Application, Service, or Workload.",
           "type": "boolean"
+        },
+        "type": {
+          "description": "Required. Criticality Type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "MISSION_CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Mission critical service, application or workload.",
+            "High impact.",
+            "Medium impact.",
+            "Low impact."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1756,7 +1682,25 @@
       "id": "Environment",
       "properties": {
         "environment": {
-          "description": "Required. Environment name.",
+          "description": "Optional. Environment name. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Environment Type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "STAGING",
+            "TEST",
+            "DEVELOPMENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Production environment.",
+            "Staging environment.",
+            "Test environment.",
+            "Development environment."
+          ],
           "type": "string"
         }
       },
@@ -1781,56 +1725,6 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "FindDiscoveredServicesResponse": {
-      "description": "Response for FindDiscoveredServices.",
-      "id": "FindDiscoveredServicesResponse",
-      "properties": {
-        "discoveredServices": {
-          "description": "List of discovered services.",
-          "items": {
-            "$ref": "DiscoveredService"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
-          "type": "string"
-        },
-        "unreachable": {
-          "description": "Locations that could not be reached.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "FindDiscoveredWorkloadsResponse": {
-      "description": "Response for FindDiscoveredWorkloads.",
-      "id": "FindDiscoveredWorkloadsResponse",
-      "properties": {
-        "discoveredWorkloads": {
-          "description": "List of discovered workloads.",
-          "items": {
-            "$ref": "DiscoveredWorkload"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
-          "type": "string"
-        },
-        "unreachable": {
-          "description": "Locations that could not be reached.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -2260,7 +2154,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Optional. User-defined description of a Service.",
+          "description": "Optional. User-defined description of a Service. Can have a maximum length of 2048 characters.",
           "type": "string"
         },
         "discoveredService": {
@@ -2268,7 +2162,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User-defined name for the Service.",
+          "description": "Optional. User-defined name for the Service. Can have a maximum length of 63 characters.",
           "type": "string"
         },
         "name": {
@@ -2486,7 +2380,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Optional. User-defined description of a Workload.",
+          "description": "Optional. User-defined description of a Workload. Can have a maximum length of 2048 characters.",
           "type": "string"
         },
         "discoveredWorkload": {
@@ -2494,7 +2388,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User-defined name for the Workload.",
+          "description": "Optional. User-defined name for the Workload. Can have a maximum length of 63 characters.",
           "type": "string"
         },
         "name": {

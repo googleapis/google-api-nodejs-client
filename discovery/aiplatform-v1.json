@@ -21,8 +21,8 @@
   "endpoints": [
     {
       "description": "Locational Endpoint",
-      "location": "asia-east1",
-      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
+      "location": "asia-east1"
     },
     {
       "description": "Locational Endpoint",
@@ -31,18 +31,18 @@
     },
     {
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
-      "location": "asia-northeast1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-northeast1"
     },
     {
       "location": "asia-northeast2",
-      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/"
     },
     {
-      "location": "asia-northeast3",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
+      "location": "asia-northeast3"
     },
     {
       "location": "asia-south1",
@@ -50,54 +50,54 @@
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
       "location": "asia-southeast1"
     },
     {
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
       "location": "asia-southeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "australia-southeast1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
-      "location": "australia-southeast1"
-    },
-    {
       "location": "australia-southeast2",
-      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "location": "europe-central2",
       "description": "Locational Endpoint",
-      "location": "europe-central2"
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "location": "europe-north1",
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
+      "location": "europe-north1"
     },
     {
-      "location": "europe-southwest1",
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/"
+      "location": "europe-southwest1"
     },
     {
-      "location": "europe-west1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "location": "europe-west1"
     },
     {
+      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
       "location": "europe-west2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "location": "europe-west3",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
       "location": "europe-west4",
@@ -111,83 +111,83 @@
     },
     {
       "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
-      "location": "europe-west8",
+      "description": "Locational Endpoint",
+      "location": "europe-west8"
+    },
+    {
+      "location": "europe-west9",
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "location": "europe-west9",
-      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/"
-    },
-    {
-      "description": "Locational Endpoint",
-      "location": "me-west1",
-      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "location": "me-west1"
     },
     {
       "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
-      "location": "northamerica-northeast1",
+      "description": "Locational Endpoint",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
+      "location": "northamerica-northeast2"
+    },
+    {
+      "location": "southamerica-east1",
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
-      "location": "northamerica-northeast2",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
+      "location": "southamerica-west1"
     },
     {
-      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "southamerica-east1"
-    },
-    {
-      "location": "southamerica-west1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/"
-    },
-    {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "us-central1"
     },
     {
-      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
       "location": "us-central2",
-      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
-    },
-    {
-      "location": "us-east1",
-      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "us-east4"
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "location": "us-east4",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/"
     },
     {
       "location": "us-south1",
-      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "us-west1"
     },
     {
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "us-west2",
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/"
+      "location": "us-west2"
     },
     {
+      "description": "Locational Endpoint",
       "location": "us-west3",
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "us-west4"
+      "location": "us-west4",
+      "description": "Locational Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3071,7 +3071,7 @@
                   ]
                 },
                 "directPredict": {
-                  "description": "Perform an unary online prediction request for Vertex first-party products and frameworks.",
+                  "description": "Perform an unary online prediction request to a gRPC model server for Vertex first-party products and frameworks.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:directPredict",
                   "httpMethod": "POST",
                   "id": "aiplatform.projects.locations.endpoints.directPredict",
@@ -3099,7 +3099,7 @@
                   ]
                 },
                 "directRawPredict": {
-                  "description": "Perform an online prediction request through gRPC.",
+                  "description": "Perform an unary online prediction request to a gRPC model server for custom containers.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:directRawPredict",
                   "httpMethod": "POST",
                   "id": "aiplatform.projects.locations.endpoints.directRawPredict",
@@ -3149,6 +3149,34 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudAiplatformV1ExplainResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateContent": {
+                  "description": "Generate content with multimodal inputs.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:generateContent",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.endpoints.generateContent",
+                  "parameterOrder": [
+                    "model"
+                  ],
+                  "parameters": {
+                    "model": {
+                      "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+model}:generateContent",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1GenerateContentRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1GenerateContentResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3406,7 +3434,7 @@
                   ]
                 },
                 "streamRawPredict": {
-                  "description": "",
+                  "description": "Perform a streaming online prediction with an arbitrary HTTP payload.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:streamRawPredict",
                   "httpMethod": "POST",
                   "id": "aiplatform.projects.locations.endpoints.streamRawPredict",
@@ -4376,7 +4404,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `big_query_source` * `labels` * `sync_config`",
+                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `big_query_source` * `bigtable` * `labels` * `sync_config`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -4576,7 +4604,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels`",
+                          "description": "Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `serviceAgentType`",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -4588,6 +4616,34 @@
                       },
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "searchNearestEntities": {
+                      "description": "Search the nearest entities under a FeatureView. Search only works for indexable feature view; if a feature view isn't indexable, returns Invalid argument response.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:searchNearestEntities",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.searchNearestEntities",
+                      "parameterOrder": [
+                        "featureView"
+                      ],
+                      "parameters": {
+                        "featureView": {
+                          "description": "Required. FeatureView resource format `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+featureView}:searchNearestEntities",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1SearchNearestEntitiesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1SearchNearestEntitiesResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -9939,6 +9995,37 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/models/{modelsId}:getIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.models.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/models/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists Models in a Location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/models",
@@ -10100,6 +10187,65 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudAiplatformV1Model"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/models/{modelsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.models.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/models/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/models/{modelsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.models.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "permissions": {
+                      "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/models/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -11522,11 +11668,6 @@
                       "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.",
                       "location": "query",
                       "type": "string"
-                    },
-                    "preflightValidations": {
-                      "description": "Optional. Whether to do component level validations before job creation. Currently we only support Google First Party Component/Pipelines.",
-                      "location": "query",
-                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/pipelineJobs",
@@ -11857,6 +11998,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "generateContent": {
+                      "description": "Generate content with multimodal inputs.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:generateContent",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.publishers.models.generateContent",
+                      "parameterOrder": [
+                        "model"
+                      ],
+                      "parameters": {
+                        "model": {
+                          "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+model}:generateContent",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1GenerateContentRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1GenerateContentResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "predict": {
                       "description": "Perform an online prediction.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:predict",
@@ -11970,7 +12139,7 @@
                       ]
                     },
                     "streamRawPredict": {
-                      "description": "",
+                      "description": "Perform a streaming online prediction with an arbitrary HTTP payload.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:streamRawPredict",
                       "httpMethod": "POST",
                       "id": "aiplatform.projects.locations.publishers.models.streamRawPredict",
@@ -15393,7 +15562,7 @@
       }
     }
   },
-  "revision": "20240125",
+  "revision": "20240224",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionEmbedVideoResponse": {
@@ -15450,7 +15619,8 @@
             "HATE_SYMBOL_IMG",
             "CHILD_TEXT",
             "DANGEROUS_CONTENT",
-            "RECITATION_TEXT"
+            "RECITATION_TEXT",
+            "CELEBRITY_IMG"
           ],
           "enumDescriptions": [
             "",
@@ -15486,6 +15656,7 @@
             "End of list",
             "",
             "Text category from SafetyCat v3",
+            "",
             ""
           ],
           "type": "string"
@@ -15567,11 +15738,15 @@
         },
         "raiInfo": {
           "$ref": "CloudAiLargeModelsVisionRaiInfo",
-          "description": "RAI info for image"
+          "description": "RAI info for image."
         },
         "semanticFilterResponse": {
           "$ref": "CloudAiLargeModelsVisionSemanticFilterResponse",
           "description": "Semantic filter info for image."
+        },
+        "text": {
+          "description": "Text/Expanded text input for imagen.",
+          "type": "string"
         },
         "uri": {
           "description": "Path to another storage (typically Google Cloud Storage).",
@@ -16071,31 +16246,10 @@
           "format": "google-duration",
           "type": "string"
         },
-        "modelLevelMetaData": {
-          "$ref": "CloudAiNlLlmProtoServicePartVideoMetadataModelLevelMetadata",
-          "description": "Internal only model level metadata."
-        },
         "startOffset": {
           "description": "The start offset of the video.",
           "format": "google-duration",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "CloudAiNlLlmProtoServicePartVideoMetadataModelLevelMetadata": {
-      "description": "Internal only fields",
-      "id": "CloudAiNlLlmProtoServicePartVideoMetadataModelLevelMetadata",
-      "properties": {
-        "fps": {
-          "description": "Frame rate to decode from this video.",
-          "format": "float",
-          "type": "number"
-        },
-        "numFrames": {
-          "description": "Number of frames to decode from this video.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -16323,6 +16477,13 @@
           ],
           "type": "string"
         },
+        "influentialTerms": {
+          "description": "The influential terms that could potentially block the response.",
+          "items": {
+            "$ref": "CloudAiNlLlmProtoServiceSafetyRatingInfluentialTerm"
+          },
+          "type": "array"
+        },
         "probability": {
           "description": "Harm probability levels in the content.",
           "enum": [
@@ -16339,6 +16500,69 @@
             "Medium level of harm.",
             "High level of harm."
           ],
+          "type": "string"
+        },
+        "probabilityScore": {
+          "description": "Harm probability score.",
+          "format": "float",
+          "type": "number"
+        },
+        "severity": {
+          "description": "Harm severity levels in the content.",
+          "enum": [
+            "HARM_SEVERITY_UNSPECIFIED",
+            "HARM_SEVERITY_NEGLIGIBLE",
+            "HARM_SEVERITY_LOW",
+            "HARM_SEVERITY_MEDIUM",
+            "HARM_SEVERITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Harm severity unspecified.",
+            "Negligible level of harm severity.",
+            "Low level of harm severity.",
+            "Medium level of harm severity.",
+            "High level of harm severity."
+          ],
+          "type": "string"
+        },
+        "severityScore": {
+          "description": "Harm severity score.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceSafetyRatingInfluentialTerm": {
+      "description": "The influential term that could potentially block the response.",
+      "id": "CloudAiNlLlmProtoServiceSafetyRatingInfluentialTerm",
+      "properties": {
+        "beginOffset": {
+          "description": "The beginning offset of the influential term.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "confidence": {
+          "description": "The confidence score of the influential term.",
+          "format": "float",
+          "type": "number"
+        },
+        "source": {
+          "description": "The source of the influential term, prompt or response.",
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "PROMPT",
+            "RESPONSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified source.",
+            "The influential term comes from the prompt.",
+            "The influential term comes from the response."
+          ],
+          "type": "string"
+        },
+        "term": {
+          "description": "The influential term.",
           "type": "string"
         }
       },
@@ -17522,6 +17746,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "groundingMetadata": {
+          "$ref": "GoogleCloudAiplatformV1GroundingMetadata",
+          "description": "Output only. Metadata specifies sources used to ground generated content.",
+          "readOnly": true
+        },
         "index": {
           "description": "Output only. Index of the candidate.",
           "format": "int32",
@@ -18133,10 +18362,6 @@
         "pipelineJobId": {
           "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.",
           "type": "string"
-        },
-        "preflightValidations": {
-          "description": "Optional. Whether to do component level validations before job creation. Currently we only support Google First Party Component/Pipelines.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -18682,9 +18907,17 @@
           "readOnly": true,
           "type": "string"
         },
+        "displayName": {
+          "description": "The user-defined name of the DatasetVersion. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
+          "type": "string"
+        },
         "etag": {
           "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
           "type": "string"
+        },
+        "metadata": {
+          "description": "Required. Additional information about the DatasetVersion.",
+          "type": "any"
         },
         "name": {
           "description": "Output only. The resource name of the DatasetVersion.",
@@ -19335,6 +19568,10 @@
         "predictRequestResponseLoggingConfig": {
           "$ref": "GoogleCloudAiplatformV1PredictRequestResponseLoggingConfig",
           "description": "Configures the request-response logging for online prediction."
+        },
+        "privateServiceConnectConfig": {
+          "$ref": "GoogleCloudAiplatformV1PrivateServiceConnectConfig",
+          "description": "Optional. Configuration for private service connect. network and private_service_connect_config are mutually exclusive."
         },
         "trafficSplit": {
           "additionalProperties": {
@@ -20579,6 +20816,10 @@
           "description": "Immutable. Name of the Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.",
           "type": "string"
         },
+        "pointOfContact": {
+          "description": "Entity responsible for maintaining this feature. Can be comma separated list of email addresses or URIs.",
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. Only applicable for Vertex AI Feature Store (Legacy). Timestamp when this EntityType was most recently updated.",
           "format": "google-datetime",
@@ -20671,7 +20912,7 @@
           "description": "Required. Immutable. The BigQuery source URI that points to either a BigQuery Table or View."
         },
         "entityIdColumns": {
-          "description": "Optional. Columns to construct entity_id / row keys. Currently only supports 1 entity_id_column. If not provided defaults to `entity_id`.",
+          "description": "Optional. Columns to construct entity_id / row keys. If not provided defaults to `entity_id`.",
           "items": {
             "type": "string"
           },
@@ -21017,7 +21258,7 @@
       "id": "GoogleCloudAiplatformV1FeatureViewBigQuerySource",
       "properties": {
         "entityIdColumns": {
-          "description": "Required. Columns to construct entity_id / row keys. Start by supporting 1 only.",
+          "description": "Required. Columns to construct entity_id / row keys.",
           "items": {
             "type": "string"
           },
@@ -21034,9 +21275,27 @@
       "description": "Lookup key for a feature view.",
       "id": "GoogleCloudAiplatformV1FeatureViewDataKey",
       "properties": {
+        "compositeKey": {
+          "$ref": "GoogleCloudAiplatformV1FeatureViewDataKeyCompositeKey",
+          "description": "The actual Entity ID will be composed from this struct. This should match with the way ID is defined in the FeatureView spec."
+        },
         "key": {
           "description": "String key to use for lookup.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureViewDataKeyCompositeKey": {
+      "description": "ID that is comprised from several parts (columns).",
+      "id": "GoogleCloudAiplatformV1FeatureViewDataKeyCompositeKey",
+      "properties": {
+        "parts": {
+          "description": "Parts to construct Entity ID. Should match with the same ID columns as defined in FeatureView in the same order.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -21051,6 +21310,11 @@
             "$ref": "GoogleCloudAiplatformV1FeatureViewFeatureRegistrySourceFeatureGroup"
           },
           "type": "array"
+        },
+        "projectNumber": {
+          "description": "Optional. The project number of the parent project of the Feature Groups.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -21096,6 +21360,11 @@
           "$ref": "GoogleTypeInterval",
           "description": "Output only. Time when this FeatureViewSync is finished.",
           "readOnly": true
+        },
+        "syncSummary": {
+          "$ref": "GoogleCloudAiplatformV1FeatureViewSyncSyncSummary",
+          "description": "Output only. Summary of the sync job.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -21106,6 +21375,25 @@
       "properties": {
         "cron": {
           "description": "Cron schedule (https://en.wikipedia.org/wiki/Cron) to launch scheduled runs. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or \"TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, \"CRON_TZ=America/New_York 1 * * * *\", or \"TZ=America/New_York 1 * * * *\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureViewSyncSyncSummary": {
+      "description": "Summary from the Sync job. For continuous syncs, the summary is updated periodically. For batch syncs, it gets updated on completion of the sync.",
+      "id": "GoogleCloudAiplatformV1FeatureViewSyncSyncSummary",
+      "properties": {
+        "rowSynced": {
+          "description": "Output only. Total number of rows synced.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalSlot": {
+          "description": "Output only. BigQuery slot milliseconds consumed for the sync job.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -21642,7 +21930,7 @@
           "type": "array"
         },
         "tools": {
-          "description": "Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. The only supported tool is currently `Function`",
+          "description": "Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1Tool"
           },
@@ -21793,6 +22081,66 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingAttribution": {
+      "description": "Grounding attribution.",
+      "id": "GoogleCloudAiplatformV1GroundingAttribution",
+      "properties": {
+        "confidenceScore": {
+          "description": "Optional. Output only. Confidence score of the attribution. Ranges from 0 to 1. 1 is the most confident.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "segment": {
+          "$ref": "GoogleCloudAiplatformV1Segment",
+          "description": "Output only. Segment of the content this attribution belongs to.",
+          "readOnly": true
+        },
+        "web": {
+          "$ref": "GoogleCloudAiplatformV1GroundingAttributionWeb",
+          "description": "Optional. Attribution from the web."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingAttributionWeb": {
+      "description": "Attribution from the web.",
+      "id": "GoogleCloudAiplatformV1GroundingAttributionWeb",
+      "properties": {
+        "title": {
+          "description": "Output only. Title of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. URI reference of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingMetadata": {
+      "description": "Metadata returned to client when grounding is enabled.",
+      "id": "GoogleCloudAiplatformV1GroundingMetadata",
+      "properties": {
+        "groundingAttributions": {
+          "description": "Optional. List of grounding attributions.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1GroundingAttribution"
+          },
+          "type": "array"
+        },
+        "webSearchQueries": {
+          "description": "Optional. Web search queries for the following-up web search.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -22285,7 +22633,8 @@
             "LESS_EQUAL",
             "EQUAL",
             "GREATER_EQUAL",
-            "GREATER"
+            "GREATER",
+            "NOT_EQUAL"
           ],
           "enumDescriptions": [
             "Default value of the enum.",
@@ -22293,7 +22642,8 @@
             "Datapoints are eligible iff their value is <= the query's.",
             "Datapoints are eligible iff their value is == the query's.",
             "Datapoints are eligible iff their value is >= the query's.",
-            "Datapoints are eligible iff their value is > the query's."
+            "Datapoints are eligible iff their value is > the query's.",
+            "Datapoints are eligible iff their value is != the query's."
           ],
           "type": "string"
         },
@@ -23434,6 +23784,7 @@
             "NVIDIA_TESLA_A100",
             "NVIDIA_A100_80GB",
             "NVIDIA_L4",
+            "NVIDIA_H100_80GB",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD"
@@ -23448,6 +23799,7 @@
             "Nvidia Tesla A100 GPU.",
             "Nvidia A100 80GB GPU.",
             "Nvidia L4 GPU.",
+            "Nvidia H100 80Gb GPU.",
             "TPU v2.",
             "TPU v3.",
             "TPU v4."
@@ -23881,12 +24233,12 @@
       "id": "GoogleCloudAiplatformV1Model",
       "properties": {
         "artifactUri": {
-          "description": "Immutable. The path to the directory containing the Model artifact and any of its supporting files. Not present for AutoML Models or Large Models.",
+          "description": "Immutable. The path to the directory containing the Model artifact and any of its supporting files. Not required for AutoML Models.",
           "type": "string"
         },
         "containerSpec": {
           "$ref": "GoogleCloudAiplatformV1ModelContainerSpec",
-          "description": "Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not present for AutoML Models or Large Models."
+          "description": "Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models."
         },
         "createTime": {
           "description": "Output only. Timestamp when this Model was uploaded into Vertex AI.",
@@ -24197,6 +24549,11 @@
             "Predict logs.",
             "Explain logs."
           ],
+          "type": "string"
+        },
+        "requestResponseLoggingSchemaVersion": {
+          "description": "Output only. The schema version of the request/response logging BigQuery table. Default to v1 if unset.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -24657,6 +25014,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1ModelMonitoringAlertConfig": {
+      "description": "The alert config for model monitoring.",
       "id": "GoogleCloudAiplatformV1ModelMonitoringAlertConfig",
       "properties": {
         "emailAlertConfig": {
@@ -24935,7 +25293,8 @@
             "BQML",
             "MODEL_GARDEN",
             "GENIE",
-            "CUSTOM_TEXT_EMBEDDING"
+            "CUSTOM_TEXT_EMBEDDING",
+            "MARKETPLACE"
           ],
           "enumDescriptions": [
             "Should not be used.",
@@ -24944,7 +25303,8 @@
             "The Model is registered and sync'ed from BigQuery ML.",
             "The Model is saved or tuned from Model Garden.",
             "The Model is saved or tuned from Genie.",
-            "The Model is uploaded by text embedding finetuning pipeline."
+            "The Model is uploaded by text embedding finetuning pipeline.",
+            "The Model is saved or tuned from Marketplace."
           ],
           "type": "string"
         }
@@ -25351,6 +25711,99 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1NearestNeighborQuery": {
+      "description": "A query to find a number of similar entities.",
+      "id": "GoogleCloudAiplatformV1NearestNeighborQuery",
+      "properties": {
+        "embedding": {
+          "$ref": "GoogleCloudAiplatformV1NearestNeighborQueryEmbedding",
+          "description": "Optional. The embedding vector that be used for similar search."
+        },
+        "entityId": {
+          "description": "Optional. The entity id whose similar entities should be searched for. If embedding is set, search will use embedding instead of entity_id.",
+          "type": "string"
+        },
+        "neighborCount": {
+          "description": "Optional. The number of similar entities to be retrieved from feature view for each query.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "parameters": {
+          "$ref": "GoogleCloudAiplatformV1NearestNeighborQueryParameters",
+          "description": "Optional. Parameters that can be set to tune query on the fly."
+        },
+        "perCrowdingAttributeNeighborCount": {
+          "description": "Optional. Crowding is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than sper_crowding_attribute_neighbor_count of the k neighbors returned have the same value of crowding_attribute. It's used for improving result diversity.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "stringFilters": {
+          "description": "Optional. The list of string filters.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1NearestNeighborQueryStringFilter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NearestNeighborQueryEmbedding": {
+      "description": "The embedding vector.",
+      "id": "GoogleCloudAiplatformV1NearestNeighborQueryEmbedding",
+      "properties": {
+        "value": {
+          "description": "Optional. Individual value in the embedding.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NearestNeighborQueryParameters": {
+      "description": "Parameters that can be overrided in each query to tune query latency and recall.",
+      "id": "GoogleCloudAiplatformV1NearestNeighborQueryParameters",
+      "properties": {
+        "approximateNeighborCandidates": {
+          "description": "Optional. The number of neighbors to find via approximate search before exact reordering is performed; if set, this value must be > neighbor_count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "leafNodesSearchFraction": {
+          "description": "Optional. The fraction of the number of leaves to search, set at query time allows user to tune search performance. This value increase result in both search accuracy and latency increase. The value should be between 0.0 and 1.0.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NearestNeighborQueryStringFilter": {
+      "description": "String filter is used to search a subset of the entities by using boolean rules on string columns. For example: if a query specifies string filter with 'name = color, allow_tokens = {red, blue}, deny_tokens = {purple}',' then that query will match entities that are red or blue, but if those points are also purple, then they will be excluded even if they are red/blue. Only string filter is supported for now, numeric filter will be supported in the near future.",
+      "id": "GoogleCloudAiplatformV1NearestNeighborQueryStringFilter",
+      "properties": {
+        "allowTokens": {
+          "description": "Optional. The allowed tokens.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "denyTokens": {
+          "description": "Optional. The denied tokens.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Column names in BigQuery that used as filters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1NearestNeighborSearchOperationMetadata": {
       "description": "Runtime operation metadata with regard to Matching Engine Index.",
       "id": "GoogleCloudAiplatformV1NearestNeighborSearchOperationMetadata",
@@ -25423,7 +25876,8 @@
             "DUPLICATE_NAMESPACE",
             "OP_IN_DATAPOINT",
             "MULTIPLE_VALUES",
-            "INVALID_NUMERIC_VALUE"
+            "INVALID_NUMERIC_VALUE",
+            "INVALID_ENCODING"
           ],
           "enumDescriptions": [
             "Default, shall not be used.",
@@ -25438,7 +25892,8 @@
             "There are multiple restricts with the same `namespace` value.",
             "Numeric restrict has operator specified in datapoint.",
             "Numeric restrict has multiple values specified.",
-            "Numeric restrict has invalid numeric value specified."
+            "Numeric restrict has invalid numeric value specified.",
+            "File is not in UTF_8 format."
           ],
           "type": "string"
         },
@@ -25449,6 +25904,40 @@
         "sourceGcsUri": {
           "description": "Cloud Storage URI pointing to the original file in user's bucket.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NearestNeighbors": {
+      "description": "Nearest neighbors for one query.",
+      "id": "GoogleCloudAiplatformV1NearestNeighbors",
+      "properties": {
+        "neighbors": {
+          "description": "All its neighbors.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1NearestNeighborsNeighbor"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NearestNeighborsNeighbor": {
+      "description": "A neighbor of the query vector.",
+      "id": "GoogleCloudAiplatformV1NearestNeighborsNeighbor",
+      "properties": {
+        "distance": {
+          "description": "The distance between the neighbor and the query vector.",
+          "format": "double",
+          "type": "number"
+        },
+        "entityId": {
+          "description": "The id of the similar entity.",
+          "type": "string"
+        },
+        "entityKeyValues": {
+          "$ref": "GoogleCloudAiplatformV1FetchFeatureValuesResponse",
+          "description": "The attributes of the neighbor, e.g. filters, crowding and metadata Note that full entities are returned only when \"return_full_entity\" is set to true. Otherwise, only the \"entity_id\" and \"distance\" fields are populated."
         }
       },
       "type": "object"
@@ -26041,10 +26530,6 @@
       "description": "The runtime config of a PipelineJob.",
       "id": "GoogleCloudAiplatformV1PipelineJobRuntimeConfig",
       "properties": {
-        "defaultRuntime": {
-          "$ref": "GoogleCloudAiplatformV1PipelineJobRuntimeConfigDefaultRuntime",
-          "description": "Optional. The default runtime for the PipelineJob. If not provided, Vertex Custom Job is used as the runtime. For Vertex Custom Job, please refer to https://cloud.google.com/vertex-ai/docs/training/overview"
-        },
         "failurePolicy": {
           "description": "Represents the failure policy of a pipeline. Currently, the default of a pipeline is that the pipeline will continue to run until no more tasks can be executed, also known as PIPELINE_FAILURE_POLICY_FAIL_SLOW. However, if a pipeline is set to PIPELINE_FAILURE_POLICY_FAIL_FAST, it will stop scheduling any new tasks when a task has failed. Any scheduled tasks will continue to completion.",
           "enum": [
@@ -26088,34 +26573,12 @@
       },
       "type": "object"
     },
-    "GoogleCloudAiplatformV1PipelineJobRuntimeConfigDefaultRuntime": {
-      "description": "The default runtime for the PipelineJob.",
-      "id": "GoogleCloudAiplatformV1PipelineJobRuntimeConfigDefaultRuntime",
-      "properties": {
-        "persistentResourceRuntimeDetail": {
-          "$ref": "GoogleCloudAiplatformV1PipelineJobRuntimeConfigPersistentResourceRuntimeDetail",
-          "description": "Persistent resource based runtime detail."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1PipelineJobRuntimeConfigInputArtifact": {
       "description": "The type of an input artifact.",
       "id": "GoogleCloudAiplatformV1PipelineJobRuntimeConfigInputArtifact",
       "properties": {
         "artifactId": {
           "description": "Artifact resource id from MLMD. Which is the last portion of an artifact resource name: `projects/{project}/locations/{location}/metadataStores/default/artifacts/{artifact_id}`. The artifact must stay within the same project, location and default metadatastore as the pipeline.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1PipelineJobRuntimeConfigPersistentResourceRuntimeDetail": {
-      "description": "Persistent resource based runtime detail. For more information, refer to https://cloud.google.com/vertex-ai/docs/training/persistent-resource-overview",
-      "id": "GoogleCloudAiplatformV1PipelineJobRuntimeConfigPersistentResourceRuntimeDetail",
-      "properties": {
-        "persistentResourceName": {
-          "description": "Persistent resource name. Format: `projects/{project}/locations/{location}/persistentResources/{persistent_resource}`",
           "type": "string"
         }
       },
@@ -26641,6 +27104,7 @@
           "description": "Optional. Indicates the launch stage of the model.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
+            "DOGFOOD",
             "EXPERIMENTAL",
             "PRIVATE_PREVIEW",
             "PUBLIC_PREVIEW",
@@ -26648,10 +27112,11 @@
           ],
           "enumDescriptions": [
             "The model launch stage is unspecified.",
-            "Used to indicate the PublisherModel is at Experimental launch stage.",
-            "Used to indicate the PublisherModel is at Private Preview launch stage.",
-            "Used to indicate the PublisherModel is at Public Preview launch stage.",
-            "Used to indicate the PublisherModel is at GA launch stage."
+            "Used to indicate the PublisherModel is at Google internal testing launch stage.",
+            "Used to indicate the PublisherModel is at Experimental launch stage, available to a small set of customers.",
+            "Used to indicate the PublisherModel is at Private Preview launch stage, only available to a small set of customers, although a larger set of customers than an Experimental launch. Previews are the first launch stage used to get feedback from customers.",
+            "Used to indicate the PublisherModel is at Public Preview launch stage, available to all customers, although not supported for production workloads.",
+            "Used to indicate the PublisherModel is at GA launch stage, available to all customers and ready for production workload."
           ],
           "type": "string"
         },
@@ -26726,6 +27191,10 @@
         "deploy": {
           "$ref": "GoogleCloudAiplatformV1PublisherModelCallToActionDeploy",
           "description": "Optional. Deploy the PublisherModel to Vertex Endpoint."
+        },
+        "deployGke": {
+          "$ref": "GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke",
+          "description": "Optional. Deploy PublisherModel to Google Kubernetes Engine."
         },
         "openEvaluationPipeline": {
           "$ref": "GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences",
@@ -26809,6 +27278,20 @@
         "title": {
           "description": "Required. The title of the regional resource reference.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke": {
+      "description": "Configurations for PublisherModel GKE deployment",
+      "id": "GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke",
+      "properties": {
+        "gkeYamlConfigs": {
+          "description": "Optional. GKE deployment configuration in yaml format.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -27479,6 +27962,37 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "probabilityScore": {
+          "description": "Output only. Harm probability score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "severity": {
+          "description": "Output only. Harm severity levels in the content.",
+          "enum": [
+            "HARM_SEVERITY_UNSPECIFIED",
+            "HARM_SEVERITY_NEGLIGIBLE",
+            "HARM_SEVERITY_LOW",
+            "HARM_SEVERITY_MEDIUM",
+            "HARM_SEVERITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Harm severity unspecified.",
+            "Negligible level of harm severity.",
+            "Low level of harm severity.",
+            "Medium level of harm severity.",
+            "High level of harm severity."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "severityScore": {
+          "description": "Output only. Harm severity score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -27791,11 +28305,6 @@
         "disableRetries": {
           "description": "Optional. Indicates if the job should retry for internal errors after the job starts running. If true, overrides `Scheduling.restart_job_on_worker_restart` to false.",
           "type": "boolean"
-        },
-        "maxWaitDuration": {
-          "description": "Optional. This is the maximum time a user will wait in the QRM queue for resources. Default is 1 day",
-          "format": "google-duration",
-          "type": "string"
         },
         "restartJobOnWorkerRestart": {
           "description": "Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.",
@@ -31732,6 +32241,57 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1SearchNearestEntitiesRequest": {
+      "description": "The request message for FeatureOnlineStoreService.SearchNearestEntities.",
+      "id": "GoogleCloudAiplatformV1SearchNearestEntitiesRequest",
+      "properties": {
+        "query": {
+          "$ref": "GoogleCloudAiplatformV1NearestNeighborQuery",
+          "description": "Required. The query."
+        },
+        "returnFullEntity": {
+          "description": "Optional. If set to true, the full entities (including all vector values and metadata) of the nearest neighbors are returned; otherwise only entity id of the nearest neighbors will be returned. Note that returning full entities will significantly increase the latency and cost of the query.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SearchNearestEntitiesResponse": {
+      "description": "Response message for FeatureOnlineStoreService.SearchNearestEntities",
+      "id": "GoogleCloudAiplatformV1SearchNearestEntitiesResponse",
+      "properties": {
+        "nearestNeighbors": {
+          "$ref": "GoogleCloudAiplatformV1NearestNeighbors",
+          "description": "The nearest neighbors of the query entity."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1Segment": {
+      "description": "Segment of the content.",
+      "id": "GoogleCloudAiplatformV1Segment",
+      "properties": {
+        "endIndex": {
+          "description": "Output only. End index in the given Part, measured in bytes. Offset from the start of the Part, exclusive, starting at zero.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "partIndex": {
+          "description": "Output only. The index of a Part object within its parent Content object.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "startIndex": {
+          "description": "Output only. Start index in the given Part, measured in bytes. Offset from the start of the Part, inclusive, starting at zero.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ShieldedVmConfig": {
       "description": "A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm).",
       "id": "GoogleCloudAiplatformV1ShieldedVmConfig",
@@ -33083,11 +33643,11 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1Tool": {
-      "description": "Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.",
+      "description": "Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool (e.g FunctionDeclaration, Retrieval or GoogleSearchRetrieval).",
       "id": "GoogleCloudAiplatformV1Tool",
       "properties": {
         "functionDeclarations": {
-          "description": "Optional. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.",
+          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1FunctionDeclaration"
           },
@@ -33660,6 +34220,11 @@
             "$ref": "GoogleCloudAiplatformV1IndexDatapoint"
           },
           "type": "array"
+        },
+        "updateMask": {
+          "description": "Optional. Update mask is used to specify the fields to be overwritten in the datapoints by the update. The fields specified in the update_mask are relative to each IndexDatapoint inside datapoints, not the full request. Updatable fields: * Use `all_restricts` to update both restricts and numeric_restricts.",
+          "format": "google-fieldmask",
+          "type": "string"
         }
       },
       "type": "object"
@@ -34413,6 +34978,7 @@
             "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
             "GEMINI_V1_PUBMED",
             "GEMINI_V1_WEB_MATH_V2",
+            "GEMINI_V1_CMS_GITHUB_V7",
             "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
             "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
             "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
@@ -34461,6 +35027,7 @@
             "GENESIS_NEWS_INSIGHTS",
             "CLOUD_SECURITY_PRETRAINING",
             "CLOUD_SECURITY_FINETUNING",
+            "CLOUD_SECURITY_RAG_CISA",
             "LABS_AQA_DSCOUT",
             "LABS_AQA_TAILWIND",
             "LABS_AQA_DELEWARE",
@@ -34490,12 +35057,14 @@
             "GEMINI_IT_MECH",
             "GEMINI_IT_TABLE_GEN",
             "GEMINI_IT_NIMBUS_DECIBEL",
-            "GEMIT_BRIDGE_SUFFIX_FT",
             "GEMINI_IT_CLOUD_CODE_IF",
             "GEMINI_IT_CLOUD_EUR_LEX_JSON",
             "GEMINI_IT_CLOUD_OASST",
             "GEMINI_IT_CLOUD_SELF_INSTRUCT",
             "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
+            "GEMIT_BRIDGE_SUFFIX_FT",
+            "GEMINI_GOOSE_PUBLIC",
+            "GEMINI_GOOSE_SILOED",
             "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
             "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
             "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
@@ -34602,7 +35171,19 @@
             "GEMINI_V2_NTL_TRANSLIT_BILEX_TRANSLATE_DEDUP_N5",
             "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
             "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
-            "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT"
+            "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
+            "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
+            "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
+            "CLOUD_GEMIT_MTS_DIALOGUE_V3",
+            "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
+            "CLOUD_GEMIT_CODE_IF_V1",
+            "CLOUD_GEMIT_CODE_SELF_REPAIR",
+            "CLOUD_GEMIT_IDENTITY",
+            "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+            "CLOUD_GEMIT_AMPS",
+            "CLOUD_GEMIT_AQUA",
+            "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+            "CLOUD_GEMIT_GSM8K_SCHEMA"
           ],
           "enumDescriptions": [
             "",
@@ -34722,7 +35303,8 @@
             "",
             "",
             "",
-            "Github",
+            "Github dataset with license info. We prefer this to help cite proper licenses for code recitation.",
+            "",
             "",
             "",
             "",
@@ -34770,6 +35352,7 @@
             "Genesis fine-tune datasets.",
             "Cloud Security fine-tune datasets.",
             "",
+            "",
             "LABS AQA fine-tune datasets.",
             "",
             "",
@@ -34799,11 +35382,13 @@
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "Gemit Bridge ULM FT dataset",
-            "Gemini IT Cloud Build datasets.",
-            "",
-            "",
-            "",
+            "Gemini Goose FT datasets.",
             "",
             "Gemini V2 datasets",
             "",
@@ -34911,6 +35496,18 @@
             "",
             "",
             "",
+            "",
+            "Cloud gemit pro FT datasets.",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit ultra FT datasets.",
+            "",
+            "",
+            "",
             ""
           ],
           "type": "string"
@@ -34995,7 +35592,7 @@
           "type": "array"
         },
         "recitationAction": {
-          "description": "The recitation action for one given input. When its segments contain different actions, the overall action will be returned in the precedence of BLOCK > CITE > NO_ACTION.",
+          "description": "The recitation action for one given input. When its segments contain different actions, the overall action will be returned in the precedence of BLOCK > CITE > NO_ACTION. When the given input is not found in any source, the recitation action will not be specified.",
           "enum": [
             "ACTION_UNSPECIFIED",
             "CITE",
@@ -35145,6 +35742,7 @@
             "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
             "GEMINI_V1_PUBMED",
             "GEMINI_V1_WEB_MATH_V2",
+            "GEMINI_V1_CMS_GITHUB_V7",
             "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
             "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
             "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
@@ -35193,6 +35791,7 @@
             "GENESIS_NEWS_INSIGHTS",
             "CLOUD_SECURITY_PRETRAINING",
             "CLOUD_SECURITY_FINETUNING",
+            "CLOUD_SECURITY_RAG_CISA",
             "LABS_AQA_DSCOUT",
             "LABS_AQA_TAILWIND",
             "LABS_AQA_DELEWARE",
@@ -35222,12 +35821,14 @@
             "GEMINI_IT_MECH",
             "GEMINI_IT_TABLE_GEN",
             "GEMINI_IT_NIMBUS_DECIBEL",
-            "GEMIT_BRIDGE_SUFFIX_FT",
             "GEMINI_IT_CLOUD_CODE_IF",
             "GEMINI_IT_CLOUD_EUR_LEX_JSON",
             "GEMINI_IT_CLOUD_OASST",
             "GEMINI_IT_CLOUD_SELF_INSTRUCT",
             "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
+            "GEMIT_BRIDGE_SUFFIX_FT",
+            "GEMINI_GOOSE_PUBLIC",
+            "GEMINI_GOOSE_SILOED",
             "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
             "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
             "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
@@ -35334,7 +35935,19 @@
             "GEMINI_V2_NTL_TRANSLIT_BILEX_TRANSLATE_DEDUP_N5",
             "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
             "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
-            "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT"
+            "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
+            "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
+            "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
+            "CLOUD_GEMIT_MTS_DIALOGUE_V3",
+            "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
+            "CLOUD_GEMIT_CODE_IF_V1",
+            "CLOUD_GEMIT_CODE_SELF_REPAIR",
+            "CLOUD_GEMIT_IDENTITY",
+            "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+            "CLOUD_GEMIT_AMPS",
+            "CLOUD_GEMIT_AQUA",
+            "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+            "CLOUD_GEMIT_GSM8K_SCHEMA"
           ],
           "enumDescriptions": [
             "",
@@ -35454,7 +36067,8 @@
             "",
             "",
             "",
-            "Github",
+            "Github dataset with license info. We prefer this to help cite proper licenses for code recitation.",
+            "",
             "",
             "",
             "",
@@ -35502,6 +36116,7 @@
             "Genesis fine-tune datasets.",
             "Cloud Security fine-tune datasets.",
             "",
+            "",
             "LABS AQA fine-tune datasets.",
             "",
             "",
@@ -35531,11 +36146,13 @@
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "Gemit Bridge ULM FT dataset",
-            "Gemini IT Cloud Build datasets.",
-            "",
-            "",
-            "",
+            "Gemini Goose FT datasets.",
             "",
             "Gemini V2 datasets",
             "",
@@ -35640,6 +36257,18 @@
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit pro FT datasets.",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit ultra FT datasets.",
             "",
             "",
             "",
@@ -35888,6 +36517,7 @@
             "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
             "GEMINI_V1_PUBMED",
             "GEMINI_V1_WEB_MATH_V2",
+            "GEMINI_V1_CMS_GITHUB_V7",
             "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
             "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
             "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
@@ -35934,8 +36564,6 @@
             "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
             "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
             "GENESIS_NEWS_INSIGHTS",
-            "CLOUD_SECURITY_PRETRAINING",
-            "CLOUD_SECURITY_FINETUNING",
             "LABS_AQA_DSCOUT",
             "LABS_AQA_TAILWIND",
             "LABS_AQA_DELEWARE",
@@ -35965,12 +36593,17 @@
             "GEMINI_IT_MECH",
             "GEMINI_IT_TABLE_GEN",
             "GEMINI_IT_NIMBUS_DECIBEL",
-            "GEMIT_BRIDGE_SUFFIX_FT",
             "GEMINI_IT_CLOUD_CODE_IF",
             "GEMINI_IT_CLOUD_EUR_LEX_JSON",
             "GEMINI_IT_CLOUD_OASST",
             "GEMINI_IT_CLOUD_SELF_INSTRUCT",
             "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
+            "GEMIT_BRIDGE_SUFFIX_FT",
+            "CLOUD_SECURITY_PRETRAINING",
+            "CLOUD_SECURITY_FINETUNING",
+            "CLOUD_SECURITY_RAG_CISA",
+            "GEMINI_GOOSE_PUBLIC",
+            "GEMINI_GOOSE_SILOED",
             "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
             "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
             "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
@@ -36077,7 +36710,19 @@
             "GEMINI_V2_NTL_TRANSLIT_BILEX_TRANSLATE_DEDUP_N5",
             "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
             "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
-            "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT"
+            "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
+            "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
+            "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
+            "CLOUD_GEMIT_MTS_DIALOGUE_V3",
+            "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
+            "CLOUD_GEMIT_CODE_IF_V1",
+            "CLOUD_GEMIT_CODE_SELF_REPAIR",
+            "CLOUD_GEMIT_IDENTITY",
+            "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+            "CLOUD_GEMIT_AMPS",
+            "CLOUD_GEMIT_AQUA",
+            "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+            "CLOUD_GEMIT_GSM8K_SCHEMA"
           ],
           "enumDescriptions": [
             "",
@@ -36197,7 +36842,8 @@
             "",
             "",
             "",
-            "Github",
+            "Github Github dataset with license info. We prefer this to help cite proper licenses for code recitation.",
+            "",
             "",
             "",
             "",
@@ -36243,8 +36889,6 @@
             "Mobile assistant finetune datasets.",
             "",
             "Genesis fine tuned datasets.",
-            "Cloud Security fine tuned datasets.",
-            "",
             "LABS AQA fine-tune datasets.",
             "",
             "",
@@ -36274,11 +36918,16 @@
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "Gemit Bridge ULM FT dataset",
-            "Gemini IT Cloud Build datasets.",
+            "Cloud Security fine tuned datasets.",
             "",
             "",
-            "",
+            "Gemini Goose FT datasets.",
             "",
             "Gemini V2 datasets",
             "",
@@ -36386,6 +37035,18 @@
             "",
             "",
             "",
+            "",
+            "Cloud gemit pro FT datasets.",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit ultra FT datasets.",
+            "",
+            "",
+            "",
             ""
           ],
           "type": "string"
@@ -36470,7 +37131,7 @@
           "type": "array"
         },
         "recitationAction": {
-          "description": "The recitation action for one given input. When its segments contain different actions, the overall action will be returned in the precedence of BLOCK > CITE > NO_ACTION.",
+          "description": "The recitation action for one given input. When its segments contain different actions, the overall action will be returned in the precedence of BLOCK > CITE > NO_ACTION. When the given input is not found in any source, the recitation action will be NO_ACTION.",
           "enum": [
             "ACTION_UNSPECIFIED",
             "CITE",
@@ -36620,6 +37281,7 @@
             "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
             "GEMINI_V1_PUBMED",
             "GEMINI_V1_WEB_MATH_V2",
+            "GEMINI_V1_CMS_GITHUB_V7",
             "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
             "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
             "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
@@ -36666,8 +37328,6 @@
             "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
             "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
             "GENESIS_NEWS_INSIGHTS",
-            "CLOUD_SECURITY_PRETRAINING",
-            "CLOUD_SECURITY_FINETUNING",
             "LABS_AQA_DSCOUT",
             "LABS_AQA_TAILWIND",
             "LABS_AQA_DELEWARE",
@@ -36697,12 +37357,17 @@
             "GEMINI_IT_MECH",
             "GEMINI_IT_TABLE_GEN",
             "GEMINI_IT_NIMBUS_DECIBEL",
-            "GEMIT_BRIDGE_SUFFIX_FT",
             "GEMINI_IT_CLOUD_CODE_IF",
             "GEMINI_IT_CLOUD_EUR_LEX_JSON",
             "GEMINI_IT_CLOUD_OASST",
             "GEMINI_IT_CLOUD_SELF_INSTRUCT",
             "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
+            "GEMIT_BRIDGE_SUFFIX_FT",
+            "CLOUD_SECURITY_PRETRAINING",
+            "CLOUD_SECURITY_FINETUNING",
+            "CLOUD_SECURITY_RAG_CISA",
+            "GEMINI_GOOSE_PUBLIC",
+            "GEMINI_GOOSE_SILOED",
             "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
             "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
             "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
@@ -36809,7 +37474,19 @@
             "GEMINI_V2_NTL_TRANSLIT_BILEX_TRANSLATE_DEDUP_N5",
             "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
             "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
-            "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT"
+            "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
+            "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
+            "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
+            "CLOUD_GEMIT_MTS_DIALOGUE_V3",
+            "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
+            "CLOUD_GEMIT_CODE_IF_V1",
+            "CLOUD_GEMIT_CODE_SELF_REPAIR",
+            "CLOUD_GEMIT_IDENTITY",
+            "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+            "CLOUD_GEMIT_AMPS",
+            "CLOUD_GEMIT_AQUA",
+            "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+            "CLOUD_GEMIT_GSM8K_SCHEMA"
           ],
           "enumDescriptions": [
             "",
@@ -36929,7 +37606,8 @@
             "",
             "",
             "",
-            "Github",
+            "Github Github dataset with license info. We prefer this to help cite proper licenses for code recitation.",
+            "",
             "",
             "",
             "",
@@ -36975,8 +37653,6 @@
             "Mobile assistant finetune datasets.",
             "",
             "Genesis fine tuned datasets.",
-            "Cloud Security fine tuned datasets.",
-            "",
             "LABS AQA fine-tune datasets.",
             "",
             "",
@@ -37006,11 +37682,16 @@
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "Gemit Bridge ULM FT dataset",
-            "Gemini IT Cloud Build datasets.",
+            "Cloud Security fine tuned datasets.",
             "",
             "",
-            "",
+            "Gemini Goose FT datasets.",
             "",
             "Gemini V2 datasets",
             "",
@@ -37115,6 +37796,18 @@
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit pro FT datasets.",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit ultra FT datasets.",
             "",
             "",
             "",
@@ -37255,6 +37948,186 @@
             "$ref": "LearningGenaiRootMetricOutput"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyChatMetadata": {
+      "description": "Stores all metadata relating to AIDA DoConversation.",
+      "id": "LearningGenaiRootCodeyChatMetadata",
+      "properties": {
+        "codeLanguage": {
+          "description": "Indicates the programming language of the code if the message is a code chunk.",
+          "enum": [
+            "UNSPECIFIED",
+            "ALL",
+            "TEXT",
+            "CPP",
+            "PYTHON",
+            "KOTLIN",
+            "JAVA",
+            "JAVASCRIPT",
+            "GO",
+            "R",
+            "JUPYTER_NOTEBOOK",
+            "TYPESCRIPT",
+            "HTML",
+            "SQL",
+            "BASH",
+            "C",
+            "DART",
+            "GRADLE",
+            "JAVADOC",
+            "JSON",
+            "MAKEFILE",
+            "MARKDOWN",
+            "PROTO",
+            "XML",
+            "YAML"
+          ],
+          "enumDescriptions": [
+            "Unspecified Language.",
+            "All languages.",
+            "Not code.",
+            "The most common, well-supported languages. C++ code.",
+            "Python code.",
+            "Kotlin code.",
+            "Java code.",
+            "JavaScript code.",
+            "Go code.",
+            "R code.",
+            "Jupyter notebook.",
+            "TypeScript code.",
+            "HTML code.",
+            "SQL code.",
+            "Other languages in alphabetical order. BASH code.",
+            "C code.",
+            "Dart code.",
+            "Gradle code.",
+            "API documentation.",
+            "JSON code.",
+            "Makefile code.",
+            "Markdown code.",
+            "Protocol buffer.",
+            "XML code.",
+            "YAML code."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyCheckpoint": {
+      "description": "Describes a sample at a checkpoint for post-processing.",
+      "id": "LearningGenaiRootCodeyCheckpoint",
+      "properties": {
+        "codeyTruncatorMetadata": {
+          "$ref": "LearningGenaiRootCodeyTruncatorMetadata",
+          "description": "Metadata that describes what was truncated at this checkpoint."
+        },
+        "currentSample": {
+          "description": "Current state of the sample after truncator.",
+          "type": "string"
+        },
+        "postInferenceStep": {
+          "description": "Postprocessor run that yielded this checkpoint.",
+          "enum": [
+            "STEP_POST_PROCESSING_STEP_UNSPECIFIED",
+            "STEP_ORIGINAL_MODEL_OUTPUT",
+            "STEP_MODEL_OUTPUT_DEDUPLICATION",
+            "STEP_STOP_SEQUENCE_TRUNCATION",
+            "STEP_HEURISTIC_TRUNCATION",
+            "STEP_WALD_TRUNCATION",
+            "STEP_WHITESPACE_TRUNCATION",
+            "STEP_FINAL_DEDUPLICATION",
+            "STEP_TOXICITY_CHECK",
+            "STEP_RECITATION_CHECK",
+            "STEP_RETURNED",
+            "STEP_WALKBACK_CORRECTION",
+            "STEP_SCORE_THRESHOLDING",
+            "STEP_MODEL_CONFIG_STOP_SEQUENCE_TRUNCATION",
+            "STEP_CUSTOM_STOP_SEQUENCE_TRUNCATION",
+            "STEP_EXPECTED_SAMPLE_SIZE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "",
+            "Original model outputs as-is.",
+            "Original model outputs after deduplication.",
+            "StopSequencePostProcessor.",
+            "Heuristic SuffixTruncator step.",
+            "Go service post-processor.",
+            "Truncate trailing whitespace and filter whitespace-only completions.",
+            "Deduplicate after all truncations.",
+            "Toxicity returns true.",
+            "Recitation causes BLOCK.",
+            "Return the response to the API.",
+            "Correcting walkback constraint (samples are dropped if they don't match the prefix constraint).",
+            "Thresholding samples based on a minimum score.",
+            "StopSequencePostProcessor.",
+            "StopSequencePostProcessor.",
+            "Drop extra number of samples that exceeds expected_samples."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyCompletionMetadata": {
+      "description": "Stores all metadata relating to Completion.",
+      "id": "LearningGenaiRootCodeyCompletionMetadata",
+      "properties": {
+        "checkpoints": {
+          "items": {
+            "$ref": "LearningGenaiRootCodeyCheckpoint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyOutput": {
+      "description": "Top-level wrapper used to store all things codey-related.",
+      "id": "LearningGenaiRootCodeyOutput",
+      "properties": {
+        "codeyChatMetadata": {
+          "$ref": "LearningGenaiRootCodeyChatMetadata"
+        },
+        "codeyCompletionMetadata": {
+          "$ref": "LearningGenaiRootCodeyCompletionMetadata"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyTruncatorMetadata": {
+      "description": "Metadata describing what was truncated at each checkpoint.",
+      "id": "LearningGenaiRootCodeyTruncatorMetadata",
+      "properties": {
+        "cutoffIndex": {
+          "description": "Index of the current sample that trims off truncated text.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "truncatedText": {
+          "description": "Text that was truncated at a specific checkpoint.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -37527,7 +38400,8 @@
           "$ref": "LearningGenaiRootHarmSafetyCatCategories"
         },
         "spii": {
-          "$ref": "LearningGenaiRootHarmSpiiFilter"
+          "$ref": "LearningGenaiRootHarmSpiiFilter",
+          "description": "Spii Filter uses buckets http://google3/google/privacy/dlp/v2/storage.proto;l=77;rcl=584719820 to classify the input. LMRoot converts the bucket into double score. For example the score for \"POSSIBLE\" is 3 / 5 = 0.6 ."
         },
         "threshold": {
           "format": "double",
@@ -38225,6 +39099,10 @@
           "$ref": "LearningGenaiRootClassifierOutputSummary",
           "description": "Summary of classifier output. We attach this to all messages regardless of whether classification rules triggered or not."
         },
+        "codeyOutput": {
+          "$ref": "LearningGenaiRootCodeyOutput",
+          "description": "Contains metadata related to Codey Processors."
+        },
         "currentStreamTextLength": {
           "format": "uint32",
           "type": "integer"
@@ -38264,6 +39142,10 @@
         },
         "groundingMetadata": {
           "$ref": "LearningGenaiRootGroundingMetadata"
+        },
+        "isCode": {
+          "description": "Applies to streaming response message only. Whether the message is a code.",
+          "type": "boolean"
         },
         "isFallback": {
           "description": "Applies to Response message only. Indicates whether the message is a fallback and the response would have otherwise been empty.",

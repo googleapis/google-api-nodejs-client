@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20231108",
+  "revision": "20240214",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {
@@ -171,6 +171,10 @@
       "description": "All xds configs for a particular client.",
       "id": "ClientConfig",
       "properties": {
+        "clientScope": {
+          "description": "For xDS clients, the scope in which the data is used. For example, gRPC indicates the data plane target or that the data is associated with gRPC server(s).",
+          "type": "string"
+        },
         "genericXdsConfigs": {
           "description": "Represents generic xDS config and the exact config structure depends on the type URL (like Cluster if it is CDS)",
           "items": {

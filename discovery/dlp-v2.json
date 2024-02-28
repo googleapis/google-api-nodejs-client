@@ -12,7 +12,7 @@
   "baseUrl": "https://dlp.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "DLP",
-  "description": "Provides methods for detection, risk analysis, and de-identification of privacy-sensitive fragments in text, images, and Google Cloud Platform storage repositories.",
+  "description": "Discover and protect your sensitive data. A fully managed service designed to help you discover, classify, and protect your valuable data assets with ease.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/dlp/docs/",
   "fullyEncodeReservedExpansion": true,
@@ -3714,7 +3714,7 @@
       }
     }
   },
-  "revision": "20240128",
+  "revision": "20240212",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3942,13 +3942,14 @@
           "type": "integer"
         },
         "sampleMethod": {
+          "description": "How to sample the data.",
           "enum": [
             "SAMPLE_METHOD_UNSPECIFIED",
             "TOP",
             "RANDOM_START"
           ],
           "enumDescriptions": [
-            "",
+            "No sampling.",
             "Scan groups of rows in the order BigQuery provides (default). Multiple groups of rows may be scanned in parallel, so results may not appear in the same order the rows are read.",
             "Randomly pick groups of rows to scan."
           ],
@@ -4327,7 +4328,7 @@
             "enumDescriptions": [
               "Includes all files.",
               "Includes all file extensions not covered by another entry. Binary scanning attempts to convert the content of the file to utf_8 to scan the file. If you wish to avoid this fall back, specify one or more of the other file types in your storage scan.",
-              "Included file extensions: asc,asp, aspx, brf, c, cc,cfm, cgi, cpp, csv, cxx, c++, cs, css, dart, dat, dot, eml,, epbub, ged, go, h, hh, hpp, hxx, h++, hs, html, htm, mkd, markdown, m, ml, mli, perl, pl, plist, pm, php, phtml, pht, properties, py, pyw, rb, rbw, rs, rss, rc, scala, sh, sql, swift, tex, shtml, shtm, xhtml, lhs, ics, ini, java, js, json, kix, kml, ocaml, md, txt, text, tsv, vb, vcard, vcs, wml, xcodeproj, xml, xsl, xsd, yml, yaml.",
+              "Included file extensions: asc,asp, aspx, brf, c, cc,cfm, cgi, cpp, csv, cxx, c++, cs, css, dart, dat, dot, eml,, epbub, ged, go, h, hh, hpp, hxx, h++, hs, html, htm, mkd, markdown, m, ml, mli, perl, pl, plist, pm, php, phtml, pht, properties, py, pyw, rb, rbw, rs, rss, rc, scala, sh, sql, swift, tex, shtml, shtm, xhtml, lhs, ics, ini, java, js, json, jsonl, kix, kml, ocaml, md, txt, text, tsv, vb, vcard, vcs, wml, xcodeproj, xml, xsl, xsd, yml, yaml.",
               "Included file extensions: bmp, gif, jpg, jpeg, jpe, png. Setting bytes_limit_per_file or bytes_limit_per_file_percent has no effect on image files. Image inspection is restricted to the `global`, `us`, `asia`, and `europe` regions.",
               "Microsoft Word files larger than 30 MB will be scanned as binary files. Included file extensions: docx, dotx, docm, dotm. Setting `bytes_limit_per_file` or `bytes_limit_per_file_percent` has no effect on Word files.",
               "PDF files larger than 30 MB will be scanned as binary files. Included file extensions: pdf. Setting `bytes_limit_per_file` or `bytes_limit_per_file_percent` has no effect on PDF files.",
@@ -4347,13 +4348,14 @@
           "type": "integer"
         },
         "sampleMethod": {
+          "description": "How to sample the data.",
           "enum": [
             "SAMPLE_METHOD_UNSPECIFIED",
             "TOP",
             "RANDOM_START"
           ],
           "enumDescriptions": [
-            "",
+            "No sampling.",
             "Scan from the top (default).",
             "For each file larger than bytes_limit_per_file, randomly pick the offset to start scanning. The scanned bytes are contiguous."
           ],
@@ -4499,7 +4501,7 @@
             "Unused.",
             "Very few null entries.",
             "Some null entries.",
-            "",
+            "A few null entries.",
             "A lot of null entries."
           ],
           "type": "string"
@@ -4680,6 +4682,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2ContentItem": {
+      "description": "Type of content to inspect.",
       "id": "GooglePrivacyDlpV2ContentItem",
       "properties": {
         "byteItem": {
@@ -5304,7 +5307,7 @@
             "enumDescriptions": [
               "Includes all files.",
               "Includes all file extensions not covered by another entry. Binary scanning attempts to convert the content of the file to utf_8 to scan the file. If you wish to avoid this fall back, specify one or more of the other file types in your storage scan.",
-              "Included file extensions: asc,asp, aspx, brf, c, cc,cfm, cgi, cpp, csv, cxx, c++, cs, css, dart, dat, dot, eml,, epbub, ged, go, h, hh, hpp, hxx, h++, hs, html, htm, mkd, markdown, m, ml, mli, perl, pl, plist, pm, php, phtml, pht, properties, py, pyw, rb, rbw, rs, rss, rc, scala, sh, sql, swift, tex, shtml, shtm, xhtml, lhs, ics, ini, java, js, json, kix, kml, ocaml, md, txt, text, tsv, vb, vcard, vcs, wml, xcodeproj, xml, xsl, xsd, yml, yaml.",
+              "Included file extensions: asc,asp, aspx, brf, c, cc,cfm, cgi, cpp, csv, cxx, c++, cs, css, dart, dat, dot, eml,, epbub, ged, go, h, hh, hpp, hxx, h++, hs, html, htm, mkd, markdown, m, ml, mli, perl, pl, plist, pm, php, phtml, pht, properties, py, pyw, rb, rbw, rs, rss, rc, scala, sh, sql, swift, tex, shtml, shtm, xhtml, lhs, ics, ini, java, js, json, jsonl, kix, kml, ocaml, md, txt, text, tsv, vb, vcard, vcs, wml, xcodeproj, xml, xsl, xsd, yml, yaml.",
               "Included file extensions: bmp, gif, jpg, jpeg, jpe, png. Setting bytes_limit_per_file or bytes_limit_per_file_percent has no effect on image files. Image inspection is restricted to the `global`, `us`, `asia`, and `europe` regions.",
               "Microsoft Word files larger than 30 MB will be scanned as binary files. Included file extensions: docx, dotx, docm, dotm. Setting `bytes_limit_per_file` or `bytes_limit_per_file_percent` has no effect on Word files.",
               "PDF files larger than 30 MB will be scanned as binary files. Included file extensions: pdf. Setting `bytes_limit_per_file` or `bytes_limit_per_file_percent` has no effect on PDF files.",
@@ -6470,6 +6473,7 @@
       "id": "GooglePrivacyDlpV2ImageTransformations",
       "properties": {
         "transforms": {
+          "description": "List of transforms to make.",
           "items": {
             "$ref": "GooglePrivacyDlpV2ImageTransformation"
           },
@@ -7936,6 +7940,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2ProfileStatus": {
+      "description": "Success or errors for the profile generation.",
       "id": "GooglePrivacyDlpV2ProfileStatus",
       "properties": {
         "status": {
@@ -8203,10 +8208,12 @@
       "id": "GooglePrivacyDlpV2RecordKey",
       "properties": {
         "bigQueryKey": {
-          "$ref": "GooglePrivacyDlpV2BigQueryKey"
+          "$ref": "GooglePrivacyDlpV2BigQueryKey",
+          "description": "Datastore key"
         },
         "datastoreKey": {
-          "$ref": "GooglePrivacyDlpV2DatastoreKey"
+          "$ref": "GooglePrivacyDlpV2DatastoreKey",
+          "description": "Bigquery key"
         },
         "idValues": {
           "description": "Values of identifying columns in the given row. Order of values matches the order of `identifying_fields` specified in the scanning request.",
@@ -8249,6 +8256,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2RecordTransformation": {
+      "description": "The field in a record to transform.",
       "id": "GooglePrivacyDlpV2RecordTransformation",
       "properties": {
         "containerTimestamp": {
@@ -8649,7 +8657,8 @@
           "description": "Hybrid inspection options."
         },
         "timespanConfig": {
-          "$ref": "GooglePrivacyDlpV2TimespanConfig"
+          "$ref": "GooglePrivacyDlpV2TimespanConfig",
+          "description": "Configuration of the timespan of the items to include in scanning."
         }
       },
       "type": "object"
@@ -8659,6 +8668,7 @@
       "id": "GooglePrivacyDlpV2StorageMetadataLabel",
       "properties": {
         "key": {
+          "description": "Label name.",
           "type": "string"
         }
       },
@@ -9271,10 +9281,10 @@
             "TRANSFORM_TABLE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Unused.",
+            "Body of a file.",
+            "Metadata for a file.",
+            "A table."
           ],
           "type": "string"
         },
@@ -9309,6 +9319,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2TransformationResultStatus": {
+      "description": "The outcome of a transformation.",
       "id": "GooglePrivacyDlpV2TransformationResultStatus",
       "properties": {
         "details": {
@@ -9325,7 +9336,7 @@
             "SUCCESS"
           ],
           "enumDescriptions": [
-            "",
+            "Unused.",
             "This will be set when a finding could not be transformed (i.e. outside user set bucket range).",
             "This will be set when a BigQuery transformation was successful but could not be stored back in BigQuery because the transformed row exceeds BigQuery's max row size.",
             "This will be set when there is a finding in the custom metadata of a file, but at the write time of the transformed file, this key / value pair is unretrievable.",
@@ -9687,7 +9698,7 @@
     }
   },
   "servicePath": "",
-  "title": "Cloud Data Loss Prevention (DLP)",
+  "title": "Sensitive Data Protection (DLP)",
   "version": "v2",
   "version_module": true
 }

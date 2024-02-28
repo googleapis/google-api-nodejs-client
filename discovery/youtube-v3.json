@@ -2203,6 +2203,24 @@
           "flatPath": "youtube/v3/playlistImages",
           "httpMethod": "POST",
           "id": "youtube.playlistImages.insert",
+          "mediaUpload": {
+            "accept": [
+              "image/jpeg",
+              "image/png",
+              "application/octet-stream"
+            ],
+            "maxSize": "2097152",
+            "protocols": {
+              "resumable": {
+                "multipart": true,
+                "path": "/resumable/upload/youtube/v3/playlistImages"
+              },
+              "simple": {
+                "multipart": true,
+                "path": "/upload/youtube/v3/playlistImages"
+              }
+            }
+          },
           "parameterOrder": [],
           "parameters": {
             "onBehalfOfContentOwner": {
@@ -2233,7 +2251,8 @@
             "https://www.googleapis.com/auth/youtube",
             "https://www.googleapis.com/auth/youtube.force-ssl",
             "https://www.googleapis.com/auth/youtubepartner"
-          ]
+          ],
+          "supportsMediaUpload": true
         },
         "list": {
           "description": "Retrieves a list of resources, possibly filtered.",
@@ -3999,7 +4018,7 @@
       }
     }
   },
-  "revision": "20240131",
+  "revision": "20240226",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -5473,6 +5492,10 @@
       "description": "Information specific to a store on a merchandising platform linked to a YouTube channel.",
       "id": "ChannelToStoreLinkDetails",
       "properties": {
+        "billingDetails": {
+          "$ref": "ChannelToStoreLinkDetailsBillingDetails",
+          "description": "Information specific to billing (read-only)."
+        },
         "merchantId": {
           "description": "Google Merchant Center id of the store.",
           "format": "uint64",
@@ -5484,6 +5507,29 @@
         },
         "storeUrl": {
           "description": "Landing page of the store.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ChannelToStoreLinkDetailsBillingDetails": {
+      "description": "Information specific to billing.",
+      "id": "ChannelToStoreLinkDetailsBillingDetails",
+      "properties": {
+        "billingStatus": {
+          "description": "The current billing profile status.",
+          "enum": [
+            "billingStatusUnspecified",
+            "billingStatusPending",
+            "billingStatusActive",
+            "billingStatusInactive"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
           "type": "string"
         }
       },
@@ -8738,11 +8784,11 @@
       "type": "object"
     },
     "LiveChatMessageSnippet": {
-      "description": "Next ID: 33",
+      "description": "Next ID: 34",
       "id": "LiveChatMessageSnippet",
       "properties": {
         "authorChannelId": {
-          "description": "The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message membershipGiftingEvent - the user that made the purchase giftMembershipReceivedEvent - the user that received the gift membership messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase",
+          "description": "The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message membershipGiftingEvent - the user that made the purchase giftMembershipReceivedEvent - the user that received the gift membership messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase pollEvent - the user that created the poll",
           "type": "string"
         },
         "displayMessage": {
@@ -8783,6 +8829,10 @@
           "$ref": "LiveChatNewSponsorDetails",
           "description": "Details about the New Member Announcement event, this is only set if the type is 'newSponsorEvent'. Please note that \"member\" is the new term for \"sponsor\"."
         },
+        "pollDetails": {
+          "$ref": "LiveChatPollDetails",
+          "description": "Details about the poll event, this is only set if the type is 'pollEvent'."
+        },
         "publishedAt": {
           "description": "The date and time when the message was orignally published.",
           "format": "date-time",
@@ -8818,9 +8868,11 @@
             "messageRetractedEvent",
             "userBannedEvent",
             "superChatEvent",
-            "superStickerEvent"
+            "superStickerEvent",
+            "pollEvent"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -8941,6 +8993,57 @@
         },
         "memberLevelName": {
           "description": "The name of the Level that the viewer just had joined. The Level names are defined by the YouTube channel offering the Membership. In some situations this field isn't filled.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LiveChatPollDetails": {
+      "id": "LiveChatPollDetails",
+      "properties": {
+        "metadata": {
+          "$ref": "LiveChatPollDetailsPollMetadata"
+        },
+        "status": {
+          "enum": [
+            "unknown",
+            "active",
+            "closed"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LiveChatPollDetailsPollMetadata": {
+      "id": "LiveChatPollDetailsPollMetadata",
+      "properties": {
+        "options": {
+          "description": "The options will be returned in the order that is displayed in 1P",
+          "items": {
+            "$ref": "LiveChatPollDetailsPollMetadataPollOption"
+          },
+          "type": "array"
+        },
+        "questionText": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LiveChatPollDetailsPollMetadataPollOption": {
+      "id": "LiveChatPollDetailsPollMetadataPollOption",
+      "properties": {
+        "optionText": {
+          "type": "string"
+        },
+        "tally": {
+          "format": "int64",
           "type": "string"
         }
       },
@@ -9719,7 +9822,7 @@
           "type": "array"
         },
         "kind": {
-          "default": "youtube#PlaylistImageListResponse",
+          "default": "youtube#playlistImageListResponse",
           "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#playlistImageListResponse\".",
           "type": "string"
         },

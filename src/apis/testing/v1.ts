@@ -1142,6 +1142,10 @@ export namespace testing_v1 {
      */
     directAccessVersionInfo?: Schema$DirectAccessVersionInfo;
     /**
+     * Output only. The estimated wait time for a single interactive device session using Direct Access.
+     */
+    interactiveDeviceAvailabilityEstimate?: string | null;
+    /**
      * An Android version.
      */
     versionId?: string | null;

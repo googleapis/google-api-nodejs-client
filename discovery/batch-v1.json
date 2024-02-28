@@ -561,7 +561,7 @@
       }
     }
   },
-  "revision": "20240202",
+  "revision": "20240206",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1358,7 +1358,7 @@
           "type": "array"
         },
         "uid": {
-          "description": "Output only. A system generated unique ID (in UUID4 format) for the Job.",
+          "description": "Output only. A system generated unique ID for the Job.",
           "readOnly": true,
           "type": "string"
         },

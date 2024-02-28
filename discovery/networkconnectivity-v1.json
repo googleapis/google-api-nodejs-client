@@ -2630,7 +2630,7 @@
       }
     }
   },
-  "revision": "20240110",
+  "revision": "20240221",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2723,7 +2723,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -2817,6 +2817,11 @@
         },
         "pscConnectionId": {
           "description": "The PSC connection id of the PSC forwarding rule connected to the service attachments in this service connection map.",
+          "type": "string"
+        },
+        "selectedSubnetwork": {
+          "description": "Output only. The URI of the selected subnetwork selected to allocate IP address for this connection.",
+          "readOnly": true,
           "type": "string"
         },
         "serviceAttachmentUri": {
@@ -3997,6 +4002,11 @@
         },
         "pscConnectionId": {
           "description": "The PSC connection id of the PSC forwarding rule.",
+          "type": "string"
+        },
+        "selectedSubnetwork": {
+          "description": "Output only. The URI of the subnetwork selected to allocate IP address for this connection.",
+          "readOnly": true,
           "type": "string"
         },
         "state": {

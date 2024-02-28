@@ -335,7 +335,7 @@ export namespace networksecurity_v1beta1 {
      */
     associations?: Schema$FirewallEndpointAssociationReference[];
     /**
-     * Optional. Project to bill on endpoint uptime usage.
+     * Required. Project to bill on endpoint uptime usage.
      */
     billingProjectId?: string | null;
     /**

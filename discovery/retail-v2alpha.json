@@ -12,7 +12,7 @@
   "baseUrl": "https://retail.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Cloud Retail",
-  "description": "Cloud Retail service enables customers to build end-to-end personalized recommendation systems without requiring a high level of expertise in machine learning, recommendation system, or Google Cloud.",
+  "description": "Vertex AI Search for Retail API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/recommendations",
   "fullyEncodeReservedExpansion": true,
@@ -2416,7 +2416,7 @@
       }
     }
   },
-  "revision": "20240205",
+  "revision": "20240222",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2647,6 +2647,23 @@
       "properties": {
         "gcsPrefix": {
           "description": "Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Export errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ExportMetadata": {
+      "description": "Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudRetailV2ExportMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -7948,7 +7965,7 @@
     }
   },
   "servicePath": "",
-  "title": "Retail API",
+  "title": "Vertex AI Search for Retail API",
   "version": "v2alpha",
   "version_module": true
 }

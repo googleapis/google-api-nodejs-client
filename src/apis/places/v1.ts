@@ -155,6 +155,184 @@ export namespace places_v1 {
     uri?: string | null;
   }
   /**
+   * Request proto for AutocompletePlaces.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesRequest {
+    /**
+     * Optional. Included primary Place type (for example, "restaurant" or "gas_station") from https://developers.google.com/maps/documentation/places/web-service/place-types. A Place is only returned if its primary type is included in this list. Up to 5 values can be specified. If no types are specified, all Place types are returned.
+     */
+    includedPrimaryTypes?: string[] | null;
+    /**
+     * Optional. Only include results in the specified regions, specified as up to 15 CLDR two-character region codes. An empty set will not restrict the results. If both `location_restriction` and `included_region_codes` are set, the results will be located in the area of intersection.
+     */
+    includedRegionCodes?: string[] | null;
+    /**
+     * Optional. If true, the response will include both Place and query predictions. Otherwise the response will only return Place predictions.
+     */
+    includeQueryPredictions?: boolean | null;
+    /**
+     * Required. The text string on which to search.
+     */
+    input?: string | null;
+    /**
+     * Optional. A zero-based Unicode character offset of `input` indicating the cursor position in `input`. The cursor position may influence what predictions are returned. If empty, defaults to the length of `input`.
+     */
+    inputOffset?: number | null;
+    /**
+     * Optional. The language in which to return results. Defaults to en-US. The results may be in mixed languages if the language used in `input` is different from `language_code` or if the returned Place does not have a translation from the local language to `language_code`.
+     */
+    languageCode?: string | null;
+    /**
+     * Optional. Bias results to a specified location. At most one of `location_bias` or `location_restriction` should be set. If neither are set, the results will be biased by IP address, meaning the IP address will be mapped to an imprecise location and used as a biasing signal.
+     */
+    locationBias?: Schema$GoogleMapsPlacesV1AutocompletePlacesRequestLocationBias;
+    /**
+     * Optional. Restrict results to a specified location. At most one of `location_bias` or `location_restriction` should be set. If neither are set, the results will be biased by IP address, meaning the IP address will be mapped to an imprecise location and used as a biasing signal.
+     */
+    locationRestriction?: Schema$GoogleMapsPlacesV1AutocompletePlacesRequestLocationRestriction;
+    /**
+     * Optional. The origin point from which to calculate geodesic distance to the destination (returned as `distance_meters`). If this value is omitted, geodesic distance will not be returned.
+     */
+    origin?: Schema$GoogleTypeLatLng;
+    /**
+     * Optional. The region code, specified as a CLDR two-character region code. This affects address formatting, result ranking, and may influence what results are returned. This does not restrict results to the specified region. To restrict results to a region, use `region_code_restriction`.
+     */
+    regionCode?: string | null;
+    /**
+     * Optional. A string which identifies an Autocomplete session for billing purposes. Must be a URL and filename safe base64 string with at most 36 ASCII characters in length. Otherwise an INVALID_ARGUMENT error is returned. The session begins when the user starts typing a query, and concludes when they select a place and a call to Place Details or Address Validation is made. Each session can have multiple queries, followed by one Place Details or Address Validation request. The credentials used for each request within a session must belong to the same Google Cloud Console project. Once a session has concluded, the token is no longer valid; your app must generate a fresh token for each session. If the `session_token` parameter is omitted, or if you reuse a session token, the session is charged as if no session token was provided (each request is billed separately). We recommend the following guidelines: * Use session tokens for all Place Autocomplete calls. * Generate a fresh token for each session. Using a version 4 UUID is recommended. * Ensure that the credentials used for all Place Autocomplete, Place Details, and Address Validation requests within a session belong to the same Cloud Console project. * Be sure to pass a unique session token for each new session. Using the same token for more than one session will result in each request being billed individually.
+     */
+    sessionToken?: string | null;
+  }
+  /**
+   * The region to search. The results may be biased around the specified region.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesRequestLocationBias {
+    /**
+     * A circle defined by a center point and radius.
+     */
+    circle?: Schema$GoogleMapsPlacesV1Circle;
+    /**
+     * A viewport defined by a northeast and a southwest corner.
+     */
+    rectangle?: Schema$GoogleGeoTypeViewport;
+  }
+  /**
+   * The region to search. The results will be restricted to the specified region.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesRequestLocationRestriction {
+    /**
+     * A circle defined by a center point and radius.
+     */
+    circle?: Schema$GoogleMapsPlacesV1Circle;
+    /**
+     * A viewport defined by a northeast and a southwest corner.
+     */
+    rectangle?: Schema$GoogleGeoTypeViewport;
+  }
+  /**
+   * Response proto for AutocompletePlaces.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesResponse {
+    /**
+     * Contains a list of suggestions, ordered in descending order of relevance.
+     */
+    suggestions?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestion[];
+  }
+  /**
+   * An Autocomplete suggestion result.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestion {
+    /**
+     * A prediction for a Place.
+     */
+    placePrediction?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction;
+    /**
+     * A prediction for a query.
+     */
+    queryPrediction?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionQueryPrediction;
+  }
+  /**
+   * Text representing a Place or query prediction. The text may be used as is or formatted.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText {
+    /**
+     * A list of string ranges identifying where the input request matched in `text`. The ranges can be used to format specific parts of `text`. The substrings may not be exact matches of `input` if the matching was determined by criteria other than string matching (for example, spell corrections or transliterations). These values are Unicode character offsets of `text`. The ranges are guaranteed to be ordered in increasing offset values.
+     */
+    matches?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStringRange[];
+    /**
+     * Text that may be used as is or formatted with `matches`.
+     */
+    text?: string | null;
+  }
+  /**
+   * Prediction results for a Place Autocomplete prediction.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction {
+    /**
+     * The length of the geodesic in meters from `origin` if `origin` is specified. Certain predictions such as routes may not populate this field.
+     */
+    distanceMeters?: number | null;
+    /**
+     * The resource name of the suggested Place. This name can be used in other APIs that accept Place names.
+     */
+    place?: string | null;
+    /**
+     * The unique identifier of the suggested Place. This identifier can be used in other APIs that accept Place IDs.
+     */
+    placeId?: string | null;
+    /**
+     * A breakdown of the Place prediction into main text containing the name of the Place and secondary text containing additional disambiguating features (such as a city or region). `structured_format` is recommended for developers who wish to show two separate, but related, UI elements. Developers who wish to show a single UI element may want to use `text` instead. They are two different ways to represent a Place prediction. Users should not try to parse `structured_format` into `text` or vice versa.
+     */
+    structuredFormat?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat;
+    /**
+     * Contains the human-readable name for the returned result. For establishment results, this is usually the business name and address. `text` is recommended for developers who wish to show a single UI element. Developers who wish to show two separate, but related, UI elements may want to use `structured_format` instead. They are two different ways to represent a Place prediction. Users should not try to parse `structured_format` into `text` or vice versa. This text may be different from the `display_name` returned by GetPlace. May be in mixed languages if the request `input` and `language_code` are in different languages or if the Place does not have a translation from the local language to `language_code`.
+     */
+    text?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText;
+    /**
+     * List of types that apply to this Place from Table A or Table B in https://developers.google.com/maps/documentation/places/web-service/place-types. A type is a categorization of a Place. Places with shared types will share similar characteristics.
+     */
+    types?: string[] | null;
+  }
+  /**
+   * Prediction results for a Query Autocomplete prediction.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionQueryPrediction {
+    /**
+     * A breakdown of the query prediction into main text containing the query and secondary text containing additional disambiguating features (such as a city or region). `structured_format` is recommended for developers who wish to show two separate, but related, UI elements. Developers who wish to show a single UI element may want to use `text` instead. They are two different ways to represent a query prediction. Users should not try to parse `structured_format` into `text` or vice versa.
+     */
+    structuredFormat?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat;
+    /**
+     * The predicted text. This text does not represent a Place, but rather a text query that could be used in a search endpoint (for example, TextSearch). `text` is recommended for developers who wish to show a single UI element. Developers who wish to show two separate, but related, UI elements may want to use `structured_format` instead. They are two different ways to represent a query prediction. Users should not try to parse `structured_format` into `text` or vice versa. May be in mixed languages if the request `input` and `language_code` are in different languages or if part of the query does not have a translation from the local language to `language_code`.
+     */
+    text?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText;
+  }
+  /**
+   * Identifies a substring within a given text.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStringRange {
+    /**
+     * Zero-based offset of the last Unicode character (exclusive).
+     */
+    endOffset?: number | null;
+    /**
+     * Zero-based offset of the first Unicode character of the string (inclusive).
+     */
+    startOffset?: number | null;
+  }
+  /**
+   * Contains a breakdown of a Place or query prediction into main text and secondary text. For Place predictions, the main text contains the specific name of the Place. For query predictions, the main text contains the query. The secondary text contains additional disambiguating features (such as a city or region) to further identify the Place or refine the query.
+   */
+  export interface Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat {
+    /**
+     * Represents the name of the Place or query.
+     */
+    mainText?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText;
+    /**
+     * Represents additional disambiguating features (such as a city or region) to further identify the Place or refine the query.
+     */
+    secondaryText?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText;
+  }
+  /**
    * Circle with a LatLng as center and radius.
    */
   export interface Schema$GoogleMapsPlacesV1Circle {
@@ -402,7 +580,7 @@ export namespace places_v1 {
      */
     paymentOptions?: Schema$GoogleMapsPlacesV1PlacePaymentOptions;
     /**
-     * Information (including references) about photos of this place.
+     * Information (including references) about photos of this place. A maximum of 10 photos can be returned.
      */
     photos?: Schema$GoogleMapsPlacesV1Photo[];
     /**
@@ -442,7 +620,7 @@ export namespace places_v1 {
      */
     restroom?: boolean | null;
     /**
-     * List of reviews about this place, sorted by relevance.
+     * List of reviews about this place, sorted by relevance. A maximum of 5 reviews can be returned.
      */
     reviews?: Schema$GoogleMapsPlacesV1Review[];
     /**
@@ -971,6 +1149,102 @@ export namespace places_v1 {
     }
 
     /**
+     * Returns predictions for the given input.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    autocomplete(
+      params: Params$Resource$Places$Autocomplete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    autocomplete(
+      params?: Params$Resource$Places$Autocomplete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>;
+    autocomplete(
+      params: Params$Resource$Places$Autocomplete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    autocomplete(
+      params: Params$Resource$Places$Autocomplete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+    ): void;
+    autocomplete(
+      params: Params$Resource$Places$Autocomplete,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+    ): void;
+    autocomplete(
+      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+    ): void;
+    autocomplete(
+      paramsOrCallback?:
+        | Params$Resource$Places$Autocomplete
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Places$Autocomplete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Places$Autocomplete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://places.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/places:autocomplete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Get the details of a place based on its resource name, which is a string in the `places/{place_id\}` format.
      *
      * @param params - Parameters for request
@@ -1251,6 +1525,13 @@ export namespace places_v1 {
     }
   }
 
+  export interface Params$Resource$Places$Autocomplete
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleMapsPlacesV1AutocompletePlacesRequest;
+  }
   export interface Params$Resource$Places$Get extends StandardParameters {
     /**
      * Optional. Place details will be displayed with the preferred language if available. Current list of supported languages: https://developers.google.com/maps/faq#languagesupport.
@@ -1264,6 +1545,10 @@ export namespace places_v1 {
      * Optional. The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For more information, see https://www.unicode.org/cldr/charts/latest/supplemental/territory_language_information.html. Note that 3-digit region codes are not currently supported.
      */
     regionCode?: string;
+    /**
+     * Optional. A string which identifies an Autocomplete session for billing purposes. Must be a URL and filename safe base64 string with at most 36 ASCII characters in length. Otherwise an INVALID_ARGUMENT error is returned. The session begins when the user starts typing a query, and concludes when they select a place and a call to Place Details or Address Validation is made. Each session can have multiple queries, followed by one Place Details or Address Validation request. The credentials used for each request within a session must belong to the same Google Cloud Console project. Once a session has concluded, the token is no longer valid; your app must generate a fresh token for each session. If the `session_token` parameter is omitted, or if you reuse a session token, the session is charged as if no session token was provided (each request is billed separately). We recommend the following guidelines: * Use session tokens for all Place Autocomplete calls. * Generate a fresh token for each session. Using a version 4 UUID is recommended. * Ensure that the credentials used for all Place Autocomplete, Place Details, and Address Validation requests within a session belong to the same Cloud Console project. * Be sure to pass a unique session token for each new session. Using the same token for more than one session will result in each request being billed individually.
+     */
+    sessionToken?: string;
   }
   export interface Params$Resource$Places$Searchnearby
     extends StandardParameters {

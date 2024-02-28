@@ -662,6 +662,35 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     },
+                    "export": {
+                      "description": "Exports the selected entity types.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/entityTypes:export",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.entityTypes.export",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the parent agent to export entity types. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/entityTypes:export",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ExportEntityTypesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
                     "get": {
                       "description": "Retrieves the specified entity type.",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/entityTypes/{entityTypesId}",
@@ -687,6 +716,35 @@
                       "path": "v3beta1/{+name}",
                       "response": {
                         "$ref": "GoogleCloudDialogflowCxV3beta1EntityType"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "import": {
+                      "description": "Imports the specified entitytypes into the agent.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/entityTypes:import",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.entityTypes.import",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The agent to import the entity types into. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/entityTypes:import",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ImportEntityTypesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -4395,7 +4453,7 @@
       }
     }
   },
-  "revision": "20240122",
+  "revision": "20240219",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4903,6 +4961,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ExportEntityTypesMetadata": {
+      "description": "Metadata returned for the EntityTypes.ExportEntityTypes long running operation.",
+      "id": "GoogleCloudDialogflowCxV3ExportEntityTypesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ExportEntityTypesResponse": {
+      "description": "The response message for EntityTypes.ExportEntityTypes.",
+      "id": "GoogleCloudDialogflowCxV3ExportEntityTypesResponse",
+      "properties": {
+        "entityTypesContent": {
+          "$ref": "GoogleCloudDialogflowCxV3InlineDestination",
+          "description": "Uncompressed byte content for entity types. This field is populated only if `entity_types_content_inline` is set to true in ExportEntityTypesRequest."
+        },
+        "entityTypesUri": {
+          "description": "The URI to a file containing the exported entity types. This field is populated only if `entity_types_uri` is specified in ExportEntityTypesRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ExportFlowResponse": {
       "description": "The response message for Flows.ExportFlow.",
       "id": "GoogleCloudDialogflowCxV3ExportFlowResponse",
@@ -5197,6 +5276,51 @@
           "description": "Includes details about skipped documents or any other warnings.",
           "items": {
             "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ImportEntityTypesMetadata": {
+      "description": "Metadata returned for the EntityTypes.ImportEntityTypes long running operation.",
+      "id": "GoogleCloudDialogflowCxV3ImportEntityTypesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ImportEntityTypesResponse": {
+      "description": "The response message for EntityTypes.ImportEntityTypes.",
+      "id": "GoogleCloudDialogflowCxV3ImportEntityTypesResponse",
+      "properties": {
+        "conflictingResources": {
+          "$ref": "GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources",
+          "description": "Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportEntityTypesRequest."
+        },
+        "entityTypes": {
+          "description": "The unique identifier of the imported entity types. Format: `projects//locations//agents//entity_types/`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources": {
+      "description": "Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.",
+      "id": "GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources",
+      "properties": {
+        "entityDisplayNames": {
+          "description": "Display names of conflicting entities.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entityTypeDisplayNames": {
+          "description": "Display names of conflicting entity types.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -7059,6 +7183,10 @@
           "description": "The affected resource display name of the change.",
           "type": "string"
         },
+        "languageCode": {
+          "description": "The affected language code of the change.",
+          "type": "string"
+        },
         "name": {
           "description": "The unique identifier of the changelog. Format: `projects//locations//agents//changelogs/`.",
           "type": "string"
@@ -8014,6 +8142,67 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ExportEntityTypesMetadata": {
+      "description": "Metadata returned for the EntityTypes.ExportEntityTypes long running operation.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportEntityTypesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ExportEntityTypesRequest": {
+      "description": "The request message for EntityTypes.ExportEntityTypes.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportEntityTypesRequest",
+      "properties": {
+        "dataFormat": {
+          "description": "Optional. The data format of the exported entity types. If not specified, `BLOB` is assumed.",
+          "enum": [
+            "DATA_FORMAT_UNSPECIFIED",
+            "BLOB",
+            "JSON_PACKAGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified format. Treated as `BLOB`.",
+            "EntityTypes will be exported as raw bytes.",
+            "EntityTypes will be exported in JSON Package format."
+          ],
+          "type": "string"
+        },
+        "entityTypes": {
+          "description": "Required. The name of the entity types to export. Format: `projects//locations//agents//entityTypes/`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entityTypesContentInline": {
+          "description": "Optional. The option to return the serialized entity types inline.",
+          "type": "boolean"
+        },
+        "entityTypesUri": {
+          "description": "Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the entity types to. The format of this URI must be `gs:///`. Dialogflow performs a write operation for the Cloud Storage object on the caller's behalf, so your request authentication must have write permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Optional. The language to retrieve the entity type for. The following fields are language dependent: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, all language dependent fields will be retrieved. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ExportEntityTypesResponse": {
+      "description": "The response message for EntityTypes.ExportEntityTypes.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportEntityTypesResponse",
+      "properties": {
+        "entityTypesContent": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1InlineDestination",
+          "description": "Uncompressed byte content for entity types. This field is populated only if `entity_types_content_inline` is set to true in ExportEntityTypesRequest."
+        },
+        "entityTypesUri": {
+          "description": "The URI to a file containing the exported entity types. This field is populated only if `entity_types_uri` is specified in ExportEntityTypesRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ExportFlowRequest": {
       "description": "The request message for Flows.ExportFlow.",
       "id": "GoogleCloudDialogflowCxV3beta1ExportFlowRequest",
@@ -8689,6 +8878,90 @@
           "description": "Includes details about skipped documents or any other warnings.",
           "items": {
             "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportEntityTypesMetadata": {
+      "description": "Metadata returned for the EntityTypes.ImportEntityTypes long running operation.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportEntityTypesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportEntityTypesRequest": {
+      "description": "The request message for EntityTypes.ImportEntityTypes.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportEntityTypesRequest",
+      "properties": {
+        "entityTypesContent": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1InlineSource",
+          "description": "Uncompressed byte content of entity types."
+        },
+        "entityTypesUri": {
+          "description": "The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to import entity types from. The format of this URI must be `gs:///`. Dialogflow performs a read operation for the Cloud Storage object on the caller's behalf, so your request authentication must have read permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).",
+          "type": "string"
+        },
+        "mergeOption": {
+          "description": "Required. Merge option for importing entity types.",
+          "enum": [
+            "MERGE_OPTION_UNSPECIFIED",
+            "REPLACE",
+            "MERGE",
+            "RENAME",
+            "REPORT_CONFLICT",
+            "KEEP"
+          ],
+          "enumDescriptions": [
+            "Unspecified. If used, system uses REPORT_CONFLICT as default.",
+            "Replace the original entity type in the agent with the new entity type when display name conflicts exist.",
+            "Merge the original entity type with the new entity type when display name conflicts exist.",
+            "Create new entity types with new display names to differentiate them from the existing entity types when display name conflicts exist.",
+            "Report conflict information if display names conflict is detected. Otherwise, import entity types.",
+            "Keep the original entity type and discard the conflicting new entity type when display name conflicts exist."
+          ],
+          "type": "string"
+        },
+        "targetEntityType": {
+          "description": "Optional. The target entity type to import into. Format: `projects//locations//agents//entity_types/`. If set, there should be only one entity type included in entity_types, of which the type should match the type of the target entity type. All entities in the imported entity type will be added to the target entity type.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponse": {
+      "description": "The response message for EntityTypes.ImportEntityTypes.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponse",
+      "properties": {
+        "conflictingResources": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources",
+          "description": "Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportEntityTypesRequest."
+        },
+        "entityTypes": {
+          "description": "The unique identifier of the imported entity types. Format: `projects//locations//agents//entity_types/`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources": {
+      "description": "Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources",
+      "properties": {
+        "entityDisplayNames": {
+          "description": "Display names of conflicting entities.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entityTypeDisplayNames": {
+          "description": "Display names of conflicting entity types.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -10037,6 +10310,28 @@
           "description": "If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.",
           "type": "string"
         },
+        "webhookDisplayNames": {
+          "description": "The list of webhook display names in the order of call sequence.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "webhookIds": {
+          "description": "The list of webhook ids in the order of call sequence.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "webhookLatencies": {
+          "description": "The list of webhook latencies in the order of call sequence.",
+          "items": {
+            "format": "google-duration",
+            "type": "string"
+          },
+          "type": "array"
+        },
         "webhookPayloads": {
           "description": "The list of webhook payload in WebhookResponse.payload, in the order of call sequence. If some webhook call fails or doesn't return any payload, an empty `Struct` would be used instead.",
           "items": {
@@ -10052,6 +10347,13 @@
           "description": "The list of webhook call status in the order of call sequence.",
           "items": {
             "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "webhookTags": {
+          "description": "The list of webhook tags in the order of call sequence.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }

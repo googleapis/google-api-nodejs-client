@@ -153,6 +153,15 @@ export namespace binaryauthorization_v1 {
     namePattern?: string | null;
   }
   /**
+   * Result of evaluating an image name allowlist.
+   */
+  export interface Schema$AllowlistResult {
+    /**
+     * The allowlist pattern that the image matched.
+     */
+    matchedPattern?: string | null;
+  }
+  /**
    * An attestation authenticator that will be used to verify attestations. Typically this is just a set of public keys. Conceptually, an authenticator can be treated as always returning either "authenticated" or "not authenticated" when presented with a signed attestation (almost always assumed to be a [DSSE](https://github.com/secure-systems-lab/dsse) attestation). The details of how an authenticator makes this decision are specific to the type of 'authenticator' that this message wraps.
    */
   export interface Schema$AttestationAuthenticator {
@@ -187,7 +196,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$AttestationSource {
     /**
-     * The IDs of the GCP projects storing the SLSA attestations as Container Analysis Occurrences, in the format `projects/[PROJECT_ID]`. Maximum number of `container_analysis_attestation_projects` allowed in each `AttestationSource` is 10.
+     * The IDs of the Google Cloud projects that store the SLSA attestations as Container Analysis Occurrences, in the format `projects/[PROJECT_ID]`. Maximum number of `container_analysis_attestation_projects` allowed in each `AttestationSource` is 10.
      */
     containerAnalysisAttestationProjects?: string[] | null;
   }
@@ -275,6 +284,10 @@ export namespace binaryauthorization_v1 {
      */
     imageFreshnessCheck?: Schema$ImageFreshnessCheck;
     /**
+     * Optional. Require that an image was signed by Cosign with a trusted key. This check requires that both the image and signature are stored in Artifact Registry.
+     */
+    sigstoreSignatureCheck?: Schema$SigstoreSignatureCheck;
+    /**
      * Optional. Require a SimpleSigning-type attestation for every image in the deployment.
      */
     simpleSigningAttestationCheck?: Schema$SimpleSigningAttestationCheck;
@@ -290,6 +303,44 @@ export namespace binaryauthorization_v1 {
      * Optional. Require that an image does not contain vulnerabilities that violate the configured rules, such as based on severity levels.
      */
     vulnerabilityCheck?: Schema$VulnerabilityCheck;
+  }
+  /**
+   * Result of evaluating one check.
+   */
+  export interface Schema$CheckResult {
+    /**
+     * If the image was exempted by an allow_pattern in the check, contains the pattern that the image name matched.
+     */
+    allowlistResult?: Schema$AllowlistResult;
+    /**
+     * The name of the check.
+     */
+    displayName?: string | null;
+    /**
+     * If a check was evaluated, contains the result of the check.
+     */
+    evaluationResult?: Schema$EvaluationResult;
+    /**
+     * Explanation of this check result.
+     */
+    explanation?: string | null;
+    /**
+     * The index of the check.
+     */
+    index?: string | null;
+    /**
+     * The type of the check.
+     */
+    type?: string | null;
+  }
+  /**
+   * Result of evaluating one or more checks.
+   */
+  export interface Schema$CheckResults {
+    /**
+     * Per-check details.
+     */
+    results?: Schema$CheckResult[];
   }
   /**
    * A conjunction of policy checks, scoped to a particular namespace or Kubernetes service account. In order for evaluation of a `CheckSet` to return "allowed" for a given image in a given Pod, one of the following conditions must be satisfied: * The image is explicitly exempted by an entry in `image_allowlist`, OR * ALL of the `checks` evaluate to "allowed".
@@ -313,9 +364,69 @@ export namespace binaryauthorization_v1 {
     scope?: Schema$Scope;
   }
   /**
+   * Result of evaluating one check set.
+   */
+  export interface Schema$CheckSetResult {
+    /**
+     * If the image was exempted by an allow_pattern in the check set, contains the pattern that the image name matched.
+     */
+    allowlistResult?: Schema$AllowlistResult;
+    /**
+     * If checks were evaluated, contains the results of evaluating each check.
+     */
+    checkResults?: Schema$CheckResults;
+    /**
+     * The name of the check set.
+     */
+    displayName?: string | null;
+    /**
+     * Explanation of this check set result. Only populated if no checks were evaluated.
+     */
+    explanation?: string | null;
+    /**
+     * The index of the check set.
+     */
+    index?: string | null;
+    /**
+     * The scope of the check set.
+     */
+    scope?: Schema$Scope;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Request message for PlatformPolicyEvaluationService.EvaluateGkePolicy.
+   */
+  export interface Schema$EvaluateGkePolicyRequest {
+    /**
+     * Required. JSON or YAML blob representing a Kubernetes resource.
+     */
+    resource?: {[key: string]: any} | null;
+  }
+  /**
+   * Response message for PlatformPolicyEvaluationService.EvaluateGkePolicy.
+   */
+  export interface Schema$EvaluateGkePolicyResponse {
+    /**
+     * Evaluation result for each Pod contained in the request.
+     */
+    results?: Schema$PodResult[];
+    /**
+     * The result of evaluating all Pods in the request.
+     */
+    verdict?: string | null;
+  }
+  /**
+   * Result of evaluating one check.
+   */
+  export interface Schema$EvaluationResult {
+    /**
+     * The result of evaluating this check.
+     */
+    verdict?: string | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -384,6 +495,31 @@ export namespace binaryauthorization_v1 {
      * Required. The max number of days that is allowed since the image was uploaded. Must be greater than zero.
      */
     maxUploadAgeDays?: number | null;
+  }
+  /**
+   * Result of evaluating one image.
+   */
+  export interface Schema$ImageResult {
+    /**
+     * If the image was exempted by a top-level allow_pattern, contains the allowlist pattern that the image name matched.
+     */
+    allowlistResult?: Schema$AllowlistResult;
+    /**
+     * If a check set was evaluated, contains the result of the check set. Empty if there were no check sets.
+     */
+    checkSetResult?: Schema$CheckSetResult;
+    /**
+     * Explanation of this image result. Only populated if no check sets were evaluated.
+     */
+    explanation?: string | null;
+    /**
+     * Image URI from the request.
+     */
+    imageUri?: string | null;
+    /**
+     * The result of evaluating this image.
+     */
+    verdict?: string | null;
   }
   export interface Schema$Jwt {
     /**
@@ -463,6 +599,31 @@ export namespace binaryauthorization_v1 {
      * Output only. Time when the policy was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Result of evaluating the whole GKE policy for one Pod.
+   */
+  export interface Schema$PodResult {
+    /**
+     * Per-image details.
+     */
+    imageResults?: Schema$ImageResult[];
+    /**
+     * The Kubernetes namespace of the Pod.
+     */
+    kubernetesNamespace?: string | null;
+    /**
+     * The Kubernetes service account of the Pod.
+     */
+    kubernetesServiceAccount?: string | null;
+    /**
+     * The name of the Pod.
+     */
+    podName?: string | null;
+    /**
+     * The result of evaluating this Pod.
+     */
+    verdict?: string | null;
   }
   /**
    * A policy for container image binary authorization.
@@ -553,6 +714,46 @@ export namespace binaryauthorization_v1 {
      * The content of the signature, an opaque bytestring. The payload that this signature verifies MUST be unambiguously provided with the Signature during verification. A wrapper message might provide the payload explicitly. Alternatively, a message might have a canonical serialization that can always be unambiguously computed to derive the payload.
      */
     signature?: string | null;
+  }
+  /**
+   * A Sigstore authority, used to verify signatures that are created by Sigstore. An authority is analogous to an attestation authenticator, verifying that a signature is valid or invalid.
+   */
+  export interface Schema$SigstoreAuthority {
+    /**
+     * Optional. A user-provided name for this `SigstoreAuthority`. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.
+     */
+    displayName?: string | null;
+    /**
+     * Required. A simple set of public keys. A signature is considered valid if any keys in the set validate the signature.
+     */
+    publicKeySet?: Schema$SigstorePublicKeySet;
+  }
+  /**
+   * A Sigstore public key. `SigstorePublicKey` is the public key material used to authenticate Sigstore signatures.
+   */
+  export interface Schema$SigstorePublicKey {
+    /**
+     * The public key material in PEM format.
+     */
+    publicKeyPem?: string | null;
+  }
+  /**
+   * A bundle of Sigstore public keys, used to verify Sigstore signatures. A signature is authenticated by a `SigstorePublicKeySet` if any of the keys verify it.
+   */
+  export interface Schema$SigstorePublicKeySet {
+    /**
+     * Required. `public_keys` must have at least one entry.
+     */
+    publicKeys?: Schema$SigstorePublicKey[];
+  }
+  /**
+   * A Sigstore signature check, which verifies the Sigstore signature associated with an image.
+   */
+  export interface Schema$SigstoreSignatureCheck {
+    /**
+     * Required. The authorities required by this check to verify the signature. A signature only needs to be verified by one authority to pass the check.
+     */
+    sigstoreAuthorities?: Schema$SigstoreAuthority[];
   }
   /**
    * Require a signed [DSSE](https://github.com/secure-systems-lab/dsse) attestation with type SimpleSigning.
@@ -1818,11 +2019,139 @@ export namespace binaryauthorization_v1 {
 
   export class Resource$Projects$Platforms {
     context: APIRequestContext;
+    gke: Resource$Projects$Platforms$Gke;
     policies: Resource$Projects$Platforms$Policies;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.gke = new Resource$Projects$Platforms$Gke(this.context);
       this.policies = new Resource$Projects$Platforms$Policies(this.context);
     }
+  }
+
+  export class Resource$Projects$Platforms$Gke {
+    context: APIRequestContext;
+    policies: Resource$Projects$Platforms$Gke$Policies;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.policies = new Resource$Projects$Platforms$Gke$Policies(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Platforms$Gke$Policies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Evaluates a Kubernetes object versus a GKE platform policy. Returns `NOT_FOUND` if the policy doesn't exist, `INVALID_ARGUMENT` if the policy or request is malformed and `PERMISSION_DENIED` if the client does not have sufficient permissions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    evaluate(
+      params: Params$Resource$Projects$Platforms$Gke$Policies$Evaluate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    evaluate(
+      params?: Params$Resource$Projects$Platforms$Gke$Policies$Evaluate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EvaluateGkePolicyResponse>;
+    evaluate(
+      params: Params$Resource$Projects$Platforms$Gke$Policies$Evaluate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    evaluate(
+      params: Params$Resource$Projects$Platforms$Gke$Policies$Evaluate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EvaluateGkePolicyResponse>,
+      callback: BodyResponseCallback<Schema$EvaluateGkePolicyResponse>
+    ): void;
+    evaluate(
+      params: Params$Resource$Projects$Platforms$Gke$Policies$Evaluate,
+      callback: BodyResponseCallback<Schema$EvaluateGkePolicyResponse>
+    ): void;
+    evaluate(
+      callback: BodyResponseCallback<Schema$EvaluateGkePolicyResponse>
+    ): void;
+    evaluate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Platforms$Gke$Policies$Evaluate
+        | BodyResponseCallback<Schema$EvaluateGkePolicyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EvaluateGkePolicyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EvaluateGkePolicyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EvaluateGkePolicyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Platforms$Gke$Policies$Evaluate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Platforms$Gke$Policies$Evaluate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:evaluate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EvaluateGkePolicyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EvaluateGkePolicyResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Platforms$Gke$Policies$Evaluate
+    extends StandardParameters {
+    /**
+     * Required. The name of the platform policy to evaluate in the format `projects/x/platforms/x/policies/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EvaluateGkePolicyRequest;
   }
 
   export class Resource$Projects$Platforms$Policies {

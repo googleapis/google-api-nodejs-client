@@ -1046,6 +1046,9 @@ export namespace artifactregistry_v1 {
      * The user-provided description of the repository.
      */
     description?: string | null;
+    /**
+     * Optional. If this is true, aunspecified repo type will be treated as error. Is used for new repo types that don't have any specific fields. Right now is used by AOSS team when creating repos for customers.
+     */
     disallowUnspecifiedMode?: boolean | null;
     /**
      * Docker repository config contains repository level configuration for the repositories of docker type.

@@ -255,7 +255,7 @@ export namespace logging_v2 {
      */
     progress?: number | null;
     /**
-     * CopyLogEntries RPC request.
+     * CopyLogEntries RPC request. This field is deprecated and not used.
      */
     request?: Schema$CopyLogEntriesRequest;
     /**
@@ -1546,6 +1546,10 @@ export namespace logging_v2 {
      * Output only. The timestamp when the saved query was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Required. The visibility status of this query, which determines its ownership.
+     */
+    visibility?: string | null;
   }
   /**
    * Describes the settings associated with a project, folder, organization, or billing account.

@@ -1151,14 +1151,6 @@ export namespace serviceusage_v1 {
    */
   export interface Schema$GoogleApiServiceusageV2alphaEnableRule {
     /**
-     * The names of the categories that are enabled. Example: `categories/googleServices`.
-     */
-    categories?: string[] | null;
-    /**
-     * The names of the service groups that are enabled. Example: `services/container.googleapis.com/groups/dependencies`.
-     */
-    groups?: string[] | null;
-    /**
      * The names of the services that are enabled. Example: `services/storage.googleapis.com`.
      */
     services?: string[] | null;

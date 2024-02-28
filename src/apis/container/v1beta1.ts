@@ -2250,7 +2250,7 @@ export namespace container_v1beta1 {
      */
     diskType?: string | null;
     /**
-     * Optional. Enable confidential storage on Hyperdisk. boot_disk_kms_key is required when enable_confidential_storage is true. This is only available for private preview.
+     * Optional. Reserved for future use.
      */
     enableConfidentialStorage?: boolean | null;
     /**
@@ -3800,6 +3800,10 @@ export namespace container_v1beta1 {
      * Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
+    /**
+     * Specifies the configuration of queued provisioning.
+     */
+    queuedProvisioning?: Schema$QueuedProvisioning;
     /**
      * The resource labels for the node pool to use to annotate any related Google Compute Engine resources.
      */

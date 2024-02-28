@@ -102,7 +102,7 @@ export namespace chat_v1 {
   /**
    * Google Chat API
    *
-   * Enables apps to fetch information and perform actions in Google Chat. Authentication is a prerequisite for using the Google Chat REST API.
+   * The Google Chat API lets you build Chat apps to integrate your services with Google Chat and manage Chat resources such as spaces, members, and messages.
    *
    * @example
    * ```js
@@ -384,7 +384,7 @@ export namespace chat_v1 {
    */
   export interface Schema$CommonEventObject {
     /**
-     * A map containing the current values of the widgets in a card. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. Depending on the input data type, a different object represents each input: For single-value widgets, `StringInput`. For multi-value widgets, an array of `StringInput` objects. For a date-time picker, a `DateTimeInput`. For a date-only picker, a `DateInput`. For a time-only picker, a `TimeInput`. Corresponds with the data entered by a user on a card in a [dialog](https://developers.google.com/chat/how-tos/dialogs).
+     * A map containing the values that a user inputs in a widget from a card or dialog. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. For details, see [Process information inputted by users](https://developers.google.com/chat/ui/read-form-data).
      */
     formInputs?: {[key: string]: Schema$Inputs} | null;
     /**
@@ -796,7 +796,7 @@ export namespace chat_v1 {
     widgets?: Schema$GoogleAppsCardV1Widgets[];
   }
   /**
-   * The `Columns` widget displays up to 2 columns in a card message or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. [Google Chat apps](https://developers.google.com/chat):
+   * The `Columns` widget displays up to 2 columns in a card or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): Columns for Google Workspace Add-ons are in [Developer Preview](https://developers.google.com/workspace/preview).
    */
   export interface Schema$GoogleAppsCardV1Columns {
     /**
@@ -1374,23 +1374,23 @@ export namespace chat_v1 {
     onClick?: Schema$OnClick;
   }
   /**
-   * Types of data that users can enter on cards or dialogs. To learn how to process information from users, see [Read form data input by users on cards](https://developers.google.com/chat/ui/read-form-data).
+   * Types of data that users can [input on cards or dialogs](https://developers.google.com/chat/ui/read-form-data). The input type depends on the type of values that the widget accepts.
    */
   export interface Schema$Inputs {
     /**
-     * Date input values.
+     * Date input values from a [`DateTimePicker`](https://developers.google.com/chat/api/reference/rest/v1/cards#DateTimePicker) widget that only accepts date values.
      */
     dateInput?: Schema$DateInput;
     /**
-     * Date and time input values.
+     * Date and time input values from a [`DateTimePicker`](https://developers.google.com/chat/api/reference/rest/v1/cards#DateTimePicker) widget that accepts both a date and time.
      */
     dateTimeInput?: Schema$DateTimeInput;
     /**
-     * Input parameter for regular widgets. For single-valued widgets, it is a single value list. For multi-valued widgets, such as checkbox, all the values are presented.
+     * A list of strings that represent the values that the user inputs in a widget. If the widget only accepts one value, such as a [`TextInput`](https://developers.google.com/chat/api/reference/rest/v1/cards#TextInput) widget, the list contains one string object. If the widget accepts multiple values, such as a [`SelectionInput`](https://developers.google.com/chat/api/reference/rest/v1/cards#selectioninput) widget of checkboxes, the list contains a string object for each value that the user inputs or selects.
      */
     stringInputs?: Schema$StringInputs;
     /**
-     * Time input values.
+     * Time input values from a [`DateTimePicker`](https://developers.google.com/chat/api/reference/rest/v1/cards#DateTimePicker) widget that only accepts time values.
      */
     timeInput?: Schema$TimeInput;
   }
@@ -1850,7 +1850,7 @@ export namespace chat_v1 {
    */
   export interface Schema$StringInputs {
     /**
-     * An array of strings entered by the user.
+     * An list of strings entered by the user.
      */
     value?: string[] | null;
   }

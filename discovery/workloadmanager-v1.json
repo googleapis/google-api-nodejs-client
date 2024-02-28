@@ -217,6 +217,36 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "delete": {
+                  "description": "Deletes a single Evaluation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "workloadmanager.projects.locations.evaluations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single Evaluation.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}",
@@ -292,6 +322,36 @@
               "resources": {
                 "executions": {
                   "methods": {
+                    "delete": {
+                      "description": "Deletes a single Execution.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/executions/{executionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "workloadmanager.projects.locations.evaluations.executions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+/executions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets details of a single Execution.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/executions/{executionsId}",
@@ -701,15 +761,179 @@
                   ]
                 }
               }
+            },
+            "workloadProfiles": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single workload.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadProfiles/{workloadProfilesId}",
+                  "httpMethod": "GET",
+                  "id": "workloadmanager.projects.locations.workloadProfiles.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workloadProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "WorkloadProfile"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "deprecated": true,
+                  "description": "List workloads",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadProfiles",
+                  "httpMethod": "GET",
+                  "id": "workloadmanager.projects.locations.workloadProfiles.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListWorkloadRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/workloadProfiles",
+                  "response": {
+                    "$ref": "ListWorkloadProfilesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20240117",
+  "revision": "20240208",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
+    "APILayerServer": {
+      "description": "The API layer server",
+      "id": "APILayerServer",
+      "properties": {
+        "name": {
+          "description": "Output only. The api layer name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Output only. OS information",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resources": {
+          "description": "Output only. resources in the component",
+          "items": {
+            "$ref": "CloudResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AvailabilityGroup": {
+      "description": "The availability groups for sqlserver",
+      "id": "AvailabilityGroup",
+      "properties": {
+        "databases": {
+          "description": "Output only. The databases",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The availability group name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "primaryServer": {
+          "description": "Output only. The primary server",
+          "readOnly": true,
+          "type": "string"
+        },
+        "secondaryServers": {
+          "description": "Output only. The secondary servers",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BackendServer": {
+      "description": "The backend server",
+      "id": "BackendServer",
+      "properties": {
+        "backupFile": {
+          "description": "Output only. The backup file",
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupSchedule": {
+          "description": "Output only. The backup schedule",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The backend name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Output only. OS information",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resources": {
+          "description": "Output only. resources in the component",
+          "items": {
+            "$ref": "CloudResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BigQueryDestination": {
       "description": "Message describing big query destination",
       "id": "BigQueryDestination",
@@ -729,6 +953,98 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CloudResource": {
+      "description": "The resource on GCP",
+      "id": "CloudResource",
+      "properties": {
+        "kind": {
+          "description": "Output only. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.",
+          "enum": [
+            "RESOURCE_KIND_UNSPECIFIED",
+            "RESOURCE_KIND_INSTANCE",
+            "RESOURCE_KIND_DISK",
+            "RESOURCE_KIND_ADDRESS",
+            "RESOURCE_KIND_FILESTORE",
+            "RESOURCE_KIND_HEALTH_CHECK",
+            "RESOURCE_KIND_FORWARDING_RULE",
+            "RESOURCE_KIND_BACKEND_SERVICE",
+            "RESOURCE_KIND_SUBNETWORK",
+            "RESOURCE_KIND_NETWORK",
+            "RESOURCE_KIND_PUBLIC_ADDRESS",
+            "RESOURCE_KIND_INSTANCE_GROUP"
+          ],
+          "enumDescriptions": [
+            "Unspecified resource kind.",
+            "This is a compute instance.",
+            "This is a compute disk.",
+            "This is a compute address.",
+            "This is a filestore instance.",
+            "This is a compute health check.",
+            "This is a compute forwarding rule.",
+            "This is a compute backend service.",
+            "This is a compute subnetwork.",
+            "This is a compute network.",
+            "This is a public accessible IP Address.",
+            "This is a compute instance group."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. resource name",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Cluster": {
+      "description": "The cluster for sqlserver",
+      "id": "Cluster",
+      "properties": {
+        "nodes": {
+          "description": "Output only. The nodes",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "witnessServer": {
+          "description": "Output only. The witness server",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Database": {
+      "description": "The database for sqlserver",
+      "id": "Database",
+      "properties": {
+        "backupFile": {
+          "description": "Output only. The backup file",
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupSchedule": {
+          "description": "Output only. The backup schedule",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hostVm": {
+          "description": "Output only. The host VM",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The database name",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -910,6 +1226,31 @@
       },
       "type": "object"
     },
+    "FrontEndServer": {
+      "description": "The front end server",
+      "id": "FrontEndServer",
+      "properties": {
+        "name": {
+          "description": "Output only. The frontend name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Output only. OS information",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resources": {
+          "description": "Output only. resources in the component",
+          "items": {
+            "$ref": "CloudResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GceInstanceFilter": {
       "description": "Message describing compute engine instance filter",
       "id": "GceInstanceFilter",
@@ -949,6 +1290,81 @@
         "sqlserverValidation": {
           "$ref": "SqlserverValidation",
           "description": "The insights data for the sqlserver workload validation."
+        }
+      },
+      "type": "object"
+    },
+    "Instance": {
+      "description": "a vm instance",
+      "id": "Instance",
+      "properties": {
+        "name": {
+          "description": "Output only. name of the VM",
+          "readOnly": true,
+          "type": "string"
+        },
+        "region": {
+          "description": "Output only. The location of the VM",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The state of the VM",
+          "enum": [
+            "INSTANCESTATE_UNSPECIFIED",
+            "PROVISIONING",
+            "STAGING",
+            "RUNNING",
+            "STOPPING",
+            "STOPPED",
+            "TERMINATED",
+            "SUSPENDING",
+            "SUSPENDED",
+            "REPAIRING",
+            "DEPROVISIONING"
+          ],
+          "enumDescriptions": [
+            "The Status of the VM is unspecified",
+            "Resources are being allocated for the instance.",
+            "All required resources have been allocated and the instance is being started.",
+            "The instance is running.",
+            "The instance is currently stopping (either being deleted or killed).",
+            "The instance has stopped due to various reasons (user request, VM preemption, project freezing, etc.).",
+            "The instance has failed in some way.",
+            "The instance is suspending.",
+            "The instance is suspended.",
+            "The instance is in repair.",
+            "The instance is in de-provisioning state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Layer": {
+      "description": "The database layer",
+      "id": "Layer",
+      "properties": {
+        "applicationType": {
+          "description": "the application layer",
+          "type": "string"
+        },
+        "databaseType": {
+          "description": "Optional. the database layer",
+          "type": "string"
+        },
+        "instances": {
+          "description": "Optional. instances in a layer",
+          "items": {
+            "$ref": "Instance"
+          },
+          "type": "array"
+        },
+        "sid": {
+          "description": "Output only. system identification of a layer",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1089,6 +1505,50 @@
             "$ref": "ScannedResource"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListWorkloadProfilesResponse": {
+      "description": "List workloadResponse returns a response with the list of workload overview",
+      "id": "ListWorkloadProfilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token identifying a page of results the server should return",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "workloadOverviews": {
+          "description": "Output only. The list of Workload Overview",
+          "items": {
+            "$ref": "WorkloadProfileOverview"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LoadBalancerServer": {
+      "description": "The load balancer for sqlserver",
+      "id": "LoadBalancerServer",
+      "properties": {
+        "ip": {
+          "description": "Output only. The IP address",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vm": {
+          "description": "Output only. The VM name",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1362,6 +1822,26 @@
       },
       "type": "object"
     },
+    "SapComponent": {
+      "description": "The component of sap workload",
+      "id": "SapComponent",
+      "properties": {
+        "resources": {
+          "description": "Output only. resources in the component",
+          "items": {
+            "$ref": "CloudResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "sid": {
+          "description": "Output only. sid is the sap component identificator",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SapDiscovery": {
       "description": "The schema of SAP system discovery data.",
       "id": "SapDiscovery",
@@ -1391,6 +1871,10 @@
           "description": "Required. Unix timestamp this system has been updated last.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "workloadProperties": {
+          "$ref": "SapDiscoveryWorkloadProperties",
+          "description": "Optional. The properties of the workload."
         }
       },
       "type": "object"
@@ -1632,6 +2116,65 @@
       },
       "type": "object"
     },
+    "SapDiscoveryWorkloadProperties": {
+      "description": "A set of properties describing an SAP workload.",
+      "id": "SapDiscoveryWorkloadProperties",
+      "properties": {
+        "productVersions": {
+          "description": "Optional. List of SAP Products and their versions running on the system.",
+          "items": {
+            "$ref": "SapDiscoveryWorkloadPropertiesProductVersion"
+          },
+          "type": "array"
+        },
+        "softwareComponentVersions": {
+          "description": "Optional. A list of SAP software components and their versions running on the system.",
+          "items": {
+            "$ref": "SapDiscoveryWorkloadPropertiesSoftwareComponentProperties"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SapDiscoveryWorkloadPropertiesProductVersion": {
+      "description": "A product name and version.",
+      "id": "SapDiscoveryWorkloadPropertiesProductVersion",
+      "properties": {
+        "name": {
+          "description": "Optional. Name of the product.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. Version of the product.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapDiscoveryWorkloadPropertiesSoftwareComponentProperties": {
+      "description": "A SAP software component name, version, and type.",
+      "id": "SapDiscoveryWorkloadPropertiesSoftwareComponentProperties",
+      "properties": {
+        "extVersion": {
+          "description": "Optional. The component's minor version.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. Name of the component.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. The component's type.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. The component's major version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SapValidation": {
       "description": "A presentation of SAP workload insight. The schema of SAP workloads validation related data.",
       "id": "SapValidation",
@@ -1691,6 +2234,53 @@
             "The HANA_SECURITY validation type collects HANA configuration data as it relates to SAP security best practices.",
             "The CUSTOM validation type collects any customer-defined data that does not fall into any of the other categories of validations."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapWorkload": {
+      "description": "The body of sap workload",
+      "id": "SapWorkload",
+      "properties": {
+        "application": {
+          "$ref": "SapComponent",
+          "description": "Output only. the acsc componment",
+          "readOnly": true
+        },
+        "database": {
+          "$ref": "SapComponent",
+          "description": "Output only. the database componment",
+          "readOnly": true
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. The metadata for SAP workload.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "SapWorkloadOverview": {
+      "description": "The overview of sap workload",
+      "id": "SapWorkloadOverview",
+      "properties": {
+        "appSid": {
+          "description": "Output only. The application SID",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dbSid": {
+          "description": "Output only. The database SID",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sapSystemId": {
+          "description": "Output only. The UUID for a SAP workload",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1799,6 +2389,59 @@
       },
       "type": "object"
     },
+    "SqlserverWorkload": {
+      "description": "The body of sqlserver workload",
+      "id": "SqlserverWorkload",
+      "properties": {
+        "ags": {
+          "description": "Output only. The availability groups for sqlserver",
+          "items": {
+            "$ref": "AvailabilityGroup"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cluster": {
+          "$ref": "Cluster",
+          "description": "Output only. The cluster for sqlserver",
+          "readOnly": true
+        },
+        "databases": {
+          "description": "Output only. The databases for sqlserver",
+          "items": {
+            "$ref": "Database"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "loadBalancerServer": {
+          "$ref": "LoadBalancerServer",
+          "description": "Output only. The load balancer for sqlserver",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "SqlserverWorkloadOverview": {
+      "description": "The overview of sqlserver workload",
+      "id": "SqlserverWorkloadOverview",
+      "properties": {
+        "availabilityGroup": {
+          "description": "Output only. The availability groups",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "sqlserverSystemId": {
+          "description": "Output only. The UUID for a Sqlserver workload",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -1826,6 +2469,45 @@
       },
       "type": "object"
     },
+    "ThreeTierWorkload": {
+      "description": "The body of three tier workload",
+      "id": "ThreeTierWorkload",
+      "properties": {
+        "apiLayer": {
+          "$ref": "APILayerServer",
+          "description": "Output only. The API layer for three tier workload",
+          "readOnly": true
+        },
+        "backend": {
+          "$ref": "BackendServer",
+          "description": "Output only. The backend for three tier workload",
+          "readOnly": true
+        },
+        "endpoint": {
+          "description": "Output only. the workload endpoint",
+          "readOnly": true,
+          "type": "string"
+        },
+        "frontend": {
+          "$ref": "FrontEndServer",
+          "description": "Output only. The frontend for three tier workload",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ThreeTierWorkloadOverview": {
+      "description": "The overview of three tier workload",
+      "id": "ThreeTierWorkloadOverview",
+      "properties": {
+        "threeTierSystemId": {
+          "description": "Output only. The UUID for a three tier workload",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ViolationDetails": {
       "description": "Message describing the violdation in execution result",
       "id": "ViolationDetails",
@@ -1844,6 +2526,111 @@
         "serviceAccount": {
           "description": "the service account associate with resource",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadProfile": {
+      "description": "workload resource",
+      "id": "WorkloadProfile",
+      "properties": {
+        "application": {
+          "$ref": "Layer",
+          "deprecated": true,
+          "description": "Optional. The application layer"
+        },
+        "ascs": {
+          "$ref": "Layer",
+          "deprecated": true,
+          "description": "Optional. The ascs layer"
+        },
+        "database": {
+          "$ref": "Layer",
+          "deprecated": true,
+          "description": "Optional. The database layer"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. such as name, description, version. More example can be found in deployment",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. name of resource names have the form 'projects/{project_id}/workloads/{workload_id}'",
+          "type": "string"
+        },
+        "refreshedTime": {
+          "description": "Required. time when the workload data was refreshed",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sapWorkload": {
+          "$ref": "SapWorkload",
+          "description": "The sap workload content"
+        },
+        "sqlserverWorkload": {
+          "$ref": "SqlserverWorkload",
+          "description": "The sqlserver workload content"
+        },
+        "state": {
+          "deprecated": true,
+          "description": "Output only. [output only] the current state if a a workload",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DEPLOYING",
+            "DESTROYING",
+            "MAINTENANCE"
+          ],
+          "enumDescriptions": [
+            "unspecified",
+            "ACTIVE state",
+            "workload is in Deploying state",
+            "The workload is in Destroying state",
+            "The Workload is undermaintance"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "threeTierWorkload": {
+          "$ref": "ThreeTierWorkload",
+          "description": "The 3 tier web app workload content"
+        },
+        "workloadType": {
+          "description": "Required. The type of the workload",
+          "enum": [
+            "WORKLOAD_TYPE_UNSPECIFIED",
+            "S4_HANA",
+            "SQL_SERVER",
+            "THREE_TIER_WEB_APP"
+          ],
+          "enumDescriptions": [
+            "unspecified workload type",
+            "running sap workload s4/hana",
+            "running sqlserver workload",
+            "running 3 tier web app workload"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadProfileOverview": {
+      "description": "a workload profile overview",
+      "id": "WorkloadProfileOverview",
+      "properties": {
+        "sapWorkloadOverview": {
+          "$ref": "SapWorkloadOverview",
+          "description": "The sap workload overview"
+        },
+        "sqlserverWorkloadOverview": {
+          "$ref": "SqlserverWorkloadOverview",
+          "description": "The sqlserver workload overview"
+        },
+        "threeTierWorkloadOverview": {
+          "$ref": "ThreeTierWorkloadOverview",
+          "description": "The three tier workload overview"
         }
       },
       "type": "object"

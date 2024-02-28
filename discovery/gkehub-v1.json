@@ -1834,7 +1834,7 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20240209",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2547,6 +2547,24 @@
           ],
           "type": "string"
         },
+        "state": {
+          "description": "The state of CS This field summarizes the other fields in this message.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CONFIG_SYNC_NOT_INSTALLED",
+            "CONFIG_SYNC_INSTALLED",
+            "CONFIG_SYNC_ERROR",
+            "CONFIG_SYNC_PENDING"
+          ],
+          "enumDescriptions": [
+            "CS's state cannot be determined.",
+            "CS is not installed.",
+            "The expected CS version is installed successfully.",
+            "CS encounters errors.",
+            "CS is installing or terminating."
+          ],
+          "type": "string"
+        },
         "syncState": {
           "$ref": "ConfigManagementSyncState",
           "description": "The state of ConfigSync's process to sync configs to a cluster"
@@ -2854,6 +2872,20 @@
         "hierarchyController": {
           "$ref": "ConfigManagementHierarchyControllerConfig",
           "description": "Hierarchy Controller configuration for the cluster."
+        },
+        "management": {
+          "description": "Enables automatic Feature management.",
+          "enum": [
+            "MANAGEMENT_UNSPECIFIED",
+            "MANAGEMENT_AUTOMATIC",
+            "MANAGEMENT_MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Google will manage the Feature for the cluster.",
+            "User will manually manage the Feature for the cluster."
+          ],
+          "type": "string"
         },
         "policyController": {
           "$ref": "ConfigManagementPolicyController",

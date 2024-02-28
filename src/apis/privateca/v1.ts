@@ -405,9 +405,22 @@ export namespace privateca_v1 {
      */
     subjectConfig?: Schema$SubjectConfig;
     /**
+     * Optional. When specified this provides a custom SKI to be used in the certificate. This should only be used to maintain a SKI of an existing CA originally created outside CAS, which was not generated using method (1) described in RFC 5280 section 4.2.1.2.
+     */
+    subjectKeyId?: Schema$CertificateConfigKeyId;
+    /**
      * Required. Describes how some of the technical X.509 fields in a certificate should be populated.
      */
     x509Config?: Schema$X509Parameters;
+  }
+  /**
+   * A KeyId identifies a specific public key, usually by hashing the public key.
+   */
+  export interface Schema$CertificateConfigKeyId {
+    /**
+     * Optional. The value of this KeyId encoded in lowercase hexadecimal. This is most likely the 160 bit SHA-1 hash of the public key.
+     */
+    keyId?: string | null;
   }
   /**
    * A CertificateDescription describes an X.509 certificate or CSR that has been issued, as an alternative to using ASN.1 / X.509.

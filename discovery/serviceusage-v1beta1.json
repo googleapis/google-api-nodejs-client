@@ -964,7 +964,7 @@
       }
     }
   },
-  "revision": "20231218",
+  "revision": "20240220",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -2514,20 +2514,6 @@
       "description": "The consumer policy rule that defines enabled services, groups, and categories.",
       "id": "GoogleApiServiceusageV2alphaEnableRule",
       "properties": {
-        "categories": {
-          "description": "The names of the categories that are enabled. Example: `categories/googleServices`.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "groups": {
-          "description": "The names of the service groups that are enabled. Example: `services/container.googleapis.com/groups/dependencies`.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "services": {
           "description": "The names of the services that are enabled. Example: `services/storage.googleapis.com`.",
           "items": {

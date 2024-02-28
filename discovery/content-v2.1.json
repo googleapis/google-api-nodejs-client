@@ -6186,7 +6186,7 @@
       }
     }
   },
-  "revision": "20240131",
+  "revision": "20240226",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -7592,7 +7592,7 @@
       "id": "AttributionSettings",
       "properties": {
         "attributionLookbackWindowInDays": {
-          "description": "Required. Lookback windows (in days) used for attribution in this source. Supported values are 7, 30, 60, 90.",
+          "description": "Required. Lookback windows (in days) used for attribution in this source. Supported values are 7, 30, 40.",
           "format": "int32",
           "type": "integer"
         },
@@ -16879,7 +16879,7 @@
       "id": "SearchRequest",
       "properties": {
         "pageSize": {
-          "description": "Number of ReportRows to retrieve in a single page. Defaults to the maximum of 1000. Values above 1000 are coerced to 1000.",
+          "description": "Number of ReportRows to retrieve in a single page. Defaults to 1000. Values above 5000 are coerced to 5000.",
           "format": "int32",
           "type": "integer"
         },

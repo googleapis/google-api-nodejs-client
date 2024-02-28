@@ -1317,7 +1317,7 @@
       }
     }
   },
-  "revision": "20240204",
+  "revision": "20240218",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2635,6 +2635,10 @@
           ],
           "type": "string"
         },
+        "healthCheckDisabled": {
+          "description": "Optional. Disables health checking containers during deployment.",
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -2660,7 +2664,7 @@
           "type": "string"
         },
         "sessionAffinity": {
-          "description": "Enable session affinity.",
+          "description": "Optional. Enable session affinity.",
           "type": "boolean"
         },
         "timeout": {
