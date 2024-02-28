@@ -23,6 +23,16 @@
       "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/",
       "location": "me-central2",
       "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://pubsub.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://pubsub.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Regional Endpoint"
     }
   ],
   "icons": {
@@ -731,7 +741,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240220",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
