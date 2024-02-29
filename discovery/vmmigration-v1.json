@@ -415,6 +415,254 @@
                 }
               }
             },
+            "imageImports": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ImageImport in a given project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/imageImports",
+                  "httpMethod": "POST",
+                  "id": "vmmigration.projects.locations.imageImports.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "imageImportId": {
+                      "description": "Required. The image import identifier. This value maximum length is 63 characters, and valid characters are /a-z-/. It must start with an english letter and must not end with a hyphen.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The ImageImport's parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/imageImports",
+                  "request": {
+                    "$ref": "ImageImport"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single ImageImport.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/imageImports/{imageImportsId}",
+                  "httpMethod": "DELETE",
+                  "id": "vmmigration.projects.locations.imageImports.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The ImageImport name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/imageImports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ImageImport.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/imageImports/{imageImportsId}",
+                  "httpMethod": "GET",
+                  "id": "vmmigration.projects.locations.imageImports.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The ImageImport name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/imageImports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ImageImport"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ImageImports in a given project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/imageImports",
+                  "httpMethod": "GET",
+                  "id": "vmmigration.projects.locations.imageImports.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filter request (according to https://google.aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. The order by fields for the result (according to https://google.aip.dev/132#ordering). Currently ordering is only possible by \"name\" field.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of targets to return. The service may return fewer than this value. If unspecified, at most 500 targets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListImageImports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListImageImports` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of targets.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/imageImports",
+                  "response": {
+                    "$ref": "ListImageImportsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "imageImportJobs": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Initiates the cancellation of a running clone job.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/imageImports/{imageImportsId}/imageImportJobs/{imageImportJobsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "vmmigration.projects.locations.imageImports.imageImportJobs.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The image import job id.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/imageImports/[^/]+/imageImportJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancel",
+                      "request": {
+                        "$ref": "CancelImageImportJobRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single ImageImportJob.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/imageImports/{imageImportsId}/imageImportJobs/{imageImportJobsId}",
+                      "httpMethod": "GET",
+                      "id": "vmmigration.projects.locations.imageImports.imageImportJobs.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The ImageImportJob name.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/imageImports/[^/]+/imageImportJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "ImageImportJob"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists ImageImportJobs in a given project.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/imageImports/{imageImportsId}/imageImportJobs",
+                      "httpMethod": "GET",
+                      "id": "vmmigration.projects.locations.imageImports.imageImportJobs.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The filter request (according to https://google.aip.dev/160).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. The order by fields for the result (according to https://google.aip.dev/132#ordering). Currently ordering is only possible by \"name\" field.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of targets to return. The service may return fewer than this value. If unspecified, at most 500 targets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListImageImportJobs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListImageImportJobs` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent, which owns this collection of targets.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/imageImports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/imageImportJobs",
+                      "response": {
+                        "$ref": "ListImageImportJobsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -1972,7 +2220,7 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20240222",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2641,6 +2889,12 @@
       "properties": {},
       "type": "object"
     },
+    "CancelImageImportJobRequest": {
+      "description": "Request message for 'CancelImageImportJob' request.",
+      "id": "CancelImageImportJobRequest",
+      "properties": {},
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -3134,6 +3388,12 @@
       },
       "type": "object"
     },
+    "CreatingImageStep": {
+      "description": "CreatingImageStep contains specific step details.",
+      "id": "CreatingImageStep",
+      "properties": {},
+      "type": "object"
+    },
     "CutoverForecast": {
       "description": "CutoverForecast holds information about future CutoverJobs of a MigratingVm.",
       "id": "CutoverForecast",
@@ -3302,6 +3562,12 @@
       },
       "type": "object"
     },
+    "DataDiskImageImport": {
+      "description": "Mentions that the image import is not using OS adaptation process.",
+      "id": "DataDiskImageImport",
+      "properties": {},
+      "type": "object"
+    },
     "DatacenterConnector": {
       "description": "DatacenterConnector message describes a connector between the Source and Google Cloud, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to Google Cloud and support vm migration data transfer.",
       "id": "DatacenterConnector",
@@ -3420,6 +3686,59 @@
       "properties": {
         "sourceImage": {
           "description": "Required. The Image resource used when creating the disk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiskImageTargetDetails": {
+      "description": "The target details of the image resource that will be created by the import job.",
+      "id": "DiskImageTargetDetails",
+      "properties": {
+        "additionalLicenses": {
+          "description": "Optional. Additional licenses to assign to the image.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dataDiskImageImport": {
+          "$ref": "DataDiskImageImport",
+          "description": "Optional. Use to skip OS adaptation process."
+        },
+        "description": {
+          "description": "Optional. An optional description of the image.",
+          "type": "string"
+        },
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Optional. Immutable. The encryption to apply to the image."
+        },
+        "familyName": {
+          "description": "Optional. The name of the image family to which the new image belongs.",
+          "type": "string"
+        },
+        "imageName": {
+          "description": "Required. The name of the image to be created.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. A map of labels to associate with the image.",
+          "type": "object"
+        },
+        "osAdaptationParameters": {
+          "$ref": "ImageImportOsAdaptationParameters",
+          "description": "Optional. Use to set the parameters relevant for the OS adaptation process."
+        },
+        "singleRegionStorage": {
+          "description": "Optional. Set to true to set the image storageLocations to the single region of the import job. When false, the closest multi-region is selected.",
+          "type": "boolean"
+        },
+        "targetProject": {
+          "description": "Required. Reference to the TargetProject resource that represents the target project in which the imported image will be created.",
           "type": "string"
         }
       },
@@ -3626,6 +3945,199 @@
       },
       "type": "object"
     },
+    "ImageImport": {
+      "description": "ImageImport describes the configuration of the image import to run.",
+      "id": "ImageImport",
+      "properties": {
+        "cloudStorageUri": {
+          "description": "Immutable. The path to the Cloud Storage file from which the image should be imported.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the image import was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "diskImageTargetDefaults": {
+          "$ref": "DiskImageTargetDetails",
+          "description": "Immutable. Target details for importing a disk image, will be used by ImageImportJob."
+        },
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Immutable. The encryption details used by the image import process during the image adaptation for Compute Engine."
+        },
+        "name": {
+          "description": "Output only. The resource path of the ImageImport.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "recentImageImportJobs": {
+          "description": "Output only. The result of the most recent runs for this ImageImport. All jobs for this ImageImport can be listed via ListImageImportJobs.",
+          "items": {
+            "$ref": "ImageImportJob"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImageImportJob": {
+      "description": "ImageImportJob describes the progress and result of an image import.",
+      "id": "ImageImportJob",
+      "properties": {
+        "cloudStorageUri": {
+          "description": "Output only. The path to the Cloud Storage file from which the image should be imported.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the image import was created (as an API call, not when it was actually created in the target).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createdResources": {
+          "description": "Output only. The resource paths of the resources created by the image import job.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "diskImageTargetDetails": {
+          "$ref": "DiskImageTargetDetails",
+          "description": "Output only. Target details used to import a disk image.",
+          "readOnly": true
+        },
+        "endTime": {
+          "description": "Output only. The time the image import was ended.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "errors": {
+          "description": "Output only. Provides details on the error that led to the image import state in case of an error.",
+          "items": {
+            "$ref": "Status"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The resource path of the ImageImportJob.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the image import.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLING",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "The state is unknown.",
+            "The image import has not yet started.",
+            "The image import is active and running.",
+            "The image import has finished successfully.",
+            "The image import has finished with errors.",
+            "The image import is being cancelled.",
+            "The image import was cancelled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "steps": {
+          "description": "Output only. The image import steps list representing its progress.",
+          "items": {
+            "$ref": "ImageImportStep"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warnings": {
+          "description": "Output only. Warnings that occurred during the image import.",
+          "items": {
+            "$ref": "MigrationWarning"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImageImportOsAdaptationParameters": {
+      "description": "Parameters affecting the OS adaptation process.",
+      "id": "ImageImportOsAdaptationParameters",
+      "properties": {
+        "generalize": {
+          "description": "Optional. Set to true in order to generalize the imported image. The generalization process enables co-existence of multiple VMs created from the same image. For Windows, generalizing the image removes computer-specific information such as installed drivers and the computer security identifier (SID).",
+          "type": "boolean"
+        },
+        "licenseType": {
+          "description": "Optional. Choose which type of license to apply to the imported image.",
+          "enum": [
+            "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT",
+            "COMPUTE_ENGINE_LICENSE_TYPE_PAYG",
+            "COMPUTE_ENGINE_LICENSE_TYPE_BYOL"
+          ],
+          "enumDescriptions": [
+            "The license type is the default for the OS.",
+            "The license type is Pay As You Go license type.",
+            "The license type is Bring Your Own License type."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImageImportStep": {
+      "description": "ImageImportStep holds information about the image import step progress.",
+      "id": "ImageImportStep",
+      "properties": {
+        "adaptingOs": {
+          "$ref": "AdaptingOSStep",
+          "description": "Adapting OS step."
+        },
+        "creatingImage": {
+          "$ref": "CreatingImageStep",
+          "description": "Creating image step."
+        },
+        "endTime": {
+          "description": "Output only. The time the step has ended.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "initializing": {
+          "$ref": "InitializingImageImportStep",
+          "description": "Initializing step."
+        },
+        "loadingSourceFiles": {
+          "$ref": "LoadingImageSourceFilesStep",
+          "description": "Loading source files step."
+        },
+        "startTime": {
+          "description": "Output only. The time the step has started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InitializingImageImportStep": {
+      "description": "InitializingImageImportStep contains specific step details.",
+      "id": "InitializingImageImportStep",
+      "properties": {},
+      "type": "object"
+    },
     "InitializingReplicationStep": {
       "description": "InitializingReplicationStep contains specific step details.",
       "id": "InitializingReplicationStep",
@@ -3745,6 +4257,62 @@
           "description": "Output only. The list of groups response.",
           "items": {
             "$ref": "Group"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Output only. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListImageImportJobsResponse": {
+      "description": "Response message for 'ListImageImportJobs' call.",
+      "id": "ListImageImportJobsResponse",
+      "properties": {
+        "imageImportJobs": {
+          "description": "Output only. The list of target response.",
+          "items": {
+            "$ref": "ImageImportJob"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Output only. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListImageImportsResponse": {
+      "description": "Response message for 'ListImageImports' call.",
+      "id": "ListImageImportsResponse",
+      "properties": {
+        "imageImports": {
+          "description": "Output only. The list of target response.",
+          "items": {
+            "$ref": "ImageImport"
           },
           "readOnly": true,
           "type": "array"
@@ -3939,6 +4507,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "LoadingImageSourceFilesStep": {
+      "description": "LoadingImageSourceFilesStep contains specific step details.",
+      "id": "LoadingImageSourceFilesStep",
+      "properties": {},
       "type": "object"
     },
     "LocalizedMessage": {
@@ -4166,7 +4740,8 @@
             "CLONE_ERROR",
             "CUTOVER_ERROR",
             "UTILIZATION_REPORT_ERROR",
-            "APPLIANCE_UPGRADE_ERROR"
+            "APPLIANCE_UPGRADE_ERROR",
+            "IMAGE_IMPORT_ERROR"
           ],
           "enumDescriptions": [
             "Default value. This value is not used.",
@@ -4178,7 +4753,8 @@
             "Migrate to Virtual Machines encountered an error in clone operation.",
             "Migrate to Virtual Machines encountered an error in cutover operation.",
             "Migrate to Virtual Machines encountered an error during utilization report creation.",
-            "Migrate to Virtual Machines encountered an error during appliance upgrade."
+            "Migrate to Virtual Machines encountered an error during appliance upgrade.",
+            "Migrate to Virtual Machines encountered an error in image import operation."
           ],
           "readOnly": true,
           "type": "string"
