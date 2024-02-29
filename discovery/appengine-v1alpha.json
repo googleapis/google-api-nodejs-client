@@ -789,65 +789,6 @@
             }
           },
           "resources": {
-            "applications": {
-              "resources": {
-                "authorizedDomains": {
-                  "methods": {
-                    "list": {
-                      "description": "Lists all domains the user is authorized to administer.",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedDomains",
-                      "httpMethod": "GET",
-                      "id": "appengine.projects.locations.applications.authorizedDomains.list",
-                      "parameterOrder": [
-                        "projectsId",
-                        "locationsId",
-                        "applicationsId"
-                      ],
-                      "parameters": {
-                        "applicationsId": {
-                          "description": "Part of `parent`. See documentation of `projectsId`.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "locationsId": {
-                          "description": "Part of `parent`. See documentation of `projectsId`.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "pageSize": {
-                          "description": "Maximum results to return per page.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "Continuation token for fetching the next page of results.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "projectsId": {
-                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedDomains",
-                      "response": {
-                        "$ref": "ListAuthorizedDomainsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/appengine.admin",
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
             "operations": {
               "methods": {
                 "get": {
@@ -946,7 +887,7 @@
       }
     }
   },
-  "revision": "20240226",
+  "revision": "20240218",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {
@@ -1576,7 +1517,7 @@
       "type": "object"
     },
     "Reasons": {
-      "description": "Containers transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API) Service Activation (Service Controller)",
+      "description": "Containers transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API)",
       "id": "Reasons",
       "properties": {
         "abuse": {
@@ -1625,24 +1566,6 @@
             "When a container is deleted we retain some data for a period of time to allow the consumer to change their mind. Data governance sends a signal to hide the data when this occurs. Hide is a reason to put the container in an INTERNAL_OFF state.",
             "The decision to un-delete a container can be made. When this happens data governance tells us to unhide any hidden data. Unhide is a reason to put the container in an ON state.",
             "After a period of time data must be completely removed from our systems. When data governance sends a purge signal we need to remove data. Purge is a reason to put the container in a DELETED state. Purge is the only event that triggers a delete mutation. All other events have update semantics."
-          ],
-          "type": "string"
-        },
-        "serviceActivation": {
-          "description": "Consumer Container denotes if the service is active within a project or not. This information could be used to clean up resources in case service in DISABLED_FULL i.e. Service is inactive > 30 days.",
-          "enum": [
-            "SERVICE_ACTIVATION_STATUS_UNSPECIFIED",
-            "SERVICE_ACTIVATION_ENABLED",
-            "SERVICE_ACTIVATION_DISABLED",
-            "SERVICE_ACTIVATION_DISABLED_FULL",
-            "SERVICE_ACTIVATION_UNKNOWN_REASON"
-          ],
-          "enumDescriptions": [
-            "Default Unspecified status",
-            "Service is active in the project.",
-            "Service is disabled in the project recently i.e., within last 24 hours.",
-            "Service has been disabled for configured grace_period (default 30 days).",
-            "Happens when PSM cannot determine the status of service in a project Could happen due to variety of reasons like PERMISSION_DENIED or Project got deleted etc."
           ],
           "type": "string"
         },

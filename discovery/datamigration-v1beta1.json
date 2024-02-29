@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20240122",
+  "revision": "20240221",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1774,7 +1774,8 @@
             "SOURCE_SIZE_EXCEEDS_THRESHOLD",
             "EXISTING_CONFLICTING_DATABASES",
             "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
-            "EXISTING_DATA"
+            "EXISTING_DATA",
+            "SOURCE_MAX_SUBSCRIPTIONS"
           ],
           "enumDescriptions": [
             "An unknown error occurred",
@@ -1793,7 +1794,8 @@
             "The source DB size in Bytes exceeds a certain threshold. The migration might require an increase of quota, or might not be supported.",
             "The destination DB contains existing databases that are conflicting with those in the source DB.",
             "Insufficient privilege to enable the parallelism configuration.",
-            "The destination instance contains existing data or user defined entities (for example databases, tables, or functions). You can only migrate to empty instances. Clear your destination instance and retry the migration job."
+            "The destination instance contains existing data or user defined entities (for example databases, tables, or functions). You can only migrate to empty instances. Clear your destination instance and retry the migration job.",
+            "The migration job is configured to use max number of subscriptions to migrate data from the source to the destination."
           ],
           "readOnly": true,
           "type": "string"

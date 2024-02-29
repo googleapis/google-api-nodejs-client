@@ -1006,6 +1006,19 @@ export namespace cloudbuild_v1 {
     workerPool?: string | null;
   }
   /**
+   * The default service account used for `Builds`.
+   */
+  export interface Schema$DefaultServiceAccount {
+    /**
+     * Identifier. Format: `projects/{project\}/locations/{location\}/defaultServiceAccount
+     */
+    name?: string | null;
+    /**
+     * Output only. The email address of the service account identity that will be used for a build by default. This is returned in the format `projects/{project\}/serviceAccounts/{service_account\}` where `{service_account\}` could be the legacy Cloud Build SA, in the format [PROJECT_NUMBER]@cloudbuild.gserviceaccount.com or the Compute SA, in the format [PROJECT_NUMBER]-compute@developer.gserviceaccount.com. If no service account will be used by default, this will be empty.
+     */
+    serviceAccountEmail?: string | null;
+  }
+  /**
    * Metadata for `DeleteBitbucketServerConfig` operation.
    */
   export interface Schema$DeleteBitbucketServerConfigOperationMetadata {
@@ -1710,9 +1723,30 @@ export namespace cloudbuild_v1 {
      */
     networkConfig?: Schema$NetworkConfig;
     /**
+     * Immutable. Private Service Connect(PSC) Network configuration for the pool.
+     */
+    privateServiceConnect?: Schema$PrivateServiceConnect;
+    /**
      * Machine configuration for the workers in the pool.
      */
     workerConfig?: Schema$WorkerConfig;
+  }
+  /**
+   * Defines the Private Service Connect network configuration for the pool.
+   */
+  export interface Schema$PrivateServiceConnect {
+    /**
+     * Required. Immutable. The network attachment that the worker network interface is peered to. Must be in the format `projects/{project\}/regions/{region\}/networkAttachments/{networkAttachment\}`. The region of network attachment must be the same as the worker pool. See [Network Attachments](https://cloud.google.com/vpc/docs/about-network-attachments)
+     */
+    networkAttachment?: string | null;
+    /**
+     * Required. Immutable. Disable public IP on the primary network interface. If true, workers are created without any public address, which prevents network egress to public IPs unless a network proxy is configured. If false, workers are created with a public address which allows for public internet egress. The public address only applies to traffic through the primary network interface. If `route_all_traffic` is set to true, all traffic will go through the non-primary network interface, this boolean has no effect.
+     */
+    publicIpAddressDisabled?: boolean | null;
+    /**
+     * Immutable. Route all traffic through PSC interface. Enable this if you want full control of traffic in the private pool. Configure Cloud NAT for the subnet of network attachment if you need to access public Internet. If false, Only route private IPs, e.g. 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16 through PSC interface.
+     */
+    routeAllTraffic?: boolean | null;
   }
   /**
    * Metadata for `ProcessAppManifestCallback` operation.
@@ -3949,6 +3983,106 @@ export namespace cloudbuild_v1 {
         this.context
       );
     }
+
+    /**
+     * Returns the `DefaultServiceAccount` used by the project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDefaultServiceAccount(
+      params: Params$Resource$Projects$Locations$Getdefaultserviceaccount,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDefaultServiceAccount(
+      params?: Params$Resource$Projects$Locations$Getdefaultserviceaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DefaultServiceAccount>;
+    getDefaultServiceAccount(
+      params: Params$Resource$Projects$Locations$Getdefaultserviceaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDefaultServiceAccount(
+      params: Params$Resource$Projects$Locations$Getdefaultserviceaccount,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DefaultServiceAccount>,
+      callback: BodyResponseCallback<Schema$DefaultServiceAccount>
+    ): void;
+    getDefaultServiceAccount(
+      params: Params$Resource$Projects$Locations$Getdefaultserviceaccount,
+      callback: BodyResponseCallback<Schema$DefaultServiceAccount>
+    ): void;
+    getDefaultServiceAccount(
+      callback: BodyResponseCallback<Schema$DefaultServiceAccount>
+    ): void;
+    getDefaultServiceAccount(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getdefaultserviceaccount
+        | BodyResponseCallback<Schema$DefaultServiceAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DefaultServiceAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DefaultServiceAccount>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DefaultServiceAccount>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getdefaultserviceaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Getdefaultserviceaccount;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DefaultServiceAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DefaultServiceAccount>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Getdefaultserviceaccount
+    extends StandardParameters {
+    /**
+     * Required. The name of the `DefaultServiceAccount` to retrieve. Format: `projects/{project\}/locations/{location\}/defaultServiceAccount`
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Bitbucketserverconfigs {

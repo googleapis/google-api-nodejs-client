@@ -1430,6 +1430,31 @@ export namespace chromemanagement_v1 {
     userId?: string | null;
   }
   /**
+   * Runtime counters retrieved from CPU. Currently the runtime counters telemetry is only supported by Intel vPro PSR on Gen 14+.
+   */
+  export interface Schema$GoogleChromeManagementV1RuntimeCountersReport {
+    /**
+     * Number of times that the device has entered into the hibernation state. Currently obtained via the PSR, count from S0-\>S4.
+     */
+    enterHibernationCount?: string | null;
+    /**
+     * Number of times that the device has entered into the power-off state. Currently obtained via the PSR, count from S0-\>S5.
+     */
+    enterPoweroffCount?: string | null;
+    /**
+     * Number of times that the device has entered into the sleep state. Currently obtained via the PSR, count from S0-\>S3.
+     */
+    enterSleepCount?: string | null;
+    /**
+     * Timestamp when the report was collected.
+     */
+    reportTime?: string | null;
+    /**
+     * Total lifetime runtime. Currently always S0 runtime from Intel vPro PSR.
+     */
+    uptimeRuntimeDuration?: string | null;
+  }
+  /**
    * Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_STORAGE_INFO
    */
   export interface Schema$GoogleChromeManagementV1StorageInfo {
@@ -1572,6 +1597,10 @@ export namespace chromemanagement_v1 {
      * Output only. Peripherals reports collected periodically sorted in a decreasing order of report_time.
      */
     peripheralsReport?: Schema$GoogleChromeManagementV1PeripheralsReport[];
+    /**
+     * Output only. Runtime counters reports collected device lifetime runtime, as well as the counts of S0-\>S3, S0-\>S4, and S0-\>S5 transitions, meaning entering into sleep, hibernation, and power-off states
+     */
+    runtimeCountersReport?: Schema$GoogleChromeManagementV1RuntimeCountersReport[];
     /**
      * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.
      */

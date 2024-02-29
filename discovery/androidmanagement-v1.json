@@ -148,7 +148,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes an enterprise. Only available for EMM-managed enterprises.",
+          "description": "Permanently deletes an enterprise and all accounts and data associated with it. Warning: this will result in a cascaded deletion of all AM API devices associated with the deleted enterprise. Only available for EMM-managed enterprises.",
           "flatPath": "v1/enterprises/{enterprisesId}",
           "httpMethod": "DELETE",
           "id": "androidmanagement.enterprises.delete",
@@ -1163,7 +1163,7 @@
       }
     }
   },
-  "revision": "20240213",
+  "revision": "20240221",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
