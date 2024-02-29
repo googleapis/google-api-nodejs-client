@@ -1087,7 +1087,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageAnchorPageRef {
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
+     * Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to.
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta1BoundingPoly;
     /**
@@ -2124,7 +2124,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageAnchorPageRef {
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
+     * Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to.
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta2BoundingPoly;
     /**
