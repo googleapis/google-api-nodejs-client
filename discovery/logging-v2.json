@@ -7668,7 +7668,7 @@
       }
     }
   },
-  "revision": "20240223",
+  "revision": "20240207",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryDataset": {
@@ -7824,8 +7824,7 @@
         },
         "request": {
           "$ref": "CopyLogEntriesRequest",
-          "deprecated": true,
-          "description": "CopyLogEntries RPC request. This field is deprecated and not used."
+          "description": "CopyLogEntries RPC request."
         },
         "source": {
           "description": "Source from which to copy log entries.For example, a log bucket:\"projects/my-project/locations/global/buckets/my-source-bucket\"",
@@ -9687,20 +9686,6 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
-        },
-        "visibility": {
-          "description": "Required. The visibility status of this query, which determines its ownership.",
-          "enum": [
-            "VISIBILITY_UNSPECIFIED",
-            "PRIVATE",
-            "SHARED"
-          ],
-          "enumDescriptions": [
-            "The saved query visibility is unspecified. A CreateSavedQuery request with an unspecified visibility will be rejected.",
-            "The saved query is only visible to the user that created it.",
-            "The saved query is visible to anyone in the project."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -9709,6 +9694,20 @@
       "description": "Describes the settings associated with a project, folder, organization, or billing account.",
       "id": "Settings",
       "properties": {
+        "analyticsMode": {
+          "description": "Optional. The default analytics mode of an org or folder which is inherited by all newly created child project buckets.",
+          "enum": [
+            "ANALYTICS_MODE_UNSPECIFIED",
+            "ANALYTICS_ENABLED",
+            "ANALYTICS_DISABLED"
+          ],
+          "enumDescriptions": [
+            "No default analytics mode defined at this resource level, it will inherit from the closest ancester which has a defined analytics mode. If there is no specified analytics mode across the resource hierarchy, analytics will be disabled by default.",
+            "By default, analytics will be enabled for all new project-level buckets unless explicitly specified otherwise at bucket creation time.",
+            "By default, analytics will be disabled for new project-level buckets unless explicitly specified otherwise at bucket creation time."
+          ],
+          "type": "string"
+        },
         "defaultSinkConfig": {
           "$ref": "DefaultSinkConfig",
           "description": "Optional. Overrides the built-in configuration for _Default sink."
