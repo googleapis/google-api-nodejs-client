@@ -251,6 +251,10 @@ export namespace networkconnectivity_v1 {
      */
     pscConnectionId?: string | null;
     /**
+     * Output only. The URI of the selected subnetwork selected to allocate IP address for this connection.
+     */
+    selectedSubnetwork?: string | null;
+    /**
      * The URI of a service attachment which is the target of the PSC connection.
      */
     serviceAttachmentUri?: string | null;
@@ -1023,6 +1027,10 @@ export namespace networkconnectivity_v1 {
      * The PSC connection id of the PSC forwarding rule.
      */
     pscConnectionId?: string | null;
+    /**
+     * Output only. The URI of the subnetwork selected to allocate IP address for this connection.
+     */
+    selectedSubnetwork?: string | null;
     /**
      * State of the PSC Connection
      */

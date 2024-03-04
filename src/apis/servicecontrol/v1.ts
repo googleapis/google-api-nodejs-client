@@ -368,6 +368,10 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$CheckInfo {
     /**
+     * The unique id of the api key in the format of "apikey:". This field will be populated when the consumer passed to Chemist is an API key and all the API key related validations are successful.
+     */
+    apiKeyUid?: string | null;
+    /**
      * Consumer info of this check.
      */
     consumerInfo?: Schema$ConsumerInfo;

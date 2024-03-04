@@ -751,11 +751,43 @@
               ]
             }
           }
+        },
+        "resources": {
+          "methods": {
+            "exportSBOM": {
+              "description": "Generates an SBOM for the given resource.",
+              "flatPath": "v1/projects/{projectsId}/resources/{resourcesId}:exportSBOM",
+              "httpMethod": "POST",
+              "id": "containeranalysis.projects.resources.exportSBOM",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/resources/.*$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:exportSBOM",
+              "request": {
+                "$ref": "ExportSBOMRequest"
+              },
+              "response": {
+                "$ref": "ExportSBOMResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
         }
       }
     }
   },
-  "revision": "20240105",
+  "revision": "20240220",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -996,7 +1028,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -1657,6 +1689,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "CloudStorageLocation": {
+      "description": "Empty placeholder to denote that this is a Google Cloud Storage export request.",
+      "id": "CloudStorageLocation",
+      "properties": {},
       "type": "object"
     },
     "Command": {
@@ -3416,6 +3454,28 @@
         },
         "sig": {
           "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExportSBOMRequest": {
+      "description": "The request to generate and export SBOM. Target must be specified for the request.",
+      "id": "ExportSBOMRequest",
+      "properties": {
+        "cloudStorageLocation": {
+          "$ref": "CloudStorageLocation",
+          "description": "Empty placeholder to denote that this is a Google Cloud Storage export request."
+        }
+      },
+      "type": "object"
+    },
+    "ExportSBOMResponse": {
+      "description": "The response from a call to ExportSBOM.",
+      "id": "ExportSBOMResponse",
+      "properties": {
+        "discoveryOccurrence": {
+          "description": "The name of the discovery occurrence in the form \"projects/{project_id}/occurrences/{OCCURRENCE_ID} It can be used to track the progress of the SBOM export.",
           "type": "string"
         }
       },

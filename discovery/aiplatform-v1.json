@@ -20,8 +20,8 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
-      "description": "Locational Endpoint",
       "location": "asia-east1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
     },
     {
@@ -35,28 +35,28 @@
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "asia-northeast2",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/"
     },
     {
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
       "location": "asia-northeast3",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/"
-    },
-    {
-      "location": "asia-south1",
-      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "location": "asia-southeast1",
-      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
+      "location": "asia-south1"
     },
     {
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
       "location": "asia-southeast2"
     },
     {
@@ -65,39 +65,39 @@
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/"
     },
     {
-      "location": "australia-southeast2",
       "description": "Locational Endpoint",
+      "location": "australia-southeast2",
       "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "europe-central2"
+      "location": "europe-central2",
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
+      "location": "europe-north1",
       "description": "Locational Endpoint",
-      "location": "europe-north1"
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
       "location": "europe-southwest1",
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "location": "europe-west1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "location": "europe-west2",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/"
     },
     {
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "europe-west3",
-      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/"
+      "location": "europe-west3"
     },
     {
       "location": "europe-west4",
@@ -106,8 +106,8 @@
     },
     {
       "description": "Locational Endpoint",
-      "location": "europe-west6",
-      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
+      "location": "europe-west6"
     },
     {
       "description": "Locational Endpoint",
@@ -120,53 +120,53 @@
       "location": "europe-west9"
     },
     {
-      "location": "me-west1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "me-west1"
     },
     {
-      "description": "Locational Endpoint",
       "location": "northamerica-northeast1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
     },
     {
       "location": "northamerica-northeast2",
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
-      "location": "southamerica-east1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
     },
     {
-      "location": "southamerica-west1",
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "southamerica-east1"
+    },
+    {
       "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "southamerica-west1"
     },
     {
       "description": "Locational Endpoint",
-      "location": "us-central1",
-      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
+      "location": "us-central1"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
-      "location": "us-central2"
+      "location": "us-central2",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "us-east1"
-    },
-    {
-      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
-      "location": "us-east4",
+      "location": "us-east1",
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
+      "location": "us-east4",
+      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
       "location": "us-south1"
     },
     {
@@ -180,14 +180,14 @@
       "endpointUrl": "https://us-west2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
+      "location": "us-west3",
       "description": "Locational Endpoint",
-      "location": "us-west3"
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/"
     },
     {
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
       "location": "us-west4",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -15562,7 +15562,7 @@
       }
     }
   },
-  "revision": "20240213",
+  "revision": "20240224",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionEmbedVideoResponse": {
@@ -15619,7 +15619,8 @@
             "HATE_SYMBOL_IMG",
             "CHILD_TEXT",
             "DANGEROUS_CONTENT",
-            "RECITATION_TEXT"
+            "RECITATION_TEXT",
+            "CELEBRITY_IMG"
           ],
           "enumDescriptions": [
             "",
@@ -15655,6 +15656,7 @@
             "End of list",
             "",
             "Text category from SafetyCat v3",
+            "",
             ""
           ],
           "type": "string"
@@ -15736,11 +15738,15 @@
         },
         "raiInfo": {
           "$ref": "CloudAiLargeModelsVisionRaiInfo",
-          "description": "RAI info for image"
+          "description": "RAI info for image."
         },
         "semanticFilterResponse": {
           "$ref": "CloudAiLargeModelsVisionSemanticFilterResponse",
           "description": "Semantic filter info for image."
+        },
+        "text": {
+          "description": "Text/Expanded text input for imagen.",
+          "type": "string"
         },
         "uri": {
           "description": "Path to another storage (typically Google Cloud Storage).",
@@ -16504,18 +16510,18 @@
         "severity": {
           "description": "Harm severity levels in the content.",
           "enum": [
-            "HARM_PROBABILITY_UNSPECIFIED",
-            "NEGLIGIBLE",
-            "LOW",
-            "MEDIUM",
-            "HIGH"
+            "HARM_SEVERITY_UNSPECIFIED",
+            "HARM_SEVERITY_NEGLIGIBLE",
+            "HARM_SEVERITY_LOW",
+            "HARM_SEVERITY_MEDIUM",
+            "HARM_SEVERITY_HIGH"
           ],
           "enumDescriptions": [
-            "Harm probability unspecified.",
-            "Negligible level of harm.",
-            "Low level of harm.",
-            "Medium level of harm.",
-            "High level of harm."
+            "Harm severity unspecified.",
+            "Negligible level of harm severity.",
+            "Low level of harm severity.",
+            "Medium level of harm severity.",
+            "High level of harm severity."
           ],
           "type": "string"
         },
@@ -18901,9 +18907,17 @@
           "readOnly": true,
           "type": "string"
         },
+        "displayName": {
+          "description": "The user-defined name of the DatasetVersion. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
+          "type": "string"
+        },
         "etag": {
           "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
           "type": "string"
+        },
+        "metadata": {
+          "description": "Required. Additional information about the DatasetVersion.",
+          "type": "any"
         },
         "name": {
           "description": "Output only. The resource name of the DatasetVersion.",
@@ -20802,6 +20816,10 @@
           "description": "Immutable. Name of the Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.",
           "type": "string"
         },
+        "pointOfContact": {
+          "description": "Entity responsible for maintaining this feature. Can be comma separated list of email addresses or URIs.",
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. Only applicable for Vertex AI Feature Store (Legacy). Timestamp when this EntityType was most recently updated.",
           "format": "google-datetime",
@@ -20894,7 +20912,7 @@
           "description": "Required. Immutable. The BigQuery source URI that points to either a BigQuery Table or View."
         },
         "entityIdColumns": {
-          "description": "Optional. Columns to construct entity_id / row keys. Currently only supports 1 entity_id_column. If not provided defaults to `entity_id`.",
+          "description": "Optional. Columns to construct entity_id / row keys. If not provided defaults to `entity_id`.",
           "items": {
             "type": "string"
           },
@@ -21240,7 +21258,7 @@
       "id": "GoogleCloudAiplatformV1FeatureViewBigQuerySource",
       "properties": {
         "entityIdColumns": {
-          "description": "Required. Columns to construct entity_id / row keys. Start by supporting 1 only.",
+          "description": "Required. Columns to construct entity_id / row keys.",
           "items": {
             "type": "string"
           },
@@ -21257,9 +21275,27 @@
       "description": "Lookup key for a feature view.",
       "id": "GoogleCloudAiplatformV1FeatureViewDataKey",
       "properties": {
+        "compositeKey": {
+          "$ref": "GoogleCloudAiplatformV1FeatureViewDataKeyCompositeKey",
+          "description": "The actual Entity ID will be composed from this struct. This should match with the way ID is defined in the FeatureView spec."
+        },
         "key": {
           "description": "String key to use for lookup.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureViewDataKeyCompositeKey": {
+      "description": "ID that is comprised from several parts (columns).",
+      "id": "GoogleCloudAiplatformV1FeatureViewDataKeyCompositeKey",
+      "properties": {
+        "parts": {
+          "description": "Parts to construct Entity ID. Should match with the same ID columns as defined in FeatureView in the same order.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -22049,17 +22085,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudAiplatformV1GoogleSearchRetrieval": {
-      "description": "Tool to retrieve public web data for grounding, powered by Google.",
-      "id": "GoogleCloudAiplatformV1GoogleSearchRetrieval",
-      "properties": {
-        "disableAttribution": {
-          "description": "Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1GroundingAttribution": {
       "description": "Grounding attribution.",
       "id": "GoogleCloudAiplatformV1GroundingAttribution",
@@ -22608,7 +22633,8 @@
             "LESS_EQUAL",
             "EQUAL",
             "GREATER_EQUAL",
-            "GREATER"
+            "GREATER",
+            "NOT_EQUAL"
           ],
           "enumDescriptions": [
             "Default value of the enum.",
@@ -22616,7 +22642,8 @@
             "Datapoints are eligible iff their value is <= the query's.",
             "Datapoints are eligible iff their value is == the query's.",
             "Datapoints are eligible iff their value is >= the query's.",
-            "Datapoints are eligible iff their value is > the query's."
+            "Datapoints are eligible iff their value is > the query's.",
+            "Datapoints are eligible iff their value is != the query's."
           ],
           "type": "string"
         },
@@ -23757,6 +23784,7 @@
             "NVIDIA_TESLA_A100",
             "NVIDIA_A100_80GB",
             "NVIDIA_L4",
+            "NVIDIA_H100_80GB",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD"
@@ -23771,6 +23799,7 @@
             "Nvidia Tesla A100 GPU.",
             "Nvidia A100 80GB GPU.",
             "Nvidia L4 GPU.",
+            "Nvidia H100 80Gb GPU.",
             "TPU v2.",
             "TPU v3.",
             "TPU v4."
@@ -27075,6 +27104,7 @@
           "description": "Optional. Indicates the launch stage of the model.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
+            "DOGFOOD",
             "EXPERIMENTAL",
             "PRIVATE_PREVIEW",
             "PUBLIC_PREVIEW",
@@ -27082,10 +27112,11 @@
           ],
           "enumDescriptions": [
             "The model launch stage is unspecified.",
-            "Used to indicate the PublisherModel is at Experimental launch stage.",
-            "Used to indicate the PublisherModel is at Private Preview launch stage.",
-            "Used to indicate the PublisherModel is at Public Preview launch stage.",
-            "Used to indicate the PublisherModel is at GA launch stage."
+            "Used to indicate the PublisherModel is at Google internal testing launch stage.",
+            "Used to indicate the PublisherModel is at Experimental launch stage, available to a small set of customers.",
+            "Used to indicate the PublisherModel is at Private Preview launch stage, only available to a small set of customers, although a larger set of customers than an Experimental launch. Previews are the first launch stage used to get feedback from customers.",
+            "Used to indicate the PublisherModel is at Public Preview launch stage, available to all customers, although not supported for production workloads.",
+            "Used to indicate the PublisherModel is at GA launch stage, available to all customers and ready for production workload."
           ],
           "type": "string"
         },
@@ -27885,21 +27916,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudAiplatformV1Retrieval": {
-      "description": "Defines a retrieval tool that model can call to access external knowledge.",
-      "id": "GoogleCloudAiplatformV1Retrieval",
-      "properties": {
-        "disableAttribution": {
-          "description": "Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.",
-          "type": "boolean"
-        },
-        "vertexAiSearch": {
-          "$ref": "GoogleCloudAiplatformV1VertexAISearch",
-          "description": "Set to use data source powered by Vertex AI Search."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1SafetyRating": {
       "description": "Safety rating corresponding to the generated content.",
       "id": "GoogleCloudAiplatformV1SafetyRating",
@@ -27946,6 +27962,37 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "probabilityScore": {
+          "description": "Output only. Harm probability score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "severity": {
+          "description": "Output only. Harm severity levels in the content.",
+          "enum": [
+            "HARM_SEVERITY_UNSPECIFIED",
+            "HARM_SEVERITY_NEGLIGIBLE",
+            "HARM_SEVERITY_LOW",
+            "HARM_SEVERITY_MEDIUM",
+            "HARM_SEVERITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Harm severity unspecified.",
+            "Negligible level of harm severity.",
+            "Low level of harm severity.",
+            "Medium level of harm severity.",
+            "High level of harm severity."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "severityScore": {
+          "description": "Output only. Harm severity score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -33596,23 +33643,15 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1Tool": {
-      "description": "Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool.",
+      "description": "Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool (e.g FunctionDeclaration, Retrieval or GoogleSearchRetrieval).",
       "id": "GoogleCloudAiplatformV1Tool",
       "properties": {
         "functionDeclarations": {
-          "description": "Optional. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.",
+          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1FunctionDeclaration"
           },
           "type": "array"
-        },
-        "googleSearchRetrieval": {
-          "$ref": "GoogleCloudAiplatformV1GoogleSearchRetrieval",
-          "description": "Optional. Specialized retrieval tool that is powered by Google search."
-        },
-        "retrieval": {
-          "$ref": "GoogleCloudAiplatformV1Retrieval",
-          "description": "Optional. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation."
         }
       },
       "type": "object"
@@ -34231,17 +34270,6 @@
         },
         "stringValue": {
           "description": "A string value.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1VertexAISearch": {
-      "description": "Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/vertex-ai-search-and-conversation",
-      "id": "GoogleCloudAiplatformV1VertexAISearch",
-      "properties": {
-        "datastore": {
-          "description": "Required. Fully-qualified Vertex AI Search's datastore resource ID. projects/<>/locations/<>/collections/<>/dataStores/<>",
           "type": "string"
         }
       },
@@ -34999,6 +35027,7 @@
             "GENESIS_NEWS_INSIGHTS",
             "CLOUD_SECURITY_PRETRAINING",
             "CLOUD_SECURITY_FINETUNING",
+            "CLOUD_SECURITY_RAG_CISA",
             "LABS_AQA_DSCOUT",
             "LABS_AQA_TAILWIND",
             "LABS_AQA_DELEWARE",
@@ -35149,7 +35178,12 @@
             "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
             "CLOUD_GEMIT_CODE_IF_V1",
             "CLOUD_GEMIT_CODE_SELF_REPAIR",
-            "CLOUD_GEMIT_IDENTITY"
+            "CLOUD_GEMIT_IDENTITY",
+            "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+            "CLOUD_GEMIT_AMPS",
+            "CLOUD_GEMIT_AQUA",
+            "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+            "CLOUD_GEMIT_GSM8K_SCHEMA"
           ],
           "enumDescriptions": [
             "",
@@ -35318,6 +35352,7 @@
             "Genesis fine-tune datasets.",
             "Cloud Security fine-tune datasets.",
             "",
+            "",
             "LABS AQA fine-tune datasets.",
             "",
             "",
@@ -35465,6 +35500,11 @@
             "Cloud gemit pro FT datasets.",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit ultra FT datasets.",
             "",
             "",
             "",
@@ -35751,6 +35791,7 @@
             "GENESIS_NEWS_INSIGHTS",
             "CLOUD_SECURITY_PRETRAINING",
             "CLOUD_SECURITY_FINETUNING",
+            "CLOUD_SECURITY_RAG_CISA",
             "LABS_AQA_DSCOUT",
             "LABS_AQA_TAILWIND",
             "LABS_AQA_DELEWARE",
@@ -35901,7 +35942,12 @@
             "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
             "CLOUD_GEMIT_CODE_IF_V1",
             "CLOUD_GEMIT_CODE_SELF_REPAIR",
-            "CLOUD_GEMIT_IDENTITY"
+            "CLOUD_GEMIT_IDENTITY",
+            "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+            "CLOUD_GEMIT_AMPS",
+            "CLOUD_GEMIT_AQUA",
+            "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+            "CLOUD_GEMIT_GSM8K_SCHEMA"
           ],
           "enumDescriptions": [
             "",
@@ -36070,6 +36116,7 @@
             "Genesis fine-tune datasets.",
             "Cloud Security fine-tune datasets.",
             "",
+            "",
             "LABS AQA fine-tune datasets.",
             "",
             "",
@@ -36217,6 +36264,11 @@
             "Cloud gemit pro FT datasets.",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit ultra FT datasets.",
             "",
             "",
             "",
@@ -36512,8 +36564,6 @@
             "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
             "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
             "GENESIS_NEWS_INSIGHTS",
-            "CLOUD_SECURITY_PRETRAINING",
-            "CLOUD_SECURITY_FINETUNING",
             "LABS_AQA_DSCOUT",
             "LABS_AQA_TAILWIND",
             "LABS_AQA_DELEWARE",
@@ -36549,6 +36599,9 @@
             "GEMINI_IT_CLOUD_SELF_INSTRUCT",
             "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
             "GEMIT_BRIDGE_SUFFIX_FT",
+            "CLOUD_SECURITY_PRETRAINING",
+            "CLOUD_SECURITY_FINETUNING",
+            "CLOUD_SECURITY_RAG_CISA",
             "GEMINI_GOOSE_PUBLIC",
             "GEMINI_GOOSE_SILOED",
             "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
@@ -36664,7 +36717,12 @@
             "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
             "CLOUD_GEMIT_CODE_IF_V1",
             "CLOUD_GEMIT_CODE_SELF_REPAIR",
-            "CLOUD_GEMIT_IDENTITY"
+            "CLOUD_GEMIT_IDENTITY",
+            "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+            "CLOUD_GEMIT_AMPS",
+            "CLOUD_GEMIT_AQUA",
+            "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+            "CLOUD_GEMIT_GSM8K_SCHEMA"
           ],
           "enumDescriptions": [
             "",
@@ -36831,8 +36889,6 @@
             "Mobile assistant finetune datasets.",
             "",
             "Genesis fine tuned datasets.",
-            "Cloud Security fine tuned datasets.",
-            "",
             "LABS AQA fine-tune datasets.",
             "",
             "",
@@ -36868,6 +36924,9 @@
             "",
             "",
             "Gemit Bridge ULM FT dataset",
+            "Cloud Security fine tuned datasets.",
+            "",
+            "",
             "Gemini Goose FT datasets.",
             "",
             "Gemini V2 datasets",
@@ -36980,6 +37039,11 @@
             "Cloud gemit pro FT datasets.",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit ultra FT datasets.",
             "",
             "",
             "",
@@ -37264,8 +37328,6 @@
             "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
             "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
             "GENESIS_NEWS_INSIGHTS",
-            "CLOUD_SECURITY_PRETRAINING",
-            "CLOUD_SECURITY_FINETUNING",
             "LABS_AQA_DSCOUT",
             "LABS_AQA_TAILWIND",
             "LABS_AQA_DELEWARE",
@@ -37301,6 +37363,9 @@
             "GEMINI_IT_CLOUD_SELF_INSTRUCT",
             "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
             "GEMIT_BRIDGE_SUFFIX_FT",
+            "CLOUD_SECURITY_PRETRAINING",
+            "CLOUD_SECURITY_FINETUNING",
+            "CLOUD_SECURITY_RAG_CISA",
             "GEMINI_GOOSE_PUBLIC",
             "GEMINI_GOOSE_SILOED",
             "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
@@ -37416,7 +37481,12 @@
             "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
             "CLOUD_GEMIT_CODE_IF_V1",
             "CLOUD_GEMIT_CODE_SELF_REPAIR",
-            "CLOUD_GEMIT_IDENTITY"
+            "CLOUD_GEMIT_IDENTITY",
+            "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+            "CLOUD_GEMIT_AMPS",
+            "CLOUD_GEMIT_AQUA",
+            "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+            "CLOUD_GEMIT_GSM8K_SCHEMA"
           ],
           "enumDescriptions": [
             "",
@@ -37583,8 +37653,6 @@
             "Mobile assistant finetune datasets.",
             "",
             "Genesis fine tuned datasets.",
-            "Cloud Security fine tuned datasets.",
-            "",
             "LABS AQA fine-tune datasets.",
             "",
             "",
@@ -37620,6 +37688,9 @@
             "",
             "",
             "Gemit Bridge ULM FT dataset",
+            "Cloud Security fine tuned datasets.",
+            "",
+            "",
             "Gemini Goose FT datasets.",
             "",
             "Gemini V2 datasets",
@@ -37732,6 +37803,11 @@
             "Cloud gemit pro FT datasets.",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "Cloud gemit ultra FT datasets.",
             "",
             "",
             "",
@@ -37872,6 +37948,186 @@
             "$ref": "LearningGenaiRootMetricOutput"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyChatMetadata": {
+      "description": "Stores all metadata relating to AIDA DoConversation.",
+      "id": "LearningGenaiRootCodeyChatMetadata",
+      "properties": {
+        "codeLanguage": {
+          "description": "Indicates the programming language of the code if the message is a code chunk.",
+          "enum": [
+            "UNSPECIFIED",
+            "ALL",
+            "TEXT",
+            "CPP",
+            "PYTHON",
+            "KOTLIN",
+            "JAVA",
+            "JAVASCRIPT",
+            "GO",
+            "R",
+            "JUPYTER_NOTEBOOK",
+            "TYPESCRIPT",
+            "HTML",
+            "SQL",
+            "BASH",
+            "C",
+            "DART",
+            "GRADLE",
+            "JAVADOC",
+            "JSON",
+            "MAKEFILE",
+            "MARKDOWN",
+            "PROTO",
+            "XML",
+            "YAML"
+          ],
+          "enumDescriptions": [
+            "Unspecified Language.",
+            "All languages.",
+            "Not code.",
+            "The most common, well-supported languages. C++ code.",
+            "Python code.",
+            "Kotlin code.",
+            "Java code.",
+            "JavaScript code.",
+            "Go code.",
+            "R code.",
+            "Jupyter notebook.",
+            "TypeScript code.",
+            "HTML code.",
+            "SQL code.",
+            "Other languages in alphabetical order. BASH code.",
+            "C code.",
+            "Dart code.",
+            "Gradle code.",
+            "API documentation.",
+            "JSON code.",
+            "Makefile code.",
+            "Markdown code.",
+            "Protocol buffer.",
+            "XML code.",
+            "YAML code."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyCheckpoint": {
+      "description": "Describes a sample at a checkpoint for post-processing.",
+      "id": "LearningGenaiRootCodeyCheckpoint",
+      "properties": {
+        "codeyTruncatorMetadata": {
+          "$ref": "LearningGenaiRootCodeyTruncatorMetadata",
+          "description": "Metadata that describes what was truncated at this checkpoint."
+        },
+        "currentSample": {
+          "description": "Current state of the sample after truncator.",
+          "type": "string"
+        },
+        "postInferenceStep": {
+          "description": "Postprocessor run that yielded this checkpoint.",
+          "enum": [
+            "STEP_POST_PROCESSING_STEP_UNSPECIFIED",
+            "STEP_ORIGINAL_MODEL_OUTPUT",
+            "STEP_MODEL_OUTPUT_DEDUPLICATION",
+            "STEP_STOP_SEQUENCE_TRUNCATION",
+            "STEP_HEURISTIC_TRUNCATION",
+            "STEP_WALD_TRUNCATION",
+            "STEP_WHITESPACE_TRUNCATION",
+            "STEP_FINAL_DEDUPLICATION",
+            "STEP_TOXICITY_CHECK",
+            "STEP_RECITATION_CHECK",
+            "STEP_RETURNED",
+            "STEP_WALKBACK_CORRECTION",
+            "STEP_SCORE_THRESHOLDING",
+            "STEP_MODEL_CONFIG_STOP_SEQUENCE_TRUNCATION",
+            "STEP_CUSTOM_STOP_SEQUENCE_TRUNCATION",
+            "STEP_EXPECTED_SAMPLE_SIZE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "",
+            "Original model outputs as-is.",
+            "Original model outputs after deduplication.",
+            "StopSequencePostProcessor.",
+            "Heuristic SuffixTruncator step.",
+            "Go service post-processor.",
+            "Truncate trailing whitespace and filter whitespace-only completions.",
+            "Deduplicate after all truncations.",
+            "Toxicity returns true.",
+            "Recitation causes BLOCK.",
+            "Return the response to the API.",
+            "Correcting walkback constraint (samples are dropped if they don't match the prefix constraint).",
+            "Thresholding samples based on a minimum score.",
+            "StopSequencePostProcessor.",
+            "StopSequencePostProcessor.",
+            "Drop extra number of samples that exceeds expected_samples."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyCompletionMetadata": {
+      "description": "Stores all metadata relating to Completion.",
+      "id": "LearningGenaiRootCodeyCompletionMetadata",
+      "properties": {
+        "checkpoints": {
+          "items": {
+            "$ref": "LearningGenaiRootCodeyCheckpoint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyOutput": {
+      "description": "Top-level wrapper used to store all things codey-related.",
+      "id": "LearningGenaiRootCodeyOutput",
+      "properties": {
+        "codeyChatMetadata": {
+          "$ref": "LearningGenaiRootCodeyChatMetadata"
+        },
+        "codeyCompletionMetadata": {
+          "$ref": "LearningGenaiRootCodeyCompletionMetadata"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootCodeyTruncatorMetadata": {
+      "description": "Metadata describing what was truncated at each checkpoint.",
+      "id": "LearningGenaiRootCodeyTruncatorMetadata",
+      "properties": {
+        "cutoffIndex": {
+          "description": "Index of the current sample that trims off truncated text.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "truncatedText": {
+          "description": "Text that was truncated at a specific checkpoint.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -38842,6 +39098,10 @@
         "classifierSummary": {
           "$ref": "LearningGenaiRootClassifierOutputSummary",
           "description": "Summary of classifier output. We attach this to all messages regardless of whether classification rules triggered or not."
+        },
+        "codeyOutput": {
+          "$ref": "LearningGenaiRootCodeyOutput",
+          "description": "Contains metadata related to Codey Processors."
         },
         "currentStreamTextLength": {
           "format": "uint32",

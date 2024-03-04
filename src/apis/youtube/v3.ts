@@ -9825,6 +9825,10 @@ export namespace youtube_v3 {
           options
         ),
         params,
+        mediaUrl: (rootUrl + '/upload/youtube/v3/playlistImages').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: [],
         pathParams: [],
         context: this.context,
@@ -10051,6 +10055,21 @@ export namespace youtube_v3 {
      * Request body metadata
      */
     requestBody?: Schema$PlaylistImage;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
   export interface Params$Resource$Playlistimages$List
     extends StandardParameters {

@@ -263,6 +263,11 @@ export namespace storagetransfer_v1 {
      */
     limitMbps?: string | null;
   }
+  export interface Schema$BatchTaskSpec {
+    deleteObjectTaskSpec?: Schema$DeleteObjectTaskSpec;
+    listTaskSpec?: Schema$ListTaskSpec;
+    metadataTaskSpec?: Schema$MetadataTaskSpec;
+  }
   /**
    * The request message for Operations.CancelOperation.
    */
@@ -283,6 +288,12 @@ export namespace storagetransfer_v1 {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
+  }
+  export interface Schema$DeleteObjectTaskSpec {
+    generation?: string | null;
+    hardDeleteVersionedObject?: boolean | null;
+    name?: string | null;
+    size?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -366,6 +377,15 @@ export namespace storagetransfer_v1 {
     subjectId?: string | null;
   }
   /**
+   * An HdfsData resource specifies a path within an HDFS entity (e.g. a cluster). All cluster-specific settings, such as namenodes and ports, are configured on the transfer agents servicing requests, so HdfsData only contains the root path to the data in our transfer.
+   */
+  export interface Schema$HdfsData {
+    /**
+     * Root path to transfer files.
+     */
+    path?: string | null;
+  }
+  /**
    * An HttpData resource specifies a list of objects on the web to be transferred over HTTP. The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be `"TsvHttpData-1.0"`, which specifies the format of the file. Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields: * **HTTP URL** — The location of the object. * **Length** — The size of the object in bytes. * **MD5** — The base64-encoded MD5 hash of the object. For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage-transfer/docs/create-url-list). When transferring data based on a URL list, keep the following in mind: * When an object located at `http(s)://hostname:port/` is transferred to a data sink, the name of the object at the data sink is `/`. * If the specified size of an object does not match the actual size of the object fetched, the object is not transferred. * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer fails. * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (/storage/docs/cloud-console#_sharingdata) and get a link to it. * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response. * ObjectConditions have no effect when filtering objects to transfer.
    */
   export interface Schema$HttpData {
@@ -400,6 +420,10 @@ export namespace storagetransfer_v1 {
      */
     operations?: Schema$Operation[];
   }
+  export interface Schema$ListTaskSpec {
+    manifest?: Schema$Manifest;
+    objectPrefixes?: Schema$ObjectPrefixes;
+  }
   /**
    * Response from ListTransferJobs.
    */
@@ -429,6 +453,10 @@ export namespace storagetransfer_v1 {
      * States in which `log_actions` are logged. If empty, no logs are generated. Not supported for transfers with PosixFilesystem data sources; use enable_onprem_gcs_transfer_logs instead.
      */
     logActionStates?: string[] | null;
+  }
+  export interface Schema$Manifest {
+    manifestLocation?: string | null;
+    root?: string | null;
   }
   /**
    * Specifies the metadata options for running a transfer.
@@ -463,13 +491,19 @@ export namespace storagetransfer_v1 {
      */
     temporaryHold?: string | null;
     /**
-     * Specifies how each object's `timeCreated` metadata is preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as TIME_CREATED_SKIP.
+     * Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP.
      */
     timeCreated?: string | null;
     /**
      * Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.
      */
     uid?: string | null;
+  }
+  export interface Schema$MetadataTaskSpec {
+    bucketName?: string | null;
+    generation?: string | null;
+    key?: string | null;
+    size?: string | null;
   }
   /**
    * Specification to configure notifications published to Pub/Sub. Notifications are published to the customer-provided topic using the following `PubsubMessage.attributes`: * `"eventType"`: one of the EventType values * `"payloadFormat"`: one of the PayloadFormat values * `"projectId"`: the project_id of the `TransferOperation` * `"transferJobName"`: the transfer_job_name of the `TransferOperation` * `"transferOperationName"`: the name of the `TransferOperation` The `PubsubMessage.data` contains a TransferOperation resource formatted according to the specified `PayloadFormat`.
@@ -516,6 +550,13 @@ export namespace storagetransfer_v1 {
      * Ensures that objects are not transferred until a specific minimum time has elapsed after the "last modification time". When a TransferOperation begins, objects with a "last modification time" are transferred only if the elapsed time between the start_time of the `TransferOperation` and the "last modification time" of the object is equal to or greater than the value of min_time_elapsed_since_last_modification`. Objects that do not have a "last modification time" are also transferred.
      */
     minTimeElapsedSinceLastModification?: string | null;
+  }
+  export interface Schema$ObjectPrefix {
+    bucketName?: string | null;
+    objectPrefix?: string | null;
+  }
+  export interface Schema$ObjectPrefixes {
+    objectPrefixes?: Schema$ObjectPrefix[];
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -909,6 +950,10 @@ export namespace storagetransfer_v1 {
      * For transfers between file systems, specifies a Cloud Storage bucket to be used as an intermediate location through which to transfer data. See [Transfer data between file systems](https://cloud.google.com/storage-transfer/docs/file-to-file) for more information.
      */
     gcsIntermediateDataLocation?: Schema$GcsData;
+    /**
+     * An HDFS cluster data source.
+     */
+    hdfsDataSource?: Schema$HdfsData;
     /**
      * An HTTP URL data source.
      */

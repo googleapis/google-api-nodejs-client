@@ -194,13 +194,17 @@ export namespace aiplatform_v1 {
      */
     imageRaiScores?: Schema$CloudAiLargeModelsVisionImageRAIScores;
     /**
-     * RAI info for image
+     * RAI info for image.
      */
     raiInfo?: Schema$CloudAiLargeModelsVisionRaiInfo;
     /**
      * Semantic filter info for image.
      */
     semanticFilterResponse?: Schema$CloudAiLargeModelsVisionSemanticFilterResponse;
+    /**
+     * Text/Expanded text input for imagen.
+     */
+    text?: string | null;
     /**
      * Path to another storage (typically Google Cloud Storage).
      */
@@ -2392,9 +2396,17 @@ export namespace aiplatform_v1 {
      */
     createTime?: string | null;
     /**
+     * The user-defined name of the DatasetVersion. The name can be up to 128 characters long and can consist of any UTF-8 characters.
+     */
+    displayName?: string | null;
+    /**
      * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
+    /**
+     * Required. Additional information about the DatasetVersion.
+     */
+    metadata?: any | null;
     /**
      * Output only. The resource name of the DatasetVersion.
      */
@@ -3792,6 +3804,10 @@ export namespace aiplatform_v1 {
      */
     name?: string | null;
     /**
+     * Entity responsible for maintaining this feature. Can be comma separated list of email addresses or URIs.
+     */
+    pointOfContact?: string | null;
+    /**
      * Output only. Only applicable for Vertex AI Feature Store (Legacy). Timestamp when this EntityType was most recently updated.
      */
     updateTime?: string | null;
@@ -3846,7 +3862,7 @@ export namespace aiplatform_v1 {
      */
     bigQuerySource?: Schema$GoogleCloudAiplatformV1BigQuerySource;
     /**
-     * Optional. Columns to construct entity_id / row keys. Currently only supports 1 entity_id_column. If not provided defaults to `entity_id`.
+     * Optional. Columns to construct entity_id / row keys. If not provided defaults to `entity_id`.
      */
     entityIdColumns?: string[] | null;
   }
@@ -4230,7 +4246,7 @@ export namespace aiplatform_v1 {
   }
   export interface Schema$GoogleCloudAiplatformV1FeatureViewBigQuerySource {
     /**
-     * Required. Columns to construct entity_id / row keys. Start by supporting 1 only.
+     * Required. Columns to construct entity_id / row keys.
      */
     entityIdColumns?: string[] | null;
     /**
@@ -4243,9 +4259,22 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1FeatureViewDataKey {
     /**
+     * The actual Entity ID will be composed from this struct. This should match with the way ID is defined in the FeatureView spec.
+     */
+    compositeKey?: Schema$GoogleCloudAiplatformV1FeatureViewDataKeyCompositeKey;
+    /**
      * String key to use for lookup.
      */
     key?: string | null;
+  }
+  /**
+   * ID that is comprised from several parts (columns).
+   */
+  export interface Schema$GoogleCloudAiplatformV1FeatureViewDataKeyCompositeKey {
+    /**
+     * Parts to construct Entity ID. Should match with the same ID columns as defined in FeatureView in the same order.
+     */
+    parts?: string[] | null;
   }
   /**
    * A Feature Registry source for features that need to be synced to Online Store.
@@ -4667,15 +4696,6 @@ export namespace aiplatform_v1 {
      * Output only. Time when the operation was updated for the last time. If the operation has finished (successfully or not), this is the finish time.
      */
     updateTime?: string | null;
-  }
-  /**
-   * Tool to retrieve public web data for grounding, powered by Google.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval {
-    /**
-     * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
-     */
-    disableAttribution?: boolean | null;
   }
   /**
    * Grounding attribution.
@@ -8782,19 +8802,6 @@ export namespace aiplatform_v1 {
     catchUp?: boolean | null;
   }
   /**
-   * Defines a retrieval tool that model can call to access external knowledge.
-   */
-  export interface Schema$GoogleCloudAiplatformV1Retrieval {
-    /**
-     * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
-     */
-    disableAttribution?: boolean | null;
-    /**
-     * Set to use data source powered by Vertex AI Search.
-     */
-    vertexAiSearch?: Schema$GoogleCloudAiplatformV1VertexAISearch;
-  }
-  /**
    * Safety rating corresponding to the generated content.
    */
   export interface Schema$GoogleCloudAiplatformV1SafetyRating {
@@ -8810,6 +8817,18 @@ export namespace aiplatform_v1 {
      * Output only. Harm probability levels in the content.
      */
     probability?: string | null;
+    /**
+     * Output only. Harm probability score.
+     */
+    probabilityScore?: number | null;
+    /**
+     * Output only. Harm severity levels in the content.
+     */
+    severity?: string | null;
+    /**
+     * Output only. Harm severity score.
+     */
+    severityScore?: number | null;
   }
   /**
    * Safety settings.
@@ -12681,21 +12700,13 @@ export namespace aiplatform_v1 {
     tokens?: string[] | null;
   }
   /**
-   * Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool.
+   * Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool (e.g FunctionDeclaration, Retrieval or GoogleSearchRetrieval).
    */
   export interface Schema$GoogleCloudAiplatformV1Tool {
     /**
-     * Optional. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.
+     * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1FunctionDeclaration[];
-    /**
-     * Optional. Specialized retrieval tool that is powered by Google search.
-     */
-    googleSearchRetrieval?: Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval;
-    /**
-     * Optional. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
-     */
-    retrieval?: Schema$GoogleCloudAiplatformV1Retrieval;
   }
   /**
    * CMLE training config. For every active learning labeling iteration, system will train a machine learning model on CMLE. The trained model will be used by data sampling algorithm to select DataItems.
@@ -13153,15 +13164,6 @@ export namespace aiplatform_v1 {
      * A string value.
      */
     stringValue?: string | null;
-  }
-  /**
-   * Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/vertex-ai-search-and-conversation
-   */
-  export interface Schema$GoogleCloudAiplatformV1VertexAISearch {
-    /**
-     * Required. Fully-qualified Vertex AI Search's datastore resource ID. projects/<\>/locations/<\>/collections/<\>/dataStores/<\>
-     */
-    datastore?: string | null;
   }
   /**
    * Metadata describes the input video content.
@@ -13837,6 +13839,58 @@ export namespace aiplatform_v1 {
     dataProviderOutput?: Schema$LearningGenaiRootDataProviderOutput[];
     metricOutput?: Schema$LearningGenaiRootMetricOutput[];
   }
+  /**
+   * Stores all metadata relating to AIDA DoConversation.
+   */
+  export interface Schema$LearningGenaiRootCodeyChatMetadata {
+    /**
+     * Indicates the programming language of the code if the message is a code chunk.
+     */
+    codeLanguage?: string | null;
+  }
+  /**
+   * Describes a sample at a checkpoint for post-processing.
+   */
+  export interface Schema$LearningGenaiRootCodeyCheckpoint {
+    /**
+     * Metadata that describes what was truncated at this checkpoint.
+     */
+    codeyTruncatorMetadata?: Schema$LearningGenaiRootCodeyTruncatorMetadata;
+    /**
+     * Current state of the sample after truncator.
+     */
+    currentSample?: string | null;
+    /**
+     * Postprocessor run that yielded this checkpoint.
+     */
+    postInferenceStep?: string | null;
+  }
+  /**
+   * Stores all metadata relating to Completion.
+   */
+  export interface Schema$LearningGenaiRootCodeyCompletionMetadata {
+    checkpoints?: Schema$LearningGenaiRootCodeyCheckpoint[];
+  }
+  /**
+   * Top-level wrapper used to store all things codey-related.
+   */
+  export interface Schema$LearningGenaiRootCodeyOutput {
+    codeyChatMetadata?: Schema$LearningGenaiRootCodeyChatMetadata;
+    codeyCompletionMetadata?: Schema$LearningGenaiRootCodeyCompletionMetadata;
+  }
+  /**
+   * Metadata describing what was truncated at each checkpoint.
+   */
+  export interface Schema$LearningGenaiRootCodeyTruncatorMetadata {
+    /**
+     * Index of the current sample that trims off truncated text.
+     */
+    cutoffIndex?: number | null;
+    /**
+     * Text that was truncated at a specific checkpoint.
+     */
+    truncatedText?: string | null;
+  }
   export interface Schema$LearningGenaiRootDataProviderOutput {
     name?: string | null;
     /**
@@ -14213,6 +14267,10 @@ export namespace aiplatform_v1 {
      * Summary of classifier output. We attach this to all messages regardless of whether classification rules triggered or not.
      */
     classifierSummary?: Schema$LearningGenaiRootClassifierOutputSummary;
+    /**
+     * Contains metadata related to Codey Processors.
+     */
+    codeyOutput?: Schema$LearningGenaiRootCodeyOutput;
     currentStreamTextLength?: number | null;
     /**
      * Whether the corresponding message has been deleted.

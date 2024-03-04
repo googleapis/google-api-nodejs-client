@@ -886,7 +886,7 @@ export namespace sourcerepo_v1 {
     }
 
     /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the IAM policy policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1144,7 +1144,7 @@ export namespace sourcerepo_v1 {
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the IAM policy on the specified resource. Replaces any existing policy.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

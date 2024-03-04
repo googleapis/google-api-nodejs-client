@@ -1573,7 +1573,7 @@
       }
     }
   },
-  "revision": "20240208",
+  "revision": "20240220",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {

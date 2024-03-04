@@ -5820,7 +5820,7 @@
       }
     }
   },
-  "revision": "20240213",
+  "revision": "20240226",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -5917,11 +5917,11 @@
       "id": "Application",
       "properties": {
         "baseUri": {
-          "description": "The base URI that identifies the network location of the application in which the vulnerability was detected. Examples: http://11.22.33.44, http://foo.com, http://11.22.33.44:8080",
+          "description": "The base URI that identifies the network location of the application in which the vulnerability was detected. For example, `http://example.com`.",
           "type": "string"
         },
         "fullUri": {
-          "description": "The full URI with payload that can be used to reproduce the vulnerability. Example: http://11.22.33.44/reflected/parameter/attribute/singlequoted/js?p=aMmYgI6H",
+          "description": "The full URI with payload that can be used to reproduce the vulnerability. For example, `http://example.com?p=aMmYgI6H`.",
           "type": "string"
         }
       },
@@ -6230,11 +6230,11 @@
       "id": "BackupDisasterRecovery",
       "properties": {
         "appliance": {
-          "description": "The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, “backup-server-57137”.",
+          "description": "The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, `backup-server-57137`.",
           "type": "string"
         },
         "applications": {
-          "description": "The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, “centos7-01-vol00”, “centos7-01-vol01”, “centos7-01-vol02”.",
+          "description": "The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, `centos7-01-vol00`, `centos7-01-vol01`, `centos7-01-vol02`.",
           "items": {
             "type": "string"
           },
@@ -6246,37 +6246,37 @@
           "type": "string"
         },
         "backupTemplate": {
-          "description": "The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, “snap-ov”.",
+          "description": "The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, `snap-ov`.",
           "type": "string"
         },
         "backupType": {
-          "description": "The backup type of the Backup and DR image. For example, “Snapshot”, “Remote Snapshot”, “OnVault”.",
+          "description": "The backup type of the Backup and DR image. For example, `Snapshot`, `Remote Snapshot`, `OnVault`.",
           "type": "string"
         },
         "host": {
-          "description": "The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, “centos7-01”.",
+          "description": "The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, `centos7-01`.",
           "type": "string"
         },
         "policies": {
-          "description": "The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, “onvaults”.",
+          "description": "The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, `onvaults`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "policyOptions": {
-          "description": "The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, “skipofflineappsincongrp, nounmap”.",
+          "description": "The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, `skipofflineappsincongrp, nounmap`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "profile": {
-          "description": "The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, “GCP”.",
+          "description": "The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, `GCP`.",
           "type": "string"
         },
         "storagePool": {
-          "description": "The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, “DiskPoolOne”.",
+          "description": "The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, `DiskPoolOne`.",
           "type": "string"
         }
       },
@@ -7666,6 +7666,16 @@
           },
           "type": "array"
         },
+        "caseCloseTime": {
+          "description": "The time when the case was closed, as reported by the external system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "caseCreateTime": {
+          "description": "The time when the case was created, as reported by the external system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "casePriority": {
           "description": "The priority of the finding's corresponding case in the external system.",
           "type": "string"
@@ -8354,11 +8364,11 @@
       "id": "GoogleCloudSecuritycenterV2Application",
       "properties": {
         "baseUri": {
-          "description": "The base URI that identifies the network location of the application in which the vulnerability was detected. Examples: http://11.22.33.44, http://foo.com, http://11.22.33.44:8080",
+          "description": "The base URI that identifies the network location of the application in which the vulnerability was detected. For example, `http://example.com`.",
           "type": "string"
         },
         "fullUri": {
-          "description": "The full URI with payload that could be used to reproduce the vulnerability. Example: http://11.22.33.44/reflected/parameter/attribute/singlequoted/js?p=aMmYgI6H",
+          "description": "The full URI with payload that could be used to reproduce the vulnerability. For example, `http://example.com?p=aMmYgI6H`.",
           "type": "string"
         }
       },
@@ -8420,11 +8430,11 @@
       "id": "GoogleCloudSecuritycenterV2BackupDisasterRecovery",
       "properties": {
         "appliance": {
-          "description": "The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, “backup-server-57137”.",
+          "description": "The name of the Backup and DR appliance that captures, moves, and manages the lifecycle of backup data. For example, `backup-server-57137`.",
           "type": "string"
         },
         "applications": {
-          "description": "The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, “centos7-01-vol00”, “centos7-01-vol01”, “centos7-01-vol02”.",
+          "description": "The names of Backup and DR applications. An application is a VM, database, or file system on a managed host monitored by a backup and recovery appliance. For example, `centos7-01-vol00`, `centos7-01-vol01`, `centos7-01-vol02`.",
           "items": {
             "type": "string"
           },
@@ -8436,37 +8446,37 @@
           "type": "string"
         },
         "backupTemplate": {
-          "description": "The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, “snap-ov”.",
+          "description": "The name of a Backup and DR template which comprises one or more backup policies. See the [Backup and DR documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp) for more information. For example, `snap-ov`.",
           "type": "string"
         },
         "backupType": {
-          "description": "The backup type of the Backup and DR image. For example, “Snapshot”, “Remote Snapshot”, “OnVault”.",
+          "description": "The backup type of the Backup and DR image. For example, `Snapshot`, `Remote Snapshot`, `OnVault`.",
           "type": "string"
         },
         "host": {
-          "description": "The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, “centos7-01”.",
+          "description": "The name of a Backup and DR host, which is managed by the backup and recovery appliance and known to the management console. The host can be of type Generic (for example, Compute Engine, SQL Server, Oracle DB, SMB file system, etc.), vCenter, or an ESX server. See the [Backup and DR documentation on hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications) for more information. For example, `centos7-01`.",
           "type": "string"
         },
         "policies": {
-          "description": "The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, “onvaults”.",
+          "description": "The names of Backup and DR policies that are associated with a template and that define when to run a backup, how frequently to run a backup, and how long to retain the backup image. For example, `onvaults`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "policyOptions": {
-          "description": "The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, “skipofflineappsincongrp, nounmap”.",
+          "description": "The names of Backup and DR advanced policy options of a policy applying to an application. See the [Backup and DR documentation on policy options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings). For example, `skipofflineappsincongrp, nounmap`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "profile": {
-          "description": "The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, “GCP”.",
+          "description": "The name of the Backup and DR resource profile that specifies the storage media for backups of application and VM data. See the [Backup and DR documentation on profiles](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#profile). For example, `GCP`.",
           "type": "string"
         },
         "storagePool": {
-          "description": "The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, “DiskPoolOne”.",
+          "description": "The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, `DiskPoolOne`.",
           "type": "string"
         }
       },
@@ -9087,6 +9097,16 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "caseCloseTime": {
+          "description": "The time when the case was closed, as reported by the external system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "caseCreateTime": {
+          "description": "The time when the case was created, as reported by the external system.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "casePriority": {
           "description": "The priority of the finding's corresponding case in the external system.",
@@ -10221,11 +10241,11 @@
       "id": "GoogleCloudSecuritycenterV2PolicyDriftDetails",
       "properties": {
         "detectedValue": {
-          "description": "The detected value that violates the deployed posture, for example, `false` or `allowed_values={\"projects/22831892”}`.",
+          "description": "The detected value that violates the deployed posture, for example, `false` or `allowed_values={\"projects/22831892\"}`.",
           "type": "string"
         },
         "expectedValue": {
-          "description": "The value of this field that was configured in a posture, for example, `true` or `allowed_values={\"projects/29831892”}`.",
+          "description": "The value of this field that was configured in a posture, for example, `true` or `allowed_values={\"projects/29831892\"}`.",
           "type": "string"
         },
         "field": {
@@ -12044,15 +12064,15 @@
       "type": "object"
     },
     "PolicyDriftDetails": {
-      "description": "The policy field that violates the deployed posture and its expected and and detected values.",
+      "description": "The policy field that violates the deployed posture and its expected and detected values.",
       "id": "PolicyDriftDetails",
       "properties": {
         "detectedValue": {
-          "description": "The detected value that violates the deployed posture, for example, `false` or `allowed_values={\"projects/22831892”}`.",
+          "description": "The detected value that violates the deployed posture, for example, `false` or `allowed_values={\"projects/22831892\"}`.",
           "type": "string"
         },
         "expectedValue": {
-          "description": "The value of this field that was configured in a posture, for example, `true` or `allowed_values={\"projects/29831892”}`.",
+          "description": "The value of this field that was configured in a posture, for example, `true` or `allowed_values={\"projects/29831892\"}`.",
           "type": "string"
         },
         "field": {

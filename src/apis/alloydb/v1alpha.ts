@@ -449,6 +449,10 @@ export namespace alloydb_v1alpha {
      */
     pemCertificateChain?: string[] | null;
     /**
+     * Output only. The DNS name to use with PSC for the Instance.
+     */
+    pscDnsName?: string | null;
+    /**
      * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
      */
     publicIpAddress?: string | null;
@@ -1325,6 +1329,7 @@ export namespace alloydb_v1alpha {
     /**
      * More feed data would be added in subsequent CLs
      */
+    recommendationSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
     /**
      * Primary key associated with the Resource. resource_id is available in individual feed level as well.
@@ -1399,7 +1404,7 @@ export namespace alloydb_v1alpha {
      */
     providerDescription?: string | null;
     /**
-     * Required. The type of resource this ID is identifying. Ex alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
+     * Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
      */
     resourceType?: string | null;
     /**
@@ -1435,6 +1440,10 @@ export namespace alloydb_v1alpha {
      * Any custom metadata associated with the resource
      */
     customMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData;
+    /**
+     * Entitlements associated with the resource
+     */
+    entitlements?: Schema$StorageDatabasecenterPartnerapiV1mainEntitlement[];
     /**
      * The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.
      */
@@ -1475,6 +1484,56 @@ export namespace alloydb_v1alpha {
      * User-provided labels, represented as a dictionary where each label is a single key value pair.
      */
     userLabels?: {[key: string]: string} | null;
+  }
+  /**
+   * Common model for database resource recommendation signal data.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData {
+    /**
+     * Required. Any other additional metadata specific to recommendation
+     */
+    additionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Required. last time recommendationw as refreshed
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Required. Recommendation state
+     */
+    recommendationState?: string | null;
+    /**
+     * Required. Name of recommendation. Examples: organizations/1234/locations/us-central1/recommenders/google.cloudsql.instance.PerformanceRecommender/recommendations/9876
+     */
+    recommender?: string | null;
+    /**
+     * Required. ID of recommender. Examples: "google.cloudsql.instance.PerformanceRecommender"
+     */
+    recommenderId?: string | null;
+    /**
+     * Required. Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = "google.cloudsql.instance.PerformanceRecommender", recommender_subtype can be "MYSQL_HIGH_NUMBER_OF_OPEN_TABLES_BEST_PRACTICE"/"POSTGRES_HIGH_TRANSACTION_ID_UTILIZATION_BEST_PRACTICE"
+     */
+    recommenderSubtype?: string | null;
+    /**
+     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * Required. Type of signal, for example, `SIGNAL_TYPE_IDLE`, `SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES`, etc.
+     */
+    signalType?: string | null;
+  }
+  /**
+   * Proto representing the access that a user has to a specific feature/service. NextId: 3.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainEntitlement {
+    /**
+     * The current state of user's accessibility to a feature/benefit.
+     */
+    entitlementState?: string | null;
+    /**
+     * An enum that represents the type of this entitlement.
+     */
+    type?: string | null;
   }
   /**
    * An error that occurred during a backup creation operation.

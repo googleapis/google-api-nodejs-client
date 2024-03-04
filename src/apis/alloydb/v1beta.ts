@@ -433,6 +433,10 @@ export namespace alloydb_v1beta {
      */
     pemCertificateChain?: string[] | null;
     /**
+     * Output only. The DNS name to use with PSC for the Instance.
+     */
+    pscDnsName?: string | null;
+    /**
      * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
      */
     publicIpAddress?: string | null;
@@ -713,6 +717,10 @@ export namespace alloydb_v1beta {
      * Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.
      */
     nodes?: Schema$Node[];
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the instance.
+     */
+    pscInstanceConfig?: Schema$PscInstanceConfig;
     /**
      * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
      */
@@ -1019,6 +1027,48 @@ export namespace alloydb_v1beta {
     validateOnly?: boolean | null;
   }
   /**
+   * PscInstanceConfig contains PSC related configuration at an instance level.
+   */
+  export interface Schema$PscInstanceConfig {
+    /**
+     * Optional. List of consumer networks that are allowed to create PSC endpoints to service-attachments to this instance.
+     */
+    allowedConsumerNetworks?: string[] | null;
+    /**
+     * Optional. List of consumer projects that are allowed to create PSC endpoints to service-attachments to this instance.
+     */
+    allowedConsumerProjects?: string[] | null;
+    /**
+     * Optional. List of service attachments that this instance has created endpoints to connect with. Currently, only a single outgoing service attachment is supported per instance.
+     */
+    outgoingServiceAttachmentLinks?: string[] | null;
+    /**
+     * Optional. Whether PSC connectivity is enabled for this instance. This is populated by referencing the value from the parent cluster.
+     */
+    pscEnabled?: boolean | null;
+    /**
+     * Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. All the VMs created for the primary instance will share the same configurations. Currently we only support 0 or 1 PSC interface.
+     */
+    pscInterfaceConfigs?: Schema$PscInterfaceConfig[];
+    /**
+     * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of projects//regions//serviceAttachments/
+     */
+    serviceAttachmentLink?: string | null;
+  }
+  /**
+   * Configuration for setting up a PSC interface. This information needs to be provided by the customer. PSC interfaces will be created and added to VMs via SLM (adding a network interface will require recreating the VM). For HA instances this will be done via LDTM.
+   */
+  export interface Schema$PscInterfaceConfig {
+    /**
+     * A list of endpoints in the consumer VPC the interface might initiate outbound connections to. This list has to be provided when the PSC interface is created.
+     */
+    consumerEndpointIps?: string[] | null;
+    /**
+     * The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: "projects/${CONSUMER_PROJECT\}/regions/${REGION\}/networkAttachments/${NETWORK_ATTACHMENT_NAME\}". NetworkAttachment has to be provided when the PSC interface is created.
+     */
+    networkAttachment?: string | null;
+  }
+  /**
    * A backup's position in a quantity-based retention queue, of backups with the same source cluster and type, with length, retention, specified by the backup's retention policy. Once the position is greater than the retention, the backup is eligible to be garbage collected. Example: 5 backups from the same source cluster and type with a quantity-based retention of 3 and denoted by backup_id (position, retention). Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3). Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3)
    */
   export interface Schema$QuantityBasedExpiry {
@@ -1250,6 +1300,7 @@ export namespace alloydb_v1beta {
     /**
      * More feed data would be added in subsequent CLs
      */
+    recommendationSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
     /**
      * Primary key associated with the Resource. resource_id is available in individual feed level as well.
@@ -1324,7 +1375,7 @@ export namespace alloydb_v1beta {
      */
     providerDescription?: string | null;
     /**
-     * Required. The type of resource this ID is identifying. Ex alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
+     * Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
      */
     resourceType?: string | null;
     /**
@@ -1360,6 +1411,10 @@ export namespace alloydb_v1beta {
      * Any custom metadata associated with the resource
      */
     customMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData;
+    /**
+     * Entitlements associated with the resource
+     */
+    entitlements?: Schema$StorageDatabasecenterPartnerapiV1mainEntitlement[];
     /**
      * The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.
      */
@@ -1400,6 +1455,56 @@ export namespace alloydb_v1beta {
      * User-provided labels, represented as a dictionary where each label is a single key value pair.
      */
     userLabels?: {[key: string]: string} | null;
+  }
+  /**
+   * Common model for database resource recommendation signal data.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData {
+    /**
+     * Required. Any other additional metadata specific to recommendation
+     */
+    additionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Required. last time recommendationw as refreshed
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Required. Recommendation state
+     */
+    recommendationState?: string | null;
+    /**
+     * Required. Name of recommendation. Examples: organizations/1234/locations/us-central1/recommenders/google.cloudsql.instance.PerformanceRecommender/recommendations/9876
+     */
+    recommender?: string | null;
+    /**
+     * Required. ID of recommender. Examples: "google.cloudsql.instance.PerformanceRecommender"
+     */
+    recommenderId?: string | null;
+    /**
+     * Required. Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = "google.cloudsql.instance.PerformanceRecommender", recommender_subtype can be "MYSQL_HIGH_NUMBER_OF_OPEN_TABLES_BEST_PRACTICE"/"POSTGRES_HIGH_TRANSACTION_ID_UTILIZATION_BEST_PRACTICE"
+     */
+    recommenderSubtype?: string | null;
+    /**
+     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * Required. Type of signal, for example, `SIGNAL_TYPE_IDLE`, `SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES`, etc.
+     */
+    signalType?: string | null;
+  }
+  /**
+   * Proto representing the access that a user has to a specific feature/service. NextId: 3.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainEntitlement {
+    /**
+     * The current state of user's accessibility to a feature/benefit.
+     */
+    entitlementState?: string | null;
+    /**
+     * An enum that represents the type of this entitlement.
+     */
+    type?: string | null;
   }
   /**
    * An error that occurred during a backup creation operation.

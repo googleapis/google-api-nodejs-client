@@ -632,7 +632,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240217",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -794,6 +794,21 @@
       },
       "type": "object"
     },
+    "BatchTaskSpec": {
+      "id": "BatchTaskSpec",
+      "properties": {
+        "deleteObjectTaskSpec": {
+          "$ref": "DeleteObjectTaskSpec"
+        },
+        "listTaskSpec": {
+          "$ref": "ListTaskSpec"
+        },
+        "metadataTaskSpec": {
+          "$ref": "MetadataTaskSpec"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -818,6 +833,26 @@
           "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteObjectTaskSpec": {
+      "id": "DeleteObjectTaskSpec",
+      "properties": {
+        "generation": {
+          "format": "int64",
+          "type": "string"
+        },
+        "hardDeleteVersionedObject": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -962,6 +997,17 @@
       },
       "type": "object"
     },
+    "HdfsData": {
+      "description": "An HdfsData resource specifies a path within an HDFS entity (e.g. a cluster). All cluster-specific settings, such as namenodes and ports, are configured on the transfer agents servicing requests, so HdfsData only contains the root path to the data in our transfer.",
+      "id": "HdfsData",
+      "properties": {
+        "path": {
+          "description": "Root path to transfer files.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "HttpData": {
       "description": "An HttpData resource specifies a list of objects on the web to be transferred over HTTP. The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be `\"TsvHttpData-1.0\"`, which specifies the format of the file. Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields: * **HTTP URL** — The location of the object. * **Length** — The size of the object in bytes. * **MD5** — The base64-encoded MD5 hash of the object. For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage-transfer/docs/create-url-list). When transferring data based on a URL list, keep the following in mind: * When an object located at `http(s)://hostname:port/` is transferred to a data sink, the name of the object at the data sink is `/`. * If the specified size of an object does not match the actual size of the object fetched, the object is not transferred. * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer fails. * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (/storage/docs/cloud-console#_sharingdata) and get a link to it. * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response. * ObjectConditions have no effect when filtering objects to transfer.",
       "id": "HttpData",
@@ -1005,6 +1051,18 @@
             "$ref": "Operation"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListTaskSpec": {
+      "id": "ListTaskSpec",
+      "properties": {
+        "manifest": {
+          "$ref": "Manifest"
+        },
+        "objectPrefixes": {
+          "$ref": "ObjectPrefixes"
         }
       },
       "type": "object"
@@ -1070,6 +1128,18 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Manifest": {
+      "id": "Manifest",
+      "properties": {
+        "manifestLocation": {
+          "type": "string"
+        },
+        "root": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -1185,7 +1255,7 @@
           "type": "string"
         },
         "timeCreated": {
-          "description": "Specifies how each object's `timeCreated` metadata is preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as TIME_CREATED_SKIP.",
+          "description": "Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP.",
           "enum": [
             "TIME_CREATED_UNSPECIFIED",
             "TIME_CREATED_SKIP",
@@ -1194,7 +1264,7 @@
           "enumDescriptions": [
             "TimeCreated behavior is unspecified.",
             "Do not preserve the `timeCreated` metadata from the source object.",
-            "Preserves the source object's `timeCreated` metadata in the `customTime` field in the destination object. Note that any value stored in the source object's `customTime` field will not be propagated to the destination object."
+            "Preserves the source object's `timeCreated` or `lastModified` metadata in the `customTime` field in the destination object. Note that any value stored in the source object's `customTime` field will not be propagated to the destination object."
           ],
           "type": "string"
         },
@@ -1210,6 +1280,26 @@
             "Do not preserve UID during a transfer job.",
             "Preserve UID during a transfer job."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MetadataTaskSpec": {
+      "id": "MetadataTaskSpec",
+      "properties": {
+        "bucketName": {
+          "type": "string"
+        },
+        "generation": {
+          "format": "int64",
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "size": {
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1296,6 +1386,30 @@
           "description": "Ensures that objects are not transferred until a specific minimum time has elapsed after the \"last modification time\". When a TransferOperation begins, objects with a \"last modification time\" are transferred only if the elapsed time between the start_time of the `TransferOperation` and the \"last modification time\" of the object is equal to or greater than the value of min_time_elapsed_since_last_modification`. Objects that do not have a \"last modification time\" are also transferred.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ObjectPrefix": {
+      "id": "ObjectPrefix",
+      "properties": {
+        "bucketName": {
+          "type": "string"
+        },
+        "objectPrefix": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ObjectPrefixes": {
+      "id": "ObjectPrefixes",
+      "properties": {
+        "objectPrefixes": {
+          "items": {
+            "$ref": "ObjectPrefix"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1856,6 +1970,10 @@
         "gcsIntermediateDataLocation": {
           "$ref": "GcsData",
           "description": "For transfers between file systems, specifies a Cloud Storage bucket to be used as an intermediate location through which to transfer data. See [Transfer data between file systems](https://cloud.google.com/storage-transfer/docs/file-to-file) for more information."
+        },
+        "hdfsDataSource": {
+          "$ref": "HdfsData",
+          "description": "An HDFS cluster data source."
         },
         "httpDataSource": {
           "$ref": "HttpData",

@@ -137,6 +137,9 @@ export namespace paymentsresellersubscription_v1 {
      */
     currencyCode?: string | null;
   }
+  /**
+   * Request to cancel a subscription.
+   */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest {
     /**
      * Optional. If true, Google will cancel the subscription immediately, and may or may not (based on the contract) issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and will not issue a refund.
@@ -147,6 +150,9 @@ export namespace paymentsresellersubscription_v1 {
      */
     cancellationReason?: string | null;
   }
+  /**
+   * Response that contains the cancelled subscription resource.
+   */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse {
     /**
      * The cancelled subscription resource.
@@ -188,6 +194,9 @@ export namespace paymentsresellersubscription_v1 {
      */
     products?: string[] | null;
   }
+  /**
+   * Response that contains the entitled subscription resource.
+   */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse {
     /**
      * The subscription that has user linked to it.
@@ -207,6 +216,9 @@ export namespace paymentsresellersubscription_v1 {
      */
     requestId?: string | null;
   }
+  /**
+   * Response that contains the timestamps after the extension.
+   */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse {
     /**
      * The time at which the subscription is expected to be extended, in ISO 8061 format. UTC timezone. Example, "cycleEndTime":"2019-08-31T17:28:54.564Z"
@@ -226,7 +238,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Extension {
     /**
-     * Specifies the period of access the subscription should grant.
+     * Required. Specifies the period of access the subscription should grant.
      */
     duration?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration;
     /**
@@ -234,9 +246,12 @@ export namespace paymentsresellersubscription_v1 {
      */
     partnerUserToken?: string | null;
   }
+  /**
+   * Request to find eligible promotions for the current user.
+   */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest {
     /**
-     * Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
+     * Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: 1. Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) 2. Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` 3. Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      */
     filter?: string | null;
     /**
@@ -291,6 +306,9 @@ export namespace paymentsresellersubscription_v1 {
      */
     storeId?: string | null;
   }
+  /**
+   * Response that contains the products.
+   */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
@@ -301,6 +319,9 @@ export namespace paymentsresellersubscription_v1 {
      */
     products?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Product[];
   }
+  /**
+   * Response that contains the promotions.
+   */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
@@ -337,7 +358,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     finiteBillingCycleDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails;
     /**
-     * Output only. Response only. Resource name of the product. It will have the format of "partners/{partner_id\}/products/{product_id\}"
+     * Identifier. Response only. Resource name of the product. It will have the format of "partners/{partner_id\}/products/{product_id\}"
      */
     name?: string | null;
     /**
@@ -417,7 +438,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     introductoryPricingDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails;
     /**
-     * Output only. Response only. Resource name of the subscription promotion. It will have the format of "partners/{partner_id\}/promotion/{promotion_id\}"
+     * Identifier. Response only. Resource name of the subscription promotion. It will have the format of "partners/{partner_id\}/promotion/{promotion_id\}"
      */
     name?: string | null;
     /**
@@ -442,7 +463,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails {
     /**
-     * Specifies the introductory pricing periods.
+     * Output only. Specifies the introductory pricing periods.
      */
     introductoryPricingSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec[];
   }
@@ -509,7 +530,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     lineItems?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem[];
     /**
-     * Optional. Resource name of the subscription. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}". This is available for authorizeAddon, but otherwise is response only.
+     * Identifier. Resource name of the subscription. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}". This is available for authorizeAddon, but otherwise is response only.
      */
     name?: string | null;
     /**
@@ -562,7 +583,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails {
     /**
-     * The reason of the cancellation.
+     * Output only. The reason of the cancellation.
      */
     reason?: string | null;
   }
@@ -637,7 +658,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails {
     /**
-     * The service period of the ONE_TIME line item.
+     * Output only. The service period of the ONE_TIME line item.
      */
     servicePeriod?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod;
   }
@@ -736,7 +757,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$SubscriptionLineItemBundleDetails {
     /**
-     * The details for each element in the hard bundle.
+     * Output only. The details for each element in the hard bundle.
      */
     bundleElementDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails[];
   }
@@ -862,7 +883,7 @@ export namespace paymentsresellersubscription_v1 {
   export interface Params$Resource$Partners$Products$List
     extends StandardParameters {
     /**
-     * Optional. Specifies the filters for the product results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
+     * Optional. Specifies the filters for the product results. The syntax is defined in https://google.aip.dev/160 with the following caveats: 1. Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) 2. Only the following fields are supported: - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` 3. Unless explicitly mentioned above, other features are not supported. Example: `regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      */
     filter?: string;
     /**
@@ -1097,7 +1118,7 @@ export namespace paymentsresellersubscription_v1 {
   export interface Params$Resource$Partners$Promotions$List
     extends StandardParameters {
     /**
-     * Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
+     * Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: 1. Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) 2. Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` 3. Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      */
     filter?: string;
     /**

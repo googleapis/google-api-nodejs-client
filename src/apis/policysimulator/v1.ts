@@ -1157,11 +1157,136 @@ export namespace policysimulator_v1 {
 
   export class Resource$Folders$Locations {
     context: APIRequestContext;
+    orgPolicyViolationsPreviews: Resource$Folders$Locations$Orgpolicyviolationspreviews;
     replays: Resource$Folders$Locations$Replays;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.orgPolicyViolationsPreviews =
+        new Resource$Folders$Locations$Orgpolicyviolationspreviews(
+          this.context
+        );
       this.replays = new Resource$Folders$Locations$Replays(this.context);
     }
+  }
+
+  export class Resource$Folders$Locations$Orgpolicyviolationspreviews {
+    context: APIRequestContext;
+    operations: Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policysimulator.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Folders$Locations$Replays {
@@ -1970,9 +2095,14 @@ export namespace policysimulator_v1 {
 
   export class Resource$Organizations$Locations$Orgpolicyviolationspreviews {
     context: APIRequestContext;
+    operations: Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations;
     orgPolicyViolations: Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.operations =
+        new Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations(
+          this.context
+        );
       this.orgPolicyViolations =
         new Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations(
           this.context
@@ -2304,6 +2434,114 @@ export namespace policysimulator_v1 {
      * Required. The parent the violations are scoped to. Format: `organizations/{organization\}/locations/{location\}` Example: `organizations/my-example-org/locations/global`
      */
     parent?: string;
+  }
+
+  export class Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policysimulator.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Organizations$Locations$Orgpolicyviolationspreviews$Orgpolicyviolations {
@@ -3005,11 +3243,136 @@ export namespace policysimulator_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    orgPolicyViolationsPreviews: Resource$Projects$Locations$Orgpolicyviolationspreviews;
     replays: Resource$Projects$Locations$Replays;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.orgPolicyViolationsPreviews =
+        new Resource$Projects$Locations$Orgpolicyviolationspreviews(
+          this.context
+        );
       this.replays = new Resource$Projects$Locations$Replays(this.context);
     }
+  }
+
+  export class Resource$Projects$Locations$Orgpolicyviolationspreviews {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policysimulator.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Replays {
