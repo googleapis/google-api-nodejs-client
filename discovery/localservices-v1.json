@@ -250,7 +250,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20240221",
   "rootUrl": "https://localservices.googleapis.com/",
   "schemas": {
     "GoogleAdsHomeservicesLocalservicesV1AccountReport": {
@@ -428,6 +428,11 @@
           "description": "Location of the associated account's home city.",
           "type": "string"
         },
+        "googleAdsLeadId": {
+          "description": "Unique identifier of a Detailed Lead Report.",
+          "format": "int64",
+          "type": "string"
+        },
         "leadCategory": {
           "description": "Lead category (e.g. hvac, plumber)",
           "type": "string"
@@ -438,7 +443,7 @@
           "type": "string"
         },
         "leadId": {
-          "description": "Unique identifier of a Detailed Lead Report.",
+          "description": "Deprecated in favor of google_ads_lead_id. Unique identifier of a Detailed Lead Report.",
           "format": "int64",
           "type": "string"
         },

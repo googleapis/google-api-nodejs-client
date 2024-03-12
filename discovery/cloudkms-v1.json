@@ -20,6 +20,16 @@
   "documentationLink": "https://cloud.google.com/kms/",
   "endpoints": [
     {
+      "endpointUrl": "https://cloudkms.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://cloudkms.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Regional Endpoint"
+    },
+    {
       "endpointUrl": "https://cloudkms.me-central2.rep.googleapis.com/",
       "location": "me-central2",
       "description": "Regional Endpoint"
@@ -1828,7 +1838,7 @@
       }
     }
   },
-  "revision": "20231212",
+  "revision": "20240219",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2024,7 +2034,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },

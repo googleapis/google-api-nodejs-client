@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/dataproc",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "dataproc",
   "main": "build/index.js",
   "types": "build/index.d.ts",

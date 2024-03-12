@@ -546,6 +546,10 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$CancelCutoverJobRequest {}
   /**
+   * Request message for 'CancelImageImportJob' request.
+   */
+  export interface Schema$CancelImageImportJobRequest {}
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -858,6 +862,10 @@ export namespace vmmigration_v1 {
     restartType?: string | null;
   }
   /**
+   * CreatingImageStep contains specific step details.
+   */
+  export interface Schema$CreatingImageStep {}
+  /**
    * CutoverForecast holds information about future CutoverJobs of a MigratingVm.
    */
   export interface Schema$CutoverForecast {
@@ -1035,6 +1043,10 @@ export namespace vmmigration_v1 {
     version?: string | null;
   }
   /**
+   * Mentions that the image import is not using OS adaptation process.
+   */
+  export interface Schema$DataDiskImageImport {}
+  /**
    * A message describing a data disk.
    */
   export interface Schema$Disk {
@@ -1059,6 +1071,51 @@ export namespace vmmigration_v1 {
      * Required. The Image resource used when creating the disk.
      */
     sourceImage?: string | null;
+  }
+  /**
+   * The target details of the image resource that will be created by the import job.
+   */
+  export interface Schema$DiskImageTargetDetails {
+    /**
+     * Optional. Additional licenses to assign to the image.
+     */
+    additionalLicenses?: string[] | null;
+    /**
+     * Optional. Use to skip OS adaptation process.
+     */
+    dataDiskImageImport?: Schema$DataDiskImageImport;
+    /**
+     * Optional. An optional description of the image.
+     */
+    description?: string | null;
+    /**
+     * Optional. Immutable. The encryption to apply to the image.
+     */
+    encryption?: Schema$Encryption;
+    /**
+     * Optional. The name of the image family to which the new image belongs.
+     */
+    familyName?: string | null;
+    /**
+     * Required. The name of the image to be created.
+     */
+    imageName?: string | null;
+    /**
+     * Optional. A map of labels to associate with the image.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Use to set the parameters relevant for the OS adaptation process.
+     */
+    osAdaptationParameters?: Schema$ImageImportOsAdaptationParameters;
+    /**
+     * Optional. Set to true to set the image storageLocations to the single region of the import job. When false, the closest multi-region is selected.
+     */
+    singleRegionStorage?: boolean | null;
+    /**
+     * Required. Reference to the TargetProject resource that represents the target project in which the imported image will be created.
+     */
+    targetProject?: string | null;
   }
   /**
    * Details for a disk only migration.
@@ -1210,6 +1267,126 @@ export namespace vmmigration_v1 {
     updateTime?: string | null;
   }
   /**
+   * ImageImport describes the configuration of the image import to run.
+   */
+  export interface Schema$ImageImport {
+    /**
+     * Immutable. The path to the Cloud Storage file from which the image should be imported.
+     */
+    cloudStorageUri?: string | null;
+    /**
+     * Output only. The time the image import was created.
+     */
+    createTime?: string | null;
+    /**
+     * Immutable. Target details for importing a disk image, will be used by ImageImportJob.
+     */
+    diskImageTargetDefaults?: Schema$DiskImageTargetDetails;
+    /**
+     * Immutable. The encryption details used by the image import process during the image adaptation for Compute Engine.
+     */
+    encryption?: Schema$Encryption;
+    /**
+     * Output only. The resource path of the ImageImport.
+     */
+    name?: string | null;
+    /**
+     * Output only. The result of the most recent runs for this ImageImport. All jobs for this ImageImport can be listed via ListImageImportJobs.
+     */
+    recentImageImportJobs?: Schema$ImageImportJob[];
+  }
+  /**
+   * ImageImportJob describes the progress and result of an image import.
+   */
+  export interface Schema$ImageImportJob {
+    /**
+     * Output only. The path to the Cloud Storage file from which the image should be imported.
+     */
+    cloudStorageUri?: string | null;
+    /**
+     * Output only. The resource paths of the resources created by the image import job.
+     */
+    createdResources?: string[] | null;
+    /**
+     * Output only. The time the image import was created (as an API call, not when it was actually created in the target).
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Target details used to import a disk image.
+     */
+    diskImageTargetDetails?: Schema$DiskImageTargetDetails;
+    /**
+     * Output only. The time the image import was ended.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Provides details on the error that led to the image import state in case of an error.
+     */
+    errors?: Schema$Status[];
+    /**
+     * Output only. The resource path of the ImageImportJob.
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the image import.
+     */
+    state?: string | null;
+    /**
+     * Output only. The image import steps list representing its progress.
+     */
+    steps?: Schema$ImageImportStep[];
+    /**
+     * Output only. Warnings that occurred during the image import.
+     */
+    warnings?: Schema$MigrationWarning[];
+  }
+  /**
+   * Parameters affecting the OS adaptation process.
+   */
+  export interface Schema$ImageImportOsAdaptationParameters {
+    /**
+     * Optional. Set to true in order to generalize the imported image. The generalization process enables co-existence of multiple VMs created from the same image. For Windows, generalizing the image removes computer-specific information such as installed drivers and the computer security identifier (SID).
+     */
+    generalize?: boolean | null;
+    /**
+     * Optional. Choose which type of license to apply to the imported image.
+     */
+    licenseType?: string | null;
+  }
+  /**
+   * ImageImportStep holds information about the image import step progress.
+   */
+  export interface Schema$ImageImportStep {
+    /**
+     * Adapting OS step.
+     */
+    adaptingOs?: Schema$AdaptingOSStep;
+    /**
+     * Creating image step.
+     */
+    creatingImage?: Schema$CreatingImageStep;
+    /**
+     * Output only. The time the step has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Initializing step.
+     */
+    initializing?: Schema$InitializingImageImportStep;
+    /**
+     * Loading source files step.
+     */
+    loadingSourceFiles?: Schema$LoadingImageSourceFilesStep;
+    /**
+     * Output only. The time the step has started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * InitializingImageImportStep contains specific step details.
+   */
+  export interface Schema$InitializingImageImportStep {}
+  /**
    * InitializingReplicationStep contains specific step details.
    */
   export interface Schema$InitializingReplicationStep {}
@@ -1289,6 +1466,40 @@ export namespace vmmigration_v1 {
      * Output only. The list of groups response.
      */
     groups?: Schema$Group[];
+    /**
+     * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for 'ListImageImportJobs' call.
+   */
+  export interface Schema$ListImageImportJobsResponse {
+    /**
+     * Output only. The list of target response.
+     */
+    imageImportJobs?: Schema$ImageImportJob[];
+    /**
+     * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for 'ListImageImports' call.
+   */
+  export interface Schema$ListImageImportsResponse {
+    /**
+     * Output only. The list of target response.
+     */
+    imageImports?: Schema$ImageImport[];
     /**
      * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -1409,6 +1620,10 @@ export namespace vmmigration_v1 {
      */
     utilizationReports?: Schema$UtilizationReport[];
   }
+  /**
+   * LoadingImageSourceFilesStep contains specific step details.
+   */
+  export interface Schema$LoadingImageSourceFilesStep {}
   /**
    * Provides a localized error message that is safe to return to the user which can be attached to an RPC error.
    */
@@ -2280,12 +2495,16 @@ export namespace vmmigration_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     groups: Resource$Projects$Locations$Groups;
+    imageImports: Resource$Projects$Locations$Imageimports;
     operations: Resource$Projects$Locations$Operations;
     sources: Resource$Projects$Locations$Sources;
     targetProjects: Resource$Projects$Locations$Targetprojects;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.groups = new Resource$Projects$Locations$Groups(this.context);
+      this.imageImports = new Resource$Projects$Locations$Imageimports(
+        this.context
+      );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -3217,6 +3436,742 @@ export namespace vmmigration_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RemoveGroupMigrationRequest;
+  }
+
+  export class Resource$Projects$Locations$Imageimports {
+    context: APIRequestContext;
+    imageImportJobs: Resource$Projects$Locations$Imageimports$Imageimportjobs;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.imageImportJobs =
+        new Resource$Projects$Locations$Imageimports$Imageimportjobs(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new ImageImport in a given project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Imageimports$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Imageimports$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Imageimports$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Imageimports$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Imageimports$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Imageimports$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Imageimports$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Imageimports$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/imageImports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single ImageImport.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Imageimports$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Imageimports$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Imageimports$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Imageimports$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Imageimports$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Imageimports$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Imageimports$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Imageimports$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single ImageImport.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Imageimports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Imageimports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImageImport>;
+    get(
+      params: Params$Resource$Projects$Locations$Imageimports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Imageimports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ImageImport>,
+      callback: BodyResponseCallback<Schema$ImageImport>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Imageimports$Get,
+      callback: BodyResponseCallback<Schema$ImageImport>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ImageImport>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Imageimports$Get
+        | BodyResponseCallback<Schema$ImageImport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImageImport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImageImport>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ImageImport> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Imageimports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Imageimports$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ImageImport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ImageImport>(parameters);
+      }
+    }
+
+    /**
+     * Lists ImageImports in a given project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Imageimports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Imageimports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListImageImportsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Imageimports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Imageimports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListImageImportsResponse>,
+      callback: BodyResponseCallback<Schema$ListImageImportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Imageimports$List,
+      callback: BodyResponseCallback<Schema$ListImageImportsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListImageImportsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Imageimports$List
+        | BodyResponseCallback<Schema$ListImageImportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListImageImportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListImageImportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListImageImportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Imageimports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Imageimports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/imageImports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListImageImportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListImageImportsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Imageimports$Create
+    extends StandardParameters {
+    /**
+     * Required. The image import identifier. This value maximum length is 63 characters, and valid characters are /a-z-/. It must start with an english letter and must not end with a hyphen.
+     */
+    imageImportId?: string;
+    /**
+     * Required. The ImageImport's parent.
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImageImport;
+  }
+  export interface Params$Resource$Projects$Locations$Imageimports$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ImageImport name.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Imageimports$Get
+    extends StandardParameters {
+    /**
+     * Required. The ImageImport name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Imageimports$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter request (according to https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Optional. The order by fields for the result (according to https://google.aip.dev/132#ordering). Currently ordering is only possible by "name" field.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of targets to return. The service may return fewer than this value. If unspecified, at most 500 targets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListImageImports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListImageImports` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of targets.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Imageimports$Imageimportjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Initiates the cancellation of a running clone job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single ImageImportJob.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImageImportJob>;
+    get(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ImageImportJob>,
+      callback: BodyResponseCallback<Schema$ImageImportJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get,
+      callback: BodyResponseCallback<Schema$ImageImportJob>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ImageImportJob>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get
+        | BodyResponseCallback<Schema$ImageImportJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImageImportJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImageImportJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ImageImportJob> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ImageImportJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ImageImportJob>(parameters);
+      }
+    }
+
+    /**
+     * Lists ImageImportJobs in a given project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListImageImportJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListImageImportJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListImageImportJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List,
+      callback: BodyResponseCallback<Schema$ListImageImportJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListImageImportJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List
+        | BodyResponseCallback<Schema$ListImageImportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListImageImportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListImageImportJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListImageImportJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/imageImportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListImageImportJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListImageImportJobsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel
+    extends StandardParameters {
+    /**
+     * Required. The image import job id.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelImageImportJobRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get
+    extends StandardParameters {
+    /**
+     * Required. The ImageImportJob name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter request (according to https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Optional. The order by fields for the result (according to https://google.aip.dev/132#ordering). Currently ordering is only possible by "name" field.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of targets to return. The service may return fewer than this value. If unspecified, at most 500 targets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListImageImportJobs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListImageImportJobs` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of targets.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Operations {

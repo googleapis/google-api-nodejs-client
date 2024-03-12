@@ -717,6 +717,10 @@ export namespace connectors_v1 {
    */
   export interface Schema$CustomConnector {
     /**
+     * Optional. Active connector versions.
+     */
+    activeConnectorVersions?: string[] | null;
+    /**
      * Output only. Created time.
      */
     createTime?: string | null;
@@ -786,9 +790,13 @@ export namespace connectors_v1 {
      */
     serviceAccount?: string | null;
     /**
-     * Optional. Location of the custom connector spec.
+     * Optional. Location of the custom connector spec. The location can be either a public url like `https://public-url.com/spec` Or a Google Cloud Storage location like `gs:///`
      */
     specLocation?: string | null;
+    /**
+     * Output only. State of the custom connector version.
+     */
+    state?: string | null;
     /**
      * Output only. Updated time.
      */
@@ -1064,6 +1072,10 @@ export namespace connectors_v1 {
      * Registration endpoint for auto registration.
      */
     registrationDestinationConfig?: Schema$DestinationConfig;
+    /**
+     * Optional. Additional eventing related field values
+     */
+    triggerConfigVariables?: Schema$ConfigVariable[];
   }
   /**
    * Eventing Config details of a connector version.
@@ -1113,6 +1125,10 @@ export namespace connectors_v1 {
      * Registration host destination config template.
      */
     registrationDestinationConfig?: Schema$DestinationConfigTemplate;
+    /**
+     * Trigger Config fields that needs to be rendered
+     */
+    triggerConfigVariables?: Schema$ConfigVariableTemplate[];
   }
   /**
    * Eventing Details message.

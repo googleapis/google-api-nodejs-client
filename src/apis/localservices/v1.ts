@@ -270,6 +270,10 @@ export namespace localservices_v1 {
      */
     geo?: string | null;
     /**
+     * Unique identifier of a Detailed Lead Report.
+     */
+    googleAdsLeadId?: string | null;
+    /**
      * Lead category (e.g. hvac, plumber)
      */
     leadCategory?: string | null;
@@ -278,7 +282,7 @@ export namespace localservices_v1 {
      */
     leadCreationTimestamp?: string | null;
     /**
-     * Unique identifier of a Detailed Lead Report.
+     * Deprecated in favor of google_ads_lead_id. Unique identifier of a Detailed Lead Report.
      */
     leadId?: string | null;
     /**

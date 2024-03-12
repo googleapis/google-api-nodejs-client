@@ -142,7 +142,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Message describing ContactCenter object Next ID: 18
+   * Message describing ContactCenter object Next ID: 20
    */
   export interface Schema$ContactCenter {
     /**

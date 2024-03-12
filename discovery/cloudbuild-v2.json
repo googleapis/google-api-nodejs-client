@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20240130",
+  "revision": "20240223",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -945,6 +945,65 @@
       },
       "type": "object"
     },
+    "BitbucketCloudConfig": {
+      "description": "Configuration for connections to Bitbucket Cloud.",
+      "id": "BitbucketCloudConfig",
+      "properties": {
+        "authorizerCredential": {
+          "$ref": "UserCredential",
+          "description": "Required. An access token with the `webhook`, `repository`, `repository:admin` and `pullrequest` scope access. It can be either a workspace, project or repository access token. It's recommended to use a system account to generate these credentials."
+        },
+        "readAuthorizerCredential": {
+          "$ref": "UserCredential",
+          "description": "Required. An access token with the `repository` access. It can be either a workspace, project or repository access token. It's recommended to use a system account to generate the credentials."
+        },
+        "webhookSecretSecretVersion": {
+          "description": "Required. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*/secrets/*/versions/*`.",
+          "type": "string"
+        },
+        "workspace": {
+          "description": "Required. The Bitbucket Cloud Workspace ID to be connected to Google Cloud Platform.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BitbucketDataCenterConfig": {
+      "description": "Configuration for connections to Bitbucket Data Center.",
+      "id": "BitbucketDataCenterConfig",
+      "properties": {
+        "authorizerCredential": {
+          "$ref": "UserCredential",
+          "description": "Required. A http access token with the `REPO_ADMIN` scope access."
+        },
+        "hostUri": {
+          "description": "Required. The URI of the Bitbucket Data Center instance or cluster this connection is for.",
+          "type": "string"
+        },
+        "readAuthorizerCredential": {
+          "$ref": "UserCredential",
+          "description": "Required. A http access token with the `REPO_READ` access."
+        },
+        "serverVersion": {
+          "description": "Output only. Version of the Bitbucket Data Center running on the `host_uri`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceDirectoryConfig": {
+          "$ref": "GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig",
+          "description": "Optional. Configuration for using Service Directory to privately connect to a Bitbucket Data Center. This should only be set if the Bitbucket Data Center is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the Bitbucket Data Center will be made over the public internet."
+        },
+        "sslCa": {
+          "description": "Optional. SSL certificate to use for requests to the Bitbucket Data Center.",
+          "type": "string"
+        },
+        "webhookSecretSecretVersion": {
+          "description": "Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*/secrets/*/versions/*`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -1008,7 +1067,7 @@
       "type": "object"
     },
     "Connection": {
-      "description": "A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data Center or GitLab.",
+      "description": "A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data Center, Bitbucket Cloud or GitLab.",
       "id": "Connection",
       "properties": {
         "annotations": {
@@ -1017,6 +1076,14 @@
           },
           "description": "Allows clients to store small amounts of arbitrary data.",
           "type": "object"
+        },
+        "bitbucketCloudConfig": {
+          "$ref": "BitbucketCloudConfig",
+          "description": "Configuration for connections to Bitbucket Cloud."
+        },
+        "bitbucketDataCenterConfig": {
+          "$ref": "BitbucketDataCenterConfig",
+          "description": "Configuration for connections to Bitbucket Data Center."
         },
         "createTime": {
           "description": "Output only. Server assigned timestamp for when the connection was created.",
@@ -1911,6 +1978,11 @@
           "$ref": "Provenance",
           "description": "Optional. Provenance configuration."
         },
+        "record": {
+          "description": "Output only. The `Record` of this `PipelineRun`. Format: `projects/{project}/locations/{location}/results/{result_id}/records/{record_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
         "resolvedPipelineSpec": {
           "$ref": "PipelineSpec",
           "description": "Output only. The exact PipelineSpec used to instantiate the run.",
@@ -2788,17 +2860,6 @@
       },
       "type": "object"
     },
-    "VolumeClaim": {
-      "description": "VolumeClaim is a user's request for a volume.",
-      "id": "VolumeClaim",
-      "properties": {
-        "storage": {
-          "description": "Volume size, e.g. 1gb.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "VolumeMount": {
       "description": "Pod volumes to mount into the container's filesystem.",
       "id": "VolumeMount",
@@ -2899,10 +2960,6 @@
         "subPath": {
           "description": "Optional. SubPath is optionally a directory on the volume which should be used for this binding (i.e. the volume will be mounted at this sub directory). +optional",
           "type": "string"
-        },
-        "volumeClaim": {
-          "$ref": "VolumeClaim",
-          "description": "Volume claim that will be created in the same namespace."
         }
       },
       "type": "object"

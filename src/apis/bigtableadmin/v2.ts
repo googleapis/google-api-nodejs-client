@@ -311,10 +311,6 @@ export namespace bigtableadmin_v2 {
      * Required. The token created using GenerateConsistencyToken for the Table.
      */
     consistencyToken?: string | null;
-    /**
-     * Checks that reads using an app profile with `StandardIsolation` can see all writes committed before the token was created, even if the read and write target different clusters.
-     */
-    standardReadRemoteWrites?: Schema$StandardReadRemoteWrites;
   }
   /**
    * Response message for google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency
@@ -1157,10 +1153,6 @@ export namespace bigtableadmin_v2 {
      */
     priority?: string | null;
   }
-  /**
-   * Checks that all writes before the consistency token was generated is replicated in every cluster and readable.
-   */
-  export interface Schema$StandardReadRemoteWrites {}
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */

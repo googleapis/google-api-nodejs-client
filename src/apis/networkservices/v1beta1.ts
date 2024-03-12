@@ -276,7 +276,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$ExtensionChainExtension {
     /**
-     * Required. The `:authority` header in the gRPC request sent from Envoy to the extension service.
+     * Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service.
      */
     authority?: string | null;
     /**
@@ -314,7 +314,7 @@ export namespace networkservices_v1beta1 {
     celExpression?: string | null;
   }
   /**
-   * Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway. Next id: 30
+   * Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway. Next id: 32
    */
   export interface Schema$Gateway {
     /**

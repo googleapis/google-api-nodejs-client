@@ -289,7 +289,7 @@ export namespace backupdr_v1 {
      */
     managementUri?: Schema$ManagementURI;
     /**
-     * Output only. The resource name.
+     * Output only. Identifier. The resource name.
      */
     name?: string | null;
     /**

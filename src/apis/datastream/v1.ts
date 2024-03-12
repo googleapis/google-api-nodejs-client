@@ -144,6 +144,10 @@ export namespace datastream_v1 {
      * PostgreSQL data source objects to avoid backfilling.
      */
     postgresqlExcludedObjects?: Schema$PostgresqlRdbms;
+    /**
+     * SQLServer data source objects to avoid backfilling
+     */
+    sqlServerExcludedObjects?: Schema$SqlServerRdbms;
   }
   /**
    * Represents a backfill job on a specific stream object.
@@ -264,6 +268,10 @@ export namespace datastream_v1 {
      * Private connectivity.
      */
     privateConnectivity?: Schema$PrivateConnectivity;
+    /**
+     * SQLServer Connection Profile configuration.
+     */
+    sqlServerProfile?: Schema$SqlServerProfile;
     /**
      * Static Service IP connectivity.
      */
@@ -1292,6 +1300,10 @@ export namespace datastream_v1 {
      * Required. Source connection profile resoource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
      */
     sourceConnectionProfile?: string | null;
+    /**
+     * SQLServer data source configuration.
+     */
+    sqlServerSourceConfig?: Schema$SqlServerSourceConfig;
   }
   /**
    * Destination datasets are created so that hierarchy of the destination data objects matches the source hierarchy.
@@ -1318,6 +1330,10 @@ export namespace datastream_v1 {
      * PostgreSQL data source object identifier.
      */
     postgresqlIdentifier?: Schema$PostgresqlObjectIdentifier;
+    /**
+     * SQLServer data source object identifier.
+     */
+    sqlServerIdentifier?: Schema$SqlServerObjectIdentifier;
   }
   /**
    * CDC strategy to start replicating from a specific position in the source.
@@ -1331,6 +1347,137 @@ export namespace datastream_v1 {
      * Oracle SCN to start replicating from.
      */
     oracleScnPosition?: Schema$OracleScnPosition;
+  }
+  /**
+   * SQLServer Column.
+   */
+  export interface Schema$SqlServerColumn {
+    /**
+     * Column name.
+     */
+    column?: string | null;
+    /**
+     * The SQLServer data type.
+     */
+    dataType?: string | null;
+    /**
+     * Column length.
+     */
+    length?: number | null;
+    /**
+     * Whether or not the column can accept a null value.
+     */
+    nullable?: boolean | null;
+    /**
+     * The ordinal position of the column in the table.
+     */
+    ordinalPosition?: number | null;
+    /**
+     * Column precision.
+     */
+    precision?: number | null;
+    /**
+     * Whether or not the column represents a primary key.
+     */
+    primaryKey?: boolean | null;
+    /**
+     * Column scale.
+     */
+    scale?: number | null;
+  }
+  /**
+   * SQLServer data source object identifier.
+   */
+  export interface Schema$SqlServerObjectIdentifier {
+    /**
+     * Required. The schema name.
+     */
+    schema?: string | null;
+    /**
+     * Required. The table name.
+     */
+    table?: string | null;
+  }
+  /**
+   * SQLServer database profile
+   */
+  export interface Schema$SqlServerProfile {
+    /**
+     * Required. Database for the SQLServer connection.
+     */
+    database?: string | null;
+    /**
+     * Required. Hostname for the SQLServer connection.
+     */
+    hostname?: string | null;
+    /**
+     * Required. Password for the SQLServer connection.
+     */
+    password?: string | null;
+    /**
+     * Port for the SQLServer connection, default value is 1433.
+     */
+    port?: number | null;
+    /**
+     * Required. Username for the SQLServer connection.
+     */
+    username?: string | null;
+  }
+  /**
+   * SQLServer database structure.
+   */
+  export interface Schema$SqlServerRdbms {
+    /**
+     * SQLServer schemas in the database server.
+     */
+    schemas?: Schema$SqlServerSchema[];
+  }
+  /**
+   * SQLServer schema.
+   */
+  export interface Schema$SqlServerSchema {
+    /**
+     * Schema name.
+     */
+    schema?: string | null;
+    /**
+     * Tables in the schema.
+     */
+    tables?: Schema$SqlServerTable[];
+  }
+  /**
+   * SQLServer data source configuration
+   */
+  export interface Schema$SqlServerSourceConfig {
+    /**
+     * SQLServer objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SqlServerRdbms;
+    /**
+     * SQLServer objects to include in the stream.
+     */
+    includeObjects?: Schema$SqlServerRdbms;
+    /**
+     * Max concurrent backfill tasks.
+     */
+    maxConcurrentBackfillTasks?: number | null;
+    /**
+     * Max concurrent CDC tasks.
+     */
+    maxConcurrentCdcTasks?: number | null;
+  }
+  /**
+   * SQLServer table.
+   */
+  export interface Schema$SqlServerTable {
+    /**
+     * SQLServer columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+     */
+    columns?: Schema$SqlServerColumn[];
+    /**
+     * Table name.
+     */
+    table?: string | null;
   }
   /**
    * Request for manually initiating a backfill job for a specific stream object.

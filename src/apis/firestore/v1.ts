@@ -625,6 +625,19 @@ export namespace firestore_v1 {
     weeklyRecurrence?: Schema$GoogleFirestoreAdminV1WeeklyRecurrence;
   }
   /**
+   * The CMEK (Customer Managed Encryption Key) configuration for a Firestore database. If not present, the database is secured by the default Google encryption key.
+   */
+  export interface Schema$GoogleFirestoreAdminV1CmekConfig {
+    /**
+     * Output only. Currently in-use [KMS key versions](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions). During [key rotation](https://cloud.google.com/kms/docs/key-rotation), there can be multiple in-use key versions. The expected format is `projects/{project_id\}/locations/{kms_location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}/cryptoKeyVersions/{key_version\}`.
+     */
+    activeKeyVersion?: string[] | null;
+    /**
+     * Required. Only keys in the same location as this database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id\}/locations/{kms_location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
+     */
+    kmsKeyName?: string | null;
+  }
+  /**
    * Metadata related to the create database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1CreateDatabaseMetadata {}
@@ -640,6 +653,10 @@ export namespace firestore_v1 {
      * The App Engine integration mode to use for this database.
      */
     appEngineIntegrationMode?: string | null;
+    /**
+     * Optional. Presence indicates CMEK is enabled for this database.
+     */
+    cmekConfig?: Schema$GoogleFirestoreAdminV1CmekConfig;
     /**
      * The concurrency control mode to use for this database.
      */

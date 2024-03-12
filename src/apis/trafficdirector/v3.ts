@@ -153,6 +153,10 @@ export namespace trafficdirector_v3 {
    */
   export interface Schema$ClientConfig {
     /**
+     * For xDS clients, the scope in which the data is used. For example, gRPC indicates the data plane target or that the data is associated with gRPC server(s).
+     */
+    clientScope?: string | null;
+    /**
      * Represents generic xDS config and the exact config structure depends on the type URL (like Cluster if it is CDS)
      */
     genericXdsConfigs?: Schema$GenericXdsConfig[];

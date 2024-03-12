@@ -140,23 +140,23 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Required. A filter for matching the requested operations. The supported formats of *filter* are: To query for a specific function: project:*,location:*,function:* To query for all of the latest operations for a project: project:*,latest:true",
+              "description": "The standard list filter.",
               "location": "query",
               "type": "string"
             },
             "name": {
-              "description": "Must not be set.",
+              "description": "The name of the operation's parent resource.",
               "location": "query",
               "type": "string"
             },
             "pageSize": {
-              "description": "The maximum number of records that should be returned. Requested page size cannot exceed 100. If not set, the default page size is 100. Pagination is only supported when querying for a specific function.",
+              "description": "The standard list page size.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Token identifying which result to start with, which is returned by a previous list call. Pagination is only supported when querying for a specific function.",
+              "description": "The standard list page token.",
               "location": "query",
               "type": "string"
             }
@@ -552,7 +552,7 @@
       }
     }
   },
-  "revision": "20240205",
+  "revision": "20240220",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -666,8 +666,7 @@
       "id": "CloudFunction",
       "properties": {
         "automaticUpdatePolicy": {
-          "$ref": "AutomaticUpdatePolicy",
-          "description": "See the comment next to this message for more details."
+          "$ref": "AutomaticUpdatePolicy"
         },
         "availableMemoryMb": {
           "description": "The amount of memory in MB available for a function. Defaults to 256MB.",
@@ -787,8 +786,7 @@
           "type": "string"
         },
         "onDeployUpdatePolicy": {
-          "$ref": "OnDeployUpdatePolicy",
-          "description": "See the comment next to this message for more details."
+          "$ref": "OnDeployUpdatePolicy"
         },
         "runtime": {
           "description": "The runtime in which to run the function. Required when deploying a new function, optional when updating an existing function. For a complete list of possible choices, see the [`gcloud` command reference](https://cloud.google.com/sdk/gcloud/reference/functions/deploy#--runtime).",

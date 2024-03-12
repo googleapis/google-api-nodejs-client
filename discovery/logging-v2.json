@@ -7668,7 +7668,7 @@
       }
     }
   },
-  "revision": "20240112",
+  "revision": "20240207",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryDataset": {
@@ -9694,6 +9694,20 @@
       "description": "Describes the settings associated with a project, folder, organization, or billing account.",
       "id": "Settings",
       "properties": {
+        "analyticsMode": {
+          "description": "Optional. The default analytics mode of an org or folder which is inherited by all newly created child project buckets.",
+          "enum": [
+            "ANALYTICS_MODE_UNSPECIFIED",
+            "ANALYTICS_ENABLED",
+            "ANALYTICS_DISABLED"
+          ],
+          "enumDescriptions": [
+            "No default analytics mode defined at this resource level, it will inherit from the closest ancester which has a defined analytics mode. If there is no specified analytics mode across the resource hierarchy, analytics will be disabled by default.",
+            "By default, analytics will be enabled for all new project-level buckets unless explicitly specified otherwise at bucket creation time.",
+            "By default, analytics will be disabled for new project-level buckets unless explicitly specified otherwise at bucket creation time."
+          ],
+          "type": "string"
+        },
         "defaultSinkConfig": {
           "$ref": "DefaultSinkConfig",
           "description": "Optional. Overrides the built-in configuration for _Default sink."

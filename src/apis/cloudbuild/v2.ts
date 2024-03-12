@@ -186,6 +186,60 @@ export namespace cloudbuild_v2 {
     role?: string | null;
   }
   /**
+   * Configuration for connections to Bitbucket Cloud.
+   */
+  export interface Schema$BitbucketCloudConfig {
+    /**
+     * Required. An access token with the `webhook`, `repository`, `repository:admin` and `pullrequest` scope access. It can be either a workspace, project or repository access token. It's recommended to use a system account to generate these credentials.
+     */
+    authorizerCredential?: Schema$UserCredential;
+    /**
+     * Required. An access token with the `repository` access. It can be either a workspace, project or repository access token. It's recommended to use a system account to generate the credentials.
+     */
+    readAuthorizerCredential?: Schema$UserCredential;
+    /**
+     * Required. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/x/secrets/x/versions/x`.
+     */
+    webhookSecretSecretVersion?: string | null;
+    /**
+     * Required. The Bitbucket Cloud Workspace ID to be connected to Google Cloud Platform.
+     */
+    workspace?: string | null;
+  }
+  /**
+   * Configuration for connections to Bitbucket Data Center.
+   */
+  export interface Schema$BitbucketDataCenterConfig {
+    /**
+     * Required. A http access token with the `REPO_ADMIN` scope access.
+     */
+    authorizerCredential?: Schema$UserCredential;
+    /**
+     * Required. The URI of the Bitbucket Data Center instance or cluster this connection is for.
+     */
+    hostUri?: string | null;
+    /**
+     * Required. A http access token with the `REPO_READ` access.
+     */
+    readAuthorizerCredential?: Schema$UserCredential;
+    /**
+     * Output only. Version of the Bitbucket Data Center running on the `host_uri`.
+     */
+    serverVersion?: string | null;
+    /**
+     * Optional. Configuration for using Service Directory to privately connect to a Bitbucket Data Center. This should only be set if the Bitbucket Data Center is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the Bitbucket Data Center will be made over the public internet.
+     */
+    serviceDirectoryConfig?: Schema$GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig;
+    /**
+     * Optional. SSL certificate to use for requests to the Bitbucket Data Center.
+     */
+    sslCa?: string | null;
+    /**
+     * Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/x/secrets/x/versions/x`.
+     */
+    webhookSecretSecretVersion?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -224,13 +278,21 @@ export namespace cloudbuild_v2 {
     whenExpressions?: Schema$WhenExpression[];
   }
   /**
-   * A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data Center or GitLab.
+   * A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data Center, Bitbucket Cloud or GitLab.
    */
   export interface Schema$Connection {
     /**
      * Allows clients to store small amounts of arbitrary data.
      */
     annotations?: {[key: string]: string} | null;
+    /**
+     * Configuration for connections to Bitbucket Cloud.
+     */
+    bitbucketCloudConfig?: Schema$BitbucketCloudConfig;
+    /**
+     * Configuration for connections to Bitbucket Data Center.
+     */
+    bitbucketDataCenterConfig?: Schema$BitbucketDataCenterConfig;
     /**
      * Output only. Server assigned timestamp for when the connection was created.
      */
@@ -873,6 +935,10 @@ export namespace cloudbuild_v2 {
      */
     provenance?: Schema$Provenance;
     /**
+     * Output only. The `Record` of this `PipelineRun`. Format: `projects/{project\}/locations/{location\}/results/{result_id\}/records/{record_id\}`
+     */
+    record?: string | null;
+    /**
      * Output only. The exact PipelineSpec used to instantiate the run.
      */
     resolvedPipelineSpec?: Schema$PipelineSpec;
@@ -1463,15 +1529,6 @@ export namespace cloudbuild_v2 {
     userTokenSecretVersion?: string | null;
   }
   /**
-   * VolumeClaim is a user's request for a volume.
-   */
-  export interface Schema$VolumeClaim {
-    /**
-     * Volume size, e.g. 1gb.
-     */
-    storage?: string | null;
-  }
-  /**
    * Pod volumes to mount into the container's filesystem.
    */
   export interface Schema$VolumeMount {
@@ -1551,10 +1608,6 @@ export namespace cloudbuild_v2 {
      * Optional. SubPath is optionally a directory on the volume which should be used for this binding (i.e. the volume will be mounted at this sub directory). +optional
      */
     subPath?: string | null;
-    /**
-     * Volume claim that will be created in the same namespace.
-     */
-    volumeClaim?: Schema$VolumeClaim;
   }
   /**
    * WorkspaceDeclaration is a declaration of a volume that a Task requires.

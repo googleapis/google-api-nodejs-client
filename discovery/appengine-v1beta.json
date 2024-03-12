@@ -1859,7 +1859,7 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20240218",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2286,13 +2286,11 @@
       "id": "ContainerState",
       "properties": {
         "currentReasons": {
-          "$ref": "Reasons",
-          "deprecated": true
+          "$ref": "Reasons"
         },
         "previousReasons": {
           "$ref": "Reasons",
-          "deprecated": true,
-          "description": "The previous and current reasons for a container state will be sent for a container event. CLHs that need to know the signal that caused the container event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com)."
+          "description": "The previous and current reasons for a container state will be sent for a container event. CLHs that need to know the signal that caused the container event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state."
         },
         "state": {
           "description": "The current state of the container. This state is the culmination of all of the opinions from external systems that CCFE knows about of the container.",
@@ -3781,6 +3779,10 @@
           "$ref": "Date",
           "description": "Date when Runtime is deprecated."
         },
+        "displayName": {
+          "description": "User-friendly display name, e.g. 'Node.js 12', etc.",
+          "type": "string"
+        },
         "endOfSupportDate": {
           "$ref": "Date",
           "description": "Date when Runtime is end of support."
@@ -3826,6 +3828,13 @@
             "The runtime is end of support."
           ],
           "type": "string"
+        },
+        "supportedOperatingSystems": {
+          "description": "Supported operating systems for the runtime, e.g., 'ubuntu22', etc.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "warnings": {
           "description": "Warning messages, e.g., a deprecation warning.",

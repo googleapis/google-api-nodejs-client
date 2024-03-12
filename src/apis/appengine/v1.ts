@@ -407,7 +407,7 @@ export namespace appengine_v1 {
   export interface Schema$ContainerState {
     currentReasons?: Schema$Reasons;
     /**
-     * The previous and current reasons for a container state will be sent for a container event. CLHs that need to know the signal that caused the container event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com).
+     * The previous and current reasons for a container state will be sent for a container event. CLHs that need to know the signal that caused the container event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.
      */
     previousReasons?: Schema$Reasons;
     /**
@@ -1398,6 +1398,10 @@ export namespace appengine_v1 {
      */
     deprecationDate?: Schema$Date;
     /**
+     * User-friendly display name, e.g. 'Node.js 12', etc.
+     */
+    displayName?: string | null;
+    /**
      * Date when Runtime is end of support.
      */
     endOfSupportDate?: Schema$Date;
@@ -1413,6 +1417,10 @@ export namespace appengine_v1 {
      * The stage of life this runtime is in, e.g., BETA, GA, etc.
      */
     stage?: string | null;
+    /**
+     * Supported operating systems for the runtime, e.g., 'ubuntu22', etc.
+     */
+    supportedOperatingSystems?: string[] | null;
     /**
      * Warning messages, e.g., a deprecation warning.
      */

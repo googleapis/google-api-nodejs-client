@@ -185,7 +185,7 @@ export namespace networkconnectivity_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -250,6 +250,10 @@ export namespace networkconnectivity_v1 {
      * The PSC connection id of the PSC forwarding rule connected to the service attachments in this service connection map.
      */
     pscConnectionId?: string | null;
+    /**
+     * Output only. The URI of the selected subnetwork selected to allocate IP address for this connection.
+     */
+    selectedSubnetwork?: string | null;
     /**
      * The URI of a service attachment which is the target of the PSC connection.
      */
@@ -1023,6 +1027,10 @@ export namespace networkconnectivity_v1 {
      * The PSC connection id of the PSC forwarding rule.
      */
     pscConnectionId?: string | null;
+    /**
+     * Output only. The URI of the subnetwork selected to allocate IP address for this connection.
+     */
+    selectedSubnetwork?: string | null;
     /**
      * State of the PSC Connection
      */

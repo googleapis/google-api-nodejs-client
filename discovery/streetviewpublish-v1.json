@@ -534,7 +534,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240226",
   "rootUrl": "https://streetviewpublish.googleapis.com/",
   "schemas": {
     "BatchDeletePhotosRequest": {
@@ -1061,7 +1061,8 @@
             "NOT_OUTDOORS",
             "INSUFFICIENT_VIDEO_FRAMES",
             "INSUFFICIENT_MOVEMENT",
-            "MAST_DOWN"
+            "MAST_DOWN",
+            "CAMERA_COVERED"
           ],
           "enumDescriptions": [
             "The failure reason is unspecified, this is the default value.",
@@ -1087,7 +1088,8 @@
             "Some frames were indoors, which is unsupported.",
             "Not enough video frames.",
             "Not enough moving data.",
-            "Mast is down."
+            "Mast is down.",
+            "Camera is covered."
           ],
           "readOnly": true,
           "type": "string"

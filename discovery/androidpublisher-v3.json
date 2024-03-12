@@ -2793,7 +2793,8 @@
         "subscriptions": {
           "methods": {
             "archive": {
-              "description": "Archives a subscription. Can only be done if at least one base plan was active in the past, and no base plan is available for new or existing subscribers currently. This action is irreversible, and the subscription ID will remain reserved.",
+              "deprecated": true,
+              "description": "Deprecated: subscription archiving is not supported.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}:archive",
               "httpMethod": "POST",
               "id": "androidpublisher.monetization.subscriptions.archive",
@@ -3006,7 +3007,8 @@
                   "type": "string"
                 },
                 "showArchived": {
-                  "description": "Whether archived subscriptions should be included in the response. Defaults to false.",
+                  "deprecated": true,
+                  "description": "Deprecated: subscription archiving is not supported.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -4724,7 +4726,7 @@
       }
     }
   },
-  "revision": "20240207",
+  "revision": "20240222",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -5131,13 +5133,17 @@
             "RECOVERY_STATUS_UNSPECIFIED",
             "RECOVERY_STATUS_ACTIVE",
             "RECOVERY_STATUS_CANCELED",
-            "RECOVERY_STATUS_DRAFT"
+            "RECOVERY_STATUS_DRAFT",
+            "RECOVERY_STATUS_GENERATION_IN_PROGRESS",
+            "RECOVERY_STATUS_GENERATION_FAILED"
           ],
           "enumDescriptions": [
             "RecoveryStatus is unspecified.",
             "The app recovery action has not been canceled since it has been created.",
             "The recovery action has been canceled. The action cannot be resumed.",
-            "The recovery action is in the draft state and has not yet been deployed to users."
+            "The recovery action is in the draft state and has not yet been deployed to users.",
+            "The recovery action is generating recovery apks.",
+            "The app recovery action generation has failed."
           ],
           "type": "string"
         },
@@ -5149,7 +5155,7 @@
       "type": "object"
     },
     "AppVersionList": {
-      "description": "Data format for a list of app versions. Only one app version is supported for now.",
+      "description": "Data format for a list of app versions.",
       "id": "AppVersionList",
       "properties": {
         "versionCodes": {
@@ -5181,7 +5187,8 @@
       "type": "object"
     },
     "ArchiveSubscriptionRequest": {
-      "description": "Request message for ArchiveSubscription.",
+      "deprecated": true,
+      "description": "Deprecated: subscription archiving is not supported.",
       "id": "ArchiveSubscriptionRequest",
       "properties": {},
       "type": "object"
@@ -6523,13 +6530,17 @@
             "RECOVERY_STATUS_UNSPECIFIED",
             "RECOVERY_STATUS_ACTIVE",
             "RECOVERY_STATUS_CANCELED",
-            "RECOVERY_STATUS_DRAFT"
+            "RECOVERY_STATUS_DRAFT",
+            "RECOVERY_STATUS_GENERATION_IN_PROGRESS",
+            "RECOVERY_STATUS_GENERATION_FAILED"
           ],
           "enumDescriptions": [
             "RecoveryStatus is unspecified.",
             "The app recovery action has not been canceled since it has been created.",
             "The recovery action has been canceled. The action cannot be resumed.",
-            "The recovery action is in the draft state and has not yet been deployed to users."
+            "The recovery action is in the draft state and has not yet been deployed to users.",
+            "The recovery action is generating recovery apks.",
+            "The app recovery action generation has failed."
           ],
           "type": "string"
         }
@@ -7859,7 +7870,7 @@
       "id": "RegionalTaxRateInfo",
       "properties": {
         "eligibleForStreamingServiceTaxRate": {
-          "description": "You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in United States.",
+          "description": "You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in the United States.",
           "type": "boolean"
         },
         "streamingTaxType": {
@@ -8105,7 +8116,7 @@
       "id": "SafetyLabelsUpdateRequest",
       "properties": {
         "safetyLabels": {
-          "description": "Required. Contents of the CSV file containing Data Safety responses. For the format of this file, see the Help Center documentation at https://support.google.com/googleplay/android-developer/answer/10787469?hl=en#zippy=%2Cunderstand-the-csv-format To download an up to date template, follow the steps at https://support.google.com/googleplay/android-developer/answer/10787469?hl=en#zippy=%2Cexport-to-a-csv-file",
+          "description": "Required. Contents of the CSV file containing Data Safety responses. For the format of this file, see the Help Center documentation at https://support.google.com/googleplay/android-developer/answer/10787469?#zippy=%2Cunderstand-the-csv-format To download an up to date template, follow the steps at https://support.google.com/googleplay/android-developer/answer/10787469?#zippy=%2Cexport-to-a-csv-file",
           "type": "string"
         }
       },
@@ -8293,7 +8304,8 @@
       "id": "Subscription",
       "properties": {
         "archived": {
-          "description": "Output only. Whether this subscription is archived. Archived subscriptions are not available to any subscriber any longer, cannot be updated, and are not returned in list requests unless the show archived flag is passed in.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: subscription archiving is not supported.",
           "readOnly": true,
           "type": "boolean"
         },

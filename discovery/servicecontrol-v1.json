@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20230728",
+  "revision": "20240223",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -599,6 +599,10 @@
       "description": "Contains additional information about the check operation.",
       "id": "CheckInfo",
       "properties": {
+        "apiKeyUid": {
+          "description": "The unique id of the api key in the format of \"apikey:\". This field will be populated when the consumer passed to Chemist is an API key and all the API key related validations are successful.",
+          "type": "string"
+        },
         "consumerInfo": {
           "$ref": "ConsumerInfo",
           "description": "Consumer info of this check."

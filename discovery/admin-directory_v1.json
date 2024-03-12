@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20240102",
+  "revision": "20240227",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6083,7 +6083,8 @@
             "WIPE_USERS",
             "REMOTE_POWERWASH",
             "DEVICE_START_CRD_SESSION",
-            "CAPTURE_LOGS"
+            "CAPTURE_LOGS",
+            "FETCH_SUPPORT_PACKET"
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
@@ -6093,7 +6094,8 @@
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
-            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)",
+            "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         }
@@ -6150,7 +6152,8 @@
             "WIPE_USERS",
             "REMOTE_POWERWASH",
             "DEVICE_START_CRD_SESSION",
-            "CAPTURE_LOGS"
+            "CAPTURE_LOGS",
+            "FETCH_SUPPORT_PACKET"
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
@@ -6160,12 +6163,13 @@
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
-            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)",
+            "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         },
         "payload": {
-          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: * `SET_VOLUME`: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100]. * `DEVICE_START_CRD_SESSION`: Payload is optionally a stringified JSON object in the form: { \"ackedUserPresence\": true }. `ackedUserPresence` is a boolean. By default, `ackedUserPresence` is set to `false`. To start a Chrome Remote Desktop session for an active device, set `ackedUserPresence` to `true`.",
+          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: * `SET_VOLUME`: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100]. * `DEVICE_START_CRD_SESSION`: Payload is optionally a stringified JSON object in the form: { \"ackedUserPresence\": true }. `ackedUserPresence` is a boolean. By default, `ackedUserPresence` is set to `false`. To start a Chrome Remote Desktop session for an active device, set `ackedUserPresence` to `true`. * `REBOOT`: Payload is a stringified JSON object in the form: { \"user_session_delay_seconds\": 300 }. The delay has to be in the range [0, 300]. * `FETCH_SUPPORT_PACKET`: Payload is optionally a stringified JSON object in the form: {\"supportPacketDetails\":{ \"issueCaseId\": optional_support_case_id_string, \"issueDescription\": optional_issue_description_string, \"requestedDataCollectors\": []}} The list of available `data_collector_enums` are as following: Chrome System Information (1), Crash IDs (2), Memory Details (3), UI Hierarchy (4), Additional ChromeOS Platform Logs (5), Device Event (6), Intel WiFi NICs Debug Dump (7), Touch Events (8), Lacros (9), Lacros System Information (10), ChromeOS Flex Logs (11), DBus Details (12), ChromeOS Network Routes (13), ChromeOS Shill (Connection Manager) Logs (14), Policies (15), ChromeOS System State and Logs (16), ChromeOS System Logs (17), ChromeOS Chrome User Logs (18), ChromeOS Bluetooth (19), ChromeOS Connected Input Devices (20), ChromeOS Traffic Counters (21), ChromeOS Virtual Keyboard (22), ChromeOS Network Health (23). See more details in [help article](https://support.google.com/chrome/a?p=remote-log).",
           "type": "string"
         }
       },

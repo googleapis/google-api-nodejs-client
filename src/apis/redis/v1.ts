@@ -177,7 +177,7 @@ export namespace redis_v1 {
      */
     shardCount?: number | null;
     /**
-     * Output only. Redis memory size in GB for the entire cluster.
+     * Output only. Redis memory size in GB for the entire cluster rounded up to the next integer.
      */
     sizeGb?: number | null;
     /**

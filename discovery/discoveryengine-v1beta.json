@@ -4449,7 +4449,7 @@
       }
     }
   },
-  "revision": "20240206",
+  "revision": "20240227",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4732,6 +4732,10 @@
           "description": "Required. The data store display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
+        "documentProcessingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfig",
+          "description": "Configuration for Document understanding and enrichment."
+        },
         "industryVertical": {
           "description": "Immutable. The industry vertical that the data store registers.",
           "enum": [
@@ -4768,6 +4772,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "startingSchema": {
+          "$ref": "GoogleCloudDiscoveryengineV1Schema",
+          "description": "The start schema to use for this DataStore when provisioning it. If unset, a default vertical specialized schema will be used. This field is only used by CreateDataStore API, and will be ignored if used in other APIs. This field will be omitted from all API responses including CreateDataStore API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema)."
         }
       },
       "type": "object"
@@ -4840,6 +4848,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1DigitalParsingConfig": {
+      "description": "The digital parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1DigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata",
@@ -4861,6 +4875,43 @@
       "description": "Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.",
       "id": "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfig": {
+      "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfig",
+      "properties": {
+        "defaultParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig",
+          "description": "Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing."
+        },
+        "name": {
+          "description": "The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
+          "type": "string"
+        },
+        "parsingConfigOverrides": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig"
+          },
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig": {
+      "description": "Related configurations applied to a specific type of document parser.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig",
+      "properties": {
+        "digitalParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DigitalParsingConfig",
+          "description": "Configurations applied to digital parser."
+        },
+        "ocrParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1OcrParsingConfig",
+          "description": "Configurations applied to OCR parser. Currently it only applies to PDFs."
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchMetadata": {
@@ -5215,6 +5266,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1OcrParsingConfig": {
+      "description": "The OCR parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1OcrParsingConfig",
+      "properties": {
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1PurgeDocumentsMetadata": {
       "description": "Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1PurgeDocumentsMetadata",
@@ -5226,6 +5295,11 @@
         },
         "failureCount": {
           "description": "Count of entries that encountered errors while processing.",
+          "format": "int64",
+          "type": "string"
+        },
+        "ignoredCount": {
+          "description": "Count of entries that were ignored as entries were not found.",
           "format": "int64",
           "type": "string"
         },
@@ -5434,6 +5508,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure": {
+      "description": "Failed due to insufficient quota.",
       "id": "GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure",
       "properties": {
         "totalRequiredQuota": {
@@ -5473,6 +5548,21 @@
         "updateTime": {
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAclConfig": {
+      "description": "Access Control Configuration.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAclConfig",
+      "properties": {
+        "idpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaIdpConfig",
+          "description": "Identity provider config."
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -5581,6 +5671,10 @@
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1alphaDataStore",
       "properties": {
+        "aclEnabled": {
+          "description": "Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.",
+          "type": "boolean"
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -5611,6 +5705,15 @@
         "displayName": {
           "description": "Required. The data store display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
+        },
+        "documentProcessingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig",
+          "description": "Configuration for Document understanding and enrichment."
+        },
+        "idpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaIdpConfig",
+          "description": "Output only. Data store level identity provider config.",
+          "readOnly": true
         },
         "industryVertical": {
           "description": "Immutable. The industry vertical that the data store registers.",
@@ -5648,6 +5751,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "startingSchema": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSchema",
+          "description": "The start schema to use for this DataStore when provisioning it. If unset, a default vertical specialized schema will be used. This field is only used by CreateDataStore API, and will be ignored if used in other APIs. This field will be omitted from all API responses including CreateDataStore API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema)."
         }
       },
       "type": "object"
@@ -5770,7 +5877,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.",
           "type": "object"
         }
       },
@@ -5822,6 +5929,10 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaEngine",
       "properties": {
+        "allowMultipleDataStoresSearchEngine": {
+          "description": "Whether the search engine can associate with multiple data stores. If true, the generic search engine can associate with one or more data stores. This is an input-only field.",
+          "type": "boolean"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -6267,6 +6378,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaIdpConfig": {
+      "description": "Identity Provider Config.",
+      "id": "GoogleCloudDiscoveryengineV1alphaIdpConfig",
+      "properties": {
+        "externalIdpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaIdpConfigExternalIdpConfig",
+          "description": "External Identity provider config."
+        },
+        "idpType": {
+          "description": "Identity provider type configured.",
+          "enum": [
+            "IDP_TYPE_UNSPECIFIED",
+            "GSUITE",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value. ACL search not enabled.",
+            "Google 1P provider.",
+            "Third party provider."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaIdpConfigExternalIdpConfig": {
+      "description": "Third party IDP Config.",
+      "id": "GoogleCloudDiscoveryengineV1alphaIdpConfigExternalIdpConfig",
+      "properties": {
+        "workforcePoolName": {
+          "description": "Workforce pool name. Example: \"locations/global/workforcePools/pool_id\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata": {
       "description": "Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata",
@@ -6477,6 +6624,11 @@
         },
         "failureCount": {
           "description": "Count of entries that encountered errors while processing.",
+          "format": "int64",
+          "type": "string"
+        },
+        "ignoredCount": {
+          "description": "Count of entries that were ignored as entries were not found.",
           "format": "int64",
           "type": "string"
         },
@@ -6840,6 +6992,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure": {
+      "description": "Failed due to insufficient quota.",
       "id": "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure",
       "properties": {
         "totalRequiredQuota": {
@@ -7165,6 +7318,10 @@
       "description": "Request message for ConversationalSearchService.ConverseConversation method.",
       "id": "GoogleCloudDiscoveryengineV1betaConverseConversationRequest",
       "properties": {
+        "boostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec",
+          "description": "Boost specification to boost certain documents in search results which may affect the converse response. For more information on boosting, see [Boosting](https://cloud.google.com/retail/docs/boosting#boost)"
+        },
         "conversation": {
           "$ref": "GoogleCloudDiscoveryengineV1betaConversation",
           "description": "The conversation to be used by auto session only. The name field will be ignored as we automatically assign new name for the conversation in auto session."
@@ -7368,6 +7525,10 @@
           "description": "Required. The data store display name. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
+        "documentProcessingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig",
+          "description": "Configuration for Document understanding and enrichment."
+        },
         "industryVertical": {
           "description": "Immutable. The industry vertical that the data store registers.",
           "enum": [
@@ -7404,6 +7565,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "startingSchema": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSchema",
+          "description": "The start schema to use for this DataStore when provisioning it. If unset, a default vertical specialized schema will be used. This field is only used by CreateDataStore API, and will be ignored if used in other APIs. This field will be omitted from all API responses including CreateDataStore API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema)."
         }
       },
       "type": "object"
@@ -7476,6 +7641,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDigitalParsingConfig": {
+      "description": "The digital parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1betaDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata",
@@ -7524,6 +7695,12 @@
         },
         "id": {
           "description": "Immutable. The identifier of the document. Id should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.",
+          "type": "string"
+        },
+        "indexTime": {
+          "description": "Output only. The last time the document was indexed. If this field is set, the document could be returned in search results. This field is OUTPUT_ONLY. If this field is not populated, it means the document has never been indexed.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "jsonData": {
@@ -7600,6 +7777,43 @@
         "uri": {
           "description": "The Document URI - only allowed for website data stores.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig": {
+      "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig",
+      "properties": {
+        "defaultParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig",
+          "description": "Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing."
+        },
+        "name": {
+          "description": "The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
+          "type": "string"
+        },
+        "parsingConfigOverrides": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig"
+          },
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig": {
+      "description": "Related configurations applied to a specific type of document parser.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig",
+      "properties": {
+        "digitalParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDigitalParsingConfig",
+          "description": "Configurations applied to digital parser."
+        },
+        "ocrParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaOcrParsingConfig",
+          "description": "Configurations applied to OCR parser. Currently it only applies to PDFs."
         }
       },
       "type": "object"
@@ -8329,6 +8543,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaOcrParsingConfig": {
+      "description": "The OCR parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1betaOcrParsingConfig",
+      "properties": {
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaPageInfo": {
       "description": "Detailed page information.",
       "id": "GoogleCloudDiscoveryengineV1betaPageInfo",
@@ -8388,6 +8620,11 @@
         },
         "failureCount": {
           "description": "Count of entries that encountered errors while processing.",
+          "format": "int64",
+          "type": "string"
+        },
+        "ignoredCount": {
+          "description": "Count of entries that were ignored as entries were not found.",
           "format": "int64",
           "type": "string"
         },
@@ -8802,7 +9039,7 @@
           "type": "number"
         },
         "condition": {
-          "description": "An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID \"doc_1\" or \"doc_2\", and color \"Red\" or \"Blue\": * (id: ANY(\"doc_1\", \"doc_2\")) AND (color: ANY(\"Red\",\"Blue\"))",
+          "description": "An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID \"doc_1\" or \"doc_2\", and color \"Red\" or \"Blue\": * (document_id: ANY(\"doc_1\", \"doc_2\")) AND (color: ANY(\"Red\", \"Blue\"))",
           "type": "string"
         }
       },
@@ -8928,7 +9165,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec",
       "properties": {
         "version": {
-          "description": "The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. LINT.IfChange * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English. LINT.ThenChange(//depot/google3/cloud/console/web/ai/unified_cloud_search/pages/configurations/widget_tab.ts)",
+          "description": "The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English.",
           "type": "string"
         }
       },
@@ -9332,7 +9569,8 @@
           "type": "string"
         },
         "summaryWithMetadata": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummarySummaryWithMetadata"
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummarySummaryWithMetadata",
+          "description": "Summary with metadata information."
         }
       },
       "type": "object"
@@ -9524,6 +9762,7 @@
           "type": "array"
         },
         "rankingExpression": {
+          "description": "The ranking expression controls the customized ranking on retrieval documents. To leverage this, document embedding is required. The ranking expression setting in ServingConfig applies to all search requests served by the serving config. However, if SearchRequest.ranking_expression is specified, it overrides the ServingConfig ranking expression. The ranking expression is a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: relevance_score: pre-defined keywords, used for measure relevance between query and document. embedding_field_path: the document embedding field used with query embedding vector. dotProduct: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be 0.5 * relevance_score + 0.3 * dotProduct(doc_embedding).",
           "type": "string"
         },
         "redirectControlIds": {
@@ -9765,6 +10004,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure": {
+      "description": "Failed due to insufficient quota.",
       "id": "GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure",
       "properties": {
         "totalRequiredQuota": {

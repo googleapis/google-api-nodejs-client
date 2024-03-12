@@ -240,6 +240,19 @@ export namespace discoveryengine_v1beta {
     functionName?: string | null;
   }
   /**
+   * Access Control Configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAclConfig {
+    /**
+     * Identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1alphaIdpConfig;
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+  }
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata {
@@ -318,6 +331,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStore {
     /**
+     * Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.
+     */
+    aclEnabled?: boolean | null;
+    /**
      * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
      */
     contentConfig?: string | null;
@@ -334,6 +351,14 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
+     * Configuration for Document understanding and enrichment.
+     */
+    documentProcessingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig;
+    /**
+     * Output only. Data store level identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1alphaIdpConfig;
+    /**
      * Immutable. The industry vertical that the data store registers.
      */
     industryVertical?: string | null;
@@ -345,6 +370,10 @@ export namespace discoveryengine_v1beta {
      * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
      */
     solutionTypes?: string[] | null;
+    /**
+     * The start schema to use for this DataStore when provisioning it. If unset, a default vertical specialized schema will be used. This field is only used by CreateDataStore API, and will be ignored if used in other APIs. This field will be omitted from all API responses including CreateDataStore API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
+     */
+    startingSchema?: Schema$GoogleCloudDiscoveryengineV1alphaSchema;
   }
   /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -436,7 +465,7 @@ export namespace discoveryengine_v1beta {
      */
     ocrConfig?: Schema$GoogleCloudDiscoveryengineV1alphaOcrConfig;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -482,6 +511,10 @@ export namespace discoveryengine_v1beta {
    * Metadata that describes the training and serving parameters of an Engine.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngine {
+    /**
+     * Whether the search engine can associate with multiple data stores. If true, the generic search engine can associate with one or more data stores. This is an input-only field.
+     */
+    allowMultipleDataStoresSearchEngine?: boolean | null;
     /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
@@ -727,6 +760,28 @@ export namespace discoveryengine_v1beta {
     searchableOption?: string | null;
   }
   /**
+   * Identity Provider Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaIdpConfig {
+    /**
+     * External Identity provider config.
+     */
+    externalIdpConfig?: Schema$GoogleCloudDiscoveryengineV1alphaIdpConfigExternalIdpConfig;
+    /**
+     * Identity provider type configured.
+     */
+    idpType?: string | null;
+  }
+  /**
+   * Third party IDP Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaIdpConfigExternalIdpConfig {
+    /**
+     * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
+     */
+    workforcePoolName?: string | null;
+  }
+  /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata {
@@ -887,6 +942,10 @@ export namespace discoveryengine_v1beta {
      * Count of entries that encountered errors while processing.
      */
     failureCount?: string | null;
+    /**
+     * Count of entries that were ignored as entries were not found.
+     */
+    ignoredCount?: string | null;
     /**
      * Count of entries that were deleted successfully.
      */
@@ -1121,6 +1180,9 @@ export namespace discoveryengine_v1beta {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure;
   }
+  /**
+   * Failed due to insufficient quota.
+   */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure {
     /**
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
@@ -1385,6 +1447,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaConverseConversationRequest {
     /**
+     * Boost specification to boost certain documents in search results which may affect the converse response. For more information on boosting, see [Boosting](https://cloud.google.com/retail/docs/boosting#boost)
+     */
+    boostSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec;
+    /**
      * The conversation to be used by auto session only. The name field will be ignored as we automatically assign new name for the conversation in auto session.
      */
     conversation?: Schema$GoogleCloudDiscoveryengineV1betaConversation;
@@ -1533,6 +1599,10 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
+     * Configuration for Document understanding and enrichment.
+     */
+    documentProcessingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig;
+    /**
      * Immutable. The industry vertical that the data store registers.
      */
     industryVertical?: string | null;
@@ -1544,6 +1614,10 @@ export namespace discoveryengine_v1beta {
      * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
      */
     solutionTypes?: string[] | null;
+    /**
+     * The start schema to use for this DataStore when provisioning it. If unset, a default vertical specialized schema will be used. This field is only used by CreateDataStore API, and will be ignored if used in other APIs. This field will be omitted from all API responses including CreateDataStore API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
+     */
+    startingSchema?: Schema$GoogleCloudDiscoveryengineV1betaSchema;
   }
   /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -1598,6 +1672,10 @@ export namespace discoveryengine_v1beta {
     updateTime?: string | null;
   }
   /**
+   * The digital parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDigitalParsingConfig {}
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata {
@@ -1634,6 +1712,10 @@ export namespace discoveryengine_v1beta {
      * Immutable. The identifier of the document. Id should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.
      */
     id?: string | null;
+    /**
+     * Output only. The last time the document was indexed. If this field is set, the document could be returned in search results. This field is OUTPUT_ONLY. If this field is not populated, it means the document has never been indexed.
+     */
+    indexTime?: string | null;
     /**
      * The JSON string representation of the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
@@ -1696,6 +1778,40 @@ export namespace discoveryengine_v1beta {
      * The Document URI - only allowed for website data stores.
      */
     uri?: string | null;
+  }
+  /**
+   * A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig {
+    /**
+     * Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing.
+     */
+    defaultParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig;
+    /**
+     * The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
+     */
+    name?: string | null;
+    /**
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     */
+    parsingConfigOverrides?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig;
+    } | null;
+  }
+  /**
+   * Related configurations applied to a specific type of document parser.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig {
+    /**
+     * Configurations applied to digital parser.
+     */
+    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDigitalParsingConfig;
+    /**
+     * Configurations applied to OCR parser. Currently it only applies to PDFs.
+     */
+    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaOcrParsingConfig;
   }
   /**
    * Double list.
@@ -2219,6 +2335,19 @@ export namespace discoveryengine_v1beta {
     mediaProgressPercentage?: number | null;
   }
   /**
+   * The OCR parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaOcrParsingConfig {
+    /**
+     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
+     */
+    enhancedDocumentElements?: string[] | null;
+    /**
+     * If true, will use native text instead of OCR text on pages containing native text.
+     */
+    useNativeText?: boolean | null;
+  }
+  /**
    * Detailed page information.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaPageInfo {
@@ -2272,6 +2401,10 @@ export namespace discoveryengine_v1beta {
      * Count of entries that encountered errors while processing.
      */
     failureCount?: string | null;
+    /**
+     * Count of entries that were ignored as entries were not found.
+     */
+    ignoredCount?: string | null;
     /**
      * Count of entries that were deleted successfully.
      */
@@ -2592,7 +2725,7 @@ export namespace discoveryengine_v1beta {
      */
     boost?: number | null;
     /**
-     * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": * (id: ANY("doc_1", "doc_2")) AND (color: ANY("Red","Blue"))
+     * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": * (document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))
      */
     condition?: string | null;
   }
@@ -2698,7 +2831,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec {
     /**
-     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. LINT.IfChange * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English. LINT.ThenChange(//depot/google3/cloud/console/web/ai/unified_cloud_search/pages/configurations/widget_tab.ts)
+     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English.
      */
     version?: string | null;
   }
@@ -2980,6 +3113,9 @@ export namespace discoveryengine_v1beta {
      * The summary content.
      */
     summaryText?: string | null;
+    /**
+     * Summary with metadata information.
+     */
     summaryWithMetadata?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummarySummaryWithMetadata;
   }
   /**
@@ -3120,6 +3256,9 @@ export namespace discoveryengine_v1beta {
      * Condition oneway synonyms specifications. If multiple oneway synonyms conditions match, all matching oneway synonyms controls in the list will execute. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
      */
     onewaySynonymsControlIds?: string[] | null;
+    /**
+     * The ranking expression controls the customized ranking on retrieval documents. To leverage this, document embedding is required. The ranking expression setting in ServingConfig applies to all search requests served by the serving config. However, if SearchRequest.ranking_expression is specified, it overrides the ServingConfig ranking expression. The ranking expression is a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: relevance_score: pre-defined keywords, used for measure relevance between query and document. embedding_field_path: the document embedding field used with query embedding vector. dotProduct: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be 0.5 * relevance_score + 0.3 * dotProduct(doc_embedding).
+     */
     rankingExpression?: string | null;
     /**
      * IDs of the redirect controls. Only the first triggered redirect action is applied, even if multiple apply. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
@@ -3261,6 +3400,9 @@ export namespace discoveryengine_v1beta {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure;
   }
+  /**
+   * Failed due to insufficient quota.
+   */
   export interface Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure {
     /**
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
@@ -3500,6 +3642,10 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
+     * Configuration for Document understanding and enrichment.
+     */
+    documentProcessingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfig;
+    /**
      * Immutable. The industry vertical that the data store registers.
      */
     industryVertical?: string | null;
@@ -3511,6 +3657,10 @@ export namespace discoveryengine_v1beta {
      * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
      */
     solutionTypes?: string[] | null;
+    /**
+     * The start schema to use for this DataStore when provisioning it. If unset, a default vertical specialized schema will be used. This field is only used by CreateDataStore API, and will be ignored if used in other APIs. This field will be omitted from all API responses including CreateDataStore API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
+     */
+    startingSchema?: Schema$GoogleCloudDiscoveryengineV1Schema;
   }
   /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -3565,6 +3715,10 @@ export namespace discoveryengine_v1beta {
     updateTime?: string | null;
   }
   /**
+   * The digital parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DigitalParsingConfig {}
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata {
@@ -3581,6 +3735,40 @@ export namespace discoveryengine_v1beta {
    * Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchResponse {}
+  /**
+   * A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfig {
+    /**
+     * Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing.
+     */
+    defaultParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig;
+    /**
+     * The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
+     */
+    name?: string | null;
+    /**
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     */
+    parsingConfigOverrides?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig;
+    } | null;
+  }
+  /**
+   * Related configurations applied to a specific type of document parser.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig {
+    /**
+     * Configurations applied to digital parser.
+     */
+    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DigitalParsingConfig;
+    /**
+     * Configurations applied to OCR parser. Currently it only applies to PDFs.
+     */
+    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1OcrParsingConfig;
+  }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
@@ -3828,6 +4016,19 @@ export namespace discoveryengine_v1beta {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * The OCR parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1OcrParsingConfig {
+    /**
+     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
+     */
+    enhancedDocumentElements?: string[] | null;
+    /**
+     * If true, will use native text instead of OCR text on pages containing native text.
+     */
+    useNativeText?: boolean | null;
+  }
+  /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1PurgeDocumentsMetadata {
@@ -3839,6 +4040,10 @@ export namespace discoveryengine_v1beta {
      * Count of entries that encountered errors while processing.
      */
     failureCount?: string | null;
+    /**
+     * Count of entries that were ignored as entries were not found.
+     */
+    ignoredCount?: string | null;
     /**
      * Count of entries that were deleted successfully.
      */
@@ -3967,6 +4172,9 @@ export namespace discoveryengine_v1beta {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure;
   }
+  /**
+   * Failed due to insufficient quota.
+   */
   export interface Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure {
     /**
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.

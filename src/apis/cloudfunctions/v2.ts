@@ -179,9 +179,6 @@ export namespace cloudfunctions_v2 {
    * Describes the Build step of the function that builds a container from the given source.
    */
   export interface Schema$BuildConfig {
-    /**
-     * See the comment next to this message for more details.
-     */
     automaticUpdatePolicy?: Schema$AutomaticUpdatePolicy;
     /**
      * Output only. The Cloud Build name of the latest successful deployment of the function.
@@ -203,9 +200,6 @@ export namespace cloudfunctions_v2 {
      * User-provided build-time environment variables for the function
      */
     environmentVariables?: {[key: string]: string} | null;
-    /**
-     * See the comment next to this message for more details.
-     */
     onDeployUpdatePolicy?: Schema$OnDeployUpdatePolicy;
     /**
      * The runtime in which to run the function. Required when deploying a new function, optional when updating an existing function. For a complete list of possible choices, see the [`gcloud` command reference](https://cloud.google.com/sdk/gcloud/reference/functions/deploy#--runtime).
@@ -3126,19 +3120,19 @@ export namespace cloudfunctions_v2 {
   export interface Params$Resource$Projects$Locations$Operations$List
     extends StandardParameters {
     /**
-     * Required. A filter for matching the requested operations. The supported formats of *filter* are: To query for a specific function: project:*,location:*,function:* To query for all of the latest operations for a project: project:*,latest:true
+     * The standard list filter.
      */
     filter?: string;
     /**
-     * Must not be set.
+     * The name of the operation's parent resource.
      */
     name?: string;
     /**
-     * The maximum number of records that should be returned. Requested page size cannot exceed 100. If not set, the default page size is 100. Pagination is only supported when querying for a specific function.
+     * The standard list page size.
      */
     pageSize?: number;
     /**
-     * Token identifying which result to start with, which is returned by a previous list call. Pagination is only supported when querying for a specific function.
+     * The standard list page token.
      */
     pageToken?: string;
   }

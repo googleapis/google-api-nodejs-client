@@ -567,7 +567,7 @@
       }
     }
   },
-  "revision": "20240124",
+  "revision": "20240221",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -801,7 +801,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "Output only. The resource name.",
+          "description": "Output only. Identifier. The resource name.",
           "readOnly": true,
           "type": "string"
         },

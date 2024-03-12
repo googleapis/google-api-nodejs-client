@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20231106",
+  "revision": "20240213",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -1087,6 +1087,13 @@
           "format": "double",
           "type": "number"
         },
+        "conversionCustomMetrics": {
+          "description": "The conversion custom metrics.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__Value"
+          },
+          "type": "array"
+        },
         "conversions": {
           "description": "The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
           "format": "double",
@@ -1308,6 +1315,13 @@
           "description": "The percentage of mobile clicks that go to a mobile-friendly page.",
           "format": "double",
           "type": "number"
+        },
+        "rawEventConversionMetrics": {
+          "description": "The raw event conversion metrics.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__Value"
+          },
+          "type": "array"
         },
         "searchAbsoluteTopImpressionShare": {
           "description": "The percentage of the customer's Shopping or Search ad impressions that are shown in the most prominent Shopping position. See https://support.google.com/sa360/answer/9566729 for details. Any value below 0.1 is reported as 0.0999.",
@@ -1665,6 +1679,13 @@
           "description": "Conversion action name.",
           "type": "string"
         },
+        "conversionCustomDimensions": {
+          "description": "The conversion custom dimensions.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__Value"
+          },
+          "type": "array"
+        },
         "date": {
           "description": "Date to which metrics apply. yyyy-MM-dd format, for example, 2018-04-17.",
           "type": "string"
@@ -1956,6 +1977,13 @@
         "quarter": {
           "description": "Quarter as represented by the date of the first day of a quarter. Uses the calendar year for quarters, for example, the second quarter of 2018 starts on 2018-04-01. Formatted as yyyy-MM-dd.",
           "type": "string"
+        },
+        "rawEventConversionDimensions": {
+          "description": "The raw event conversion dimensions.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__Value"
+          },
+          "type": "array"
         },
         "week": {
           "description": "Week as defined as Monday through Sunday, and represented by the date of Monday. Formatted as yyyy-MM-dd.",
@@ -3337,6 +3365,49 @@
           "description": "The value to use when conversion events for this conversion action are sent with an invalid, disallowed or missing value, or when this conversion action is configured to always use the default value.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo": {
+      "description": "Information for Search Ads 360 Floodlight Conversion Custom Variables.",
+      "id": "GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo",
+      "properties": {
+        "floodlightVariableDataType": {
+          "description": "Output only. Floodlight variable data type defined in Search Ads 360.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "NUMBER",
+            "STRING"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Represents a floodlight variable of \"Number\" type. This variable may be assigned to floodlight variables of DIMENSION or METRIC types.",
+            "Represents a floodlight variable of \"String\" type. This variable may be assigned to floodlight variables of DIMENSION type."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "floodlightVariableType": {
+          "description": "Output only. Floodlight variable type defined in Search Ads 360.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "DIMENSION",
+            "METRIC",
+            "UNSET"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Dimension floodlight variable type.",
+            "Metric floodlight variable type.",
+            "Floodlight variable type is unset."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4895,7 +4966,7 @@
           "enumDescriptions": [
             "Not specified.",
             "Used for return value only. Represents value unknown in this version.",
-            "Represents the shopping vertical."
+            "Represents the shopping vertical. The vertical is allowed only in Performance Max for Retail campaigns."
           ],
           "type": "string"
         }
@@ -6463,6 +6534,106 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__ConversionCustomVariable": {
+      "description": "A conversion custom variable. See \"About custom Floodlight metrics and dimensions in the new Search Ads 360\" at https://support.google.com/sa360/answer/13567857",
+      "id": "GoogleAdsSearchads360V0Resources__ConversionCustomVariable",
+      "properties": {
+        "cardinality": {
+          "description": "Output only. Cardinality of the conversion custom variable.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "BELOW_ALL_LIMITS",
+            "EXCEEDS_SEGMENTATION_LIMIT_BUT_NOT_STATS_LIMIT",
+            "APPROACHES_STATS_LIMIT",
+            "EXCEEDS_STATS_LIMIT"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The conversion custom variable has cardinality below all limits. The variable can be used for segmentation, and stats can accrue for new values if the variable is enabled.",
+            "The conversion custom variable has cardinality that exceeds the segmentation limit, but does not exceed the stats limit. Segmentation will be disabled, but stats can accrue for new values if the variable is enabled.",
+            "The conversion custom variable has exceeded the segmentation limits, and is approaching the stats limits (> 90%). Segmentation will be disabled, but stats can accrue for new values if the variable is enabled.",
+            "The conversion custom variable has exceeded both the segmentation limits and stats limits. Segmentation will be disabled, and stats for enabled variables can accrue only if the existing values do not increase the cardinality of the variable any further."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "customColumnIds": {
+          "description": "Output only. The IDs of custom columns that use this conversion custom variable.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "family": {
+          "description": "Output only. Family of the conversion custom variable.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "STANDARD",
+            "FLOODLIGHT"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The standard conversion custom variable. Customers are required to activate before use.",
+            "The conversion custom variable imported from a custom floodlight variable."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "floodlightConversionCustomVariableInfo": {
+          "$ref": "GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo",
+          "description": "Output only. Fields for Search Ads 360 floodlight conversion custom variables.",
+          "readOnly": true
+        },
+        "id": {
+          "description": "Output only. The ID of the conversion custom variable.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name of the conversion custom variable. Name should be unique. The maximum length of name is 100 characters. There should not be any extra spaces before and after.",
+          "type": "string"
+        },
+        "ownerCustomer": {
+          "description": "Output only. The resource name of the customer that owns the conversion custom variable.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the conversion custom variable. Conversion custom variable resource names have the form: `customers/{customer_id}/conversionCustomVariables/{conversion_custom_variable_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the conversion custom variable for conversion event accrual.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ACTIVATION_NEEDED",
+            "ENABLED",
+            "PAUSED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The conversion custom variable is pending activation and will not accrue stats until set to ENABLED. This status can't be used in CREATE and UPDATE requests.",
+            "The conversion custom variable is enabled and will accrue stats.",
+            "The conversion custom variable is paused and will not accrue stats until set to ENABLED again."
+          ],
+          "type": "string"
+        },
+        "tag": {
+          "description": "Required. Immutable. The tag of the conversion custom variable. Tag should be unique and consist of a \"u\" character directly followed with a number less than ormequal to 100. For example: \"u4\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__ConversionTrackingSetting": {
       "description": "A collection of customer-wide settings related to Search Ads 360 Conversion Tracking.",
       "id": "GoogleAdsSearchads360V0Resources__ConversionTrackingSetting",
@@ -7656,6 +7827,38 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Services__ConversionCustomDimensionHeader": {
+      "description": "Message for conversion custom dimension header.",
+      "id": "GoogleAdsSearchads360V0Services__ConversionCustomDimensionHeader",
+      "properties": {
+        "id": {
+          "description": "The conversion custom dimension ID.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "The user defined name of the conversion custom dimension.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Services__ConversionCustomMetricHeader": {
+      "description": "Message for conversion custom metric header.",
+      "id": "GoogleAdsSearchads360V0Services__ConversionCustomMetricHeader",
+      "properties": {
+        "id": {
+          "description": "The conversion custom metric ID.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "The user defined name of the conversion custom metric.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Services__CustomColumnHeader": {
       "description": "Message for custom column header.",
       "id": "GoogleAdsSearchads360V0Services__CustomColumnHeader",
@@ -7700,6 +7903,38 @@
             "$ref": "GoogleAdsSearchads360V0Resources__CustomColumn"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Services__RawEventConversionDimensionHeader": {
+      "description": "Message for raw event conversion dimension header.",
+      "id": "GoogleAdsSearchads360V0Services__RawEventConversionDimensionHeader",
+      "properties": {
+        "id": {
+          "description": "The conversion custom variable ID.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "The user defined name of the raw event dimension.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Services__RawEventConversionMetricHeader": {
+      "description": "Message for raw event conversion metric header.",
+      "id": "GoogleAdsSearchads360V0Services__RawEventConversionMetricHeader",
+      "properties": {
+        "id": {
+          "description": "The conversion custom variable ID.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "The user defined name of the raw event metric.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7831,6 +8066,10 @@
         "conversionAction": {
           "$ref": "GoogleAdsSearchads360V0Resources__ConversionAction",
           "description": "The conversion action referenced in the query."
+        },
+        "conversionCustomVariable": {
+          "$ref": "GoogleAdsSearchads360V0Resources__ConversionCustomVariable",
+          "description": "The conversion custom variable referenced in the query."
         },
         "customColumns": {
           "description": "The custom columns.",
@@ -8015,6 +8254,20 @@
       "description": "Response message for SearchAds360Service.Search.",
       "id": "GoogleAdsSearchads360V0Services__SearchSearchAds360Response",
       "properties": {
+        "conversionCustomDimensionHeaders": {
+          "description": "The headers of the conversion custom dimensions in the results.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Services__ConversionCustomDimensionHeader"
+          },
+          "type": "array"
+        },
+        "conversionCustomMetricHeaders": {
+          "description": "The headers of the conversion custom metrics in the results.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Services__ConversionCustomMetricHeader"
+          },
+          "type": "array"
+        },
         "customColumnHeaders": {
           "description": "The headers of the custom columns in the results.",
           "items": {
@@ -8030,6 +8283,20 @@
         "nextPageToken": {
           "description": "Pagination token used to retrieve the next page of results. Pass the content of this string as the `page_token` attribute of the next request. `next_page_token` is not returned for the last page.",
           "type": "string"
+        },
+        "rawEventConversionDimensionHeaders": {
+          "description": "The headers of the raw event conversion dimensions in the results.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Services__RawEventConversionDimensionHeader"
+          },
+          "type": "array"
+        },
+        "rawEventConversionMetricHeaders": {
+          "description": "The headers of the raw event conversion metrics in the results.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Services__RawEventConversionMetricHeader"
+          },
+          "type": "array"
         },
         "results": {
           "description": "The list of rows that matched the query.",

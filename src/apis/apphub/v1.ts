@@ -125,6 +125,72 @@ export namespace apphub_v1 {
   }
 
   /**
+   * Application defines the governance boundary for App Hub Entities that perform a logical end-to-end business function. App Hub supports application level IAM permission to align with governance requirements.
+   */
+  export interface Schema$Application {
+    /**
+     * Optional. Consumer provided attributes.
+     */
+    attributes?: Schema$Attributes;
+    /**
+     * Output only. Create time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-defined description of an Application. Can have a maximum length of 2048 characters.
+     */
+    description?: string | null;
+    /**
+     * Optional. User-defined name for the Application. Can have a maximum length of 63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The resource name of an Application. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. Defines what data can be included into this Application. Limits which Services and Workloads can be registered.
+     */
+    scope?: Schema$Scope;
+    /**
+     * Output only. Application state.
+     */
+    state?: string | null;
+    /**
+     * Output only. A universally unique identifier (in UUID4 format) for the `Application`.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Consumer provided attributes.
+   */
+  export interface Schema$Attributes {
+    /**
+     * Optional. Business team that ensures user needs are met and value is delivered
+     */
+    businessOwners?: Schema$ContactInfo[];
+    /**
+     * Optional. User-defined criticality information.
+     */
+    criticality?: Schema$Criticality;
+    /**
+     * Optional. Developer team that owns development and coding.
+     */
+    developerOwners?: Schema$ContactInfo[];
+    /**
+     * Optional. User-defined environment information.
+     */
+    environment?: Schema$Environment;
+    /**
+     * Optional. Operator team that ensures runtime and operations.
+     */
+    operatorOwners?: Schema$ContactInfo[];
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -172,9 +238,82 @@ export namespace apphub_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Contact information of stakeholders.
+   */
+  export interface Schema$ContactInfo {
+    /**
+     * Optional. Contact's name. Can have a maximum length of 63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Email address of the contacts.
+     */
+    email?: string | null;
+  }
+  /**
+   * Criticality of the Application, Service, or Workload
+   */
+  export interface Schema$Criticality {
+    /**
+     * Required. Criticality Type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Request for DetachServiceProjectAttachment.
+   */
+  export interface Schema$DetachServiceProjectAttachmentRequest {}
+  /**
+   * Response for DetachServiceProjectAttachment.
+   */
+  export interface Schema$DetachServiceProjectAttachmentResponse {}
+  /**
+   * DiscoveredService is a network/api interface that exposes some functionality to clients for consumption over the network. A discovered service can be registered to a App Hub service.
+   */
+  export interface Schema$DiscoveredService {
+    /**
+     * Identifier. The resource name of the discovered service. Format: "projects/{host-project-id\}/locations/{location\}/discoveredServices/{uuid\}""
+     */
+    name?: string | null;
+    /**
+     * Output only. Properties of an underlying compute resource that can comprise a Service. These are immutable.
+     */
+    serviceProperties?: Schema$ServiceProperties;
+    /**
+     * Output only. Reference to an underlying networking resource that can comprise a Service. These are immutable.
+     */
+    serviceReference?: Schema$ServiceReference;
+  }
+  /**
+   * DiscoveredWorkload is a binary deployment (such as managed instance groups (MIGs) and GKE deployments) that performs the smallest logical subset of business functionality. A discovered workload can be registered to an App Hub Workload.
+   */
+  export interface Schema$DiscoveredWorkload {
+    /**
+     * Identifier. The resource name of the discovered workload. Format: "projects/{host-project-id\}/locations/{location\}/discoveredWorkloads/{uuid\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. Properties of an underlying compute resource represented by the Workload. These are immutable.
+     */
+    workloadProperties?: Schema$WorkloadProperties;
+    /**
+     * Output only. Reference of an underlying compute resource represented by the Workload. These are immutable.
+     */
+    workloadReference?: Schema$WorkloadReference;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Environment of the Application, Service, or Workload
+   */
+  export interface Schema$Environment {
+    /**
+     * Required. Environment Type.
+     */
+    type?: string | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -195,6 +334,57 @@ export namespace apphub_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * Response for ListApplications.
+   */
+  export interface Schema$ListApplicationsResponse {
+    /**
+     * List of Applications.
+     */
+    applications?: Schema$Application[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for ListDiscoveredServices.
+   */
+  export interface Schema$ListDiscoveredServicesResponse {
+    /**
+     * List of discovered services.
+     */
+    discoveredServices?: Schema$DiscoveredService[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for ListDiscoveredWorkloads.
+   */
+  export interface Schema$ListDiscoveredWorkloadsResponse {
+    /**
+     * List of discovered workloads.
+     */
+    discoveredWorkloads?: Schema$DiscoveredWorkload[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -223,6 +413,57 @@ export namespace apphub_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response for ListServiceProjectAttachments.
+   */
+  export interface Schema$ListServiceProjectAttachmentsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of service project attachments.
+     */
+    serviceProjectAttachments?: Schema$ServiceProjectAttachment[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for ListServices.
+   */
+  export interface Schema$ListServicesResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of Services.
+     */
+    services?: Schema$Service[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for ListWorkloads.
+   */
+  export interface Schema$ListWorkloadsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+    /**
+     * List of Workloads.
+     */
+    workloads?: Schema$Workload[];
+  }
+  /**
    * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
@@ -248,6 +489,15 @@ export namespace apphub_v1 {
     name?: string | null;
   }
   /**
+   * Response for LookupServiceProjectAttachment.
+   */
+  export interface Schema$LookupServiceProjectAttachmentResponse {
+    /**
+     * Service project attachment for a project if exists, empty otherwise.
+     */
+    serviceProjectAttachment?: Schema$ServiceProjectAttachment;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -271,6 +521,39 @@ export namespace apphub_v1 {
      * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -305,6 +588,115 @@ export namespace apphub_v1 {
      * Excluisive action returned by the CLH.
      */
     exclusiveAction?: string | null;
+  }
+  /**
+   * Scope of an application.
+   */
+  export interface Schema$Scope {
+    /**
+     * Required. Scope Type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Service is an App Hub data model that contains a discovered service, which represents a network/api interface that exposes some functionality to clients for consumption over the network.
+   */
+  export interface Schema$Service {
+    /**
+     * Optional. Consumer provided attributes.
+     */
+    attributes?: Schema$Attributes;
+    /**
+     * Output only. Create time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-defined description of a Service. Can have a maximum length of 2048 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. Immutable. The resource name of the original discovered service.
+     */
+    discoveredService?: string | null;
+    /**
+     * Optional. User-defined name for the Service. Can have a maximum length of 63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The resource name of a Service. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. Properties of an underlying compute resource that can comprise a Service. These are immutable.
+     */
+    serviceProperties?: Schema$ServiceProperties;
+    /**
+     * Output only. Reference to an underlying networking resource that can comprise a Service. These are immutable.
+     */
+    serviceReference?: Schema$ServiceReference;
+    /**
+     * Output only. Service state.
+     */
+    state?: string | null;
+    /**
+     * Output only. A universally unique identifier (UUID) for the `Service` in the UUID4 format.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * ServiceProjectAttachment represents an attachment from a service project to a host project. Service projects contain the underlying cloud infrastructure resources, and expose these resources to the host project through a ServiceProjectAttachment. With the attachments, the host project can provide an aggregated view of resources across all service projects.
+   */
+  export interface Schema$ServiceProjectAttachment {
+    /**
+     * Output only. Create time.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. The resource name of a ServiceProjectAttachment. Format: "projects/{host-project-id\}/locations/global/serviceProjectAttachments/{service-project-id\}."
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. Service project name in the format: "projects/abc" or "projects/123". As input, project name with either project id or number are accepted. As output, this field will contain project number.
+     */
+    serviceProject?: string | null;
+    /**
+     * Output only. ServiceProjectAttachment state.
+     */
+    state?: string | null;
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for the `ServiceProjectAttachment`.
+     */
+    uid?: string | null;
+  }
+  /**
+   * Properties of an underlying cloud resource that can comprise a Service.
+   */
+  export interface Schema$ServiceProperties {
+    /**
+     * Output only. The service project identifier that the underlying cloud resource resides in.
+     */
+    gcpProject?: string | null;
+    /**
+     * Output only. The location that the underlying resource resides in, for example, us-west1.
+     */
+    location?: string | null;
+    /**
+     * Output only. The location that the underlying resource resides in if it is zonal, for example, us-west1-a).
+     */
+    zone?: string | null;
+  }
+  /**
+   * Reference to an underlying networking resource that can comprise a Service.
+   */
+  export interface Schema$ServiceReference {
+    /**
+     * Output only. The underlying resource URI (For example, URI of Forwarding Rule, URL Map, and Backend Service).
+     */
+    uri?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -354,6 +746,81 @@ export namespace apphub_v1 {
      */
     permissions?: string[] | null;
   }
+  /**
+   * Workload is an App Hub data model that contains a discovered workload, which represents a binary deployment (such as managed instance groups (MIGs) and GKE deployments) that performs the smallest logical subset of business functionality.
+   */
+  export interface Schema$Workload {
+    /**
+     * Optional. Consumer provided attributes.
+     */
+    attributes?: Schema$Attributes;
+    /**
+     * Output only. Create time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-defined description of a Workload. Can have a maximum length of 2048 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. Immutable. The resource name of the original discovered workload.
+     */
+    discoveredWorkload?: string | null;
+    /**
+     * Optional. User-defined name for the Workload. Can have a maximum length of 63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The resource name of the Workload. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. Workload state.
+     */
+    state?: string | null;
+    /**
+     * Output only. A universally unique identifier (UUID) for the `Workload` in the UUID4 format.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Update time.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. Properties of an underlying compute resource represented by the Workload. These are immutable.
+     */
+    workloadProperties?: Schema$WorkloadProperties;
+    /**
+     * Output only. Reference of an underlying compute resource represented by the Workload. These are immutable.
+     */
+    workloadReference?: Schema$WorkloadReference;
+  }
+  /**
+   * Properties of an underlying compute resource represented by the Workload.
+   */
+  export interface Schema$WorkloadProperties {
+    /**
+     * Output only. The service project identifier that the underlying cloud resource resides in. Empty for non cloud resources.
+     */
+    gcpProject?: string | null;
+    /**
+     * Output only. The location that the underlying compute resource resides in (e.g us-west1).
+     */
+    location?: string | null;
+    /**
+     * Output only. The location that the underlying compute resource resides in if it is zonal (e.g us-west1-a).
+     */
+    zone?: string | null;
+  }
+  /**
+   * Reference of an underlying compute resource represented by the Workload.
+   */
+  export interface Schema$WorkloadReference {
+    /**
+     * Output only. The underlying compute resource uri.
+     */
+    uri?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -367,15 +834,120 @@ export namespace apphub_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     applications: Resource$Projects$Locations$Applications;
+    discoveredServices: Resource$Projects$Locations$Discoveredservices;
+    discoveredWorkloads: Resource$Projects$Locations$Discoveredworkloads;
     operations: Resource$Projects$Locations$Operations;
+    serviceProjectAttachments: Resource$Projects$Locations$Serviceprojectattachments;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.applications = new Resource$Projects$Locations$Applications(
         this.context
       );
+      this.discoveredServices =
+        new Resource$Projects$Locations$Discoveredservices(this.context);
+      this.discoveredWorkloads =
+        new Resource$Projects$Locations$Discoveredworkloads(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.serviceProjectAttachments =
+        new Resource$Projects$Locations$Serviceprojectattachments(this.context);
+    }
+
+    /**
+     * Detaches a service project from a host project. You can call this API from either a host or service project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    detachServiceProjectAttachment(
+      params: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detachServiceProjectAttachment(
+      params?: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DetachServiceProjectAttachmentResponse>;
+    detachServiceProjectAttachment(
+      params: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    detachServiceProjectAttachment(
+      params: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DetachServiceProjectAttachmentResponse>,
+      callback: BodyResponseCallback<Schema$DetachServiceProjectAttachmentResponse>
+    ): void;
+    detachServiceProjectAttachment(
+      params: Params$Resource$Projects$Locations$Detachserviceprojectattachment,
+      callback: BodyResponseCallback<Schema$DetachServiceProjectAttachmentResponse>
+    ): void;
+    detachServiceProjectAttachment(
+      callback: BodyResponseCallback<Schema$DetachServiceProjectAttachmentResponse>
+    ): void;
+    detachServiceProjectAttachment(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Detachserviceprojectattachment
+        | BodyResponseCallback<Schema$DetachServiceProjectAttachmentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DetachServiceProjectAttachmentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DetachServiceProjectAttachmentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DetachServiceProjectAttachmentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Detachserviceprojectattachment;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Detachserviceprojectattachment;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}:detachServiceProjectAttachment'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DetachServiceProjectAttachmentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DetachServiceProjectAttachmentResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -553,8 +1125,116 @@ export namespace apphub_v1 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Looks up a service project attachment. You can call this API from either a host or service project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookupServiceProjectAttachment(
+      params: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookupServiceProjectAttachment(
+      params?: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LookupServiceProjectAttachmentResponse>;
+    lookupServiceProjectAttachment(
+      params: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookupServiceProjectAttachment(
+      params: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupServiceProjectAttachmentResponse>,
+      callback: BodyResponseCallback<Schema$LookupServiceProjectAttachmentResponse>
+    ): void;
+    lookupServiceProjectAttachment(
+      params: Params$Resource$Projects$Locations$Lookupserviceprojectattachment,
+      callback: BodyResponseCallback<Schema$LookupServiceProjectAttachmentResponse>
+    ): void;
+    lookupServiceProjectAttachment(
+      callback: BodyResponseCallback<Schema$LookupServiceProjectAttachmentResponse>
+    ): void;
+    lookupServiceProjectAttachment(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lookupserviceprojectattachment
+        | BodyResponseCallback<Schema$LookupServiceProjectAttachmentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupServiceProjectAttachmentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupServiceProjectAttachmentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LookupServiceProjectAttachmentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lookupserviceprojectattachment;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lookupserviceprojectattachment;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}:lookupServiceProjectAttachment'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LookupServiceProjectAttachmentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LookupServiceProjectAttachmentResponse>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Detachserviceprojectattachment
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DetachServiceProjectAttachmentRequest;
+  }
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
@@ -581,11 +1261,281 @@ export namespace apphub_v1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Projects$Locations$Lookupserviceprojectattachment
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+  }
 
   export class Resource$Projects$Locations$Applications {
     context: APIRequestContext;
+    services: Resource$Projects$Locations$Applications$Services;
+    workloads: Resource$Projects$Locations$Applications$Workloads;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.services = new Resource$Projects$Locations$Applications$Services(
+        this.context
+      );
+      this.workloads = new Resource$Projects$Locations$Applications$Workloads(
+        this.context
+      );
+    }
+
+    /**
+     * Creates an Application in a host project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Applications$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Applications$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/applications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an Application in a host project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Applications$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Applications$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets an Application in a host project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Applications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Application>;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Application>,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Get,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Application>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Get
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Applications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Application>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Application>(parameters);
+      }
     }
 
     /**
@@ -673,6 +1623,182 @@ export namespace apphub_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists Applications in a host project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Applications$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Applications$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListApplicationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListApplicationsResponse>,
+      callback: BodyResponseCallback<Schema$ListApplicationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$List,
+      callback: BodyResponseCallback<Schema$ListApplicationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListApplicationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$List
+        | BodyResponseCallback<Schema$ListApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListApplicationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListApplicationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Applications$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/applications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListApplicationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListApplicationsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an Application in a host project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Applications$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Applications$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -860,6 +1986,44 @@ export namespace apphub_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Applications$Create
+    extends StandardParameters {
+    /**
+     * Required. The Application identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     */
+    applicationId?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Application;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Delete
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Get
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Applications$Getiampolicy
     extends StandardParameters {
     /**
@@ -870,6 +2034,49 @@ export namespace apphub_v1 {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of an Application. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the Application resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. The API changes the values of the fields as specified in the update_mask. The API ignores the values of all fields not covered by the update_mask. You can also unset a field by not specifying it in the updated message, but adding the field to the mask. This clears whatever value the field previously had.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Application;
   }
   export interface Params$Resource$Projects$Locations$Applications$Setiampolicy
     extends StandardParameters {
@@ -894,6 +2101,1502 @@ export namespace apphub_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Applications$Services {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Service in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Services$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Services$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Services$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Services$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/services').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Service in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Service in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Services$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Services$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Services$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Services$Get,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Service>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Get
+        | BodyResponseCallback<Schema$Service>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Service>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Service>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Service>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Service>(parameters);
+      }
+    }
+
+    /**
+     * List Services in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Services$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Applications$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServicesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Services$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Services$List,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$List
+        | BodyResponseCallback<Schema$ListServicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListServicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListServicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/services').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListServicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListServicesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a Service in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Services$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Services$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Services$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Services$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Applications$Services$Create
+    extends StandardParameters {
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. The Service identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     */
+    serviceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Service;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Services$Delete
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Services$Get
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Services$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Services$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of a Service. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the Service resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. The API changes the values of the fields as specified in the update_mask. The API ignores the values of all fields not covered by the update_mask. You can also unset a field by not specifying it in the updated message, but adding the field to the mask. This clears whatever value the field previously had.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Service;
+  }
+
+  export class Resource$Projects$Locations$Applications$Workloads {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Workload in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Applications$Workloads$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Workloads$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Workloads$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Workloads$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/workloads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Workload in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Workloads$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Workloads$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Workloads$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Workload in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Applications$Workloads$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Workload>;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Workload>,
+      callback: BodyResponseCallback<Schema$Workload>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Get,
+      callback: BodyResponseCallback<Schema$Workload>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Workload>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Workloads$Get
+        | BodyResponseCallback<Schema$Workload>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Workload>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Workload>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Workload> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Workloads$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Workloads$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Workload>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Workload>(parameters);
+      }
+    }
+
+    /**
+     * Lists Workloads in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Applications$Workloads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkloadsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkloadsResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkloadsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$List,
+      callback: BodyResponseCallback<Schema$ListWorkloadsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListWorkloadsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Workloads$List
+        | BodyResponseCallback<Schema$ListWorkloadsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkloadsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkloadsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkloadsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Workloads$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Workloads$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/workloads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkloadsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkloadsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a Workload in an Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Workloads$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Workloads$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Workloads$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Workloads$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$Create
+    extends StandardParameters {
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. The Workload identifier. Must contain only lowercase letters, numbers or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     */
+    workloadId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Workload;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$Delete
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$Get
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Workloads$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the Workload. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the Workload resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. The API changes the values of the fields as specified in the update_mask. The API ignores the values of all fields not covered by the update_mask. You can also unset a field by not specifying it in the updated message, but adding the field to the mask. This clears whatever value the field previously had.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Workload;
+  }
+
+  export class Resource$Projects$Locations$Discoveredservices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a discovered service in a host project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredservices$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Discoveredservices$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DiscoveredService>;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredservices$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredservices$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DiscoveredService>,
+      callback: BodyResponseCallback<Schema$DiscoveredService>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredservices$Get,
+      callback: BodyResponseCallback<Schema$DiscoveredService>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DiscoveredService>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredservices$Get
+        | BodyResponseCallback<Schema$DiscoveredService>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DiscoveredService>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DiscoveredService>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DiscoveredService>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredservices$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredservices$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DiscoveredService>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DiscoveredService>(parameters);
+      }
+    }
+
+    /**
+     * Lists discovered services that can be added to an application in a host project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredservices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Discoveredservices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDiscoveredServicesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredservices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredservices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveredServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListDiscoveredServicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredservices$List,
+      callback: BodyResponseCallback<Schema$ListDiscoveredServicesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDiscoveredServicesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredservices$List
+        | BodyResponseCallback<Schema$ListDiscoveredServicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveredServicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDiscoveredServicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDiscoveredServicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredservices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredservices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/discoveredServices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDiscoveredServicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDiscoveredServicesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Discoveredservices$Get
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveredservices$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Discoveredworkloads {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a discovered workload in a host project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DiscoveredWorkload>;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DiscoveredWorkload>,
+      callback: BodyResponseCallback<Schema$DiscoveredWorkload>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$Get,
+      callback: BodyResponseCallback<Schema$DiscoveredWorkload>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DiscoveredWorkload>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredworkloads$Get
+        | BodyResponseCallback<Schema$DiscoveredWorkload>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DiscoveredWorkload>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DiscoveredWorkload>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DiscoveredWorkload>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredworkloads$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredworkloads$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DiscoveredWorkload>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DiscoveredWorkload>(parameters);
+      }
+    }
+
+    /**
+     * Lists discovered workloads that can be added to an application in a host project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Discoveredworkloads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDiscoveredWorkloadsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveredWorkloadsResponse>,
+      callback: BodyResponseCallback<Schema$ListDiscoveredWorkloadsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$List,
+      callback: BodyResponseCallback<Schema$ListDiscoveredWorkloadsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDiscoveredWorkloadsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredworkloads$List
+        | BodyResponseCallback<Schema$ListDiscoveredWorkloadsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveredWorkloadsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDiscoveredWorkloadsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDiscoveredWorkloadsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredworkloads$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredworkloads$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/discoveredWorkloads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDiscoveredWorkloadsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDiscoveredWorkloadsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Discoveredworkloads$Get
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveredworkloads$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
@@ -1291,5 +3994,434 @@ export namespace apphub_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Serviceprojectattachments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Attaches a service project to the host project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceprojectattachments$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceprojectattachments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceprojectattachments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/serviceProjectAttachments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a service project attached to the host project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceprojectattachments$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceprojectattachments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceprojectattachments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a service project attached to the host project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceProjectAttachment>;
+    get(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceProjectAttachment>,
+      callback: BodyResponseCallback<Schema$ServiceProjectAttachment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$Get,
+      callback: BodyResponseCallback<Schema$ServiceProjectAttachment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ServiceProjectAttachment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceprojectattachments$Get
+        | BodyResponseCallback<Schema$ServiceProjectAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServiceProjectAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServiceProjectAttachment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ServiceProjectAttachment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceprojectattachments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceprojectattachments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ServiceProjectAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ServiceProjectAttachment>(parameters);
+      }
+    }
+
+    /**
+     * List service projects attached to the host project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServiceProjectAttachmentsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceProjectAttachmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListServiceProjectAttachmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Serviceprojectattachments$List,
+      callback: BodyResponseCallback<Schema$ListServiceProjectAttachmentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListServiceProjectAttachmentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceprojectattachments$List
+        | BodyResponseCallback<Schema$ListServiceProjectAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListServiceProjectAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListServiceProjectAttachmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListServiceProjectAttachmentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceprojectattachments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceprojectattachments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/serviceProjectAttachments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListServiceProjectAttachmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListServiceProjectAttachmentsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Create
+    extends StandardParameters {
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. The service project attachment identifier must contain the project_id of the service project specified in the service_project_attachment.service_project field. Hint: "projects/{project_id\}"
+     */
+    serviceProjectAttachmentId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ServiceProjectAttachment;
+  }
+  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Delete
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Get
+    extends StandardParameters {
+    /**
+     * Required. Value for name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Serviceprojectattachments$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
   }
 }

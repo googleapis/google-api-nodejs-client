@@ -403,6 +403,11 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "orderBy": {
+                      "description": "Optional. The attribute by which to order conversations in the response. If empty, conversations will be ordered by descending creation time. Supported values are one of the following: * create_time * customer_satisfaction_rating * duration * latest_analysis * start_time * turn_count The default sort order is ascending. To specify order, append `asc` or `desc`, i.e. `create_time desc`. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "The maximum number of conversations to return in the response. A valid page size ranges from 0 to 1,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.",
                       "format": "int32",
@@ -774,6 +779,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "export": {
+                  "description": "Exports an issue model to the provided destination.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/issueModels/{issueModelsId}:export",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.issueModels.export",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The issue model to export",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/issueModels/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:export",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1ExportIssueModelRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets an issue model.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/issueModels/{issueModelsId}",
@@ -794,6 +827,34 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "GoogleCloudContactcenterinsightsV1IssueModel"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "import": {
+                  "description": "Imports an issue model from a Cloud Storage bucket.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/issueModels:import",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.issueModels.import",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the issue model.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/issueModels:import",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1ImportIssueModelRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1412,7 +1473,7 @@
       }
     }
   },
-  "revision": "20240130",
+  "revision": "20240219",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -2754,6 +2815,59 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1ExportIssueModelMetadata": {
+      "description": "Metadata used for export issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1ExportIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ExportIssueModelRequest",
+          "description": "The original export request."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ExportIssueModelRequest": {
+      "description": "Request to export an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1ExportIssueModelRequest",
+      "properties": {
+        "gcsDestination": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination",
+          "description": "Google Cloud Storage URI to export the Issue Model to."
+        },
+        "name": {
+          "description": "Required. The issue model to export",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination": {
+      "description": "Google Cloud Storage Object URI to save the issue model to.",
+      "id": "GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination",
+      "properties": {
+        "objectUri": {
+          "description": "Required. Format: `gs:///`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ExportIssueModelResponse": {
+      "description": "Response from export issue model",
+      "id": "GoogleCloudContactcenterinsightsV1ExportIssueModelResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1FaqAnswerData": {
       "description": "Agent Assist frequently-asked-question answer data.",
       "id": "GoogleCloudContactcenterinsightsV1FaqAnswerData",
@@ -2807,6 +2921,63 @@
     "GoogleCloudContactcenterinsightsV1HoldData": {
       "description": "The data for a hold annotation.",
       "id": "GoogleCloudContactcenterinsightsV1HoldData",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ImportIssueModelMetadata": {
+      "description": "Metadata used for import issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1ImportIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ImportIssueModelRequest",
+          "description": "The original import request."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ImportIssueModelRequest": {
+      "description": "Request to import an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1ImportIssueModelRequest",
+      "properties": {
+        "createNewModel": {
+          "description": "Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.",
+          "type": "boolean"
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ImportIssueModelRequestGcsSource",
+          "description": "Google Cloud Storage source message."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the issue model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ImportIssueModelRequestGcsSource": {
+      "description": "Google Cloud Storage Object URI to get the issue model file from.",
+      "id": "GoogleCloudContactcenterinsightsV1ImportIssueModelRequestGcsSource",
+      "properties": {
+        "objectUri": {
+          "description": "Required. Format: `gs:///`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ImportIssueModelResponse": {
+      "description": "Response from import issue model",
+      "id": "GoogleCloudContactcenterinsightsV1ImportIssueModelResponse",
       "properties": {},
       "type": "object"
     },
@@ -2950,6 +3121,17 @@
         },
         "bucketUri": {
           "description": "Required. The Cloud Storage bucket containing source objects.",
+          "type": "string"
+        },
+        "customMetadataKeys": {
+          "description": "Optional. Custom keys to extract as conversation labels from metadata files in `metadata_bucket_uri`. Keys not included in this field will be ignored. Note that there is a limit of 20 labels per conversation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadataBucketUri": {
+          "description": "Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested",
           "type": "string"
         }
       },
@@ -3628,7 +3810,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * \"all-triggers\": Notify each time any of the supported triggers occurs. * \"create-analysis\": Notify each time an analysis is created. * \"create-conversation\": Notify each time a conversation is created. * \"export-insights-data\": Notify each time an export is complete. * \"update-conversation\": Notify each time a conversation is updated via UpdateConversation. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project}/topics/{topic}",
+          "description": "A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * \"all-triggers\": Notify each time any of the supported triggers occurs. * \"create-analysis\": Notify each time an analysis is created. * \"create-conversation\": Notify each time a conversation is created. * \"export-insights-data\": Notify each time an export is complete. * \"update-conversation\": Notify each time a conversation is updated via UpdateConversation. * \"upload-conversation\": Notify when an UploadConversation LRO completes. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project}/topics/{topic}",
           "type": "object"
         },
         "redactionConfig": {
@@ -5095,6 +5277,59 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelMetadata": {
+      "description": "Metadata used for export issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequest",
+          "description": "The original export request."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequest": {
+      "description": "Request to export an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequest",
+      "properties": {
+        "gcsDestination": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination",
+          "description": "Google Cloud Storage URI to export the Issue Model to."
+        },
+        "name": {
+          "description": "Required. The issue model to export",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination": {
+      "description": "Google Cloud Storage Object URI to save the issue model to.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination",
+      "properties": {
+        "objectUri": {
+          "description": "Required. Format: `gs:///`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelResponse": {
+      "description": "Response from export issue model",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData": {
       "description": "Agent Assist frequently-asked-question answer data.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData",
@@ -5148,6 +5383,63 @@
     "GoogleCloudContactcenterinsightsV1alpha1HoldData": {
       "description": "The data for a hold annotation.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1HoldData",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelMetadata": {
+      "description": "Metadata used for import issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest",
+          "description": "The original import request."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest": {
+      "description": "Request to import an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest",
+      "properties": {
+        "createNewModel": {
+          "description": "Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.",
+          "type": "boolean"
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequestGcsSource",
+          "description": "Google Cloud Storage source message."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the issue model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequestGcsSource": {
+      "description": "Google Cloud Storage Object URI to get the issue model file from.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequestGcsSource",
+      "properties": {
+        "objectUri": {
+          "description": "Required. Format: `gs:///`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelResponse": {
+      "description": "Response from import issue model",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelResponse",
       "properties": {},
       "type": "object"
     },
@@ -5291,6 +5583,17 @@
         },
         "bucketUri": {
           "description": "Required. The Cloud Storage bucket containing source objects.",
+          "type": "string"
+        },
+        "customMetadataKeys": {
+          "description": "Optional. Custom keys to extract as conversation labels from metadata files in `metadata_bucket_uri`. Keys not included in this field will be ignored. Note that there is a limit of 20 labels per conversation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadataBucketUri": {
+          "description": "Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested",
           "type": "string"
         }
       },

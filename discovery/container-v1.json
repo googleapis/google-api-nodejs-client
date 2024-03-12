@@ -2540,7 +2540,7 @@
       }
     }
   },
-  "revision": "20240117",
+  "revision": "20240214",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5165,6 +5165,10 @@
           "description": "Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'",
           "type": "string"
         },
+        "enableConfidentialStorage": {
+          "description": "Optional. Reserved for future use.",
+          "type": "boolean"
+        },
         "ephemeralStorageLocalSsdConfig": {
           "$ref": "EphemeralStorageLocalSsdConfig",
           "description": "Parameters for the node ephemeral storage using Local SSDs. If unspecified, ephemeral storage is backed by the boot disk."
@@ -5261,6 +5265,13 @@
         "sandboxConfig": {
           "$ref": "SandboxConfig",
           "description": "Sandbox configuration for this node."
+        },
+        "secondaryBootDisks": {
+          "description": "List of secondary boot disks attached to the nodes.",
+          "items": {
+            "$ref": "SecondaryBootDisk"
+          },
+          "type": "array"
         },
         "serviceAccount": {
           "description": "The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the \"default\" service account is used.",
@@ -6275,6 +6286,29 @@
       },
       "type": "object"
     },
+    "SecondaryBootDisk": {
+      "description": "SecondaryBootDisk represents a persistent disk attached to a node with special configurations based on its mode.",
+      "id": "SecondaryBootDisk",
+      "properties": {
+        "diskImage": {
+          "description": "Fully-qualified resource ID for an existing disk image.",
+          "type": "string"
+        },
+        "mode": {
+          "description": "Disk mode (container image cache, etc.)",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "CONTAINER_IMAGE_CACHE"
+          ],
+          "enumDescriptions": [
+            "MODE_UNSPECIFIED is when mode is not set.",
+            "CONTAINER_IMAGE_CACHE is for using the secondary boot disk as a container image cache."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SecurityBulletinEvent": {
       "description": "SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.",
       "id": "SecurityBulletinEvent",
@@ -7209,6 +7243,10 @@
           "deprecated": true,
           "description": "Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.",
           "type": "string"
+        },
+        "queuedProvisioning": {
+          "$ref": "QueuedProvisioning",
+          "description": "Specifies the configuration of queued provisioning."
         },
         "resourceLabels": {
           "$ref": "ResourceLabels",

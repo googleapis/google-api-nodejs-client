@@ -276,7 +276,7 @@ export namespace containeranalysis_v1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -499,6 +499,10 @@ export namespace containeranalysis_v1 {
      */
     revisionId?: string | null;
   }
+  /**
+   * Empty placeholder to denote that this is a Google Cloud Storage export request.
+   */
+  export interface Schema$CloudStorageLocation {}
   /**
    * Command describes a step performed as part of the build pipeline.
    */
@@ -1693,6 +1697,24 @@ export namespace containeranalysis_v1 {
   export interface Schema$EnvelopeSignature {
     keyid?: string | null;
     sig?: string | null;
+  }
+  /**
+   * The request to generate and export SBOM. Target must be specified for the request.
+   */
+  export interface Schema$ExportSBOMRequest {
+    /**
+     * Empty placeholder to denote that this is a Google Cloud Storage export request.
+     */
+    cloudStorageLocation?: Schema$CloudStorageLocation;
+  }
+  /**
+   * The response from a call to ExportSBOM.
+   */
+  export interface Schema$ExportSBOMResponse {
+    /**
+     * The name of the discovery occurrence in the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\} It can be used to track the progress of the SBOM export.
+     */
+    discoveryOccurrence?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -3240,10 +3262,12 @@ export namespace containeranalysis_v1 {
     context: APIRequestContext;
     notes: Resource$Projects$Notes;
     occurrences: Resource$Projects$Occurrences;
+    resources: Resource$Projects$Resources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.notes = new Resource$Projects$Notes(this.context);
       this.occurrences = new Resource$Projects$Occurrences(this.context);
+      this.resources = new Resource$Projects$Resources(this.context);
     }
   }
 
@@ -5411,5 +5435,116 @@ export namespace containeranalysis_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Resources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Generates an SBOM for the given resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportSBOM(
+      params: Params$Resource$Projects$Resources$Exportsbom,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportSBOM(
+      params?: Params$Resource$Projects$Resources$Exportsbom,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExportSBOMResponse>;
+    exportSBOM(
+      params: Params$Resource$Projects$Resources$Exportsbom,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportSBOM(
+      params: Params$Resource$Projects$Resources$Exportsbom,
+      options: MethodOptions | BodyResponseCallback<Schema$ExportSBOMResponse>,
+      callback: BodyResponseCallback<Schema$ExportSBOMResponse>
+    ): void;
+    exportSBOM(
+      params: Params$Resource$Projects$Resources$Exportsbom,
+      callback: BodyResponseCallback<Schema$ExportSBOMResponse>
+    ): void;
+    exportSBOM(callback: BodyResponseCallback<Schema$ExportSBOMResponse>): void;
+    exportSBOM(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Resources$Exportsbom
+        | BodyResponseCallback<Schema$ExportSBOMResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExportSBOMResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExportSBOMResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExportSBOMResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Resources$Exportsbom;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Resources$Exportsbom;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:exportSBOM').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExportSBOMResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExportSBOMResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Resources$Exportsbom
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportSBOMRequest;
   }
 }

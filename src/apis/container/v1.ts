@@ -2023,6 +2023,10 @@ export namespace container_v1 {
      */
     diskType?: string | null;
     /**
+     * Optional. Reserved for future use.
+     */
+    enableConfidentialStorage?: boolean | null;
+    /**
      * Parameters for the node ephemeral storage using Local SSDs. If unspecified, ephemeral storage is backed by the boot disk.
      */
     ephemeralStorageLocalSsdConfig?: Schema$EphemeralStorageLocalSsdConfig;
@@ -2106,6 +2110,10 @@ export namespace container_v1 {
      * Sandbox configuration for this node.
      */
     sandboxConfig?: Schema$SandboxConfig;
+    /**
+     * List of secondary boot disks attached to the nodes.
+     */
+    secondaryBootDisks?: Schema$SecondaryBootDisk[];
     /**
      * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the "default" service account is used.
      */
@@ -2787,6 +2795,19 @@ export namespace container_v1 {
      * Type of the sandbox to use for the node.
      */
     type?: string | null;
+  }
+  /**
+   * SecondaryBootDisk represents a persistent disk attached to a node with special configurations based on its mode.
+   */
+  export interface Schema$SecondaryBootDisk {
+    /**
+     * Fully-qualified resource ID for an existing disk image.
+     */
+    diskImage?: string | null;
+    /**
+     * Disk mode (container image cache, etc.)
+     */
+    mode?: string | null;
   }
   /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.
@@ -3480,6 +3501,10 @@ export namespace container_v1 {
      * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
+    /**
+     * Specifies the configuration of queued provisioning.
+     */
+    queuedProvisioning?: Schema$QueuedProvisioning;
     /**
      * The resource labels for the node pool to use to annotate any related Google Compute Engine resources.
      */

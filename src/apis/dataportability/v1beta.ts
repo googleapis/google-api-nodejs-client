@@ -133,7 +133,7 @@ export namespace dataportability_v1beta {
    */
   export interface Schema$Empty {}
   /**
-   * Request to kick off a Takeout Archive job.
+   * Request to kick off an Archive job.
    */
   export interface Schema$InitiatePortabilityArchiveRequest {
     /**
@@ -142,16 +142,16 @@ export namespace dataportability_v1beta {
     resources?: string[] | null;
   }
   /**
-   * Response from initiating a Take Archive job.
+   * Response from initiating an Archive job.
    */
   export interface Schema$InitiatePortabilityArchiveResponse {
     /**
-     * The archive job ID that is initiated in the Takeout API. This can be used to get the state of the job.
+     * The archive job ID that is initiated in the API. This can be used to get the state of the job.
      */
     archiveJobId?: string | null;
   }
   /**
-   * Resource that contains the state of a Takeout Archive job.
+   * Resource that contains the state of an Archive job.
    */
   export interface Schema$PortabilityArchiveState {
     /**
@@ -159,7 +159,7 @@ export namespace dataportability_v1beta {
      */
     name?: string | null;
     /**
-     * Resource that represents the state of the Takeout Archive job.
+     * Resource that represents the state of the Archive job.
      */
     state?: string | null;
     /**
@@ -180,7 +180,7 @@ export namespace dataportability_v1beta {
    */
   export interface Schema$RetryPortabilityArchiveResponse {
     /**
-     * The archive job ID that is initiated by the retry endpoint. This can be used to get the state of the new job
+     * The archive job ID that is initiated by the retry endpoint. This can be used to get the state of the new job.
      */
     archiveJobId?: string | null;
   }
@@ -192,7 +192,7 @@ export namespace dataportability_v1beta {
     }
 
     /**
-     * Retrieves the state of a Takeout Archive job for the Portability API.
+     * Retrieves the state of an Archive job for the Portability API.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -384,14 +384,14 @@ export namespace dataportability_v1beta {
   export interface Params$Resource$Archivejobs$Getportabilityarchivestate
     extends StandardParameters {
     /**
-     * Required. The archive job ID that is returned when you request the state of the job from Takeout. The format is: archiveJobs/{archive_job\}/portabilityArchiveState. archive_job is the job ID returned by the InitiatePortabilityArchiveResponse.
+     * Required. The archive job ID that is returned when you request the state of the job. The format is: archiveJobs/{archive_job\}/portabilityArchiveState. archive_job is the job ID returned by the InitiatePortabilityArchiveResponse.
      */
     name?: string;
   }
   export interface Params$Resource$Archivejobs$Retry
     extends StandardParameters {
     /**
-     * Required. The archive job ID returned by the InitiatePortabilityArchiveResponse to be retried. Retrying is only executed if the initial job failed.
+     * Required. The Archive job ID you're retrying. This is returned by the InitiatePortabilityArchiveResponse. Retrying is only executed if the initial job failed.
      */
     name?: string;
 
@@ -408,7 +408,7 @@ export namespace dataportability_v1beta {
     }
 
     /**
-     * Revokes OAuth tokens and resets exhausted scopes for a user/project pair. This method allows you to initiate a Takeout request after a new consent is granted. This method also indicates that previous archives can be garbage collected. You should call this method when all jobs are complete and all archives are downloaded. Do not call it only when you start a new job.
+     * Revokes OAuth tokens and resets exhausted scopes for a user/project pair. This method allows you to initiate a request after a new consent is granted. This method also indicates that previous archives can be garbage collected. You should call this method when all jobs are complete and all archives are downloaded. Do not call it only when you start a new job.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -511,7 +511,7 @@ export namespace dataportability_v1beta {
     }
 
     /**
-     * Initiates a new Takeout Archive job for the Portability API.
+     * Initiates a new Archive job for the Portability API.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

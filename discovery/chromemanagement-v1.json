@@ -1040,7 +1040,7 @@
       }
     }
   },
-  "revision": "20231114",
+  "revision": "20240227",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1340,9 +1340,9 @@
           ],
           "enumDescriptions": [
             "Health unknown.",
-            "Battery is healthy.",
-            "Battery is moderately unhealthy and should be replaced soon.",
-            "Battery is unhealthy and should be replaced."
+            "Battery is healthy, full charge capacity / design capacity > 80%",
+            "Battery is moderately unhealthy and suggested to be replaced soon, full charge capacity / design capacity 75% - 80%",
+            "Battery is unhealthy and suggested to be replaced, full charge capacity / design capacity < 75%"
           ],
           "readOnly": true,
           "type": "string"
@@ -3113,6 +3113,38 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1RuntimeCountersReport": {
+      "description": "Runtime counters retrieved from CPU. Currently the runtime counters telemetry is only supported by Intel vPro PSR on Gen 14+.",
+      "id": "GoogleChromeManagementV1RuntimeCountersReport",
+      "properties": {
+        "enterHibernationCount": {
+          "description": "Number of times that the device has entered into the hibernation state. Currently obtained via the PSR, count from S0->S4.",
+          "format": "int64",
+          "type": "string"
+        },
+        "enterPoweroffCount": {
+          "description": "Number of times that the device has entered into the power-off state. Currently obtained via the PSR, count from S0->S5.",
+          "format": "int64",
+          "type": "string"
+        },
+        "enterSleepCount": {
+          "description": "Number of times that the device has entered into the sleep state. Currently obtained via the PSR, count from S0->S3.",
+          "format": "int64",
+          "type": "string"
+        },
+        "reportTime": {
+          "description": "Timestamp when the report was collected.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "uptimeRuntimeDuration": {
+          "description": "Total lifetime runtime. Currently always S0 runtime from Intel vPro PSR.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1StorageInfo": {
       "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_STORAGE_INFO",
       "id": "GoogleChromeManagementV1StorageInfo",
@@ -3340,6 +3372,14 @@
           "description": "Output only. Peripherals reports collected periodically sorted in a decreasing order of report_time.",
           "items": {
             "$ref": "GoogleChromeManagementV1PeripheralsReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "runtimeCountersReport": {
+          "description": "Output only. Runtime counters reports collected device lifetime runtime, as well as the counts of S0->S3, S0->S4, and S0->S5 transitions, meaning entering into sleep, hibernation, and power-off states",
+          "items": {
+            "$ref": "GoogleChromeManagementV1RuntimeCountersReport"
           },
           "readOnly": true,
           "type": "array"

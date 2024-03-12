@@ -1573,7 +1573,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240220",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1631,7 +1631,7 @@
             "Default value. This value is unused.",
             "Ingestion is active.",
             "Permission denied encountered while consuming data from Kinesis. This can happen if: - The provided `aws_role_arn` does not exist or does not have the appropriate permissions attached. - The provided `aws_role_arn` is not set up properly for Identity Federation using `gcp_service_account`. - The Pub/Sub SA is not granted the `iam.serviceAccounts.getOpenIdToken` permission on `gcp_service_account`.",
-            "Permission denied encountered while publishing to the topic. This can happen due to Pub/Sub SA has not been granted the [appropriate publish permissions](https://cloud.google.com/pubsub/docs/access-control#pubsub.publisher)",
+            "Permission denied encountered while publishing to the topic. This can happen if the Pub/Sub SA has not been granted the [appropriate publish permissions](https://cloud.google.com/pubsub/docs/access-control#pubsub.publisher)",
             "The Kinesis stream does not exist.",
             "The Kinesis consumer does not exist."
           ],
@@ -1652,6 +1652,10 @@
         "dropUnknownFields": {
           "description": "Optional. When true and use_topic_schema is true, any fields that are a part of the topic schema that are not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync and any messages with extra fields are not written and remain in the subscription's backlog.",
           "type": "boolean"
+        },
+        "serviceAccountEmail": {
+          "description": "Optional. The service account to use to write to BigQuery. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+          "type": "string"
         },
         "state": {
           "description": "Output only. An output-only field that indicates whether or not the subscription can receive messages.",
@@ -1743,6 +1747,10 @@
         "maxDuration": {
           "description": "Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.",
           "format": "google-duration",
+          "type": "string"
+        },
+        "serviceAccountEmail": {
+          "description": "Optional. The service account to use to write to Cloud Storage. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
           "type": "string"
         },
         "state": {

@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations": {
-          "description": "Move a copy of messages between you and the businesses you have conversations with."
+          "description": "Move a copy of messages between you and the businesses you have conversations with across Google services."
         },
         "https://www.googleapis.com/auth/dataportability.maps.commute_routes": {
           "description": "Move a copy of your pinned trips on Maps."
@@ -30,7 +30,7 @@
           "description": "Move a copy of your Maps activity."
         },
         "https://www.googleapis.com/auth/dataportability.myactivity.search": {
-          "description": "Move a copy of your search activity."
+          "description": "Move a copy of your Google Search activity."
         },
         "https://www.googleapis.com/auth/dataportability.myactivity.shopping": {
           "description": "Move a copy of your Shopping activity."
@@ -39,10 +39,10 @@
           "description": "Move a copy of your YouTube activity."
         },
         "https://www.googleapis.com/auth/dataportability.shopping.addresses": {
-          "description": "Move a copy of your shipping information."
+          "description": "Move a copy of your shipping information on Shopping."
         },
         "https://www.googleapis.com/auth/dataportability.shopping.reviews": {
-          "description": "Move a copy of reviews you wrote about products or online stores."
+          "description": "Move a copy of reviews you wrote about products or online stores on Google Search."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.channel": {
           "description": "Move a copy of information about your YouTube channel."
@@ -183,7 +183,7 @@
     "archiveJobs": {
       "methods": {
         "getPortabilityArchiveState": {
-          "description": "Retrieves the state of a Takeout Archive job for the Portability API.",
+          "description": "Retrieves the state of an Archive job for the Portability API.",
           "flatPath": "v1beta/archiveJobs/{archiveJobsId}/portabilityArchiveState",
           "httpMethod": "GET",
           "id": "dataportability.archiveJobs.getPortabilityArchiveState",
@@ -192,7 +192,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The archive job ID that is returned when you request the state of the job from Takeout. The format is: archiveJobs/{archive_job}/portabilityArchiveState. archive_job is the job ID returned by the InitiatePortabilityArchiveResponse.",
+              "description": "Required. The archive job ID that is returned when you request the state of the job. The format is: archiveJobs/{archive_job}/portabilityArchiveState. archive_job is the job ID returned by the InitiatePortabilityArchiveResponse.",
               "location": "path",
               "pattern": "^archiveJobs/[^/]+/portabilityArchiveState$",
               "required": true,
@@ -242,7 +242,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The archive job ID returned by the InitiatePortabilityArchiveResponse to be retried. Retrying is only executed if the initial job failed.",
+              "description": "Required. The Archive job ID you're retrying. This is returned by the InitiatePortabilityArchiveResponse. Retrying is only executed if the initial job failed.",
               "location": "path",
               "pattern": "^archiveJobs/[^/]+$",
               "required": true,
@@ -290,7 +290,7 @@
     "authorization": {
       "methods": {
         "reset": {
-          "description": "Revokes OAuth tokens and resets exhausted scopes for a user/project pair. This method allows you to initiate a Takeout request after a new consent is granted. This method also indicates that previous archives can be garbage collected. You should call this method when all jobs are complete and all archives are downloaded. Do not call it only when you start a new job.",
+          "description": "Revokes OAuth tokens and resets exhausted scopes for a user/project pair. This method allows you to initiate a request after a new consent is granted. This method also indicates that previous archives can be garbage collected. You should call this method when all jobs are complete and all archives are downloaded. Do not call it only when you start a new job.",
           "flatPath": "v1beta/authorization:reset",
           "httpMethod": "POST",
           "id": "dataportability.authorization.reset",
@@ -337,7 +337,7 @@
     "portabilityArchive": {
       "methods": {
         "initiate": {
-          "description": "Initiates a new Takeout Archive job for the Portability API.",
+          "description": "Initiates a new Archive job for the Portability API.",
           "flatPath": "v1beta/portabilityArchive:initiate",
           "httpMethod": "POST",
           "id": "dataportability.portabilityArchive.initiate",
@@ -382,7 +382,7 @@
       }
     }
   },
-  "revision": "20240204",
+  "revision": "20240221",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -392,7 +392,7 @@
       "type": "object"
     },
     "InitiatePortabilityArchiveRequest": {
-      "description": "Request to kick off a Takeout Archive job.",
+      "description": "Request to kick off an Archive job.",
       "id": "InitiatePortabilityArchiveRequest",
       "properties": {
         "resources": {
@@ -406,18 +406,18 @@
       "type": "object"
     },
     "InitiatePortabilityArchiveResponse": {
-      "description": "Response from initiating a Take Archive job.",
+      "description": "Response from initiating an Archive job.",
       "id": "InitiatePortabilityArchiveResponse",
       "properties": {
         "archiveJobId": {
-          "description": "The archive job ID that is initiated in the Takeout API. This can be used to get the state of the job.",
+          "description": "The archive job ID that is initiated in the API. This can be used to get the state of the job.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "PortabilityArchiveState": {
-      "description": "Resource that contains the state of a Takeout Archive job.",
+      "description": "Resource that contains the state of an Archive job.",
       "id": "PortabilityArchiveState",
       "properties": {
         "name": {
@@ -425,7 +425,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Resource that represents the state of the Takeout Archive job.",
+          "description": "Resource that represents the state of the Archive job.",
           "enum": [
             "STATE_UNSPECIFIED",
             "IN_PROGRESS",
@@ -435,10 +435,10 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "The Takeout job is in progress.",
-            "The Takeout job is complete.",
-            "The Takeout job failed.",
-            "The Takeout job is cancelled."
+            "The job is in progress.",
+            "The job is complete.",
+            "The job failed.",
+            "The job is cancelled."
           ],
           "type": "string"
         },
@@ -469,7 +469,7 @@
       "id": "RetryPortabilityArchiveResponse",
       "properties": {
         "archiveJobId": {
-          "description": "The archive job ID that is initiated by the retry endpoint. This can be used to get the state of the new job",
+          "description": "The archive job ID that is initiated by the retry endpoint. This can be used to get the state of the new job.",
           "type": "string"
         }
       },

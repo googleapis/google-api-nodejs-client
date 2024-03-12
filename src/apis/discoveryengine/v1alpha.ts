@@ -242,6 +242,19 @@ export namespace discoveryengine_v1alpha {
     functionName?: string | null;
   }
   /**
+   * Access Control Configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAclConfig {
+    /**
+     * Identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1alphaIdpConfig;
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+  }
+  /**
    * AdditionalParams message for WidgetService methods for security and privacy enhancement.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAdditionalParams {
@@ -442,6 +455,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaConverseConversationRequest {
     /**
+     * Boost specification to boost certain documents in search results which may affect the converse response. For more information on boosting, see [Boosting](https://cloud.google.com/retail/docs/boosting#boost)
+     */
+    boostSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec;
+    /**
      * The conversation to be used by auto session only. The name field will be ignored as we automatically assign new name for the conversation in auto session.
      */
     conversation?: Schema$GoogleCloudDiscoveryengineV1alphaConversation;
@@ -587,6 +604,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStore {
     /**
+     * Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.
+     */
+    aclEnabled?: boolean | null;
+    /**
      * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
      */
     contentConfig?: string | null;
@@ -603,6 +624,14 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
+     * Configuration for Document understanding and enrichment.
+     */
+    documentProcessingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig;
+    /**
+     * Output only. Data store level identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1alphaIdpConfig;
+    /**
      * Immutable. The industry vertical that the data store registers.
      */
     industryVertical?: string | null;
@@ -614,6 +643,10 @@ export namespace discoveryengine_v1alpha {
      * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
      */
     solutionTypes?: string[] | null;
+    /**
+     * The start schema to use for this DataStore when provisioning it. If unset, a default vertical specialized schema will be used. This field is only used by CreateDataStore API, and will be ignored if used in other APIs. This field will be omitted from all API responses including CreateDataStore API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
+     */
+    startingSchema?: Schema$GoogleCloudDiscoveryengineV1alphaSchema;
   }
   /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -697,6 +730,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDocument {
     /**
+     * Access control information for the document.
+     */
+    aclInfo?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentAclInfo;
+    /**
      * The unstructured data linked to this document. Content must be set if this document is under a `CONTENT_REQUIRED` data store.
      */
     content?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentContent;
@@ -708,6 +745,10 @@ export namespace discoveryengine_v1alpha {
      * Immutable. The identifier of the document. Id should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.
      */
     id?: string | null;
+    /**
+     * Output only. The last time the document was indexed. If this field is set, the document could be returned in search results. This field is OUTPUT_ONLY. If this field is not populated, it means the document has never been indexed.
+     */
+    indexTime?: string | null;
     /**
      * The JSON string representation of the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
@@ -728,6 +769,21 @@ export namespace discoveryengine_v1alpha {
      * The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
     structData?: {[key: string]: any} | null;
+  }
+  /**
+   * ACL Information of the Document.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentAclInfo {
+    readers?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentAclInfoAccessRestriction[];
+  }
+  /**
+   * AclRestriction to model complex inheritance restrictions. Example: Modeling a "Both Permit" inheritance, where to access a child document, user needs to have access to parent document. Document Hierarchy - Space_S --\> Page_P. Readers: Space_S: group_1, user_1 Page_P: group_2, group_3, user_2 Space_S ACL Restriction - { "acl_info": { "readers": [ { "principals": [ { "group_id": "group_1" \}, { "user_id": "user_1" \} ] \} ] \} \} Page_P ACL Restriction. { "acl_info": { "readers": [ { "principals": [ { "group_id": "group_2" \}, { "group_id": "group_3" \}, { "user_id": "user_2" \} ], \}, { "principals": [ { "group_id": "group_1" \}, { "user_id": "user_1" \} ], \} ] \} \}
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentAclInfoAccessRestriction {
+    /**
+     * List of principals.
+     */
+    principals?: Schema$GoogleCloudDiscoveryengineV1alphaPrincipal[];
   }
   /**
    * Unstructured data linked to this document.
@@ -788,7 +844,7 @@ export namespace discoveryengine_v1alpha {
      */
     ocrConfig?: Schema$GoogleCloudDiscoveryengineV1alphaOcrConfig;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -856,6 +912,10 @@ export namespace discoveryengine_v1alpha {
    * Metadata that describes the training and serving parameters of an Engine.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngine {
+    /**
+     * Whether the search engine can associate with multiple data stores. If true, the generic search engine can associate with one or more data stores. This is an input-only field.
+     */
+    allowMultipleDataStoresSearchEngine?: boolean | null;
     /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
@@ -1198,6 +1258,28 @@ export namespace discoveryengine_v1alpha {
      * Max number of related questions to be returned. The valid range is [1, 5]. If enable_related_questions is true, the default value is 3.
      */
     maxRelatedQuestions?: number | null;
+  }
+  /**
+   * Identity Provider Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaIdpConfig {
+    /**
+     * External Identity provider config.
+     */
+    externalIdpConfig?: Schema$GoogleCloudDiscoveryengineV1alphaIdpConfigExternalIdpConfig;
+    /**
+     * Identity provider type configured.
+     */
+    idpType?: string | null;
+  }
+  /**
+   * Third party IDP Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaIdpConfigExternalIdpConfig {
+    /**
+     * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
+     */
+    workforcePoolName?: string | null;
   }
   /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -1636,6 +1718,19 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaPauseEngineRequest {}
   /**
+   * Principal identifier of a user or a group.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPrincipal {
+    /**
+     * Group identifier. For Google Workspace user account, group_id should be the google workspace group email. For non-google identity provider user account, group_id is the mapped group identifier configured during the workforcepool config.
+     */
+    groupId?: string | null;
+    /**
+     * User identifier. For Google Workspace user account, user_id should be the google workspace user email. For non-google identity provider user account, user_id is the mapped user identifier configured during the workforcepool config.
+     */
+    userId?: string | null;
+  }
+  /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeDocumentsMetadata {
@@ -1647,6 +1742,10 @@ export namespace discoveryengine_v1alpha {
      * Count of entries that encountered errors while processing.
      */
     failureCount?: string | null;
+    /**
+     * Count of entries that were ignored as entries were not found.
+     */
+    ignoredCount?: string | null;
     /**
      * Count of entries that were deleted successfully.
      */
@@ -1661,6 +1760,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeDocumentsRequest {
     /**
+     * The desired location of errors incurred during the purge.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaPurgeErrorConfig;
+    /**
      * Required. Filter matching documents to purge. Only currently supported value is `*` (all items).
      */
     filter?: string | null;
@@ -1668,6 +1771,10 @@ export namespace discoveryengine_v1alpha {
      * Actually performs the purge. If `force` is set to false, return the expected purge count without deleting any documents.
      */
     force?: boolean | null;
+    /**
+     * Cloud Storage location for the input content. Supported `data_schema`: * `document_id`: One valid Document.id per line.
+     */
+    gcsSource?: Schema$GoogleCloudDiscoveryengineV1alphaGcsSource;
   }
   /**
    * Response message for DocumentService.PurgeDocuments method. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
@@ -1681,6 +1788,15 @@ export namespace discoveryengine_v1alpha {
      * A sample of document names that will be deleted. Only populated if `force` is set to false. A max of 100 names will be returned and the names are chosen at random.
      */
     purgeSample?: string[] | null;
+  }
+  /**
+   * Configuration of destination for Purge related errors.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeErrorConfig {
+    /**
+     * Cloud Storage prefix for purge errors. This must be an empty, existing Cloud Storage directory. Purge errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
+     */
+    gcsPrefix?: string | null;
   }
   /**
    * Metadata related to the progress of the PurgeSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -2004,6 +2120,10 @@ export namespace discoveryengine_v1alpha {
      */
     contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec;
     /**
+     * Custom fine tuning configs.
+     */
+    customFineTuningSpec?: Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec;
+    /**
      * Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embedding that is provided in SearchRequest.EmbeddingSpec.EmbeddingVector.field_path. If SearchRequest.EmbeddingSpec.EmbeddingVector.field_path is not provided, it will use ServingConfig.EmbeddingConfig.field_path.
      */
     embeddingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpec;
@@ -2094,7 +2214,7 @@ export namespace discoveryengine_v1alpha {
      */
     boost?: number | null;
     /**
-     * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": * (id: ANY("doc_1", "doc_2")) AND (color: ANY("Red","Blue"))
+     * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": * (document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))
      */
     condition?: string | null;
   }
@@ -2200,7 +2320,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec {
     /**
-     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. LINT.IfChange * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English. LINT.ThenChange(//depot/google3/cloud/console/web/ai/unified_cloud_search/pages/configurations/widget_tab.ts)
+     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English.
      */
     version?: string | null;
   }
@@ -2482,6 +2602,9 @@ export namespace discoveryengine_v1alpha {
      * The summary content.
      */
     summaryText?: string | null;
+    /**
+     * Summary with metadata information.
+     */
     summaryWithMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySummaryWithMetadata;
   }
   /**
@@ -2630,6 +2753,9 @@ export namespace discoveryengine_v1alpha {
      * Condition oneway synonyms specifications. If multiple oneway synonyms conditions match, all matching oneway synonyms controls in the list will execute. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
      */
     onewaySynonymsControlIds?: string[] | null;
+    /**
+     * The ranking expression controls the customized ranking on retrieval documents. To leverage this, document embedding is required. The ranking expression setting in ServingConfig applies to all search requests served by the serving config. However, if SearchRequest.ranking_expression is specified, it overrides the ServingConfig ranking expression. The ranking expression is a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: relevance_score: pre-defined keywords, used for measure relevance between query and document. embedding_field_path: the document embedding field used with query embedding vector. dotProduct: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be 0.5 * relevance_score + 0.3 * dotProduct(doc_embedding).
+     */
     rankingExpression?: string | null;
     /**
      * IDs of the redirect controls. Only the first triggered redirect action is applied, even if multiple apply. Maximum number of specifications is 100. Can only be set if SolutionType is SOLUTION_TYPE_SEARCH.
@@ -2771,6 +2897,9 @@ export namespace discoveryengine_v1alpha {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure;
   }
+  /**
+   * Failed due to insufficient quota.
+   */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure {
     /**
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
@@ -3122,6 +3251,10 @@ export namespace discoveryengine_v1alpha {
      */
     enableSummarization?: boolean | null;
     /**
+     * Whether to enable standalone web app.
+     */
+    enableWebApp?: boolean | null;
+    /**
      * The configuration and appearance of facets in the end user view.
      */
     facetField?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField[];
@@ -3377,6 +3510,10 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
+     * Configuration for Document understanding and enrichment.
+     */
+    documentProcessingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig;
+    /**
      * Immutable. The industry vertical that the data store registers.
      */
     industryVertical?: string | null;
@@ -3388,6 +3525,10 @@ export namespace discoveryengine_v1alpha {
      * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
      */
     solutionTypes?: string[] | null;
+    /**
+     * The start schema to use for this DataStore when provisioning it. If unset, a default vertical specialized schema will be used. This field is only used by CreateDataStore API, and will be ignored if used in other APIs. This field will be omitted from all API responses including CreateDataStore API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
+     */
+    startingSchema?: Schema$GoogleCloudDiscoveryengineV1betaSchema;
   }
   /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -3442,6 +3583,10 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * The digital parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDigitalParsingConfig {}
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata {
@@ -3458,6 +3603,40 @@ export namespace discoveryengine_v1alpha {
    * Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchResponse {}
+  /**
+   * A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig {
+    /**
+     * Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing.
+     */
+    defaultParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig;
+    /**
+     * The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
+     */
+    name?: string | null;
+    /**
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     */
+    parsingConfigOverrides?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig;
+    } | null;
+  }
+  /**
+   * Related configurations applied to a specific type of document parser.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig {
+    /**
+     * Configurations applied to digital parser.
+     */
+    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDigitalParsingConfig;
+    /**
+     * Configurations applied to OCR parser. Currently it only applies to PDFs.
+     */
+    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaOcrParsingConfig;
+  }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
@@ -3705,6 +3884,19 @@ export namespace discoveryengine_v1alpha {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * The OCR parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaOcrParsingConfig {
+    /**
+     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
+     */
+    enhancedDocumentElements?: string[] | null;
+    /**
+     * If true, will use native text instead of OCR text on pages containing native text.
+     */
+    useNativeText?: boolean | null;
+  }
+  /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata {
@@ -3716,6 +3908,10 @@ export namespace discoveryengine_v1alpha {
      * Count of entries that encountered errors while processing.
      */
     failureCount?: string | null;
+    /**
+     * Count of entries that were ignored as entries were not found.
+     */
+    ignoredCount?: string | null;
     /**
      * Count of entries that were deleted successfully.
      */
@@ -3844,6 +4040,9 @@ export namespace discoveryengine_v1alpha {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure;
   }
+  /**
+   * Failed due to insufficient quota.
+   */
   export interface Schema$GoogleCloudDiscoveryengineV1betaTargetSiteFailureReasonQuotaFailure {
     /**
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
@@ -3949,6 +4148,10 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
+     * Configuration for Document understanding and enrichment.
+     */
+    documentProcessingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfig;
+    /**
      * Immutable. The industry vertical that the data store registers.
      */
     industryVertical?: string | null;
@@ -3960,6 +4163,10 @@ export namespace discoveryengine_v1alpha {
      * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
      */
     solutionTypes?: string[] | null;
+    /**
+     * The start schema to use for this DataStore when provisioning it. If unset, a default vertical specialized schema will be used. This field is only used by CreateDataStore API, and will be ignored if used in other APIs. This field will be omitted from all API responses including CreateDataStore API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
+     */
+    startingSchema?: Schema$GoogleCloudDiscoveryengineV1Schema;
   }
   /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -4014,6 +4221,10 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * The digital parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DigitalParsingConfig {}
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata {
@@ -4030,6 +4241,40 @@ export namespace discoveryengine_v1alpha {
    * Response message for SiteSearchEngineService.DisableAdvancedSiteSearch method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchResponse {}
+  /**
+   * A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfig {
+    /**
+     * Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing.
+     */
+    defaultParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig;
+    /**
+     * The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
+     */
+    name?: string | null;
+    /**
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     */
+    parsingConfigOverrides?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig;
+    } | null;
+  }
+  /**
+   * Related configurations applied to a specific type of document parser.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig {
+    /**
+     * Configurations applied to digital parser.
+     */
+    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DigitalParsingConfig;
+    /**
+     * Configurations applied to OCR parser. Currently it only applies to PDFs.
+     */
+    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1OcrParsingConfig;
+  }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
@@ -4277,6 +4522,19 @@ export namespace discoveryengine_v1alpha {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * The OCR parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1OcrParsingConfig {
+    /**
+     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
+     */
+    enhancedDocumentElements?: string[] | null;
+    /**
+     * If true, will use native text instead of OCR text on pages containing native text.
+     */
+    useNativeText?: boolean | null;
+  }
+  /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1PurgeDocumentsMetadata {
@@ -4288,6 +4546,10 @@ export namespace discoveryengine_v1alpha {
      * Count of entries that encountered errors while processing.
      */
     failureCount?: string | null;
+    /**
+     * Count of entries that were ignored as entries were not found.
+     */
+    ignoredCount?: string | null;
     /**
      * Count of entries that were deleted successfully.
      */
@@ -4416,6 +4678,9 @@ export namespace discoveryengine_v1alpha {
      */
     quotaFailure?: Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure;
   }
+  /**
+   * Failed due to insufficient quota.
+   */
   export interface Schema$GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure {
     /**
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
@@ -5091,6 +5356,194 @@ export namespace discoveryengine_v1alpha {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Gets the AclConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAclConfig(
+      params: Params$Resource$Projects$Locations$Getaclconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAclConfig(
+      params?: Params$Resource$Projects$Locations$Getaclconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>;
+    getAclConfig(
+      params: Params$Resource$Projects$Locations$Getaclconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAclConfig(
+      params: Params$Resource$Projects$Locations$Getaclconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+    ): void;
+    getAclConfig(
+      params: Params$Resource$Projects$Locations$Getaclconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+    ): void;
+    getAclConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+    ): void;
+    getAclConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getaclconfig
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getaclconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getaclconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Default Acl Configuration for use in a location of a customer's project. Updates will only reflect to new data stores. Existing data stores will still use the old value.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAclConfig(
+      params: Params$Resource$Projects$Locations$Updateaclconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAclConfig(
+      params?: Params$Resource$Projects$Locations$Updateaclconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>;
+    updateAclConfig(
+      params: Params$Resource$Projects$Locations$Updateaclconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAclConfig(
+      params: Params$Resource$Projects$Locations$Updateaclconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+    ): void;
+    updateAclConfig(
+      params: Params$Resource$Projects$Locations$Updateaclconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+    ): void;
+    updateAclConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+    ): void;
+    updateAclConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updateaclconfig
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updateaclconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updateaclconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAclConfig>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Estimatedatasize
@@ -5104,6 +5557,25 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Getaclconfig
+    extends StandardParameters {
+    /**
+     * Required. Resource name of AclConfig, such as `projects/x/locations/x/aclConfig`. If the caller does not have permission to access the AclConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Updateaclconfig
+    extends StandardParameters {
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAclConfig;
   }
 
   export class Resource$Projects$Locations$Collections {
@@ -7266,6 +7738,10 @@ export namespace discoveryengine_v1alpha {
      * Immutable. The full resource name of the document. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string;
+    /**
+     * Indicates which fields in the provided imported 'document' to update. If not set, will by default update all fields.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -16617,6 +17093,10 @@ export namespace discoveryengine_v1alpha {
      * Immutable. The full resource name of the document. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string;
+    /**
+     * Indicates which fields in the provided imported 'document' to update. If not set, will by default update all fields.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata

@@ -100,9 +100,9 @@ export namespace dlp_v2 {
   }
 
   /**
-   * Cloud Data Loss Prevention (DLP)
+   * Sensitive Data Protection (DLP)
    *
-   * Provides methods for detection, risk analysis, and de-identification of privacy-sensitive fragments in text, images, and Google Cloud Platform storage repositories.
+   * Discover and protect your sensitive data. A fully managed service designed to help you discover, classify, and protect your valuable data assets with ease.
    *
    * @example
    * ```js
@@ -317,6 +317,9 @@ export namespace dlp_v2 {
      * Max percentage of rows to scan. The rest are omitted. The number of rows scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of rows_limit and rows_limit_percent can be specified. Cannot be used in conjunction with TimespanConfig. Caution: A [known issue](https://cloud.google.com/dlp/docs/known-issues#bq-sampling) is causing the `rowsLimitPercent` field to behave unexpectedly. We recommend using `rowsLimit` instead.
      */
     rowsLimitPercent?: number | null;
+    /**
+     * How to sample the data.
+     */
     sampleMethod?: string | null;
     /**
      * Complete BigQuery table reference.
@@ -558,6 +561,9 @@ export namespace dlp_v2 {
      * List of file type groups to include in the scan. If empty, all files are scanned and available data format processors are applied. In addition, the binary content of the selected files is always scanned as well. Images are scanned only as binary if the specified region does not support image inspection and no file_types were specified. Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      */
     fileTypes?: string[] | null;
+    /**
+     * How to sample the data.
+     */
     sampleMethod?: string | null;
   }
   /**
@@ -747,6 +753,9 @@ export namespace dlp_v2 {
      */
     version?: string | null;
   }
+  /**
+   * Type of content to inspect.
+   */
   export interface Schema$GooglePrivacyDlpV2ContentItem {
     /**
      * Content data to inspect or redact. Replaces `type` and `data`.
@@ -2024,6 +2033,9 @@ export namespace dlp_v2 {
    * A type of transformation that is applied over images.
    */
   export interface Schema$GooglePrivacyDlpV2ImageTransformations {
+    /**
+     * List of transforms to make.
+     */
     transforms?: Schema$GooglePrivacyDlpV2ImageTransformation[];
   }
   /**
@@ -2978,6 +2990,9 @@ export namespace dlp_v2 {
      */
     numericalStatsConfig?: Schema$GooglePrivacyDlpV2NumericalStatsConfig;
   }
+  /**
+   * Success or errors for the profile generation.
+   */
   export interface Schema$GooglePrivacyDlpV2ProfileStatus {
     /**
      * Profiling status code and optional message. The `status.code` value is 0 (default value) for OK.
@@ -3151,7 +3166,13 @@ export namespace dlp_v2 {
    * Message for a unique key indicating a record that contains a finding.
    */
   export interface Schema$GooglePrivacyDlpV2RecordKey {
+    /**
+     * Datastore key
+     */
     bigQueryKey?: Schema$GooglePrivacyDlpV2BigQueryKey;
+    /**
+     * Bigquery key
+     */
     datastoreKey?: Schema$GooglePrivacyDlpV2DatastoreKey;
     /**
      * Values of identifying columns in the given row. Order of values matches the order of `identifying_fields` specified in the scanning request.
@@ -3184,6 +3205,9 @@ export namespace dlp_v2 {
      */
     condition?: Schema$GooglePrivacyDlpV2RecordCondition;
   }
+  /**
+   * The field in a record to transform.
+   */
   export interface Schema$GooglePrivacyDlpV2RecordTransformation {
     /**
      * Findings container modification timestamp, if applicable.
@@ -3493,12 +3517,18 @@ export namespace dlp_v2 {
      * Hybrid inspection options.
      */
     hybridOptions?: Schema$GooglePrivacyDlpV2HybridOptions;
+    /**
+     * Configuration of the timespan of the items to include in scanning.
+     */
     timespanConfig?: Schema$GooglePrivacyDlpV2TimespanConfig;
   }
   /**
    * Storage metadata label to indicate which metadata entry contains findings.
    */
   export interface Schema$GooglePrivacyDlpV2StorageMetadataLabel {
+    /**
+     * Label name.
+     */
     key?: string | null;
   }
   /**
@@ -3934,6 +3964,9 @@ export namespace dlp_v2 {
      */
     transformedBytes?: string | null;
   }
+  /**
+   * The outcome of a transformation.
+   */
   export interface Schema$GooglePrivacyDlpV2TransformationResultStatus {
     /**
      * Detailed error codes and messages

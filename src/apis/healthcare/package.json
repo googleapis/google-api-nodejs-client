@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/healthcare",
-  "version": "13.2.0",
+  "version": "14.0.0",
   "description": "healthcare",
   "main": "build/index.js",
   "types": "build/index.d.ts",

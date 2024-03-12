@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20240117",
+  "revision": "20240215",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1274,6 +1274,10 @@
         "postgresqlExcludedObjects": {
           "$ref": "PostgresqlRdbms",
           "description": "PostgreSQL data source objects to avoid backfilling."
+        },
+        "sqlServerExcludedObjects": {
+          "$ref": "SqlServerRdbms",
+          "description": "SQLServer data source objects to avoid backfilling"
         }
       },
       "type": "object"
@@ -1454,6 +1458,10 @@
         "privateConnectivity": {
           "$ref": "PrivateConnectivity",
           "description": "Private connectivity."
+        },
+        "sqlServerProfile": {
+          "$ref": "SqlServerProfile",
+          "description": "SQLServer Connection Profile configuration."
         },
         "staticServiceIpConnectivity": {
           "$ref": "StaticServiceIpConnectivity",
@@ -2776,6 +2784,10 @@
         "sourceConnectionProfile": {
           "description": "Required. Source connection profile resoource. Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`",
           "type": "string"
+        },
+        "sqlServerSourceConfig": {
+          "$ref": "SqlServerSourceConfig",
+          "description": "SQLServer data source configuration."
         }
       },
       "type": "object"
@@ -2806,6 +2818,10 @@
         "postgresqlIdentifier": {
           "$ref": "PostgresqlObjectIdentifier",
           "description": "PostgreSQL data source object identifier."
+        },
+        "sqlServerIdentifier": {
+          "$ref": "SqlServerObjectIdentifier",
+          "description": "SQLServer data source object identifier."
         }
       },
       "type": "object"
@@ -2821,6 +2837,167 @@
         "oracleScnPosition": {
           "$ref": "OracleScnPosition",
           "description": "Oracle SCN to start replicating from."
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerColumn": {
+      "description": "SQLServer Column.",
+      "id": "SqlServerColumn",
+      "properties": {
+        "column": {
+          "description": "Column name.",
+          "type": "string"
+        },
+        "dataType": {
+          "description": "The SQLServer data type.",
+          "type": "string"
+        },
+        "length": {
+          "description": "Column length.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nullable": {
+          "description": "Whether or not the column can accept a null value.",
+          "type": "boolean"
+        },
+        "ordinalPosition": {
+          "description": "The ordinal position of the column in the table.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "precision": {
+          "description": "Column precision.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "primaryKey": {
+          "description": "Whether or not the column represents a primary key.",
+          "type": "boolean"
+        },
+        "scale": {
+          "description": "Column scale.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerObjectIdentifier": {
+      "description": "SQLServer data source object identifier.",
+      "id": "SqlServerObjectIdentifier",
+      "properties": {
+        "schema": {
+          "description": "Required. The schema name.",
+          "type": "string"
+        },
+        "table": {
+          "description": "Required. The table name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerProfile": {
+      "description": "SQLServer database profile",
+      "id": "SqlServerProfile",
+      "properties": {
+        "database": {
+          "description": "Required. Database for the SQLServer connection.",
+          "type": "string"
+        },
+        "hostname": {
+          "description": "Required. Hostname for the SQLServer connection.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Required. Password for the SQLServer connection.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Port for the SQLServer connection, default value is 1433.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "username": {
+          "description": "Required. Username for the SQLServer connection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerRdbms": {
+      "description": "SQLServer database structure.",
+      "id": "SqlServerRdbms",
+      "properties": {
+        "schemas": {
+          "description": "SQLServer schemas in the database server.",
+          "items": {
+            "$ref": "SqlServerSchema"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerSchema": {
+      "description": "SQLServer schema.",
+      "id": "SqlServerSchema",
+      "properties": {
+        "schema": {
+          "description": "Schema name.",
+          "type": "string"
+        },
+        "tables": {
+          "description": "Tables in the schema.",
+          "items": {
+            "$ref": "SqlServerTable"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerSourceConfig": {
+      "description": "SQLServer data source configuration",
+      "id": "SqlServerSourceConfig",
+      "properties": {
+        "excludeObjects": {
+          "$ref": "SqlServerRdbms",
+          "description": "SQLServer objects to exclude from the stream."
+        },
+        "includeObjects": {
+          "$ref": "SqlServerRdbms",
+          "description": "SQLServer objects to include in the stream."
+        },
+        "maxConcurrentBackfillTasks": {
+          "description": "Max concurrent backfill tasks.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxConcurrentCdcTasks": {
+          "description": "Max concurrent CDC tasks.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerTable": {
+      "description": "SQLServer table.",
+      "id": "SqlServerTable",
+      "properties": {
+        "columns": {
+          "description": "SQLServer columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.",
+          "items": {
+            "$ref": "SqlServerColumn"
+          },
+          "type": "array"
+        },
+        "table": {
+          "description": "Table name.",
+          "type": "string"
         }
       },
       "type": "object"

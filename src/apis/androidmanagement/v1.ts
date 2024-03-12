@@ -158,6 +158,10 @@ export namespace androidmanagement_v1 {
      */
     googlePlayProtectVerifyApps?: string | null;
     /**
+     * Optional. Controls Memory Tagging Extension (MTE) (https://source.android.com/docs/security/test/memory-safety/arm-mte) on the device. The device needs to be rebooted to apply changes to the MTE policy.
+     */
+    mtePolicy?: string | null;
+    /**
      * Personal apps that can read work profile notifications using a NotificationListenerService (https://developer.android.com/reference/android/service/notification/NotificationListenerService). By default, no personal apps (aside from system apps) can read work notifications. Each value in the list must be a package name.
      */
     personalAppsThatCanReadWorkNotifications?: string[] | null;
@@ -332,6 +336,10 @@ export namespace androidmanagement_v1 {
      */
     connectedWorkAndPersonalApp?: string | null;
     /**
+     * Optional. Whether the app is allowed to act as a credential provider on Android 14 and above.
+     */
+    credentialProviderPolicy?: string | null;
+    /**
      * The default policy for all permissions requested by the app. If specified, this overrides the policy-level default_permission_policy which applies to all apps. It does not override the permission_grants which applies to all apps.
      */
     defaultPermissionPolicy?: string | null;
@@ -352,7 +360,7 @@ export namespace androidmanagement_v1 {
      */
     installConstraint?: Schema$InstallConstraint[];
     /**
-     * Optional. Amongst apps with installTypeset to:FORCE_INSTALLEDPREINSTALLED this controls the relative priority of installation. A value of 0 (default) means this app has no priority over other apps. For values between 1 and 10,000, a lower value means a higher priority. Values outside of the range 0 to 10,000 inclusive are rejected.
+     * Optional. Amongst apps with installType set to: FORCE_INSTALLED PREINSTALLEDthis controls the relative priority of installation. A value of 0 (default) means this app has no priority over other apps. For values between 1 and 10,000, a lower value means a higher priority. Values outside of the range 0 to 10,000 inclusive are rejected.
      */
     installPriority?: number | null;
     /**
@@ -1392,7 +1400,7 @@ export namespace androidmanagement_v1 {
     skinTemperatures?: number[] | null;
   }
   /**
-   * Amongst apps with InstallTypeset to:FORCE_INSTALLEDPREINSTALLED this defines a set of restrictions for the app installation. At least one of the fields must be set. When multiple fields are set, then all the constraints need to be satisfied for the app to be installed.
+   * Amongst apps with InstallType set to: FORCE_INSTALLED PREINSTALLEDthis defines a set of restrictions for the app installation. At least one of the fields must be set. When multiple fields are set, then all the constraints need to be satisfied for the app to be installed.
    */
   export interface Schema$InstallConstraint {
     /**
@@ -2245,6 +2253,10 @@ export namespace androidmanagement_v1 {
      */
     createWindowsDisabled?: boolean | null;
     /**
+     * Controls which apps are allowed to act as credential providers on Android 14 and above. These apps store credentials, see this (https://developer.android.com/training/sign-in/passkeys) and this (https://developer.android.com/reference/androidx/credentials/CredentialManager) for details. See also credentialProviderPolicy.
+     */
+    credentialProviderPolicyDefault?: string | null;
+    /**
      * Whether configuring user credentials is disabled.
      */
     credentialsConfigDisabled?: boolean | null;
@@ -2420,6 +2432,10 @@ export namespace androidmanagement_v1 {
      * Controls whether preferential network service is enabled on the work profile. For example, an organization may have an agreement with a carrier that all of the work data from its employees' devices will be sent via a network service dedicated for enterprise use. An example of a supported preferential network service is the enterprise slice on 5G networks. This has no effect on fully managed devices.
      */
     preferentialNetworkService?: string | null;
+    /**
+     * Optional. Controls whether printing is allowed. This is supported on devices running Android 9 and above. .
+     */
+    printingPolicy?: string | null;
     /**
      * Allows showing UI on a device for a user to choose a private key alias if there are no matching rules in ChoosePrivateKeyRules. For devices below Android P, setting this may leave enterprise keys vulnerable. This value will have no effect if any application has CERT_SELECTION delegation scope.
      */
@@ -3322,7 +3338,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Deletes an enterprise. Only available for EMM-managed enterprises.
+     * Permanently deletes an enterprise and all accounts and data associated with it. Warning: this will result in a cascaded deletion of all AM API devices associated with the deleted enterprise. Only available for EMM-managed enterprises.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

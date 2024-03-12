@@ -1605,7 +1605,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240221",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -2043,9 +2043,24 @@
           "$ref": "SubjectConfig",
           "description": "Required. Specifies some of the values in a certificate that are related to the subject."
         },
+        "subjectKeyId": {
+          "$ref": "CertificateConfigKeyId",
+          "description": "Optional. When specified this provides a custom SKI to be used in the certificate. This should only be used to maintain a SKI of an existing CA originally created outside CAS, which was not generated using method (1) described in RFC 5280 section 4.2.1.2."
+        },
         "x509Config": {
           "$ref": "X509Parameters",
           "description": "Required. Describes how some of the technical X.509 fields in a certificate should be populated."
+        }
+      },
+      "type": "object"
+    },
+    "CertificateConfigKeyId": {
+      "description": "A KeyId identifies a specific public key, usually by hashing the public key.",
+      "id": "CertificateConfigKeyId",
+      "properties": {
+        "keyId": {
+          "description": "Optional. The value of this KeyId encoded in lowercase hexadecimal. This is most likely the 160 bit SHA-1 hash of the public key.",
+          "type": "string"
         }
       },
       "type": "object"

@@ -109,6 +109,39 @@
       "resources": {
         "locations": {
           "resources": {
+            "orgPolicyViolationsPreviews": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreviewsId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.folders.locations.orgPolicyViolationsPreviews.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/orgPolicyViolationsPreviews/[^/]+/operations/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "replays": {
               "methods": {
                 "create": {
@@ -356,6 +389,175 @@
       "resources": {
         "locations": {
           "resources": {
+            "orgPolicyViolationsPreviews": {
+              "methods": {
+                "create": {
+                  "description": "CreateOrgPolicyViolationsPreview creates an OrgPolicyViolationsPreview for the proposed changes in the provided OrgPolicyViolationsPreview.OrgPolicyOverlay. The changes to OrgPolicy are specified by this `OrgPolicyOverlay`. The resources to scan are inferred from these specified changes.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews",
+                  "httpMethod": "POST",
+                  "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "orgPolicyViolationsPreviewId": {
+                      "description": "Optional. An optional user-specified ID for the OrgPolicyViolationsPreview. If not provided, a random ID will be generated.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The organization under which this OrgPolicyViolationsPreview will be created. Example: `organizations/my-example-org/locations/global`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/orgPolicyViolationsPreviews",
+                  "request": {
+                    "$ref": "GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "GetOrgPolicyViolationsPreview gets the specified OrgPolicyViolationsPreview. Each OrgPolicyViolationsPreview is available for at least 7 days.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreviewsId}",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the OrgPolicyViolationsPreview to get.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/orgPolicyViolationsPreviews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "ListOrgPolicyViolationsPreviews lists each OrgPolicyViolationsPreview in an organization. Each OrgPolicyViolationsPreview is available for at least 7 days.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 5 items will be returned. The maximum value is 10; values above 10 will be coerced to 10.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent the violations are scoped to. Format: `organizations/{organization}/locations/{location}` Example: `organizations/my-example-org/locations/global`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/orgPolicyViolationsPreviews",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreviewsId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/orgPolicyViolationsPreviews/[^/]+/operations/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "orgPolicyViolations": {
+                  "methods": {
+                    "list": {
+                      "description": "ListOrgPolicyViolations lists the OrgPolicyViolations that are present in an OrgPolicyViolationsPreview.",
+                      "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreviewsId}/orgPolicyViolations",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.orgPolicyViolations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 50 items will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The OrgPolicyViolationsPreview to get OrgPolicyViolations from. Format: organizations/{organization}/locations/{location}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview}",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/orgPolicyViolationsPreviews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/orgPolicyViolations",
+                      "response": {
+                        "$ref": "GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "replays": {
               "methods": {
                 "create": {
@@ -533,6 +735,39 @@
       "resources": {
         "locations": {
           "resources": {
+            "orgPolicyViolationsPreviews": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreviewsId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.projects.locations.orgPolicyViolationsPreviews.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/orgPolicyViolationsPreviews/[^/]+/operations/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "replays": {
               "methods": {
                 "create": {
@@ -707,7 +942,7 @@
       }
     }
   },
-  "revision": "20240128",
+  "revision": "20240225",
   "rootUrl": "https://policysimulator.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -1174,6 +1409,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse": {
+      "description": "ListOrgPolicyViolationsPreviewsResponse is the response message for OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews.",
+      "id": "GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that you can use to retrieve the next page of results. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "orgPolicyViolationsPreviews": {
+          "description": "The list of OrgPolicyViolationsPreview",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse": {
+      "description": "ListOrgPolicyViolationsResponse is the response message for OrgPolicyViolationsPreviewService.ListOrgPolicyViolations",
+      "id": "GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that you can use to retrieve the next page of results. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "orgPolicyViolations": {
+          "description": "The list of OrgPolicyViolations",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1OrgPolicyViolation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPolicysimulatorV1ListReplayResultsResponse": {
       "description": "Response message for Simulator.ListReplayResults.",
       "id": "GoogleCloudPolicysimulatorV1ListReplayResultsResponse",
@@ -1188,6 +1459,177 @@
             "$ref": "GoogleCloudPolicysimulatorV1ReplayResult"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1OrgPolicyOverlay": {
+      "description": "The proposed changes to OrgPolicy.",
+      "id": "GoogleCloudPolicysimulatorV1OrgPolicyOverlay",
+      "properties": {
+        "customConstraints": {
+          "description": "Optional. The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1OrgPolicyOverlayCustomConstraintOverlay"
+          },
+          "type": "array"
+        },
+        "policies": {
+          "description": "Optional. The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1OrgPolicyOverlayPolicyOverlay"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1OrgPolicyOverlayCustomConstraintOverlay": {
+      "description": "A change to an OrgPolicy custom constraint.",
+      "id": "GoogleCloudPolicysimulatorV1OrgPolicyOverlayCustomConstraintOverlay",
+      "properties": {
+        "customConstraint": {
+          "$ref": "GoogleCloudOrgpolicyV2CustomConstraint",
+          "description": "Optional. The new or updated custom constraint."
+        },
+        "customConstraintParent": {
+          "description": "Optional. Resource the constraint is attached to. Example: \"organization/987654\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1OrgPolicyOverlayPolicyOverlay": {
+      "description": "A change to an OrgPolicy.",
+      "id": "GoogleCloudPolicysimulatorV1OrgPolicyOverlayPolicyOverlay",
+      "properties": {
+        "policy": {
+          "$ref": "GoogleCloudOrgpolicyV2Policy",
+          "description": "Optional. The new or updated OrgPolicy."
+        },
+        "policyParent": {
+          "description": "Optional. The parent of the policy we are attaching to. Example: \"projects/123456\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1OrgPolicyViolation": {
+      "description": "OrgPolicyViolation is a resource representing a single resource violating a single OrgPolicy constraint.",
+      "id": "GoogleCloudPolicysimulatorV1OrgPolicyViolation",
+      "properties": {
+        "customConstraint": {
+          "$ref": "GoogleCloudOrgpolicyV2CustomConstraint",
+          "description": "The custom constraint being violated."
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Any error encountered during the evaluation."
+        },
+        "name": {
+          "description": "The name of the `OrgPolicyViolation`. Example: organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f/orgPolicyViolations/38ce`",
+          "type": "string"
+        },
+        "resource": {
+          "$ref": "GoogleCloudPolicysimulatorV1ResourceContext",
+          "description": "The resource violating the constraint."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview": {
+      "description": "OrgPolicyViolationsPreview is a resource providing a preview of the violations that will exist if an OrgPolicy change is made. The list of violations are modeled as child resources and retrieved via a ListOrgPolicyViolations API call. There are potentially more OrgPolicyViolations than could fit in an embedded field. Thus, the use of a child resource instead of a field.",
+      "id": "GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when this `OrgPolicyViolationsPreview` was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customConstraints": {
+          "description": "Output only. The names of the constraints against which all `OrgPolicyViolations` were evaluated. If `OrgPolicyOverlay` only contains `PolicyOverlay` then it contains the name of the configured custom constraint, applicable to the specified policies. Otherwise it contains the name of the constraint specified in `CustomConstraintOverlay`. Format: `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms`",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The resource name of the `OrgPolicyViolationsPreview`. It has the following format: `organizations/{organization}/locations/{location}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview}` Example: `organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "overlay": {
+          "$ref": "GoogleCloudPolicysimulatorV1OrgPolicyOverlay",
+          "description": "Required. The proposed changes we are previewing violations for."
+        },
+        "resourceCounts": {
+          "$ref": "GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreviewResourceCounts",
+          "description": "Output only. A summary of the state of all resources scanned for compliance with the changed OrgPolicy.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The state of the `OrgPolicyViolationsPreview`.",
+          "enum": [
+            "PREVIEW_STATE_UNSPECIFIED",
+            "PREVIEW_PENDING",
+            "PREVIEW_RUNNING",
+            "PREVIEW_SUCCEEDED",
+            "PREVIEW_FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The OrgPolicyViolationsPreview has not been created yet.",
+            "The OrgPolicyViolationsPreview is currently being created.",
+            "The OrgPolicyViolationsPreview creation finished successfully.",
+            "The OrgPolicyViolationsPreview creation failed with an error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "violationsCount": {
+          "description": "Output only. The number of OrgPolicyViolations in this `OrgPolicyViolationsPreview`. This count may differ from `resource_summary.noncompliant_count` because each OrgPolicyViolation is specific to a resource **and** constraint. If there are multiple constraints being evaluated (i.e. multiple policies in the overlay), a single resource may violate multiple constraints.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreviewResourceCounts": {
+      "description": "A summary of the state of all resources scanned for compliance with the changed OrgPolicy.",
+      "id": "GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreviewResourceCounts",
+      "properties": {
+        "compliant": {
+          "description": "Output only. Number of scanned resources with zero violations.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "errors": {
+          "description": "Output only. Number of resources that returned an error when scanned.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "noncompliant": {
+          "description": "Output only. Number of scanned resources with at least one violation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "scanned": {
+          "description": "Output only. Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "unenforced": {
+          "description": "Output only. Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1343,6 +1785,79 @@
           "description": "The number of replayed log entries with no difference between baseline and simulated policies.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1ResourceContext": {
+      "description": "ResourceContext provides the context we know about a resource. It is similar in concept to google.cloud.asset.v1.Resource, but focuses on the information specifically used by Simulator.",
+      "id": "GoogleCloudPolicysimulatorV1ResourceContext",
+      "properties": {
+        "ancestors": {
+          "description": "The ancestry path of the resource in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. If the resource is a project, folder, or organization, the ancestry path starts from the resource itself. Example: `[\"projects/123456789\", \"folders/5432\", \"organizations/1234\"]`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "assetType": {
+          "description": "The asset type of the resource as defined by CAIS. Example: `compute.googleapis.com/Firewall` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "The full name of the resource. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1alphaCreateOrgPolicyViolationsPreviewOperationMetadata": {
+      "description": "CreateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.",
+      "id": "GoogleCloudPolicysimulatorV1alphaCreateOrgPolicyViolationsPreviewOperationMetadata",
+      "properties": {
+        "requestTime": {
+          "description": "Time when the request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourcesFound": {
+          "description": "Total number of resources that need scanning. Should equal resource_scanned + resources_pending",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesPending": {
+          "description": "Number of resources still to scan.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesScanned": {
+          "description": "Number of resources already scanned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTime": {
+          "description": "Time when the request started processing, i.e., when the state was set to RUNNING.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the operation.",
+          "enum": [
+            "PREVIEW_STATE_UNSPECIFIED",
+            "PREVIEW_PENDING",
+            "PREVIEW_RUNNING",
+            "PREVIEW_SUCCEEDED",
+            "PREVIEW_FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The OrgPolicyViolationsPreview has not been created yet.",
+            "The OrgPolicyViolationsPreview is currently being created.",
+            "The OrgPolicyViolationsPreview creation finished successfully.",
+            "The OrgPolicyViolationsPreview creation failed with an error."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1541,6 +2056,57 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaCreateOrgPolicyViolationsPreviewOperationMetadata": {
+      "description": "CreateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.",
+      "id": "GoogleCloudPolicysimulatorV1betaCreateOrgPolicyViolationsPreviewOperationMetadata",
+      "properties": {
+        "requestTime": {
+          "description": "Time when the request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourcesFound": {
+          "description": "Total number of resources that need scanning. Should equal resource_scanned + resources_pending",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesPending": {
+          "description": "Number of resources still to scan.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesScanned": {
+          "description": "Number of resources already scanned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTime": {
+          "description": "Time when the request started processing, i.e., when the state was set to RUNNING.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the operation.",
+          "enum": [
+            "PREVIEW_STATE_UNSPECIFIED",
+            "PREVIEW_PENDING",
+            "PREVIEW_RUNNING",
+            "PREVIEW_SUCCEEDED",
+            "PREVIEW_FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The OrgPolicyViolationsPreview has not been created yet.",
+            "The OrgPolicyViolationsPreview is currently being created.",
+            "The OrgPolicyViolationsPreview creation finished successfully.",
+            "The OrgPolicyViolationsPreview creation failed with an error."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
