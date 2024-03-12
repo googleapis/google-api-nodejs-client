@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/analyticshub",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "analyticshub",
   "main": "build/index.js",
   "types": "build/index.d.ts",

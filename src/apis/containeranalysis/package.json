@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/containeranalysis",
-  "version": "5.0.1",
+  "version": "6.0.0",
   "description": "containeranalysis",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,21 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v12.0.1...cloudtasks-v13.0.0) (2024-03-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+
+### Bug Fixes
+
+* **cloudtasks:** update the API ([1415619](https://github.com/googleapis/google-api-nodejs-client/commit/14156190b636aa45ebd4a78d273017963ea97ac1))
+
 ## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v12.0.0...cloudtasks-v12.0.1) (2024-02-02)
 
 

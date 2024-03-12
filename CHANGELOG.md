@@ -4,6 +4,37 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [134.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v133.0.0...googleapis-v134.0.0) (2024-03-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **androidpublisher:** update the API ([e4b9a48](https://github.com/googleapis/google-api-nodejs-client/commit/e4b9a484eb7bf65bad64e7c21c05034c54b5466a))
+* **composer:** update the API ([079615e](https://github.com/googleapis/google-api-nodejs-client/commit/079615eea24e9233d5226dbad40c2bce666c2486))
+* **compute:** update the API ([38e7737](https://github.com/googleapis/google-api-nodejs-client/commit/38e7737b08d06863fdcd39a29f11dcba07f5937f))
+* **dataform:** update the API ([3b30605](https://github.com/googleapis/google-api-nodejs-client/commit/3b306058e8313f53f4f287fce8141026e74e336a))
+* regenerate index files ([f453603](https://github.com/googleapis/google-api-nodejs-client/commit/f453603e5a2ccd4d90e18b7dff93352aaaf273f4))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+* **testing:** update the API ([a188b41](https://github.com/googleapis/google-api-nodejs-client/commit/a188b418786bbd7fdc1f6750a4e8562765766db9))
+
+
+### Bug Fixes
+
+* **bigquerydatatransfer:** update the API ([05c5eb7](https://github.com/googleapis/google-api-nodejs-client/commit/05c5eb7ff55cb70828fc8457f3f58bf8d2150145))
+* change packageJson sideEffects to boolean ([#3435](https://github.com/googleapis/google-api-nodejs-client/issues/3435)) ([e9aabeb](https://github.com/googleapis/google-api-nodejs-client/commit/e9aabebf0e60d220ce39252310856dbeede74942)), closes [#3428](https://github.com/googleapis/google-api-nodejs-client/issues/3428)
+* **cloudidentity:** update the API ([f35c89f](https://github.com/googleapis/google-api-nodejs-client/commit/f35c89f62bf0faa103541994af9d6b1413539d0f))
+* **cloudtasks:** update the API ([1415619](https://github.com/googleapis/google-api-nodejs-client/commit/14156190b636aa45ebd4a78d273017963ea97ac1))
+* **networkconnectivity:** update the API ([55a5a31](https://github.com/googleapis/google-api-nodejs-client/commit/55a5a31890bfea6165d3149d53723935c21a938b))
+* **notebooks:** update the API ([c0cafa8](https://github.com/googleapis/google-api-nodejs-client/commit/c0cafa8d4174dafcd9faf141fae2ee5c75aec8c6))
+
 ## [133.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v132.0.0...googleapis-v133.0.0) (2024-02-07)
 
 
