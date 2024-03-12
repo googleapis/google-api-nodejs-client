@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/apphub",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "apphub",
   "main": "build/index.js",
   "types": "build/index.d.ts",
