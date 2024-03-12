@@ -1042,7 +1042,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240223",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -2581,7 +2581,7 @@
       "properties": {
         "boundingPoly": {
           "$ref": "GoogleCloudDocumentaiV1BoundingPoly",
-          "description": "Optional. Identifies the bounding polygon of a layout element on the page."
+          "description": "Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to."
         },
         "confidence": {
           "description": "Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.",
@@ -3380,6 +3380,10 @@
       "description": "Defines properties that can be part of the entity type.",
       "id": "GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty",
       "properties": {
+        "displayName": {
+          "description": "User defined name for the property.",
+          "type": "string"
+        },
         "name": {
           "description": "The name of the property. Follows the same guidelines as the EntityType name.",
           "type": "string"
@@ -4116,6 +4120,10 @@
         "ocrConfig": {
           "$ref": "GoogleCloudDocumentaiV1OcrConfig",
           "description": "Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`. Returns error if set on other processor types."
+        },
+        "schemaOverride": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentSchema",
+          "description": "Optional. Override the schema of the ProcessorVersion. Will return an Invalid Argument error if this field is set when the underlying ProcessorVersion doesn't support schema override."
         }
       },
       "type": "object"
@@ -5110,7 +5118,7 @@
       "properties": {
         "boundingPoly": {
           "$ref": "GoogleCloudDocumentaiV1beta1BoundingPoly",
-          "description": "Optional. Identifies the bounding polygon of a layout element on the page."
+          "description": "Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to."
         },
         "confidence": {
           "description": "Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.",
@@ -6511,7 +6519,7 @@
       "properties": {
         "boundingPoly": {
           "$ref": "GoogleCloudDocumentaiV1beta2BoundingPoly",
-          "description": "Optional. Identifies the bounding polygon of a layout element on the page."
+          "description": "Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to."
         },
         "confidence": {
           "description": "Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.",

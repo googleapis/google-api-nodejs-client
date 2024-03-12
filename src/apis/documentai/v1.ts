@@ -1144,7 +1144,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageAnchorPageRef {
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
+     * Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to.
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta1BoundingPoly;
     /**
@@ -2163,7 +2163,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageAnchorPageRef {
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
+     * Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to.
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta2BoundingPoly;
     /**
@@ -3783,7 +3783,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentPageAnchorPageRef {
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
+     * Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to.
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1BoundingPoly;
     /**
@@ -4351,6 +4351,10 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty {
     /**
+     * User defined name for the property.
+     */
+    displayName?: string | null;
+    /**
      * The name of the property. Follows the same guidelines as the EntityType name.
      */
     name?: string | null;
@@ -4917,6 +4921,10 @@ export namespace documentai_v1 {
      * Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`. Returns error if set on other processor types.
      */
     ocrConfig?: Schema$GoogleCloudDocumentaiV1OcrConfig;
+    /**
+     * Optional. Override the schema of the ProcessorVersion. Will return an Invalid Argument error if this field is set when the underlying ProcessorVersion doesn't support schema override.
+     */
+    schemaOverride?: Schema$GoogleCloudDocumentaiV1DocumentSchema;
   }
   /**
    * A list of individual page numbers.

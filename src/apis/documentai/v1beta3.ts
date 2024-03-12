@@ -1087,7 +1087,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageAnchorPageRef {
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
+     * Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to.
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta1BoundingPoly;
     /**
@@ -2106,7 +2106,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageAnchorPageRef {
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
+     * Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to.
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta2BoundingPoly;
     /**
@@ -3536,7 +3536,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentPageAnchorPageRef {
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
+     * Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to.
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta3BoundingPoly;
     /**
@@ -4107,6 +4107,10 @@ export namespace documentai_v1beta3 {
    * Defines properties that can be part of the entity type.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty {
+    /**
+     * User defined name for the property.
+     */
+    displayName?: string | null;
     /**
      * The name of the property. Follows the same guidelines as the EntityType name.
      */

@@ -2111,6 +2111,10 @@ export namespace container_v1 {
      */
     sandboxConfig?: Schema$SandboxConfig;
     /**
+     * List of secondary boot disks attached to the nodes.
+     */
+    secondaryBootDisks?: Schema$SecondaryBootDisk[];
+    /**
      * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the "default" service account is used.
      */
     serviceAccount?: string | null;
@@ -2791,6 +2795,19 @@ export namespace container_v1 {
      * Type of the sandbox to use for the node.
      */
     type?: string | null;
+  }
+  /**
+   * SecondaryBootDisk represents a persistent disk attached to a node with special configurations based on its mode.
+   */
+  export interface Schema$SecondaryBootDisk {
+    /**
+     * Fully-qualified resource ID for an existing disk image.
+     */
+    diskImage?: string | null;
+    /**
+     * Disk mode (container image cache, etc.)
+     */
+    mode?: string | null;
   }
   /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.

@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20240207",
+  "revision": "20240223",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2860,17 +2860,6 @@
       },
       "type": "object"
     },
-    "VolumeClaim": {
-      "description": "VolumeClaim is a user's request for a volume.",
-      "id": "VolumeClaim",
-      "properties": {
-        "storage": {
-          "description": "Volume size, e.g. 1gb.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "VolumeMount": {
       "description": "Pod volumes to mount into the container's filesystem.",
       "id": "VolumeMount",
@@ -2971,10 +2960,6 @@
         "subPath": {
           "description": "Optional. SubPath is optionally a directory on the volume which should be used for this binding (i.e. the volume will be mounted at this sub directory). +optional",
           "type": "string"
-        },
-        "volumeClaim": {
-          "$ref": "VolumeClaim",
-          "description": "Volume claim that will be created in the same namespace."
         }
       },
       "type": "object"

@@ -1529,15 +1529,6 @@ export namespace cloudbuild_v2 {
     userTokenSecretVersion?: string | null;
   }
   /**
-   * VolumeClaim is a user's request for a volume.
-   */
-  export interface Schema$VolumeClaim {
-    /**
-     * Volume size, e.g. 1gb.
-     */
-    storage?: string | null;
-  }
-  /**
    * Pod volumes to mount into the container's filesystem.
    */
   export interface Schema$VolumeMount {
@@ -1617,10 +1608,6 @@ export namespace cloudbuild_v2 {
      * Optional. SubPath is optionally a directory on the volume which should be used for this binding (i.e. the volume will be mounted at this sub directory). +optional
      */
     subPath?: string | null;
-    /**
-     * Volume claim that will be created in the same namespace.
-     */
-    volumeClaim?: Schema$VolumeClaim;
   }
   /**
    * WorkspaceDeclaration is a declaration of a volume that a Task requires.

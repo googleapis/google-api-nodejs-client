@@ -3338,7 +3338,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Deletes an enterprise. Only available for EMM-managed enterprises.
+     * Permanently deletes an enterprise and all accounts and data associated with it. Warning: this will result in a cascaded deletion of all AM API devices associated with the deleted enterprise. Only available for EMM-managed enterprises.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
