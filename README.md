@@ -36,7 +36,7 @@
 The full list of supported APIs can be found on the [Google APIs Explorer][apiexplorer]. The API endpoints are automatically generated, so if the API is not in the list, it is currently not supported by this API client library.
 
 ### Working with Google Cloud Platform APIs?
-When utilizing Google Cloud Platform APIs like Datastore, Cloud Storage, or Pub/Sub, it is advisable to leverage the @google-cloud client libraries. These libraries are purpose-built, idiomatic Node.js clients designed for specific Google Cloud Platform services. It's essential to note that the `@google-cloud` package has been deprecated. Therefore, we highly recommend installing individual API packages, such as `@google-cloud/storage`. To explore a comprehensive list of Google Cloud Platform API-specific packages, please refer to https://cloud.google.com/nodejs/docs/reference/libraries.
+When utilizing Google Cloud Platform APIs like Datastore, Cloud Storage, or Pub/Sub, it is advisable to leverage the @google-cloud client libraries. These libraries are purpose-built, idiomatic Node.js clients designed for specific Google Cloud Platform services. We recommend installing individual API packages, such as `@google-cloud/storage`. To explore a comprehensive list of Google Cloud Platform API-specific packages, please refer to https://cloud.google.com/nodejs/docs/reference.
 
 
 
