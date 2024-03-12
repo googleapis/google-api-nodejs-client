@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/alloydb",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "alloydb",
   "main": "build/index.js",
   "types": "build/index.d.ts",
