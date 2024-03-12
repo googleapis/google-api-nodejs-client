@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatatransfer-v1.2.0...bigquerydatatransfer-v1.2.1) (2024-03-12)
+
+
+### Bug Fixes
+
+* **bigquerydatatransfer:** update the API ([05c5eb7](https://github.com/googleapis/google-api-nodejs-client/commit/05c5eb7ff55cb70828fc8457f3f58bf8d2150145))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatatransfer-v1.1.2...bigquerydatatransfer-v1.2.0) (2024-02-07)
 
 

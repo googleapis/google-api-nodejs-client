@@ -1,12 +1,12 @@
 {
   "name": "googleapis",
-  "version": "133.0.0",
+  "version": "134.0.0",
   "repository": "googleapis/google-api-nodejs-client",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
-  "sideEffects": "false",
+  "sideEffects": false,
   "engines": {
     "node": ">=14.0.0"
   },

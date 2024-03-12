@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/transcoder",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "transcoder",
   "main": "build/index.js",
   "types": "build/index.d.ts",

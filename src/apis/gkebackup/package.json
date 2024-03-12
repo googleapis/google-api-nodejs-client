@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/gkebackup",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "gkebackup",
   "main": "build/index.js",
   "types": "build/index.d.ts",

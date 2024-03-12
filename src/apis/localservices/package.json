@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/localservices",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "localservices",
   "main": "build/index.js",
   "types": "build/index.d.ts",
