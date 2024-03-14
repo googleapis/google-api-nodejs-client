@@ -276,7 +276,7 @@
       }
     }
   },
-  "revision": "20240221",
+  "revision": "20240312",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1458,6 +1458,10 @@
       "description": "Request proto for SearchText. ",
       "id": "GoogleMapsPlacesV1SearchTextRequest",
       "properties": {
+        "evOptions": {
+          "$ref": "GoogleMapsPlacesV1SearchTextRequestEVOptions",
+          "description": "Optional. Set the searchable EV options of a place search request."
+        },
         "includedType": {
           "description": "The requested place type. Full list of types supported: https://developers.google.com/maps/documentation/places/web-service/place-types. Only support one included type.",
           "type": "string"
@@ -1536,6 +1540,49 @@
         "textQuery": {
           "description": "Required. The text query for textual search.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1SearchTextRequestEVOptions": {
+      "description": "Searchable EV options of a place search request.",
+      "id": "GoogleMapsPlacesV1SearchTextRequestEVOptions",
+      "properties": {
+        "connectorTypes": {
+          "description": "Optional. The list of preferred EV connector types. A place that does not support any of the listed connector types are filter out.",
+          "items": {
+            "enum": [
+              "EV_CONNECTOR_TYPE_UNSPECIFIED",
+              "EV_CONNECTOR_TYPE_OTHER",
+              "EV_CONNECTOR_TYPE_J1772",
+              "EV_CONNECTOR_TYPE_TYPE_2",
+              "EV_CONNECTOR_TYPE_CHADEMO",
+              "EV_CONNECTOR_TYPE_CCS_COMBO_1",
+              "EV_CONNECTOR_TYPE_CCS_COMBO_2",
+              "EV_CONNECTOR_TYPE_TESLA",
+              "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
+              "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"
+            ],
+            "enumDescriptions": [
+              "Unspecified connector.",
+              "Other connector types.",
+              "J1772 type 1 connector.",
+              "IEC 62196 type 2 connector. Often referred to as MENNEKES.",
+              "CHAdeMO type connector.",
+              "Combined Charging System (AC and DC). Based on SAE. Type-1 J-1772 connector",
+              "Combined Charging System (AC and DC). Based on Type-2 Mennekes connector",
+              "The generic TESLA connector. This is NACS in the North America but can be non-NACS in other parts of the world (e.g. CCS Combo 2 (CCS2) or GB/T). This value is less representative of an actual connector type, and more represents the ability to charge a Tesla brand vehicle at a Tesla owned charging station.",
+              "GB/T type corresponds to the GB/T standard in China. This type covers all GB_T types.",
+              "Unspecified wall outlet."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "minimumChargingRateKw": {
+          "description": "Optional. Filtering places by minimum charging rate. Any places with charging a rate less than the minimum charging rate are filtered out.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
