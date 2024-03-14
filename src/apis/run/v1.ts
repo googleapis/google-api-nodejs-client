@@ -742,6 +742,831 @@ export namespace run_v1 {
     type?: string | null;
   }
   /**
+   * ApprovalConfig describes configuration for manual approval of a build.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1ApprovalConfig {
+    /**
+     * Whether or not approval is needed. If this is set on a build, it will become pending when created, and will need to be explicitly approved to start.
+     */
+    approvalRequired?: boolean | null;
+  }
+  /**
+   * ApprovalResult describes the decision and associated metadata of a manual approval of a build.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1ApprovalResult {
+    /**
+     * Output only. The time when the approval decision was made.
+     */
+    approvalTime?: string | null;
+    /**
+     * Output only. Email of the user that called the ApproveBuild API to approve or reject a build at the time that the API was called.
+     */
+    approverAccount?: string | null;
+    /**
+     * Optional. An optional comment for this manual approval result.
+     */
+    comment?: string | null;
+    /**
+     * Required. The decision of this manual approval.
+     */
+    decision?: string | null;
+    /**
+     * Optional. An optional URL tied to this manual approval result. This field is essentially the same as comment, except that it will be rendered by the UI differently. An example use case is a link to an external job that approved this Build.
+     */
+    url?: string | null;
+  }
+  /**
+   * Files in the workspace to upload to Cloud Storage upon successful completion of all build steps.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1ArtifactObjects {
+    /**
+     * Cloud Storage bucket and optional object path, in the form "gs://bucket/path/to/somewhere/". (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Files in the workspace matching any path pattern will be uploaded to Cloud Storage with this location as a prefix.
+     */
+    location?: string | null;
+    /**
+     * Path globs used to match files in the build's workspace.
+     */
+    paths?: string[] | null;
+    /**
+     * Output only. Stores timing information for pushing all artifact objects.
+     */
+    timing?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
+  }
+  /**
+   * Artifacts produced by a build that should be uploaded upon successful completion of all build steps.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Artifacts {
+    /**
+     * A list of images to be pushed upon the successful completion of all build steps. The images will be pushed using the builder service account's credentials. The digests of the pushed images will be stored in the Build resource's results field. If any of the images fail to be pushed, the build is marked FAILURE.
+     */
+    images?: string[] | null;
+    /**
+     * A list of Maven artifacts to be uploaded to Artifact Registry upon successful completion of all build steps. Artifacts in the workspace matching specified paths globs will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any artifacts fail to be pushed, the build is marked FAILURE.
+     */
+    mavenArtifacts?: Schema$GoogleDevtoolsCloudbuildV1MavenArtifact[];
+    /**
+     * A list of npm packages to be uploaded to Artifact Registry upon successful completion of all build steps. Npm packages in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any packages fail to be pushed, the build is marked FAILURE.
+     */
+    npmPackages?: Schema$GoogleDevtoolsCloudbuildV1NpmPackage[];
+    /**
+     * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
+     */
+    objects?: Schema$GoogleDevtoolsCloudbuildV1ArtifactObjects;
+    /**
+     * A list of Python packages to be uploaded to Artifact Registry upon successful completion of all build steps. The build service account credentials will be used to perform the upload. If any objects fail to be pushed, the build is marked FAILURE.
+     */
+    pythonPackages?: Schema$GoogleDevtoolsCloudbuildV1PythonPackage[];
+  }
+  /**
+   * A build resource in the Cloud Build API. At a high level, a `Build` describes where to find source code, how to build it (for example, the builder image to run on the source), and where to store the built artifacts. Fields can include the following variables, which will be expanded when the build is created: - $PROJECT_ID: the project ID of the build. - $PROJECT_NUMBER: the project number of the build. - $LOCATION: the location/region of the build. - $BUILD_ID: the autogenerated ID of the build. - $REPO_NAME: the source repository name specified by RepoSource. - $BRANCH_NAME: the branch name specified by RepoSource. - $TAG_NAME: the tag name specified by RepoSource. - $REVISION_ID or $COMMIT_SHA: the commit SHA specified by RepoSource or resolved from the specified branch or tag. - $SHORT_SHA: first 7 characters of $REVISION_ID or $COMMIT_SHA.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Build {
+    /**
+     * Output only. Describes this build's approval configuration, status, and result.
+     */
+    approval?: Schema$GoogleDevtoolsCloudbuildV1BuildApproval;
+    /**
+     * Artifacts produced by the build that should be uploaded upon successful completion of all build steps.
+     */
+    artifacts?: Schema$GoogleDevtoolsCloudbuildV1Artifacts;
+    /**
+     * Secrets and secret environment variables.
+     */
+    availableSecrets?: Schema$GoogleDevtoolsCloudbuildV1Secrets;
+    /**
+     * Output only. The ID of the `BuildTrigger` that triggered this build, if it was triggered automatically.
+     */
+    buildTriggerId?: string | null;
+    /**
+     * Output only. Time at which the request to create the build was received.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Contains information about the build when status=FAILURE.
+     */
+    failureInfo?: Schema$GoogleDevtoolsCloudbuildV1FailureInfo;
+    /**
+     * Output only. Time at which execution of the build was finished. The difference between finish_time and start_time is the duration of the build's execution.
+     */
+    finishTime?: string | null;
+    /**
+     * Output only. Unique identifier of the build.
+     */
+    id?: string | null;
+    /**
+     * A list of images to be pushed upon the successful completion of all build steps. The images are pushed using the builder service account's credentials. The digests of the pushed images will be stored in the `Build` resource's results field. If any of the images fail to be pushed, the build status is marked `FAILURE`.
+     */
+    images?: string[] | null;
+    /**
+     * Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
+     */
+    logsBucket?: string | null;
+    /**
+     * Output only. URL to logs for this build in Google Cloud Console.
+     */
+    logUrl?: string | null;
+    /**
+     * Output only. The 'Build' name with format: `projects/{project\}/locations/{location\}/builds/{build\}`, where {build\} is a unique identifier generated by the service.
+     */
+    name?: string | null;
+    /**
+     * Special options for this build.
+     */
+    options?: Schema$GoogleDevtoolsCloudbuildV1BuildOptions;
+    /**
+     * Output only. ID of the project.
+     */
+    projectId?: string | null;
+    /**
+     * TTL in queue for this build. If provided and the build is enqueued longer than this value, the build will expire and the build status will be `EXPIRED`. The TTL starts ticking from create_time.
+     */
+    queueTtl?: string | null;
+    /**
+     * Output only. Results of the build.
+     */
+    results?: Schema$GoogleDevtoolsCloudbuildV1Results;
+    /**
+     * Secrets to decrypt using Cloud Key Management Service. Note: Secret Manager is the recommended technique for managing sensitive data with Cloud Build. Use `available_secrets` to configure builds to access secrets from Secret Manager. For instructions, see: https://cloud.google.com/cloud-build/docs/securing-builds/use-secrets
+     */
+    secrets?: Schema$GoogleDevtoolsCloudbuildV1Secret[];
+    /**
+     * IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}`. ACCOUNT can be email address or uniqueId of the service account.
+     */
+    serviceAccount?: string | null;
+    /**
+     * The location of the source files to build.
+     */
+    source?: Schema$GoogleDevtoolsCloudbuildV1Source;
+    /**
+     * Output only. A permanent fixed identifier for source.
+     */
+    sourceProvenance?: Schema$GoogleDevtoolsCloudbuildV1SourceProvenance;
+    /**
+     * Output only. Time at which execution of the build was started.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. Status of the build.
+     */
+    status?: string | null;
+    /**
+     * Output only. Customer-readable message about the current status.
+     */
+    statusDetail?: string | null;
+    /**
+     * Required. The operations to be performed on the workspace.
+     */
+    steps?: Schema$GoogleDevtoolsCloudbuildV1BuildStep[];
+    /**
+     * Substitutions data for `Build` resource.
+     */
+    substitutions?: {[key: string]: string} | null;
+    /**
+     * Tags for annotation of a `Build`. These are not docker tags.
+     */
+    tags?: string[] | null;
+    /**
+     * Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be `TIMEOUT`. `timeout` starts ticking from `startTime`. Default time is 60 minutes.
+     */
+    timeout?: string | null;
+    /**
+     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all artifacts including docker images and non docker artifacts. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.
+     */
+    timing?: {[key: string]: Schema$GoogleDevtoolsCloudbuildV1TimeSpan} | null;
+    /**
+     * Output only. Non-fatal problems encountered during the execution of the build.
+     */
+    warnings?: Schema$GoogleDevtoolsCloudbuildV1Warning[];
+  }
+  /**
+   * BuildApproval describes a build's approval configuration, state, and result.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1BuildApproval {
+    /**
+     * Output only. Configuration for manual approval of this build.
+     */
+    config?: Schema$GoogleDevtoolsCloudbuildV1ApprovalConfig;
+    /**
+     * Output only. Result of manual approval for this Build.
+     */
+    result?: Schema$GoogleDevtoolsCloudbuildV1ApprovalResult;
+    /**
+     * Output only. The state of this build's approval.
+     */
+    state?: string | null;
+  }
+  /**
+   * Metadata for build operations.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1BuildOperationMetadata {
+    /**
+     * The build that the operation is tracking.
+     */
+    build?: Schema$GoogleDevtoolsCloudbuildV1Build;
+  }
+  /**
+   * Optional arguments to enable specific features of builds.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1BuildOptions {
+    /**
+     * Option to include built-in and custom substitutions as env variables for all build steps.
+     */
+    automapSubstitutions?: boolean | null;
+    /**
+     * Optional. Option to specify how default logs buckets are setup.
+     */
+    defaultLogsBucketBehavior?: string | null;
+    /**
+     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.
+     */
+    diskSizeGb?: string | null;
+    /**
+     * Option to specify whether or not to apply bash style string operations to the substitutions. NOTE: this is always enabled for triggered builds and cannot be overridden in the build configuration file.
+     */
+    dynamicSubstitutions?: boolean | null;
+    /**
+     * A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
+     */
+    env?: string[] | null;
+    /**
+     * Option to specify the logging mode, which determines if and where build logs are stored.
+     */
+    logging?: string | null;
+    /**
+     * Option to define build log streaming behavior to Cloud Storage.
+     */
+    logStreamingOption?: string | null;
+    /**
+     * Compute Engine machine type on which to run the build.
+     */
+    machineType?: string | null;
+    /**
+     * Optional. Specification for execution on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
+     */
+    pool?: Schema$GoogleDevtoolsCloudbuildV1PoolOption;
+    /**
+     * Requested verifiability options.
+     */
+    requestedVerifyOption?: string | null;
+    /**
+     * A list of global environment variables, which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`. These variables will be available to all build steps in this build.
+     */
+    secretEnv?: string[] | null;
+    /**
+     * Requested hash for SourceProvenance.
+     */
+    sourceProvenanceHash?: string[] | null;
+    /**
+     * Option to specify behavior when there is an error in the substitution checks. NOTE: this is always set to ALLOW_LOOSE for triggered builds and cannot be overridden in the build configuration file.
+     */
+    substitutionOption?: string | null;
+    /**
+     * Global list of volumes to mount for ALL build steps Each volume is created as an empty volume prior to starting the build process. Upon completion of the build, volumes and their contents are discarded. Global volume names and paths cannot conflict with the volumes defined a build step. Using a global volume in a build with only one step is not valid as it is indicative of a build request with an incorrect configuration.
+     */
+    volumes?: Schema$GoogleDevtoolsCloudbuildV1Volume[];
+    /**
+     * This field deprecated; please use `pool.name` instead.
+     */
+    workerPool?: string | null;
+  }
+  /**
+   * A step in the build pipeline.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1BuildStep {
+    /**
+     * Allow this build step to fail without failing the entire build if and only if the exit code is one of the specified codes. If allow_failure is also specified, this field will take precedence.
+     */
+    allowExitCodes?: number[] | null;
+    /**
+     * Allow this build step to fail without failing the entire build. If false, the entire build will fail if this step fails. Otherwise, the build will succeed, but this step will still have a failure status. Error information will be reported in the failure_detail field.
+     */
+    allowFailure?: boolean | null;
+    /**
+     * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
+     */
+    args?: string[] | null;
+    /**
+     * Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.
+     */
+    automapSubstitutions?: boolean | null;
+    /**
+     * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
+     */
+    dir?: string | null;
+    /**
+     * Entrypoint to be used instead of the build step image's default entrypoint. If unset, the image's default entrypoint is used.
+     */
+    entrypoint?: string | null;
+    /**
+     * A list of environment variable definitions to be used when running a step. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
+     */
+    env?: string[] | null;
+    /**
+     * Output only. Return code from running the step.
+     */
+    exitCode?: number | null;
+    /**
+     * Unique identifier for this build step, used in `wait_for` to reference this build step as a dependency.
+     */
+    id?: string | null;
+    /**
+     * Required. The name of the container image that will run this particular build step. If the image is available in the host's Docker daemon's cache, it will be run directly. If not, the host will attempt to pull the image first, using the builder service account's credentials if necessary. The Docker daemon's cache will already have the latest versions of all of the officially supported build steps ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)). The Docker daemon will also have cached many of the layers for some popular images, like "ubuntu", "debian", but they will be refreshed at the time you attempt to use them. If you built an image in a previous build step, it will be stored in the host's Docker daemon's cache and is available to use as the name for a later build step.
+     */
+    name?: string | null;
+    /**
+     * Output only. Stores timing information for pulling this build step's builder image only.
+     */
+    pullTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.
+     */
+    script?: string | null;
+    /**
+     * A list of environment variables which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`.
+     */
+    secretEnv?: string[] | null;
+    /**
+     * Output only. Status of the build step. At this time, build step status is only updated on build completion; step status is not updated in real-time as the build progresses.
+     */
+    status?: string | null;
+    /**
+     * Time limit for executing this build step. If not defined, the step has no time limit and will be allowed to continue to run until either it completes or the build itself times out.
+     */
+    timeout?: string | null;
+    /**
+     * Output only. Stores timing information for executing this build step.
+     */
+    timing?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * List of volumes to mount into the build step. Each volume is created as an empty volume prior to execution of the build step. Upon completion of the build, volumes and their contents are discarded. Using a named volume in only one step is not valid as it is indicative of a build request with an incorrect configuration.
+     */
+    volumes?: Schema$GoogleDevtoolsCloudbuildV1Volume[];
+    /**
+     * The ID(s) of the step(s) that this build step depends on. This build step will not start until all the build steps in `wait_for` have completed successfully. If `wait_for` is empty, this build step will start when all previous build steps in the `Build.Steps` list have completed successfully.
+     */
+    waitFor?: string[] | null;
+  }
+  /**
+   * An image built by the pipeline.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1BuiltImage {
+    /**
+     * Docker Registry 2.0 digest.
+     */
+    digest?: string | null;
+    /**
+     * Name used to push the container image to Google Container Registry, as presented to `docker push`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Stores timing information for pushing the specified image.
+     */
+    pushTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
+  }
+  /**
+   * Location of the source in a 2nd-gen Google Cloud Build repository resource.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1ConnectedRepository {
+    /**
+     * Directory, relative to the source root, in which to run the build.
+     */
+    dir?: string | null;
+    /**
+     * Required. Name of the Google Cloud Build repository, formatted as `projects/x/locations/x/connections/x/repositories/x`.
+     */
+    repository?: string | null;
+    /**
+     * The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
+     */
+    revision?: string | null;
+  }
+  /**
+   * A fatal problem encountered during the execution of the build.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1FailureInfo {
+    /**
+     * Explains the failure issue in more detail using hard-coded text.
+     */
+    detail?: string | null;
+    /**
+     * The name of the failure.
+     */
+    type?: string | null;
+  }
+  /**
+   * Container message for hashes of byte content of files, used in SourceProvenance messages to verify integrity of source input to the build.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1FileHashes {
+    /**
+     * Collection of file hashes.
+     */
+    fileHash?: Schema$GoogleDevtoolsCloudbuildV1Hash[];
+  }
+  /**
+   * Location of the source in any accessible Git repository.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1GitSource {
+    /**
+     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
+     */
+    dir?: string | null;
+    /**
+     * The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref. Cloud Build uses `git fetch` to fetch the revision from the Git repository; therefore make sure that the string you provide for `revision` is parsable by the command. For information on string values accepted by `git fetch`, see https://git-scm.com/docs/gitrevisions#_specifying_revisions. For information on `git fetch`, see https://git-scm.com/docs/git-fetch.
+     */
+    revision?: string | null;
+    /**
+     * Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.
+     */
+    url?: string | null;
+  }
+  /**
+   * Container message for hash values.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Hash {
+    /**
+     * The type of hash that was performed.
+     */
+    type?: string | null;
+    /**
+     * The hash value.
+     */
+    value?: string | null;
+  }
+  /**
+   * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1InlineSecret {
+    /**
+     * Map of environment variable name to its encrypted value. Secret environment variables must be unique across all of a build's secrets, and must be used by at least one build step. Values can be at most 64 KB in size. There can be at most 100 secret values across all of a build's secrets.
+     */
+    envMap?: {[key: string]: string} | null;
+    /**
+     * Resource name of Cloud KMS crypto key to decrypt the encrypted value. In format: projects/x/locations/x/keyRings/x/cryptoKeys/x
+     */
+    kmsKeyName?: string | null;
+  }
+  /**
+   * A Maven artifact to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1MavenArtifact {
+    /**
+     * Maven `artifactId` value used when uploading the artifact to Artifact Registry.
+     */
+    artifactId?: string | null;
+    /**
+     * Maven `groupId` value used when uploading the artifact to Artifact Registry.
+     */
+    groupId?: string | null;
+    /**
+     * Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
+     */
+    path?: string | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-maven.pkg.dev/$PROJECT/$REPOSITORY" Artifact in the workspace specified by path will be uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
+    /**
+     * Maven `version` value used when uploading the artifact to Artifact Registry.
+     */
+    version?: string | null;
+  }
+  /**
+   * Npm package to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1NpmPackage {
+    /**
+     * Path to the package.json. e.g. workspace/path/to/package
+     */
+    packagePath?: string | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-npm.pkg.dev/$PROJECT/$REPOSITORY" Npm package in the workspace specified by path will be zipped and uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
+  }
+  /**
+   * Details about how a build should be executed on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1PoolOption {
+    /**
+     * The `WorkerPool` resource to execute the build on. You must have `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format projects/{project\}/locations/{location\}/workerPools/{workerPoolId\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Python package to upload to Artifact Registry upon successful completion of all build steps. A package can encapsulate multiple objects to be uploaded to a single repository.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1PythonPackage {
+    /**
+     * Path globs used to match files in the build's workspace. For Python/ Twine, this is usually `dist/x`, and sometimes additionally an `.asc` file.
+     */
+    paths?: string[] | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-python.pkg.dev/$PROJECT/$REPOSITORY" Files in the workspace matching any path pattern will be uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
+  }
+  /**
+   * Location of the source in a Google Cloud Source Repository.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1RepoSource {
+    /**
+     * Regex matching branches to build. The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
+     */
+    branchName?: string | null;
+    /**
+     * Explicit commit SHA to build.
+     */
+    commitSha?: string | null;
+    /**
+     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
+     */
+    dir?: string | null;
+    /**
+     * Only trigger a build if the revision regex does NOT match the revision regex.
+     */
+    invertRegex?: boolean | null;
+    /**
+     * ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
+     */
+    projectId?: string | null;
+    /**
+     * Name of the Cloud Source Repository.
+     */
+    repoName?: string | null;
+    /**
+     * Substitutions to use in a triggered build. Should only be used with RunBuildTrigger
+     */
+    substitutions?: {[key: string]: string} | null;
+    /**
+     * Regex matching tags to build. The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
+     */
+    tagName?: string | null;
+  }
+  /**
+   * Artifacts created by the build pipeline.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Results {
+    /**
+     * Path to the artifact manifest for non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
+     */
+    artifactManifest?: string | null;
+    /**
+     * Time to push all non-container artifacts to Cloud Storage.
+     */
+    artifactTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * List of build step digests, in the order corresponding to build step indices.
+     */
+    buildStepImages?: string[] | null;
+    /**
+     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored.
+     */
+    buildStepOutputs?: string[] | null;
+    /**
+     * Container images that were built as a part of the build.
+     */
+    images?: Schema$GoogleDevtoolsCloudbuildV1BuiltImage[];
+    /**
+     * Maven artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    mavenArtifacts?: Schema$GoogleDevtoolsCloudbuildV1UploadedMavenArtifact[];
+    /**
+     * Npm packages uploaded to Artifact Registry at the end of the build.
+     */
+    npmPackages?: Schema$GoogleDevtoolsCloudbuildV1UploadedNpmPackage[];
+    /**
+     * Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
+     */
+    numArtifacts?: string | null;
+    /**
+     * Python artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    pythonPackages?: Schema$GoogleDevtoolsCloudbuildV1UploadedPythonPackage[];
+  }
+  /**
+   * Pairs a set of secret environment variables containing encrypted values with the Cloud KMS key to use to decrypt the value. Note: Use `kmsKeyName` with `available_secrets` instead of using `kmsKeyName` with `secret`. For instructions see: https://cloud.google.com/cloud-build/docs/securing-builds/use-encrypted-credentials.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Secret {
+    /**
+     * Cloud KMS key name to use to decrypt these envs.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Map of environment variable name to its encrypted value. Secret environment variables must be unique across all of a build's secrets, and must be used by at least one build step. Values can be at most 64 KB in size. There can be at most 100 secret values across all of a build's secrets.
+     */
+    secretEnv?: {[key: string]: string} | null;
+  }
+  /**
+   * Pairs a secret environment variable with a SecretVersion in Secret Manager.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1SecretManagerSecret {
+    /**
+     * Environment variable name to associate with the secret. Secret environment variables must be unique across all of a build's secrets, and must be used by at least one build step.
+     */
+    env?: string | null;
+    /**
+     * Resource name of the SecretVersion. In format: projects/x/secrets/x/versions/x
+     */
+    versionName?: string | null;
+  }
+  /**
+   * Secrets and secret environment variables.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Secrets {
+    /**
+     * Secrets encrypted with KMS key and the associated secret environment variable.
+     */
+    inline?: Schema$GoogleDevtoolsCloudbuildV1InlineSecret[];
+    /**
+     * Secrets in Secret Manager and associated secret environment variable.
+     */
+    secretManager?: Schema$GoogleDevtoolsCloudbuildV1SecretManagerSecret[];
+  }
+  /**
+   * Location of the source in a supported storage service.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Source {
+    /**
+     * Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource.
+     */
+    connectedRepository?: Schema$GoogleDevtoolsCloudbuildV1ConnectedRepository;
+    /**
+     * If provided, get the source from this Git repository.
+     */
+    gitSource?: Schema$GoogleDevtoolsCloudbuildV1GitSource;
+    /**
+     * If provided, get the source from this location in a Cloud Source Repository.
+     */
+    repoSource?: Schema$GoogleDevtoolsCloudbuildV1RepoSource;
+    /**
+     * If provided, get the source from this location in Cloud Storage.
+     */
+    storageSource?: Schema$GoogleDevtoolsCloudbuildV1StorageSource;
+    /**
+     * If provided, get the source from this manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+     */
+    storageSourceManifest?: Schema$GoogleDevtoolsCloudbuildV1StorageSourceManifest;
+  }
+  /**
+   * Provenance of the source. Ways to find the original source, or verify that some source was used for this build.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1SourceProvenance {
+    /**
+     * Output only. Hash(es) of the build source, which can be used to verify that the original source integrity was maintained in the build. Note that `FileHashes` will only be populated if `BuildOptions` has requested a `SourceProvenanceHash`. The keys to this map are file paths used as build source and the values contain the hash values for those files. If the build source came in a single package such as a gzipped tarfile (`.tar.gz`), the `FileHash` will be for the single path to that file.
+     */
+    fileHashes?: {
+      [key: string]: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
+    } | null;
+    /**
+     * Output only. A copy of the build's `source.connected_repository`, if exists, with any revisions resolved.
+     */
+    resolvedConnectedRepository?: Schema$GoogleDevtoolsCloudbuildV1ConnectedRepository;
+    /**
+     * Output only. A copy of the build's `source.git_source`, if exists, with any revisions resolved.
+     */
+    resolvedGitSource?: Schema$GoogleDevtoolsCloudbuildV1GitSource;
+    /**
+     * A copy of the build's `source.repo_source`, if exists, with any revisions resolved.
+     */
+    resolvedRepoSource?: Schema$GoogleDevtoolsCloudbuildV1RepoSource;
+    /**
+     * A copy of the build's `source.storage_source`, if exists, with any generations resolved.
+     */
+    resolvedStorageSource?: Schema$GoogleDevtoolsCloudbuildV1StorageSource;
+    /**
+     * A copy of the build's `source.storage_source_manifest`, if exists, with any revisions resolved. This feature is in Preview.
+     */
+    resolvedStorageSourceManifest?: Schema$GoogleDevtoolsCloudbuildV1StorageSourceManifest;
+  }
+  /**
+   * Location of the source in an archive file in Cloud Storage.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1StorageSource {
+    /**
+     * Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     */
+    bucket?: string | null;
+    /**
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     */
+    generation?: string | null;
+    /**
+     * Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
+     */
+    object?: string | null;
+    /**
+     * Optional. Option to specify the tool to fetch the source file for the build.
+     */
+    sourceFetcher?: string | null;
+  }
+  /**
+   * Location of the source manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1StorageSourceManifest {
+    /**
+     * Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     */
+    bucket?: string | null;
+    /**
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     */
+    generation?: string | null;
+    /**
+     * Cloud Storage object containing the source manifest. This object must be a JSON file.
+     */
+    object?: string | null;
+  }
+  /**
+   * Start and end times for a build execution phase.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1TimeSpan {
+    /**
+     * End of time span.
+     */
+    endTime?: string | null;
+    /**
+     * Start of time span.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * A Maven artifact uploaded using the MavenArtifact directive.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1UploadedMavenArtifact {
+    /**
+     * Hash types and values of the Maven Artifact.
+     */
+    fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
+  }
+  /**
+   * An npm package uploaded to Artifact Registry using the NpmPackage directive.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1UploadedNpmPackage {
+    /**
+     * Hash types and values of the npm package.
+     */
+    fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded npm package.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Artifact uploaded using the PythonPackage directive.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1UploadedPythonPackage {
+    /**
+     * Hash types and values of the Python Artifact.
+     */
+    fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Volume {
+    /**
+     * Name of the volume to mount. Volume names must be unique per build step and must be valid names for Docker volumes. Each named volume must be used by at least two build steps.
+     */
+    name?: string | null;
+    /**
+     * Path at which to mount the volume. Paths must be absolute and cannot conflict with other volume paths on the same build step or with certain reserved volume paths.
+     */
+    path?: string | null;
+  }
+  /**
+   * A non-fatal problem encountered during the execution of the build.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Warning {
+    /**
+     * The priority for this warning.
+     */
+    priority?: string | null;
+    /**
+     * Explanation of the warning generated.
+     */
+    text?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$GoogleLongrunningListOperationsResponse {
