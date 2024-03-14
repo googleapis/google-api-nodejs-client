@@ -1113,6 +1113,38 @@
                 }
               }
             },
+            "customConnectors": {
+              "methods": {
+                "validateCustomConnectorSpec": {
+                  "description": "Validates a Custom Connector Spec.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customConnectors:validateCustomConnectorSpec",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.customConnectors.validateCustomConnectorSpec",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Location at which the custom connector is being created.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customConnectors:validateCustomConnectorSpec",
+                  "request": {
+                    "$ref": "ValidateCustomConnectorSpecRequest"
+                  },
+                  "response": {
+                    "$ref": "ValidateCustomConnectorSpecResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "endpointAttachments": {
               "methods": {
                 "create": {
@@ -1545,31 +1577,6 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
-                        "delete": {
-                          "description": "Deletes a single CustomConnectorVersion.",
-                          "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}/customConnectorVersions/{customConnectorVersionsId}",
-                          "httpMethod": "DELETE",
-                          "id": "connectors.projects.locations.global.customConnectors.customConnectorVersions.delete",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Required. Resource name of the form: `projects/{project}/locations/{location}/customConnectors/{custom_connector}/customConnectorVersions/{custom_connector_version}`",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+/customConnectorVersions/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+name}",
-                          "response": {
-                            "$ref": "Operation"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
                         "get": {
                           "description": "Gets details of a single CustomConnectorVersion.",
                           "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}/customConnectorVersions/{customConnectorVersionsId}",
@@ -1626,40 +1633,6 @@
                           "path": "v1/{+parent}/customConnectorVersions",
                           "response": {
                             "$ref": "ListCustomConnectorVersionsResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "patch": {
-                          "description": "Updates the parameters of a CustomConnectorVersion.",
-                          "flatPath": "v1/projects/{projectsId}/locations/global/customConnectors/{customConnectorsId}/customConnectorVersions/{customConnectorVersionsId}",
-                          "httpMethod": "PATCH",
-                          "id": "connectors.projects.locations.global.customConnectors.customConnectorVersions.patch",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Output only. Identifier. Resource name of the Version. Format: projects/{project}/locations/{location}/customConnectors/{custom_connector}/customConnectorVersions/{custom_connector_version}",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/global/customConnectors/[^/]+/customConnectorVersions/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "updateMask": {
-                              "description": "Required. Field mask is used to specify the fields to be overwritten in the Connector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. Set the mask as \"*\" for full replacement, which means all fields will be overwritten.",
-                              "format": "google-fieldmask",
-                              "location": "query",
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+name}",
-                          "request": {
-                            "$ref": "CustomConnectorVersion"
-                          },
-                          "response": {
-                            "$ref": "Operation"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -2354,7 +2327,7 @@
       }
     }
   },
-  "revision": "20240221",
+  "revision": "20240305",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2621,6 +2594,18 @@
             "$ref": "EnumOption"
           },
           "type": "array"
+        },
+        "enumSource": {
+          "description": "Optional. enum source denotes the source of api to fill the enum options",
+          "enum": [
+            "ENUM_SOURCE_UNSPECIFIED",
+            "EVENT_TYPES_API"
+          ],
+          "enumDescriptions": [
+            "Api type unspecified.",
+            "list event types."
+          ],
+          "type": "string"
         },
         "isAdvanced": {
           "description": "Indicates if current template is part of advanced settings",
@@ -3448,6 +3433,14 @@
           "description": "Optional. Location of the custom connector spec. The location can be either a public url like `https://public-url.com/spec` Or a Google Cloud Storage location like `gs:///`",
           "type": "string"
         },
+        "specServerUrls": {
+          "description": "Output only. Server URLs parsed from the spec.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "state": {
           "description": "Output only. State of the custom connector version.",
           "enum": [
@@ -3586,6 +3579,13 @@
       "description": "DestinationConfigTemplate defines required destinations supported by the Connector.",
       "id": "DestinationConfigTemplate",
       "properties": {
+        "autocompleteSuggestions": {
+          "description": "Autocomplete suggestions for destination URL field.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "defaultPort": {
           "description": "The default port.",
           "format": "int32",
@@ -3826,6 +3826,13 @@
           "description": "Optional. Link for Subscriber of the current EventSubscription.",
           "type": "string"
         },
+        "triggerConfigVariables": {
+          "description": "Optional. Configuration for configuring the trigger",
+          "items": {
+            "$ref": "ConfigVariable"
+          },
+          "type": "array"
+        },
         "updateTime": {
           "description": "Output only. Updated time.",
           "format": "google-datetime",
@@ -3986,13 +3993,6 @@
         "registrationDestinationConfig": {
           "$ref": "DestinationConfig",
           "description": "Registration endpoint for auto registration."
-        },
-        "triggerConfigVariables": {
-          "description": "Optional. Additional eventing related field values",
-          "items": {
-            "$ref": "ConfigVariable"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -4165,6 +4165,11 @@
         "status": {
           "$ref": "EventingStatus",
           "description": "Output only. Current status of eventing.",
+          "readOnly": true
+        },
+        "webhookData": {
+          "$ref": "WebhookData",
+          "description": "Output only. Webhook data.",
           "readOnly": true
         }
       },
@@ -6960,6 +6965,89 @@
         },
         "username": {
           "description": "Username.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ValidateCustomConnectorSpecRequest": {
+      "description": "Request message for ConnectorsService.ValidateCustomConnectorSpec",
+      "id": "ValidateCustomConnectorSpecRequest",
+      "properties": {
+        "serviceAccount": {
+          "description": "Required. Service account to access the spec from Google Cloud Storage.",
+          "type": "string"
+        },
+        "specLocation": {
+          "description": "Required. Location of the custom connector spec. The location can be either a public url like `https://public-url.com/spec` Or a Google Cloud Storage location like `gs:///`",
+          "type": "string"
+        },
+        "specType": {
+          "description": "Required. Spec type of the custom connector spec.",
+          "enum": [
+            "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED",
+            "OPEN_API",
+            "PROTO"
+          ],
+          "enumDescriptions": [
+            "Connector type is not specified.",
+            "OpenAPI connector.",
+            "Proto connector."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ValidateCustomConnectorSpecResponse": {
+      "description": "Response message for ConnectorsService.ValidateCustomConnectorSpec",
+      "id": "ValidateCustomConnectorSpecResponse",
+      "properties": {
+        "errorMessage": {
+          "description": "Error message. The spec is valid if the error message is empty.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WebhookData": {
+      "description": "WebhookData has details of webhook configuration.",
+      "id": "WebhookData",
+      "properties": {
+        "additionalVariables": {
+          "description": "Output only. Additional webhook related field values.",
+          "items": {
+            "$ref": "ConfigVariable"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when the webhook was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. ID to uniquely identify webhook.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the Webhook",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextRefreshTime": {
+          "description": "Output only. Next webhook refresh time. Will be null if refresh is not supported.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the webhook was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

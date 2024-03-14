@@ -304,6 +304,10 @@ export namespace connectors_v1 {
      */
     enumOptions?: Schema$EnumOption[];
     /**
+     * Optional. enum source denotes the source of api to fill the enum options
+     */
+    enumSource?: string | null;
+    /**
      * Indicates if current template is part of advanced settings
      */
     isAdvanced?: boolean | null;
@@ -794,6 +798,10 @@ export namespace connectors_v1 {
      */
     specLocation?: string | null;
     /**
+     * Output only. Server URLs parsed from the spec.
+     */
+    specServerUrls?: string[] | null;
+    /**
      * Output only. State of the custom connector version.
      */
     state?: string | null;
@@ -893,6 +901,10 @@ export namespace connectors_v1 {
    * DestinationConfigTemplate defines required destinations supported by the Connector.
    */
   export interface Schema$DestinationConfigTemplate {
+    /**
+     * Autocomplete suggestions for destination URL field.
+     */
+    autocompleteSuggestions?: string[] | null;
     /**
      * The default port.
      */
@@ -1072,10 +1084,6 @@ export namespace connectors_v1 {
      * Registration endpoint for auto registration.
      */
     registrationDestinationConfig?: Schema$DestinationConfig;
-    /**
-     * Optional. Additional eventing related field values
-     */
-    triggerConfigVariables?: Schema$ConfigVariable[];
   }
   /**
    * Eventing Config details of a connector version.
@@ -1183,6 +1191,10 @@ export namespace connectors_v1 {
      * Output only. Current status of eventing.
      */
     status?: Schema$EventingStatus;
+    /**
+     * Output only. Webhook data.
+     */
+    webhookData?: Schema$WebhookData;
   }
   /**
    * EventingStatus indicates the state of eventing.
@@ -1233,6 +1245,10 @@ export namespace connectors_v1 {
      * Optional. Link for Subscriber of the current EventSubscription.
      */
     subscriberLink?: string | null;
+    /**
+     * Optional. Configuration for configuring the trigger
+     */
+    triggerConfigVariables?: Schema$ConfigVariable[];
     /**
      * Output only. Updated time.
      */
@@ -2816,6 +2832,61 @@ export namespace connectors_v1 {
     username?: string | null;
   }
   /**
+   * Request message for ConnectorsService.ValidateCustomConnectorSpec
+   */
+  export interface Schema$ValidateCustomConnectorSpecRequest {
+    /**
+     * Required. Service account to access the spec from Google Cloud Storage.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Required. Location of the custom connector spec. The location can be either a public url like `https://public-url.com/spec` Or a Google Cloud Storage location like `gs:///`
+     */
+    specLocation?: string | null;
+    /**
+     * Required. Spec type of the custom connector spec.
+     */
+    specType?: string | null;
+  }
+  /**
+   * Response message for ConnectorsService.ValidateCustomConnectorSpec
+   */
+  export interface Schema$ValidateCustomConnectorSpecResponse {
+    /**
+     * Error message. The spec is valid if the error message is empty.
+     */
+    errorMessage?: string | null;
+  }
+  /**
+   * WebhookData has details of webhook configuration.
+   */
+  export interface Schema$WebhookData {
+    /**
+     * Output only. Additional webhook related field values.
+     */
+    additionalVariables?: Schema$ConfigVariable[];
+    /**
+     * Output only. Timestamp when the webhook was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. ID to uniquely identify webhook.
+     */
+    id?: string | null;
+    /**
+     * Output only. Name of the Webhook
+     */
+    name?: string | null;
+    /**
+     * Output only. Next webhook refresh time. Will be null if refresh is not supported.
+     */
+    nextRefreshTime?: string | null;
+    /**
+     * Output only. Timestamp when the webhook was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Time window specified for weekly operations.
    */
   export interface Schema$WeeklyCycle {
@@ -2837,6 +2908,7 @@ export namespace connectors_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     connections: Resource$Projects$Locations$Connections;
+    customConnectors: Resource$Projects$Locations$Customconnectors;
     endpointAttachments: Resource$Projects$Locations$Endpointattachments;
     global: Resource$Projects$Locations$Global;
     operations: Resource$Projects$Locations$Operations;
@@ -2844,6 +2916,9 @@ export namespace connectors_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.connections = new Resource$Projects$Locations$Connections(
+        this.context
+      );
+      this.customConnectors = new Resource$Projects$Locations$Customconnectors(
         this.context
       );
       this.endpointAttachments =
@@ -5899,6 +5974,123 @@ export namespace connectors_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Customconnectors {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Validates a Custom Connector Spec.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validateCustomConnectorSpec(
+      params: Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validateCustomConnectorSpec(
+      params?: Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateCustomConnectorSpecResponse>;
+    validateCustomConnectorSpec(
+      params: Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validateCustomConnectorSpec(
+      params: Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateCustomConnectorSpecResponse>,
+      callback: BodyResponseCallback<Schema$ValidateCustomConnectorSpecResponse>
+    ): void;
+    validateCustomConnectorSpec(
+      params: Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec,
+      callback: BodyResponseCallback<Schema$ValidateCustomConnectorSpecResponse>
+    ): void;
+    validateCustomConnectorSpec(
+      callback: BodyResponseCallback<Schema$ValidateCustomConnectorSpecResponse>
+    ): void;
+    validateCustomConnectorSpec(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec
+        | BodyResponseCallback<Schema$ValidateCustomConnectorSpecResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateCustomConnectorSpecResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateCustomConnectorSpecResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateCustomConnectorSpecResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+parent}/customConnectors:validateCustomConnectorSpec'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateCustomConnectorSpecResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateCustomConnectorSpecResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Customconnectors$Validatecustomconnectorspec
+    extends StandardParameters {
+    /**
+     * Required. Location at which the custom connector is being created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ValidateCustomConnectorSpecRequest;
+  }
+
   export class Resource$Projects$Locations$Endpointattachments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7242,91 +7434,6 @@ export namespace connectors_v1 {
     }
 
     /**
-     * Deletes a single CustomConnectorVersion.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    delete(
-      params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Delete,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Delete
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * Gets details of a single CustomConnectorVersion.
      *
      * @param params - Parameters for request
@@ -7512,91 +7619,6 @@ export namespace connectors_v1 {
         );
       }
     }
-
-    /**
-     * Updates the parameters of a CustomConnectorVersion.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    patch(
-      params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Patch,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Operation>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Patch
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Create
@@ -7614,13 +7636,6 @@ export namespace connectors_v1 {
      * Request body metadata
      */
     requestBody?: Schema$CustomConnectorVersion;
-  }
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Delete
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
-     */
-    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Get
     extends StandardParameters {
@@ -7643,22 +7658,6 @@ export namespace connectors_v1 {
      * Required. Parent resource of the connectors, of the form: `projects/x/locations/{location\}/customConnectors/x/customConnectorVersions/x`
      */
     parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Patch
-    extends StandardParameters {
-    /**
-     * Output only. Identifier. Resource name of the Version. Format: projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}
-     */
-    name?: string;
-    /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Connector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. Set the mask as "*" for full replacement, which means all fields will be overwritten.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CustomConnectorVersion;
   }
 
   export class Resource$Projects$Locations$Global$Managedzones {
