@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace secretmanager_v1 {
+export namespace secretmanager_v1beta2 {
   export interface Options extends GlobalOptions {
-    version: 'v1';
+    version: 'v1beta2';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace secretmanager_v1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const secretmanager = google.secretmanager('v1');
+   * const secretmanager = google.secretmanager('v1beta2');
    * ```
    */
   export class Secretmanager {
@@ -484,7 +484,7 @@ export namespace secretmanager_v1 {
      */
     ttl?: string | null;
     /**
-     * Optional. Mapping from version alias to version name. A version alias is a string with a maximum length of 63 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore ('_') characters. An alias string must start with a letter and cannot be the string 'latest' or 'NEW'. No more than 50 aliases can be assigned to a given secret. Version-Alias pairs will be viewable via GetSecret and modifiable via UpdateSecret. Access by alias is only be supported on GetSecretVersion and AccessSecretVersion.
+     * Optional. Mapping from version alias to version name. A version alias is a string with a maximum length of 63 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore ('_') characters. An alias string must start with a letter and cannot be the string 'latest' or 'NEW'. No more than 50 aliases can be assigned to a given secret. Version-Alias pairs will be viewable via GetSecret and modifiable via UpdateSecret. Access by alias is only supported for GetSecretVersion and AccessSecretVersion.
      */
     versionAliases?: {[key: string]: string} | null;
     /**
@@ -689,7 +689,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -779,7 +779,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}/locations').replace(
+            url: (rootUrl + '/v1beta2/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -905,7 +905,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}:addVersion').replace(
+            url: (rootUrl + '/v1beta2/{+parent}:addVersion').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -993,7 +993,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/secrets').replace(
+            url: (rootUrl + '/v1beta2/{+parent}/secrets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1081,7 +1081,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1166,7 +1166,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1251,7 +1251,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1342,7 +1342,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/secrets').replace(
+            url: (rootUrl + '/v1beta2/{+parent}/secrets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1430,7 +1430,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -1515,7 +1515,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1611,7 +1611,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1831,7 +1831,10 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:access').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}:access').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
@@ -1917,7 +1920,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:destroy').replace(
+            url: (rootUrl + '/v1beta2/{+name}:destroy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2006,7 +2009,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:disable').replace(
+            url: (rootUrl + '/v1beta2/{+name}:disable').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2095,7 +2098,10 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:enable').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}:enable').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -2180,7 +2186,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2272,7 +2278,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/versions').replace(
+            url: (rootUrl + '/v1beta2/{+parent}/versions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2439,7 +2445,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}:addVersion').replace(
+            url: (rootUrl + '/v1beta2/{+parent}:addVersion').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2527,7 +2533,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/secrets').replace(
+            url: (rootUrl + '/v1beta2/{+parent}/secrets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2615,7 +2621,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2700,7 +2706,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2785,7 +2791,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2876,7 +2882,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/secrets').replace(
+            url: (rootUrl + '/v1beta2/{+parent}/secrets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2964,7 +2970,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -3049,7 +3055,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3144,7 +3150,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3363,7 +3369,10 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:access').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}:access').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
@@ -3448,7 +3457,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:destroy').replace(
+            url: (rootUrl + '/v1beta2/{+name}:destroy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3536,7 +3545,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:disable').replace(
+            url: (rootUrl + '/v1beta2/{+name}:disable').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3624,7 +3633,10 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}:enable').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}:enable').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -3709,7 +3721,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3801,7 +3813,7 @@ export namespace secretmanager_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/versions').replace(
+            url: (rootUrl + '/v1beta2/{+parent}/versions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
