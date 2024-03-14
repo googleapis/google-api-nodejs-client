@@ -375,7 +375,7 @@ export namespace alloydb_v1beta {
      */
     name?: string | null;
     /**
-     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project\}/global/networks/{network_id\}". This is required to create a cluster. Deprecated, use network_config.network instead.
+     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: `projects/{project\}/global/networks/{network_id\}`. This is required to create a cluster. Deprecated, use network_config.network instead.
      */
     network?: string | null;
     networkConfig?: Schema$NetworkConfig;
@@ -383,6 +383,10 @@ export namespace alloydb_v1beta {
      * Output only. Cross Region replication config specific to PRIMARY cluster.
      */
     primaryConfig?: Schema$PrimaryConfig;
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the cluster.
+     */
+    pscConfig?: Schema$PscConfig;
     /**
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Cluster does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
@@ -917,7 +921,7 @@ export namespace alloydb_v1beta {
      */
     allocatedIpRange?: string | null;
     /**
-     * Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
+     * Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: `projects/{project_number\}/global/networks/{network_id\}`. This is required to create a cluster.
      */
     network?: string | null;
   }
@@ -1027,6 +1031,15 @@ export namespace alloydb_v1beta {
     validateOnly?: boolean | null;
   }
   /**
+   * PscConfig contains PSC related configuration at a cluster level.
+   */
+  export interface Schema$PscConfig {
+    /**
+     * Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.
+     */
+    pscEnabled?: boolean | null;
+  }
+  /**
    * PscInstanceConfig contains PSC related configuration at an instance level.
    */
   export interface Schema$PscInstanceConfig {
@@ -1043,6 +1056,10 @@ export namespace alloydb_v1beta {
      */
     outgoingServiceAttachmentLinks?: string[] | null;
     /**
+     * Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog
+     */
+    pscDnsName?: string | null;
+    /**
      * Optional. Whether PSC connectivity is enabled for this instance. This is populated by referencing the value from the parent cluster.
      */
     pscEnabled?: boolean | null;
@@ -1051,7 +1068,7 @@ export namespace alloydb_v1beta {
      */
     pscInterfaceConfigs?: Schema$PscInterfaceConfig[];
     /**
-     * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of projects//regions//serviceAttachments/
+     * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`
      */
     serviceAttachmentLink?: string | null;
   }
@@ -1064,7 +1081,7 @@ export namespace alloydb_v1beta {
      */
     consumerEndpointIps?: string[] | null;
     /**
-     * The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: "projects/${CONSUMER_PROJECT\}/regions/${REGION\}/networkAttachments/${NETWORK_ATTACHMENT_NAME\}". NetworkAttachment has to be provided when the PSC interface is created.
+     * The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: `projects/${CONSUMER_PROJECT\}/regions/${REGION\}/networkAttachments/${NETWORK_ATTACHMENT_NAME\}`. NetworkAttachment has to be provided when the PSC interface is created.
      */
     networkAttachment?: string | null;
   }
@@ -1432,7 +1449,7 @@ export namespace alloydb_v1beta {
      */
     location?: string | null;
     /**
-     * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested
+     * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
     primaryResourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
@@ -1461,7 +1478,7 @@ export namespace alloydb_v1beta {
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData {
     /**
-     * Required. Any other additional metadata specific to recommendation
+     * Optional. Any other additional metadata specific to recommendation
      */
     additionalMetadata?: {[key: string]: any} | null;
     /**
@@ -1514,6 +1531,7 @@ export namespace alloydb_v1beta {
      * Identifies the specific error that occurred. REQUIRED
      */
     code?: string | null;
+    errorType?: string | null;
     /**
      * Additional information about the error encountered. REQUIRED
      */
