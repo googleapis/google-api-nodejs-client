@@ -964,7 +964,7 @@
       }
     }
   },
-  "revision": "20240220",
+  "revision": "20240310",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -3662,6 +3662,10 @@
         "producerQuotaPolicy": {
           "$ref": "ProducerQuotaPolicy",
           "description": "Producer policy inherited from the closet ancestor of the current consumer."
+        },
+        "rolloutInfo": {
+          "$ref": "RolloutInfo",
+          "description": "Rollout information of this quota bucket. This field is present only if the effective limit will change due to the ongoing rollout of the service config."
         }
       },
       "type": "object"
@@ -3776,6 +3780,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutInfo": {
+      "description": "[Output only] Rollout information of a quota.",
+      "id": "RolloutInfo",
+      "properties": {
+        "defaultLimitOngoingRollout": {
+          "description": "Whether there is an ongoing rollout for the default limit or not.",
+          "type": "boolean"
         }
       },
       "type": "object"

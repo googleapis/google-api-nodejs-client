@@ -1969,6 +1969,10 @@ export namespace serviceusage_v1beta1 {
      * Producer policy inherited from the closet ancestor of the current consumer.
      */
     producerQuotaPolicy?: Schema$ProducerQuotaPolicy;
+    /**
+     * Rollout information of this quota bucket. This field is present only if the effective limit will change due to the ongoing rollout of the service config.
+     */
+    rolloutInfo?: Schema$RolloutInfo;
   }
   /**
    * `QuotaLimit` defines a specific limit that applies over a specified duration for a limit type. There can be at most one limit for a duration and limit type combination defined within a `QuotaGroup`.
@@ -2060,6 +2064,15 @@ export namespace serviceusage_v1beta1 {
      * The values removed from the parent consumer policy.
      */
     removedValues?: string[] | null;
+  }
+  /**
+   * [Output only] Rollout information of a quota.
+   */
+  export interface Schema$RolloutInfo {
+    /**
+     * Whether there is an ongoing rollout for the default limit or not.
+     */
+    defaultLimitOngoingRollout?: boolean | null;
   }
   /**
    * Settings for Ruby client libraries.
