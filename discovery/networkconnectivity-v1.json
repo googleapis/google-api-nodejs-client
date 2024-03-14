@@ -2630,7 +2630,7 @@
       }
     }
   },
-  "revision": "20240221",
+  "revision": "20240228",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -4086,7 +4086,7 @@
           "type": "object"
         },
         "location": {
-          "description": "Output only. The location of the route. Uses the following form: \"projects/{project}/locations/{location}\" Example: projects/1234/locations/us-central1",
+          "description": "Output only. The origin location of the route. Uses the following form: \"projects/{project}/locations/{location}\" Example: projects/1234/locations/us-central1",
           "readOnly": true,
           "type": "string"
         },

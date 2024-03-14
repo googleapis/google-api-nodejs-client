@@ -1083,7 +1083,7 @@ export namespace networkconnectivity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The location of the route. Uses the following form: "projects/{project\}/locations/{location\}" Example: projects/1234/locations/us-central1
+     * Output only. The origin location of the route. Uses the following form: "projects/{project\}/locations/{location\}" Example: projects/1234/locations/us-central1
      */
     location?: string | null;
     /**
