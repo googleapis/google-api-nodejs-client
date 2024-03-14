@@ -8599,11 +8599,6 @@ export namespace storage_v1 {
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Rewrite extends StandardParameters {
     /**
