@@ -29,8 +29,83 @@
   "documentationLink": "https://cloud.google.com/logging/docs/",
   "endpoints": [
     {
+      "endpointUrl": "https://logging.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Regional Endpoint"
+    },
+    {
       "endpointUrl": "https://logging.me-central2.rep.googleapis.com/",
       "location": "me-central2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-central1.rep.googleapis.com/",
+      "location": "us-central1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-central2.rep.googleapis.com/",
+      "location": "us-central2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-east1.rep.googleapis.com/",
+      "location": "us-east1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-east4.rep.googleapis.com/",
+      "location": "us-east4",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-east5.rep.googleapis.com/",
+      "location": "us-east5",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-east7.rep.googleapis.com/",
+      "location": "us-east7",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-south1.rep.googleapis.com/",
+      "location": "us-south1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-west1.rep.googleapis.com/",
+      "location": "us-west1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-west2.rep.googleapis.com/",
+      "location": "us-west2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-west3.rep.googleapis.com/",
+      "location": "us-west3",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-west4.rep.googleapis.com/",
+      "location": "us-west4",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.us-west8.rep.googleapis.com/",
+      "location": "us-west8",
       "description": "Regional Endpoint"
     }
   ],
@@ -433,7 +508,7 @@
                   ],
                   "parameters": {
                     "bucketId": {
-                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                       "location": "query",
                       "type": "string"
                     },
@@ -467,7 +542,7 @@
                   ],
                   "parameters": {
                     "bucketId": {
-                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2181,7 +2256,7 @@
                   ],
                   "parameters": {
                     "bucketId": {
-                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2215,7 +2290,7 @@
                   ],
                   "parameters": {
                     "bucketId": {
-                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                       "location": "query",
                       "type": "string"
                     },
@@ -3427,7 +3502,7 @@
               ],
               "parameters": {
                 "bucketId": {
-                  "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                  "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3461,7 +3536,7 @@
               ],
               "parameters": {
                 "bucketId": {
-                  "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                  "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                   "location": "query",
                   "type": "string"
                 },
@@ -4573,7 +4648,7 @@
                   ],
                   "parameters": {
                     "bucketId": {
-                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                       "location": "query",
                       "type": "string"
                     },
@@ -4607,7 +4682,7 @@
                   ],
                   "parameters": {
                     "bucketId": {
-                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                       "location": "query",
                       "type": "string"
                     },
@@ -6040,7 +6115,7 @@
                   ],
                   "parameters": {
                     "bucketId": {
-                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                       "location": "query",
                       "type": "string"
                     },
@@ -6074,7 +6149,7 @@
                   ],
                   "parameters": {
                     "bucketId": {
-                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
                       "location": "query",
                       "type": "string"
                     },
@@ -7668,7 +7743,7 @@
       }
     }
   },
-  "revision": "20240207",
+  "revision": "20240301",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryDataset": {
@@ -7824,7 +7899,8 @@
         },
         "request": {
           "$ref": "CopyLogEntriesRequest",
-          "description": "CopyLogEntries RPC request."
+          "deprecated": true,
+          "description": "CopyLogEntries RPC request. This field is deprecated and not used."
         },
         "source": {
           "description": "Source from which to copy log entries.For example, a log bucket:\"projects/my-project/locations/global/buckets/my-source-bucket\"",
@@ -7911,7 +7987,7 @@
           "description": "Required. The new bucket. The region specified in the new bucket must be compliant with any Location Restriction Org Policy. The name field in the bucket is ignored."
         },
         "bucketId": {
-          "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+          "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.",
           "type": "string"
         },
         "parent": {
@@ -8614,7 +8690,7 @@
       "id": "LogBucket",
       "properties": {
         "analyticsEnabled": {
-          "description": "Optional. Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.",
+          "description": "Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.",
           "type": "boolean"
         },
         "cmekSettings": {
@@ -9665,7 +9741,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. The user specified title for the SavedQuery.",
+          "description": "Required. The user specified title for the SavedQuery.",
           "type": "string"
         },
         "loggingQuery": {
@@ -9686,6 +9762,20 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "visibility": {
+          "description": "Required. The visibility status of this query, which determines its ownership.",
+          "enum": [
+            "VISIBILITY_UNSPECIFIED",
+            "PRIVATE",
+            "SHARED"
+          ],
+          "enumDescriptions": [
+            "The saved query visibility is unspecified. A CreateSavedQuery request with an unspecified visibility will be rejected.",
+            "The saved query is only visible to the user that created it.",
+            "The saved query is visible to anyone in the project."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -9694,20 +9784,6 @@
       "description": "Describes the settings associated with a project, folder, organization, or billing account.",
       "id": "Settings",
       "properties": {
-        "analyticsMode": {
-          "description": "Optional. The default analytics mode of an org or folder which is inherited by all newly created child project buckets.",
-          "enum": [
-            "ANALYTICS_MODE_UNSPECIFIED",
-            "ANALYTICS_ENABLED",
-            "ANALYTICS_DISABLED"
-          ],
-          "enumDescriptions": [
-            "No default analytics mode defined at this resource level, it will inherit from the closest ancester which has a defined analytics mode. If there is no specified analytics mode across the resource hierarchy, analytics will be disabled by default.",
-            "By default, analytics will be enabled for all new project-level buckets unless explicitly specified otherwise at bucket creation time.",
-            "By default, analytics will be disabled for new project-level buckets unless explicitly specified otherwise at bucket creation time."
-          ],
-          "type": "string"
-        },
         "defaultSinkConfig": {
           "$ref": "DefaultSinkConfig",
           "description": "Optional. Overrides the built-in configuration for _Default sink."
