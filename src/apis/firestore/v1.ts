@@ -1033,7 +1033,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1ListBackupsResponse {
     /**
-     * List of all backups for the project. Ordered by `location ASC, create_time DESC, name ASC`.
+     * List of all backups for the project.
      */
     backups?: Schema$GoogleFirestoreAdminV1Backup[];
     /**
