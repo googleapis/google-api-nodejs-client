@@ -2452,7 +2452,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] ",
+              "description": "Identifier. Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] ",
               "location": "path",
               "pattern": "^[^/]+/[^/]+/services/[^/]+$",
               "required": true,
@@ -2651,7 +2651,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME] ",
+                  "description": "Identifier. Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME] ",
                   "location": "path",
                   "pattern": "^[^/]+/[^/]+/services/[^/]+/serviceLevelObjectives/[^/]+$",
                   "required": true,
@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20240128",
+  "revision": "20240303",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -5367,7 +5367,7 @@
           "description": "Type used for Istio services scoped to an Istio mesh."
         },
         "name": {
-          "description": "Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] ",
+          "description": "Identifier. Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] ",
           "type": "string"
         },
         "telemetry": {
@@ -5441,7 +5441,7 @@
           "type": "number"
         },
         "name": {
-          "description": "Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME] ",
+          "description": "Identifier. Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME] ",
           "type": "string"
         },
         "rollingPeriod": {
