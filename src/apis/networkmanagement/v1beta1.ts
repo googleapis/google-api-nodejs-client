@@ -133,7 +133,11 @@ export namespace networkmanagement_v1beta1 {
      */
     cause?: string | null;
     /**
-     * List of project IDs that the user has specified in the request but does not have permission to access network configs. Analysis is aborted in this case with the PERMISSION_DENIED cause.
+     * IP address that caused the abort.
+     */
+    ipAddress?: string | null;
+    /**
+     * List of project IDs the user specified in the request but lacks access to. In this case, analysis is aborted with the PERMISSION_DENIED cause.
      */
     projectsMissingPermission?: string[] | null;
     /**
@@ -369,6 +373,10 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$DeliverInfo {
     /**
+     * IP address of the target (if applicable).
+     */
+    ipAddress?: string | null;
+    /**
      * URI of the resource that the packet is delivered to.
      */
     resourceUri?: string | null;
@@ -587,6 +595,10 @@ export namespace networkmanagement_v1beta1 {
    * Details of the final state "forward" and associated resource.
    */
   export interface Schema$ForwardInfo {
+    /**
+     * IP address of the target (if applicable).
+     */
+    ipAddress?: string | null;
     /**
      * URI of the resource that the packet is forwarded to.
      */
