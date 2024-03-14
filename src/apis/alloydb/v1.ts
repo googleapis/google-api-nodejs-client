@@ -370,7 +370,7 @@ export namespace alloydb_v1 {
      */
     name?: string | null;
     /**
-     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project\}/global/networks/{network_id\}". This is required to create a cluster. Deprecated, use network_config.network instead.
+     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: `projects/{project\}/global/networks/{network_id\}`. This is required to create a cluster. Deprecated, use network_config.network instead.
      */
     network?: string | null;
     networkConfig?: Schema$NetworkConfig;
@@ -863,7 +863,7 @@ export namespace alloydb_v1 {
      */
     allocatedIpRange?: string | null;
     /**
-     * Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
+     * Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: `projects/{project_number\}/global/networks/{network_id\}`. This is required to create a cluster.
      */
     network?: string | null;
   }
@@ -1336,7 +1336,7 @@ export namespace alloydb_v1 {
      */
     location?: string | null;
     /**
-     * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested
+     * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
     primaryResourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
@@ -1365,7 +1365,7 @@ export namespace alloydb_v1 {
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData {
     /**
-     * Required. Any other additional metadata specific to recommendation
+     * Optional. Any other additional metadata specific to recommendation
      */
     additionalMetadata?: {[key: string]: any} | null;
     /**
@@ -1418,6 +1418,7 @@ export namespace alloydb_v1 {
      * Identifies the specific error that occurred. REQUIRED
      */
     code?: string | null;
+    errorType?: string | null;
     /**
      * Additional information about the error encountered. REQUIRED
      */
