@@ -4360,7 +4360,7 @@
       }
     }
   },
-  "revision": "20240124",
+  "revision": "20240304",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -6027,6 +6027,10 @@
         "bigqueryExport": {
           "$ref": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport",
           "description": "Optional. If set, results will be exported to the provided BigQuery table."
+        },
+        "notificationReport": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport",
+          "description": "Optional. If set, results will be sent to the provided notification receipts upon triggers."
         }
       },
       "type": "object"
@@ -6038,6 +6042,67 @@
         "resultsTable": {
           "description": "Optional. The BigQuery table to export DataQualityScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobEndTrigger": {
+      "description": "This trigger is triggered whenever a scan job run ends, regardless of the result.",
+      "id": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobEndTrigger",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobFailureTrigger": {
+      "description": "This trigger is triggered when the scan job itself fails, regardless of the result.",
+      "id": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobFailureTrigger",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport": {
+      "description": "The configuration of notification report post scan action.",
+      "id": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport",
+      "properties": {
+        "jobEndTrigger": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobEndTrigger",
+          "description": "Optional. If set, report will be sent when a scan job ends."
+        },
+        "jobFailureTrigger": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobFailureTrigger",
+          "description": "Optional. If set, report will be sent when a scan job fails."
+        },
+        "recipients": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsRecipients",
+          "description": "Required. The recipients who will receive the notification report."
+        },
+        "scoreThresholdTrigger": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger",
+          "description": "Optional. If set, report will be sent when score threshold is met."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualitySpecPostScanActionsRecipients": {
+      "description": "The individuals or groups who are designated to receive notifications upon triggers.",
+      "id": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsRecipients",
+      "properties": {
+        "emails": {
+          "description": "Optional. The email recipients who will receive the DataQualityScan results report.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger": {
+      "description": "This trigger is triggered when the DQ score in the job result is less than a specified input score.",
+      "id": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger",
+      "properties": {
+        "scoreThreshold": {
+          "description": "Optional. The score range is in 0,100.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
