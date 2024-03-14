@@ -365,7 +365,7 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$FindUnregisteredServicesResponse {
     /**
-     * List of discovered services.
+     * List of Discovered Services.
      */
     discoveredServices?: Schema$DiscoveredService[];
     /**
@@ -382,7 +382,7 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$FindUnregisteredWorkloadsResponse {
     /**
-     * List of discovered workloads.
+     * List of Discovered Workloads.
      */
     discoveredWorkloads?: Schema$DiscoveredWorkload[];
     /**
@@ -416,7 +416,7 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$ListDiscoveredServicesResponse {
     /**
-     * List of discovered services.
+     * List of Discovered Services.
      */
     discoveredServices?: Schema$DiscoveredService[];
     /**
@@ -433,7 +433,7 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$ListDiscoveredWorkloadsResponse {
     /**
-     * List of discovered workloads.
+     * List of Discovered Workloads.
      */
     discoveredWorkloads?: Schema$DiscoveredWorkload[];
     /**
@@ -546,6 +546,24 @@ export namespace apphub_v1alpha {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Response for LookupDiscoveredService.
+   */
+  export interface Schema$LookupDiscoveredServiceResponse {
+    /**
+     * Discovered Service if exists, empty otherwise.
+     */
+    discoveredService?: Schema$DiscoveredService;
+  }
+  /**
+   * Response for LookupDiscoveredWorkload.
+   */
+  export interface Schema$LookupDiscoveredWorkloadResponse {
+    /**
+     * Discovered Workload if exists, empty otherwise.
+     */
+    discoveredWorkload?: Schema$DiscoveredWorkload;
   }
   /**
    * Response for LookupServiceProjectAttachment.
@@ -905,7 +923,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Detaches a service project from a host project. You can call this API from either a host or service project.
+     * Detaches a service project from a host project. You can call this API from any service project without needing access to the host project that it is attached to.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1177,7 +1195,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Looks up a service project attachment. You can call this API from either a host or service project.
+     * Lists a service project attachment for a given service project. You can call this API from any project to find if it is attached to a host project.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1276,7 +1294,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Detachserviceprojectattachment
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Service project id and location to detach from a host project. Only global location is supported. Expected format: `projects/{project\}/locations/{location\}`.
      */
     name?: string;
 
@@ -1314,7 +1332,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Lookupserviceprojectattachment
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Service project ID and location to lookup service project attachment for. Only global location is supported. Expected format: `projects/{project\}/locations/{location\}`.
      */
     name?: string;
   }
@@ -2043,7 +2061,7 @@ export namespace apphub_v1alpha {
      */
     applicationId?: string;
     /**
-     * Required. Value for parent.
+     * Required. Project and location to create Application in. Expected format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
@@ -2059,7 +2077,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$Delete
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the Application to delete. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
     name?: string;
     /**
@@ -2070,7 +2088,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$Get
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the Application to fetch. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
     name?: string;
   }
@@ -2088,11 +2106,11 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$List
     extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -2104,7 +2122,7 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Value for parent.
+     * Required. Project and location to list Applications on. Expected format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
@@ -2248,7 +2266,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Deletes a Service in an Application.
+     * Deletes a Service from an Application.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2418,7 +2436,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * List Services in an Application.
+     * Lists Services in an Application.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2599,7 +2617,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$Services$Create
     extends StandardParameters {
     /**
-     * Required. Value for parent.
+     * Required. Fully qualified name of the parent Application to create the Service in. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
     parent?: string;
     /**
@@ -2619,7 +2637,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$Services$Delete
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the Service to delete from an Application. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}/services/{service\}`.
      */
     name?: string;
     /**
@@ -2630,7 +2648,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$Services$Get
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the Service to fetch. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}/services/{service\}`.
      */
     name?: string;
   }
@@ -2653,7 +2671,7 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Value for parent.
+     * Required. Fully qualified name of the parent Application to list Services for. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
     parent?: string;
   }
@@ -2773,7 +2791,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Deletes a Workload in an Application.
+     * Deletes a Workload from an Application.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3124,7 +3142,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$Workloads$Create
     extends StandardParameters {
     /**
-     * Required. Value for parent.
+     * Required. Fully qualified name of the Application to create Workload in. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
     parent?: string;
     /**
@@ -3144,7 +3162,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$Workloads$Delete
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the Workload to delete from an Application. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}/workloads/{workload\}`.
      */
     name?: string;
     /**
@@ -3155,18 +3173,18 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Applications$Workloads$Get
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the Workload to fetch. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}/workloads/{workload\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Applications$Workloads$List
     extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -3178,7 +3196,7 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Value for parent.
+     * Required. Fully qualified name of the parent Application to list Workloads for. Expected format: `projects/{project\}/locations/{location\}/applications/{application\}`.
      */
     parent?: string;
   }
@@ -3306,7 +3324,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Gets a discovered service in a host project and location.
+     * Gets a Discovered Service in a host project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3394,7 +3412,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Lists discovered services that can be added to an application in a host project and location.
+     * Lists Discovered Services that can be added to an Application in a host project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3489,16 +3507,112 @@ export namespace apphub_v1alpha {
         );
       }
     }
+
+    /**
+     * Lists a Discovered Service in a host project and location, with a given resource URI.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookup(
+      params: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookup(
+      params?: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LookupDiscoveredServiceResponse>;
+    lookup(
+      params: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookup(
+      params: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupDiscoveredServiceResponse>,
+      callback: BodyResponseCallback<Schema$LookupDiscoveredServiceResponse>
+    ): void;
+    lookup(
+      params: Params$Resource$Projects$Locations$Discoveredservices$Lookup,
+      callback: BodyResponseCallback<Schema$LookupDiscoveredServiceResponse>
+    ): void;
+    lookup(
+      callback: BodyResponseCallback<Schema$LookupDiscoveredServiceResponse>
+    ): void;
+    lookup(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredservices$Lookup
+        | BodyResponseCallback<Schema$LookupDiscoveredServiceResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupDiscoveredServiceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupDiscoveredServiceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LookupDiscoveredServiceResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredservices$Lookup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredservices$Lookup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/discoveredServices:lookup'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LookupDiscoveredServiceResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LookupDiscoveredServiceResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Discoveredservices$Findunregistered
     extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -3510,25 +3624,25 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Value for parent.
+     * Required. Project and location to find unregistered Discovered Services on. Expected format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Discoveredservices$Get
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the Discovered Service to fetch. Expected format: `projects/{project\}/locations/{location\}/discoveredServices/{discoveredService\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Discoveredservices$List
     extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -3540,9 +3654,20 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Value for parent.
+     * Required. Project and location to list Discovered Services on. Expected format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveredservices$Lookup
+    extends StandardParameters {
+    /**
+     * Required. Host project ID and location to lookup Discovered Service in. Expected format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Required. Resource URI to find DiscoveredService for. Accepts both project number and project ID and does translation when needed.
+     */
+    uri?: string;
   }
 
   export class Resource$Projects$Locations$Discoveredworkloads {
@@ -3649,7 +3774,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Gets a discovered workload in a host project and location.
+     * Gets a Discovered Workload in a host project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3737,7 +3862,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Lists discovered workloads that can be added to an application in a host project and location.
+     * Lists Discovered Workloads that can be added to an Application in a host project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3832,16 +3957,112 @@ export namespace apphub_v1alpha {
         );
       }
     }
+
+    /**
+     * Lists a Discovered Workload in a host project and location, with a given resource URI.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookup(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookup(
+      params?: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LookupDiscoveredWorkloadResponse>;
+    lookup(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookup(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupDiscoveredWorkloadResponse>,
+      callback: BodyResponseCallback<Schema$LookupDiscoveredWorkloadResponse>
+    ): void;
+    lookup(
+      params: Params$Resource$Projects$Locations$Discoveredworkloads$Lookup,
+      callback: BodyResponseCallback<Schema$LookupDiscoveredWorkloadResponse>
+    ): void;
+    lookup(
+      callback: BodyResponseCallback<Schema$LookupDiscoveredWorkloadResponse>
+    ): void;
+    lookup(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredworkloads$Lookup
+        | BodyResponseCallback<Schema$LookupDiscoveredWorkloadResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupDiscoveredWorkloadResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupDiscoveredWorkloadResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LookupDiscoveredWorkloadResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredworkloads$Lookup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredworkloads$Lookup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/discoveredWorkloads:lookup'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LookupDiscoveredWorkloadResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LookupDiscoveredWorkloadResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Discoveredworkloads$Findunregistered
     extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -3853,25 +4074,25 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Value for parent.
+     * Required. Project and location to find unregistered Discovered Workloads on. Expected format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Discoveredworkloads$Get
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the Discovered Workload to fetch. Expected format: `projects/{project\}/locations/{location\}/discoveredWorkloads/{discoveredWorkload\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Discoveredworkloads$List
     extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -3883,9 +4104,20 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Value for parent.
+     * Required. Project and location to list Discovered Workloads on. Expected format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveredworkloads$Lookup
+    extends StandardParameters {
+    /**
+     * Required. Host project ID and location to lookup Discovered Workload in. Expected format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Required. Resource URI to find Discovered Workload for. Accepts both project number and project ID and does translation when needed.
+     */
+    uri?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
@@ -4382,7 +4614,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Deletes a service project attached to the host project.
+     * Deletes a service project attachment.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4467,7 +4699,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Gets a service project attached to the host project.
+     * Gets a service project attachment.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4557,7 +4789,7 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * List service projects attached to the host project.
+     * Lists service projects attached to the host project.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4656,7 +4888,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Create
     extends StandardParameters {
     /**
-     * Required. Value for parent.
+     * Required. Host project ID and location to which service project is being attached. Only global location is supported. Expected format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
@@ -4664,7 +4896,7 @@ export namespace apphub_v1alpha {
      */
     requestId?: string;
     /**
-     * Required. The service project attachment identifier must contain the project_id of the service project specified in the service_project_attachment.service_project field. Hint: "projects/{project_id\}"
+     * Required. The service project attachment identifier must contain the project id of the service project specified in the service_project_attachment.service_project field.
      */
     serviceProjectAttachmentId?: string;
 
@@ -4676,7 +4908,7 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Delete
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the service project attachment to delete. Expected format: `projects/{project\}/locations/{location\}/serviceProjectAttachments/{serviceProjectAttachment\}`.
      */
     name?: string;
     /**
@@ -4687,18 +4919,18 @@ export namespace apphub_v1alpha {
   export interface Params$Resource$Projects$Locations$Serviceprojectattachments$Get
     extends StandardParameters {
     /**
-     * Required. Value for name.
+     * Required. Fully qualified name of the service project attachment to retrieve. Expected format: `projects/{project\}/locations/{location\}/serviceProjectAttachments/{serviceProjectAttachment\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Serviceprojectattachments$List
     extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -4710,7 +4942,7 @@ export namespace apphub_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Value for parent.
+     * Required. Host project ID and location to list service project attachments. Only global location is supported. Expected format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
