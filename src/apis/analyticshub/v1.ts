@@ -160,6 +160,10 @@ export namespace analyticshub_v1 {
      * Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`
      */
     dataset?: string | null;
+    /**
+     * Optional. Resources in this dataset that are selectively shared. If this field is empty, then the entire dataset (all resources) are shared. This field is only valid for data clean room exchanges.
+     */
+    selectedResources?: Schema$SelectedResource[];
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -587,6 +591,15 @@ export namespace analyticshub_v1 {
    * Message for response when you revoke a subscription.
    */
   export interface Schema$RevokeSubscriptionResponse {}
+  /**
+   * Resource in this dataset that are selectively shared.
+   */
+  export interface Schema$SelectedResource {
+    /**
+     * Optional. Format: For table: `projects/{projectId\}/datasets/{datasetId\}/tables/{tableId\}` Example:"projects/test_project/datasets/test_dataset/tables/test_table"
+     */
+    table?: string | null;
+  }
   /**
    * Request message for `SetIamPolicy` method.
    */
