@@ -107,6 +107,284 @@
   "resources": {
     "projects": {
       "resources": {
+        "locations": {
+          "resources": {
+            "notes": {
+              "methods": {
+                "get": {
+                  "description": "Gets the specified note.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notes/{notesId}",
+                  "httpMethod": "GET",
+                  "id": "containeranalysis.projects.locations.notes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Note"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists notes for the specified project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notes",
+                  "httpMethod": "GET",
+                  "id": "containeranalysis.projects.locations.notes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Number of notes to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token to provide to skip to a particular spot in the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the project to list notes for in the form of `projects/[PROJECT_ID]`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/notes",
+                  "response": {
+                    "$ref": "ListNotesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "occurrences": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists occurrences referencing the specified note. Provider projects can use this method to get all occurrences across consumer projects referencing the specified note.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notes/{notesId}/occurrences",
+                      "httpMethod": "GET",
+                      "id": "containeranalysis.projects.locations.notes.occurrences.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The filter expression.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The name of the note to list occurrences for in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Number of occurrences to return in the list.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Token to provide to skip to a particular spot in the list.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}/occurrences",
+                      "response": {
+                        "$ref": "ListNoteOccurrencesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "occurrences": {
+              "methods": {
+                "get": {
+                  "description": "Gets the specified occurrence.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/occurrences/{occurrencesId}",
+                  "httpMethod": "GET",
+                  "id": "containeranalysis.projects.locations.occurrences.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/occurrences/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Occurrence"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getNotes": {
+                  "description": "Gets the note attached to the specified occurrence. Consumer projects can use this method to get a note that belongs to a provider project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/occurrences/{occurrencesId}/notes",
+                  "httpMethod": "GET",
+                  "id": "containeranalysis.projects.locations.occurrences.getNotes",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/occurrences/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}/notes",
+                  "response": {
+                    "$ref": "Note"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getVulnerabilitySummary": {
+                  "description": "Gets a summary of the number and severity of occurrences.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/occurrences:vulnerabilitySummary",
+                  "httpMethod": "GET",
+                  "id": "containeranalysis.projects.locations.occurrences.getVulnerabilitySummary",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the project to get a vulnerability summary for in the form of `projects/[PROJECT_ID]`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/occurrences:vulnerabilitySummary",
+                  "response": {
+                    "$ref": "VulnerabilityOccurrencesSummary"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists occurrences for the specified project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/occurrences",
+                  "httpMethod": "GET",
+                  "id": "containeranalysis.projects.locations.occurrences.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Number of occurrences to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token to provide to skip to a particular spot in the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the project to list occurrences for in the form of `projects/[PROJECT_ID]`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/occurrences",
+                  "response": {
+                    "$ref": "ListOccurrencesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "resources": {
+              "methods": {
+                "exportSBOM": {
+                  "description": "Generates an SBOM for the given resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/resources/{resourcesId}:exportSBOM",
+                  "httpMethod": "POST",
+                  "id": "containeranalysis.projects.locations.resources.exportSBOM",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/resources/.*$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:exportSBOM",
+                  "request": {
+                    "$ref": "ExportSBOMRequest"
+                  },
+                  "response": {
+                    "$ref": "ExportSBOMResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "notes": {
           "methods": {
             "batchCreate": {
@@ -787,7 +1065,7 @@
       }
     }
   },
-  "revision": "20240220",
+  "revision": "20240308",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1766,6 +2044,9 @@
           "description": "A description about this compliance check.",
           "type": "string"
         },
+        "impact": {
+          "type": "string"
+        },
         "rationale": {
           "description": "A rationale for the existence of this compliance check.",
           "type": "string"
@@ -2346,6 +2627,14 @@
             "E2_HIGHCPU_8",
             "E2_HIGHCPU_32",
             "E2_MEDIUM"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Standard machine type.",
