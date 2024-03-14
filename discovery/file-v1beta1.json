@@ -502,7 +502,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * \"description\" * \"file_shares\" * \"labels\"",
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * \"description\" * \"directory_services\" * \"file_shares\" * \"labels\"",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -511,6 +511,34 @@
                   "path": "v1beta1/{+name}",
                   "request": {
                     "$ref": "Instance"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "promoteReplica": {
+                  "description": "Promote an standby instance (replica).",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:promoteReplica",
+                  "httpMethod": "POST",
+                  "id": "file.projects.locations.instances.promoteReplica",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the instance, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:promoteReplica",
+                  "request": {
+                    "$ref": "PromoteReplicaRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -557,7 +585,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. `projects/{project_id}/locations/{location_id}/instances/{instance_id}`. The resource name of the instance, in the format",
+                      "description": "Required. The resource name of the instance, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -1041,7 +1069,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240307",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1570,7 +1598,7 @@
         },
         "directoryServices": {
           "$ref": "DirectoryServicesConfig",
-          "description": "Directory Services configuration for Kerberos-based authentication. Should only be set if protocol is \"NFS_V4_1\"."
+          "description": "Optional. Directory Services configuration for Kerberos-based authentication. Should only be set if protocol is \"NFS_V4_1\"."
         },
         "etag": {
           "description": "Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.",
@@ -1658,7 +1686,8 @@
             "SUSPENDED",
             "REVERTING",
             "SUSPENDING",
-            "RESUMING"
+            "RESUMING",
+            "PROMOTING"
           ],
           "enumDescriptions": [
             "State not set.",
@@ -1671,7 +1700,8 @@
             "The instance is suspended. You can get further details from the `suspension_reasons` field of the `Instance` resource.",
             "The instance is reverting to a snapshot.",
             "The instance is in the process of becoming suspended.",
-            "The instance is in the process of becoming active."
+            "The instance is in the process of becoming active.",
+            "The replica instance is being promoted."
           ],
           "readOnly": true,
           "type": "string"
@@ -1890,7 +1920,7 @@
       "type": "object"
     },
     "MaintenancePolicy": {
-      "description": "LINT.IfChange Defines policies to service maintenance events.",
+      "description": "Defines policies to service maintenance events.",
       "id": "MaintenancePolicy",
       "properties": {
         "createTime": {
@@ -1959,11 +1989,11 @@
       "id": "ManagedActiveDirectoryConfig",
       "properties": {
         "computer": {
-          "description": "The computer name is used as a prefix to the mount remote target. Example: if the computer_name is `my-computer`, the mount command will look like: `$mount -o vers=4,sec=krb5 my-computer.filestore.:`.",
+          "description": "Required. The computer name is used as a prefix to the mount remote target. Example: if the computer is `my-computer`, the mount command will look like: `$mount -o vers=4.1,sec=krb5 my-computer.filestore.: `.",
           "type": "string"
         },
         "domain": {
-          "description": "Fully qualified domain name.",
+          "description": "Required. The domain resource name, in the format `projects/{project_id}/locations/global/domains/{domain}`.",
           "type": "string"
         }
       },
@@ -2171,6 +2201,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "PromoteReplicaRequest": {
+      "description": "PromoteReplicaRequest promotes a Filestore standby instance (replica).",
+      "id": "PromoteReplicaRequest",
+      "properties": {},
       "type": "object"
     },
     "RestoreInstanceRequest": {

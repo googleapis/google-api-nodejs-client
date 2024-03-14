@@ -557,7 +557,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. `projects/{project_id}/locations/{location_id}/instances/{instance_id}`. The resource name of the instance, in the format",
+                      "description": "Required. The resource name of the instance, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -874,7 +874,7 @@
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240304",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
