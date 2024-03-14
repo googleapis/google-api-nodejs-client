@@ -851,7 +851,7 @@
       }
     }
   },
-  "revision": "20240217",
+  "revision": "20240306",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -869,14 +869,16 @@
             "PIPELINE",
             "QUERY",
             "ML_EXTERNAL",
-            "BACKGROUND"
+            "BACKGROUND",
+            "CONTINUOUS"
           ],
           "enumDescriptions": [
             "Invalid type. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Pipeline (load/export) jobs from the project will use the reservation.",
             "Query jobs from the project will use the reservation.",
             "BigQuery ML jobs that use services external to BigQuery for model training. These jobs will not utilize idle slots from other reservations.",
-            "Background jobs that BigQuery runs for the customers in the background."
+            "Background jobs that BigQuery runs for the customers in the background.",
+            "Continuous SQL jobs will use this reservation. Reservations with continuous assignments cannot be mixed with non-continuous assignments."
           ],
           "type": "string"
         },
@@ -1204,7 +1206,7 @@
           "description": "The configuration parameters for the auto scaling feature."
         },
         "concurrency": {
-          "description": "Job concurrency target which sets a soft upper bound on the number of jobs that can run concurrently in this reservation. This is a soft target due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency target will be automatically computed by the system. NOTE: this field is exposed as `target_job_concurrency` in the Information Schema, DDL and BQ CLI.",
+          "description": "Job concurrency target which sets a soft upper bound on the number of jobs that can run concurrently in this reservation. This is a soft target due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency target will be automatically computed by the system. NOTE: this field is exposed as target job concurrency in the Information Schema, DDL and BQ CLI.",
           "format": "int64",
           "type": "string"
         },
