@@ -2107,7 +2107,7 @@
       }
     }
   },
-  "revision": "20240122",
+  "revision": "20240307",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2600,7 +2600,7 @@
       "id": "ComputeEnginePreferences",
       "properties": {
         "licenseType": {
-          "description": "License type to consider when calculating costs for virtual machine insights and recommendations. If unspecified, costs are calculated based on the default licensing plan.",
+          "description": "Overridden by os_pricing_preferences if specified. License type to consider when calculating costs for virtual machine insights and recommendations. If unspecified, costs are calculated based on the default licensing plan.",
           "enum": [
             "LICENSE_TYPE_UNSPECIFIED",
             "LICENSE_TYPE_DEFAULT",
@@ -5404,8 +5404,8 @@
           "enumDescriptions": [
             "Unspecified commitment plan.",
             "No commitment plan (on-demand usage).",
-            "1 year commitment.",
-            "3 years commitment."
+            "1-year regular committed use discount.",
+            "3-year regular committed use discount."
           ],
           "type": "string"
         },
@@ -5871,8 +5871,8 @@
           "enumDescriptions": [
             "Unspecified commitment plan.",
             "No commitment plan.",
-            "1 year commitment.",
-            "3 years commitment."
+            "1-year regular committed use discount.",
+            "3-year regular committed use discount."
           ],
           "type": "string"
         },
