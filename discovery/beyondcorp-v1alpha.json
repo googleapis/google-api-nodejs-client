@@ -3302,6 +3302,197 @@
                 }
               }
             },
+            "global": {
+              "resources": {
+                "securityGateways": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new SecurityGateway in a given project and global location.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/global/securityGateways",
+                      "httpMethod": "POST",
+                      "id": "beyondcorp.projects.locations.global.securityGateways.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource project name of the SecurityGateway location using the form: `projects/{project_id}/locations/global`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "securityGatewayId": {
+                          "description": "Optional. User-settable SecurityGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/securityGateways",
+                      "request": {
+                        "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single SecurityGateway.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/global/securityGateways/{securityGatewaysId}",
+                      "httpMethod": "DELETE",
+                      "id": "beyondcorp.projects.locations.global.securityGateways.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. BeyondCorp SecurityGateway name using the form: `projects/{project_id}/locations/global/securityGateways/{security_gateway_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/securityGateways/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single SecurityGateway.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/global/securityGateways/{securityGatewaysId}",
+                      "httpMethod": "GET",
+                      "id": "beyondcorp.projects.locations.global.securityGateways.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the PartnerTenant using the form: `projects/{project_id}/locations/global/securityGateway/{security_gateway_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/securityGateways/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists SecurityGateways in a given project and global location.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/global/securityGateways",
+                      "httpMethod": "GET",
+                      "id": "beyondcorp.projects.locations.global.securityGateways.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. A filter specifying constraints of a list operation. All fields in the SecurityGateway message are supported. For example, the following query will return the SecurityGateway with displayName \"test-security-gateway\" For more information, please refer to https://google.aip.dev/160.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Specifies the ordering of results. See [Sorting order](https://cloud.google.com/apis/design/design_patterns#sorting_order) for more information.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. If not specified, a default value of 50 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous ListSecurityGatewayRequest, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent location to which the resources belong. `projects/{project_id}/locations/global/`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/securityGateways",
+                      "response": {
+                        "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the parameters of a single SecurityGateway.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/global/securityGateways/{securityGatewaysId}",
+                      "httpMethod": "PATCH",
+                      "id": "beyondcorp.projects.locations.global.securityGateways.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. Name of the resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/securityGateways/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Mutable fields include: display_name, gateway_regions.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "insights": {
               "methods": {
                 "configuredInsight": {
@@ -3716,7 +3907,7 @@
       }
     }
   },
-  "revision": "20240207",
+  "revision": "20240228",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5319,7 +5510,7 @@
         },
         "transportInfo": {
           "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaTransportInfo",
-          "description": "Required. Transport layer information to verify for the proxy server."
+          "description": "Optional. Transport layer information to verify for the proxy server."
         },
         "updateTime": {
           "description": "Output only. Timestamp when the resource was last modified.",
@@ -5810,6 +6001,151 @@
             "Represents a paid subscription.",
             "Reresents an allowlisted subscription."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse": {
+      "description": "Message for response to listing SecurityGateways.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "securityGateways": {
+          "description": "A list of BeyondCorp SecurityGateway in the project.",
+          "items": {
+            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "A list of locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaRegionConfig": {
+      "description": "Message contains the configuration for each supported region for the securityGateway instance.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaRegionConfig",
+      "properties": {
+        "egressIpAddresses": {
+          "description": "Output only. External IP addresses that will be used for establishing connection to the egress endpoints.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "region": {
+          "description": "Required. The region where the egress connectivity is required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway": {
+      "description": "Information about a BeyoncCorp SecurityGateway resource.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. An arbitrary user-provided name for the SecurityGateway. Cannot exceed 64 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Name of the resource.",
+          "type": "string"
+        },
+        "regionConfigs": {
+          "description": "Optional. List of regions where the egress connectivity is required.",
+          "items": {
+            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaRegionConfig"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The operational state of the SecurityGateway.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "UPDATING",
+            "DELETING",
+            "RUNNING",
+            "DOWN",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "SecurityGateway is being created.",
+            "SecurityGateway is being updated.",
+            "SecurityGateway is being deleted.",
+            "SecurityGateway is running.",
+            "SecurityGateway is down and may be restored in the future. This happens when CCFE sends ProjectState = OFF.",
+            "SecurityGateway encountered an error and is in an indeterministic state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the resource was last modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetadata": {
+      "description": "Represents the metadata of the long-running operation.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
           "type": "string"
         }
       },
