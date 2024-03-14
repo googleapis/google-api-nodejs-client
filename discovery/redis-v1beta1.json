@@ -821,9 +821,94 @@
       }
     }
   },
-  "revision": "20240220",
+  "revision": "20240307",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
+    "AvailabilityConfiguration": {
+      "description": "Configuration for availability of database instance",
+      "id": "AvailabilityConfiguration",
+      "properties": {
+        "availabilityType": {
+          "description": "Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).",
+          "enum": [
+            "AVAILABILITY_TYPE_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL",
+            "MULTI_REGIONAL",
+            "AVAILABILITY_TYPE_OTHER"
+          ],
+          "enumDescriptions": [
+            "",
+            "Zonal available instance.",
+            "Regional available instance.",
+            "Multi regional instance",
+            "For rest of the other category"
+          ],
+          "type": "string"
+        },
+        "externalReplicaConfigured": {
+          "type": "boolean"
+        },
+        "promotableReplicaConfigured": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BackupConfiguration": {
+      "description": "Configuration for automatic backups",
+      "id": "BackupConfiguration",
+      "properties": {
+        "automatedBackupEnabled": {
+          "description": "Whether customer visible automated backups are enabled on the instance.",
+          "type": "boolean"
+        },
+        "backupRetentionSettings": {
+          "$ref": "RetentionSettings",
+          "description": "Backup retention settings."
+        },
+        "pointInTimeRecoveryEnabled": {
+          "description": "Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BackupRun": {
+      "description": "A backup run.",
+      "id": "BackupRun",
+      "properties": {
+        "endTime": {
+          "description": "The time the backup operation completed. REQUIRED",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "OperationError",
+          "description": "Information about why the backup operation failed. This is only present if the run has the FAILED status. OPTIONAL"
+        },
+        "startTime": {
+          "description": "The time the backup operation started. REQUIRED",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of this run. REQUIRED",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESSFUL",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "",
+            "The backup was successful.",
+            "The backup was unsuccessful."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CertChain": {
       "id": "CertChain",
       "properties": {
@@ -964,6 +1049,887 @@
       },
       "type": "object"
     },
+    "Compliance": {
+      "description": "Contains compliance information about a security standard indicating unmet recommendations.",
+      "id": "Compliance",
+      "properties": {
+        "standard": {
+          "description": "Industry-wide compliance standards or benchmarks, such as CIS, PCI, and OWASP.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the standard or benchmark, for example, 1.1",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomMetadataData": {
+      "description": "Any custom metadata associated with the resource. i.e. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data",
+      "id": "CustomMetadataData",
+      "properties": {
+        "databaseMetadata": {
+          "items": {
+            "$ref": "DatabaseMetadata"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseMetadata": {
+      "description": "Metadata for individual databases created in an instance. i.e. spanner instance can have multiple databases with unique configuration settings.",
+      "id": "DatabaseMetadata",
+      "properties": {
+        "backupConfiguration": {
+          "$ref": "BackupConfiguration",
+          "description": "Backup configuration for this database"
+        },
+        "backupRun": {
+          "$ref": "BackupRun",
+          "description": "Information about the last backup attempt for this database"
+        },
+        "product": {
+          "$ref": "Product"
+        },
+        "resourceId": {
+          "$ref": "DatabaseResourceId"
+        },
+        "resourceName": {
+          "description": "Required. Database name. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseResourceFeed": {
+      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform.",
+      "id": "DatabaseResourceFeed",
+      "properties": {
+        "feedTimestamp": {
+          "description": "Required. Timestamp when feed is generated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "feedType": {
+          "description": "Required. Type feed to be ingested into condor",
+          "enum": [
+            "FEEDTYPE_UNSPECIFIED",
+            "RESOURCE_METADATA",
+            "OBSERVABILITY_DATA",
+            "SECURITY_FINDING_DATA",
+            "RECOMMENDATION_SIGNAL_DATA"
+          ],
+          "enumDescriptions": [
+            "",
+            "Database resource metadata feed from control plane",
+            "Database resource monitoring data",
+            "Database resource security health signal data",
+            "Database resource recommendation signal data"
+          ],
+          "type": "string"
+        },
+        "recommendationSignalData": {
+          "$ref": "DatabaseResourceRecommendationSignalData",
+          "description": "More feed data would be added in subsequent CLs"
+        },
+        "resourceHealthSignalData": {
+          "$ref": "DatabaseResourceHealthSignalData"
+        },
+        "resourceId": {
+          "$ref": "DatabaseResourceId",
+          "deprecated": true,
+          "description": "Primary key associated with the Resource. resource_id is available in individual feed level as well."
+        },
+        "resourceMetadata": {
+          "$ref": "DatabaseResourceMetadata"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseResourceHealthSignalData": {
+      "description": "Common model for database resource health signal data.",
+      "id": "DatabaseResourceHealthSignalData",
+      "properties": {
+        "additionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Any other additional metadata",
+          "type": "object"
+        },
+        "compliance": {
+          "description": "Industry standards associated with this signal; if this signal is an issue, that could be a violation of the associated industry standard(s). For example, AUTO_BACKUP_DISABLED signal is associated with CIS GCP 1.1, CIS GCP 1.2, CIS GCP 1.3, NIST 800-53 and ISO-27001 compliance standards. If a database resource does not have automated backup enable, it will violate these following industry standards.",
+          "items": {
+            "$ref": "Compliance"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description associated with signal",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "Required. The last time at which the event described by this signal took place",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "externalUri": {
+          "description": "The external-uri of the signal, using which more information about this signal can be obtained. In GCP, this will take user to SCC page to get more details about signals.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged",
+          "enum": [
+            "PROVIDER_UNSPECIFIED",
+            "GCP",
+            "AWS",
+            "AZURE",
+            "ONPREM",
+            "SELFMANAGED",
+            "PROVIDER_OTHER"
+          ],
+          "enumDescriptions": [
+            "",
+            "Google cloud platform provider",
+            "Amazon web service",
+            "Azure web service",
+            "On-prem database resources.",
+            "Self-managed database provider. These are resources on a cloud platform, e.g., database resource installed in a GCE VM, but not a managed database service.",
+            "For the rest of the other categories. Other refers to the rest of other database service providers, this could be smaller cloud provider. This needs to be provided when the provider is known, but it is not present in the existing set of enum values."
+          ],
+          "type": "string"
+        },
+        "resourceContainer": {
+          "description": "Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"projects/123\". For GCP provided resources, number should be project number.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        },
+        "signalClass": {
+          "description": "Required. The class of the signal, such as if it's a THREAT or VULNERABILITY.",
+          "enum": [
+            "CLASS_UNSPECIFIED",
+            "THREAT",
+            "VULNERABILITY",
+            "MISCONFIGURATION",
+            "OBSERVATION",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified signal class.",
+            "Describes unwanted or malicious activity.",
+            "Describes a potential weakness in software that increases risk to Confidentiality & Integrity & Availability.",
+            "Describes a potential weakness in cloud resource/asset configuration that increases risk.",
+            "Describes a security observation that is for informational purposes.",
+            "Describes an error that prevents some SCC functionality."
+          ],
+          "type": "string"
+        },
+        "signalId": {
+          "description": "Required. Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.",
+          "type": "string"
+        },
+        "signalType": {
+          "description": "Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
+            "SIGNAL_TYPE_GROUP_NOT_REPLICATING_ACROSS_REGIONS",
+            "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_ZONES",
+            "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_REGIONS",
+            "SIGNAL_TYPE_NO_PROMOTABLE_REPLICA",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+            "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+            "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+            "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+            "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_STATISTICS_LOGGED",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATISTICS",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATISTICS",
+            "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+            "SIGNAL_TYPE_LOGGING_QUERY_STATISTICS",
+            "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+            "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+            "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+            "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+            "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+            "SIGNAL_TYPE_EXPOSED_BY_OWNERSHIP_CHAINING",
+            "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+            "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+            "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+            "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+            "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+            "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+            "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+            "SIGNAL_TYPE_IDLE",
+            "SIGNAL_TYPE_OVERPROVISIONED",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+            "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+            "SIGNAL_TYPE_UNDERPROVISIONED",
+            "SIGNAL_TYPE_OUT_OF_DISK",
+            "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+            "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+            "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_CLUSTER_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+            "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
+            "Represents if the resource is available in multiple zones or not.",
+            "Represents if a resource is available in multiple regions.",
+            "Represents if a resource has a promotable replica.",
+            "Represents if a resource has an automated backup policy.",
+            "Represents if a resources has a short backup retention period.",
+            "Represents if the last backup of a resource failed.",
+            "Represents if the last backup of a resource is older than some threshold value.",
+            "Represents if a resource violates CIS GCP Foundation 2.0.",
+            "Represents if a resource violates CIS GCP Foundation 1.3.",
+            "Represents if a resource violates CIS GCP Foundation 1.2.",
+            "Represents if a resource violates CIS GCP Foundation 1.1.",
+            "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
+            "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is not set appropriately.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance does not have an appropriate severity level.",
+            "Represents if the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is not set to warning or another recommended value.",
+            "Represents if the databaseFlags property of instance metadata for the log_executor_status field is set to on.",
+            "Represents if the log_hostname database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_parser_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_planner_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_statement database flag for a Cloud SQL for PostgreSQL instance is not set to DDL (all data definition statements).",
+            "Represents if the log_statement_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_temp_files database flag for a Cloud SQL for PostgreSQL instance is not set to \"0\". (NOTE: 0 = ON)",
+            "Represents if the user connections database flag for a Cloud SQL for SQL Server instance is configured.",
+            "Represents if the user options database flag for Cloud SQL SQL Server instance is configured or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a Cloud SQL database has a password configured for the root account or not.",
+            "Represents if a Cloud SQL database has a weak password configured for the root account.",
+            "Represents if a SQL database instance is not encrypted with customer-managed encryption keys (CMEK).",
+            "Represents if The contained database authentication database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the cross_db_ownership_chaining database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if he external scripts enabled database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the local_infile database flag for a Cloud SQL for MySQL instance is not set to off.",
+            "Represents if the log_connections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
+            "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+            "Represents if public IP is enabled.",
+            "Represents Idle instance helps to reduce costs.",
+            "Represents instances that are unnecessarily large for given workload.",
+            "Represents high number of concurrently opened tables.",
+            "Represents high table count close to SLA limit.",
+            "Represents high number of unvacuumed transactions",
+            "Represents need for more CPU and/or memory",
+            "Represents out of disk.",
+            "Represents server certificate is near expiry.",
+            "Represents database auditing is disabled.",
+            "Represents not restricted to authorized networks.",
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes"
+          ],
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "RESOLVED",
+            "MUTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The signal requires attention and has not been addressed yet.",
+            "The signal has been fixed, triaged as a non-issue or otherwise addressed and is no longer active.",
+            "The signal has been muted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseResourceId": {
+      "description": "DatabaseResourceId will serve as primary key for any resource ingestion event.",
+      "id": "DatabaseResourceId",
+      "properties": {
+        "provider": {
+          "description": "Required. Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged",
+          "enum": [
+            "PROVIDER_UNSPECIFIED",
+            "GCP",
+            "AWS",
+            "AZURE",
+            "ONPREM",
+            "SELFMANAGED",
+            "PROVIDER_OTHER"
+          ],
+          "enumDescriptions": [
+            "",
+            "Google cloud platform provider",
+            "Amazon web service",
+            "Azure web service",
+            "On-prem database resources.",
+            "Self-managed database provider. These are resources on a cloud platform, e.g., database resource installed in a GCE VM, but not a managed database service.",
+            "For the rest of the other categories. Other refers to the rest of other database service providers, this could be smaller cloud provider. This needs to be provided when the provider is known, but it is not present in the existing set of enum values."
+          ],
+          "type": "string"
+        },
+        "providerDescription": {
+          "description": "Optional. Needs to be used only when the provider is PROVIDER_OTHER.",
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel",
+          "type": "string"
+        },
+        "uniqueId": {
+          "description": "Required. A service-local token that distinguishes this resource from other resources within the same service.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseResourceMetadata": {
+      "description": "Common model for database resource instance metadata.",
+      "id": "DatabaseResourceMetadata",
+      "properties": {
+        "availabilityConfiguration": {
+          "$ref": "AvailabilityConfiguration",
+          "description": "Availability configuration for this instance"
+        },
+        "backupConfiguration": {
+          "$ref": "BackupConfiguration",
+          "description": "Backup configuration for this instance"
+        },
+        "backupRun": {
+          "$ref": "BackupRun",
+          "description": "Latest backup run information for this instance"
+        },
+        "creationTime": {
+          "description": "The creation time of the resource, i.e. the time when resource is created and recorded in partner service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "currentState": {
+          "description": "Current state of the instance.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY",
+            "SUSPENDED",
+            "DELETED",
+            "STATE_OTHER"
+          ],
+          "enumDescriptions": [
+            "",
+            "The instance is running.",
+            "Instance being created, updated, deleted or under maintenance",
+            "When instance is suspended",
+            "Instance is deleted.",
+            "For rest of the other category"
+          ],
+          "type": "string"
+        },
+        "customMetadata": {
+          "$ref": "CustomMetadataData",
+          "description": "Any custom metadata associated with the resource"
+        },
+        "entitlements": {
+          "description": "Entitlements associated with the resource",
+          "items": {
+            "$ref": "Entitlement"
+          },
+          "type": "array"
+        },
+        "expectedState": {
+          "description": "The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY",
+            "SUSPENDED",
+            "DELETED",
+            "STATE_OTHER"
+          ],
+          "enumDescriptions": [
+            "",
+            "The instance is running.",
+            "Instance being created, updated, deleted or under maintenance",
+            "When instance is suspended",
+            "Instance is deleted.",
+            "For rest of the other category"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "$ref": "DatabaseResourceId",
+          "description": "Required. Unique identifier for a Database resource"
+        },
+        "instanceType": {
+          "description": "The type of the instance. Specified at creation time.",
+          "enum": [
+            "INSTANCE_TYPE_UNSPECIFIED",
+            "SUB_RESOURCE_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "SECONDARY",
+            "READ_REPLICA",
+            "OTHER",
+            "SUB_RESOURCE_TYPE_PRIMARY",
+            "SUB_RESOURCE_TYPE_SECONDARY",
+            "SUB_RESOURCE_TYPE_READ_REPLICA",
+            "SUB_RESOURCE_TYPE_OTHER"
+          ],
+          "enumDeprecated": [
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "",
+            "For rest of the other categories.",
+            "A regular primary database instance.",
+            "A cluster or an instance acting as a secondary.",
+            "An instance acting as a read-replica.",
+            "For rest of the other categories.",
+            "A regular primary database instance.",
+            "A cluster or an instance acting as a secondary.",
+            "An instance acting as a read-replica.",
+            "For rest of the other categories."
+          ],
+          "type": "string"
+        },
+        "location": {
+          "description": "The resource location. REQUIRED",
+          "type": "string"
+        },
+        "primaryResourceId": {
+          "$ref": "DatabaseResourceId",
+          "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
+        },
+        "product": {
+          "$ref": "Product",
+          "description": "The product this resource represents."
+        },
+        "resourceContainer": {
+          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"/\", such as \"projects/123\". For GCP provided resources, number should be project number.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named \"ABC\" is deleted, the name \"ABC\" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        },
+        "updationTime": {
+          "description": "The time at which the resource was updated and recorded at partner service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "userLabelSet": {
+          "$ref": "UserLabels",
+          "description": "User-provided labels associated with the resource"
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "deprecated": true,
+          "description": "User-provided labels, represented as a dictionary where each label is a single key value pair.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseResourceRecommendationSignalData": {
+      "description": "Common model for database resource recommendation signal data.",
+      "id": "DatabaseResourceRecommendationSignalData",
+      "properties": {
+        "additionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Any other additional metadata specific to recommendation",
+          "type": "object"
+        },
+        "lastRefreshTime": {
+          "description": "Required. last time recommendationw as refreshed",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "recommendationState": {
+          "description": "Required. Recommendation state",
+          "enum": [
+            "UNSPECIFIED",
+            "ACTIVE",
+            "CLAIMED",
+            "SUCCEEDED",
+            "FAILED",
+            "DISMISSED"
+          ],
+          "enumDescriptions": [
+            "",
+            "Recommendation is active and can be applied. ACTIVE recommendations can be marked as CLAIMED, SUCCEEDED, or FAILED.",
+            "Recommendation is in claimed state. Recommendations content is immutable and cannot be updated by Google. CLAIMED recommendations can be marked as CLAIMED, SUCCEEDED, or FAILED.",
+            "Recommendation is in succeeded state. Recommendations content is immutable and cannot be updated by Google. SUCCEEDED recommendations can be marked as SUCCEEDED, or FAILED.",
+            "Recommendation is in failed state. Recommendations content is immutable and cannot be updated by Google. FAILED recommendations can be marked as SUCCEEDED, or FAILED.",
+            "Recommendation is in dismissed state. Recommendation content can be updated by Google. DISMISSED recommendations can be marked as ACTIVE."
+          ],
+          "type": "string"
+        },
+        "recommender": {
+          "description": "Required. Name of recommendation. Examples: organizations/1234/locations/us-central1/recommenders/google.cloudsql.instance.PerformanceRecommender/recommendations/9876",
+          "type": "string"
+        },
+        "recommenderId": {
+          "description": "Required. ID of recommender. Examples: \"google.cloudsql.instance.PerformanceRecommender\"",
+          "type": "string"
+        },
+        "recommenderSubtype": {
+          "description": "Required. Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = \"google.cloudsql.instance.PerformanceRecommender\", recommender_subtype can be \"MYSQL_HIGH_NUMBER_OF_OPEN_TABLES_BEST_PRACTICE\"/\"POSTGRES_HIGH_TRANSACTION_ID_UTILIZATION_BEST_PRACTICE\"",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        },
+        "signalType": {
+          "description": "Required. Type of signal, for example, `SIGNAL_TYPE_IDLE`, `SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES`, etc.",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
+            "SIGNAL_TYPE_GROUP_NOT_REPLICATING_ACROSS_REGIONS",
+            "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_ZONES",
+            "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_REGIONS",
+            "SIGNAL_TYPE_NO_PROMOTABLE_REPLICA",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+            "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+            "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+            "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+            "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+            "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+            "SIGNAL_TYPE_QUERY_STATISTICS_LOGGED",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATISTICS",
+            "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATISTICS",
+            "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+            "SIGNAL_TYPE_LOGGING_QUERY_STATISTICS",
+            "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+            "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+            "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+            "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+            "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+            "SIGNAL_TYPE_EXPOSED_BY_OWNERSHIP_CHAINING",
+            "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+            "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+            "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+            "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+            "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+            "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+            "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+            "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+            "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+            "SIGNAL_TYPE_IDLE",
+            "SIGNAL_TYPE_OVERPROVISIONED",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+            "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+            "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+            "SIGNAL_TYPE_UNDERPROVISIONED",
+            "SIGNAL_TYPE_OUT_OF_DISK",
+            "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+            "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+            "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_CLUSTER_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Represents if a resource is protected by automatic failover. Checks for resources that are configured to have redundancy within a region that enables automatic failover.",
+            "Represents if a group is replicating across regions. Checks for resources that are configured to have redundancy, and ongoing replication, across regions.",
+            "Represents if the resource is available in multiple zones or not.",
+            "Represents if a resource is available in multiple regions.",
+            "Represents if a resource has a promotable replica.",
+            "Represents if a resource has an automated backup policy.",
+            "Represents if a resources has a short backup retention period.",
+            "Represents if the last backup of a resource failed.",
+            "Represents if the last backup of a resource is older than some threshold value.",
+            "Represents if a resource violates CIS GCP Foundation 2.0.",
+            "Represents if a resource violates CIS GCP Foundation 1.3.",
+            "Represents if a resource violates CIS GCP Foundation 1.2.",
+            "Represents if a resource violates CIS GCP Foundation 1.1.",
+            "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
+            "Represents if the log_lock_waits database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance is not set appropriately.",
+            "Represents if the log_min_error_statement database flag for a Cloud SQL for PostgreSQL instance does not have an appropriate severity level.",
+            "Represents if the log_min_messages database flag for a Cloud SQL for PostgreSQL instance is not set to warning or another recommended value.",
+            "Represents if the databaseFlags property of instance metadata for the log_executor_status field is set to on.",
+            "Represents if the log_hostname database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_parser_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_planner_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_statement database flag for a Cloud SQL for PostgreSQL instance is not set to DDL (all data definition statements).",
+            "Represents if the log_statement_stats database flag for a Cloud SQL for PostgreSQL instance is not set to off.",
+            "Represents if the log_temp_files database flag for a Cloud SQL for PostgreSQL instance is not set to \"0\". (NOTE: 0 = ON)",
+            "Represents if the user connections database flag for a Cloud SQL for SQL Server instance is configured.",
+            "Represents if the user options database flag for Cloud SQL SQL Server instance is configured or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not.",
+            "Represents if a Cloud SQL database has a password configured for the root account or not.",
+            "Represents if a Cloud SQL database has a weak password configured for the root account.",
+            "Represents if a SQL database instance is not encrypted with customer-managed encryption keys (CMEK).",
+            "Represents if The contained database authentication database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the cross_db_ownership_chaining database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if he external scripts enabled database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the local_infile database flag for a Cloud SQL for MySQL instance is not set to off.",
+            "Represents if the log_connections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_disconnections database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
+            "Represents if the log_min_duration_statement database flag for a Cloud SQL for PostgreSQL instance is not set to -1.",
+            "Represents if the remote access database flag for a Cloud SQL for SQL Server instance is not set to off.",
+            "Represents if the skip_show_database database flag for a Cloud SQL for MySQL instance is not set to on.",
+            "Represents if the 3625 (trace flag) database flag for a Cloud SQL for SQL Server instance is not set to on.",
+            "Represents if public IP is enabled.",
+            "Represents Idle instance helps to reduce costs.",
+            "Represents instances that are unnecessarily large for given workload.",
+            "Represents high number of concurrently opened tables.",
+            "Represents high table count close to SLA limit.",
+            "Represents high number of unvacuumed transactions",
+            "Represents need for more CPU and/or memory",
+            "Represents out of disk.",
+            "Represents server certificate is near expiry.",
+            "Represents database auditing is disabled.",
+            "Represents not restricted to authorized networks.",
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DiscoveryEndpoint": {
       "description": "Endpoints on each network, for Redis clients to connect to the cluster.",
       "id": "DiscoveryEndpoint",
@@ -991,6 +1957,46 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "Entitlement": {
+      "description": "Proto representing the access that a user has to a specific feature/service. NextId: 3.",
+      "id": "Entitlement",
+      "properties": {
+        "entitlementState": {
+          "description": "The current state of user's accessibility to a feature/benefit.",
+          "enum": [
+            "ENTITLEMENT_STATE_UNSPECIFIED",
+            "ENTITLED",
+            "REVOKED"
+          ],
+          "enumDescriptions": [
+            "",
+            "User is entitled to a feature/benefit, but whether it has been successfully provisioned is decided by provisioning state.",
+            "User is entitled to a feature/benefit, but it was requested to be revoked. Whether the revoke has been successful is decided by provisioning state."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "An enum that represents the type of this entitlement.",
+          "enum": [
+            "ENTITLEMENT_TYPE_UNSPECIFIED",
+            "DUET_AI",
+            "GEMINI"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "",
+            "The root entitlement representing Duet AI package ownership.",
+            "The root entitlement representing Gemini package ownership."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ExportInstanceRequest": {
@@ -1652,6 +2658,42 @@
       },
       "type": "object"
     },
+    "OperationError": {
+      "description": "An error that occurred during a backup creation operation.",
+      "id": "OperationError",
+      "properties": {
+        "code": {
+          "description": "Identifies the specific error that occurred. REQUIRED",
+          "type": "string"
+        },
+        "errorType": {
+          "enum": [
+            "OPERATION_ERROR_TYPE_UNSPECIFIED",
+            "KMS_KEY_ERROR",
+            "DATABASE_ERROR",
+            "STOCKOUT_ERROR",
+            "CANCELLATION_ERROR",
+            "SQLSERVER_ERROR",
+            "INTERNAL_ERROR"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED means product type is not known or available.",
+            "key destroyed, expired, not found, unreachable or permission denied.",
+            "Database is not accessible",
+            "The zone or region does not have sufficient resources to handle the request at the moment",
+            "User initiated cancellation",
+            "SQL server specific error",
+            "Any other internal error."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "Additional information about the error encountered. REQUIRED",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OperationMetadata": {
       "description": "Pre-defined metadata fields.",
       "id": "OperationMetadata",
@@ -1757,6 +2799,109 @@
       },
       "type": "object"
     },
+    "Product": {
+      "description": "Product specification for Condor resources.",
+      "id": "Product",
+      "properties": {
+        "engine": {
+          "description": "The specific engine that the underlying database is running.",
+          "enum": [
+            "ENGINE_UNSPECIFIED",
+            "ENGINE_MYSQL",
+            "MYSQL",
+            "ENGINE_POSTGRES",
+            "POSTGRES",
+            "ENGINE_SQL_SERVER",
+            "SQL_SERVER",
+            "ENGINE_NATIVE",
+            "NATIVE",
+            "ENGINE_CLOUD_SPANNER_WITH_POSTGRES_DIALECT",
+            "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
+            "ENGINE_MEMORYSTORE_FOR_REDIS",
+            "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+            "ENGINE_OTHER"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED means engine type is not known or available.",
+            "MySQL binary running as an engine in the database instance.",
+            "MySQL binary running as engine in database instance.",
+            "Postgres binary running as engine in database instance.",
+            "Postgres binary running as engine in database instance.",
+            "SQLServer binary running as engine in database instance.",
+            "SQLServer binary running as engine in database instance.",
+            "Native database binary running as engine in instance.",
+            "Native database binary running as engine in instance.",
+            "Cloud Spanner with PostgreSQL dialect.",
+            "Cloud Spanner with Google SQL dialect.",
+            "Memorystore with Redis dialect.",
+            "Memorystore with Redis cluster dialect.",
+            "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of specific database product. It could be CloudSQL, AlloyDB etc..",
+          "enum": [
+            "PRODUCT_TYPE_UNSPECIFIED",
+            "PRODUCT_TYPE_CLOUD_SQL",
+            "CLOUD_SQL",
+            "PRODUCT_TYPE_ALLOYDB",
+            "ALLOYDB",
+            "PRODUCT_TYPE_SPANNER",
+            "PRODUCT_TYPE_ON_PREM",
+            "ON_PREM",
+            "PRODUCT_TYPE_MEMORYSTORE",
+            "PRODUCT_TYPE_OTHER"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED means product type is not known or available.",
+            "Cloud SQL product area in GCP",
+            "Cloud SQL product area in GCP",
+            "AlloyDB product area in GCP",
+            "AlloyDB product area in GCP",
+            "Spanner product area in GCP",
+            "On premises database product.",
+            "On premises database product.",
+            "Memorystore product area in GCP",
+            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the underlying database engine. Example values: For MySQL, it could be \"8.0\", \"5.7\" etc.. For Postgres, it could be \"14\", \"15\" etc..",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PscConfig": {
       "id": "PscConfig",
       "properties": {
@@ -1852,6 +2997,36 @@
         "scheduleTime": {
           "description": "Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RetentionSettings": {
+      "id": "RetentionSettings",
+      "properties": {
+        "quantityBasedRetention": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "retentionUnit": {
+          "description": "The unit that 'retained_backups' represents.",
+          "enum": [
+            "RETENTION_UNIT_UNSPECIFIED",
+            "COUNT",
+            "TIME",
+            "RETENTION_UNIT_OTHER"
+          ],
+          "enumDescriptions": [
+            "Backup retention unit is unspecified, will be treated as COUNT.",
+            "Retention will be by count, eg. \"retain the most recent 7 backups\".",
+            "Retention will be by Time, eg. \"retain the last 7 days backups\".",
+            "For rest of the other category"
+          ],
+          "type": "string"
+        },
+        "timeBasedRetention": {
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -1977,6 +3152,19 @@
         "redisVersion": {
           "description": "Required. Specifies the target version of Redis software to upgrade to.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserLabels": {
+      "description": "Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.",
+      "id": "UserLabels",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       },
       "type": "object"
