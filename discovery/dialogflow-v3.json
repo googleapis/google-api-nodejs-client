@@ -4453,7 +4453,7 @@
       }
     }
   },
-  "revision": "20240219",
+  "revision": "20240311",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4471,6 +4471,10 @@
         "loggingSettings": {
           "$ref": "GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings",
           "description": "Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level."
+        },
+        "speechSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings",
+          "description": "Settings for speech to text detection. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level"
         }
       },
       "type": "object"
@@ -4505,6 +4509,34 @@
         },
         "enableStackdriverLogging": {
           "description": "If true, StackDriver logging is currently enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings": {
+      "description": "Define behaviors of speech to text detection.",
+      "id": "GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings",
+      "properties": {
+        "endpointerSensitivity": {
+          "description": "Sensitivity of the speech model that detects the end of speech. Scale from 0 to 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "models": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Mapping from language to Speech-to-Text model. The mapped Speech-to-Text model will be selected for requests from its corresponding language. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).",
+          "type": "object"
+        },
+        "noSpeechTimeout": {
+          "description": "Timeout before detecting no speech.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "useTimeoutBasedEndpointing": {
+          "description": "Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.",
           "type": "boolean"
         }
       },
@@ -4562,6 +4594,10 @@
         "name": {
           "description": "The unique identifier of the agent. Required for the Agents.UpdateAgent method. Agents.CreateAgent populates the name automatically. Format: `projects//locations//agents/`.",
           "type": "string"
+        },
+        "personalizationSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3AgentPersonalizationSettings",
+          "description": "Optional. Settings for end user personalization."
         },
         "securitySettings": {
           "description": "Name of the SecuritySettings reference for the agent. Format: `projects//locations//securitySettings/`.",
@@ -4652,6 +4688,21 @@
         "trackingBranch": {
           "description": "The branch of the GitHub repository tracked for this agent.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3AgentPersonalizationSettings": {
+      "description": "Settings for end user personalization.",
+      "id": "GoogleCloudDialogflowCxV3AgentPersonalizationSettings",
+      "properties": {
+        "defaultEndUserMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Default end user metadata, used when processing DetectIntent requests. Recommended to be filled as a template instead of hard-coded value, for example { \"age\": \"$session.params.age\" }. The data will be merged with the QueryParameters.end_user_metadata in DetectIntentRequest.query_params during query processing.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -5147,6 +5198,224 @@
             "A data store that contains unstructured private data.",
             "A data store that contains structured data (for example FAQ)."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DataStoreConnectionSignals": {
+      "description": "Data store connection feature output signals. Might be only partially field if processing stop before the final answer. Reasons for this can be, but are not limited to: empty UCS search results, positive RAI check outcome, grounding failure, ...",
+      "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignals",
+      "properties": {
+        "answer": {
+          "description": "Optional. The final compiled answer.",
+          "type": "string"
+        },
+        "answerGenerationModelCallSignals": {
+          "$ref": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerGenerationModelCallSignals",
+          "description": "Optional. Diagnostic info related to the answer generation model call."
+        },
+        "answerParts": {
+          "description": "Optional. Answer parts with relevant citations. Concatenation of texts should add up the `answer` (not counting whitespaces).",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerPart"
+          },
+          "type": "array"
+        },
+        "citedSnippets": {
+          "description": "Optional. Snippets cited by the answer generation model from the most to least relevant.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsCitedSnippet"
+          },
+          "type": "array"
+        },
+        "groundingSignals": {
+          "$ref": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignals",
+          "description": "Optional. Grounding signals."
+        },
+        "rewriterModelCallSignals": {
+          "$ref": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsRewriterModelCallSignals",
+          "description": "Optional. Diagnostic info related to the rewriter model call."
+        },
+        "rewrittenQuery": {
+          "description": "Optional. Rewritten string query used for search.",
+          "type": "string"
+        },
+        "safetySignals": {
+          "$ref": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignals",
+          "description": "Optional. Safety check result."
+        },
+        "searchSnippets": {
+          "description": "Optional. Search snippets included in the answer generation prompt.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSearchSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerGenerationModelCallSignals": {
+      "description": "Diagnostic info related to the answer generation model call.",
+      "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerGenerationModelCallSignals",
+      "properties": {
+        "modelOutput": {
+          "description": "Output of the generative model.",
+          "type": "string"
+        },
+        "renderedPrompt": {
+          "description": "Prompt as sent to the model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerPart": {
+      "description": "Answer part with citation.",
+      "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerPart",
+      "properties": {
+        "supportingIndices": {
+          "description": "Citations for this answer part. Indices of `search_snippets`.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "text": {
+          "description": "Substring of the answer.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsCitedSnippet": {
+      "description": "Snippet cited by the answer generation model.",
+      "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsCitedSnippet",
+      "properties": {
+        "searchSnippet": {
+          "$ref": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSearchSnippet",
+          "description": "Details of the snippet."
+        },
+        "snippetIndex": {
+          "description": "Index of the snippet in `search_snippets` field.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignals": {
+      "description": "Grounding signals.",
+      "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignals",
+      "properties": {
+        "decision": {
+          "description": "Represents the decision of the grounding check.",
+          "enum": [
+            "GROUNDING_DECISION_UNSPECIFIED",
+            "ACCEPTED_BY_GROUNDING",
+            "REJECTED_BY_GROUNDING"
+          ],
+          "enumDescriptions": [
+            "Decision not specified.",
+            "Grounding have accepted the answer.",
+            "Grounding have rejected the answer."
+          ],
+          "type": "string"
+        },
+        "score": {
+          "description": "Grounding score bucket setting.",
+          "enum": [
+            "GROUNDING_SCORE_BUCKET_UNSPECIFIED",
+            "VERY_LOW",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "VERY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Score not specified.",
+            "We have very low confidence that the answer is grounded.",
+            "We have low confidence that the answer is grounded.",
+            "We have medium confidence that the answer is grounded.",
+            "We have high confidence that the answer is grounded.",
+            "We have very high confidence that the answer is grounded."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsRewriterModelCallSignals": {
+      "description": "Diagnostic info related to the rewriter model call.",
+      "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsRewriterModelCallSignals",
+      "properties": {
+        "modelOutput": {
+          "description": "Output of the generative model.",
+          "type": "string"
+        },
+        "renderedPrompt": {
+          "description": "Prompt as sent to the model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignals": {
+      "description": "Safety check results.",
+      "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignals",
+      "properties": {
+        "bannedPhraseMatch": {
+          "description": "Specifies banned phrase match subject.",
+          "enum": [
+            "BANNED_PHRASE_MATCH_UNSPECIFIED",
+            "BANNED_PHRASE_MATCH_NONE",
+            "BANNED_PHRASE_MATCH_QUERY",
+            "BANNED_PHRASE_MATCH_RESPONSE"
+          ],
+          "enumDescriptions": [
+            "No banned phrase check was executed.",
+            "All banned phrase checks led to no match.",
+            "A banned phrase matched the query.",
+            "A banned phrase matched the response."
+          ],
+          "type": "string"
+        },
+        "decision": {
+          "description": "Safety decision.",
+          "enum": [
+            "SAFETY_DECISION_UNSPECIFIED",
+            "ACCEPTED_BY_SAFETY_CHECK",
+            "REJECTED_BY_SAFETY_CHECK"
+          ],
+          "enumDescriptions": [
+            "Decision not specified.",
+            "No manual or automatic safety check fired.",
+            "One ore more safety checks fired."
+          ],
+          "type": "string"
+        },
+        "matchedBannedPhrase": {
+          "description": "The matched banned phrase if there was a match.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSearchSnippet": {
+      "description": "Search snippet details.",
+      "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSearchSnippet",
+      "properties": {
+        "documentTitle": {
+          "description": "Title of the enclosing document.",
+          "type": "string"
+        },
+        "documentUri": {
+          "description": "Uri for the document. Present if specified for the document.",
+          "type": "string"
+        },
+        "text": {
+          "description": "Text included in the prompt.",
           "type": "string"
         }
       },
@@ -7920,6 +8189,10 @@
           "description": "This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: ``` { \"telephony\": { \"caller_id\": \"+18558363987\" } } ```",
           "type": "object"
         },
+        "populateDataStoreConnectionSignals": {
+          "description": "Optional. If set to true and data stores are involved in serving the request then DetectIntentResponse.query_result.data_store_connection_signals will be filled with data that can help evaluations.",
+          "type": "boolean"
+        },
         "searchConfig": {
           "$ref": "GoogleCloudDialogflowCxV3SearchConfig",
           "description": "Optional. Search configuration for UCS search queries."
@@ -7965,6 +8238,10 @@
         "currentPage": {
           "$ref": "GoogleCloudDialogflowCxV3Page",
           "description": "The current Page. Some, not all fields are filled in this message, including but not limited to `name` and `display_name`."
+        },
+        "dataStoreConnectionSignals": {
+          "$ref": "GoogleCloudDialogflowCxV3DataStoreConnectionSignals",
+          "description": "Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate data_store_connection_quality_signals is set to true in the request."
         },
         "diagnosticInfo": {
           "additionalProperties": {
@@ -8593,7 +8870,7 @@
           "type": "string"
         },
         "retentionWindowDays": {
-          "description": "Retains the data for the specified number of days. User must set a value lower than Dialogflow's default 365d TTL (30 days for Agent Assist traffic), higher value will be ignored and use default. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use default TTL.",
+          "description": "Retains the data for the specified number of days. User must set a value lower than Dialogflow's default 365d TTL (30 days for Agent Assist traffic), higher value will be ignored and use default. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use default TTL. When data retention configuration is changed, it only applies to the data created after the change; the TTL of existing data created before the change stays intact.",
           "format": "int32",
           "type": "integer"
         }
@@ -8625,7 +8902,7 @@
           "type": "string"
         },
         "enableAudioRedaction": {
-          "description": "Enable audio redaction if it is true.",
+          "description": "Enable audio redaction if it is true. Note that this only redacts end-user audio data; Synthesised audio from the virtual agent is not redacted.",
           "type": "boolean"
         },
         "gcsBucket": {
@@ -9547,6 +9824,10 @@
           ],
           "type": "string"
         },
+        "oauthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig",
+          "description": "Optional. The OAuth configuration of the webhook. If specified, Dialogflow will initiate the OAuth client credential flow to exchange an access token from the 3rd party platform and put it in the auth header."
+        },
         "parameterMapping": {
           "additionalProperties": {
             "type": "string"
@@ -9570,6 +9851,22 @@
           "description": "The HTTP request headers to send together with webhook requests.",
           "type": "object"
         },
+        "serviceAgentAuth": {
+          "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
+          "enum": [
+            "SERVICE_AGENT_AUTH_UNSPECIFIED",
+            "NONE",
+            "ID_TOKEN",
+            "ACCESS_TOKEN"
+          ],
+          "enumDescriptions": [
+            "Service agent auth type unspecified. Default to ID_TOKEN.",
+            "No token used.",
+            "Use [ID token](https://cloud.google.com/docs/authentication/token-types#id) generated from service agent. This can be used to access Cloud Function and Cloud Run after you grant Invoker role to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`.",
+            "Use [access token](https://cloud.google.com/docs/authentication/token-types#access) generated from service agent. This can be used to access other Google Cloud APIs after you grant required roles to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`."
+          ],
+          "type": "string"
+        },
         "uri": {
           "description": "Required. The webhook URI for receiving POST requests. It must use https protocol.",
           "type": "string"
@@ -9591,6 +9888,32 @@
             "Represents a standard webhook.",
             "Represents a flexible webhook."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig": {
+      "description": "Represents configuration of OAuth client credential flow for 3rd party API authentication.",
+      "id": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig",
+      "properties": {
+        "clientId": {
+          "description": "Required. The client ID provided by the 3rd party platform.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Required. The client secret provided by the 3rd party platform.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Optional. The OAuth scopes to grant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tokenEndpoint": {
+          "description": "Required. The token endpoint provided by the 3rd party platform to exchange an access token.",
           "type": "string"
         }
       },
@@ -9829,6 +10152,10 @@
         "loggingSettings": {
           "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings",
           "description": "Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level."
+        },
+        "speechSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings",
+          "description": "Settings for speech to text detection. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level"
         }
       },
       "type": "object"
@@ -9863,6 +10190,34 @@
         },
         "enableStackdriverLogging": {
           "description": "If true, StackDriver logging is currently enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings": {
+      "description": "Define behaviors of speech to text detection.",
+      "id": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings",
+      "properties": {
+        "endpointerSensitivity": {
+          "description": "Sensitivity of the speech model that detects the end of speech. Scale from 0 to 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "models": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Mapping from language to Speech-to-Text model. The mapped Speech-to-Text model will be selected for requests from its corresponding language. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).",
+          "type": "object"
+        },
+        "noSpeechTimeout": {
+          "description": "Timeout before detecting no speech.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "useTimeoutBasedEndpointing": {
+          "description": "Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.",
           "type": "boolean"
         }
       },
@@ -11809,6 +12164,10 @@
           ],
           "type": "string"
         },
+        "oauthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig",
+          "description": "Optional. The OAuth configuration of the webhook. If specified, Dialogflow will initiate the OAuth client credential flow to exchange an access token from the 3rd party platform and put it in the auth header."
+        },
         "parameterMapping": {
           "additionalProperties": {
             "type": "string"
@@ -11832,6 +12191,22 @@
           "description": "The HTTP request headers to send together with webhook requests.",
           "type": "object"
         },
+        "serviceAgentAuth": {
+          "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
+          "enum": [
+            "SERVICE_AGENT_AUTH_UNSPECIFIED",
+            "NONE",
+            "ID_TOKEN",
+            "ACCESS_TOKEN"
+          ],
+          "enumDescriptions": [
+            "Service agent auth type unspecified. Default to ID_TOKEN.",
+            "No token used.",
+            "Use [ID token](https://cloud.google.com/docs/authentication/token-types#id) generated from service agent. This can be used to access Cloud Function and Cloud Run after you grant Invoker role to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`.",
+            "Use [access token](https://cloud.google.com/docs/authentication/token-types#access) generated from service agent. This can be used to access other Google Cloud APIs after you grant required roles to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`."
+          ],
+          "type": "string"
+        },
         "uri": {
           "description": "Required. The webhook URI for receiving POST requests. It must use https protocol.",
           "type": "string"
@@ -11853,6 +12228,32 @@
             "Represents a standard webhook.",
             "Represents a flexible webhook."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig": {
+      "description": "Represents configuration of OAuth client credential flow for 3rd party API authentication.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig",
+      "properties": {
+        "clientId": {
+          "description": "Required. The client ID provided by the 3rd party platform.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Required. The client secret provided by the 3rd party platform.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Optional. The OAuth scopes to grant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tokenEndpoint": {
+          "description": "Required. The token endpoint provided by the 3rd party platform to exchange an access token.",
           "type": "string"
         }
       },
