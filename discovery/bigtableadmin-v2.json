@@ -1817,6 +1817,229 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "authorizedViews": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new AuthorizedView in a table.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/authorizedViews",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.tables.authorizedViews.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "authorizedViewId": {
+                          "description": "Required. The id of the AuthorizedView to create. This AuthorizedView must not already exist. The `authorized_view_id` appended to `parent` forms the full AuthorizedView name of the form `projects/{project}/instances/{instance}/tables/{table}/authorizedView/{authorized_view}`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. This is the name of the table the AuthorizedView belongs to. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/authorizedViews",
+                      "request": {
+                        "$ref": "AuthorizedView"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Permanently deletes a specified AuthorizedView.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/authorizedViews/{authorizedViewsId}",
+                      "httpMethod": "DELETE",
+                      "id": "bigtableadmin.projects.instances.tables.authorizedViews.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "etag": {
+                          "description": "Optional. The current etag of the AuthorizedView. If an etag is provided and does not match the current etag of the AuthorizedView, deletion will be blocked and an ABORTED error will be returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The unique name of the AuthorizedView to be deleted. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets information from a specified AuthorizedView.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/authorizedViews/{authorizedViewsId}",
+                      "httpMethod": "GET",
+                      "id": "bigtableadmin.projects.instances.tables.authorizedViews.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The unique name of the requested AuthorizedView. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The resource_view to be applied to the returned AuthorizedView's fields. Default to BASIC.",
+                          "enum": [
+                            "RESPONSE_VIEW_UNSPECIFIED",
+                            "NAME_ONLY",
+                            "BASIC",
+                            "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Uses the default view for each method as documented in the request.",
+                            "Only populates `name`.",
+                            "Only populates the AuthorizedView's basic metadata. This includes: name, deletion_protection, etag.",
+                            "Populates every fields."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "AuthorizedView"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all AuthorizedViews from a specific table.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/authorizedViews",
+                      "httpMethod": "GET",
+                      "id": "bigtableadmin.projects.instances.tables.authorizedViews.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The value of `next_page_token` returned by a previous call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The unique name of the table for which AuthorizedViews should be listed. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The resource_view to be applied to the returned views' fields. Default to NAME_ONLY.",
+                          "enum": [
+                            "RESPONSE_VIEW_UNSPECIFIED",
+                            "NAME_ONLY",
+                            "BASIC",
+                            "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Uses the default view for each method as documented in the request.",
+                            "Only populates `name`.",
+                            "Only populates the AuthorizedView's basic metadata. This includes: name, deletion_protection, etag.",
+                            "Populates every fields."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/authorizedViews",
+                      "response": {
+                        "$ref": "ListAuthorizedViewsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates an AuthorizedView in a table.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/authorizedViews/{authorizedViewsId}",
+                      "httpMethod": "PATCH",
+                      "id": "bigtableadmin.projects.instances.tables.authorizedViews.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "ignoreWarnings": {
+                          "description": "Optional. If true, ignore the safety checks when updating the AuthorizedView.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Identifier. The name of this AuthorizedView. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. The list of fields to update. A mask specifying which fields in the AuthorizedView resource should be updated. This mask is relative to the AuthorizedView resource, not to the request message. A field will be overwritten if it is in the mask. If empty, all fields set in the request will be overwritten. A special value `*` means to overwrite all fields (including fields not set in the request).",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "request": {
+                        "$ref": "AuthorizedView"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             }
           }
@@ -1875,7 +2098,7 @@
       }
     }
   },
-  "revision": "20240221",
+  "revision": "20240306",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -1969,6 +2192,46 @@
             "Data writes. Example: CloudSQL Users create",
             "Data reads. Example: CloudSQL Users list"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuthorizedView": {
+      "description": "Placeholder for admin API work while we work out the internals.",
+      "id": "AuthorizedView",
+      "properties": {
+        "deletionProtection": {
+          "description": "Set to true to make the AuthorizedView protected against deletion. The parent Table and containing Instance cannot be deleted if an AuthorizedView has this bit set.",
+          "type": "boolean"
+        },
+        "etag": {
+          "description": "The etag for this AuthorizedView. If this is provided on update, it must match the server's etag. The server returns ABORTED error on a mismatched etag.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of this AuthorizedView. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`",
+          "type": "string"
+        },
+        "subsetView": {
+          "$ref": "GoogleBigtableAdminV2AuthorizedViewSubsetView",
+          "description": "An AuthorizedView permitting access to an explicit subset of a Table."
+        }
+      },
+      "type": "object"
+    },
+    "AutomatedBackupPolicy": {
+      "description": "Defines an automated backup policy for a table",
+      "id": "AutomatedBackupPolicy",
+      "properties": {
+        "frequency": {
+          "description": "Required. How frequently automated backups should occur. The only supported value at this time is 24 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "retentionPeriod": {
+          "description": "Required. How long the automated backups should be retained. The only supported value at this time is 3 days.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -2361,6 +2624,46 @@
       },
       "type": "object"
     },
+    "CreateAuthorizedViewMetadata": {
+      "description": "The metadata for the Operation returned by CreateAuthorizedView.",
+      "id": "CreateAuthorizedViewMetadata",
+      "properties": {
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "originalRequest": {
+          "$ref": "CreateAuthorizedViewRequest",
+          "description": "The request that prompted the initiation of this CreateInstance operation."
+        },
+        "requestTime": {
+          "description": "The time at which the original request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateAuthorizedViewRequest": {
+      "description": "The request for CreateAuthorizedView",
+      "id": "CreateAuthorizedViewRequest",
+      "properties": {
+        "authorizedView": {
+          "$ref": "AuthorizedView",
+          "description": "Required. The AuthorizedView to create."
+        },
+        "authorizedViewId": {
+          "description": "Required. The id of the AuthorizedView to create. This AuthorizedView must not already exist. The `authorized_view_id` appended to `parent` forms the full AuthorizedView name of the form `projects/{project}/instances/{instance}/tables/{table}/authorizedView/{authorized_view}`.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. This is the name of the table the AuthorizedView belongs to. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CreateBackupMetadata": {
       "description": "Metadata type for the operation returned by CreateBackup.",
       "id": "CreateBackupMetadata",
@@ -2655,6 +2958,51 @@
       },
       "type": "object"
     },
+    "GoogleBigtableAdminV2AuthorizedViewFamilySubsets": {
+      "description": "Subsets of a column family that are included in this AuthorizedView.",
+      "id": "GoogleBigtableAdminV2AuthorizedViewFamilySubsets",
+      "properties": {
+        "qualifierPrefixes": {
+          "description": "Prefixes for qualifiers to be included in the AuthorizedView. Every qualifier starting with one of these prefixes is included in the AuthorizedView. To provide access to all qualifiers, include the empty string as a prefix (\"\").",
+          "items": {
+            "format": "byte",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "qualifiers": {
+          "description": "Individual exact column qualifiers to be included in the AuthorizedView.",
+          "items": {
+            "format": "byte",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2AuthorizedViewSubsetView": {
+      "description": "Defines a simple AuthorizedView that is a subset of the underlying Table.",
+      "id": "GoogleBigtableAdminV2AuthorizedViewSubsetView",
+      "properties": {
+        "familySubsets": {
+          "additionalProperties": {
+            "$ref": "GoogleBigtableAdminV2AuthorizedViewFamilySubsets"
+          },
+          "description": "Map from column family name to the columns in this family to be included in the AuthorizedView.",
+          "type": "object"
+        },
+        "rowPrefixes": {
+          "description": "Row prefixes to be included in the AuthorizedView. To provide access to all rows, include the empty string as a prefix (\"\").",
+          "items": {
+            "format": "byte",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "HotTablet": {
       "description": "A tablet is a defined by a start and end key and is explained in https://cloud.google.com/bigtable/docs/overview#architecture and https://cloud.google.com/bigtable/docs/performance#optimization. A Hot tablet is a tablet that exhibits high average cpu usage during the time interval from start time to end time.",
       "id": "HotTablet",
@@ -2792,6 +3140,24 @@
         },
         "nextPageToken": {
           "description": "Set if not all app profiles could be returned in a single response. Pass this value to `page_token` in another request to get the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAuthorizedViewsResponse": {
+      "description": "Response message for google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews",
+      "id": "ListAuthorizedViewsResponse",
+      "properties": {
+        "authorizedViews": {
+          "description": "The AuthorizedViews present in the requested table.",
+          "items": {
+            "$ref": "AuthorizedView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Set if not all tables could be returned in a single response. Pass this value to `page_token` in another request to get the next page of results.",
           "type": "string"
         }
       },
@@ -2990,6 +3356,11 @@
         "update": {
           "$ref": "ColumnFamily",
           "description": "Update an existing column family to the specified schema, or fail if no column family exists with the given ID."
+        },
+        "updateMask": {
+          "description": "Optional. A mask specifying which fields (e.g. `gc_rule`) in the `update` mod should be updated, ignored for other modification types. If unset or empty, we treat it as updating `gc_rule` to be backward compatible.",
+          "format": "google-fieldmask",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3351,6 +3722,10 @@
       "description": "A collection of user data indexed by row, column, and timestamp. Each table is served using the resources of its parent cluster.",
       "id": "Table",
       "properties": {
+        "automatedBackupPolicy": {
+          "$ref": "AutomatedBackupPolicy",
+          "description": "If specified, automated backups are enabled for this table. Otherwise, automated backups are disabled."
+        },
         "changeStreamConfig": {
           "$ref": "ChangeStreamConfig",
           "description": "If specified, enable the change stream on this table. Otherwise, the change stream is disabled and the change stream is not retained."
@@ -3537,6 +3912,47 @@
       "description": "The metadata for the Operation returned by UpdateAppProfile.",
       "id": "UpdateAppProfileMetadata",
       "properties": {},
+      "type": "object"
+    },
+    "UpdateAuthorizedViewMetadata": {
+      "description": "Metadata for the google.longrunning.Operation returned by UpdateAuthorizedView.",
+      "id": "UpdateAuthorizedViewMetadata",
+      "properties": {
+        "finishTime": {
+          "description": "The time at which the operation failed or was completed successfully.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "originalRequest": {
+          "$ref": "UpdateAuthorizedViewRequest",
+          "description": "The request that prompted the initiation of this UpdateAuthorizedView operation."
+        },
+        "requestTime": {
+          "description": "The time at which the original request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateAuthorizedViewRequest": {
+      "description": "The request for UpdateAuthorizedView.",
+      "id": "UpdateAuthorizedViewRequest",
+      "properties": {
+        "authorizedView": {
+          "$ref": "AuthorizedView",
+          "description": "Required. The AuthorizedView to update. The `name` in `authorized_view` is used to identify the AuthorizedView. AuthorizedView name must in this format projects//instances//tables//authorizedViews/"
+        },
+        "ignoreWarnings": {
+          "description": "Optional. If true, ignore the safety checks when updating the AuthorizedView.",
+          "type": "boolean"
+        },
+        "updateMask": {
+          "description": "Optional. The list of fields to update. A mask specifying which fields in the AuthorizedView resource should be updated. This mask is relative to the AuthorizedView resource, not to the request message. A field will be overwritten if it is in the mask. If empty, all fields set in the request will be overwritten. A special value `*` means to overwrite all fields (including fields not set in the request).",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "UpdateClusterMetadata": {
