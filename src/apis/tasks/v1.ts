@@ -187,6 +187,10 @@ export namespace tasks_v1 {
      * Last modification time of the task (as a RFC 3339 timestamp).
      */
     updated?: string | null;
+    /**
+     * An absolute link to the task in the Google Tasks Web UI. This field is read-only.
+     */
+    webViewLink?: string | null;
   }
   export interface Schema$TaskList {
     /**
