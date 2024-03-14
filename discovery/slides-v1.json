@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20240305",
   "rootUrl": "https://slides.googleapis.com/",
   "schemas": {
     "AffineTransform": {
@@ -2130,6 +2130,10 @@
           "$ref": "Size",
           "description": "The size of the page element."
         },
+        "speakerSpotlight": {
+          "$ref": "SpeakerSpotlight",
+          "description": "A Speaker Spotlight."
+        },
         "table": {
           "$ref": "Table",
           "description": "A table page element."
@@ -3502,6 +3506,32 @@
         "color": {
           "$ref": "OpaqueColor",
           "description": "The color value of the solid fill."
+        }
+      },
+      "type": "object"
+    },
+    "SpeakerSpotlight": {
+      "description": "A PageElement kind representing a Speaker Spotlight.",
+      "id": "SpeakerSpotlight",
+      "properties": {
+        "speakerSpotlightProperties": {
+          "$ref": "SpeakerSpotlightProperties",
+          "description": "The properties of the Speaker Spotlight."
+        }
+      },
+      "type": "object"
+    },
+    "SpeakerSpotlightProperties": {
+      "description": "The properties of the SpeakerSpotlight.",
+      "id": "SpeakerSpotlightProperties",
+      "properties": {
+        "outline": {
+          "$ref": "Outline",
+          "description": "The outline of the Speaker Spotlight. If not set, it has no outline."
+        },
+        "shadow": {
+          "$ref": "Shadow",
+          "description": "The shadow of the Speaker Spotlight. If not set, it has no shadow."
         }
       },
       "type": "object"
