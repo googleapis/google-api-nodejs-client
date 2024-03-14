@@ -125,6 +125,19 @@ export namespace composer_v1 {
   }
 
   /**
+   * The policy for airflow metadata database retention.
+   */
+  export interface Schema$AirflowMetadataRetentionPolicyConfig {
+    /**
+     * Optional. How many days data should be retained for.
+     */
+    retentionDays?: number | null;
+    /**
+     * Optional. Retention can be either enabled or disabled.
+     */
+    retentionMode?: string | null;
+  }
+  /**
    * Allowed IP range with user-provided description.
    */
   export interface Schema$AllowedIpRange {
@@ -264,6 +277,10 @@ export namespace composer_v1 {
    * The configuration setting for Airflow database data retention mechanism.
    */
   export interface Schema$DataRetentionConfig {
+    /**
+     * Optional. The retention policy for airflow metadata database. Details: go/composer-database-retention-2
+     */
+    airflowMetadataRetentionConfig?: Schema$AirflowMetadataRetentionPolicyConfig;
     /**
      * Optional. The configuration settings for task logs retention
      */
