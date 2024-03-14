@@ -823,6 +823,10 @@ export namespace dns_v1beta2 {
      */
     managedZonesPerNetwork?: number | null;
     /**
+     * Maximum number of nameservers per delegation, meant to prevent abuse
+     */
+    nameserversPerDelegation?: number | null;
+    /**
      * Maximum allowed number of networks to which a privately scoped zone can be attached.
      */
     networksPerManagedZone?: number | null;
