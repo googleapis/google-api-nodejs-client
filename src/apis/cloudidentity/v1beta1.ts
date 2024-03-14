@@ -851,6 +851,84 @@ export namespace cloudidentity_v1beta1 {
     deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
   }
   /**
+   * Contains information about browser profiles reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1BrowserAttributes {
+    /**
+     * Represents the current state of the [Chrome browser attributes](https://cloud.google.com/access-context-manager/docs/browser-attributes) sent by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).
+     */
+    chromeBrowserInfo?: Schema$GoogleAppsCloudidentityDevicesV1BrowserInfo;
+    /**
+     * Chrome profile ID that is exposed by the Chrome API. It is unique for each device.
+     */
+    chromeProfileId?: string | null;
+    /**
+     * Timestamp in milliseconds since Epoch when the profile/gcm id was last synced.
+     */
+    lastProfileSyncTime?: string | null;
+  }
+  /**
+   * Browser-specific fields reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1). LINT.IfChange
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1BrowserInfo {
+    /**
+     * Output only. Browser's management state.
+     */
+    browserManagementState?: string | null;
+    /**
+     * Version of the request initiating browser.
+     */
+    browserVersion?: string | null;
+    /**
+     * Current state of [built-in DNS client](https://chromeenterprise.google/policies/#BuiltInDnsClientEnabled).
+     */
+    isBuiltInDnsClientEnabled?: boolean | null;
+    /**
+     * Current state of [bulk data analysis](https://chromeenterprise.google/policies/#OnBulkDataEntryEnterpriseConnector). Set to true if provider list from Chrome is non-empty.
+     */
+    isBulkDataEntryAnalysisEnabled?: boolean | null;
+    /**
+     * Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).
+     */
+    isChromeCleanupEnabled?: boolean | null;
+    /**
+     * Current state of [Chrome Remote Desktop app](https://chromeenterprise.google/policies/#URLBlocklist).
+     */
+    isChromeRemoteDesktopAppBlocked?: boolean | null;
+    /**
+     * Current state of [file download analysis](https://chromeenterprise.google/policies/#OnFileDownloadedEnterpriseConnector). Set to true if provider list from Chrome is non-empty.
+     */
+    isFileDownloadAnalysisEnabled?: boolean | null;
+    /**
+     * Current state of [file upload analysis](https://chromeenterprise.google/policies/#OnFileAttachedEnterpriseConnector). Set to true if provider list from Chrome is non-empty.
+     */
+    isFileUploadAnalysisEnabled?: boolean | null;
+    /**
+     * Current state of [real-time URL check](https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode). Set to true if provider list from Chrome is non-empty.
+     */
+    isRealtimeUrlCheckEnabled?: boolean | null;
+    /**
+     * Current state of [security event analysis](https://chromeenterprise.google/policies/#OnSecurityEventEnterpriseConnector). Set to true if provider list from Chrome is non-empty.
+     */
+    isSecurityEventAnalysisEnabled?: boolean | null;
+    /**
+     * Current state of [site isolation](https://chromeenterprise.google/policies/?policy=IsolateOrigins).
+     */
+    isSiteIsolationEnabled?: boolean | null;
+    /**
+     * Current state of [third-party blocking](https://chromeenterprise.google/policies/#ThirdPartyBlockingEnabled).
+     */
+    isThirdPartyBlockingEnabled?: boolean | null;
+    /**
+     * Current state of [password protection trigger](https://chromeenterprise.google/policies/#PasswordProtectionWarningTrigger).
+     */
+    passwordProtectionWarningTrigger?: string | null;
+    /**
+     * Current state of [Safe Browsing protection level](https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel).
+     */
+    safeBrowsingProtectionLevel?: string | null;
+  }
+  /**
    * Metadata for CancelWipeDevice LRO.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceMetadata {}
@@ -875,6 +953,64 @@ export namespace cloudidentity_v1beta1 {
      * Resultant DeviceUser object for the action.
      */
     deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
+  }
+  /**
+   * Stores information about a certificate.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CertificateAttributes {
+    /**
+     * The X.509 extension for CertificateTemplate.
+     */
+    certificateTemplate?: Schema$GoogleAppsCloudidentityDevicesV1CertificateTemplate;
+    /**
+     * The encoded certificate fingerprint.
+     */
+    fingerprint?: string | null;
+    /**
+     * The name of the issuer of this certificate.
+     */
+    issuer?: string | null;
+    /**
+     * Serial number of the certificate, Example: "123456789".
+     */
+    serialNumber?: string | null;
+    /**
+     * The subject name of this certificate.
+     */
+    subject?: string | null;
+    /**
+     * The certificate thumbprint.
+     */
+    thumbprint?: string | null;
+    /**
+     * Output only. Validation state of this certificate.
+     */
+    validationState?: string | null;
+    /**
+     * Certificate not valid at or after this timestamp.
+     */
+    validityExpirationTime?: string | null;
+    /**
+     * Certificate not valid before this timestamp.
+     */
+    validityStartTime?: string | null;
+  }
+  /**
+   * CertificateTemplate (v3 Extension in X.509).
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CertificateTemplate {
+    /**
+     * The template id of the template. Example: "1.3.6.1.4.1.311.21.8.15608621.11768144.5720724.16068415.6889630.81.2472537.7784047".
+     */
+    id?: string | null;
+    /**
+     * The Major version of the template. Example: 100.
+     */
+    majorVersion?: number | null;
+    /**
+     * The minor version of the template. Example: 12.
+     */
+    minorVersion?: number | null;
   }
   /**
    * Represents the state associated with an API client calling the Devices API. Resource representing ClientState and supports updates from API users
@@ -1019,6 +1155,10 @@ export namespace cloudidentity_v1beta1 {
      */
     encryptionState?: string | null;
     /**
+     * Output only. Attributes specific to [Endpoint Verification](https://cloud.google.com/endpoint-verification/docs/overview) devices.
+     */
+    endpointVerificationSpecificAttributes?: Schema$GoogleAppsCloudidentityDevicesV1EndpointVerificationSpecificAttributes;
+    /**
      * Host name of the device.
      */
     hostname?: string | null;
@@ -1131,6 +1271,23 @@ export namespace cloudidentity_v1beta1 {
      * Email address of the user registered on the device.
      */
     userEmail?: string | null;
+  }
+  /**
+   * Resource representing the [Endpoint Verification-specific attributes](https://cloud.google.com/endpoint-verification/docs/device-information) of a device.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1EndpointVerificationSpecificAttributes {
+    /**
+     * Additional signals reported by Endpoint Verification. It includes the following attributes: 1. Non-configurable attributes: hotfixes, av_installed, av_enabled, windows_domain_name, is_os_native_firewall_enabled, and is_secure_boot_enabled. 2. [Configurable attributes](https://cloud.google.com/endpoint-verification/docs/collect-config-attributes): file, folder, and binary attributes; registry entries; and properties in a plist.
+     */
+    additionalSignals?: {[key: string]: any} | null;
+    /**
+     * Details of browser profiles reported by Endpoint Verification.
+     */
+    browserAttributes?: Schema$GoogleAppsCloudidentityDevicesV1BrowserAttributes[];
+    /**
+     * Details of certificates.
+     */
+    certificateAttributes?: Schema$GoogleAppsCloudidentityDevicesV1CertificateAttributes[];
   }
   /**
    * Metadata for ListEndpointApps LRO.
