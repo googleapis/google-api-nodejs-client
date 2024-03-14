@@ -164,6 +164,27 @@ export namespace sqladmin_v1 {
     value?: string | null;
   }
   /**
+   * Acquire SSRS lease context.
+   */
+  export interface Schema$AcquireSsrsLeaseContext {
+    /**
+     * Lease duration needed for SSRS setup.
+     */
+    duration?: string | null;
+    /**
+     * The report database to be used for SSRS setup.
+     */
+    reportDatabase?: string | null;
+    /**
+     * The username to be used as the service login to connect to the report database for SSRS setup.
+     */
+    serviceLogin?: string | null;
+    /**
+     * The username to be used as the setup login to connect to the database server for SSRS setup.
+     */
+    setupLogin?: string | null;
+  }
+  /**
    * Specifies options for controlling advanced machine features.
    */
   export interface Schema$AdvancedMachineFeatures {
@@ -1067,6 +1088,15 @@ export namespace sqladmin_v1 {
     region?: string | null;
   }
   /**
+   * Request to acquire a lease for SSRS.
+   */
+  export interface Schema$InstancesAcquireSsrsLeaseRequest {
+    /**
+     * Contains details about the acquire SSRS lease operation.
+     */
+    acquireSsrsLeaseContext?: Schema$AcquireSsrsLeaseContext;
+  }
+  /**
    * Database instance clone request.
    */
   export interface Schema$InstancesCloneRequest {
@@ -1390,6 +1420,10 @@ export namespace sqladmin_v1 {
    * An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.
    */
   export interface Schema$Operation {
+    /**
+     * The context for acquire SSRS lease operation, if applicable.
+     */
+    acquireSsrsLeaseContext?: Schema$AcquireSsrsLeaseContext;
     /**
      * An Admin API warning message.
      */
@@ -1742,6 +1776,10 @@ export namespace sqladmin_v1 {
      */
     edition?: string | null;
     /**
+     * Optional. Configuration to enable Cloud SQL Vertex AI Integration
+     */
+    enableGoogleMlIntegration?: boolean | null;
+    /**
      * Insights configuration, for now relevant only for Postgres.
      */
     insightsConfig?: Schema$InsightsConfig;
@@ -1833,6 +1871,15 @@ export namespace sqladmin_v1 {
     type?: string | null;
   }
   /**
+   * Response for the acquire SSRS lease request.
+   */
+  export interface Schema$SqlInstancesAcquireSsrsLeaseResponse {
+    /**
+     * The unique identifier for this operation.
+     */
+    operationId?: string | null;
+  }
+  /**
    * Instance get disk shrink config response.
    */
   export interface Schema$SqlInstancesGetDiskShrinkConfigResponse {
@@ -1861,6 +1908,15 @@ export namespace sqladmin_v1 {
      * Timestamp, identifies the latest recovery time of the source instance.
      */
     latestRecoveryTime?: string | null;
+  }
+  /**
+   * Response for the release SSRS lease request.
+   */
+  export interface Schema$SqlInstancesReleaseSsrsLeaseResponse {
+    /**
+     * The unique identifier for this operation.
+     */
+    operationId?: string | null;
   }
   /**
    * Reschedule options for maintenance windows.
@@ -1908,6 +1964,10 @@ export namespace sqladmin_v1 {
      * External sync mode
      */
     syncMode?: string | null;
+    /**
+     * Optional. Parallel level for initial data sync. Currently only applicable for PostgreSQL.
+     */
+    syncParallelLevel?: string | null;
     /**
      * Flag to enable verifying connection only
      */
@@ -3640,6 +3700,102 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    acquireSsrsLease(
+      params: Params$Resource$Instances$Acquiressrslease,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    acquireSsrsLease(
+      params?: Params$Resource$Instances$Acquiressrslease,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SqlInstancesAcquireSsrsLeaseResponse>;
+    acquireSsrsLease(
+      params: Params$Resource$Instances$Acquiressrslease,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    acquireSsrsLease(
+      params: Params$Resource$Instances$Acquiressrslease,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesAcquireSsrsLeaseResponse>,
+      callback: BodyResponseCallback<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+    ): void;
+    acquireSsrsLease(
+      params: Params$Resource$Instances$Acquiressrslease,
+      callback: BodyResponseCallback<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+    ): void;
+    acquireSsrsLease(
+      callback: BodyResponseCallback<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+    ): void;
+    acquireSsrsLease(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Acquiressrslease
+        | BodyResponseCallback<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Acquiressrslease;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Acquiressrslease;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/acquireSsrsLease'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SqlInstancesAcquireSsrsLeaseResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SqlInstancesAcquireSsrsLeaseResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in.
      *
      * @param params - Parameters for request
@@ -4941,6 +5097,102 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Release a lease for the setup of SQL Server Reporting Services (SSRS).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    releaseSsrsLease(
+      params: Params$Resource$Instances$Releasessrslease,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    releaseSsrsLease(
+      params?: Params$Resource$Instances$Releasessrslease,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SqlInstancesReleaseSsrsLeaseResponse>;
+    releaseSsrsLease(
+      params: Params$Resource$Instances$Releasessrslease,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    releaseSsrsLease(
+      params: Params$Resource$Instances$Releasessrslease,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesReleaseSsrsLeaseResponse>,
+      callback: BodyResponseCallback<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+    ): void;
+    releaseSsrsLease(
+      params: Params$Resource$Instances$Releasessrslease,
+      callback: BodyResponseCallback<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+    ): void;
+    releaseSsrsLease(
+      callback: BodyResponseCallback<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+    ): void;
+    releaseSsrsLease(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Releasessrslease
+        | BodyResponseCallback<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Releasessrslease;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Releasessrslease;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/releaseSsrsLease'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SqlInstancesReleaseSsrsLeaseResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SqlInstancesReleaseSsrsLeaseResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes all client certificates and generates a new server SSL certificate for the instance.
      *
      * @param params - Parameters for request
@@ -5720,6 +5972,22 @@ export namespace sqladmin_v1 {
     }
   }
 
+  export interface Params$Resource$Instances$Acquiressrslease
+    extends StandardParameters {
+    /**
+     * Required. Cloud SQL instance ID. This doesn't include the project ID. It's composed of lowercase letters, numbers, and hyphens, and it must start with a letter. The total length must be 98 characters or less (Example: instance-id).
+     */
+    instance?: string;
+    /**
+     * Required. Project ID of the project that contains the instance (Example: project-id).
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstancesAcquireSsrsLeaseRequest;
+  }
   export interface Params$Resource$Instances$Addserverca
     extends StandardParameters {
     /**
@@ -5928,6 +6196,17 @@ export namespace sqladmin_v1 {
      * Request body metadata
      */
     requestBody?: Schema$InstancesReencryptRequest;
+  }
+  export interface Params$Resource$Instances$Releasessrslease
+    extends StandardParameters {
+    /**
+     * Required. The Cloud SQL instance ID. This doesn't include the project ID. The instance ID contains lowercase letters, numbers, and hyphens, and it must start with a letter. This ID can have a maximum length of 98 characters.
+     */
+    instance?: string;
+    /**
+     * Required. The project ID that contains the instance.
+     */
+    project?: string;
   }
   export interface Params$Resource$Instances$Resetsslconfig
     extends StandardParameters {

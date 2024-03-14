@@ -608,6 +608,41 @@
     },
     "instances": {
       "methods": {
+        "acquireSsrsLease": {
+          "description": "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
+          "flatPath": "v1/projects/{project}/instances/{instance}/acquireSsrsLease",
+          "httpMethod": "POST",
+          "id": "sql.instances.acquireSsrsLease",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This doesn't include the project ID. It's composed of lowercase letters, numbers, and hyphens, and it must start with a letter. The total length must be 98 characters or less (Example: instance-id).",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance (Example: project-id).",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/projects/{project}/instances/{instance}/acquireSsrsLease",
+          "request": {
+            "$ref": "InstancesAcquireSsrsLeaseRequest"
+          },
+          "response": {
+            "$ref": "SqlInstancesAcquireSsrsLeaseResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
         "addServerCa": {
           "description": "Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in.",
           "flatPath": "v1/projects/{project}/instances/{instance}/addServerCa",
@@ -1114,6 +1149,38 @@
           },
           "response": {
             "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "releaseSsrsLease": {
+          "description": "Release a lease for the setup of SQL Server Reporting Services (SSRS).",
+          "flatPath": "v1/projects/{project}/instances/{instance}/releaseSsrsLease",
+          "httpMethod": "POST",
+          "id": "sql.instances.releaseSsrsLease",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. The Cloud SQL instance ID. This doesn't include the project ID. The instance ID contains lowercase letters, numbers, and hyphens, and it must start with a letter. This ID can have a maximum length of 98 characters.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. The project ID that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/projects/{project}/instances/{instance}/releaseSsrsLease",
+          "response": {
+            "$ref": "SqlInstancesReleaseSsrsLeaseResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -2200,7 +2267,7 @@
       }
     }
   },
-  "revision": "20240219",
+  "revision": "20240304",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2222,6 +2289,30 @@
         },
         "value": {
           "description": "The allowlisted value for the access control list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AcquireSsrsLeaseContext": {
+      "description": "Acquire SSRS lease context.",
+      "id": "AcquireSsrsLeaseContext",
+      "properties": {
+        "duration": {
+          "description": "Lease duration needed for SSRS setup.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "reportDatabase": {
+          "description": "The report database to be used for SSRS setup.",
+          "type": "string"
+        },
+        "serviceLogin": {
+          "description": "The username to be used as the service login to connect to the report database for SSRS setup.",
+          "type": "string"
+        },
+        "setupLogin": {
+          "description": "The username to be used as the setup login to connect to the database server for SSRS setup.",
           "type": "string"
         }
       },
@@ -2650,6 +2741,10 @@
             "MYSQL_8_0_34",
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
+            "MYSQL_8_0_37",
+            "MYSQL_8_0_38",
+            "MYSQL_8_0_39",
+            "MYSQL_8_0_40",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -2696,6 +2791,10 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -2728,6 +2827,10 @@
             "The database major version is MySQL 8.0 and the minor version is 34.",
             "The database major version is MySQL 8.0 and the minor version is 35.",
             "The database major version is MySQL 8.0 and the minor version is 36.",
+            "The database major version is MySQL 8.0 and the minor version is 37.",
+            "The database major version is MySQL 8.0 and the minor version is 38.",
+            "The database major version is MySQL 8.0 and the minor version is 39.",
+            "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -2924,6 +3027,10 @@
             "MYSQL_8_0_34",
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
+            "MYSQL_8_0_37",
+            "MYSQL_8_0_38",
+            "MYSQL_8_0_39",
+            "MYSQL_8_0_40",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -2970,6 +3077,10 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3002,6 +3113,10 @@
             "The database major version is MySQL 8.0 and the minor version is 34.",
             "The database major version is MySQL 8.0 and the minor version is 35.",
             "The database major version is MySQL 8.0 and the minor version is 36.",
+            "The database major version is MySQL 8.0 and the minor version is 37.",
+            "The database major version is MySQL 8.0 and the minor version is 38.",
+            "The database major version is MySQL 8.0 and the minor version is 39.",
+            "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -3618,6 +3733,10 @@
               "MYSQL_8_0_34",
               "MYSQL_8_0_35",
               "MYSQL_8_0_36",
+              "MYSQL_8_0_37",
+              "MYSQL_8_0_38",
+              "MYSQL_8_0_39",
+              "MYSQL_8_0_40",
               "SQLSERVER_2019_STANDARD",
               "SQLSERVER_2019_ENTERPRISE",
               "SQLSERVER_2019_EXPRESS",
@@ -3664,6 +3783,10 @@
               false,
               false,
               false,
+              false,
+              false,
+              false,
+              false,
               false
             ],
             "enumDescriptions": [
@@ -3696,6 +3819,10 @@
               "The database major version is MySQL 8.0 and the minor version is 34.",
               "The database major version is MySQL 8.0 and the minor version is 35.",
               "The database major version is MySQL 8.0 and the minor version is 36.",
+              "The database major version is MySQL 8.0 and the minor version is 37.",
+              "The database major version is MySQL 8.0 and the minor version is 38.",
+              "The database major version is MySQL 8.0 and the minor version is 39.",
+              "The database major version is MySQL 8.0 and the minor version is 40.",
               "The database version is SQL Server 2019 Standard.",
               "The database version is SQL Server 2019 Enterprise.",
               "The database version is SQL Server 2019 Express.",
@@ -3992,6 +4119,17 @@
         "region": {
           "description": "The region of the Cloud SQL instance being referenced.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstancesAcquireSsrsLeaseRequest": {
+      "description": "Request to acquire a lease for SSRS.",
+      "id": "InstancesAcquireSsrsLeaseRequest",
+      "properties": {
+        "acquireSsrsLeaseContext": {
+          "$ref": "AcquireSsrsLeaseContext",
+          "description": "Contains details about the acquire SSRS lease operation."
         }
       },
       "type": "object"
@@ -4419,6 +4557,10 @@
       "description": "An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.",
       "id": "Operation",
       "properties": {
+        "acquireSsrsLeaseContext": {
+          "$ref": "AcquireSsrsLeaseContext",
+          "description": "The context for acquire SSRS lease operation, if applicable."
+        },
         "apiWarning": {
           "$ref": "ApiWarning",
           "description": "An Admin API warning message."
@@ -4498,7 +4640,9 @@
             "LOG_CLEANUP",
             "AUTO_RESTART",
             "REENCRYPT",
-            "SWITCHOVER"
+            "SWITCHOVER",
+            "ACQUIRE_SSRS_LEASE",
+            "RELEASE_SSRS_LEASE"
           ],
           "enumDeprecated": [
             false,
@@ -4534,6 +4678,8 @@
             true,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -4580,7 +4726,9 @@
             "Recovers logs from an instance's old data disk.",
             "Performs auto-restart of an HA-enabled Cloud SQL database for auto recovery.",
             "Re-encrypts CMEK instances with latest key version.",
-            "Switches over to replica instance from primary."
+            "Switches over to replica instance from primary.",
+            "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
+            "Release a lease for the setup of SQL Server Reporting Services (SSRS)."
           ],
           "type": "string"
         },
@@ -5062,6 +5210,10 @@
           ],
           "type": "string"
         },
+        "enableGoogleMlIntegration": {
+          "description": "Optional. Configuration to enable Cloud SQL Vertex AI Integration",
+          "type": "boolean"
+        },
         "insightsConfig": {
           "$ref": "InsightsConfig",
           "description": "Insights configuration, for now relevant only for Postgres."
@@ -5279,6 +5431,17 @@
       },
       "type": "object"
     },
+    "SqlInstancesAcquireSsrsLeaseResponse": {
+      "description": "Response for the acquire SSRS lease request.",
+      "id": "SqlInstancesAcquireSsrsLeaseResponse",
+      "properties": {
+        "operationId": {
+          "description": "The unique identifier for this operation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SqlInstancesGetDiskShrinkConfigResponse": {
       "description": "Instance get disk shrink config response.",
       "id": "SqlInstancesGetDiskShrinkConfigResponse",
@@ -5310,6 +5473,17 @@
         "latestRecoveryTime": {
           "description": "Timestamp, identifies the latest recovery time of the source instance.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlInstancesReleaseSsrsLeaseResponse": {
+      "description": "Response for the release SSRS lease request.",
+      "id": "SqlInstancesReleaseSsrsLeaseResponse",
+      "properties": {
+        "operationId": {
+          "description": "The unique identifier for this operation.",
           "type": "string"
         }
       },
@@ -5396,6 +5570,22 @@
             "Unknown external sync mode, will be defaulted to ONLINE mode",
             "Online external sync will set up replication after initial data external sync",
             "Offline external sync only dumps and loads a one-time snapshot of the primary instance's data"
+          ],
+          "type": "string"
+        },
+        "syncParallelLevel": {
+          "description": "Optional. Parallel level for initial data sync. Currently only applicable for PostgreSQL.",
+          "enum": [
+            "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED",
+            "MIN",
+            "OPTIMAL",
+            "MAX"
+          ],
+          "enumDescriptions": [
+            "Unknown sync parallel level. Will be defaulted to OPTIMAL.",
+            "Minimal parallel level.",
+            "Optimal parallel level.",
+            "Maximum parallel level."
           ],
           "type": "string"
         },
