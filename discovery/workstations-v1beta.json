@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20240130",
+  "revision": "20240301",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1212,6 +1212,33 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BoostConfig": {
+      "description": "A configuration that workstations can boost to.",
+      "id": "BoostConfig",
+      "properties": {
+        "accelerators": {
+          "description": "Optional. A list of the type and count of accelerator cards attached to the boost instance. Defaults to `none`.",
+          "items": {
+            "$ref": "Accelerator"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Optional. Required. The id to be used for the boost config.",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Optional. The type of machine that boosted VM instances will use—for example, `e2-standard-4`. For more information about machine types that Cloud Workstations supports, see the list of [available machine types](https://cloud.google.com/workstations/docs/available-machine-types). Defaults to `e2-standard-4`.",
+          "type": "string"
+        },
+        "poolSize": {
+          "description": "Optional. The number of boost VMs that the system should keep idle so that workstations can be boosted quickly. Defaults to `0`.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1349,6 +1376,13 @@
           },
           "type": "array"
         },
+        "boostConfigs": {
+          "description": "Optional. A list of the boost configurations that workstations created using this workstation configuration are allowed to use.",
+          "items": {
+            "$ref": "BoostConfig"
+          },
+          "type": "array"
+        },
         "bootDiskSizeGb": {
           "description": "Optional. The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB.",
           "format": "int32",
@@ -1367,7 +1401,7 @@
           "type": "boolean"
         },
         "enableNestedVirtualization": {
-          "description": "Optional. Whether to enable nested virtualization on Cloud Workstations VMs created under this workstation configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on workstation configurations with accelerators. * **Operating System**: Because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image.",
+          "description": "Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on workstation configurations with accelerators. * **Operating System**: Because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image.",
           "type": "boolean"
         },
         "machineType": {
@@ -1434,7 +1468,7 @@
       "type": "object"
     },
     "GceRegionalPersistentDisk": {
-      "description": "A PersistentDirectory backed by a Compute Engine regional persistent disk. The persistent_directories field is repeated, but it may contain only one entry. It creates a [persistent disk](https://cloud.google.com/compute/docs/disks/persistent-disks) that mounts to the workstation VM at `/home` when the session starts and detaches when the session ends. If this field is empty, workstations created with this configuration do not have a persistent home directory.",
+      "description": "A Persistent Directory backed by a Compute Engine regional persistent disk. The persistent_directories field is repeated, but it may contain only one entry. It creates a [persistent disk](https://cloud.google.com/compute/docs/disks/persistent-disks) that mounts to the workstation VM at `/home` when the session starts and detaches when the session ends. If this field is empty, workstations created with this configuration do not have a persistent home directory.",
       "id": "GceRegionalPersistentDisk",
       "properties": {
         "diskType": {
@@ -1872,6 +1906,10 @@
       "description": "Request message for StartWorkstation.",
       "id": "StartWorkstationRequest",
       "properties": {
+        "boostConfig": {
+          "description": "Optional. If set, the workstation starts using the boost configuration with the specified ID.",
+          "type": "string"
+        },
         "etag": {
           "description": "Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
           "type": "string"
@@ -2192,7 +2230,7 @@
           "type": "string"
         },
         "disableTcpConnections": {
-          "description": "Optional. Disables support for plain TCP connections in the workstation. By default the service supports TCP connections via a websocket relay. Setting this option to true disables that relay, which prevents the usage of services that require plain tcp connections, such as ssh. When enabled, all communication must occur over https or wss.",
+          "description": "Optional. Disables support for plain TCP connections in the workstation. By default the service supports TCP connections through a websocket relay. Setting this option to true disables that relay, which prevents the usage of services that require plain TCP connections, such as SSH. When enabled, all communication must occur over HTTPS or WSS.",
           "type": "boolean"
         },
         "displayName": {
