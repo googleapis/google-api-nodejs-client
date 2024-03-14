@@ -2350,7 +2350,7 @@ export namespace file_v1 {
   export interface Params$Resource$Projects$Locations$Instances$Revert
     extends StandardParameters {
     /**
-     * Required. `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`. The resource name of the instance, in the format
+     * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      */
     name?: string;
 

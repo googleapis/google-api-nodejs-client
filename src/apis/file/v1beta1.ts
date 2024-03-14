@@ -496,7 +496,7 @@ export namespace file_v1beta1 {
      */
     description?: string | null;
     /**
-     * Directory Services configuration for Kerberos-based authentication. Should only be set if protocol is "NFS_V4_1".
+     * Optional. Directory Services configuration for Kerberos-based authentication. Should only be set if protocol is "NFS_V4_1".
      */
     directoryServices?: Schema$DirectoryServicesConfig;
     /**
@@ -680,7 +680,7 @@ export namespace file_v1beta1 {
     name?: string | null;
   }
   /**
-   * LINT.IfChange Defines policies to service maintenance events.
+   * Defines policies to service maintenance events.
    */
   export interface Schema$MaintenancePolicy {
     /**
@@ -730,11 +730,11 @@ export namespace file_v1beta1 {
    */
   export interface Schema$ManagedActiveDirectoryConfig {
     /**
-     * The computer name is used as a prefix to the mount remote target. Example: if the computer_name is `my-computer`, the mount command will look like: `$mount -o vers=4,sec=krb5 my-computer.filestore.:`.
+     * Required. The computer name is used as a prefix to the mount remote target. Example: if the computer is `my-computer`, the mount command will look like: `$mount -o vers=4.1,sec=krb5 my-computer.filestore.: `.
      */
     computer?: string | null;
     /**
-     * Fully qualified domain name.
+     * Required. The domain resource name, in the format `projects/{project_id\}/locations/global/domains/{domain\}`.
      */
     domain?: string | null;
   }
@@ -850,6 +850,10 @@ export namespace file_v1beta1 {
      */
     verb?: string | null;
   }
+  /**
+   * PromoteReplicaRequest promotes a Filestore standby instance (replica).
+   */
+  export interface Schema$PromoteReplicaRequest {}
   /**
    * RestoreInstanceRequest restores an existing instance's file share from a backup.
    */
@@ -2211,6 +2215,94 @@ export namespace file_v1beta1 {
     }
 
     /**
+     * Promote an standby instance (replica).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    promoteReplica(
+      params: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    promoteReplica(
+      params?: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    promoteReplica(
+      params: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    promoteReplica(
+      params: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    promoteReplica(
+      params: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    promoteReplica(callback: BodyResponseCallback<Schema$Operation>): void;
+    promoteReplica(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Promotereplica
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Promotereplica;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Promotereplica;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:promoteReplica').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Restores an existing instance's file share from a backup. The capacity of the instance needs to be equal to or larger than the capacity of the backup (and also equal to or larger than the minimum capacity of the tier).
      *
      * @param params - Parameters for request
@@ -2449,7 +2541,7 @@ export namespace file_v1beta1 {
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "file_shares" * "labels"
+     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "directory_services" * "file_shares" * "labels"
      */
     updateMask?: string;
 
@@ -2457,6 +2549,18 @@ export namespace file_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Promotereplica
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PromoteReplicaRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Restore
     extends StandardParameters {
@@ -2473,7 +2577,7 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Revert
     extends StandardParameters {
     /**
-     * Required. `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`. The resource name of the instance, in the format
+     * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      */
     name?: string;
 
