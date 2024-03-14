@@ -340,6 +340,45 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaAddLocalInventoriesResponse {}
   /**
+   * Project level alert config.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaAlertConfig {
+    /**
+     * Alert policies for a customer. They must be unique by [AlertPolicy.alert_group]
+     */
+    alertPolicies?: Schema$GoogleCloudRetailV2alphaAlertConfigAlertPolicy[];
+    /**
+     * Required. Immutable. The name of the AlertConfig singleton resource. Format: projects/x/alertConfig
+     */
+    name?: string | null;
+  }
+  /**
+   * Alert policy for a customer.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaAlertConfigAlertPolicy {
+    /**
+     * The feature that provides alerting capability. Supported value is only `search-data-quality` for now.
+     */
+    alertGroup?: string | null;
+    /**
+     * The enrollment status of a customer.
+     */
+    enrollStatus?: string | null;
+    /**
+     * Recipients for the alert policy. One alert policy should not exceed 20 recipients.
+     */
+    recipients?: Schema$GoogleCloudRetailV2alphaAlertConfigAlertPolicyRecipient[];
+  }
+  /**
+   * Recipient contact information.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaAlertConfigAlertPolicyRecipient {
+    /**
+     * Email address of the recipient.
+     */
+    emailAddress?: string | null;
+  }
+  /**
    * Catalog level attribute config.
    */
   export interface Schema$GoogleCloudRetailV2alphaAttributesConfig {
@@ -4103,6 +4142,99 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Get the AlertConfig of the requested project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAlertConfig(
+      params: Params$Resource$Projects$Getalertconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAlertConfig(
+      params?: Params$Resource$Projects$Getalertconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaAlertConfig>;
+    getAlertConfig(
+      params: Params$Resource$Projects$Getalertconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAlertConfig(
+      params: Params$Resource$Projects$Getalertconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+    ): void;
+    getAlertConfig(
+      params: Params$Resource$Projects$Getalertconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+    ): void;
+    getAlertConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+    ): void;
+    getAlertConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getalertconfig
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaAlertConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getalertconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getalertconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaAlertConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaAlertConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the LoggingConfig of the requested project.
      *
      * @param params - Parameters for request
@@ -4385,6 +4517,99 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Update the alert config of the requested project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAlertConfig(
+      params: Params$Resource$Projects$Updatealertconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAlertConfig(
+      params?: Params$Resource$Projects$Updatealertconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaAlertConfig>;
+    updateAlertConfig(
+      params: Params$Resource$Projects$Updatealertconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAlertConfig(
+      params: Params$Resource$Projects$Updatealertconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+    ): void;
+    updateAlertConfig(
+      params: Params$Resource$Projects$Updatealertconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+    ): void;
+    updateAlertConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+    ): void;
+    updateAlertConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updatealertconfig
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaAlertConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaAlertConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updatealertconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Updatealertconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaAlertConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaAlertConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the LoggingConfig of the requested project.
      *
      * @param params - Parameters for request
@@ -4490,6 +4715,13 @@ export namespace retail_v2alpha {
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaEnrollSolutionRequest;
   }
+  export interface Params$Resource$Projects$Getalertconfig
+    extends StandardParameters {
+    /**
+     * Required. Full AlertConfig resource name. Format: projects/{project_number\}/alertConfig
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Getloggingconfig
     extends StandardParameters {
     /**
@@ -4510,6 +4742,22 @@ export namespace retail_v2alpha {
      * Required. Full resource name of parent. Format: `projects/{project_number_or_id\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Updatealertconfig
+    extends StandardParameters {
+    /**
+     * Required. Immutable. The name of the AlertConfig singleton resource. Format: projects/x/alertConfig
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided AlertConfig to update. If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaAlertConfig;
   }
   export interface Params$Resource$Projects$Updateloggingconfig
     extends StandardParameters {
