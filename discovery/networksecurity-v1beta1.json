@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20240208",
+  "revision": "20240229",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -3534,6 +3534,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "disabled": {
+          "description": "Optional. Whether the association is disabled. True indicates that traffic won't be intercepted",
+          "type": "boolean"
         },
         "firewallEndpoint": {
           "description": "Required. The URL of the FirewallEndpoint that is being associated.",

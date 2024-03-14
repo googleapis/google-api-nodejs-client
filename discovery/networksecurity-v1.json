@@ -401,6 +401,188 @@
                 }
               }
             },
+            "firewallEndpoints": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new FirewallEndpoint in a given project and location.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.organizations.locations.firewallEndpoints.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "firewallEndpointId": {
+                      "description": "Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/firewallEndpoints",
+                  "request": {
+                    "$ref": "FirewallEndpoint"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single Endpoint.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.organizations.locations.firewallEndpoints.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single Endpoint.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.organizations.locations.firewallEndpoints.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "FirewallEndpoint"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists FirewallEndpoints in a given project and location.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.organizations.locations.firewallEndpoints.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListEndpointsRequest",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/firewallEndpoints",
+                  "response": {
+                    "$ref": "ListFirewallEndpointsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a single Endpoint.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.organizations.locations.firewallEndpoints.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. name of resource",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "FirewallEndpoint"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -517,6 +699,330 @@
                   "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "securityProfileGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new SecurityProfileGroup in a given organization and location.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfileGroups",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.organizations.locations.securityProfileGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the SecurityProfileGroup. Must be in the format `projects|organizations/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "securityProfileGroupId": {
+                      "description": "Required. Short name of the SecurityProfileGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. \"security_profile_group1\".",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/securityProfileGroups",
+                  "request": {
+                    "$ref": "SecurityProfileGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single SecurityProfileGroup.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfileGroups/{securityProfileGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.organizations.locations.securityProfileGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the SecurityProfileGroup to delete. Must be in the format `projects|organizations/*/locations/{location}/securityProfileGroups/{security_profile_group}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/securityProfileGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single SecurityProfileGroup.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfileGroups/{securityProfileGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.organizations.locations.securityProfileGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the SecurityProfileGroup to get. Must be in the format `projects|organizations/*/locations/{location}/securityProfileGroups/{security_profile_group}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/securityProfileGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "SecurityProfileGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists SecurityProfileGroups in a given organization and location.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfileGroups",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.organizations.locations.securityProfileGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of SecurityProfileGroups to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project or organization and location from which the SecurityProfileGroups should be listed, specified in the format `projects|organizations/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/securityProfileGroups",
+                  "response": {
+                    "$ref": "ListSecurityProfileGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single SecurityProfileGroup.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfileGroups/{securityProfileGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.organizations.locations.securityProfileGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfileGroups/{security_profile_group}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/securityProfileGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the SecurityProfileGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "SecurityProfileGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "securityProfiles": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new SecurityProfile in a given organization and location.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfiles",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.organizations.locations.securityProfiles.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the SecurityProfile. Must be in the format `projects|organizations/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "securityProfileId": {
+                      "description": "Required. Short name of the SecurityProfile resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. \"security_profile1\".",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/securityProfiles",
+                  "request": {
+                    "$ref": "SecurityProfile"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single SecurityProfile.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfiles/{securityProfilesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.organizations.locations.securityProfiles.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the SecurityProfile to delete. Must be in the format `projects|organizations/*/locations/{location}/securityProfiles/{security_profile_id}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/securityProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single SecurityProfile.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfiles/{securityProfilesId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.organizations.locations.securityProfiles.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the SecurityProfile to get. Must be in the format `projects|organizations/*/locations/{location}/securityProfiles/{security_profile_id}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/securityProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "SecurityProfile"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists SecurityProfiles in a given organization and location.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfiles",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.organizations.locations.securityProfiles.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of SecurityProfiles to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project or organization and location from which the SecurityProfiles should be listed, specified in the format `projects|organizations/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/securityProfiles",
+                  "response": {
+                    "$ref": "ListSecurityProfilesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single SecurityProfile.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/securityProfiles/{securityProfilesId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.organizations.locations.securityProfiles.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfiles/{security_profile}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/securityProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the SecurityProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "SecurityProfile"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1460,6 +1966,188 @@
                   },
                   "response": {
                     "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "firewallEndpointAssociations": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new FirewallEndpointAssociation in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpointAssociations",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.firewallEndpointAssociations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "firewallEndpointAssociationId": {
+                      "description": "Optional. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_association_id from the method_signature of Create RPC.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/firewallEndpointAssociations",
+                  "request": {
+                    "$ref": "FirewallEndpointAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single FirewallEndpointAssociation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpointAssociations/{firewallEndpointAssociationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.firewallEndpointAssociations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/firewallEndpointAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single FirewallEndpointAssociation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpointAssociations/{firewallEndpointAssociationsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.firewallEndpointAssociations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/firewallEndpointAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "FirewallEndpointAssociation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Associations in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpointAssociations",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.firewallEndpointAssociations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListAssociationsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/firewallEndpointAssociations",
+                  "response": {
+                    "$ref": "ListFirewallEndpointAssociationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a single FirewallEndpointAssociation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpointAssociations/{firewallEndpointAssociationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.firewallEndpointAssociations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. name of resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/firewallEndpointAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Association resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "FirewallEndpointAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2474,7 +3162,7 @@
       }
     }
   },
-  "revision": "20240130",
+  "revision": "20240306",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -2753,6 +3441,172 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallEndpoint": {
+      "description": "Message describing Endpoint object",
+      "id": "FirewallEndpoint",
+      "properties": {
+        "associatedNetworks": {
+          "deprecated": true,
+          "description": "Output only. List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "associations": {
+          "description": "Output only. List of FirewallEndpointAssociations that are associated to this endpoint. An association will only appear in this list after traffic routing is fully configured.",
+          "items": {
+            "$ref": "FirewallEndpointAssociationReference"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "billingProjectId": {
+          "description": "Required. Project to bill on endpoint uptime usage.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the firewall endpoint. Max length 2048 characters.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. name of resource",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. Current state of the endpoint.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "INACTIVE"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Being created.",
+            "Processing configuration updates.",
+            "Being deleted.",
+            "Down or in an error state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallEndpointAssociation": {
+      "description": "Message describing Association object",
+      "id": "FirewallEndpointAssociation",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "disabled": {
+          "description": "Optional. Whether the association is disabled. True indicates that traffic won't be intercepted",
+          "type": "boolean"
+        },
+        "firewallEndpoint": {
+          "description": "Required. The URL of the FirewallEndpoint that is being associated.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. name of resource",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. The URL of the network that is being associated.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. Current state of the association.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "INACTIVE"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Being created.",
+            "Active and ready for traffic.",
+            "Being deleted.",
+            "Down or in an error state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "tlsInspectionPolicy": {
+          "description": "Optional. The URL of the TlsInspectionPolicy that is being associated.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallEndpointAssociationReference": {
+      "description": "This is a subset of the FirewallEndpointAssociation message, containing fields to be used by the consumer.",
+      "id": "FirewallEndpointAssociationReference",
+      "properties": {
+        "name": {
+          "description": "Output only. The resource name of the FirewallEndpointAssociation. Format: projects/{project}/locations/{location}/firewallEndpointAssociations/{id}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3129,6 +3983,56 @@
       },
       "type": "object"
     },
+    "ListFirewallEndpointAssociationsResponse": {
+      "description": "Message for response to listing Associations",
+      "id": "ListFirewallEndpointAssociationsResponse",
+      "properties": {
+        "firewallEndpointAssociations": {
+          "description": "The list of Association",
+          "items": {
+            "$ref": "FirewallEndpointAssociation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListFirewallEndpointsResponse": {
+      "description": "Message for response to listing Endpoints",
+      "id": "ListFirewallEndpointsResponse",
+      "properties": {
+        "firewallEndpoints": {
+          "description": "The list of Endpoint",
+          "items": {
+            "$ref": "FirewallEndpoint"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListGatewaySecurityPoliciesResponse": {
       "description": "Response returned by the ListGatewaySecurityPolicies method.",
       "id": "ListGatewaySecurityPoliciesResponse",
@@ -3209,6 +4113,42 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSecurityProfileGroupsResponse": {
+      "description": "Response returned by the ListSecurityProfileGroups method.",
+      "id": "ListSecurityProfileGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "securityProfileGroups": {
+          "description": "List of SecurityProfileGroups resources.",
+          "items": {
+            "$ref": "SecurityProfileGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSecurityProfilesResponse": {
+      "description": "Response returned by the ListSecurityProfiles method.",
+      "id": "ListSecurityProfilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "securityProfiles": {
+          "description": "List of SecurityProfile resources.",
+          "items": {
+            "$ref": "SecurityProfile"
           },
           "type": "array"
         }
@@ -3467,6 +4407,104 @@
       },
       "type": "object"
     },
+    "SecurityProfile": {
+      "description": "SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 9",
+      "id": "SecurityProfile",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Resource creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. An optional description of the profile. Max length 512 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfiles/{security_profile}`.",
+          "type": "string"
+        },
+        "threatPreventionProfile": {
+          "$ref": "ThreatPreventionProfile",
+          "description": "The threat prevention configuration for the SecurityProfile."
+        },
+        "type": {
+          "description": "Immutable. The single ProfileType that the SecurityProfile resource configures.",
+          "enum": [
+            "PROFILE_TYPE_UNSPECIFIED",
+            "THREAT_PREVENTION"
+          ],
+          "enumDescriptions": [
+            "Profile type not specified.",
+            "Profile type for threat prevention."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last resource update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityProfileGroup": {
+      "description": "SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 8",
+      "id": "SecurityProfileGroup",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Resource creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. An optional description of the profile group. Max length 2048 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfileGroups/{security_profile_group}`.",
+          "type": "string"
+        },
+        "threatPreventionProfile": {
+          "description": "Optional. Reference to a SecurityProfile with the threat prevention configuration for the SecurityProfileGroup.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last resource update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServerTlsPolicy": {
       "description": "ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource. ServerTlsPolicy in the form accepted by external HTTPS load balancers can be attached only to TargetHttpsProxy with an `EXTERNAL` or `EXTERNAL_MANAGED` load balancing scheme. Traffic Director compatible ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.",
       "id": "ServerTlsPolicy",
@@ -3508,6 +4546,51 @@
           "description": "Output only. The timestamp when the resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SeverityOverride": {
+      "description": "Defines what action to take for a specific severity match.",
+      "id": "SeverityOverride",
+      "properties": {
+        "action": {
+          "description": "Required. Threat action override.",
+          "enum": [
+            "THREAT_ACTION_UNSPECIFIED",
+            "DEFAULT_ACTION",
+            "ALLOW",
+            "ALERT",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Threat action not specified.",
+            "The default action (as specified by the vendor) is taken.",
+            "The packet matching this rule will be allowed to transmit.",
+            "The packet matching this rule will be allowed to transmit, but a threat_log entry will be sent to the consumer project.",
+            "The packet matching this rule will be dropped, and a threat_log entry will be sent to the consumer project."
+          ],
+          "type": "string"
+        },
+        "severity": {
+          "description": "Required. Severity level to match.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "INFORMATIONAL",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "enumDescriptions": [
+            "Severity level not specified.",
+            "Suspicious events that do not pose an immediate threat, but that are reported to call attention to deeper problems that could possibly exist.",
+            "Warning-level threats that have very little impact on an organization's infrastructure. They usually require local or physical system access and may often result in victim privacy issues and information leakage.",
+            "Minor threats in which impact is minimized, that do not compromise the target or exploits that require an attacker to reside on the same local network as the victim, affect only non-standard configurations or obscure applications, or provide very limited access.",
+            "Threats that have the ability to become critical but have mitigating factors; for example, they may be difficult to exploit, do not result in elevated privileges, or do not have a large victim pool.",
+            "Serious threats, such as those that affect default installations of widely deployed software, result in root compromise of servers, and the exploit code is widely available to attackers. The attacker usually does not need any special authentication credentials or knowledge about the individual victims and the target does not need to be manipulated into performing any special functions."
+          ],
           "type": "string"
         }
       },
@@ -3557,6 +4640,77 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ThreatOverride": {
+      "description": "Defines what action to take for a specific threat_id match.",
+      "id": "ThreatOverride",
+      "properties": {
+        "action": {
+          "description": "Required. Threat action override. For some threat types, only a subset of actions applies.",
+          "enum": [
+            "THREAT_ACTION_UNSPECIFIED",
+            "DEFAULT_ACTION",
+            "ALLOW",
+            "ALERT",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Threat action not specified.",
+            "The default action (as specified by the vendor) is taken.",
+            "The packet matching this rule will be allowed to transmit.",
+            "The packet matching this rule will be allowed to transmit, but a threat_log entry will be sent to the consumer project.",
+            "The packet matching this rule will be dropped, and a threat_log entry will be sent to the consumer project."
+          ],
+          "type": "string"
+        },
+        "threatId": {
+          "description": "Required. Vendor-specific ID of a threat to override.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Type of the threat (read only).",
+          "enum": [
+            "THREAT_TYPE_UNSPECIFIED",
+            "UNKNOWN",
+            "VULNERABILITY",
+            "ANTIVIRUS",
+            "SPYWARE",
+            "DNS"
+          ],
+          "enumDescriptions": [
+            "Type of threat not specified.",
+            "Type of threat is not derivable from threat ID. An override will be created for all types. Firewall will ignore overridden signature ID's that don't exist in the specific type.",
+            "Threats related to system flaws that an attacker might otherwise attempt to exploit.",
+            "Threats related to viruses and malware found in executables and file types.",
+            "Threats related to command-and-control (C2) activity, where spyware on an infected client is collecting data without the user's consent and/or communicating with a remote attacker.",
+            "Threats related to DNS."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ThreatPreventionProfile": {
+      "description": "ThreatPreventionProfile defines an action for specific threat signatures or severity levels.",
+      "id": "ThreatPreventionProfile",
+      "properties": {
+        "severityOverrides": {
+          "description": "Optional. Configuration for overriding threats actions by severity match.",
+          "items": {
+            "$ref": "SeverityOverride"
+          },
+          "type": "array"
+        },
+        "threatOverrides": {
+          "description": "Optional. Configuration for overriding threats actions by threat_id match. If a threat is matched both by configuration provided in severity_overrides and threat_overrides, the threat_overrides action is applied.",
+          "items": {
+            "$ref": "ThreatOverride"
+          },
+          "type": "array"
         }
       },
       "type": "object"

@@ -323,6 +323,109 @@ export namespace networksecurity_v1 {
     title?: string | null;
   }
   /**
+   * Message describing Endpoint object
+   */
+  export interface Schema$FirewallEndpoint {
+    /**
+     * Output only. List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project\}/global/networks/{name\}.
+     */
+    associatedNetworks?: string[] | null;
+    /**
+     * Output only. List of FirewallEndpointAssociations that are associated to this endpoint. An association will only appear in this list after traffic routing is fully configured.
+     */
+    associations?: Schema$FirewallEndpointAssociationReference[];
+    /**
+     * Required. Project to bill on endpoint uptime usage.
+     */
+    billingProjectId?: string | null;
+    /**
+     * Output only. Create time stamp
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the firewall endpoint. Max length 2048 characters.
+     */
+    description?: string | null;
+    /**
+     * Optional. Labels as key value pairs
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Identifier. name of resource
+     */
+    name?: string | null;
+    /**
+     * Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. Current state of the endpoint.
+     */
+    state?: string | null;
+    /**
+     * Output only. Update time stamp
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Message describing Association object
+   */
+  export interface Schema$FirewallEndpointAssociation {
+    /**
+     * Output only. Create time stamp
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Whether the association is disabled. True indicates that traffic won't be intercepted
+     */
+    disabled?: boolean | null;
+    /**
+     * Required. The URL of the FirewallEndpoint that is being associated.
+     */
+    firewallEndpoint?: string | null;
+    /**
+     * Optional. Labels as key value pairs
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Identifier. name of resource
+     */
+    name?: string | null;
+    /**
+     * Required. The URL of the network that is being associated.
+     */
+    network?: string | null;
+    /**
+     * Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. Current state of the association.
+     */
+    state?: string | null;
+    /**
+     * Optional. The URL of the TlsInspectionPolicy that is being associated.
+     */
+    tlsInspectionPolicy?: string | null;
+    /**
+     * Output only. Update time stamp
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * This is a subset of the FirewallEndpointAssociation message, containing fields to be used by the consumer.
+   */
+  export interface Schema$FirewallEndpointAssociationReference {
+    /**
+     * Output only. The resource name of the FirewallEndpointAssociation. Format: projects/{project\}/locations/{location\}/firewallEndpointAssociations/{id\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The VPC network associated. Format: projects/{project\}/global/networks/{name\}.
+     */
+    network?: string | null;
+  }
+  /**
    * The GatewaySecurityPolicy resource contains a collection of GatewaySecurityPolicyRules and associated metadata.
    */
   export interface Schema$GatewaySecurityPolicy {
@@ -592,6 +695,40 @@ export namespace networksecurity_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Message for response to listing Associations
+   */
+  export interface Schema$ListFirewallEndpointAssociationsResponse {
+    /**
+     * The list of Association
+     */
+    firewallEndpointAssociations?: Schema$FirewallEndpointAssociation[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing Endpoints
+   */
+  export interface Schema$ListFirewallEndpointsResponse {
+    /**
+     * The list of Endpoint
+     */
+    firewallEndpoints?: Schema$FirewallEndpoint[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response returned by the ListGatewaySecurityPolicies method.
    */
   export interface Schema$ListGatewaySecurityPoliciesResponse {
@@ -650,6 +787,32 @@ export namespace networksecurity_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * Response returned by the ListSecurityProfileGroups method.
+   */
+  export interface Schema$ListSecurityProfileGroupsResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of SecurityProfileGroups resources.
+     */
+    securityProfileGroups?: Schema$SecurityProfileGroup[];
+  }
+  /**
+   * Response returned by the ListSecurityProfiles method.
+   */
+  export interface Schema$ListSecurityProfilesResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of SecurityProfile resources.
+     */
+    securityProfiles?: Schema$SecurityProfile[];
   }
   /**
    * Response returned by the ListServerTlsPolicies method.
@@ -825,6 +988,76 @@ export namespace networksecurity_v1 {
     sources?: Schema$Source[];
   }
   /**
+   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 9
+   */
+  export interface Schema$SecurityProfile {
+    /**
+     * Output only. Resource creation timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. An optional description of the profile. Max length 512 characters.
+     */
+    description?: string | null;
+    /**
+     * Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Labels as key value pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
+     */
+    name?: string | null;
+    /**
+     * The threat prevention configuration for the SecurityProfile.
+     */
+    threatPreventionProfile?: Schema$ThreatPreventionProfile;
+    /**
+     * Immutable. The single ProfileType that the SecurityProfile resource configures.
+     */
+    type?: string | null;
+    /**
+     * Output only. Last resource update timestamp.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 8
+   */
+  export interface Schema$SecurityProfileGroup {
+    /**
+     * Output only. Resource creation timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. An optional description of the profile group. Max length 2048 characters.
+     */
+    description?: string | null;
+    /**
+     * Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Labels as key value pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     */
+    name?: string | null;
+    /**
+     * Optional. Reference to a SecurityProfile with the threat prevention configuration for the SecurityProfileGroup.
+     */
+    threatPreventionProfile?: string | null;
+    /**
+     * Output only. Last resource update timestamp.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource. ServerTlsPolicy in the form accepted by external HTTPS load balancers can be attached only to TargetHttpsProxy with an `EXTERNAL` or `EXTERNAL_MANAGED` load balancing scheme. Traffic Director compatible ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.
    */
   export interface Schema$ServerTlsPolicy {
@@ -862,6 +1095,19 @@ export namespace networksecurity_v1 {
     updateTime?: string | null;
   }
   /**
+   * Defines what action to take for a specific severity match.
+   */
+  export interface Schema$SeverityOverride {
+    /**
+     * Required. Threat action override.
+     */
+    action?: string | null;
+    /**
+     * Required. Severity level to match.
+     */
+    severity?: string | null;
+  }
+  /**
    * Specification of traffic source attributes.
    */
   export interface Schema$Source {
@@ -890,6 +1136,36 @@ export namespace networksecurity_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Defines what action to take for a specific threat_id match.
+   */
+  export interface Schema$ThreatOverride {
+    /**
+     * Required. Threat action override. For some threat types, only a subset of actions applies.
+     */
+    action?: string | null;
+    /**
+     * Required. Vendor-specific ID of a threat to override.
+     */
+    threatId?: string | null;
+    /**
+     * Output only. Type of the threat (read only).
+     */
+    type?: string | null;
+  }
+  /**
+   * ThreatPreventionProfile defines an action for specific threat signatures or severity levels.
+   */
+  export interface Schema$ThreatPreventionProfile {
+    /**
+     * Optional. Configuration for overriding threats actions by severity match.
+     */
+    severityOverrides?: Schema$SeverityOverride[];
+    /**
+     * Optional. Configuration for overriding threats actions by threat_id match. If a threat is matched both by configuration provided in severity_overrides and threat_overrides, the threat_overrides action is applied.
+     */
+    threatOverrides?: Schema$ThreatOverride[];
   }
   /**
    * The TlsInspectionPolicy resource contains references to CA pools in Certificate Authority Service and associated metadata.
@@ -987,15 +1263,26 @@ export namespace networksecurity_v1 {
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
     addressGroups: Resource$Organizations$Locations$Addressgroups;
+    firewallEndpoints: Resource$Organizations$Locations$Firewallendpoints;
     operations: Resource$Organizations$Locations$Operations;
+    securityProfileGroups: Resource$Organizations$Locations$Securityprofilegroups;
+    securityProfiles: Resource$Organizations$Locations$Securityprofiles;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.addressGroups = new Resource$Organizations$Locations$Addressgroups(
         this.context
       );
+      this.firewallEndpoints =
+        new Resource$Organizations$Locations$Firewallendpoints(this.context);
       this.operations = new Resource$Organizations$Locations$Operations(
         this.context
       );
+      this.securityProfileGroups =
+        new Resource$Organizations$Locations$Securityprofilegroups(
+          this.context
+        );
+      this.securityProfiles =
+        new Resource$Organizations$Locations$Securityprofiles(this.context);
     }
   }
 
@@ -1939,6 +2226,540 @@ export namespace networksecurity_v1 {
     requestBody?: Schema$RemoveAddressGroupItemsRequest;
   }
 
+  export class Resource$Organizations$Locations$Firewallendpoints {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new FirewallEndpoint in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Firewallendpoints$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Firewallendpoints$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Firewallendpoints$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/firewallEndpoints').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Endpoint.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Firewallendpoints$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Firewallendpoints$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Firewallendpoints$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Endpoint.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Firewallendpoints$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FirewallEndpoint>;
+    get(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$FirewallEndpoint>,
+      callback: BodyResponseCallback<Schema$FirewallEndpoint>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Get,
+      callback: BodyResponseCallback<Schema$FirewallEndpoint>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$FirewallEndpoint>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Firewallendpoints$Get
+        | BodyResponseCallback<Schema$FirewallEndpoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FirewallEndpoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FirewallEndpoint>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FirewallEndpoint> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Firewallendpoints$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FirewallEndpoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FirewallEndpoint>(parameters);
+      }
+    }
+
+    /**
+     * Lists FirewallEndpoints in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Firewallendpoints$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFirewallEndpointsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFirewallEndpointsResponse>,
+      callback: BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$List,
+      callback: BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Firewallendpoints$List
+        | BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFirewallEndpointsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Firewallendpoints$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Firewallendpoints$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/firewallEndpoints').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFirewallEndpointsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFirewallEndpointsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a single Endpoint.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Firewallendpoints$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Firewallendpoints$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Firewallendpoints$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Create
+    extends StandardParameters {
+    /**
+     * Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.
+     */
+    firewallEndpointId?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FirewallEndpoint;
+  }
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListEndpointsRequest
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. name of resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FirewallEndpoint;
+  }
+
   export class Resource$Organizations$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -2342,6 +3163,1047 @@ export namespace networksecurity_v1 {
     pageToken?: string;
   }
 
+  export class Resource$Organizations$Locations$Securityprofilegroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new SecurityProfileGroup in a given organization and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Securityprofilegroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofilegroups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofilegroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/securityProfileGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single SecurityProfileGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Securityprofilegroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofilegroups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofilegroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single SecurityProfileGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Securityprofilegroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecurityProfileGroup>;
+    get(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SecurityProfileGroup>,
+      callback: BodyResponseCallback<Schema$SecurityProfileGroup>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Get,
+      callback: BodyResponseCallback<Schema$SecurityProfileGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SecurityProfileGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofilegroups$Get
+        | BodyResponseCallback<Schema$SecurityProfileGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecurityProfileGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecurityProfileGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SecurityProfileGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofilegroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecurityProfileGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecurityProfileGroup>(parameters);
+      }
+    }
+
+    /**
+     * Lists SecurityProfileGroups in a given organization and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Securityprofilegroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSecurityProfileGroupsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSecurityProfileGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListSecurityProfileGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$List,
+      callback: BodyResponseCallback<Schema$ListSecurityProfileGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSecurityProfileGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofilegroups$List
+        | BodyResponseCallback<Schema$ListSecurityProfileGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSecurityProfileGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSecurityProfileGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSecurityProfileGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofilegroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/securityProfileGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSecurityProfileGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSecurityProfileGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single SecurityProfileGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Securityprofilegroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Securityprofilegroups$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofilegroups$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofilegroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofilegroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the SecurityProfileGroup. Must be in the format `projects|organizations/x/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Required. Short name of the SecurityProfileGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile_group1".
+     */
+    securityProfileGroupId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecurityProfileGroup;
+  }
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     */
+    etag?: string;
+    /**
+     * Required. A name of the SecurityProfileGroup to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the SecurityProfileGroup to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$List
+    extends StandardParameters {
+    /**
+     * Maximum number of SecurityProfileGroups to return per call.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project or organization and location from which the SecurityProfileGroups should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     */
+    name?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the SecurityProfileGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecurityProfileGroup;
+  }
+
+  export class Resource$Organizations$Locations$Securityprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new SecurityProfile in a given organization and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Securityprofiles$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofiles$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofiles$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofiles$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/securityProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single SecurityProfile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Securityprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofiles$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single SecurityProfile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Securityprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecurityProfile>;
+    get(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SecurityProfile>,
+      callback: BodyResponseCallback<Schema$SecurityProfile>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Get,
+      callback: BodyResponseCallback<Schema$SecurityProfile>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SecurityProfile>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofiles$Get
+        | BodyResponseCallback<Schema$SecurityProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecurityProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecurityProfile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecurityProfile> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecurityProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecurityProfile>(parameters);
+      }
+    }
+
+    /**
+     * Lists SecurityProfiles in a given organization and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Securityprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSecurityProfilesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSecurityProfilesResponse>,
+      callback: BodyResponseCallback<Schema$ListSecurityProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$List,
+      callback: BodyResponseCallback<Schema$ListSecurityProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSecurityProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofiles$List
+        | BodyResponseCallback<Schema$ListSecurityProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSecurityProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSecurityProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSecurityProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/securityProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSecurityProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSecurityProfilesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single SecurityProfile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Securityprofiles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Securityprofiles$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Securityprofiles$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Securityprofiles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Securityprofiles$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the SecurityProfile. Must be in the format `projects|organizations/x/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Required. Short name of the SecurityProfile resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile1".
+     */
+    securityProfileId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecurityProfile;
+  }
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     */
+    etag?: string;
+    /**
+     * Required. A name of the SecurityProfile to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the SecurityProfile to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$List
+    extends StandardParameters {
+    /**
+     * Maximum number of SecurityProfiles to return per call.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project or organization and location from which the SecurityProfiles should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
+     */
+    name?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the SecurityProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecurityProfile;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -2356,6 +4218,7 @@ export namespace networksecurity_v1 {
     addressGroups: Resource$Projects$Locations$Addressgroups;
     authorizationPolicies: Resource$Projects$Locations$Authorizationpolicies;
     clientTlsPolicies: Resource$Projects$Locations$Clienttlspolicies;
+    firewallEndpointAssociations: Resource$Projects$Locations$Firewallendpointassociations;
     gatewaySecurityPolicies: Resource$Projects$Locations$Gatewaysecuritypolicies;
     operations: Resource$Projects$Locations$Operations;
     serverTlsPolicies: Resource$Projects$Locations$Servertlspolicies;
@@ -2370,6 +4233,10 @@ export namespace networksecurity_v1 {
         new Resource$Projects$Locations$Authorizationpolicies(this.context);
       this.clientTlsPolicies =
         new Resource$Projects$Locations$Clienttlspolicies(this.context);
+      this.firewallEndpointAssociations =
+        new Resource$Projects$Locations$Firewallendpointassociations(
+          this.context
+        );
       this.gatewaySecurityPolicies =
         new Resource$Projects$Locations$Gatewaysecuritypolicies(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
@@ -5514,6 +7381,545 @@ export namespace networksecurity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Firewallendpointassociations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new FirewallEndpointAssociation in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Firewallendpointassociations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Firewallendpointassociations$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Firewallendpointassociations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/firewallEndpointAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single FirewallEndpointAssociation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Firewallendpointassociations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Firewallendpointassociations$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Firewallendpointassociations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single FirewallEndpointAssociation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Firewallendpointassociations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FirewallEndpointAssociation>;
+    get(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FirewallEndpointAssociation>,
+      callback: BodyResponseCallback<Schema$FirewallEndpointAssociation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Get,
+      callback: BodyResponseCallback<Schema$FirewallEndpointAssociation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$FirewallEndpointAssociation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Firewallendpointassociations$Get
+        | BodyResponseCallback<Schema$FirewallEndpointAssociation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FirewallEndpointAssociation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FirewallEndpointAssociation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FirewallEndpointAssociation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Firewallendpointassociations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FirewallEndpointAssociation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FirewallEndpointAssociation>(parameters);
+      }
+    }
+
+    /**
+     * Lists Associations in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Firewallendpointassociations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFirewallEndpointAssociationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFirewallEndpointAssociationsResponse>,
+      callback: BodyResponseCallback<Schema$ListFirewallEndpointAssociationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$List,
+      callback: BodyResponseCallback<Schema$ListFirewallEndpointAssociationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListFirewallEndpointAssociationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Firewallendpointassociations$List
+        | BodyResponseCallback<Schema$ListFirewallEndpointAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFirewallEndpointAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFirewallEndpointAssociationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFirewallEndpointAssociationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Firewallendpointassociations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/firewallEndpointAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFirewallEndpointAssociationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFirewallEndpointAssociationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a single FirewallEndpointAssociation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Firewallendpointassociations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Firewallendpointassociations$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Firewallendpointassociations$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Firewallendpointassociations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Firewallendpointassociations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Create
+    extends StandardParameters {
+    /**
+     * Optional. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_association_id from the method_signature of Create RPC.
+     */
+    firewallEndpointAssociationId?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FirewallEndpointAssociation;
+  }
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListAssociationsRequest
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. name of resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the Association resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FirewallEndpointAssociation;
   }
 
   export class Resource$Projects$Locations$Gatewaysecuritypolicies {

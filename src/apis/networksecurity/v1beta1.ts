@@ -376,6 +376,10 @@ export namespace networksecurity_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Whether the association is disabled. True indicates that traffic won't be intercepted
+     */
+    disabled?: boolean | null;
+    /**
      * Required. The URL of the FirewallEndpoint that is being associated.
      */
     firewallEndpoint?: string | null;
