@@ -2065,7 +2065,7 @@
       }
     }
   },
-  "revision": "20240207",
+  "revision": "20240228",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -2348,9 +2348,11 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
+            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -2368,6 +2370,7 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
+            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -2400,6 +2403,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "currentRepairAutomationRun": {
+          "description": "Output only. The current AutomationRun repairing the rollout.",
+          "readOnly": true,
+          "type": "string"
         },
         "promoteAutomationRun": {
           "description": "Output only. The ID of the AutomationRun initiated by a promote release rule.",
@@ -2516,7 +2524,8 @@
             "CANCELLED",
             "FAILED",
             "IN_PROGRESS",
-            "PENDING"
+            "PENDING",
+            "ABORTED"
           ],
           "enumDescriptions": [
             "The `AutomationRun` has an unspecified state.",
@@ -2524,7 +2533,8 @@
             "The `AutomationRun` was cancelled.",
             "The `AutomationRun` has failed.",
             "The `AutomationRun` is in progress.",
-            "The `AutomationRun` is pending."
+            "The `AutomationRun` is pending.",
+            "The `AutomationRun` was aborted."
           ],
           "readOnly": true,
           "type": "string"
@@ -2592,9 +2602,11 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
+            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -2612,6 +2624,7 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
+            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -3144,9 +3157,11 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
+            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -3164,6 +3179,7 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
+            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -3691,9 +3707,11 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
+            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -3711,6 +3729,7 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
+            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -4688,9 +4707,11 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
+            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -4708,6 +4729,7 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
+            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -4768,9 +4790,11 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
+            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -4788,6 +4812,7 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
+            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -4967,7 +4992,8 @@
             "REPAIR_STATE_FAILED",
             "REPAIR_STATE_IN_PROGRESS",
             "REPAIR_STATE_PENDING",
-            "REPAIR_STATE_SKIPPED"
+            "REPAIR_STATE_SKIPPED",
+            "REPAIR_STATE_ABORTED"
           ],
           "enumDescriptions": [
             "The `repair` has an unspecified state.",
@@ -4976,7 +5002,8 @@
             "The `repair` action has failed.",
             "The `repair` action is in progress.",
             "The `repair` action is pending.",
-            "The `repair` action was skipped."
+            "The `repair` action was skipped.",
+            "The `repair` action was aborted."
           ],
           "readOnly": true,
           "type": "string"
@@ -5098,7 +5125,8 @@
             "REPAIR_STATE_FAILED",
             "REPAIR_STATE_IN_PROGRESS",
             "REPAIR_STATE_PENDING",
-            "REPAIR_STATE_SKIPPED"
+            "REPAIR_STATE_SKIPPED",
+            "REPAIR_STATE_ABORTED"
           ],
           "enumDescriptions": [
             "The `repair` has an unspecified state.",
@@ -5107,7 +5135,8 @@
             "The `repair` action has failed.",
             "The `repair` action is in progress.",
             "The `repair` action is pending.",
-            "The `repair` action was skipped."
+            "The `repair` action was skipped.",
+            "The `repair` action was aborted."
           ],
           "readOnly": true,
           "type": "string"
@@ -5409,9 +5438,11 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
+            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -5429,6 +5460,7 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
+            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -5510,9 +5542,11 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
+            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -5530,6 +5564,7 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
+            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -5972,9 +6007,11 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
+            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -5992,6 +6029,7 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
+            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"

@@ -344,6 +344,10 @@ export namespace clouddeploy_v1 {
      */
     advanceAutomationRuns?: string[] | null;
     /**
+     * Output only. The current AutomationRun repairing the rollout.
+     */
+    currentRepairAutomationRun?: string | null;
+    /**
      * Output only. The ID of the AutomationRun initiated by a promote release rule.
      */
     promoteAutomationRun?: string | null;
