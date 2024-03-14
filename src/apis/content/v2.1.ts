@@ -2210,7 +2210,7 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
-     * The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center). Products that are excluded from all destinations for more than 7 days are automatically deleted.
+     * The list of [destinations to exclude](//support.google.com/merchants/answer/6324486) for this target (corresponds to cleared check boxes in Merchant Center). Products that are excluded from all destinations for more than 7 days are automatically deleted.
      */
     excludedDestinations?: string[] | null;
     /**
@@ -2218,7 +2218,7 @@ export namespace content_v2_1 {
      */
     feedLabel?: string | null;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.
+     * The list of [destinations to include](//support.google.com/merchants/answer/7501026) for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.
      */
     includedDestinations?: string[] | null;
     /**
@@ -3326,15 +3326,19 @@ export namespace content_v2_1 {
    */
   export interface Schema$MethodQuota {
     /**
-     * The method name, for example `products.list`. Method name does not contain version because quota can be shared between different API versions of the same method.
+     * Output only. The method name, for example `products.list`. Method name does not contain version because quota can be shared between different API versions of the same method.
      */
     method?: string | null;
     /**
-     * The current quota limit per day, meaning the maximum number of calls for the method.
+     * Output only. The maximum number of calls allowed per day for the method.
      */
     quotaLimit?: string | null;
     /**
-     * The current quota usage, meaning the number of calls already made to the method.
+     * Output only. The maximum number of calls allowed per minute for the method.
+     */
+    quotaMinuteLimit?: string | null;
+    /**
+     * Output only. The current quota usage, meaning the number of calls already made to the method per day. Usage is reset every day at 12 PM midday UTC.
      */
     quotaUsage?: string | null;
   }
@@ -5870,7 +5874,7 @@ export namespace content_v2_1 {
      */
     energyEfficiencyClass?: string | null;
     /**
-     * The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center). Products that are excluded from all destinations for more than 7 days are automatically deleted.
+     * The list of [destinations to exclude](//support.google.com/merchants/answer/6324486) for this target (corresponds to cleared check boxes in Merchant Center). Products that are excluded from all destinations for more than 7 days are automatically deleted.
      */
     excludedDestinations?: string[] | null;
     /**
@@ -5910,7 +5914,7 @@ export namespace content_v2_1 {
      */
     imageLink?: string | null;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.
+     * The list of [destinations to include](//support.google.com/merchants/answer/7501026) for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.
      */
     includedDestinations?: string[] | null;
     /**
@@ -6750,6 +6754,14 @@ export namespace content_v2_1 {
      */
     channel?: string | null;
     /**
+     * Estimated performance potential compared to highest performing products of the merchant.
+     */
+    clickPotential?: string | null;
+    /**
+     * Rank of the product based on its click potential. A product with `click_potential_rank` 1 has the highest click potential among the merchant's products that fulfill the search query conditions.
+     */
+    clickPotentialRank?: string | null;
+    /**
      * Condition of the product.
      */
     condition?: string | null;
@@ -7521,6 +7533,10 @@ export namespace content_v2_1 {
      * Segmentation dimensions requested by the merchant in the query. Dimension values are only set for dimensions requested explicitly in the query.
      */
     segments?: Schema$Segments;
+    /**
+     * Topic trends fields requested by the merchant in the query. Field values are only set if the merchant queries `TopicTrendsView`. https://support.google.com/merchants/answer/13542370.
+     */
+    topicTrends?: Schema$TopicTrends;
   }
   /**
    * Request message for the RequestPhoneVerification method.
@@ -8851,6 +8867,47 @@ export namespace content_v2_1 {
      * Optional. IANA Time Zone Database version number, e.g. "2019a".
      */
     version?: string | null;
+  }
+  /**
+   * Topic trends fields requested by the merchant in the query. Field values are only set if the merchant queries `TopicTrendsView`.
+   */
+  export interface Schema$TopicTrends {
+    /**
+     * Country trends are calculated for. Must be a two-letter country code (ISO 3166-1-alpha-2 code), for example, `“US”`.
+     */
+    customerCountryCode?: string | null;
+    /**
+     * Date the trend score was retrieved.
+     */
+    date?: Schema$Date;
+    /**
+     * Search interest in the last 120 days, with the same normalization as search_interest. This field is only present for a past date.
+     */
+    last120DaysSearchInterest?: number | null;
+    /**
+     * Search interest in the last 30 days, with the same normalization as search_interest. This field is only present for a past date.
+     */
+    last30DaysSearchInterest?: number | null;
+    /**
+     * Search interest in the last 7 days, with the same normalization as search_interest. This field is only present for a past date.
+     */
+    last7DaysSearchInterest?: number | null;
+    /**
+     * Search interest in the last 90 days, with the same normalization as search_interest. This field is only present for a past date.
+     */
+    last90DaysSearchInterest?: number | null;
+    /**
+     * Estimated search interest in the next 7 days, with the same normalization as search_interest. This field is only present for a future date.
+     */
+    next7DaysSearchInterest?: number | null;
+    /**
+     * Daily search interest, normalized to the time and country to make comparisons easier, with 100 representing peak popularity (from 0 to 100) for the requested time period and location.
+     */
+    searchInterest?: number | null;
+    /**
+     * Google-provided topic trends are calculated for. Only top eight topics are returned. Topic is what shoppers are searching for on Google, grouped by the same concept.
+     */
+    topic?: string | null;
   }
   export interface Schema$TransitTable {
     /**
