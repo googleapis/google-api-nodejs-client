@@ -419,6 +419,34 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "trainCustomModel": {
+                      "description": "Trains a custom model.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:trainCustomModel",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.trainCustomModel",
+                      "parameterOrder": [
+                        "dataStore"
+                      ],
+                      "parameters": {
+                        "dataStore": {
+                          "description": "Required. The resource name of the Data Store, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to train the models.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+dataStore}:trainCustomModel",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaTrainCustomModelRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   },
                   "resources": {
@@ -1282,7 +1310,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`",
+                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -1318,7 +1346,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The dataStore resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`",
+                              "description": "Required. Full resource name of the parent resource. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -1343,7 +1371,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`",
+                              "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/servingConfigs/{serving_config_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -2492,7 +2520,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`",
+                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -2528,7 +2556,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The dataStore resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`",
+                              "description": "Required. Full resource name of the parent resource. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -2553,7 +2581,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`",
+                              "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/servingConfigs/{serving_config_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -3734,7 +3762,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`",
+                          "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -3770,7 +3798,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The dataStore resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`",
+                          "description": "Required. Full resource name of the parent resource. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -3795,7 +3823,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`",
+                          "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/servingConfigs/{serving_config_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -4449,7 +4477,7 @@
       }
     }
   },
-  "revision": "20240227",
+  "revision": "20240312",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4848,12 +4876,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1DigitalParsingConfig": {
-      "description": "The digital parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1DigitalParsingConfig",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata",
@@ -4904,12 +4926,36 @@
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig",
       "properties": {
         "digitalParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1DigitalParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
         },
         "ocrParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1OcrParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig",
           "description": "Configurations applied to OCR parser. Currently it only applies to PDFs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig": {
+      "description": "The digital parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig": {
+      "description": "The OCR parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig",
+      "properties": {
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -5262,24 +5308,6 @@
           "description": "Count of user events imported, but with Document information not found in the existing Branch.",
           "format": "int64",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1OcrParsingConfig": {
-      "description": "The OCR parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1OcrParsingConfig",
-      "properties": {
-        "enhancedDocumentElements": {
-          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useNativeText": {
-          "description": "If true, will use native text instead of OCR text on pages containing native text.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -5827,12 +5855,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig": {
-      "description": "The digital parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata",
@@ -5860,6 +5882,10 @@
       "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
       "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig",
       "properties": {
+        "chunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig",
+          "description": "Whether chunking mode is enabled."
+        },
         "defaultParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig",
           "description": "Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing."
@@ -5867,11 +5893,6 @@
         "name": {
           "description": "The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
           "type": "string"
-        },
-        "ocrConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
-          "deprecated": true,
-          "description": "[DEPRECATED] This field is deprecated. To specify OCR parsing config, please specify `ocr_parsing_config` in `default_parsing_config` field The OCR config. Currently it only applies to PDFs."
         },
         "parsingConfigOverrides": {
           "additionalProperties": {
@@ -5883,21 +5904,78 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig": {
+      "description": "Configuration for chunking config.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig",
+      "properties": {
+        "layoutBasedChunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+          "description": "Configuration for the layout based chunking."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig": {
+      "description": "Configuration for the layout based chunking.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+      "properties": {
+        "chunkSize": {
+          "description": "The token size limit for each chunk. Supported values: 100-500 (inclusive). Default value: 500.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "includeAncestorHeadings": {
+          "description": "Whether to include appending different levels of headings to chunks from the middle of the document to prevent context loss. Default value: False.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig": {
       "description": "Related configurations applied to a specific type of document parser.",
       "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig",
       "properties": {
         "digitalParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
         },
         "layoutParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
           "description": "Configurations applied to layout parser."
         },
         "ocrParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaOcrParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrParsingConfig",
           "description": "Configurations applied to OCR parser. Currently it only applies to PDFs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigDigitalParsingConfig": {
+      "description": "The digital parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig": {
+      "description": "The layout parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrParsingConfig": {
+      "description": "The OCR parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrParsingConfig",
+      "properties": {
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -5929,10 +6007,6 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaEngine",
       "properties": {
-        "allowMultipleDataStoresSearchEngine": {
-          "description": "Whether the search engine can associate with multiple data stores. If true, the generic search engine can associate with one or more data stores. This is an input-only field.",
-          "type": "boolean"
-        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -6562,53 +6636,6 @@
           "description": "Count of user events imported, but with Document information not found in the existing Branch.",
           "format": "int64",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig": {
-      "description": "The layout parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaOcrConfig": {
-      "deprecated": true,
-      "description": "The OCR options for parsing documents.",
-      "id": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
-      "properties": {
-        "enabled": {
-          "description": "Required. If OCR is enabled or not. OCR must be enabled for other OcrConfig options to apply. We will only perform OCR on the first 80 pages of the PDF files.",
-          "type": "boolean"
-        },
-        "enhancedDocumentElements": {
-          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useNativeText": {
-          "description": "If true, will use native text instead of OCR text on pages containing native text.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaOcrParsingConfig": {
-      "description": "The OCR parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1alphaOcrParsingConfig",
-      "properties": {
-        "enhancedDocumentElements": {
-          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useNativeText": {
-          "description": "If true, will use native text instead of OCR text on pages containing native text.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -7641,12 +7668,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1betaDigitalParsingConfig": {
-      "description": "The digital parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1betaDigitalParsingConfig",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata",
@@ -7808,12 +7829,36 @@
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig",
       "properties": {
         "digitalParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaDigitalParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
         },
         "ocrParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaOcrParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig",
           "description": "Configurations applied to OCR parser. Currently it only applies to PDFs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig": {
+      "description": "The digital parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig": {
+      "description": "The OCR parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig",
+      "properties": {
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -8543,24 +8588,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1betaOcrParsingConfig": {
-      "description": "The OCR parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1betaOcrParsingConfig",
-      "properties": {
-        "enhancedDocumentElements": {
-          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useNativeText": {
-          "description": "If true, will use native text instead of OCR text on pages containing native text.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1betaPageInfo": {
       "description": "Detailed page information.",
       "id": "GoogleCloudDiscoveryengineV1betaPageInfo",
@@ -8933,6 +8960,13 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec",
           "description": "A specification for configuring the behavior of content search."
         },
+        "dataStoreSpecs": {
+          "description": "A list of data store specs to apply on a search call.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec"
+          },
+          "type": "array"
+        },
         "embeddingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpec",
           "description": "Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embedding that is provided in SearchRequest.EmbeddingSpec.EmbeddingVector.field_path. If SearchRequest.EmbeddingSpec.EmbeddingVector.field_path is not provided, it will use ServingConfig.EmbeddingConfig.field_path."
@@ -9039,7 +9073,7 @@
           "type": "number"
         },
         "condition": {
-          "description": "An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID \"doc_1\" or \"doc_2\", and color \"Red\" or \"Blue\": * (document_id: ANY(\"doc_1\", \"doc_2\")) AND (color: ANY(\"Red\", \"Blue\"))",
+          "description": "An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID \"doc_1\" or \"doc_2\", and color \"Red\" or \"Blue\": `(document_id: ANY(\"doc_1\", \"doc_2\")) AND (color: ANY(\"Red\", \"Blue\"))`",
           "type": "string"
         }
       },
@@ -9087,6 +9121,10 @@
           "description": "Specifies whether to also include the adjacent from each selected segments. Return at most `num_previous_segments` segments before each selected segments.",
           "format": "int32",
           "type": "integer"
+        },
+        "returnExtractiveSegmentScore": {
+          "description": "Specifies whether to return the confidence score from the extractive segments in each search result. This feature is available only for new or allowlisted data stores. To allowlist your data store, please contact your Customer Engineer. The default value is `false`.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -9142,7 +9180,7 @@
           "description": "If specified, the spec will be used to modify the model specification provided to the LLM."
         },
         "summaryResultCount": {
-          "description": "The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most five results can be used to generate a summary.",
+          "description": "The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most 10 results can be used to generate a summary.",
           "format": "int32",
           "type": "integer"
         }
@@ -9165,7 +9203,18 @@
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec",
       "properties": {
         "version": {
-          "description": "The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English.",
+          "description": "The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models). * `preview`: string. (Public preview) Uses a preview model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec": {
+      "description": "A struct to define data stores to filter on in a search call.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
           "type": "string"
         }
       },
@@ -9751,7 +9800,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`",
+          "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/servingConfigs/{serving_config_id}`",
           "type": "string"
         },
         "onewaySynonymsControlIds": {
@@ -9830,12 +9879,6 @@
           "description": "Specifies the content freshness used for recommendation result. Contents will be demoted if contents were published for more than content freshness cutoff days.",
           "format": "int32",
           "type": "integer"
-        },
-        "contentWatchedMinutesThreshold": {
-          "deprecated": true,
-          "description": "Specifies the content watched minutes threshold for demotion.",
-          "format": "float",
-          "type": "number"
         },
         "contentWatchedPercentageThreshold": {
           "description": "Specifies the content watched percentage threshold for demotion. Threshold value must be between [0, 1.0] inclusive.",
@@ -10025,6 +10068,87 @@
         },
         "input": {
           "description": "Text input.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTrainCustomModelMetadata": {
+      "description": "Metadata related to the progress of the TrainCustomModel operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaTrainCustomModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTrainCustomModelRequest": {
+      "description": "Request message for SearchTuningService.TrainCustomModel method.",
+      "id": "GoogleCloudDiscoveryengineV1betaTrainCustomModelRequest",
+      "properties": {
+        "errorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaImportErrorConfig",
+          "description": "The desired location of errors incurred during the data ingestion and training."
+        },
+        "gcsTrainingInput": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaTrainCustomModelRequestGcsTrainingInput",
+          "description": "Cloud Storage training input."
+        },
+        "modelType": {
+          "description": "Model to be trained. Supported values are: * **search-tuning**: Fine tuning the search system based on data provided.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTrainCustomModelRequestGcsTrainingInput": {
+      "description": "Cloud Storage training data input.",
+      "id": "GoogleCloudDiscoveryengineV1betaTrainCustomModelRequestGcsTrainingInput",
+      "properties": {
+        "corpusDataPath": {
+          "description": "The Cloud Storage corpus data which could be associated in train data. The data path format is `gs:///`. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id, title and text. Example: `{\"_id\": \"doc1\", title: \"relevant doc\", \"text\": \"relevant text\"}`",
+          "type": "string"
+        },
+        "queryDataPath": {
+          "description": "The gcs query data which could be associated in train data. The data path format is `gs:///`. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id and text. Example: {\"_id\": \"query1\", \"text\": \"example query\"}",
+          "type": "string"
+        },
+        "testDataPath": {
+          "description": "Cloud Storage test data. Same format as train_data_path. If not provided, a random 80/20 train/test split will be performed on train_data_path.",
+          "type": "string"
+        },
+        "trainDataPath": {
+          "description": "Cloud Storage training data path whose format should be `gs:///`. The file should be in tsv format. Each line should have the doc_id and query_id and score (number). For search-tuning model, it should have the query-id corpus-id score as tsv file header. The score should be a number in `[0, inf+)`. The larger the number is, the more relevant the pair is. Example: * `query-id\\tcorpus-id\\tscore` * `query1\\tdoc1\\t1`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTrainCustomModelResponse": {
+      "description": "Response of the TrainCustomModelRequest. This message is returned by the google.longrunning.Operations.response field.",
+      "id": "GoogleCloudDiscoveryengineV1betaTrainCustomModelResponse",
+      "properties": {
+        "errorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaImportErrorConfig",
+          "description": "Echoes the destination for the complete errors in the request if set."
+        },
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the data.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "modelStatus": {
+          "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.",
           "type": "string"
         }
       },
