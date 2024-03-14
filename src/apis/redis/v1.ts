@@ -124,6 +124,55 @@ export namespace redis_v1 {
     }
   }
 
+  /**
+   * Configuration for availability of database instance
+   */
+  export interface Schema$AvailabilityConfiguration {
+    /**
+     * Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).
+     */
+    availabilityType?: string | null;
+    externalReplicaConfigured?: boolean | null;
+    promotableReplicaConfigured?: boolean | null;
+  }
+  /**
+   * Configuration for automatic backups
+   */
+  export interface Schema$BackupConfiguration {
+    /**
+     * Whether customer visible automated backups are enabled on the instance.
+     */
+    automatedBackupEnabled?: boolean | null;
+    /**
+     * Backup retention settings.
+     */
+    backupRetentionSettings?: Schema$RetentionSettings;
+    /**
+     * Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.
+     */
+    pointInTimeRecoveryEnabled?: boolean | null;
+  }
+  /**
+   * A backup run.
+   */
+  export interface Schema$BackupRun {
+    /**
+     * The time the backup operation completed. REQUIRED
+     */
+    endTime?: string | null;
+    /**
+     * Information about why the backup operation failed. This is only present if the run has the FAILED status. OPTIONAL
+     */
+    error?: Schema$OperationError;
+    /**
+     * The time the backup operation started. REQUIRED
+     */
+    startTime?: string | null;
+    /**
+     * The status of this run. REQUIRED
+     */
+    status?: string | null;
+  }
   export interface Schema$CertChain {
     /**
      * The certificates that form the CA chain, from leaf to root order.
@@ -198,6 +247,256 @@ export namespace redis_v1 {
     uid?: string | null;
   }
   /**
+   * Contains compliance information about a security standard indicating unmet recommendations.
+   */
+  export interface Schema$Compliance {
+    /**
+     * Industry-wide compliance standards or benchmarks, such as CIS, PCI, and OWASP.
+     */
+    standard?: string | null;
+    /**
+     * Version of the standard or benchmark, for example, 1.1
+     */
+    version?: string | null;
+  }
+  /**
+   * Any custom metadata associated with the resource. i.e. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data
+   */
+  export interface Schema$CustomMetadataData {
+    databaseMetadata?: Schema$DatabaseMetadata[];
+  }
+  /**
+   * Metadata for individual databases created in an instance. i.e. spanner instance can have multiple databases with unique configuration settings.
+   */
+  export interface Schema$DatabaseMetadata {
+    /**
+     * Backup configuration for this database
+     */
+    backupConfiguration?: Schema$BackupConfiguration;
+    /**
+     * Information about the last backup attempt for this database
+     */
+    backupRun?: Schema$BackupRun;
+    product?: Schema$Product;
+    resourceId?: Schema$DatabaseResourceId;
+    /**
+     * Required. Database name. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform.
+   */
+  export interface Schema$DatabaseResourceFeed {
+    /**
+     * Required. Timestamp when feed is generated.
+     */
+    feedTimestamp?: string | null;
+    /**
+     * Required. Type feed to be ingested into condor
+     */
+    feedType?: string | null;
+    /**
+     * More feed data would be added in subsequent CLs
+     */
+    recommendationSignalData?: Schema$DatabaseResourceRecommendationSignalData;
+    resourceHealthSignalData?: Schema$DatabaseResourceHealthSignalData;
+    /**
+     * Primary key associated with the Resource. resource_id is available in individual feed level as well.
+     */
+    resourceId?: Schema$DatabaseResourceId;
+    resourceMetadata?: Schema$DatabaseResourceMetadata;
+  }
+  /**
+   * Common model for database resource health signal data.
+   */
+  export interface Schema$DatabaseResourceHealthSignalData {
+    /**
+     * Any other additional metadata
+     */
+    additionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Industry standards associated with this signal; if this signal is an issue, that could be a violation of the associated industry standard(s). For example, AUTO_BACKUP_DISABLED signal is associated with CIS GCP 1.1, CIS GCP 1.2, CIS GCP 1.3, NIST 800-53 and ISO-27001 compliance standards. If a database resource does not have automated backup enable, it will violate these following industry standards.
+     */
+    compliance?: Schema$Compliance[];
+    /**
+     * Description associated with signal
+     */
+    description?: string | null;
+    /**
+     * Required. The last time at which the event described by this signal took place
+     */
+    eventTime?: string | null;
+    /**
+     * The external-uri of the signal, using which more information about this signal can be obtained. In GCP, this will take user to SCC page to get more details about signals.
+     */
+    externalUri?: string | null;
+    /**
+     * Required. The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.
+     */
+    name?: string | null;
+    /**
+     * Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged
+     */
+    provider?: string | null;
+    /**
+     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "projects/123". For GCP provided resources, number should be project number.
+     */
+    resourceContainer?: string | null;
+    /**
+     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * Required. The class of the signal, such as if it's a THREAT or VULNERABILITY.
+     */
+    signalClass?: string | null;
+    /**
+     * Required. Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.
+     */
+    signalId?: string | null;
+    /**
+     * Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.
+     */
+    signalType?: string | null;
+    state?: string | null;
+  }
+  /**
+   * DatabaseResourceId will serve as primary key for any resource ingestion event.
+   */
+  export interface Schema$DatabaseResourceId {
+    /**
+     * Required. Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged
+     */
+    provider?: string | null;
+    /**
+     * Optional. Needs to be used only when the provider is PROVIDER_OTHER.
+     */
+    providerDescription?: string | null;
+    /**
+     * Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
+     */
+    resourceType?: string | null;
+    /**
+     * Required. A service-local token that distinguishes this resource from other resources within the same service.
+     */
+    uniqueId?: string | null;
+  }
+  /**
+   * Common model for database resource instance metadata.
+   */
+  export interface Schema$DatabaseResourceMetadata {
+    /**
+     * Availability configuration for this instance
+     */
+    availabilityConfiguration?: Schema$AvailabilityConfiguration;
+    /**
+     * Backup configuration for this instance
+     */
+    backupConfiguration?: Schema$BackupConfiguration;
+    /**
+     * Latest backup run information for this instance
+     */
+    backupRun?: Schema$BackupRun;
+    /**
+     * The creation time of the resource, i.e. the time when resource is created and recorded in partner service.
+     */
+    creationTime?: string | null;
+    /**
+     * Current state of the instance.
+     */
+    currentState?: string | null;
+    /**
+     * Any custom metadata associated with the resource
+     */
+    customMetadata?: Schema$CustomMetadataData;
+    /**
+     * Entitlements associated with the resource
+     */
+    entitlements?: Schema$Entitlement[];
+    /**
+     * The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.
+     */
+    expectedState?: string | null;
+    /**
+     * Required. Unique identifier for a Database resource
+     */
+    id?: Schema$DatabaseResourceId;
+    /**
+     * The type of the instance. Specified at creation time.
+     */
+    instanceType?: string | null;
+    /**
+     * The resource location. REQUIRED
+     */
+    location?: string | null;
+    /**
+     * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
+     */
+    primaryResourceId?: Schema$DatabaseResourceId;
+    /**
+     * The product this resource represents.
+     */
+    product?: Schema$Product;
+    /**
+     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "/", such as "projects/123". For GCP provided resources, number should be project number.
+     */
+    resourceContainer?: string | null;
+    /**
+     * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * The time at which the resource was updated and recorded at partner service.
+     */
+    updationTime?: string | null;
+    /**
+     * User-provided labels, represented as a dictionary where each label is a single key value pair.
+     */
+    userLabels?: {[key: string]: string} | null;
+    /**
+     * User-provided labels associated with the resource
+     */
+    userLabelSet?: Schema$UserLabels;
+  }
+  /**
+   * Common model for database resource recommendation signal data.
+   */
+  export interface Schema$DatabaseResourceRecommendationSignalData {
+    /**
+     * Optional. Any other additional metadata specific to recommendation
+     */
+    additionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Required. last time recommendationw as refreshed
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Required. Recommendation state
+     */
+    recommendationState?: string | null;
+    /**
+     * Required. Name of recommendation. Examples: organizations/1234/locations/us-central1/recommenders/google.cloudsql.instance.PerformanceRecommender/recommendations/9876
+     */
+    recommender?: string | null;
+    /**
+     * Required. ID of recommender. Examples: "google.cloudsql.instance.PerformanceRecommender"
+     */
+    recommenderId?: string | null;
+    /**
+     * Required. Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = "google.cloudsql.instance.PerformanceRecommender", recommender_subtype can be "MYSQL_HIGH_NUMBER_OF_OPEN_TABLES_BEST_PRACTICE"/"POSTGRES_HIGH_TRANSACTION_ID_UTILIZATION_BEST_PRACTICE"
+     */
+    recommenderSubtype?: string | null;
+    /**
+     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * Required. Type of signal, for example, `SIGNAL_TYPE_IDLE`, `SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES`, etc.
+     */
+    signalType?: string | null;
+  }
+  /**
    * Endpoints on each network, for Redis clients to connect to the cluster.
    */
   export interface Schema$DiscoveryEndpoint {
@@ -218,6 +517,19 @@ export namespace redis_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Proto representing the access that a user has to a specific feature/service. NextId: 3.
+   */
+  export interface Schema$Entitlement {
+    /**
+     * The current state of user's accessibility to a feature/benefit.
+     */
+    entitlementState?: string | null;
+    /**
+     * An enum that represents the type of this entitlement.
+     */
+    type?: string | null;
+  }
   /**
    * Request for Export.
    */
@@ -654,6 +966,20 @@ export namespace redis_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * An error that occurred during a backup creation operation.
+   */
+  export interface Schema$OperationError {
+    /**
+     * Identifies the specific error that occurred. REQUIRED
+     */
+    code?: string | null;
+    errorType?: string | null;
+    /**
+     * Additional information about the error encountered. REQUIRED
+     */
+    message?: string | null;
+  }
+  /**
    * Pre-defined metadata fields.
    */
   export interface Schema$OperationMetadata {
@@ -716,6 +1042,23 @@ export namespace redis_v1 {
      */
     rdbSnapshotStartTime?: string | null;
   }
+  /**
+   * Product specification for Condor resources.
+   */
+  export interface Schema$Product {
+    /**
+     * The specific engine that the underlying database is running.
+     */
+    engine?: string | null;
+    /**
+     * Type of specific database product. It could be CloudSQL, AlloyDB etc..
+     */
+    type?: string | null;
+    /**
+     * Version of the underlying database engine. Example values: For MySQL, it could be "8.0", "5.7" etc.. For Postgres, it could be "14", "15" etc..
+     */
+    version?: string | null;
+  }
   export interface Schema$PscConfig {
     /**
      * Required. The network where the IP address of the discovery endpoint will be reserved, in the form of projects/{network_project\}/global/networks/{network_id\}.
@@ -772,6 +1115,14 @@ export namespace redis_v1 {
      * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.
      */
     scheduleTime?: string | null;
+  }
+  export interface Schema$RetentionSettings {
+    quantityBasedRetention?: number | null;
+    /**
+     * The unit that 'retained_backups' represents.
+     */
+    retentionUnit?: string | null;
+    timeBasedRetention?: string | null;
   }
   /**
    * Represents additional information about the state of the cluster.
@@ -866,6 +1217,12 @@ export namespace redis_v1 {
      * Required. Specifies the target version of Redis software to upgrade to.
      */
     redisVersion?: string | null;
+  }
+  /**
+   * Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.
+   */
+  export interface Schema$UserLabels {
+    labels?: {[key: string]: string} | null;
   }
   /**
    * Time window in which disruptive maintenance updates occur. Non-disruptive updates can occur inside or outside this window.
