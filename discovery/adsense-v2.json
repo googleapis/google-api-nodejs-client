@@ -17,6 +17,7 @@
   "description": "The AdSense Management API allows publishers to access their inventory and run earnings and performance reports.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/adsense/management/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -1844,7 +1845,7 @@
       }
     }
   },
-  "revision": "20231018",
+  "revision": "20240313",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {

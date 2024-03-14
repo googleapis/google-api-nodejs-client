@@ -414,7 +414,7 @@
       }
     }
   },
-  "revision": "20231221",
+  "revision": "20240312",
   "rootUrl": "https://checks.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -795,7 +795,8 @@
             "ALBERTA_PIPA",
             "QUEBEC_ACT",
             "QUEBEC_BILL_64",
-            "CHINA_PIPL"
+            "CHINA_PIPL",
+            "SOUTH_KOREA_PIPA"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -817,7 +818,8 @@
             "Alberta (Canada) Personal Information Protection Act.",
             "Quebec: Act Respecting the Protection of Personal Information in the Private Sector.",
             "Quebec Bill 64: An Act to Modernize Legislative Provisions as Regards the Protection of Personal Information.",
-            "China Personal Information Protection Law."
+            "China Personal Information Protection Law.",
+            "South Korea Personal Information Protection Act."
           ],
           "type": "string"
         }

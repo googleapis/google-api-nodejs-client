@@ -4726,7 +4726,7 @@
       }
     }
   },
-  "revision": "20240222",
+  "revision": "20240313",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -7745,12 +7745,12 @@
           "enum": [
             "EXTERNAL_TRANSACTION_PROGRAM_UNSPECIFIED",
             "USER_CHOICE_BILLING",
-            "ALTERTNATIVE_BILLING_ONLY"
+            "ALTERNATIVE_BILLING_ONLY"
           ],
           "enumDescriptions": [
             "Unspecified transaction program. Not used.",
             "User choice billing, where a user may choose between Google Play Billing developer-managed billing.",
-            "Alternatively billing only, where users may only use developer-manager billing."
+            "Alternative billing only, where users may only use developer-manager billing."
           ],
           "type": "string"
         }
