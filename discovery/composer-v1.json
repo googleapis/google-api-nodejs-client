@@ -938,9 +938,35 @@
       }
     }
   },
-  "revision": "20240204",
+  "revision": "20240227",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
+    "AirflowMetadataRetentionPolicyConfig": {
+      "description": "The policy for airflow metadata database retention.",
+      "id": "AirflowMetadataRetentionPolicyConfig",
+      "properties": {
+        "retentionDays": {
+          "description": "Optional. How many days data should be retained for.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "retentionMode": {
+          "description": "Optional. Retention can be either enabled or disabled.",
+          "enum": [
+            "RETENTION_MODE_UNSPECIFIED",
+            "RETENTION_MODE_ENABLED",
+            "RETENTION_MODE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default mode doesn't change environment parameters.",
+            "Retention policy is enabled.",
+            "Retention policy is disabled."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AllowedIpRange": {
       "description": "Allowed IP range with user-provided description.",
       "id": "AllowedIpRange",
@@ -1138,6 +1164,10 @@
       "description": "The configuration setting for Airflow database data retention mechanism.",
       "id": "DataRetentionConfig",
       "properties": {
+        "airflowMetadataRetentionConfig": {
+          "$ref": "AirflowMetadataRetentionPolicyConfig",
+          "description": "Optional. The retention policy for airflow metadata database. Details: go/composer-database-retention-2"
+        },
         "taskLogsRetentionConfig": {
           "$ref": "TaskLogsRetentionConfig",
           "description": "Optional. The configuration settings for task logs retention"
