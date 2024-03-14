@@ -491,6 +491,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$CloudAiNlLlmProtoServicePart {
     /**
+     * Document metadata. The metadata should only be used by the Cloud LLM when supporting document mime types. It will only be populated when this image input part is converted from a document input part.
+     */
+    documentMetadata?: Schema$CloudAiNlLlmProtoServicePartDocumentMetadata;
+    /**
      * URI-based data.
      */
     fileData?: Schema$CloudAiNlLlmProtoServicePartFileData;
@@ -531,6 +535,19 @@ export namespace aiplatform_v1 {
      * Original file data where the blob comes from.
      */
     originalFileData?: Schema$CloudAiNlLlmProtoServicePartFileData;
+  }
+  /**
+   * Metadata describes the original input document content.
+   */
+  export interface Schema$CloudAiNlLlmProtoServicePartDocumentMetadata {
+    /**
+     * The original document blob.
+     */
+    originalDocumentBlob?: Schema$CloudAiNlLlmProtoServicePartBlob;
+    /**
+     * The (1-indexed) page number of the image in the original document. The first page carries the original document content and mime type.
+     */
+    pageNumber?: number | null;
   }
   /**
    * Represents file data.
@@ -629,6 +646,10 @@ export namespace aiplatform_v1 {
      */
     flagged?: boolean | null;
     /**
+     * The influential terms that could potentially block the response.
+     */
+    influentialTerms?: Schema$CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm[];
+    /**
      * The RAI category.
      */
     raiCategory?: string | null;
@@ -636,6 +657,27 @@ export namespace aiplatform_v1 {
      * The score for the category, in the range [0.0, 1.0].
      */
     score?: number | null;
+  }
+  /**
+   * The influential term that could potentially block the response.
+   */
+  export interface Schema$CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm {
+    /**
+     * The beginning offset of the influential term.
+     */
+    beginOffset?: number | null;
+    /**
+     * The confidence score of the influential term.
+     */
+    confidence?: number | null;
+    /**
+     * The source of the influential term, prompt or response.
+     */
+    source?: string | null;
+    /**
+     * The influential term.
+     */
+    term?: string | null;
   }
   /**
    * Safety rating corresponding to the generated content.
@@ -1009,6 +1051,15 @@ export namespace aiplatform_v1 {
     gcsSource?: Schema$GoogleCloudAiplatformV1GcsSource;
   }
   /**
+   * Request message for PipelineService.BatchCancelPipelineJobs.
+   */
+  export interface Schema$GoogleCloudAiplatformV1BatchCancelPipelineJobsRequest {
+    /**
+     * Required. The names of the PipelineJobs to cancel. A maximum of 32 PipelineJobs can be cancelled in a batch. Format: `projects/{project\}/locations/{location\}/pipelineJobs/{pipelineJob\}`
+     */
+    names?: string[] | null;
+  }
+  /**
    * Details of operations that perform batch create Features.
    */
   export interface Schema$GoogleCloudAiplatformV1BatchCreateFeaturesOperationMetadata {
@@ -1087,6 +1138,15 @@ export namespace aiplatform_v1 {
      * Immutable. The number of machine replicas used at the start of the batch operation. If not set, Vertex AI decides starting number, not greater than max_replica_count
      */
     startingReplicaCount?: number | null;
+  }
+  /**
+   * Request message for PipelineService.BatchDeletePipelineJobs.
+   */
+  export interface Schema$GoogleCloudAiplatformV1BatchDeletePipelineJobsRequest {
+    /**
+     * Required. The names of the PipelineJobs to delete. A maximum of 32 PipelineJobs can be deleted in a batch. Format: `projects/{project\}/locations/{location\}/pipelineJobs/{pipelineJob\}`
+     */
+    names?: string[] | null;
   }
   /**
    * Request message for ModelService.BatchImportEvaluatedAnnotations
@@ -2404,7 +2464,7 @@ export namespace aiplatform_v1 {
      */
     etag?: string | null;
     /**
-     * Required. Additional information about the DatasetVersion.
+     * Required. Output only. Additional information about the DatasetVersion.
      */
     metadata?: any | null;
     /**
@@ -4428,7 +4488,7 @@ export namespace aiplatform_v1 {
     validationFilter?: string | null;
   }
   /**
-   * The request message for MatchService.FindNeighbors.
+   * LINT.IfChange The request message for MatchService.FindNeighbors.
    */
   export interface Schema$GoogleCloudAiplatformV1FindNeighborsRequest {
     /**
@@ -4696,6 +4756,15 @@ export namespace aiplatform_v1 {
      * Output only. Time when the operation was updated for the last time. If the operation has finished (successfully or not), this is the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Contains information about the source of the models generated from Generative AI Studio.
+   */
+  export interface Schema$GoogleCloudAiplatformV1GenieSource {
+    /**
+     * Required. The public base model URI.
+     */
+    baseModelUri?: string | null;
   }
   /**
    * Grounding attribution.
@@ -6246,6 +6315,10 @@ export namespace aiplatform_v1 {
      */
     artifactUri?: string | null;
     /**
+     * Optional. User input field to specify the base model source. Currently it only supports specifing the Model Garden models and Genie models.
+     */
+    baseModelSource?: Schema$GoogleCloudAiplatformV1ModelBaseModelSource;
+    /**
      * Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models.
      */
     containerSpec?: Schema$GoogleCloudAiplatformV1ModelContainerSpec;
@@ -6361,6 +6434,19 @@ export namespace aiplatform_v1 {
      * Output only. Timestamp when this version was most recently updated.
      */
     versionUpdateTime?: string | null;
+  }
+  /**
+   * User input field to specify the base model source. Currently it only supports specifing the Model Garden models and Genie models.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ModelBaseModelSource {
+    /**
+     * Information about the base model of Genie models.
+     */
+    genieSource?: Schema$GoogleCloudAiplatformV1GenieSource;
+    /**
+     * Source information of Model Garden models.
+     */
+    modelGardenSource?: Schema$GoogleCloudAiplatformV1ModelGardenSource;
   }
   /**
    * Specification of a container for serving predictions. Some fields in this message correspond to fields in the [Kubernetes Container v1 core specification](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
@@ -6783,6 +6869,15 @@ export namespace aiplatform_v1 {
      * Output only. The ID of the export format. The possible format IDs are: * `tflite` Used for Android mobile devices. * `edgetpu-tflite` Used for [Edge TPU](https://cloud.google.com/edge-tpu/) devices. * `tf-saved-model` A tensorflow model in SavedModel format. * `tf-js` A [TensorFlow.js](https://www.tensorflow.org/js) model that can be used in the browser and in Node.js using JavaScript. * `core-ml` Used for iOS mobile devices. * `custom-trained` A Model that was uploaded or trained by custom code.
      */
     id?: string | null;
+  }
+  /**
+   * Contains information about the source of the models generated from Model Garden.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ModelGardenSource {
+    /**
+     * Required. The model garden source model resource name.
+     */
+    publicModelName?: string | null;
   }
   /**
    * The alert config for model monitoring.
@@ -14473,6 +14568,7 @@ export namespace aiplatform_v1 {
     studies: Resource$Projects$Locations$Studies;
     tensorboards: Resource$Projects$Locations$Tensorboards;
     trainingPipelines: Resource$Projects$Locations$Trainingpipelines;
+    tuningJobs: Resource$Projects$Locations$Tuningjobs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.batchPredictionJobs =
@@ -14536,6 +14632,9 @@ export namespace aiplatform_v1 {
       );
       this.trainingPipelines =
         new Resource$Projects$Locations$Trainingpipelines(this.context);
+      this.tuningJobs = new Resource$Projects$Locations$Tuningjobs(
+        this.context
+      );
     }
 
     /**
@@ -25079,7 +25178,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Endpoints$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID, i.e. the last segment of the Endpoint's resource name. * `display_name` supports = and, != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. Some examples: * `endpoint=1` * `displayName="myDisplayName"` * `labels.myKey="myValue"`
+     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID, i.e. the last segment of the Endpoint's resource name. * `display_name` supports = and, != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. * `base_model_name` only supports = Some examples: * `endpoint=1` * `displayName="myDisplayName"` * `labels.myKey="myValue"` * `baseModelName="text-bison"`
      */
     filter?: string;
     /**
@@ -48084,7 +48183,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Models$List
     extends StandardParameters {
     /**
-     * An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `model` supports = and !=. `model` represents the Model ID, i.e. the last segment of the Model's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. Some examples: * `model=1234` * `displayName="myDisplayName"` * `labels.myKey="myValue"`
+     * An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `model` supports = and !=. `model` represents the Model ID, i.e. the last segment of the Model's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. * `base_model_name` only supports = Some examples: * `model=1234` * `displayName="myDisplayName"` * `labels.myKey="myValue"` * `baseModelName="text-bison"`
      */
     filter?: string;
     /**
@@ -52613,6 +52712,196 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Batch cancel PipelineJobs. Firstly the server will check if all the jobs are in non-terminal states, and skip the jobs that are already terminated. If the operation failed, none of the pipeline jobs are cancelled. The server will poll the states of all the pipeline jobs periodically to check the cancellation status. This operation will return an LRO.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCancel(
+      params: Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCancel(
+      params?: Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchCancel(
+      params: Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCancel(
+      params: Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchCancel(
+      params: Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchCancel(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchCancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pipelineJobs:batchCancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Batch deletes PipelineJobs The Operation is atomic. If it fails, none of the PipelineJobs are deleted. If it succeeds, all of the PipelineJobs are deleted.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
+      params?: Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pipelineJobs:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Cancels a PipelineJob. Starts asynchronous cancellation on the PipelineJob. The server makes a best effort to cancel the pipeline, but success is not guaranteed. Clients can use PipelineService.GetPipelineJob or other methods to check whether the cancellation succeeded or whether the pipeline completed despite cancellation. On successful cancellation, the PipelineJob is not deleted; instead it becomes a pipeline with a PipelineJob.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`, and PipelineJob.state is set to `CANCELLED`.
      *
      * @param params - Parameters for request
@@ -53076,6 +53365,30 @@ export namespace aiplatform_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel
+    extends StandardParameters {
+    /**
+     * Required. The name of the PipelineJobs' parent resource. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1BatchCancelPipelineJobsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The name of the PipelineJobs' parent resource. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1BatchDeletePipelineJobsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Pipelinejobs$Cancel
     extends StandardParameters {
     /**
@@ -65933,6 +66246,219 @@ export namespace aiplatform_v1 {
      * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
      */
     timeout?: string;
+  }
+
+  export class Resource$Projects$Locations$Tuningjobs {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Tuningjobs$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Locations$Tuningjobs$Operations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Tuningjobs$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Tuningjobs$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tuningjobs$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tuningjobs$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Tuningjobs$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Tuningjobs$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Publishers {

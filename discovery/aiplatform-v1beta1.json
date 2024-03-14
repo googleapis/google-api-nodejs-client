@@ -20,44 +20,44 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
-      "location": "asia-east1",
       "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-east1"
     },
     {
+      "description": "Locational Endpoint",
       "location": "asia-east2",
-      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
-      "location": "asia-northeast1",
+      "description": "Locational Endpoint",
+      "location": "asia-northeast1"
+    },
+    {
+      "location": "asia-northeast2",
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
+      "location": "asia-northeast3",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
-      "location": "asia-northeast2"
-    },
-    {
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
-      "location": "asia-northeast3"
-    },
-    {
       "location": "asia-south1",
-      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/"
     },
     {
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
       "location": "asia-southeast1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
-      "location": "asia-southeast2",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-southeast2"
     },
     {
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
@@ -70,28 +70,28 @@
       "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-central2",
       "description": "Locational Endpoint",
+      "location": "europe-central2",
       "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "europe-north1",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-southwest1",
       "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "europe-southwest1"
+    },
+    {
+      "location": "europe-west1",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
-      "location": "europe-west1"
-    },
-    {
       "location": "europe-west2",
-      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/"
     },
     {
@@ -105,24 +105,24 @@
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "europe-west6"
+      "location": "europe-west6",
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-west8",
       "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "europe-west8"
     },
     {
       "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
-      "location": "europe-west9",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "europe-west9"
     },
     {
+      "location": "me-west1",
       "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "me-west1"
+      "description": "Locational Endpoint"
     },
     {
       "location": "northamerica-northeast1",
@@ -131,8 +131,8 @@
     },
     {
       "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
-      "location": "northamerica-northeast2",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "northamerica-northeast2"
     },
     {
       "location": "southamerica-east1",
@@ -145,49 +145,49 @@
       "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
       "location": "us-central1",
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
-      "location": "us-central2",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "us-central2"
     },
     {
       "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
-      "location": "us-east1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "us-east1"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
-      "location": "us-east4"
+      "location": "us-east4",
+      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/"
     },
     {
-      "location": "us-south1",
       "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
+      "location": "us-south1",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "location": "us-west1",
-      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
+      "location": "us-west1"
     },
     {
-      "location": "us-west2",
       "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "us-west2"
     },
     {
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
       "location": "us-west3"
     },
     {
       "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "us-west4"
+      "location": "us-west4",
+      "description": "Locational Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3403,7 +3403,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID, i.e. the last segment of the Endpoint's resource name. * `display_name` supports = and, != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. Some examples: * `endpoint=1` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"`",
+                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID, i.e. the last segment of the Endpoint's resource name. * `display_name` supports = and, != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. * `base_model_name` only supports = Some examples: * `endpoint=1` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"` * `baseModelName=\"text-bison\"`",
                       "location": "query",
                       "type": "string"
                     },
@@ -5303,6 +5303,37 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}:getIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists FeatureOnlineStores in a given project and location.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores",
@@ -5378,6 +5409,65 @@
                   },
                   "response": {
                     "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "permissions": {
+                      "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+resource}:testIamPermissions",
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -5503,6 +5593,37 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists FeatureViews in a given FeatureOnlineStore.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews",
@@ -5611,6 +5732,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "sync": {
                       "description": "Triggers on-demand sync for the FeatureView.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:sync",
@@ -5634,6 +5783,37 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudAiplatformV1beta1SyncFeatureViewResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "permissions": {
+                          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+resource}:testIamPermissions",
+                      "response": {
+                        "$ref": "GoogleIamV1TestIamPermissionsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -11147,7 +11327,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `model` supports = and !=. `model` represents the Model ID, i.e. the last segment of the Model's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. Some examples: * `model=1234` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"`",
+                      "description": "An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `model` supports = and !=. `model` represents the Model ID, i.e. the last segment of the Model's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. * `base_model_name` only supports = Some examples: * `model=1234` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"` * `baseModelName=\"text-bison\"`",
                       "location": "query",
                       "type": "string"
                     },
@@ -13756,6 +13936,316 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  }
+                }
+              }
+            },
+            "ragCorpora": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.ragCorpora.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:cancel",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.ragCorpora.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.ragCorpora.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/operations",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.ragCorpora.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}/operations",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "wait": {
+                      "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/operations/{operationsId}:wait",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.ragCorpora.operations.wait",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to wait on.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "timeout": {
+                          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                          "format": "google-duration",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:wait",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "ragFiles": {
+                  "resources": {
+                    "operations": {
+                      "methods": {
+                        "cancel": {
+                          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles/{ragFilesId}/operations/{operationsId}:cancel",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.ragCorpora.ragFiles.operations.cancel",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be cancelled.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/ragFiles/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}:cancel",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles/{ragFilesId}/operations/{operationsId}",
+                          "httpMethod": "DELETE",
+                          "id": "aiplatform.projects.locations.ragCorpora.ragFiles.operations.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be deleted.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/ragFiles/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles/{ragFilesId}/operations/{operationsId}",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.ragCorpora.ragFiles.operations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/ragFiles/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles/{ragFilesId}/operations",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.ragCorpora.ragFiles.operations.list",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "The standard list filter.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the operation's parent resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/ragFiles/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The standard list page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The standard list page token.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}/operations",
+                          "response": {
+                            "$ref": "GoogleLongrunningListOperationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "wait": {
+                          "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles/{ragFilesId}/operations/{operationsId}:wait",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.ragCorpora.ragFiles.operations.wait",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to wait on.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/ragFiles/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "timeout": {
+                              "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                              "format": "google-duration",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}:wait",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 }
@@ -17465,7 +17955,7 @@
       }
     }
   },
-  "revision": "20240224",
+  "revision": "20240312",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionEmbedVideoResponse": {
@@ -17860,7 +18350,10 @@
             "FINISH_REASON_MAX_TOKENS",
             "FINISH_REASON_SAFETY",
             "FINISH_REASON_RECITATION",
-            "FINISH_REASON_OTHER"
+            "FINISH_REASON_OTHER",
+            "FINISH_REASON_BLOCKLIST",
+            "FINISH_REASON_PROHIBITED_CONTENT",
+            "FINISH_REASON_SPII"
           ],
           "enumDescriptions": [
             "The finish reason is unspecified.",
@@ -17868,7 +18361,10 @@
             "The maximum number of tokens as specified in the request was reached.",
             "The token generation was stopped as the response was flagged for safety reasons. NOTE: When streaming the Candidate.content will be empty if content filters blocked the output.",
             "The token generation was stopped as the response was flagged for unauthorized citations.",
-            "All other reasons that stopped the token generation."
+            "All other reasons that stopped the token generation.",
+            "The token generation was stopped as the response was flagged for the terms which are included from the terminology blocklist.",
+            "The token generation was stopped as the response was flagged for the prohibited contents.",
+            "The token generation was stopped as the response was flagged for Sensitive Personally Identifiable Information (SPII) contents."
           ],
           "type": "string"
         },
@@ -18078,6 +18574,10 @@
       "description": "A single part of a message.",
       "id": "CloudAiNlLlmProtoServicePart",
       "properties": {
+        "documentMetadata": {
+          "$ref": "CloudAiNlLlmProtoServicePartDocumentMetadata",
+          "description": "Document metadata. The metadata should only be used by the Cloud LLM when supporting document mime types. It will only be populated when this image input part is converted from a document input part."
+        },
         "fileData": {
           "$ref": "CloudAiNlLlmProtoServicePartFileData",
           "description": "URI-based data."
@@ -18125,6 +18625,22 @@
       },
       "type": "object"
     },
+    "CloudAiNlLlmProtoServicePartDocumentMetadata": {
+      "description": "Metadata describes the original input document content.",
+      "id": "CloudAiNlLlmProtoServicePartDocumentMetadata",
+      "properties": {
+        "originalDocumentBlob": {
+          "$ref": "CloudAiNlLlmProtoServicePartBlob",
+          "description": "The original document blob."
+        },
+        "pageNumber": {
+          "description": "The (1-indexed) page number of the image in the original document. The first page carries the original document content and mime type.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "CloudAiNlLlmProtoServicePartFileData": {
       "description": "Represents file data.",
       "id": "CloudAiNlLlmProtoServicePartFileData",
@@ -18166,12 +18682,16 @@
           "enum": [
             "BLOCKED_REASON_UNSPECIFIED",
             "SAFETY",
-            "OTHER"
+            "OTHER",
+            "BLOCKLIST",
+            "PROHIBITED_CONTENT"
           ],
           "enumDescriptions": [
             "Unspecified blocked reason.",
             "Candidates blocked due to safety.",
-            "Candidates blocked due to other reason."
+            "Candidates blocked due to other reason.",
+            "Candidates blocked due to the terms which are included from the terminology blocklist.",
+            "Candidates blocked due to prohibited content."
           ],
           "type": "string"
         },
@@ -18266,6 +18786,13 @@
           "description": "Whether the category is flagged as being present. Currently, this is set to true if score >= 0.5.",
           "type": "boolean"
         },
+        "influentialTerms": {
+          "description": "The influential terms that could potentially block the response.",
+          "items": {
+            "$ref": "CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm"
+          },
+          "type": "array"
+        },
         "raiCategory": {
           "description": "The RAI category.",
           "enum": [
@@ -18350,6 +18877,41 @@
           "description": "The score for the category, in the range [0.0, 1.0].",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm": {
+      "description": "The influential term that could potentially block the response.",
+      "id": "CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm",
+      "properties": {
+        "beginOffset": {
+          "description": "The beginning offset of the influential term.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "confidence": {
+          "description": "The confidence score of the influential term.",
+          "format": "float",
+          "type": "number"
+        },
+        "source": {
+          "description": "The source of the influential term, prompt or response.",
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "PROMPT",
+            "RESPONSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified source.",
+            "The influential term comes from the prompt.",
+            "The influential term comes from the response."
+          ],
+          "type": "string"
+        },
+        "term": {
+          "description": "The influential term.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -19708,7 +20270,10 @@
             "MAX_TOKENS",
             "SAFETY",
             "RECITATION",
-            "OTHER"
+            "OTHER",
+            "BLOCKLIST",
+            "PROHIBITED_CONTENT",
+            "SPII"
           ],
           "enumDescriptions": [
             "The finish reason is unspecified.",
@@ -19716,7 +20281,10 @@
             "The maximum number of tokens as specified in the request was reached.",
             "The token generation was stopped as the response was flagged for safety reasons. NOTE: When streaming the Candidate.content will be empty if content filters blocked the output.",
             "The token generation was stopped as the response was flagged for unauthorized citations.",
-            "All other reasons that stopped the token generation"
+            "All other reasons that stopped the token generation",
+            "The token generation was stopped as the response was flagged for the terms which are included from the terminology blocklist.",
+            "The token generation was stopped as the response was flagged for the prohibited contents.",
+            "The token generation was stopped as the response was flagged for Sensitive Personally Identifiable Information (SPII) contents."
           ],
           "readOnly": true,
           "type": "string"
@@ -20932,7 +21500,8 @@
           "type": "string"
         },
         "metadata": {
-          "description": "Required. Additional information about the DatasetVersion.",
+          "description": "Required. Output only. Additional information about the DatasetVersion.",
+          "readOnly": true,
           "type": "any"
         },
         "name": {
@@ -23326,7 +23895,7 @@
           "type": "string"
         },
         "serviceAgentType": {
-          "description": "Optional. Service agent type used during data sync. By default, the Vertex AI Service Agent is used. When using an IAM Policy to isolate this FeatureView within a project (https://cloud.google.com/vertex-ai/docs/featurestore/latest/resource-policy) a separate service account should be provisioned by setting this field to `SERVICE_AGENT_TYPE_FEATURE_VIEW`. This will generate a separate service account to access the BigQuery source table.",
+          "description": "Optional. Service agent type used during data sync. By default, the Vertex AI Service Agent is used. When using an IAM Policy to isolate this FeatureView within a project, a separate service account should be provisioned by setting this field to `SERVICE_AGENT_TYPE_FEATURE_VIEW`. This will generate a separate service account to access the BigQuery source table.",
           "enum": [
             "SERVICE_AGENT_TYPE_UNSPECIFIED",
             "SERVICE_AGENT_TYPE_PROJECT",
@@ -23900,7 +24469,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1FindNeighborsRequest": {
-      "description": "The request message for MatchService.FindNeighbors.",
+      "description": "LINT.IfChange The request message for MatchService.FindNeighbors.",
       "id": "GoogleCloudAiplatformV1beta1FindNeighborsRequest",
       "properties": {
         "deployedIndexId": {
@@ -24204,12 +24773,16 @@
           "enum": [
             "BLOCKED_REASON_UNSPECIFIED",
             "SAFETY",
-            "OTHER"
+            "OTHER",
+            "BLOCKLIST",
+            "PROHIBITED_CONTENT"
           ],
           "enumDescriptions": [
             "Unspecified blocked reason.",
             "Candidates blocked due to safety.",
-            "Candidates blocked due to other reason."
+            "Candidates blocked due to other reason.",
+            "Candidates blocked due to the terms which are included from the terminology blocklist.",
+            "Candidates blocked due to prohibited content."
           ],
           "readOnly": true,
           "type": "string"
@@ -28822,14 +29395,16 @@
             "PROVISIONING",
             "RUNNING",
             "STOPPING",
-            "ERROR"
+            "ERROR",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "Not set.",
             "The PROVISIONING state indicates the persistent resources is being created.",
             "The RUNNING state indicates the persistent resource is healthy and fully usable.",
             "The STOPPING state indicates the persistent resource is being deleted.",
-            "The ERROR state indicates the persistent resource may be unusable. Details can be found in the `error` field."
+            "The ERROR state indicates the persistent resource may be unusable. Details can be found in the `error` field.",
+            "The UPDATING state indicates the persistent resource is being updated."
           ],
           "readOnly": true,
           "type": "string"
@@ -29579,7 +30154,6 @@
           "description": "Optional. Indicates the launch stage of the model.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
-            "DOGFOOD",
             "EXPERIMENTAL",
             "PRIVATE_PREVIEW",
             "PUBLIC_PREVIEW",
@@ -29587,7 +30161,6 @@
           ],
           "enumDescriptions": [
             "The model launch stage is unspecified.",
-            "Used to indicate the PublisherModel is at Google internal testing launch stage.",
             "Used to indicate the PublisherModel is at Experimental launch stage, available to a small set of customers.",
             "Used to indicate the PublisherModel is at Private Preview launch stage, only available to a small set of customers, although a larger set of customers than an Experimental launch. Previews are the first launch stage used to get feedback from customers.",
             "Used to indicate the PublisherModel is at Public Preview launch stage, available to all customers, although not supported for production workloads.",
@@ -40727,6 +41300,7 @@
             "C",
             "DART",
             "GRADLE",
+            "GROOVY",
             "JAVADOC",
             "JSON",
             "MAKEFILE",
@@ -40754,6 +41328,7 @@
             "C code.",
             "Dart code.",
             "Gradle code.",
+            "Groovy code.",
             "API documentation.",
             "JSON code.",
             "Makefile code.",

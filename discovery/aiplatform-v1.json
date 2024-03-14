@@ -20,24 +20,24 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
       "location": "asia-east1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
-    },
-    {
-      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "asia-east2"
+      "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "location": "asia-northeast1",
-      "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/"
+      "location": "asia-east2",
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "location": "asia-northeast2",
-      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
+      "location": "asia-northeast1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
+      "location": "asia-northeast2"
     },
     {
       "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
@@ -46,78 +46,78 @@
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
-      "location": "asia-south1"
+      "location": "asia-south1",
+      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
-      "location": "asia-southeast1"
-    },
-    {
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
-      "location": "asia-southeast2"
-    },
-    {
-      "description": "Locational Endpoint",
-      "location": "australia-southeast1",
-      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/"
-    },
-    {
-      "description": "Locational Endpoint",
-      "location": "australia-southeast2",
-      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
-    },
-    {
-      "description": "Locational Endpoint",
-      "location": "europe-central2",
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
-    },
-    {
-      "location": "europe-north1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
-    },
-    {
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
-      "location": "europe-southwest1",
+      "location": "asia-southeast1",
       "description": "Locational Endpoint"
     },
     {
-      "location": "europe-west1",
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "asia-southeast2"
+    },
+    {
+      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "australia-southeast1"
+    },
+    {
+      "location": "australia-southeast2",
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
+      "location": "europe-north1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
       "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "location": "europe-west1",
       "description": "Locational Endpoint"
     },
     {
       "location": "europe-west2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "europe-west3"
-    },
-    {
-      "location": "europe-west4",
-      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
+      "location": "europe-west3",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
-      "location": "europe-west6"
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
+      "location": "europe-west4"
     },
     {
+      "location": "europe-west6",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
       "location": "europe-west8",
-      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
+      "location": "europe-west9",
       "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
-      "location": "europe-west9"
+      "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
@@ -125,49 +125,49 @@
       "location": "me-west1"
     },
     {
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
       "location": "northamerica-northeast1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
-      "location": "northamerica-northeast2",
       "description": "Locational Endpoint",
+      "location": "northamerica-northeast2",
       "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "southamerica-east1"
+      "location": "southamerica-east1",
+      "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
       "location": "southamerica-west1"
     },
     {
+      "location": "us-central1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
-      "location": "us-central1"
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
-      "location": "us-central2",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
-      "location": "us-east1",
-      "description": "Locational Endpoint"
-    },
-    {
-      "location": "us-east4",
-      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "us-central2"
     },
     {
       "description": "Locational Endpoint",
+      "location": "us-east1",
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
+      "location": "us-east4",
+      "description": "Locational Endpoint"
+    },
+    {
       "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
-      "location": "us-south1"
+      "location": "us-south1",
+      "description": "Locational Endpoint"
     },
     {
       "location": "us-west1",
@@ -176,17 +176,17 @@
     },
     {
       "location": "us-west2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "location": "us-west3",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
+      "location": "us-west3"
     },
     {
-      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
       "location": "us-west4",
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     }
   ],
@@ -3217,7 +3217,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID, i.e. the last segment of the Endpoint's resource name. * `display_name` supports = and, != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. Some examples: * `endpoint=1` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"`",
+                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID, i.e. the last segment of the Endpoint's resource name. * `display_name` supports = and, != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. * `base_model_name` only supports = Some examples: * `endpoint=1` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"` * `baseModelName=\"text-bison\"`",
                       "location": "query",
                       "type": "string"
                     },
@@ -10036,7 +10036,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `model` supports = and !=. `model` represents the Model ID, i.e. the last segment of the Model's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. Some examples: * `model=1234` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"`",
+                      "description": "An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `model` supports = and !=. `model` represents the Model ID, i.e. the last segment of the Model's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. * `base_model_name` only supports = Some examples: * `model=1234` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"` * `baseModelName=\"text-bison\"`",
                       "location": "query",
                       "type": "string"
                     },
@@ -11620,6 +11620,62 @@
             },
             "pipelineJobs": {
               "methods": {
+                "batchCancel": {
+                  "description": "Batch cancel PipelineJobs. Firstly the server will check if all the jobs are in non-terminal states, and skip the jobs that are already terminated. If the operation failed, none of the pipeline jobs are cancelled. The server will poll the states of all the pipeline jobs periodically to check the cancellation status. This operation will return an LRO.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pipelineJobs:batchCancel",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.pipelineJobs.batchCancel",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the PipelineJobs' parent resource. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/pipelineJobs:batchCancel",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1BatchCancelPipelineJobsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "batchDelete": {
+                  "description": "Batch deletes PipelineJobs The Operation is atomic. If it fails, none of the PipelineJobs are deleted. If it succeeds, all of the PipelineJobs are deleted.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pipelineJobs:batchDelete",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.pipelineJobs.batchDelete",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the PipelineJobs' parent resource. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/pipelineJobs:batchDelete",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1BatchDeletePipelineJobsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "cancel": {
                   "description": "Cancels a PipelineJob. Starts asynchronous cancellation on the PipelineJob. The server makes a best effort to cancel the pipeline, but success is not guaranteed. Clients can use PipelineService.GetPipelineJob or other methods to check whether the cancellation succeeded or whether the pipeline completed despite cancellation. On successful cancellation, the PipelineJob is not deleted; instead it becomes a pipeline with a PipelineJob.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`, and PipelineJob.state is set to `CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pipelineJobs/{pipelineJobsId}:cancel",
@@ -15501,6 +15557,64 @@
                   }
                 }
               }
+            },
+            "tuningJobs": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tuningJobs/{tuningJobsId}/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.tuningJobs.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/tuningJobs/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancel",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tuningJobs/{tuningJobsId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.tuningJobs.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/tuningJobs/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -15562,7 +15676,7 @@
       }
     }
   },
-  "revision": "20240224",
+  "revision": "20240312",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionEmbedVideoResponse": {
@@ -15957,7 +16071,10 @@
             "FINISH_REASON_MAX_TOKENS",
             "FINISH_REASON_SAFETY",
             "FINISH_REASON_RECITATION",
-            "FINISH_REASON_OTHER"
+            "FINISH_REASON_OTHER",
+            "FINISH_REASON_BLOCKLIST",
+            "FINISH_REASON_PROHIBITED_CONTENT",
+            "FINISH_REASON_SPII"
           ],
           "enumDescriptions": [
             "The finish reason is unspecified.",
@@ -15965,7 +16082,10 @@
             "The maximum number of tokens as specified in the request was reached.",
             "The token generation was stopped as the response was flagged for safety reasons. NOTE: When streaming the Candidate.content will be empty if content filters blocked the output.",
             "The token generation was stopped as the response was flagged for unauthorized citations.",
-            "All other reasons that stopped the token generation."
+            "All other reasons that stopped the token generation.",
+            "The token generation was stopped as the response was flagged for the terms which are included from the terminology blocklist.",
+            "The token generation was stopped as the response was flagged for the prohibited contents.",
+            "The token generation was stopped as the response was flagged for Sensitive Personally Identifiable Information (SPII) contents."
           ],
           "type": "string"
         },
@@ -16175,6 +16295,10 @@
       "description": "A single part of a message.",
       "id": "CloudAiNlLlmProtoServicePart",
       "properties": {
+        "documentMetadata": {
+          "$ref": "CloudAiNlLlmProtoServicePartDocumentMetadata",
+          "description": "Document metadata. The metadata should only be used by the Cloud LLM when supporting document mime types. It will only be populated when this image input part is converted from a document input part."
+        },
         "fileData": {
           "$ref": "CloudAiNlLlmProtoServicePartFileData",
           "description": "URI-based data."
@@ -16222,6 +16346,22 @@
       },
       "type": "object"
     },
+    "CloudAiNlLlmProtoServicePartDocumentMetadata": {
+      "description": "Metadata describes the original input document content.",
+      "id": "CloudAiNlLlmProtoServicePartDocumentMetadata",
+      "properties": {
+        "originalDocumentBlob": {
+          "$ref": "CloudAiNlLlmProtoServicePartBlob",
+          "description": "The original document blob."
+        },
+        "pageNumber": {
+          "description": "The (1-indexed) page number of the image in the original document. The first page carries the original document content and mime type.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "CloudAiNlLlmProtoServicePartFileData": {
       "description": "Represents file data.",
       "id": "CloudAiNlLlmProtoServicePartFileData",
@@ -16263,12 +16403,16 @@
           "enum": [
             "BLOCKED_REASON_UNSPECIFIED",
             "SAFETY",
-            "OTHER"
+            "OTHER",
+            "BLOCKLIST",
+            "PROHIBITED_CONTENT"
           ],
           "enumDescriptions": [
             "Unspecified blocked reason.",
             "Candidates blocked due to safety.",
-            "Candidates blocked due to other reason."
+            "Candidates blocked due to other reason.",
+            "Candidates blocked due to the terms which are included from the terminology blocklist.",
+            "Candidates blocked due to prohibited content."
           ],
           "type": "string"
         },
@@ -16363,6 +16507,13 @@
           "description": "Whether the category is flagged as being present. Currently, this is set to true if score >= 0.5.",
           "type": "boolean"
         },
+        "influentialTerms": {
+          "description": "The influential terms that could potentially block the response.",
+          "items": {
+            "$ref": "CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm"
+          },
+          "type": "array"
+        },
         "raiCategory": {
           "description": "The RAI category.",
           "enum": [
@@ -16447,6 +16598,41 @@
           "description": "The score for the category, in the range [0.0, 1.0].",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm": {
+      "description": "The influential term that could potentially block the response.",
+      "id": "CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm",
+      "properties": {
+        "beginOffset": {
+          "description": "The beginning offset of the influential term.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "confidence": {
+          "description": "The confidence score of the influential term.",
+          "format": "float",
+          "type": "number"
+        },
+        "source": {
+          "description": "The source of the influential term, prompt or response.",
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "PROMPT",
+            "RESPONSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified source.",
+            "The influential term comes from the prompt.",
+            "The influential term comes from the response."
+          ],
+          "type": "string"
+        },
+        "term": {
+          "description": "The influential term.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -17003,6 +17189,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1BatchCancelPipelineJobsRequest": {
+      "description": "Request message for PipelineService.BatchCancelPipelineJobs.",
+      "id": "GoogleCloudAiplatformV1BatchCancelPipelineJobsRequest",
+      "properties": {
+        "names": {
+          "description": "Required. The names of the PipelineJobs to cancel. A maximum of 32 PipelineJobs can be cancelled in a batch. Format: `projects/{project}/locations/{location}/pipelineJobs/{pipelineJob}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1BatchCreateFeaturesOperationMetadata": {
       "description": "Details of operations that perform batch create Features.",
       "id": "GoogleCloudAiplatformV1BatchCreateFeaturesOperationMetadata",
@@ -17115,6 +17315,20 @@
           "description": "Immutable. The number of machine replicas used at the start of the batch operation. If not set, Vertex AI decides starting number, not greater than max_replica_count",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1BatchDeletePipelineJobsRequest": {
+      "description": "Request message for PipelineService.BatchDeletePipelineJobs.",
+      "id": "GoogleCloudAiplatformV1BatchDeletePipelineJobsRequest",
+      "properties": {
+        "names": {
+          "description": "Required. The names of the PipelineJobs to delete. A maximum of 32 PipelineJobs can be deleted in a batch. Format: `projects/{project}/locations/{location}/pipelineJobs/{pipelineJob}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -17733,7 +17947,10 @@
             "MAX_TOKENS",
             "SAFETY",
             "RECITATION",
-            "OTHER"
+            "OTHER",
+            "BLOCKLIST",
+            "PROHIBITED_CONTENT",
+            "SPII"
           ],
           "enumDescriptions": [
             "The finish reason is unspecified.",
@@ -17741,7 +17958,10 @@
             "The maximum number of tokens as specified in the request was reached.",
             "The token generation was stopped as the response was flagged for safety reasons. NOTE: When streaming the Candidate.content will be empty if content filters blocked the output.",
             "The token generation was stopped as the response was flagged for unauthorized citations.",
-            "All other reasons that stopped the token generation"
+            "All other reasons that stopped the token generation",
+            "The token generation was stopped as the response was flagged for the terms which are included from the terminology blocklist.",
+            "The token generation was stopped as the response was flagged for the prohibited contents.",
+            "The token generation was stopped as the response was flagged for Sensitive Personally Identifiable Information (SPII) contents."
           ],
           "readOnly": true,
           "type": "string"
@@ -18916,7 +19136,8 @@
           "type": "string"
         },
         "metadata": {
-          "description": "Required. Additional information about the DatasetVersion.",
+          "description": "Required. Output only. Additional information about the DatasetVersion.",
+          "readOnly": true,
           "type": "any"
         },
         "name": {
@@ -21703,7 +21924,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1FindNeighborsRequest": {
-      "description": "The request message for MatchService.FindNeighbors.",
+      "description": "LINT.IfChange The request message for MatchService.FindNeighbors.",
       "id": "GoogleCloudAiplatformV1FindNeighborsRequest",
       "properties": {
         "deployedIndexId": {
@@ -21972,12 +22193,16 @@
           "enum": [
             "BLOCKED_REASON_UNSPECIFIED",
             "SAFETY",
-            "OTHER"
+            "OTHER",
+            "BLOCKLIST",
+            "PROHIBITED_CONTENT"
           ],
           "enumDescriptions": [
             "Unspecified blocked reason.",
             "Candidates blocked due to safety.",
-            "Candidates blocked due to other reason."
+            "Candidates blocked due to other reason.",
+            "Candidates blocked due to the terms which are included from the terminology blocklist.",
+            "Candidates blocked due to prohibited content."
           ],
           "readOnly": true,
           "type": "string"
@@ -22080,6 +22305,17 @@
           "description": "Output only. Time when the operation was updated for the last time. If the operation has finished (successfully or not), this is the finish time.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenieSource": {
+      "description": "Contains information about the source of the models generated from Generative AI Studio.",
+      "id": "GoogleCloudAiplatformV1GenieSource",
+      "properties": {
+        "baseModelUri": {
+          "description": "Required. The public base model URI.",
           "type": "string"
         }
       },
@@ -24236,6 +24472,10 @@
           "description": "Immutable. The path to the directory containing the Model artifact and any of its supporting files. Not required for AutoML Models.",
           "type": "string"
         },
+        "baseModelSource": {
+          "$ref": "GoogleCloudAiplatformV1ModelBaseModelSource",
+          "description": "Optional. User input field to specify the base model source. Currently it only supports specifing the Model Garden models and Genie models."
+        },
         "containerSpec": {
           "$ref": "GoogleCloudAiplatformV1ModelContainerSpec",
           "description": "Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models."
@@ -24402,6 +24642,21 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ModelBaseModelSource": {
+      "description": "User input field to specify the base model source. Currently it only supports specifing the Model Garden models and Genie models.",
+      "id": "GoogleCloudAiplatformV1ModelBaseModelSource",
+      "properties": {
+        "genieSource": {
+          "$ref": "GoogleCloudAiplatformV1GenieSource",
+          "description": "Information about the base model of Genie models."
+        },
+        "modelGardenSource": {
+          "$ref": "GoogleCloudAiplatformV1ModelGardenSource",
+          "description": "Source information of Model Garden models."
         }
       },
       "type": "object"
@@ -25008,6 +25263,17 @@
         "id": {
           "description": "Output only. The ID of the export format. The possible format IDs are: * `tflite` Used for Android mobile devices. * `edgetpu-tflite` Used for [Edge TPU](https://cloud.google.com/edge-tpu/) devices. * `tf-saved-model` A tensorflow model in SavedModel format. * `tf-js` A [TensorFlow.js](https://www.tensorflow.org/js) model that can be used in the browser and in Node.js using JavaScript. * `core-ml` Used for iOS mobile devices. * `custom-trained` A Model that was uploaded or trained by custom code.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ModelGardenSource": {
+      "description": "Contains information about the source of the models generated from Model Garden.",
+      "id": "GoogleCloudAiplatformV1ModelGardenSource",
+      "properties": {
+        "publicModelName": {
+          "description": "Required. The model garden source model resource name.",
           "type": "string"
         }
       },
@@ -27104,7 +27370,6 @@
           "description": "Optional. Indicates the launch stage of the model.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
-            "DOGFOOD",
             "EXPERIMENTAL",
             "PRIVATE_PREVIEW",
             "PUBLIC_PREVIEW",
@@ -27112,7 +27377,6 @@
           ],
           "enumDescriptions": [
             "The model launch stage is unspecified.",
-            "Used to indicate the PublisherModel is at Google internal testing launch stage.",
             "Used to indicate the PublisherModel is at Experimental launch stage, available to a small set of customers.",
             "Used to indicate the PublisherModel is at Private Preview launch stage, only available to a small set of customers, although a larger set of customers than an Experimental launch. Previews are the first launch stage used to get feedback from customers.",
             "Used to indicate the PublisherModel is at Public Preview launch stage, available to all customers, although not supported for production workloads.",
@@ -37977,6 +38241,7 @@
             "C",
             "DART",
             "GRADLE",
+            "GROOVY",
             "JAVADOC",
             "JSON",
             "MAKEFILE",
@@ -38004,6 +38269,7 @@
             "C code.",
             "Dart code.",
             "Gradle code.",
+            "Groovy code.",
             "API documentation.",
             "JSON code.",
             "Makefile code.",
