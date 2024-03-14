@@ -1308,6 +1308,10 @@ export namespace dataplex_v1 {
      * Optional. If set, results will be exported to the provided BigQuery table.
      */
     bigqueryExport?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport;
+    /**
+     * Optional. If set, results will be sent to the provided notification receipts upon triggers.
+     */
+    notificationReport?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport;
   }
   /**
    * The configuration of BigQuery export post scan action.
@@ -1317,6 +1321,53 @@ export namespace dataplex_v1 {
      * Optional. The BigQuery table to export DataQualityScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      */
     resultsTable?: string | null;
+  }
+  /**
+   * This trigger is triggered whenever a scan job run ends, regardless of the result.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobEndTrigger {}
+  /**
+   * This trigger is triggered when the scan job itself fails, regardless of the result.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobFailureTrigger {}
+  /**
+   * The configuration of notification report post scan action.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport {
+    /**
+     * Optional. If set, report will be sent when a scan job ends.
+     */
+    jobEndTrigger?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobEndTrigger;
+    /**
+     * Optional. If set, report will be sent when a scan job fails.
+     */
+    jobFailureTrigger?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobFailureTrigger;
+    /**
+     * Required. The recipients who will receive the notification report.
+     */
+    recipients?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsRecipients;
+    /**
+     * Optional. If set, report will be sent when score threshold is met.
+     */
+    scoreThresholdTrigger?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger;
+  }
+  /**
+   * The individuals or groups who are designated to receive notifications upon triggers.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsRecipients {
+    /**
+     * Optional. The email recipients who will receive the DataQualityScan results report.
+     */
+    emails?: string[] | null;
+  }
+  /**
+   * This trigger is triggered when the DQ score in the job result is less than a specified input score.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger {
+    /**
+     * Optional. The score range is in 0,100.
+     */
+    scoreThreshold?: number | null;
   }
   /**
    * Represents a user-visible job which provides the insights for the related data source.For example: Data Quality: generates queries based on the rules and runs against the data to get data quality check results. Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).
