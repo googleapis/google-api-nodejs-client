@@ -797,6 +797,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapComponent {
     /**
+     * A list of host URIs that are part of the HA configuration if present. An empty list indicates the component is not configured for HA.
+     */
+    haHosts?: string[] | null;
+    /**
      * Output only. resources in the component
      */
     resources?: Schema$CloudResource[];
@@ -804,6 +808,10 @@ export namespace workloadmanager_v1 {
      * Output only. sid is the sap component identificator
      */
     sid?: string | null;
+    /**
+     * The detected topology of the component.
+     */
+    topologyType?: string | null;
   }
   /**
    * The schema of SAP system discovery data.

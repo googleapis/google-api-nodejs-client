@@ -113,6 +113,7 @@ export namespace cloudbilling_v1beta {
   export class Cloudbilling {
     context: APIRequestContext;
     billingAccounts: Resource$Billingaccounts;
+    projects: Resource$Projects;
     skuGroups: Resource$Skugroups;
     skus: Resource$Skus;
     v1beta: Resource$V1beta;
@@ -124,6 +125,7 @@ export namespace cloudbilling_v1beta {
       };
 
       this.billingAccounts = new Resource$Billingaccounts(this.context);
+      this.projects = new Resource$Projects(this.context);
       this.skuGroups = new Resource$Skugroups(this.context);
       this.skus = new Resource$Skus(this.context);
       this.v1beta = new Resource$V1beta(this.context);
@@ -479,6 +481,102 @@ export namespace cloudbilling_v1beta {
      * The point in time, relative to the start of the time frame covered by the cost estimate.
      */
     estimationTimeFrameOffset?: string | null;
+  }
+  /**
+   * Encapsulates an anomaly.
+   */
+  export interface Schema$GoogleCloudBillingAnomaliesV1betaAnomaly {
+    /**
+     * Time that the anomaly was detected. Will be set to 00:00 google time of the detected date.
+     */
+    detectionTime?: string | null;
+    /**
+     * Deviation information of the anomaly.
+     */
+    deviation?: Schema$GoogleCloudBillingAnomaliesV1betaAnomalyDeviation;
+    /**
+     * Identifier. Resource name for the anomaly.
+     */
+    name?: string | null;
+    /**
+     * The display name of the resource that the anomaly occurred in/belongs to.
+     */
+    resourceDisplayName?: string | null;
+    /**
+     * A list of causes which contribute to the anomaly.
+     */
+    rootCauses?: Schema$GoogleCloudBillingAnomaliesV1betaCause[];
+    /**
+     * Indicate the scope of the anomaly.
+     */
+    scope?: string | null;
+    /**
+     * Severity of the anomaly. Unspecified if severity is not met/assigned.
+     */
+    severity?: string | null;
+    /**
+     * Output only. The most recent anomaly's last updated time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Encapsulates the deviation information.
+   */
+  export interface Schema$GoogleCloudBillingAnomaliesV1betaAnomalyDeviation {
+    /**
+     * The actual spend for the anomaly.
+     */
+    actualSpend?: Schema$Money;
+    /**
+     * The difference between the actual spend and expected spend's upper bound. Calculation formula: deviation_amount = actual_spend - expected_spend.
+     */
+    deviationAmount?: Schema$Money;
+    /**
+     * The percentage of devition amount from expected spend's upper bound. Calculation formula: deviation_percentage = divation_amount / expected_spend * 100.
+     */
+    deviationPercentage?: number | null;
+    /**
+     * The expected spend for the anomaly.
+     */
+    expectedSpend?: Schema$Money;
+  }
+  /**
+   * Encapsulates the information of the reason which caused the anomaly.
+   */
+  export interface Schema$GoogleCloudBillingAnomaliesV1betaCause {
+    /**
+     * The cause type.
+     */
+    causeType?: string | null;
+    /**
+     * The deviation information for the cause.
+     */
+    deviation?: Schema$GoogleCloudBillingAnomaliesV1betaAnomalyDeviation;
+    /**
+     * The display name of the cause.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the cause. project: projects/{project\}. service: services/{service\}. sku: services/{service\}/skus/{sku\}. location: locations/{location\}.
+     */
+    resource?: string | null;
+    /**
+     * The sub causes.
+     */
+    subCauses?: Schema$GoogleCloudBillingAnomaliesV1betaCause[];
+  }
+  /**
+   * Response message for ListAnomalies.
+   */
+  export interface Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse {
+    /**
+     * The returned anomalies.
+     */
+    anomalies?: Schema$GoogleCloudBillingAnomaliesV1betaAnomaly[];
+    /**
+     * Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Encapsulates the aggregation information such as aggregation level and interval for a billing account price.
@@ -1607,11 +1705,13 @@ export namespace cloudbilling_v1beta {
 
   export class Resource$Billingaccounts {
     context: APIRequestContext;
+    anomalies: Resource$Billingaccounts$Anomalies;
     services: Resource$Billingaccounts$Services;
     skuGroups: Resource$Billingaccounts$Skugroups;
     skus: Resource$Billingaccounts$Skus;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.anomalies = new Resource$Billingaccounts$Anomalies(this.context);
       this.services = new Resource$Billingaccounts$Services(this.context);
       this.skuGroups = new Resource$Billingaccounts$Skugroups(this.context);
       this.skus = new Resource$Billingaccounts$Skus(this.context);
@@ -1724,6 +1824,229 @@ export namespace cloudbilling_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$EstimateCostScenarioForBillingAccountRequest;
+  }
+
+  export class Resource$Billingaccounts$Anomalies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets an anomaly for a billing account or a project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Billingaccounts$Anomalies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Billingaccounts$Anomalies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>;
+    get(
+      params: Params$Resource$Billingaccounts$Anomalies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Anomalies$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Anomalies$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Anomalies$Get
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Anomalies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Anomalies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists anomalies for a billing account or a project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Anomalies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Anomalies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Anomalies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Anomalies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Anomalies$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Anomalies$List
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Anomalies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Anomalies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/anomalies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Anomalies$Get
+    extends StandardParameters {
+    /**
+     * Required. Format for project: projects/{project\}/anomalies/{anomalies\}. Format for billing account: billingAccounts/{billing_account\}/anomalies/{anomalies\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Anomalies$List
+    extends StandardParameters {
+    /**
+     * Optional. Options for how to filter the anomalies. Currently, only filter on `start_time` and `end_time` is supported. Only =, AND operators are supported. If start_time and/or end_time empty, we only retrieve the most recent 30 days' anomalies. Examples: - start_time = "20231201" AND end_time = "20240120" .
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum number of anomalies to return. Results may return fewer than this value. Default value is 50 and maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListAnomalies call to retrieve the next page of results. If this field is empty, the first page is returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project to list Anomaly for the project. Format for project: projects/{project\}. Format for billing account: billingAccounts/{billing_account\}.
+     */
+    parent?: string;
   }
 
   export class Resource$Billingaccounts$Services {
@@ -2843,6 +3166,238 @@ export namespace cloudbilling_v1beta {
     pageToken?: string;
     /**
      * Required. To list all Billing Account SKUs, use `-` as the SKU ID. Format: `billingAccounts/{billing_account\}/skus/-` Note: Specifying an actual SKU resource id will return a collection of one Billing Account Price.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    anomalies: Resource$Projects$Anomalies;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.anomalies = new Resource$Projects$Anomalies(this.context);
+    }
+  }
+
+  export class Resource$Projects$Anomalies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets an anomaly for a billing account or a project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Anomalies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Anomalies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>;
+    get(
+      params: Params$Resource$Projects$Anomalies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Anomalies$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Anomalies$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Anomalies$Get
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Anomalies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Anomalies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBillingAnomaliesV1betaAnomaly>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists anomalies for a billing account or a project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Anomalies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Anomalies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>;
+    list(
+      params: Params$Resource$Projects$Anomalies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Anomalies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Anomalies$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Anomalies$List
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Anomalies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Anomalies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/anomalies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Anomalies$Get
+    extends StandardParameters {
+    /**
+     * Required. Format for project: projects/{project\}/anomalies/{anomalies\}. Format for billing account: billingAccounts/{billing_account\}/anomalies/{anomalies\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Anomalies$List
+    extends StandardParameters {
+    /**
+     * Optional. Options for how to filter the anomalies. Currently, only filter on `start_time` and `end_time` is supported. Only =, AND operators are supported. If start_time and/or end_time empty, we only retrieve the most recent 30 days' anomalies. Examples: - start_time = "20231201" AND end_time = "20240120" .
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum number of anomalies to return. Results may return fewer than this value. Default value is 50 and maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListAnomalies call to retrieve the next page of results. If this field is empty, the first page is returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project to list Anomaly for the project. Format for project: projects/{project\}. Format for billing account: billingAccounts/{billing_account\}.
      */
     parent?: string;
   }

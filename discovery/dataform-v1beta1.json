@@ -558,7 +558,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The repository's name.",
+                      "description": "Identifier. The repository's name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                       "required": true,
@@ -991,7 +991,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The release config's name.",
+                          "description": "Identifier. The release config's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/releaseConfigs/[^/]+$",
                           "required": true,
@@ -2103,7 +2103,7 @@
       }
     }
   },
-  "revision": "20240203",
+  "revision": "20240310",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -3431,8 +3431,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The release config's name.",
-          "readOnly": true,
+          "description": "Identifier. The release config's name.",
           "type": "string"
         },
         "recentScheduledReleaseRecords": {
@@ -3502,8 +3501,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The repository's name.",
-          "readOnly": true,
+          "description": "Identifier. The repository's name.",
           "type": "string"
         },
         "npmrcEnvironmentVariablesSecretVersion": {
@@ -3896,8 +3894,7 @@
       "id": "Workspace",
       "properties": {
         "name": {
-          "description": "Output only. The workspace's name.",
-          "readOnly": true,
+          "description": "Identifier. The workspace's name.",
           "type": "string"
         }
       },

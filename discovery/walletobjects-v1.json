@@ -2681,7 +2681,7 @@
       }
     }
   },
-  "revision": "20240222",
+  "revision": "20240313",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -3153,11 +3153,11 @@
       "properties": {
         "updateRequestUrl": {
           "deprecated": true,
-          "description": "URL for the merchant endpoint that would be called to request updates. The URL should be hosted on HTTPS and robots.txt should allow the URL path to be accessible by UserAgent:Google-Valuables. Deprecated.",
+          "description": "URL for the merchant endpoint that would be called to request updates. The URL should be hosted on HTTPS and robots.txt should allow the URL path to be accessible by UserAgent:Googlebot. Deprecated.",
           "type": "string"
         },
         "url": {
-          "description": "The HTTPS url configured by the merchant. The URL should be hosted on HTTPS and robots.txt should allow the URL path to be accessible by UserAgent:Google-Valuables.",
+          "description": "The HTTPS url configured by the merchant. The URL should be hosted on HTTPS and robots.txt should allow the URL path to be accessible by UserAgent:Googlebot.",
           "type": "string"
         }
       },

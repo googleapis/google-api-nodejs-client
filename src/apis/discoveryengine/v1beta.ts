@@ -428,10 +428,6 @@ export namespace discoveryengine_v1beta {
     updateTime?: string | null;
   }
   /**
-   * The digital parsing configurations for documents.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig {}
-  /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata {
@@ -453,6 +449,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig {
     /**
+     * Whether chunking mode is enabled.
+     */
+    chunkingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig;
+    /**
      * Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing.
      */
     defaultParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig;
@@ -460,10 +460,6 @@ export namespace discoveryengine_v1beta {
      * The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
      */
     name?: string | null;
-    /**
-     * [DEPRECATED] This field is deprecated. To specify OCR parsing config, please specify `ocr_parsing_config` in `default_parsing_config` field The OCR config. Currently it only applies to PDFs.
-     */
-    ocrConfig?: Schema$GoogleCloudDiscoveryengineV1alphaOcrConfig;
     /**
      * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
      */
@@ -474,21 +470,64 @@ export namespace discoveryengine_v1beta {
     } | null;
   }
   /**
+   * Configuration for chunking config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig {
+    /**
+     * Configuration for the layout based chunking.
+     */
+    layoutBasedChunkingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig;
+  }
+  /**
+   * Configuration for the layout based chunking.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig {
+    /**
+     * The token size limit for each chunk. Supported values: 100-500 (inclusive). Default value: 500.
+     */
+    chunkSize?: number | null;
+    /**
+     * Whether to include appending different levels of headings to chunks from the middle of the document to prevent context loss. Default value: False.
+     */
+    includeAncestorHeadings?: boolean | null;
+  }
+  /**
    * Related configurations applied to a specific type of document parser.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig {
     /**
      * Configurations applied to digital parser.
      */
-    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig;
+    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigDigitalParsingConfig;
     /**
      * Configurations applied to layout parser.
      */
-    layoutParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig;
+    layoutParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig;
     /**
      * Configurations applied to OCR parser. Currently it only applies to PDFs.
      */
-    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaOcrParsingConfig;
+    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrParsingConfig;
+  }
+  /**
+   * The digital parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigDigitalParsingConfig {}
+  /**
+   * The layout parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig {}
+  /**
+   * The OCR parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrParsingConfig {
+    /**
+     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
+     */
+    enhancedDocumentElements?: string[] | null;
+    /**
+     * If true, will use native text instead of OCR text on pages containing native text.
+     */
+    useNativeText?: boolean | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -511,10 +550,6 @@ export namespace discoveryengine_v1beta {
    * Metadata that describes the training and serving parameters of an Engine.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngine {
-    /**
-     * Whether the search engine can associate with multiple data stores. If true, the generic search engine can associate with one or more data stores. This is an input-only field.
-     */
-    allowMultipleDataStoresSearchEngine?: boolean | null;
     /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
@@ -895,40 +930,6 @@ export namespace discoveryengine_v1beta {
      * Count of user events imported, but with Document information not found in the existing Branch.
      */
     unjoinedEventsCount?: string | null;
-  }
-  /**
-   * The layout parsing configurations for documents.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig {}
-  /**
-   * The OCR options for parsing documents.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaOcrConfig {
-    /**
-     * Required. If OCR is enabled or not. OCR must be enabled for other OcrConfig options to apply. We will only perform OCR on the first 80 pages of the PDF files.
-     */
-    enabled?: boolean | null;
-    /**
-     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
-     */
-    enhancedDocumentElements?: string[] | null;
-    /**
-     * If true, will use native text instead of OCR text on pages containing native text.
-     */
-    useNativeText?: boolean | null;
-  }
-  /**
-   * The OCR parsing configurations for documents.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaOcrParsingConfig {
-    /**
-     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
-     */
-    enhancedDocumentElements?: string[] | null;
-    /**
-     * If true, will use native text instead of OCR text on pages containing native text.
-     */
-    useNativeText?: boolean | null;
   }
   /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -1672,10 +1673,6 @@ export namespace discoveryengine_v1beta {
     updateTime?: string | null;
   }
   /**
-   * The digital parsing configurations for documents.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaDigitalParsingConfig {}
-  /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata {
@@ -1807,11 +1804,28 @@ export namespace discoveryengine_v1beta {
     /**
      * Configurations applied to digital parser.
      */
-    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDigitalParsingConfig;
+    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig;
     /**
      * Configurations applied to OCR parser. Currently it only applies to PDFs.
      */
-    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaOcrParsingConfig;
+    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig;
+  }
+  /**
+   * The digital parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig {}
+  /**
+   * The OCR parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig {
+    /**
+     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
+     */
+    enhancedDocumentElements?: string[] | null;
+    /**
+     * If true, will use native text instead of OCR text on pages containing native text.
+     */
+    useNativeText?: boolean | null;
   }
   /**
    * Double list.
@@ -2335,19 +2349,6 @@ export namespace discoveryengine_v1beta {
     mediaProgressPercentage?: number | null;
   }
   /**
-   * The OCR parsing configurations for documents.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaOcrParsingConfig {
-    /**
-     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
-     */
-    enhancedDocumentElements?: string[] | null;
-    /**
-     * If true, will use native text instead of OCR text on pages containing native text.
-     */
-    useNativeText?: boolean | null;
-  }
-  /**
    * Detailed page information.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaPageInfo {
@@ -2639,6 +2640,10 @@ export namespace discoveryengine_v1beta {
      */
     contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec;
     /**
+     * A list of data store specs to apply on a search call.
+     */
+    dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec[];
+    /**
      * Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embedding that is provided in SearchRequest.EmbeddingSpec.EmbeddingVector.field_path. If SearchRequest.EmbeddingSpec.EmbeddingVector.field_path is not provided, it will use ServingConfig.EmbeddingConfig.field_path.
      */
     embeddingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpec;
@@ -2725,7 +2730,7 @@ export namespace discoveryengine_v1beta {
      */
     boost?: number | null;
     /**
-     * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": * (document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))
+     * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": `(document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))`
      */
     condition?: string | null;
   }
@@ -2766,6 +2771,10 @@ export namespace discoveryengine_v1beta {
      * Specifies whether to also include the adjacent from each selected segments. Return at most `num_previous_segments` segments before each selected segments.
      */
     numPreviousSegments?: number | null;
+    /**
+     * Specifies whether to return the confidence score from the extractive segments in each search result. This feature is available only for new or allowlisted data stores. To allowlist your data store, please contact your Customer Engineer. The default value is `false`.
+     */
+    returnExtractiveSegmentScore?: boolean | null;
   }
   /**
    * A specification for configuring snippets in a search response.
@@ -2813,7 +2822,7 @@ export namespace discoveryengine_v1beta {
      */
     modelSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec;
     /**
-     * The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most five results can be used to generate a summary.
+     * The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most 10 results can be used to generate a summary.
      */
     summaryResultCount?: number | null;
   }
@@ -2831,9 +2840,18 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec {
     /**
-     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English.
+     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models). * `preview`: string. (Public preview) Uses a preview model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models).
      */
     version?: string | null;
+  }
+  /**
+   * A struct to define data stores to filter on in a search call.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     */
+    dataStore?: string | null;
   }
   /**
    * The specification that uses customized query embedding vector to do semantic document retrieval.
@@ -3249,7 +3267,7 @@ export namespace discoveryengine_v1beta {
      */
     modelId?: string | null;
     /**
-     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
      */
     name?: string | null;
     /**
@@ -3298,10 +3316,6 @@ export namespace discoveryengine_v1beta {
      * Specifies the content freshness used for recommendation result. Contents will be demoted if contents were published for more than content freshness cutoff days.
      */
     contentFreshnessCutoffDays?: number | null;
-    /**
-     * Specifies the content watched minutes threshold for demotion.
-     */
-    contentWatchedMinutesThreshold?: number | null;
     /**
      * Specifies the content watched percentage threshold for demotion. Threshold value must be between [0, 1.0] inclusive.
      */
@@ -3421,6 +3435,74 @@ export namespace discoveryengine_v1beta {
      * Text input.
      */
     input?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the TrainCustomModel operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTrainCustomModelMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for SearchTuningService.TrainCustomModel method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTrainCustomModelRequest {
+    /**
+     * The desired location of errors incurred during the data ingestion and training.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1betaImportErrorConfig;
+    /**
+     * Cloud Storage training input.
+     */
+    gcsTrainingInput?: Schema$GoogleCloudDiscoveryengineV1betaTrainCustomModelRequestGcsTrainingInput;
+    /**
+     * Model to be trained. Supported values are: * **search-tuning**: Fine tuning the search system based on data provided.
+     */
+    modelType?: string | null;
+  }
+  /**
+   * Cloud Storage training data input.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTrainCustomModelRequestGcsTrainingInput {
+    /**
+     * The Cloud Storage corpus data which could be associated in train data. The data path format is `gs:///`. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id, title and text. Example: `{"_id": "doc1", title: "relevant doc", "text": "relevant text"\}`
+     */
+    corpusDataPath?: string | null;
+    /**
+     * The gcs query data which could be associated in train data. The data path format is `gs:///`. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id and text. Example: {"_id": "query1", "text": "example query"\}
+     */
+    queryDataPath?: string | null;
+    /**
+     * Cloud Storage test data. Same format as train_data_path. If not provided, a random 80/20 train/test split will be performed on train_data_path.
+     */
+    testDataPath?: string | null;
+    /**
+     * Cloud Storage training data path whose format should be `gs:///`. The file should be in tsv format. Each line should have the doc_id and query_id and score (number). For search-tuning model, it should have the query-id corpus-id score as tsv file header. The score should be a number in `[0, inf+)`. The larger the number is, the more relevant the pair is. Example: * `query-id\tcorpus-id\tscore` * `query1\tdoc1\t1`
+     */
+    trainDataPath?: string | null;
+  }
+  /**
+   * Response of the TrainCustomModelRequest. This message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTrainCustomModelResponse {
+    /**
+     * Echoes the destination for the complete errors in the request if set.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1betaImportErrorConfig;
+    /**
+     * A sample of errors encountered while processing the data.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.
+     */
+    modelStatus?: string | null;
   }
   /**
    * A transaction represents the entire purchase transaction.
@@ -3715,10 +3797,6 @@ export namespace discoveryengine_v1beta {
     updateTime?: string | null;
   }
   /**
-   * The digital parsing configurations for documents.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1DigitalParsingConfig {}
-  /**
    * Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata {
@@ -3763,11 +3841,28 @@ export namespace discoveryengine_v1beta {
     /**
      * Configurations applied to digital parser.
      */
-    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DigitalParsingConfig;
+    digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig;
     /**
      * Configurations applied to OCR parser. Currently it only applies to PDFs.
      */
-    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1OcrParsingConfig;
+    ocrParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig;
+  }
+  /**
+   * The digital parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig {}
+  /**
+   * The OCR parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig {
+    /**
+     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
+     */
+    enhancedDocumentElements?: string[] | null;
+    /**
+     * If true, will use native text instead of OCR text on pages containing native text.
+     */
+    useNativeText?: boolean | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -4014,19 +4109,6 @@ export namespace discoveryengine_v1beta {
      * Count of user events imported, but with Document information not found in the existing Branch.
      */
     unjoinedEventsCount?: string | null;
-  }
-  /**
-   * The OCR parsing configurations for documents.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1OcrParsingConfig {
-    /**
-     * Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.
-     */
-    enhancedDocumentElements?: string[] | null;
-    /**
-     * If true, will use native text instead of OCR text on pages containing native text.
-     */
-    useNativeText?: boolean | null;
   }
   /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -5293,6 +5375,102 @@ export namespace discoveryengine_v1beta {
         );
       }
     }
+
+    /**
+     * Trains a custom model.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    trainCustomModel(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    trainCustomModel(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    trainCustomModel(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    trainCustomModel(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    trainCustomModel(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    trainCustomModel(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    trainCustomModel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+dataStore}:trainCustomModel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Completequery
@@ -5393,6 +5571,18 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDataStore;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Data Store, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to train the models.
+     */
+    dataStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaTrainCustomModelRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Branches {
@@ -8785,7 +8975,7 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config_id\}`
+     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
   }
@@ -8800,14 +8990,14 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The dataStore resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     * Required. Full resource name of the parent resource. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Patch
     extends StandardParameters {
     /**
-     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
     /**
@@ -13005,7 +13195,7 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config_id\}`
+     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
   }
@@ -13020,14 +13210,14 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The dataStore resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     * Required. Full resource name of the parent resource. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Patch
     extends StandardParameters {
     /**
-     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
     /**
@@ -17258,7 +17448,7 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config_id\}`
+     * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
   }
@@ -17273,14 +17463,14 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The dataStore resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     * Required. Full resource name of the parent resource. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Patch
     extends StandardParameters {
     /**
-     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}`
+     * Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
     /**

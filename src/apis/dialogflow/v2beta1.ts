@@ -140,6 +140,10 @@ export namespace dialogflow_v2beta1 {
      * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
      */
     loggingSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings;
+    /**
+     * Settings for speech to text detection. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level
+     */
+    speechSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings;
   }
   /**
    * Define behaviors for DTMF (dual tone multi frequency).
@@ -170,6 +174,27 @@ export namespace dialogflow_v2beta1 {
      * If true, StackDriver logging is currently enabled.
      */
     enableStackdriverLogging?: boolean | null;
+  }
+  /**
+   * Define behaviors of speech to text detection.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings {
+    /**
+     * Sensitivity of the speech model that detects the end of speech. Scale from 0 to 100.
+     */
+    endpointerSensitivity?: number | null;
+    /**
+     * Mapping from language to Speech-to-Text model. The mapped Speech-to-Text model will be selected for requests from its corresponding language. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).
+     */
+    models?: {[key: string]: string} | null;
+    /**
+     * Timeout before detecting no speech.
+     */
+    noSpeechTimeout?: string | null;
+    /**
+     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     */
+    useTimeoutBasedEndpointing?: boolean | null;
   }
   /**
    * Represents the natural speech audio to be processed.
@@ -231,6 +256,10 @@ export namespace dialogflow_v2beta1 {
      * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
      */
     loggingSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings;
+    /**
+     * Settings for speech to text detection. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level
+     */
+    speechSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings;
   }
   /**
    * Define behaviors for DTMF (dual tone multi frequency).
@@ -261,6 +290,27 @@ export namespace dialogflow_v2beta1 {
      * If true, StackDriver logging is currently enabled.
      */
     enableStackdriverLogging?: boolean | null;
+  }
+  /**
+   * Define behaviors of speech to text detection.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings {
+    /**
+     * Sensitivity of the speech model that detects the end of speech. Scale from 0 to 100.
+     */
+    endpointerSensitivity?: number | null;
+    /**
+     * Mapping from language to Speech-to-Text model. The mapped Speech-to-Text model will be selected for requests from its corresponding language. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).
+     */
+    models?: {[key: string]: string} | null;
+    /**
+     * Timeout before detecting no speech.
+     */
+    noSpeechTimeout?: string | null;
+    /**
+     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     */
+    useTimeoutBasedEndpointing?: boolean | null;
   }
   /**
    * Represents the natural speech audio to be processed.
@@ -1691,6 +1741,10 @@ export namespace dialogflow_v2beta1 {
      */
     httpMethod?: string | null;
     /**
+     * Optional. The OAuth configuration of the webhook. If specified, Dialogflow will initiate the OAuth client credential flow to exchange an access token from the 3rd party platform and put it in the auth header.
+     */
+    oauthConfig?: Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig;
+    /**
      * Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response
      */
     parameterMapping?: {[key: string]: string} | null;
@@ -1707,6 +1761,10 @@ export namespace dialogflow_v2beta1 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
+     */
+    serviceAgentAuth?: string | null;
+    /**
      * Required. The webhook URI for receiving POST requests. It must use https protocol.
      */
     uri?: string | null;
@@ -1718,6 +1776,27 @@ export namespace dialogflow_v2beta1 {
      * Optional. Type of the webhook.
      */
     webhookType?: string | null;
+  }
+  /**
+   * Represents configuration of OAuth client credential flow for 3rd party API authentication.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig {
+    /**
+     * Required. The client ID provided by the 3rd party platform.
+     */
+    clientId?: string | null;
+    /**
+     * Required. The client secret provided by the 3rd party platform.
+     */
+    clientSecret?: string | null;
+    /**
+     * Optional. The OAuth scopes to grant.
+     */
+    scopes?: string[] | null;
+    /**
+     * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
+     */
+    tokenEndpoint?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -3284,6 +3363,10 @@ export namespace dialogflow_v2beta1 {
      */
     httpMethod?: string | null;
     /**
+     * Optional. The OAuth configuration of the webhook. If specified, Dialogflow will initiate the OAuth client credential flow to exchange an access token from the 3rd party platform and put it in the auth header.
+     */
+    oauthConfig?: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig;
+    /**
      * Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response
      */
     parameterMapping?: {[key: string]: string} | null;
@@ -3300,6 +3383,10 @@ export namespace dialogflow_v2beta1 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
+     */
+    serviceAgentAuth?: string | null;
+    /**
      * Required. The webhook URI for receiving POST requests. It must use https protocol.
      */
     uri?: string | null;
@@ -3311,6 +3398,27 @@ export namespace dialogflow_v2beta1 {
      * Optional. Type of the webhook.
      */
     webhookType?: string | null;
+  }
+  /**
+   * Represents configuration of OAuth client credential flow for 3rd party API authentication.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig {
+    /**
+     * Required. The client ID provided by the 3rd party platform.
+     */
+    clientId?: string | null;
+    /**
+     * Required. The client secret provided by the 3rd party platform.
+     */
+    clientSecret?: string | null;
+    /**
+     * Optional. The OAuth scopes to grant.
+     */
+    scopes?: string[] | null;
+    /**
+     * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
+     */
+    tokenEndpoint?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.

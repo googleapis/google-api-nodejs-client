@@ -135,6 +135,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getAlertConfig": {
+          "description": "Get the AlertConfig of the requested project.",
+          "flatPath": "v2alpha/projects/{projectsId}/alertConfig",
+          "httpMethod": "GET",
+          "id": "retail.projects.getAlertConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Full AlertConfig resource name. Format: projects/{project_number}/alertConfig",
+              "location": "path",
+              "pattern": "^projects/[^/]+/alertConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2alpha/{+name}",
+          "response": {
+            "$ref": "GoogleCloudRetailV2alphaAlertConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "getLoggingConfig": {
           "description": "Gets the LoggingConfig of the requested project.",
           "flatPath": "v2alpha/projects/{projectsId}/loggingConfig",
@@ -205,6 +230,40 @@
           "path": "v2alpha/{+parent}:enrolledSolutions",
           "response": {
             "$ref": "GoogleCloudRetailV2alphaListEnrolledSolutionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "updateAlertConfig": {
+          "description": "Update the alert config of the requested project.",
+          "flatPath": "v2alpha/projects/{projectsId}/alertConfig",
+          "httpMethod": "PATCH",
+          "id": "retail.projects.updateAlertConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Immutable. The name of the AlertConfig singleton resource. Format: projects/*/alertConfig",
+              "location": "path",
+              "pattern": "^projects/[^/]+/alertConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Indicates which fields in the provided AlertConfig to update. If not set, all supported fields are updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v2alpha/{+name}",
+          "request": {
+            "$ref": "GoogleCloudRetailV2alphaAlertConfig"
+          },
+          "response": {
+            "$ref": "GoogleCloudRetailV2alphaAlertConfig"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -2416,7 +2475,7 @@
       }
     }
   },
-  "revision": "20240222",
+  "revision": "20240307",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3239,6 +3298,67 @@
       "description": "Response of the ProductService.AddLocalInventories API. Currently empty because there is no meaningful response populated from the ProductService.AddLocalInventories method.",
       "id": "GoogleCloudRetailV2alphaAddLocalInventoriesResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaAlertConfig": {
+      "description": "Project level alert config.",
+      "id": "GoogleCloudRetailV2alphaAlertConfig",
+      "properties": {
+        "alertPolicies": {
+          "description": "Alert policies for a customer. They must be unique by [AlertPolicy.alert_group]",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaAlertConfigAlertPolicy"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Immutable. The name of the AlertConfig singleton resource. Format: projects/*/alertConfig",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaAlertConfigAlertPolicy": {
+      "description": "Alert policy for a customer.",
+      "id": "GoogleCloudRetailV2alphaAlertConfigAlertPolicy",
+      "properties": {
+        "alertGroup": {
+          "description": "The feature that provides alerting capability. Supported value is only `search-data-quality` for now.",
+          "type": "string"
+        },
+        "enrollStatus": {
+          "description": "The enrollment status of a customer.",
+          "enum": [
+            "ENROLL_STATUS_UNSPECIFIED",
+            "ENROLLED",
+            "DECLINED"
+          ],
+          "enumDescriptions": [
+            "Default value. Used for customers who have not responded to the alert policy.",
+            "Customer is enrolled in this policy.",
+            "Customer declined this policy."
+          ],
+          "type": "string"
+        },
+        "recipients": {
+          "description": "Recipients for the alert policy. One alert policy should not exceed 20 recipients.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaAlertConfigAlertPolicyRecipient"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaAlertConfigAlertPolicyRecipient": {
+      "description": "Recipient contact information.",
+      "id": "GoogleCloudRetailV2alphaAlertConfigAlertPolicyRecipient",
+      "properties": {
+        "emailAddress": {
+          "description": "Email address of the recipient.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudRetailV2alphaAttributesConfig": {

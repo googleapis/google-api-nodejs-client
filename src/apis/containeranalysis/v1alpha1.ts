@@ -527,6 +527,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     description?: string | null;
     /**
+     * Potential impact of the suggested remediation
+     */
+    impact?: string | null;
+    /**
      * A rationale for the existence of this compliance check.
      */
     rationale?: string | null;

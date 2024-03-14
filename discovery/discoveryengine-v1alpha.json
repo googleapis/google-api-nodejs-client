@@ -926,6 +926,73 @@
                                 "https://www.googleapis.com/auth/cloud-platform"
                               ]
                             }
+                          },
+                          "resources": {
+                            "chunks": {
+                              "methods": {
+                                "get": {
+                                  "description": "Gets a Document.",
+                                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents/{documentsId}/chunks/{chunksId}",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.chunks.get",
+                                  "parameterOrder": [
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "name": {
+                                      "description": "Required. Full resource name of Chunk, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}/chunks/{chunk}`. If the caller does not have permission to access the Chunk, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Chunk does not exist, a `NOT_FOUND` error is returned.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+/chunks/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1alpha/{+name}",
+                                  "response": {
+                                    "$ref": "GoogleCloudDiscoveryengineV1alphaChunk"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                },
+                                "list": {
+                                  "description": "Gets a list of Chunks.",
+                                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents/{documentsId}/chunks",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.chunks.list",
+                                  "parameterOrder": [
+                                    "parent"
+                                  ],
+                                  "parameters": {
+                                    "pageSize": {
+                                      "description": "Maximum number of Chunks to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
+                                      "format": "int32",
+                                      "location": "query",
+                                      "type": "integer"
+                                    },
+                                    "pageToken": {
+                                      "description": "A page token ListChunksResponse.next_page_token, received from a previous ChunkService.ListChunks call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ChunkService.ListChunks must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                                      "location": "query",
+                                      "type": "string"
+                                    },
+                                    "parent": {
+                                      "description": "Required. The parent document resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to list Chunks under this document, regardless of whether or not this document exists, a `PERMISSION_DENIED` error is returned.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1alpha/{+parent}/chunks",
+                                  "response": {
+                                    "$ref": "GoogleCloudDiscoveryengineV1alphaListChunksResponse"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                }
+                              }
+                            }
                           }
                         },
                         "operations": {
@@ -1574,7 +1641,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`",
+                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -1610,7 +1677,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The dataStore resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`",
+                              "description": "Required. Full resource name of the parent resource. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -1635,7 +1702,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`",
+                              "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/servingConfigs/{serving_config_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -2896,7 +2963,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`",
+                              "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -2932,7 +2999,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The dataStore resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`",
+                              "description": "Required. Full resource name of the parent resource. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -2957,7 +3024,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`",
+                              "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/servingConfigs/{serving_config_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -3627,6 +3694,73 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         }
+                      },
+                      "resources": {
+                        "chunks": {
+                          "methods": {
+                            "get": {
+                              "description": "Gets a Document.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents/{documentsId}/chunks/{chunksId}",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.dataStores.branches.documents.chunks.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Full resource name of Chunk, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}/chunks/{chunk}`. If the caller does not have permission to access the Chunk, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Chunk does not exist, a `NOT_FOUND` error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+/chunks/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaChunk"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Gets a list of Chunks.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents/{documentsId}/chunks",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.dataStores.branches.documents.chunks.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "pageSize": {
+                                  "description": "Maximum number of Chunks to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "A page token ListChunksResponse.next_page_token, received from a previous ChunkService.ListChunks call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ChunkService.ListChunks must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent document resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to list Chunks under this document, regardless of whether or not this document exists, a `PERMISSION_DENIED` error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/chunks",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaListChunksResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        }
                       }
                     },
                     "operations": {
@@ -4203,7 +4337,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`",
+                          "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -4239,7 +4373,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The dataStore resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`",
+                          "description": "Required. Full resource name of the parent resource. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -4264,7 +4398,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`",
+                          "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/servingConfigs/{serving_config_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -4946,7 +5080,7 @@
       }
     }
   },
-  "revision": "20240227",
+  "revision": "20240312",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5345,12 +5479,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1DigitalParsingConfig": {
-      "description": "The digital parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1DigitalParsingConfig",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata",
@@ -5401,12 +5529,36 @@
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig",
       "properties": {
         "digitalParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1DigitalParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
         },
         "ocrParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1OcrParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig",
           "description": "Configurations applied to OCR parser. Currently it only applies to PDFs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig": {
+      "description": "The digital parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig": {
+      "description": "The OCR parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig",
+      "properties": {
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -5759,24 +5911,6 @@
           "description": "Count of user events imported, but with Document information not found in the existing Branch.",
           "format": "int64",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1OcrParsingConfig": {
-      "description": "The OCR parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1OcrParsingConfig",
-      "properties": {
-        "enhancedDocumentElements": {
-          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useNativeText": {
-          "description": "If true, will use native text instead of OCR text on pages containing native text.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -6153,6 +6287,53 @@
         },
         "tableId": {
           "description": "Required. The BigQuery table to copy the data from with a length limit of 1,024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaChunk": {
+      "description": "Chunk captures all raw metadata information of items to be recommended or searched in the chunk mode.",
+      "id": "GoogleCloudDiscoveryengineV1alphaChunk",
+      "properties": {
+        "content": {
+          "description": "Content is a string from a document (parsed content).",
+          "type": "string"
+        },
+        "derivedStructData": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. This field is OUTPUT_ONLY. It contains derived data that are not in the original input document.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "documentMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaChunkDocumentMetadata",
+          "description": "Metadata of the document from the current chunk."
+        },
+        "id": {
+          "description": "Unique chunk id of the current chunk.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The full resource name of the chunk. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document_id}/chunks/{chunk_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaChunkDocumentMetadata": {
+      "description": "Document metadata contains the information of the document of the current chunk.",
+      "id": "GoogleCloudDiscoveryengineV1alphaChunkDocumentMetadata",
+      "properties": {
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Uri of the document.",
           "type": "string"
         }
       },
@@ -6675,12 +6856,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig": {
-      "description": "The digital parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata",
@@ -6773,6 +6948,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaDocumentAclInfo",
       "properties": {
         "readers": {
+          "description": "Readers of the document.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentAclInfoAccessRestriction"
           },
@@ -6850,6 +7026,10 @@
       "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
       "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig",
       "properties": {
+        "chunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig",
+          "description": "Whether chunking mode is enabled."
+        },
         "defaultParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig",
           "description": "Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing."
@@ -6857,11 +7037,6 @@
         "name": {
           "description": "The full resource name of the Document Processing Config. Format: `projects/*/locations/*/collections/*/dataStores/*/documentProcessingConfig`.",
           "type": "string"
-        },
-        "ocrConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
-          "deprecated": true,
-          "description": "[DEPRECATED] This field is deprecated. To specify OCR parsing config, please specify `ocr_parsing_config` in `default_parsing_config` field The OCR config. Currently it only applies to PDFs."
         },
         "parsingConfigOverrides": {
           "additionalProperties": {
@@ -6873,21 +7048,78 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig": {
+      "description": "Configuration for chunking config.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig",
+      "properties": {
+        "layoutBasedChunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+          "description": "Configuration for the layout based chunking."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig": {
+      "description": "Configuration for the layout based chunking.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+      "properties": {
+        "chunkSize": {
+          "description": "The token size limit for each chunk. Supported values: 100-500 (inclusive). Default value: 500.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "includeAncestorHeadings": {
+          "description": "Whether to include appending different levels of headings to chunks from the middle of the document to prevent context loss. Default value: False.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig": {
       "description": "Related configurations applied to a specific type of document parser.",
       "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig",
       "properties": {
         "digitalParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
         },
         "layoutParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
           "description": "Configurations applied to layout parser."
         },
         "ocrParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaOcrParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrParsingConfig",
           "description": "Configurations applied to OCR parser. Currently it only applies to PDFs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigDigitalParsingConfig": {
+      "description": "The digital parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig": {
+      "description": "The layout parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrParsingConfig": {
+      "description": "The OCR parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrParsingConfig",
+      "properties": {
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6951,10 +7183,6 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaEngine",
       "properties": {
-        "allowMultipleDataStoresSearchEngine": {
-          "description": "Whether the search engine can associate with multiple data stores. If true, the generic search engine can associate with one or more data stores. This is an input-only field.",
-          "type": "boolean"
-        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -7864,10 +8092,22 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig": {
-      "description": "The layout parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig",
-      "properties": {},
+    "GoogleCloudDiscoveryengineV1alphaListChunksResponse": {
+      "description": "Response message for ChunkService.ListChunks method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListChunksResponse",
+      "properties": {
+        "chunks": {
+          "description": "The Chunks.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaChunk"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as ListChunksRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaListConversationsResponse": {
@@ -8036,47 +8276,6 @@
           "description": "Media progress should be computed using only the media_progress_duration relative to the media total length. This value must be between `[0, 1.0]` inclusive. If this is not a playback or the progress cannot be computed (e.g. ongoing livestream), this field should be unset.",
           "format": "float",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaOcrConfig": {
-      "deprecated": true,
-      "description": "The OCR options for parsing documents.",
-      "id": "GoogleCloudDiscoveryengineV1alphaOcrConfig",
-      "properties": {
-        "enabled": {
-          "description": "Required. If OCR is enabled or not. OCR must be enabled for other OcrConfig options to apply. We will only perform OCR on the first 80 pages of the PDF files.",
-          "type": "boolean"
-        },
-        "enhancedDocumentElements": {
-          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useNativeText": {
-          "description": "If true, will use native text instead of OCR text on pages containing native text.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaOcrParsingConfig": {
-      "description": "The OCR parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1alphaOcrParsingConfig",
-      "properties": {
-        "enhancedDocumentElements": {
-          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useNativeText": {
-          "description": "If true, will use native text instead of OCR text on pages containing native text.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -8673,6 +8872,13 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec",
           "description": "Custom fine tuning configs."
         },
+        "dataStoreSpecs": {
+          "description": "A list of data store specs to apply on a search call.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec"
+          },
+          "type": "array"
+        },
         "embeddingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpec",
           "description": "Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embedding that is provided in SearchRequest.EmbeddingSpec.EmbeddingVector.field_path. If SearchRequest.EmbeddingSpec.EmbeddingVector.field_path is not provided, it will use ServingConfig.EmbeddingConfig.field_path."
@@ -8783,7 +8989,7 @@
           "type": "number"
         },
         "condition": {
-          "description": "An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID \"doc_1\" or \"doc_2\", and color \"Red\" or \"Blue\": * (document_id: ANY(\"doc_1\", \"doc_2\")) AND (color: ANY(\"Red\", \"Blue\"))",
+          "description": "An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID \"doc_1\" or \"doc_2\", and color \"Red\" or \"Blue\": `(document_id: ANY(\"doc_1\", \"doc_2\")) AND (color: ANY(\"Red\", \"Blue\"))`",
           "type": "string"
         }
       },
@@ -8796,6 +9002,20 @@
         "extractiveContentSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecExtractiveContentSpec",
           "description": "If there is no extractive_content_spec provided, there will be no extractive answer in the search response."
+        },
+        "searchResultMode": {
+          "description": "Specifies the search result mode. If unspecified, the search result mode is based on DataStore.DocumentProcessingConfig.chunking_config: * If DataStore.DocumentProcessingConfig.chunking_config is specified, it defaults to `CHUNKS`. * Otherwise, it defaults to `DOCUMENTS`.",
+          "enum": [
+            "SEARCH_RESULT_MODE_UNSPECIFIED",
+            "DOCUMENTS",
+            "CHUNKS"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Returns documents in the search result.",
+            "Returns chunks in the search result. Only available if the DataStore.DocumentProcessingConfig.chunking_config is specified."
+          ],
+          "type": "string"
         },
         "snippetSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSnippetSpec",
@@ -8831,6 +9051,10 @@
           "description": "Specifies whether to also include the adjacent from each selected segments. Return at most `num_previous_segments` segments before each selected segments.",
           "format": "int32",
           "type": "integer"
+        },
+        "returnExtractiveSegmentScore": {
+          "description": "Specifies whether to return the confidence score from the extractive segments in each search result. This feature is available only for new or allowlisted data stores. To allowlist your data store, please contact your Customer Engineer. The default value is `false`.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -8886,7 +9110,7 @@
           "description": "If specified, the spec will be used to modify the model specification provided to the LLM."
         },
         "summaryResultCount": {
-          "description": "The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most five results can be used to generate a summary.",
+          "description": "The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most 10 results can be used to generate a summary.",
           "format": "int32",
           "type": "integer"
         }
@@ -8909,7 +9133,18 @@
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec",
       "properties": {
         "version": {
-          "description": "The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned version of the text-bison@001 model. * `preview`: string. (Public preview) Uses a fine-tuned version of the text-bison@002 model. This model works only for summaries in English.",
+          "description": "The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models). * `preview`: string. (Public preview) Uses a preview model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec": {
+      "description": "A struct to define data stores to filter on in a search call.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
           "type": "string"
         }
       },
@@ -9259,6 +9494,10 @@
       "description": "Represents the search results.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResult",
       "properties": {
+        "chunk": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaChunk",
+          "description": "The chunk data in the search response if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS."
+        },
         "document": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaDocument",
           "description": "The document data snippet in the search response. Only fields that are marked as retrievable are populated."
@@ -9503,7 +9742,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`",
+          "description": "Immutable. Fully qualified name `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/servingConfigs/{serving_config_id}`",
           "type": "string"
         },
         "onewaySynonymsControlIds": {
@@ -9582,12 +9821,6 @@
           "description": "Specifies the content freshness used for recommendation result. Contents will be demoted if contents were published for more than content freshness cutoff days.",
           "format": "int32",
           "type": "integer"
-        },
-        "contentWatchedMinutesThreshold": {
-          "deprecated": true,
-          "description": "Specifies the content watched minutes threshold for demotion.",
-          "format": "float",
-          "type": "number"
         },
         "contentWatchedPercentageThreshold": {
           "description": "Specifies the content watched percentage threshold for demotion. Threshold value must be between [0, 1.0] inclusive.",
@@ -9823,11 +10056,11 @@
       "id": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput",
       "properties": {
         "corpusDataPath": {
-          "description": "The Cloud Storage corpus data which could be associated in train data. The data path format is gs:///. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id, title and text. Example: {\"_id\": \"doc1\", title: \"relevant doc\", \"text\": \"relevant text\"}",
+          "description": "The Cloud Storage corpus data which could be associated in train data. The data path format is `gs:///`. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id, title and text. Example: `{\"_id\": \"doc1\", title: \"relevant doc\", \"text\": \"relevant text\"}`",
           "type": "string"
         },
         "queryDataPath": {
-          "description": "The gcs query data which could be associated in train data. The data path format is gs:///. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id and text. Example: {\"_id\": \"query1\", \"text\": \"example query\"}",
+          "description": "The gcs query data which could be associated in train data. The data path format is `gs:///`. A newline delimited jsonl/ndjson file. For search-tuning model, each line should have the _id and text. Example: {\"_id\": \"query1\", \"text\": \"example query\"}",
           "type": "string"
         },
         "testDataPath": {
@@ -9835,7 +10068,7 @@
           "type": "string"
         },
         "trainDataPath": {
-          "description": "Cloud Storage training data path whose format should be gs:///. The file should be in tsv format. Each line should have the doc_id and query_id and score (number). For search-tuning model, it should have the query-id corpus-id score as tsv file header. The score should be a number in [0, inf+). The larger the number is, the more relevant the pair is. Example: query-id\\tcorpus-id\\tscore query1\\tdoc1\\t1",
+          "description": "Cloud Storage training data path whose format should be `gs:///`. The file should be in tsv format. Each line should have the doc_id and query_id and score (number). For search-tuning model, it should have the query-id corpus-id score as tsv file header. The score should be a number in `[0, inf+)`. The larger the number is, the more relevant the pair is. Example: * `query-id\\tcorpus-id\\tscore` * `query1\\tdoc1\\t1`",
           "type": "string"
         }
       },
@@ -10125,6 +10358,14 @@
           },
           "type": "array"
         },
+        "collectionComponents": {
+          "description": "Output only. Collection components that lists all collections and child data stores associated with the widget config, those data sources can be used for filtering in widget service APIs, users can return results that from selected data sources.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "configId": {
           "description": "Output only. Unique obfuscated identifier of a WidgetConfig.",
           "readOnly": true,
@@ -10158,6 +10399,13 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "dataStoreUiConfigs": {
+          "description": "Configurable UI configurations per data store.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreUiConfig"
+          },
+          "type": "array"
         },
         "displayName": {
           "description": "Required. The human readable widget config display name. Used in Discovery UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -10272,6 +10520,83 @@
           "description": "Output only. Timestamp the WidgetConfig was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent": {
+      "description": "Read-only collection component that contains data store collections fields that may be used for filtering",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent",
+      "properties": {
+        "dataStoreComponents": {
+          "description": "For the data store collection, list of the children data stores.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreComponent"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "The display name of the collection.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. the identifier of the collection, used for widget service. For now it refers to collection_id, in the future we will migrate the field to encrypted collection name UUID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the collection. It should be collection resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection_id}`. For widget service usage, such look up widget config, returned name should be skipped.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreComponent": {
+      "description": "Read-only data store component that contains data stores fields that may be used for filtering, it's the child of `CollectionComponent`.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreComponent",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the data store.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the data store. It should be data store resource name Format: `projects/{project_number}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For widget service usage, such look up widget config, returned name should be skipped.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreUiConfig": {
+      "description": "UI component configuration for data store.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreUiConfig",
+      "properties": {
+        "facetField": {
+          "description": "Facet fields that store the mapping of fields to end user widget appearance.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField"
+          },
+          "type": "array"
+        },
+        "fieldsUiComponentsMap": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField"
+          },
+          "description": "The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.",
+          "type": "object"
+        },
+        "id": {
+          "description": "Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the data store. It should be data store resource name Format: `projects/{project_number}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For widget service usage, such look up widget config, returned name should be skipped.",
           "type": "string"
         }
       },
@@ -10650,12 +10975,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1betaDigitalParsingConfig": {
-      "description": "The digital parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1betaDigitalParsingConfig",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.DisableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata",
@@ -10706,12 +11025,36 @@
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig",
       "properties": {
         "digitalParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaDigitalParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
         },
         "ocrParsingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaOcrParsingConfig",
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig",
           "description": "Configurations applied to OCR parser. Currently it only applies to PDFs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig": {
+      "description": "The digital parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig": {
+      "description": "The OCR parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig",
+      "properties": {
+        "enhancedDocumentElements": {
+          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useNativeText": {
+          "description": "If true, will use native text instead of OCR text on pages containing native text.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -11068,24 +11411,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1betaOcrParsingConfig": {
-      "description": "The OCR parsing configurations for documents.",
-      "id": "GoogleCloudDiscoveryengineV1betaOcrParsingConfig",
-      "properties": {
-        "enhancedDocumentElements": {
-          "description": "Apply additional enhanced OCR processing to a list of document elements. Supported values: * `table`: advanced table parsing model.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useNativeText": {
-          "description": "If true, will use native text instead of OCR text on pages containing native text.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata": {
       "description": "Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata",
@@ -11316,6 +11641,45 @@
         "totalRequiredQuota": {
           "description": "This number is an estimation on how much total quota this project needs to successfully complete indexing.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTrainCustomModelMetadata": {
+      "description": "Metadata related to the progress of the TrainCustomModel operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaTrainCustomModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTrainCustomModelResponse": {
+      "description": "Response of the TrainCustomModelRequest. This message is returned by the google.longrunning.Operations.response field.",
+      "id": "GoogleCloudDiscoveryengineV1betaTrainCustomModelResponse",
+      "properties": {
+        "errorConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaImportErrorConfig",
+          "description": "Echoes the destination for the complete errors in the request if set."
+        },
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the data.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "modelStatus": {
+          "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.",
           "type": "string"
         }
       },

@@ -1102,7 +1102,10 @@
           },
           "response": {
             "$ref": "Empty"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/ediscovery"
+          ]
         },
         "delete": {
           "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
@@ -1124,7 +1127,10 @@
           "path": "v1/{+name}",
           "response": {
             "$ref": "Empty"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/ediscovery"
+          ]
         },
         "get": {
           "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
@@ -1188,12 +1194,16 @@
           "path": "v1/{+name}",
           "response": {
             "$ref": "ListOperationsResponse"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/ediscovery",
+            "https://www.googleapis.com/auth/ediscovery.readonly"
+          ]
         }
       }
     }
   },
-  "revision": "20231213",
+  "revision": "20240226",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {

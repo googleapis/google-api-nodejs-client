@@ -2540,7 +2540,7 @@
       }
     }
   },
-  "revision": "20240214",
+  "revision": "20240213",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3533,6 +3533,10 @@
         "desiredDnsConfig": {
           "$ref": "DNSConfig",
           "description": "DNSConfig contains clusterDNS config for this cluster."
+        },
+        "desiredEnableCiliumClusterwideNetworkPolicy": {
+          "description": "Enable/Disable Cilium Clusterwide Network Policy for the cluster.",
+          "type": "boolean"
         },
         "desiredEnableFqdnNetworkPolicy": {
           "description": "Enable/Disable FQDN Network Policy for the cluster.",
@@ -4964,6 +4968,10 @@
         "dnsConfig": {
           "$ref": "DNSConfig",
           "description": "DNSConfig contains clusterDNS config for this cluster."
+        },
+        "enableCiliumClusterwideNetworkPolicy": {
+          "description": "Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.",
+          "type": "boolean"
         },
         "enableFqdnNetworkPolicy": {
           "description": "Whether FQDN Network Policy is enabled on this cluster.",

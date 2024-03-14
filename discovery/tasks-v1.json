@@ -566,7 +566,7 @@
       }
     }
   },
-  "revision": "20240225",
+  "revision": "20240312",
   "rootUrl": "https://tasks.googleapis.com/",
   "schemas": {
     "Task": {
@@ -647,6 +647,10 @@
         },
         "updated": {
           "description": "Last modification time of the task (as a RFC 3339 timestamp).",
+          "type": "string"
+        },
+        "webViewLink": {
+          "description": "An absolute link to the task in the Google Tasks Web UI. This field is read-only.",
           "type": "string"
         }
       },

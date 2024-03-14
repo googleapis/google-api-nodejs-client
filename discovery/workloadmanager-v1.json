@@ -838,7 +838,7 @@
       }
     }
   },
-  "revision": "20240208",
+  "revision": "20240228",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "APILayerServer": {
@@ -1826,6 +1826,13 @@
       "description": "The component of sap workload",
       "id": "SapComponent",
       "properties": {
+        "haHosts": {
+          "description": "A list of host URIs that are part of the HA configuration if present. An empty list indicates the component is not configured for HA.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "resources": {
           "description": "Output only. resources in the component",
           "items": {
@@ -1837,6 +1844,20 @@
         "sid": {
           "description": "Output only. sid is the sap component identificator",
           "readOnly": true,
+          "type": "string"
+        },
+        "topologyType": {
+          "description": "The detected topology of the component.",
+          "enum": [
+            "TOPOLOGY_TYPE_UNSPECIFIED",
+            "TOPOLOGY_SCALE_UP",
+            "TOPOLOGY_SCALE_OUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified topology.",
+            "A scale-up single node system.",
+            "A scale-out multi-node system."
+          ],
           "type": "string"
         }
       },

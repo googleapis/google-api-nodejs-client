@@ -875,6 +875,27 @@ export namespace cloudbuild_v2 {
     resolver?: string | null;
   }
   /**
+   * A value produced by a Pipeline.
+   */
+  export interface Schema$PipelineResult {
+    /**
+     * Output only. Description of the result.
+     */
+    description?: string | null;
+    /**
+     * Output only. Name of the result.
+     */
+    name?: string | null;
+    /**
+     * Output only. The type of data that the result holds.
+     */
+    type?: string | null;
+    /**
+     * Output only. Value of the result.
+     */
+    value?: Schema$ResultValue;
+  }
+  /**
    * Message describing PipelineRun object
    */
   export interface Schema$PipelineRun {
@@ -943,11 +964,15 @@ export namespace cloudbuild_v2 {
      */
     resolvedPipelineSpec?: Schema$PipelineSpec;
     /**
+     * Optional. Output only. List of results written out by the pipeline's containers
+     */
+    results?: Schema$PipelineRunResult[];
+    /**
      * Optional. Security configuration.
      */
     security?: Schema$Security;
     /**
-     * Service account used in the Pipeline.
+     * Service account used in the Pipeline. Deprecated; please use security.service_account instead.
      */
     serviceAccount?: string | null;
     /**
@@ -988,6 +1013,19 @@ export namespace cloudbuild_v2 {
     workspaces?: Schema$WorkspaceBinding[];
   }
   /**
+   * PipelineRunResult used to describe the results of a pipeline
+   */
+  export interface Schema$PipelineRunResult {
+    /**
+     * Output only. Name of the TaskRun
+     */
+    name?: string | null;
+    /**
+     * Output only. Value of the result.
+     */
+    value?: Schema$ResultValue;
+  }
+  /**
    * PipelineSpec defines the desired state of Pipeline.
    */
   export interface Schema$PipelineSpec {
@@ -1003,6 +1041,10 @@ export namespace cloudbuild_v2 {
      * List of parameters.
      */
     params?: Schema$ParamSpec[];
+    /**
+     * Optional. Output only. List of results written out by the pipeline's containers
+     */
+    results?: Schema$PipelineResult[];
     /**
      * List of Tasks that execute when this Pipeline is run.
      */
@@ -1162,6 +1204,27 @@ export namespace cloudbuild_v2 {
      * Output only. External ID of the webhook created for the repository.
      */
     webhookId?: string | null;
+  }
+  /**
+   * ResultValue holds different types of data for a single result.
+   */
+  export interface Schema$ResultValue {
+    /**
+     * Value of the result if type is array.
+     */
+    arrayVal?: string[] | null;
+    /**
+     * Value of the result if type is object.
+     */
+    objectVal?: {[key: string]: string} | null;
+    /**
+     * Value of the result if type is string.
+     */
+    stringVal?: string | null;
+    /**
+     * Output only. The type of data that the result holds.
+     */
+    type?: string | null;
   }
   /**
    * Represents the custom metadata of the RunWorkflow long-running operation.

@@ -835,7 +835,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Topic {
     /**
-     * Optional. Settings for managed ingestion from a data source into this topic.
+     * Optional. Settings for ingestion from a data source into this topic.
      */
     ingestionDataSourceSettings?: Schema$IngestionDataSourceSettings;
     /**

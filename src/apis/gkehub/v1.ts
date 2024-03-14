@@ -1374,6 +1374,10 @@ export namespace gkehub_v1 {
      * Proxy server address to use for auth method.
      */
     proxy?: string | null;
+    /**
+     * SAML specific configuration.
+     */
+    samlConfig?: Schema$IdentityServiceSamlConfig;
   }
   /**
    * Configuration for the AzureAD Auth flow.
@@ -1392,6 +1396,10 @@ export namespace gkehub_v1 {
      */
     encryptedClientSecret?: string | null;
     /**
+     * Optional. Format of the AzureAD groups that the client wants for auth.
+     */
+    groupFormat?: string | null;
+    /**
      * The redirect URL that kubectl uses for authorization.
      */
     kubectlRedirectUri?: string | null;
@@ -1399,6 +1407,10 @@ export namespace gkehub_v1 {
      * Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.
      */
     tenant?: string | null;
+    /**
+     * Optional. Claim in the AzureAD ID Token that holds the user details.
+     */
+    userClaim?: string | null;
   }
   /**
    * Configuration for the Google Plugin Auth flow.
@@ -1497,6 +1509,43 @@ export namespace gkehub_v1 {
     userClaim?: string | null;
     /**
      * Prefix to prepend to user name.
+     */
+    userPrefix?: string | null;
+  }
+  /**
+   * Configuration for the SAML Auth flow.
+   */
+  export interface Schema$IdentityServiceSamlConfig {
+    /**
+     * Optional. The mapping of additional user attributes like nickname, birthday and address etc.. `key` is the name of this additional attribute. `value` is a string presenting as CEL(common expression language, go/cel) used for getting the value from the resources. Take nickname as an example, in this case, `key` is "attribute.nickname" and `value` is "assertion.nickname".
+     */
+    attributeMapping?: {[key: string]: string} | null;
+    /**
+     * Optional. Prefix to prepend to group name.
+     */
+    groupPrefix?: string | null;
+    /**
+     * Optional. The SAML attribute to read groups from. This value is expected to be a string and will be passed along as-is (with the option of being prefixed by the `group_prefix`).
+     */
+    groupsAttribute?: string | null;
+    /**
+     * Required. The list of IdP certificates to validate the SAML response against.
+     */
+    identityProviderCertificates?: string[] | null;
+    /**
+     * Required. The entity ID of the SAML IdP.
+     */
+    identityProviderId?: string | null;
+    /**
+     * Required. The URI where the SAML IdP exposes the SSO service.
+     */
+    identityProviderSsoUri?: string | null;
+    /**
+     * Optional. The SAML attribute to read username from. If unspecified, the username will be read from the NameID element of the assertion in SAML response. This value is expected to be a string and will be passed along as-is (with the option of being prefixed by the `user_prefix`).
+     */
+    userAttribute?: string | null;
+    /**
+     * Optional. Prefix to prepend to user name.
      */
     userPrefix?: string | null;
   }

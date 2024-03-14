@@ -1892,7 +1892,7 @@ export namespace monitoring_v3 {
      */
     meshIstio?: Schema$MeshIstio;
     /**
-     * Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     * Identifier. Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      */
     name?: string | null;
     /**
@@ -1938,7 +1938,7 @@ export namespace monitoring_v3 {
      */
     goal?: number | null;
     /**
-     * Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
+     * Identifier. Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      */
     name?: string | null;
     /**
@@ -7535,7 +7535,7 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Services$Patch extends StandardParameters {
     /**
-     * Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     * Identifier. Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      */
     name?: string;
     /**
@@ -8066,7 +8066,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Services$Servicelevelobjectives$Patch
     extends StandardParameters {
     /**
-     * Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
+     * Identifier. Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      */
     name?: string;
     /**

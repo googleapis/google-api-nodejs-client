@@ -429,13 +429,15 @@
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
-                "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT"
               ],
               "enumDescriptions": [
                 "Unspecified.",
                 "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
                 "Returns SourceType.CONTACT.",
-                "Returns SourceType.DOMAIN_CONTACT."
+                "Returns SourceType.DOMAIN_CONTACT.",
+                "Returns SourceType.OTHER_CONTACT."
               ],
               "location": "query",
               "repeated": true,
@@ -565,13 +567,15 @@
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
-                "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT"
               ],
               "enumDescriptions": [
                 "Unspecified.",
                 "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
                 "Returns SourceType.CONTACT.",
-                "Returns SourceType.DOMAIN_CONTACT."
+                "Returns SourceType.DOMAIN_CONTACT.",
+                "Returns SourceType.OTHER_CONTACT."
               ],
               "location": "query",
               "repeated": true,
@@ -642,13 +646,15 @@
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
-                "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT"
               ],
               "enumDescriptions": [
                 "Unspecified.",
                 "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
                 "Returns SourceType.CONTACT.",
-                "Returns SourceType.DOMAIN_CONTACT."
+                "Returns SourceType.DOMAIN_CONTACT.",
+                "Returns SourceType.OTHER_CONTACT."
               ],
               "location": "query",
               "repeated": true,
@@ -697,13 +703,15 @@
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
-                "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT"
               ],
               "enumDescriptions": [
                 "Unspecified.",
                 "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
                 "Returns SourceType.CONTACT.",
-                "Returns SourceType.DOMAIN_CONTACT."
+                "Returns SourceType.DOMAIN_CONTACT.",
+                "Returns SourceType.OTHER_CONTACT."
               ],
               "location": "query",
               "repeated": true,
@@ -759,13 +767,15 @@
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
-                "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT"
               ],
               "enumDescriptions": [
                 "Unspecified.",
                 "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
                 "Returns SourceType.CONTACT.",
-                "Returns SourceType.DOMAIN_CONTACT."
+                "Returns SourceType.DOMAIN_CONTACT.",
+                "Returns SourceType.OTHER_CONTACT."
               ],
               "location": "query",
               "repeated": true,
@@ -893,13 +903,15 @@
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
-                "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT"
               ],
               "enumDescriptions": [
                 "Unspecified.",
                 "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
                 "Returns SourceType.CONTACT.",
-                "Returns SourceType.DOMAIN_CONTACT."
+                "Returns SourceType.DOMAIN_CONTACT.",
+                "Returns SourceType.OTHER_CONTACT."
               ],
               "location": "query",
               "repeated": true,
@@ -1011,13 +1023,15 @@
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
-                "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT"
               ],
               "enumDescriptions": [
                 "Unspecified.",
                 "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
                 "Returns SourceType.CONTACT.",
-                "Returns SourceType.DOMAIN_CONTACT."
+                "Returns SourceType.DOMAIN_CONTACT.",
+                "Returns SourceType.OTHER_CONTACT."
               ],
               "location": "query",
               "repeated": true,
@@ -1140,13 +1154,15 @@
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
-                    "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+                    "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    "READ_SOURCE_TYPE_OTHER_CONTACT"
                   ],
                   "enumDescriptions": [
                     "Unspecified.",
                     "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
                     "Returns SourceType.CONTACT.",
-                    "Returns SourceType.DOMAIN_CONTACT."
+                    "Returns SourceType.DOMAIN_CONTACT.",
+                    "Returns SourceType.OTHER_CONTACT."
                   ],
                   "location": "query",
                   "repeated": true,
@@ -1172,7 +1188,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20240312",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1281,13 +1297,15 @@
               "READ_SOURCE_TYPE_UNSPECIFIED",
               "READ_SOURCE_TYPE_PROFILE",
               "READ_SOURCE_TYPE_CONTACT",
-              "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+              "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+              "READ_SOURCE_TYPE_OTHER_CONTACT"
             ],
             "enumDescriptions": [
               "Unspecified.",
               "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
               "Returns SourceType.CONTACT.",
-              "Returns SourceType.DOMAIN_CONTACT."
+              "Returns SourceType.DOMAIN_CONTACT.",
+              "Returns SourceType.OTHER_CONTACT."
             ],
             "type": "string"
           },
@@ -1361,13 +1379,15 @@
               "READ_SOURCE_TYPE_UNSPECIFIED",
               "READ_SOURCE_TYPE_PROFILE",
               "READ_SOURCE_TYPE_CONTACT",
-              "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+              "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+              "READ_SOURCE_TYPE_OTHER_CONTACT"
             ],
             "enumDescriptions": [
               "Unspecified.",
               "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
               "Returns SourceType.CONTACT.",
-              "Returns SourceType.DOMAIN_CONTACT."
+              "Returns SourceType.DOMAIN_CONTACT.",
+              "Returns SourceType.OTHER_CONTACT."
             ],
             "type": "string"
           },
@@ -1654,13 +1674,15 @@
               "READ_SOURCE_TYPE_UNSPECIFIED",
               "READ_SOURCE_TYPE_PROFILE",
               "READ_SOURCE_TYPE_CONTACT",
-              "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+              "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+              "READ_SOURCE_TYPE_OTHER_CONTACT"
             ],
             "enumDescriptions": [
               "Unspecified.",
               "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
               "Returns SourceType.CONTACT.",
-              "Returns SourceType.DOMAIN_CONTACT."
+              "Returns SourceType.DOMAIN_CONTACT.",
+              "Returns SourceType.OTHER_CONTACT."
             ],
             "type": "string"
           },
@@ -3210,13 +3232,15 @@
               "READ_SOURCE_TYPE_UNSPECIFIED",
               "READ_SOURCE_TYPE_PROFILE",
               "READ_SOURCE_TYPE_CONTACT",
-              "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+              "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+              "READ_SOURCE_TYPE_OTHER_CONTACT"
             ],
             "enumDescriptions": [
               "Unspecified.",
               "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
               "Returns SourceType.CONTACT.",
-              "Returns SourceType.DOMAIN_CONTACT."
+              "Returns SourceType.DOMAIN_CONTACT.",
+              "Returns SourceType.OTHER_CONTACT."
             ],
             "type": "string"
           },

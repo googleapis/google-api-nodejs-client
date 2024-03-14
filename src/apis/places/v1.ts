@@ -1000,6 +1000,10 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1SearchTextRequest {
     /**
+     * Optional. Set the searchable EV options of a place search request.
+     */
+    evOptions?: Schema$GoogleMapsPlacesV1SearchTextRequestEVOptions;
+    /**
      * The requested place type. Full list of types supported: https://developers.google.com/maps/documentation/places/web-service/place-types. Only support one included type.
      */
     includedType?: string | null;
@@ -1047,6 +1051,19 @@ export namespace places_v1 {
      * Required. The text query for textual search.
      */
     textQuery?: string | null;
+  }
+  /**
+   * Searchable EV options of a place search request.
+   */
+  export interface Schema$GoogleMapsPlacesV1SearchTextRequestEVOptions {
+    /**
+     * Optional. The list of preferred EV connector types. A place that does not support any of the listed connector types are filter out.
+     */
+    connectorTypes?: string[] | null;
+    /**
+     * Optional. Filtering places by minimum charging rate. Any places with charging a rate less than the minimum charging rate are filtered out.
+     */
+    minimumChargingRateKw?: number | null;
   }
   /**
    * The region to search. This location serves as a bias which means results around given location might be returned.

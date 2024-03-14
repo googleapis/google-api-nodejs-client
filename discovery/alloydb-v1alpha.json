@@ -1489,7 +1489,7 @@
       }
     }
   },
-  "revision": "20240216",
+  "revision": "20240228",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1901,7 +1901,7 @@
         },
         "network": {
           "deprecated": true,
-          "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project}/global/networks/{network_id}\". This is required to create a cluster. Deprecated, use network_config.network instead.",
+          "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: `projects/{project}/global/networks/{network_id}`. This is required to create a cluster. Deprecated, use network_config.network instead.",
           "type": "string"
         },
         "networkConfig": {
@@ -2746,7 +2746,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project_number}/global/networks/{network_id}\". This is required to create a cluster.",
+          "description": "Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: `projects/{project_number}/global/networks/{network_id}`. This is required to create a cluster.",
           "type": "string"
         }
       },
@@ -2924,6 +2924,11 @@
           },
           "type": "array"
         },
+        "pscDnsName": {
+          "description": "Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog",
+          "readOnly": true,
+          "type": "string"
+        },
         "pscEnabled": {
           "description": "Optional. Whether PSC connectivity is enabled for this instance. This is populated by referencing the value from the parent cluster.",
           "type": "boolean"
@@ -2936,7 +2941,7 @@
           "type": "array"
         },
         "serviceAttachmentLink": {
-          "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of projects//regions//serviceAttachments/",
+          "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`",
           "readOnly": true,
           "type": "string"
         }
@@ -2955,7 +2960,7 @@
           "type": "array"
         },
         "networkAttachment": {
-          "description": "The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: \"projects/${CONSUMER_PROJECT}/regions/${REGION}/networkAttachments/${NETWORK_ATTACHMENT_NAME}\". NetworkAttachment has to be provided when the PSC interface is created.",
+          "description": "The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: `projects/${CONSUMER_PROJECT}/regions/${REGION}/networkAttachments/${NETWORK_ATTACHMENT_NAME}`. NetworkAttachment has to be provided when the PSC interface is created.",
           "type": "string"
         }
       },
@@ -3806,7 +3811,7 @@
         },
         "primaryResourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
-          "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested"
+          "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
         },
         "product": {
           "$ref": "StorageDatabasecenterProtoCommonProduct",
@@ -3844,7 +3849,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. Any other additional metadata specific to recommendation",
+          "description": "Optional. Any other additional metadata specific to recommendation",
           "type": "object"
         },
         "lastRefreshTime": {
@@ -4123,6 +4128,27 @@
       "properties": {
         "code": {
           "description": "Identifies the specific error that occurred. REQUIRED",
+          "type": "string"
+        },
+        "errorType": {
+          "enum": [
+            "OPERATION_ERROR_TYPE_UNSPECIFIED",
+            "KMS_KEY_ERROR",
+            "DATABASE_ERROR",
+            "STOCKOUT_ERROR",
+            "CANCELLATION_ERROR",
+            "SQLSERVER_ERROR",
+            "INTERNAL_ERROR"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED means product type is not known or available.",
+            "key destroyed, expired, not found, unreachable or permission denied.",
+            "Database is not accessible",
+            "The zone or region does not have sufficient resources to handle the request at the moment",
+            "User initiated cancellation",
+            "SQL server specific error",
+            "Any other internal error."
+          ],
           "type": "string"
         },
         "message": {

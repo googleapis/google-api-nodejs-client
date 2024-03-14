@@ -3299,7 +3299,7 @@
       }
     }
   },
-  "revision": "20240225",
+  "revision": "20240305",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -8532,13 +8532,6 @@
         "registrationDestinationConfig": {
           "$ref": "GoogleCloudConnectorsV1DestinationConfig",
           "description": "Registration endpoint for auto registration."
-        },
-        "triggerConfigVariables": {
-          "description": "Optional. Additional eventing related field values",
-          "items": {
-            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -8576,6 +8569,54 @@
           "$ref": "GoogleCloudConnectorsV1EventingStatus",
           "description": "Output only. Current status of eventing.",
           "readOnly": true
+        },
+        "webhookData": {
+          "$ref": "GoogleCloudConnectorsV1EventingRuntimeDataWebhookData",
+          "description": "Output only. Webhook data.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingRuntimeDataWebhookData": {
+      "description": "WebhookData has details of webhook configuration.",
+      "id": "GoogleCloudConnectorsV1EventingRuntimeDataWebhookData",
+      "properties": {
+        "additionalVariables": {
+          "description": "Output only. Additional webhook related field values.",
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when the webhook was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. ID to uniquely identify webhook.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the Webhook",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextRefreshTime": {
+          "description": "Output only. Next webhook refresh time. Will be null if refresh is not supported.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the webhook was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

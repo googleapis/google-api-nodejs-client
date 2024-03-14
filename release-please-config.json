@@ -288,6 +288,7 @@
     "src/apis/walletobjects": {},
     "src/apis/apphub": {},
     "src/apis/dataportability": {},
-    "src/apis/workspaceevents": {}
+    "src/apis/workspaceevents": {},
+    "src/apis/marketingplatformadmin": {}
   }
 }

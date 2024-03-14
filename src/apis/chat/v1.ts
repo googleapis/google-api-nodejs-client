@@ -182,6 +182,10 @@ export namespace chat_v1 {
      */
     length?: number | null;
     /**
+     * The metadata for a rich link.
+     */
+    richLinkMetadata?: Schema$RichLinkMetadata;
+    /**
      * The metadata for a slash command.
      */
     slashCommand?: Schema$SlashCommandMetadata;
@@ -350,7 +354,7 @@ export namespace chat_v1 {
     error?: Schema$Status;
   }
   /**
-   * For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Chat. The data source populates selection items for the multiselect menu. For example, a user can select Google Chat spaces that they're a member of. [Google Chat apps](https://developers.google.com/chat):
+   * For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Chat. The data source populates selection items for the multiselect menu. For example, a user can select Google Chat spaces that they're a member of. [Google Chat apps](https://developers.google.com/workspace/chat):
    */
   export interface Schema$ChatClientDataSourceMarkup {
     /**
@@ -551,6 +555,19 @@ export namespace chat_v1 {
     driveFileId?: string | null;
   }
   /**
+   * Data for Google Drive links.
+   */
+  export interface Schema$DriveLinkData {
+    /**
+     * A [DriveDataRef](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages.attachments#drivedataref) which references a Google Drive file.
+     */
+    driveDataRef?: Schema$DriveDataRef;
+    /**
+     * The mime type of the linked Google Drive resource.
+     */
+    mimeType?: string | null;
+  }
+  /**
    * An emoji that is used as a reaction to a message.
    */
   export interface Schema$Emoji {
@@ -602,7 +619,7 @@ export namespace chat_v1 {
      */
     function?: string | null;
     /**
-     * Optional. Required when opening a [dialog](https://developers.google.com/chat/how-tos/dialogs). What to do in response to an interaction with a user, such as a user clicking a button in a card message. If unspecified, the app responds by executing an `action`—like opening a link or running a function—as normal. By specifying an `interaction`, the app can respond in special interactive ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When specified, a loading indicator isn't shown. If specified for an add-on, the entire card is stripped and nothing is shown in the client. [Google Chat apps](https://developers.google.com/chat):
+     * Optional. Required when opening a [dialog](https://developers.google.com/chat/how-tos/dialogs). What to do in response to an interaction with a user, such as a user clicking a button in a card message. If unspecified, the app responds by executing an `action`—like opening a link or running a function—as normal. By specifying an `interaction`, the app can respond in special interactive ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When specified, a loading indicator isn't shown. If specified for an add-on, the entire card is stripped and nothing is shown in the client. [Google Chat apps](https://developers.google.com/workspace/chat):
      */
     interaction?: string | null;
     /**
@@ -687,7 +704,7 @@ export namespace chat_v1 {
     buttons?: Schema$GoogleAppsCardV1Button[];
   }
   /**
-   * A card interface displayed in a Google Chat message or Google Workspace Add-on. Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. [Card builder](https://addons.gsuite.google.com/uikit/builder) To learn how to build cards, see the following documentation: * For Google Chat apps, see [Design dynamic, interactive, and consistent UIs with cards](https://developers.google.com/chat/ui). * For Google Workspace Add-ons, see [Card-based interfaces](https://developers.google.com/apps-script/add-ons/concepts/cards). **Example: Card message for a Google Chat app** ![Example contact card](https://developers.google.com/chat/images/card_api_reference.png) To create the sample card message in Google Chat, use the following JSON: ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha", \}, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL", \}, "text": "sasha@example.com", \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PERSON", \}, "text": "Online", \}, \}, { "decoratedText": { "startIcon": { "knownIcon": "PHONE", \}, "text": "+1 (555) 555-1234", \} \}, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share", \} \} \}, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT", \} ], \} \} \}, ], \} \}, ], \}, ], \}, \} ], \} ```
+   * A card interface displayed in a Google Chat message or Google Workspace Add-on. Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. [Card builder](https://addons.gsuite.google.com/uikit/builder) To learn how to build cards, see the following documentation: * For Google Chat apps, see [Design dynamic, interactive, and consistent UIs with cards](https://developers.google.com/chat/ui). * For Google Workspace Add-ons, see [Card-based interfaces](https://developers.google.com/apps-script/add-ons/concepts/cards). **Example: Card message for a Google Chat app** ![Example contact card](https://developers.google.com/chat/images/card_api_reference.png) To create the sample card message in Google Chat, use the following JSON: ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha" \}, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL" \}, "text": "sasha@example.com" \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PERSON" \}, "text": "Online" \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PHONE" \}, "text": "+1 (555) 555-1234" \} \}, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share" \} \} \}, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT" \} ] \} \} \} ] \} \} ] \} ] \} \} ] \} ```
    */
   export interface Schema$GoogleAppsCardV1Card {
     /**
@@ -775,7 +792,7 @@ export namespace chat_v1 {
     title?: string | null;
   }
   /**
-   * A column. [Google Chat apps](https://developers.google.com/chat):
+   * A column. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): Columns for Google Workspace Add-ons are in Developer Preview.
    */
   export interface Schema$GoogleAppsCardV1Column {
     /**
@@ -783,11 +800,11 @@ export namespace chat_v1 {
      */
     horizontalAlignment?: string | null;
     /**
-     * Specifies how a column fills the width of the card. [Google Chat apps](https://developers.google.com/chat):
+     * Specifies how a column fills the width of the card.
      */
     horizontalSizeStyle?: string | null;
     /**
-     * Specifies whether widgets align to the top, bottom, or center of a column. [Google Chat apps](https://developers.google.com/chat):
+     * Specifies whether widgets align to the top, bottom, or center of a column.
      */
     verticalAlignment?: string | null;
     /**
@@ -796,7 +813,7 @@ export namespace chat_v1 {
     widgets?: Schema$GoogleAppsCardV1Widgets[];
   }
   /**
-   * The `Columns` widget displays up to 2 columns in a card or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): Columns for Google Workspace Add-ons are in [Developer Preview](https://developers.google.com/workspace/preview).
+   * The `Columns` widget displays up to 2 columns in a card or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): Columns for Google Workspace Add-ons are in Developer Preview.
    */
   export interface Schema$GoogleAppsCardV1Columns {
     /**
@@ -1043,7 +1060,7 @@ export namespace chat_v1 {
     url?: string | null;
   }
   /**
-   * For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Workspace. Used to populate items in a multiselect menu. [Google Chat apps](https://developers.google.com/chat):
+   * For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Workspace. Used to populate items in a multiselect menu. [Google Chat apps](https://developers.google.com/workspace/chat):
    */
   export interface Schema$GoogleAppsCardV1PlatformDataSource {
     /**
@@ -1214,7 +1231,7 @@ export namespace chat_v1 {
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * Text that appears in the text input field when the field is empty. Use this text to prompt users to enter a value. For example, `Enter a number from 0 to 100`. [Google Chat apps](https://developers.google.com/chat):
+     * Text that appears in the text input field when the field is empty. Use this text to prompt users to enter a value. For example, `Enter a number from 0 to 100`. [Google Chat apps](https://developers.google.com/workspace/chat):
      */
     placeholderText?: string | null;
     /**
@@ -1285,7 +1302,7 @@ export namespace chat_v1 {
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
   }
   /**
-   * The supported widgets that you can include in a column. [Google Chat apps](https://developers.google.com/chat):
+   * The supported widgets that you can include in a column. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend): Columns for Google Workspace Add-ons are in Developer Preview.
    */
   export interface Schema$GoogleAppsCardV1Widgets {
     /**
@@ -1327,7 +1344,7 @@ export namespace chat_v1 {
     name?: string | null;
   }
   /**
-   * For a `SelectionInput` widget that uses a multiselect menu, a data source from a Google Workspace application. The data source populates selection items for the multiselect menu. [Google Chat apps](https://developers.google.com/chat):
+   * For a `SelectionInput` widget that uses a multiselect menu, a data source from a Google Workspace application. The data source populates selection items for the multiselect menu. [Google Chat apps](https://developers.google.com/workspace/chat):
    */
   export interface Schema$HostAppDataSourceMarkup {
     /**
@@ -1579,7 +1596,7 @@ export namespace chat_v1 {
      */
     fallbackText?: string | null;
     /**
-     * Output only. Contains the message `text` with markups added to communicate formatting. This field might not capture all formatting visible in the UI, but includes the following: * [Markup syntax](https://developers.google.com/chat/format-messages) for bold, italic, strikethrough, monospace, and monospace block. * [User mentions](https://developers.google.com/chat/format-messages#messages-@mention) using the format ``. * Custom hyperlinks using the format `<{url\}|{rendered_text\}\>` where the first string is the URL and the second is the rendered text—for example, ``. * Custom emoji using the format `:{emoji_name\}:`—for example, `:smile:`. This doesn't apply to Unicode emoji, such as `U+1F600` for a grinning face emoji. For more information, see [View text formatting sent in a message](https://developers.google.com/chat/format-messages#view_text_formatting_sent_in_a_message)
+     * Output only. Contains the message `text` with markups added to communicate formatting. This field might not capture all formatting visible in the UI, but includes the following: * [Markup syntax](https://developers.google.com/chat/format-messages) for bold, italic, strikethrough, monospace, monospace block, and bulleted list. * [User mentions](https://developers.google.com/chat/format-messages#messages-@mention) using the format ``. * Custom hyperlinks using the format `<{url\}|{rendered_text\}\>` where the first string is the URL and the second is the rendered text—for example, ``. * Custom emoji using the format `:{emoji_name\}:`—for example, `:smile:`. This doesn't apply to Unicode emoji, such as `U+1F600` for a grinning face emoji. For more information, see [View text formatting sent in a message](https://developers.google.com/chat/format-messages#view_text_formatting_sent_in_a_message)
      */
     formattedText?: string | null;
     /**
@@ -1678,6 +1695,23 @@ export namespace chat_v1 {
      * Output only. The user who created the reaction.
      */
     user?: Schema$User;
+  }
+  /**
+   * A rich link to a resource.
+   */
+  export interface Schema$RichLinkMetadata {
+    /**
+     * Data for a drive link.
+     */
+    driveLinkData?: Schema$DriveLinkData;
+    /**
+     * The rich link type.
+     */
+    richLinkType?: string | null;
+    /**
+     * The URI of this link.
+     */
+    uri?: string | null;
   }
   /**
    * A section contains a collection of widgets that are rendered (vertically) in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there's currently no need for layout properties (for example, float).
@@ -1807,7 +1841,7 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * A data source that populates Google Chat spaces as selection items for a multiselect menu. Only populates spaces that the user is a member of. [Google Chat apps](https://developers.google.com/chat):
+   * A data source that populates Google Chat spaces as selection items for a multiselect menu. Only populates spaces that the user is a member of. [Google Chat apps](https://developers.google.com/workspace/chat):
    */
   export interface Schema$SpaceDataSource {
     /**
@@ -2961,7 +2995,7 @@ export namespace chat_v1 {
      */
     filter?: string;
     /**
-     * Optional. The maximum number of spaces to return. The service might return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
+     * Optional. The maximum number of spaces to return. The service might return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000. Negative values return an `INVALID_ARGUMENT` error.
      */
     pageSize?: number;
     /**
@@ -3378,7 +3412,7 @@ export namespace chat_v1 {
      */
     filter?: string;
     /**
-     * Optional. The maximum number of memberships to return. The service might return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
+     * Optional. The maximum number of memberships to return. The service might return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000. Negative values return an `INVALID_ARGUMENT` error.
      */
     pageSize?: number;
     /**
@@ -3982,7 +4016,7 @@ export namespace chat_v1 {
      */
     orderBy?: string;
     /**
-     * The maximum number of messages returned. The service might return fewer messages than this value. If unspecified, at most 25 are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
+     * The maximum number of messages returned. The service might return fewer messages than this value. If unspecified, at most 25 are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000. Negative values return an `INVALID_ARGUMENT` error.
      */
     pageSize?: number;
     /**

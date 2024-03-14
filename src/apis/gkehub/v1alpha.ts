@@ -1545,6 +1545,10 @@ export namespace gkehub_v1alpha {
      * Proxy server address to use for auth method.
      */
     proxy?: string | null;
+    /**
+     * SAML specific configuration.
+     */
+    samlConfig?: Schema$IdentityServiceSamlConfig;
   }
   /**
    * Configuration for the AzureAD Auth flow.
@@ -1563,6 +1567,10 @@ export namespace gkehub_v1alpha {
      */
     encryptedClientSecret?: string | null;
     /**
+     * Optional. Format of the AzureAD groups that the client wants for auth.
+     */
+    groupFormat?: string | null;
+    /**
      * The redirect URL that kubectl uses for authorization.
      */
     kubectlRedirectUri?: string | null;
@@ -1570,6 +1578,10 @@ export namespace gkehub_v1alpha {
      * Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.
      */
     tenant?: string | null;
+    /**
+     * Optional. Claim in the AzureAD ID Token that holds the user details.
+     */
+    userClaim?: string | null;
   }
   /**
    * Configuration for the Google Plugin Auth flow.
@@ -1672,6 +1684,43 @@ export namespace gkehub_v1alpha {
     userPrefix?: string | null;
   }
   /**
+   * Configuration for the SAML Auth flow.
+   */
+  export interface Schema$IdentityServiceSamlConfig {
+    /**
+     * Optional. The mapping of additional user attributes like nickname, birthday and address etc.. `key` is the name of this additional attribute. `value` is a string presenting as CEL(common expression language, go/cel) used for getting the value from the resources. Take nickname as an example, in this case, `key` is "attribute.nickname" and `value` is "assertion.nickname".
+     */
+    attributeMapping?: {[key: string]: string} | null;
+    /**
+     * Optional. Prefix to prepend to group name.
+     */
+    groupPrefix?: string | null;
+    /**
+     * Optional. The SAML attribute to read groups from. This value is expected to be a string and will be passed along as-is (with the option of being prefixed by the `group_prefix`).
+     */
+    groupsAttribute?: string | null;
+    /**
+     * Required. The list of IdP certificates to validate the SAML response against.
+     */
+    identityProviderCertificates?: string[] | null;
+    /**
+     * Required. The entity ID of the SAML IdP.
+     */
+    identityProviderId?: string | null;
+    /**
+     * Required. The URI where the SAML IdP exposes the SSO service.
+     */
+    identityProviderSsoUri?: string | null;
+    /**
+     * Optional. The SAML attribute to read username from. If unspecified, the username will be read from the NameID element of the assertion in SAML response. This value is expected to be a string and will be passed along as-is (with the option of being prefixed by the `user_prefix`).
+     */
+    userAttribute?: string | null;
+    /**
+     * Optional. Prefix to prepend to user name.
+     */
+    userPrefix?: string | null;
+  }
+  /**
    * KubernetesMetadata provides informational metadata for Memberships representing Kubernetes clusters.
    */
   export interface Schema$KubernetesMetadata {
@@ -1731,6 +1780,23 @@ export namespace gkehub_v1alpha {
     adminClusterMemberships?: Schema$Membership[];
     /**
      * A token to request the next page of resources from the `ListAdminClusterMemberships` method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of locations that could not be reached while fetching this list.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * List of Memberships bound to a Scope.
+   */
+  export interface Schema$ListBoundMembershipsResponse {
+    /**
+     * The list of Memberships bound to the given Scope.
+     */
+    memberships?: Schema$Membership[];
+    /**
+     * A token to request the next page of resources from the `ListBoundMemberships` method. The value of an empty string means that there are no more resources to return.
      */
     nextPageToken?: string | null;
     /**
@@ -7906,6 +7972,103 @@ export namespace gkehub_v1alpha {
     }
 
     /**
+     * Lists Memberships bound to a Scope. The response includes relevant Memberships from all regions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listMemberships(
+      params: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listMemberships(
+      params?: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBoundMembershipsResponse>;
+    listMemberships(
+      params: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listMemberships(
+      params: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBoundMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+    ): void;
+    listMemberships(
+      params: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      callback: BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+    ): void;
+    listMemberships(
+      callback: BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+    ): void;
+    listMemberships(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Scopes$Listmemberships
+        | BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBoundMembershipsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Scopes$Listmemberships;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Scopes$Listmemberships;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+scopeName}:listMemberships').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scopeName'],
+        pathParams: ['scopeName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBoundMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBoundMembershipsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists permitted Scopes.
      *
      * @param params - Parameters for request
@@ -8321,6 +8484,25 @@ export namespace gkehub_v1alpha {
      * Required. The parent (project and location) where the Scope will be listed. Specified in the format `projects/x/locations/x`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Scopes$Listmemberships
+    extends StandardParameters {
+    /**
+     * Optional. Lists Memberships that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Currently, filtering can be done only based on Memberships's `name`, `labels`, `create_time`, `update_time`, and `unique_id`.
+     */
+    filter?: string;
+    /**
+     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned. Pagination is currently not supported; therefore, setting this field does not have any impact for now.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token returned by previous call to `ListBoundMemberships` which specifies the position in the list from where to continue listing the resources.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the Scope, in the format `projects/x/locations/global/scopes/x`, to which the Memberships are bound.
+     */
+    scopeName?: string;
   }
   export interface Params$Resource$Projects$Locations$Scopes$Listpermitted
     extends StandardParameters {

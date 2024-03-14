@@ -1834,7 +1834,7 @@
       }
     }
   },
-  "revision": "20240209",
+  "revision": "20240229",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -3733,6 +3733,10 @@
         "proxy": {
           "description": "Proxy server address to use for auth method.",
           "type": "string"
+        },
+        "samlConfig": {
+          "$ref": "IdentityServiceSamlConfig",
+          "description": "SAML specific configuration."
         }
       },
       "type": "object"
@@ -3755,12 +3759,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "groupFormat": {
+          "description": "Optional. Format of the AzureAD groups that the client wants for auth.",
+          "type": "string"
+        },
         "kubectlRedirectUri": {
           "description": "The redirect URL that kubectl uses for authorization.",
           "type": "string"
         },
         "tenant": {
           "description": "Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.",
+          "type": "string"
+        },
+        "userClaim": {
+          "description": "Optional. Claim in the AzureAD ID Token that holds the user details.",
           "type": "string"
         }
       },
@@ -3884,6 +3896,51 @@
         },
         "userPrefix": {
           "description": "Prefix to prepend to user name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceSamlConfig": {
+      "description": "Configuration for the SAML Auth flow.",
+      "id": "IdentityServiceSamlConfig",
+      "properties": {
+        "attributeMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The mapping of additional user attributes like nickname, birthday and address etc.. `key` is the name of this additional attribute. `value` is a string presenting as CEL(common expression language, go/cel) used for getting the value from the resources. Take nickname as an example, in this case, `key` is \"attribute.nickname\" and `value` is \"assertion.nickname\".",
+          "type": "object"
+        },
+        "groupPrefix": {
+          "description": "Optional. Prefix to prepend to group name.",
+          "type": "string"
+        },
+        "groupsAttribute": {
+          "description": "Optional. The SAML attribute to read groups from. This value is expected to be a string and will be passed along as-is (with the option of being prefixed by the `group_prefix`).",
+          "type": "string"
+        },
+        "identityProviderCertificates": {
+          "description": "Required. The list of IdP certificates to validate the SAML response against.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "identityProviderId": {
+          "description": "Required. The entity ID of the SAML IdP.",
+          "type": "string"
+        },
+        "identityProviderSsoUri": {
+          "description": "Required. The URI where the SAML IdP exposes the SSO service.",
+          "type": "string"
+        },
+        "userAttribute": {
+          "description": "Optional. The SAML attribute to read username from. If unspecified, the username will be read from the NameID element of the assertion in SAML response. This value is expected to be a string and will be passed along as-is (with the option of being prefixed by the `user_prefix`).",
+          "type": "string"
+        },
+        "userPrefix": {
+          "description": "Optional. Prefix to prepend to user name.",
           "type": "string"
         }
       },
