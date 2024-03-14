@@ -245,6 +245,23 @@ export namespace admin_directory_v1 {
     severity?: string | null;
   }
   /**
+   * Information about the device's backlights.
+   */
+  export interface Schema$BacklightInfo {
+    /**
+     * Output only. Current brightness of the backlight, between 0 and max_brightness.
+     */
+    brightness?: number | null;
+    /**
+     * Output only. Maximum brightness for the backlight.
+     */
+    maxBrightness?: number | null;
+    /**
+     * Output only. Path to this backlight on the system. Useful if the caller needs to correlate with other information.
+     */
+    path?: string | null;
+  }
+  /**
    * A request for changing the status of a batch of ChromeOS devices.
    */
   export interface Schema$BatchChangeChromeOsDeviceStatusRequest {
@@ -632,6 +649,10 @@ export namespace admin_directory_v1 {
      * (Read-only) The timestamp after which the device will stop receiving Chrome updates or support
      */
     autoUpdateExpiration?: string | null;
+    /**
+     * Output only. Contains backlight information for the device.
+     */
+    backlightInfo?: Schema$BacklightInfo[];
     /**
      * The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](https://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).
      */
