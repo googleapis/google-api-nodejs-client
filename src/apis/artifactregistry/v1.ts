@@ -112,6 +112,7 @@ export namespace artifactregistry_v1 {
    */
   export class Artifactregistry {
     context: APIRequestContext;
+    media: Resource$Media;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace artifactregistry_v1 {
         google,
       };
 
+      this.media = new Resource$Media(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -157,6 +159,10 @@ export namespace artifactregistry_v1 {
    * Configuration for an Apt remote repository.
    */
   export interface Schema$AptRepository {
+    /**
+     * Customer-specified remote repository.
+     */
+    customRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryCustomRepository;
     /**
      * One of the publicly available Apt repositories supported by Artifact Registry.
      */
@@ -306,6 +312,10 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$DockerRepository {
     /**
+     * Customer-specified remote repository.
+     */
+    customRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigDockerRepositoryCustomRepository;
+    /**
      * One of the publicly available Docker repositories supported by Artifact Registry.
      */
     publicRepository?: string | null;
@@ -319,6 +329,10 @@ export namespace artifactregistry_v1 {
      */
     immutableTags?: boolean | null;
   }
+  /**
+   * The response to download a file.
+   */
+  export interface Schema$DownloadFileResponse {}
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
@@ -416,6 +430,15 @@ export namespace artifactregistry_v1 {
     updateTime?: string | null;
   }
   /**
+   * Customer-specified publicly available remote repository.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryCustomRepository {
+    /**
+     * An http/https uri reference to the upstream remote repository, for ex: "https://my.apt.registry/".
+     */
+    uri?: string | null;
+  }
+  /**
    * Publicly available Apt repositories constructed from a common repository base and a custom repository path.
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository {
@@ -427,6 +450,51 @@ export namespace artifactregistry_v1 {
      * A custom field to define a path to a specific repository from the base.
      */
     repositoryPath?: string | null;
+  }
+  /**
+   * Customer-specified publicly available remote repository.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigDockerRepositoryCustomRepository {
+    /**
+     * An http/https uri reference to the custom remote repository, for ex: "https://registry-1.docker.io".
+     */
+    uri?: string | null;
+  }
+  /**
+   * Customer-specified publicly available remote repository.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigMavenRepositoryCustomRepository {
+    /**
+     * An http/https uri reference to the upstream remote repository, for ex: "https://my.maven.registry/".
+     */
+    uri?: string | null;
+  }
+  /**
+   * Customer-specified publicly available remote repository.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigNpmRepositoryCustomRepository {
+    /**
+     * An http/https uri reference to the upstream remote repository, for ex: "https://my.npm.registry/".
+     */
+    uri?: string | null;
+  }
+  /**
+   * Customer-specified publicly available remote repository.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository {
+    /**
+     * An http/https uri reference to the upstream remote repository, for ex: "https://my.python.registry/".
+     */
+    uri?: string | null;
+  }
+  /**
+   * Customer-specified publicly available remote repository.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryCustomRepository {
+    /**
+     * An http/https uri reference to the upstream remote repository, for ex: "https://my.yum.registry/".
+     */
+    uri?: string | null;
   }
   /**
    * Publicly available Yum repositories constructed from a common repository base and a custom repository path.
@@ -816,6 +884,10 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$MavenRepository {
     /**
+     * Customer-specified remote repository.
+     */
+    customRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigMavenRepositoryCustomRepository;
+    /**
      * One of the publicly available Maven repositories supported by Artifact Registry.
      */
     publicRepository?: string | null;
@@ -867,6 +939,10 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$NpmRepository {
     /**
+     * Customer-specified remote repository.
+     */
+    customRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigNpmRepositoryCustomRepository;
+    /**
      * One of the publicly available Npm repositories supported by Artifact Registry.
      */
     publicRepository?: string | null;
@@ -904,6 +980,10 @@ export namespace artifactregistry_v1 {
    * Packages are named collections of versions.
    */
   export interface Schema$Package {
+    /**
+     * Optional. Client specified annotations.
+     */
+    annotations?: {[key: string]: string} | null;
     /**
      * The time when the package was created.
      */
@@ -985,6 +1065,10 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$PythonRepository {
     /**
+     * Customer-specified remote repository.
+     */
+    customRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository;
+    /**
      * One of the publicly available Python repositories supported by Artifact Registry.
      */
     publicRepository?: string | null;
@@ -1001,6 +1085,10 @@ export namespace artifactregistry_v1 {
      * The description of the remote source.
      */
     description?: string | null;
+    /**
+     * Input only. A create/update remote repo option to avoid making a HEAD/GET request to validate a remote repo and any supplied upstream credentials.
+     */
+    disableUpstreamValidation?: boolean | null;
     /**
      * Specific settings for a Docker remote repository.
      */
@@ -1393,9 +1481,119 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$YumRepository {
     /**
+     * Customer-specified remote repository.
+     */
+    customRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryCustomRepository;
+    /**
      * One of the publicly available Yum repositories supported by Artifact Registry.
      */
     publicRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository;
+  }
+
+  export class Resource$Media {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Download a file.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    download(
+      params?: Params$Resource$Media$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DownloadFileResponse>;
+    download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    download(
+      params: Params$Resource$Media$Download,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadFileResponse>,
+      callback: BodyResponseCallback<Schema$DownloadFileResponse>
+    ): void;
+    download(
+      params: Params$Resource$Media$Download,
+      callback: BodyResponseCallback<Schema$DownloadFileResponse>
+    ): void;
+    download(callback: BodyResponseCallback<Schema$DownloadFileResponse>): void;
+    download(
+      paramsOrCallback?:
+        | Params$Resource$Media$Download
+        | BodyResponseCallback<Schema$DownloadFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DownloadFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DownloadFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DownloadFileResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Download;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:download').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DownloadFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DownloadFileResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Media$Download extends StandardParameters {
+    /**
+     * Required. The name of the file to download.
+     */
+    name?: string;
   }
 
   export class Resource$Projects {
@@ -4860,6 +5058,92 @@ export namespace artifactregistry_v1 {
         return createAPIRequest<Schema$ListPackagesResponse>(parameters);
       }
     }
+
+    /**
+     * Updates a package.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Package>;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Package>,
+      callback: BodyResponseCallback<Schema$Package>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
+      callback: BodyResponseCallback<Schema$Package>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Package>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Packages$Patch
+        | BodyResponseCallback<Schema$Package>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Package>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Package>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Package> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Packages$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Package>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Package>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Delete
@@ -4890,6 +5174,22 @@ export namespace artifactregistry_v1 {
      * Required. The name of the parent resource whose packages will be listed.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Patch
+    extends StandardParameters {
+    /**
+     * The name of the package, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`. If the package ID part contains slashes, the slashes are escaped.
+     */
+    name?: string;
+    /**
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Package;
   }
 
   export class Resource$Projects$Locations$Repositories$Packages$Tags {
