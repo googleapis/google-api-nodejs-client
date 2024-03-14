@@ -8327,7 +8327,7 @@
       }
     }
   },
-  "revision": "20240219",
+  "revision": "20240311",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -8345,6 +8345,10 @@
         "loggingSettings": {
           "$ref": "GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings",
           "description": "Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level."
+        },
+        "speechSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings",
+          "description": "Settings for speech to text detection. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level"
         }
       },
       "type": "object"
@@ -8379,6 +8383,34 @@
         },
         "enableStackdriverLogging": {
           "description": "If true, StackDriver logging is currently enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings": {
+      "description": "Define behaviors of speech to text detection.",
+      "id": "GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings",
+      "properties": {
+        "endpointerSensitivity": {
+          "description": "Sensitivity of the speech model that detects the end of speech. Scale from 0 to 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "models": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Mapping from language to Speech-to-Text model. The mapped Speech-to-Text model will be selected for requests from its corresponding language. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).",
+          "type": "object"
+        },
+        "noSpeechTimeout": {
+          "description": "Timeout before detecting no speech.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "useTimeoutBasedEndpointing": {
+          "description": "Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.",
           "type": "boolean"
         }
       },
@@ -10341,6 +10373,10 @@
           ],
           "type": "string"
         },
+        "oauthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig",
+          "description": "Optional. The OAuth configuration of the webhook. If specified, Dialogflow will initiate the OAuth client credential flow to exchange an access token from the 3rd party platform and put it in the auth header."
+        },
         "parameterMapping": {
           "additionalProperties": {
             "type": "string"
@@ -10364,6 +10400,22 @@
           "description": "The HTTP request headers to send together with webhook requests.",
           "type": "object"
         },
+        "serviceAgentAuth": {
+          "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
+          "enum": [
+            "SERVICE_AGENT_AUTH_UNSPECIFIED",
+            "NONE",
+            "ID_TOKEN",
+            "ACCESS_TOKEN"
+          ],
+          "enumDescriptions": [
+            "Service agent auth type unspecified. Default to ID_TOKEN.",
+            "No token used.",
+            "Use [ID token](https://cloud.google.com/docs/authentication/token-types#id) generated from service agent. This can be used to access Cloud Function and Cloud Run after you grant Invoker role to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`.",
+            "Use [access token](https://cloud.google.com/docs/authentication/token-types#access) generated from service agent. This can be used to access other Google Cloud APIs after you grant required roles to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`."
+          ],
+          "type": "string"
+        },
         "uri": {
           "description": "Required. The webhook URI for receiving POST requests. It must use https protocol.",
           "type": "string"
@@ -10385,6 +10437,32 @@
             "Represents a standard webhook.",
             "Represents a flexible webhook."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig": {
+      "description": "Represents configuration of OAuth client credential flow for 3rd party API authentication.",
+      "id": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig",
+      "properties": {
+        "clientId": {
+          "description": "Required. The client ID provided by the 3rd party platform.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Required. The client secret provided by the 3rd party platform.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Optional. The OAuth scopes to grant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tokenEndpoint": {
+          "description": "Required. The token endpoint provided by the 3rd party platform to exchange an access token.",
           "type": "string"
         }
       },
@@ -10623,6 +10701,10 @@
         "loggingSettings": {
           "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings",
           "description": "Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level."
+        },
+        "speechSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings",
+          "description": "Settings for speech to text detection. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level"
         }
       },
       "type": "object"
@@ -10657,6 +10739,34 @@
         },
         "enableStackdriverLogging": {
           "description": "If true, StackDriver logging is currently enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings": {
+      "description": "Define behaviors of speech to text detection.",
+      "id": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings",
+      "properties": {
+        "endpointerSensitivity": {
+          "description": "Sensitivity of the speech model that detects the end of speech. Scale from 0 to 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "models": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Mapping from language to Speech-to-Text model. The mapped Speech-to-Text model will be selected for requests from its corresponding language. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).",
+          "type": "object"
+        },
+        "noSpeechTimeout": {
+          "description": "Timeout before detecting no speech.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "useTimeoutBasedEndpointing": {
+          "description": "Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.",
           "type": "boolean"
         }
       },
@@ -12603,6 +12713,10 @@
           ],
           "type": "string"
         },
+        "oauthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig",
+          "description": "Optional. The OAuth configuration of the webhook. If specified, Dialogflow will initiate the OAuth client credential flow to exchange an access token from the 3rd party platform and put it in the auth header."
+        },
         "parameterMapping": {
           "additionalProperties": {
             "type": "string"
@@ -12626,6 +12740,22 @@
           "description": "The HTTP request headers to send together with webhook requests.",
           "type": "object"
         },
+        "serviceAgentAuth": {
+          "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
+          "enum": [
+            "SERVICE_AGENT_AUTH_UNSPECIFIED",
+            "NONE",
+            "ID_TOKEN",
+            "ACCESS_TOKEN"
+          ],
+          "enumDescriptions": [
+            "Service agent auth type unspecified. Default to ID_TOKEN.",
+            "No token used.",
+            "Use [ID token](https://cloud.google.com/docs/authentication/token-types#id) generated from service agent. This can be used to access Cloud Function and Cloud Run after you grant Invoker role to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`.",
+            "Use [access token](https://cloud.google.com/docs/authentication/token-types#access) generated from service agent. This can be used to access other Google Cloud APIs after you grant required roles to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`."
+          ],
+          "type": "string"
+        },
         "uri": {
           "description": "Required. The webhook URI for receiving POST requests. It must use https protocol.",
           "type": "string"
@@ -12647,6 +12777,32 @@
             "Represents a standard webhook.",
             "Represents a flexible webhook."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig": {
+      "description": "Represents configuration of OAuth client credential flow for 3rd party API authentication.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig",
+      "properties": {
+        "clientId": {
+          "description": "Required. The client ID provided by the 3rd party platform.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Required. The client secret provided by the 3rd party platform.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Optional. The OAuth scopes to grant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tokenEndpoint": {
+          "description": "Required. The token endpoint provided by the 3rd party platform to exchange an access token.",
           "type": "string"
         }
       },
