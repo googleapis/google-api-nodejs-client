@@ -14,27 +14,44 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {dataportability_v1} from './v1';
 import {dataportability_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: dataportability_v1.Dataportability,
   v1beta: dataportability_v1beta.Dataportability,
 };
 
+export function dataportability(
+  version: 'v1'
+): dataportability_v1.Dataportability;
+export function dataportability(
+  options: dataportability_v1.Options
+): dataportability_v1.Dataportability;
 export function dataportability(
   version: 'v1beta'
 ): dataportability_v1beta.Dataportability;
 export function dataportability(
   options: dataportability_v1beta.Options
 ): dataportability_v1beta.Dataportability;
-export function dataportability<T = dataportability_v1beta.Dataportability>(
+export function dataportability<
+  T =
+    | dataportability_v1.Dataportability
+    | dataportability_v1beta.Dataportability,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta' | dataportability_v1beta.Options
+  versionOrOptions:
+    | 'v1'
+    | dataportability_v1.Options
+    | 'v1beta'
+    | dataportability_v1beta.Options
 ) {
   return getAPI<T>('dataportability', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {dataportability_v1};
 export {dataportability_v1beta};
 export {
   AuthPlus,
