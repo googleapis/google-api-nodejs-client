@@ -378,6 +378,10 @@ export namespace cloudresourcemanager_v3 {
      */
     state?: string | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this folder. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing" Note: Currently this field is in Preview.
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Output only. Timestamp when the folder was last modified.
      */
     updateTime?: string | null;
@@ -725,6 +729,10 @@ export namespace cloudresourcemanager_v3 {
      * Output only. The project lifecycle state.
      */
     state?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this project. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing" Note: Currently this field is in Preview.
+     */
+    tags?: {[key: string]: string} | null;
     /**
      * Output only. The most recent time this resource was modified.
      */
