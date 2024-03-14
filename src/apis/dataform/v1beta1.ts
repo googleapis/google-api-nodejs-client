@@ -1114,7 +1114,7 @@ export namespace dataform_v1beta1 {
      */
     gitCommitish?: string | null;
     /**
-     * Output only. The release config's name.
+     * Identifier. The release config's name.
      */
     name?: string | null;
     /**
@@ -1169,7 +1169,7 @@ export namespace dataform_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The repository's name.
+     * Identifier. The repository's name.
      */
     name?: string | null;
     /**
@@ -1445,7 +1445,7 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$Workspace {
     /**
-     * Output only. The workspace's name.
+     * Identifier. The workspace's name.
      */
     name?: string | null;
   }
@@ -3445,7 +3445,7 @@ export namespace dataform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Patch
     extends StandardParameters {
     /**
-     * Output only. The repository's name.
+     * Identifier. The repository's name.
      */
     name?: string;
     /**
@@ -4452,7 +4452,7 @@ export namespace dataform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Patch
     extends StandardParameters {
     /**
-     * Output only. The release config's name.
+     * Identifier. The release config's name.
      */
     name?: string;
     /**
