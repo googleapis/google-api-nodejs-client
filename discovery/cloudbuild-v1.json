@@ -2346,7 +2346,7 @@
       }
     }
   },
-  "revision": "20240223",
+  "revision": "20240310",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3088,6 +3088,14 @@
             "E2_HIGHCPU_8",
             "E2_HIGHCPU_32",
             "E2_MEDIUM"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Standard machine type.",
@@ -4576,32 +4584,9 @@
           "$ref": "NetworkConfig",
           "description": "Network configuration for the pool."
         },
-        "privateServiceConnect": {
-          "$ref": "PrivateServiceConnect",
-          "description": "Immutable. Private Service Connect(PSC) Network configuration for the pool."
-        },
         "workerConfig": {
           "$ref": "WorkerConfig",
           "description": "Machine configuration for the workers in the pool."
-        }
-      },
-      "type": "object"
-    },
-    "PrivateServiceConnect": {
-      "description": "Defines the Private Service Connect network configuration for the pool.",
-      "id": "PrivateServiceConnect",
-      "properties": {
-        "networkAttachment": {
-          "description": "Required. Immutable. The network attachment that the worker network interface is peered to. Must be in the format `projects/{project}/regions/{region}/networkAttachments/{networkAttachment}`. The region of network attachment must be the same as the worker pool. See [Network Attachments](https://cloud.google.com/vpc/docs/about-network-attachments)",
-          "type": "string"
-        },
-        "publicIpAddressDisabled": {
-          "description": "Required. Immutable. Disable public IP on the primary network interface. If true, workers are created without any public address, which prevents network egress to public IPs unless a network proxy is configured. If false, workers are created with a public address which allows for public internet egress. The public address only applies to traffic through the primary network interface. If `route_all_traffic` is set to true, all traffic will go through the non-primary network interface, this boolean has no effect.",
-          "type": "boolean"
-        },
-        "routeAllTraffic": {
-          "description": "Immutable. Route all traffic through PSC interface. Enable this if you want full control of traffic in the private pool. Configure Cloud NAT for the subnet of network attachment if you need to access public Internet. If false, Only route private IPs, e.g. 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16 through PSC interface.",
-          "type": "boolean"
         }
       },
       "type": "object"

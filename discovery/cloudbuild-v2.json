@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20240223",
+  "revision": "20240310",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1885,6 +1885,45 @@
       },
       "type": "object"
     },
+    "PipelineResult": {
+      "description": "A value produced by a Pipeline.",
+      "id": "PipelineResult",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of the result.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the result.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of data that the result holds.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "STRING",
+            "ARRAY",
+            "OBJECT"
+          ],
+          "enumDescriptions": [
+            "Default enum type; should not be used.",
+            "Default",
+            "Array type",
+            "Object type"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "$ref": "ResultValue",
+          "description": "Output only. Value of the result.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "PipelineRun": {
       "description": "Message describing PipelineRun object",
       "id": "PipelineRun",
@@ -1988,12 +2027,21 @@
           "description": "Output only. The exact PipelineSpec used to instantiate the run.",
           "readOnly": true
         },
+        "results": {
+          "description": "Optional. Output only. List of results written out by the pipeline's containers",
+          "items": {
+            "$ref": "PipelineRunResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "security": {
           "$ref": "Security",
           "description": "Optional. Security configuration."
         },
         "serviceAccount": {
-          "description": "Service account used in the Pipeline.",
+          "deprecated": true,
+          "description": "Service account used in the Pipeline. Deprecated; please use security.service_account instead.",
           "type": "string"
         },
         "skippedTasks": {
@@ -2049,6 +2097,23 @@
       },
       "type": "object"
     },
+    "PipelineRunResult": {
+      "description": "PipelineRunResult used to describe the results of a pipeline",
+      "id": "PipelineRunResult",
+      "properties": {
+        "name": {
+          "description": "Output only. Name of the TaskRun",
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "$ref": "ResultValue",
+          "description": "Output only. Value of the result.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "PipelineSpec": {
       "description": "PipelineSpec defines the desired state of Pipeline.",
       "id": "PipelineSpec",
@@ -2070,6 +2135,14 @@
           "items": {
             "$ref": "ParamSpec"
           },
+          "type": "array"
+        },
+        "results": {
+          "description": "Optional. Output only. List of results written out by the pipeline's containers",
+          "items": {
+            "$ref": "PipelineResult"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "tasks": {
@@ -2319,6 +2392,48 @@
         },
         "webhookId": {
           "description": "Output only. External ID of the webhook created for the repository.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResultValue": {
+      "description": "ResultValue holds different types of data for a single result.",
+      "id": "ResultValue",
+      "properties": {
+        "arrayVal": {
+          "description": "Value of the result if type is array.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "objectVal": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Value of the result if type is object.",
+          "type": "object"
+        },
+        "stringVal": {
+          "description": "Value of the result if type is string.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of data that the result holds.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "STRING",
+            "ARRAY",
+            "OBJECT"
+          ],
+          "enumDescriptions": [
+            "Default enum type; should not be used.",
+            "Default",
+            "Array type",
+            "Object type"
+          ],
           "readOnly": true,
           "type": "string"
         }
