@@ -204,11 +204,11 @@ export namespace storagetransfer_v1 {
      */
     bucketName?: string | null;
     /**
-     * Optional. Cloudfront domain name pointing to this bucket (as origin), to use when fetching. Format: `https://{id\}.cloudfront.net` or any valid custom domain `https://...`
+     * Optional. The CloudFront distribution domain name pointing to this bucket, to use when fetching. See [Transfer from S3 via CloudFront](https://cloud.google.com/storage-transfer/docs/s3-cloudfront) for more information. Format: `https://{id\}.cloudfront.net` or any valid custom domain. Must begin with `https://`.
      */
     cloudfrontDomain?: string | null;
     /**
-     * Optional. The Resource name of a secret in Secret Manager. AWS credentials must be stored in Secret Manager in JSON format: { "access_key_id": "ACCESS_KEY_ID", "secret_access_key": "SECRET_ACCESS_KEY" \} GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Amazon S3] (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager) for more information. If `credentials_secret` is specified, do not specify role_arn or aws_access_key. This feature is in [preview](https://cloud.google.com/terms/service-terms#1). Format: `projects/{project_number\}/secrets/{secret_name\}`
+     * Optional. The Resource name of a secret in Secret Manager. AWS credentials must be stored in Secret Manager in JSON format: { "access_key_id": "ACCESS_KEY_ID", "secret_access_key": "SECRET_ACCESS_KEY" \} GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Amazon S3] (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager) for more information. If `credentials_secret` is specified, do not specify role_arn or aws_access_key. Format: `projects/{project_number\}/secrets/{secret_name\}`
      */
     credentialsSecret?: string | null;
     /**
@@ -233,7 +233,7 @@ export namespace storagetransfer_v1 {
      */
     container?: string | null;
     /**
-     * Optional. The Resource name of a secret in Secret Manager. The Azure SAS token must be stored in Secret Manager in JSON format: { "sas_token" : "SAS_TOKEN" \} GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Microsoft Azure Blob Storage] (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager) for more information. If `credentials_secret` is specified, do not specify azure_credentials. This feature is in [preview](https://cloud.google.com/terms/service-terms#1). Format: `projects/{project_number\}/secrets/{secret_name\}`
+     * Optional. The Resource name of a secret in Secret Manager. The Azure SAS token must be stored in Secret Manager in JSON format: { "sas_token" : "SAS_TOKEN" \} GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Microsoft Azure Blob Storage] (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager) for more information. If `credentials_secret` is specified, do not specify azure_credentials. Format: `projects/{project_number\}/secrets/{secret_name\}`
      */
     credentialsSecret?: string | null;
     /**
@@ -263,11 +263,6 @@ export namespace storagetransfer_v1 {
      */
     limitMbps?: string | null;
   }
-  export interface Schema$BatchTaskSpec {
-    deleteObjectTaskSpec?: Schema$DeleteObjectTaskSpec;
-    listTaskSpec?: Schema$ListTaskSpec;
-    metadataTaskSpec?: Schema$MetadataTaskSpec;
-  }
   /**
    * The request message for Operations.CancelOperation.
    */
@@ -288,12 +283,6 @@ export namespace storagetransfer_v1 {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
-  }
-  export interface Schema$DeleteObjectTaskSpec {
-    generation?: string | null;
-    hardDeleteVersionedObject?: boolean | null;
-    name?: string | null;
-    size?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -355,7 +344,7 @@ export namespace storagetransfer_v1 {
      */
     bucketName?: string | null;
     /**
-     * Transfer managed folders is in public preview. This option is only applicable to the Cloud Storage source bucket. If set to true: - The source managed folder will be transferred to the destination bucket - The destination managed folder will always be overwritten, other OVERWRITE options will not be supported
+     * Preview. Enables the transfer of managed folders between Cloud Storage buckets. Set this option on the gcs_data_source. If set to true: - Managed folders in the source bucket are transferred to the destination bucket. - Managed folders in the destination bucket are overwritten. Other OVERWRITE options are not supported. See [Transfer Cloud Storage managed folders](/storage-transfer/docs/managed-folders).
      */
     managedFolderTransferEnabled?: boolean | null;
     /**
@@ -420,10 +409,6 @@ export namespace storagetransfer_v1 {
      */
     operations?: Schema$Operation[];
   }
-  export interface Schema$ListTaskSpec {
-    manifest?: Schema$Manifest;
-    objectPrefixes?: Schema$ObjectPrefixes;
-  }
   /**
    * Response from ListTransferJobs.
    */
@@ -453,10 +438,6 @@ export namespace storagetransfer_v1 {
      * States in which `log_actions` are logged. If empty, no logs are generated. Not supported for transfers with PosixFilesystem data sources; use enable_onprem_gcs_transfer_logs instead.
      */
     logActionStates?: string[] | null;
-  }
-  export interface Schema$Manifest {
-    manifestLocation?: string | null;
-    root?: string | null;
   }
   /**
    * Specifies the metadata options for running a transfer.
@@ -498,12 +479,6 @@ export namespace storagetransfer_v1 {
      * Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.
      */
     uid?: string | null;
-  }
-  export interface Schema$MetadataTaskSpec {
-    bucketName?: string | null;
-    generation?: string | null;
-    key?: string | null;
-    size?: string | null;
   }
   /**
    * Specification to configure notifications published to Pub/Sub. Notifications are published to the customer-provided topic using the following `PubsubMessage.attributes`: * `"eventType"`: one of the EventType values * `"payloadFormat"`: one of the PayloadFormat values * `"projectId"`: the project_id of the `TransferOperation` * `"transferJobName"`: the transfer_job_name of the `TransferOperation` * `"transferOperationName"`: the name of the `TransferOperation` The `PubsubMessage.data` contains a TransferOperation resource formatted according to the specified `PayloadFormat`.
@@ -551,13 +526,6 @@ export namespace storagetransfer_v1 {
      */
     minTimeElapsedSinceLastModification?: string | null;
   }
-  export interface Schema$ObjectPrefix {
-    bucketName?: string | null;
-    objectPrefix?: string | null;
-  }
-  export interface Schema$ObjectPrefixes {
-    objectPrefixes?: Schema$ObjectPrefix[];
-  }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -595,6 +563,27 @@ export namespace storagetransfer_v1 {
      * Root directory path to the filesystem.
      */
     rootDirectory?: string | null;
+  }
+  /**
+   * Specifies the configuration for running a replication job.
+   */
+  export interface Schema$ReplicationSpec {
+    /**
+     * Specifies cloud Storage data sink.
+     */
+    gcsDataSink?: Schema$GcsData;
+    /**
+     * Specifies cloud Storage data source.
+     */
+    gcsDataSource?: Schema$GcsData;
+    /**
+     * Specifies the object conditions to only include objects that satisfy these conditions in the set of data source objects. Object conditions based on objects' "last modification time" do not exclude objects in a data sink.
+     */
+    objectConditions?: Schema$ObjectConditions;
+    /**
+     * Specifies the actions to be performed on the object during replication. Delete options are not supported for replication and when specified, the request fails with an INVALID_ARGUMENT error.
+     */
+    transferOptions?: Schema$TransferOptions;
   }
   /**
    * Request passed to ResumeTransferOperation.
@@ -826,6 +815,10 @@ export namespace storagetransfer_v1 {
      * The ID of the Google Cloud project that owns the job.
      */
     projectId?: string | null;
+    /**
+     * Replication specification.
+     */
+    replicationSpec?: Schema$ReplicationSpec;
     /**
      * Specifies schedule for the transfer job. This is an optional field. When the field is not set, the job never executes a transfer, unless you invoke RunTransferJob or update the job to have a non-empty schedule.
      */
@@ -2677,7 +2670,7 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferoperations$List
     extends StandardParameters {
     /**
-     * Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "operationNames":["opid1","opid2",...], "transferStatuses":["status1","status2",...]\}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is required. `jobNames`, `operationNames`, and `transferStatuses` are optional. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
+     * Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobNamePattern": "job_name_pattern", "operationNames":["opid1","opid2",...], "operationNamePattern": "operation_name_pattern", "minCreationTime": "min_creation_time", "maxCreationTime": "max_creation_time", "transferStatuses":["status1","status2",...]\}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is the only argument that is required. If specified, `jobNamePattern` and `operationNamePattern` must match the full job or operation name respectively. '*' is a wildcard matching 0 or more characters. `minCreationTime` and `maxCreationTime` should be timestamps encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      */
     filter?: string;
     /**
