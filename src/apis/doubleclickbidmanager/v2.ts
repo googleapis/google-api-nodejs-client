@@ -235,7 +235,7 @@ export namespace doubleclickbidmanager_v2 {
      */
     includeOnlyTargetedUserLists?: boolean | null;
     /**
-     * Options that contain Path Filters and Custom Channel Groupings.
+     * Options that contain Path Filters and Custom Channel Groupings. This field is deprecated and will sunset on **May 1, 2024**. After sunset, requests using this field will return an error.
      */
     pathQueryOptions?: Schema$PathQueryOptions;
   }
