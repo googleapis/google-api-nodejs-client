@@ -555,6 +555,7 @@ export namespace containeranalysis_v1 {
      * A description about this compliance check.
      */
     description?: string | null;
+    impact?: string | null;
     /**
      * A rationale for the existence of this compliance check.
      */
@@ -3260,15 +3261,892 @@ export namespace containeranalysis_v1 {
 
   export class Resource$Projects {
     context: APIRequestContext;
+    locations: Resource$Projects$Locations;
     notes: Resource$Projects$Notes;
     occurrences: Resource$Projects$Occurrences;
     resources: Resource$Projects$Resources;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
       this.notes = new Resource$Projects$Notes(this.context);
       this.occurrences = new Resource$Projects$Occurrences(this.context);
       this.resources = new Resource$Projects$Resources(this.context);
     }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    notes: Resource$Projects$Locations$Notes;
+    occurrences: Resource$Projects$Locations$Occurrences;
+    resources: Resource$Projects$Locations$Resources;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.notes = new Resource$Projects$Locations$Notes(this.context);
+      this.occurrences = new Resource$Projects$Locations$Occurrences(
+        this.context
+      );
+      this.resources = new Resource$Projects$Locations$Resources(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Notes {
+    context: APIRequestContext;
+    occurrences: Resource$Projects$Locations$Notes$Occurrences;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.occurrences = new Resource$Projects$Locations$Notes$Occurrences(
+        this.context
+      );
+    }
+
+    /**
+     * Gets the specified note.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Notes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Notes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Note>;
+    get(
+      params: Params$Resource$Projects$Locations$Notes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notes$Get,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Note>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notes$Get
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Note>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Note>(parameters);
+      }
+    }
+
+    /**
+     * Lists notes for the specified project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Notes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Notes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNotesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Notes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListNotesResponse>,
+      callback: BodyResponseCallback<Schema$ListNotesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notes$List,
+      callback: BodyResponseCallback<Schema$ListNotesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListNotesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notes$List
+        | BodyResponseCallback<Schema$ListNotesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNotesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNotesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNotesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNotesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNotesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notes$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notes$List
+    extends StandardParameters {
+    /**
+     * The filter expression.
+     */
+    filter?: string;
+    /**
+     * Number of notes to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.
+     */
+    pageSize?: number;
+    /**
+     * Token to provide to skip to a particular spot in the list.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project to list notes for in the form of `projects/[PROJECT_ID]`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Notes$Occurrences {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists occurrences referencing the specified note. Provider projects can use this method to get all occurrences across consumer projects referencing the specified note.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Notes$Occurrences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Notes$Occurrences$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNoteOccurrencesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Notes$Occurrences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notes$Occurrences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
+      callback: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notes$Occurrences$List,
+      callback: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notes$Occurrences$List
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNoteOccurrencesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notes$Occurrences$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notes$Occurrences$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/occurrences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNoteOccurrencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNoteOccurrencesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notes$Occurrences$List
+    extends StandardParameters {
+    /**
+     * The filter expression.
+     */
+    filter?: string;
+    /**
+     * Required. The name of the note to list occurrences for in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     */
+    name?: string;
+    /**
+     * Number of occurrences to return in the list.
+     */
+    pageSize?: number;
+    /**
+     * Token to provide to skip to a particular spot in the list.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Occurrences {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the specified occurrence.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Occurrences$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Occurrences$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Occurrence>;
+    get(
+      params: Params$Resource$Projects$Locations$Occurrences$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Occurrences$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Occurrence>,
+      callback: BodyResponseCallback<Schema$Occurrence>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Occurrences$Get,
+      callback: BodyResponseCallback<Schema$Occurrence>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Occurrence>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Occurrences$Get
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Occurrence> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Occurrences$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Occurrences$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Occurrence>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Occurrence>(parameters);
+      }
+    }
+
+    /**
+     * Gets the note attached to the specified occurrence. Consumer projects can use this method to get a note that belongs to a provider project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getNotes(
+      params: Params$Resource$Projects$Locations$Occurrences$Getnotes,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getNotes(
+      params?: Params$Resource$Projects$Locations$Occurrences$Getnotes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Note>;
+    getNotes(
+      params: Params$Resource$Projects$Locations$Occurrences$Getnotes,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getNotes(
+      params: Params$Resource$Projects$Locations$Occurrences$Getnotes,
+      options: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
+    getNotes(
+      params: Params$Resource$Projects$Locations$Occurrences$Getnotes,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
+    getNotes(callback: BodyResponseCallback<Schema$Note>): void;
+    getNotes(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Occurrences$Getnotes
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Occurrences$Getnotes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Occurrences$Getnotes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/notes').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Note>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Note>(parameters);
+      }
+    }
+
+    /**
+     * Gets a summary of the number and severity of occurrences.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVulnerabilitySummary(
+      params: Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getVulnerabilitySummary(
+      params?: Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VulnerabilityOccurrencesSummary>;
+    getVulnerabilitySummary(
+      params: Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVulnerabilitySummary(
+      params: Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>,
+      callback: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+    ): void;
+    getVulnerabilitySummary(
+      params: Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary,
+      callback: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+    ): void;
+    getVulnerabilitySummary(
+      callback: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+    ): void;
+    getVulnerabilitySummary(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VulnerabilityOccurrencesSummary>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/occurrences:vulnerabilitySummary'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VulnerabilityOccurrencesSummary>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VulnerabilityOccurrencesSummary>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists occurrences for the specified project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Occurrences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Occurrences$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOccurrencesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Occurrences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Occurrences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>,
+      callback: BodyResponseCallback<Schema$ListOccurrencesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Occurrences$List,
+      callback: BodyResponseCallback<Schema$ListOccurrencesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOccurrencesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Occurrences$List
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOccurrencesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Occurrences$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Occurrences$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/occurrences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOccurrencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOccurrencesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Occurrences$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Occurrences$Getnotes
+    extends StandardParameters {
+    /**
+     * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary
+    extends StandardParameters {
+    /**
+     * The filter expression.
+     */
+    filter?: string;
+    /**
+     * Required. The name of the project to get a vulnerability summary for in the form of `projects/[PROJECT_ID]`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Occurrences$List
+    extends StandardParameters {
+    /**
+     * The filter expression.
+     */
+    filter?: string;
+    /**
+     * Number of occurrences to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.
+     */
+    pageSize?: number;
+    /**
+     * Token to provide to skip to a particular spot in the list.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project to list occurrences for in the form of `projects/[PROJECT_ID]`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Resources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Generates an SBOM for the given resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportSBOM(
+      params: Params$Resource$Projects$Locations$Resources$Exportsbom,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportSBOM(
+      params?: Params$Resource$Projects$Locations$Resources$Exportsbom,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExportSBOMResponse>;
+    exportSBOM(
+      params: Params$Resource$Projects$Locations$Resources$Exportsbom,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportSBOM(
+      params: Params$Resource$Projects$Locations$Resources$Exportsbom,
+      options: MethodOptions | BodyResponseCallback<Schema$ExportSBOMResponse>,
+      callback: BodyResponseCallback<Schema$ExportSBOMResponse>
+    ): void;
+    exportSBOM(
+      params: Params$Resource$Projects$Locations$Resources$Exportsbom,
+      callback: BodyResponseCallback<Schema$ExportSBOMResponse>
+    ): void;
+    exportSBOM(callback: BodyResponseCallback<Schema$ExportSBOMResponse>): void;
+    exportSBOM(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Resources$Exportsbom
+        | BodyResponseCallback<Schema$ExportSBOMResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExportSBOMResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExportSBOMResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExportSBOMResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Resources$Exportsbom;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Resources$Exportsbom;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:exportSBOM').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExportSBOMResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExportSBOMResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Resources$Exportsbom
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportSBOMRequest;
   }
 
   export class Resource$Projects$Notes {

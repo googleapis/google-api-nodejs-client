@@ -1233,7 +1233,7 @@
       }
     }
   },
-  "revision": "20240220",
+  "revision": "20240308",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -2015,6 +2015,10 @@
           "description": "A description about this compliance check.",
           "type": "string"
         },
+        "impact": {
+          "description": "Potential impact of the suggested remediation",
+          "type": "string"
+        },
         "rationale": {
           "description": "A rationale for the existence of this compliance check.",
           "type": "string"
@@ -2597,6 +2601,14 @@
             "E2_HIGHCPU_8",
             "E2_HIGHCPU_32",
             "E2_MEDIUM"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Standard machine type.",
