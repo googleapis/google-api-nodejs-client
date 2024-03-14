@@ -28,6 +28,12 @@
         },
         "https://www.googleapis.com/auth/chat.spaces.readonly": {
           "description": "View chat and spaces in Google Chat"
+        },
+        "https://www.googleapis.com/auth/meetings.space.created": {
+          "description": "Create, edit, and see information about your Google Meet conferences created by the app."
+        },
+        "https://www.googleapis.com/auth/meetings.space.readonly": {
+          "description": "Read information about any of your Google Meet conferences"
         }
       }
     }
@@ -161,7 +167,9 @@
             "https://www.googleapis.com/auth/chat.messages.reactions.readonly",
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
-            "https://www.googleapis.com/auth/chat.spaces.readonly"
+            "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/meetings.space.created",
+            "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
         }
       }
@@ -196,7 +204,9 @@
             "https://www.googleapis.com/auth/chat.messages.reactions.readonly",
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
-            "https://www.googleapis.com/auth/chat.spaces.readonly"
+            "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/meetings.space.created",
+            "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
         },
         "delete": {
@@ -244,7 +254,9 @@
             "https://www.googleapis.com/auth/chat.messages.reactions.readonly",
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
-            "https://www.googleapis.com/auth/chat.spaces.readonly"
+            "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/meetings.space.created",
+            "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
         },
         "get": {
@@ -277,7 +289,9 @@
             "https://www.googleapis.com/auth/chat.messages.reactions.readonly",
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
-            "https://www.googleapis.com/auth/chat.spaces.readonly"
+            "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/meetings.space.created",
+            "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
         },
         "list": {
@@ -317,7 +331,9 @@
             "https://www.googleapis.com/auth/chat.messages.reactions.readonly",
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
-            "https://www.googleapis.com/auth/chat.spaces.readonly"
+            "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/meetings.space.created",
+            "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
         },
         "patch": {
@@ -363,7 +379,9 @@
             "https://www.googleapis.com/auth/chat.messages.reactions.readonly",
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
-            "https://www.googleapis.com/auth/chat.spaces.readonly"
+            "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/meetings.space.created",
+            "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
         },
         "reactivate": {
@@ -398,13 +416,15 @@
             "https://www.googleapis.com/auth/chat.messages.reactions.readonly",
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
-            "https://www.googleapis.com/auth/chat.spaces.readonly"
+            "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/meetings.space.created",
+            "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
         }
       }
     }
   },
-  "revision": "20240218",
+  "revision": "20240310",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "ListSubscriptionsResponse": {

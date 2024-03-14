@@ -26,6 +26,11 @@
       "endpointUrl": "https://dataflow.me-central2.rep.googleapis.com/",
       "location": "me-central2",
       "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://dataflow.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3",
+      "description": "Regional Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2177,7 +2182,7 @@
       }
     }
   },
-  "revision": "20240218",
+  "revision": "20240303",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {

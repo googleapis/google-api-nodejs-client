@@ -2207,6 +2207,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/data-portability",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "dataportability:v1",
+      "name": "dataportability",
+      "version": "v1",
+      "title": "Data Portability API",
+      "description": "The Data Portability API lets you build applications that request authorization from a user to move a copy of data from Google services into your application. This enables data portability and facilitates switching services.",
+      "discoveryRestUrl": "https://dataportability.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/data-portability",
       "preferred": true
     },
     {
@@ -3938,6 +3953,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "marketingplatformadmin:v1alpha",
+      "name": "marketingplatformadmin",
+      "version": "v1alpha",
+      "title": "Google Marketing Platform Admin API",
+      "description": "marketingplatformadmin.googleapis.com API.",
+      "discoveryRestUrl": "https://marketingplatformadmin.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/analytics/devguides/config/gmp/v1",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "memcache:v1beta2",
       "name": "memcache",
       "version": "v1beta2",
@@ -5280,6 +5310,21 @@
       "title": "Secret Manager API",
       "description": "Stores sensitive data such as API keys, passwords, and certificates. Provides convenience while improving security.",
       "discoveryRestUrl": "https://secretmanager.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/secret-manager/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "secretmanager:v1beta2",
+      "name": "secretmanager",
+      "version": "v1beta2",
+      "title": "Secret Manager API",
+      "description": "Stores sensitive data such as API keys, passwords, and certificates. Provides convenience while improving security.",
+      "discoveryRestUrl": "https://secretmanager.googleapis.com/$discovery/rest?version=v1beta2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

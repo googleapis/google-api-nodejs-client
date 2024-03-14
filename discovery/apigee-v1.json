@@ -9776,6 +9776,205 @@
                   ]
                 }
               }
+            },
+            "apidocs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new catalog item.",
+                  "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apidocs",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.sites.apidocs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Name of the portal. Use the following structure in your request: `organizations/{org}/sites/{site}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/sites/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/apidocs",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ApiDoc"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ApiDocResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a catalog item.",
+                  "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apidocs/{apidocsId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.sites.apidocs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the catalog item. Use the following structure in your request: `organizations/{org}/sites/{site}/apidocs/{apidoc}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/sites/[^/]+/apidocs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1DeleteResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a catalog item.",
+                  "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apidocs/{apidocsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.sites.apidocs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the catalog item. Use the following structure in your request: `organizations/{org}/sites/{site}/apidocs/{apidoc}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/sites/[^/]+/apidocs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ApiDocResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getDocumentation": {
+                  "description": "Gets the documentation for the specified catalog item.",
+                  "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apidocs/{apidocsId}/documentation",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.sites.apidocs.getDocumentation",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the catalog item documentation. Use the following structure in your request: `organizations/{org}/sites/{site}/apidocs/{apidoc}/documentation`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/sites/[^/]+/apidocs/[^/]+/documentation$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ApiDocDocumentationResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Returns the catalog items associated with a portal.",
+                  "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apidocs",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.sites.apidocs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 25 books will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListApiDocs` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the portal. Use the following structure in your request: `organizations/{org}/sites/{site}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/sites/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/apidocs",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListApiDocsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "update": {
+                  "description": "Updates a catalog item.",
+                  "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apidocs/{apidocsId}",
+                  "httpMethod": "PUT",
+                  "id": "apigee.organizations.sites.apidocs.update",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the catalog item. Use the following structure in your request: `organizations/{org}/sites/{site}/apidocs/{apidoc}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/sites/[^/]+/apidocs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ApiDoc"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ApiDocResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateDocumentation": {
+                  "description": "Updates the documentation for the specified catalog item. Note that the documentation file contents will not be populated in the return message.",
+                  "flatPath": "v1/organizations/{organizationsId}/sites/{sitesId}/apidocs/{apidocsId}/documentation",
+                  "httpMethod": "PATCH",
+                  "id": "apigee.organizations.sites.apidocs.updateDocumentation",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the catalog item documentation. Use the following structure in your request: `organizations/{org}/sites/{site}/apidocs/{apidoc}/documentation`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/sites/[^/]+/apidocs/[^/]+/documentation$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ApiDocDocumentation"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ApiDocDocumentationResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
@@ -9814,7 +10013,7 @@
       }
     }
   },
-  "revision": "20240220",
+  "revision": "20240312",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -10133,6 +10332,167 @@
         "data": {
           "$ref": "GoogleCloudApigeeV1ApiCategory",
           "description": "The API category resource."
+        },
+        "errorCode": {
+          "description": "Unique error code for the request, if any.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Description of the operation.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Unique ID of the request.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the operation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ApiDoc": {
+      "description": "`ApiDoc` represents an API catalog item. Catalog items are used in two ways in a portal: - Users can browse and interact with a visual representation of the API documentation - The `api_product_name` field provides a link to a backing [API product] (/apigee/docs/reference/apis/apigee/rest/v1/organizations.apiproducts). Through this link, portal users can create and manage developer apps linked to one or more API products.",
+      "id": "GoogleCloudApigeeV1ApiDoc",
+      "properties": {
+        "anonAllowed": {
+          "description": "Optional. Boolean flag that manages user access to the catalog item. When true, the catalog item has public visibility and can be viewed anonymously; otherwise, only registered users may view it. Note: when the parent portal is enrolled in the [audience management feature](https://cloud.google.com/apigee/docs/api-platform/publish/portal/portal-audience#enrolling_in_the_beta_release_of_the_audience_management_feature), and this flag is set to false, visibility is set to an indeterminate state and must be explicitly specified in the management UI (see [Manage the visibility of an API in your portal](https://cloud.google.com/apigee/docs/api-platform/publish/portal/publish-apis#visibility)). Additionally, when enrolled in the audience management feature, updates to this flag will be ignored as visibility permissions must be updated in the management UI.",
+          "type": "boolean"
+        },
+        "apiProductName": {
+          "description": "Required. Immutable. The `name` field of the associated [API product](/apigee/docs/reference/apis/apigee/rest/v1/organizations.apiproducts). A portal may have only one catalog item associated with a given API product.",
+          "type": "string"
+        },
+        "categoryIds": {
+          "description": "Optional. The IDs of the API categories to which this catalog item belongs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Optional. Description of the catalog item. Max length is 10,000 characters.",
+          "type": "string"
+        },
+        "edgeAPIProductName": {
+          "description": "Optional. Immutable. DEPRECATED: use the `apiProductName` field instead",
+          "type": "string"
+        },
+        "graphqlEndpointUrl": {
+          "deprecated": true,
+          "description": "Optional. DEPRECATED: manage documentation through the `getDocumentation` and `updateDocumentation` methods",
+          "type": "string"
+        },
+        "graphqlSchema": {
+          "deprecated": true,
+          "description": "Optional. DEPRECATED: manage documentation through the `getDocumentation` and `updateDocumentation` methods",
+          "type": "string"
+        },
+        "graphqlSchemaDisplayName": {
+          "deprecated": true,
+          "description": "Optional. DEPRECATED: manage documentation through the `getDocumentation` and `updateDocumentation` methods",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. The ID of the catalog item.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "imageUrl": {
+          "description": "Optional. Location of the image used for the catalog item in the catalog. For portal files, this can have the format `/files/{filename}`. Max length is 2,083 characters.",
+          "type": "string"
+        },
+        "modified": {
+          "description": "Output only. Time the catalog item was last modified in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "published": {
+          "description": "Optional. Denotes whether the catalog item is published to the portal or is in a draft state. When the parent portal is enrolled in the [audience management feature](https://cloud.google.com/apigee/docs/api-platform/publish/portal/portal-audience#enrolling_in_the_beta_release_of_the_audience_management_feature), the visibility can be set to public on creation by setting the anonAllowed flag to true or further managed in the management UI (see [Manage the visibility of an API in your portal](https://cloud.google.com/apigee/docs/api-platform/publish/portal/publish-apis#visibility)) before it can be visible to any users. If not enrolled in the audience management feature, the visibility is managed by the `anonAllowed` flag.",
+          "type": "boolean"
+        },
+        "requireCallbackUrl": {
+          "description": "Optional. Whether a callback URL is required when this catalog item's API product is enabled in a developer app. When true, a portal user will be required to input a URL when managing the app (this is typically used for the app's OAuth flow).",
+          "type": "boolean"
+        },
+        "siteId": {
+          "description": "Output only. The ID of the parent portal.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "specId": {
+          "deprecated": true,
+          "description": "Optional. DEPRECATED: DO NOT USE",
+          "type": "string"
+        },
+        "title": {
+          "description": "Required. The user-facing name of the catalog item. `title` must be a non-empty string with a max length of 255 characters.",
+          "type": "string"
+        },
+        "visibility": {
+          "description": "Optional. DEPRECATED: use the `published` field instead",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ApiDocDocumentation": {
+      "description": "The documentation for a catalog item.",
+      "id": "GoogleCloudApigeeV1ApiDocDocumentation",
+      "properties": {
+        "graphqlDocumentation": {
+          "$ref": "GoogleCloudApigeeV1GraphqlDocumentation",
+          "description": "Optional. GraphQL documentation."
+        },
+        "oasDocumentation": {
+          "$ref": "GoogleCloudApigeeV1OASDocumentation",
+          "description": "Optional. OpenAPI Specification documentation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ApiDocDocumentationResponse": {
+      "description": "The catalog item documentation wrapped with response status, error_code, etc.",
+      "id": "GoogleCloudApigeeV1ApiDocDocumentationResponse",
+      "properties": {
+        "data": {
+          "$ref": "GoogleCloudApigeeV1ApiDocDocumentation",
+          "description": "Output only. The documentation resource.",
+          "readOnly": true
+        },
+        "errorCode": {
+          "description": "Output only. Unique error code for the request, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "message": {
+          "description": "Output only. Description of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Output only. Unique ID of the request.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. Status of the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ApiDocResponse": {
+      "description": "The catalog item resource wrapped with response status, error_code, etc.",
+      "id": "GoogleCloudApigeeV1ApiDocResponse",
+      "properties": {
+        "data": {
+          "$ref": "GoogleCloudApigeeV1ApiDoc",
+          "description": "The catalog item resource."
         },
         "errorCode": {
           "description": "Unique error code for the request, if any.",
@@ -12374,6 +12734,22 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudApigeeV1DocumentationFile": {
+      "description": "Documentation file contents for a catalog item.",
+      "id": "GoogleCloudApigeeV1DocumentationFile",
+      "properties": {
+        "contents": {
+          "description": "Required. The file contents. The max size is 4 MB.",
+          "format": "byte",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. A display name for the file, shown in the management UI. Max length is 255 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1EnableSecurityActionRequest": {
       "description": "Message to enable a disabled SecurityAction.",
       "id": "GoogleCloudApigeeV1EnableSecurityActionRequest",
@@ -13110,6 +13486,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1GraphqlDocumentation": {
+      "description": "GraphQL documentation for a catalog item.",
+      "id": "GoogleCloudApigeeV1GraphqlDocumentation",
+      "properties": {
+        "endpointUri": {
+          "description": "Required. The GraphQL endpoint URI to be queried by API consumers. Max length is 2,083 characters.",
+          "type": "string"
+        },
+        "schema": {
+          "$ref": "GoogleCloudApigeeV1DocumentationFile",
+          "description": "Required. The documentation file contents for the GraphQL schema."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1GrpcOperationConfig": {
       "description": "Binds the resources in a proxy or remote service with the gRPC operation and its associated quota enforcement.",
       "id": "GoogleCloudApigeeV1GrpcOperationConfig",
@@ -13497,6 +13888,39 @@
         },
         "message": {
           "description": "Description of the operation.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Unique ID of the request.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the operation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListApiDocsResponse": {
+      "id": "GoogleCloudApigeeV1ListApiDocsResponse",
+      "properties": {
+        "data": {
+          "description": "The catalog item resources.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ApiDoc"
+          },
+          "type": "array"
+        },
+        "errorCode": {
+          "description": "Unique error code for the request, if any.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Description of the operation.",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         },
         "requestId": {
@@ -14217,6 +14641,32 @@
           "description": "Optional. The minimum total number of gateway nodes that the is reserved for all instances that has the specified environment. If not specified, the default is determined by the recommended minimum number of nodes for that gateway.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1OASDocumentation": {
+      "description": "OpenAPI Specification documentation for a catalog item.",
+      "id": "GoogleCloudApigeeV1OASDocumentation",
+      "properties": {
+        "format": {
+          "description": "Output only. The format of the input specification file contents.",
+          "enum": [
+            "FORMAT_UNSPECIFIED",
+            "YAML",
+            "JSON"
+          ],
+          "enumDescriptions": [
+            "The format is not available.",
+            "YAML format.",
+            "JSON format."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "spec": {
+          "$ref": "GoogleCloudApigeeV1DocumentationFile",
+          "description": "Required. The documentation file contents for the OpenAPI Specification. JSON and YAML file formats are supported."
         }
       },
       "type": "object"

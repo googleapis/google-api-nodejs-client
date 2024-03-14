@@ -401,6 +401,10 @@ import {
   VERSIONS as manufacturersVersions,
   manufacturers,
 } from './manufacturers';
+import {
+  VERSIONS as marketingplatformadminVersions,
+  marketingplatformadmin,
+} from './marketingplatformadmin';
 import {VERSIONS as memcacheVersions, memcache} from './memcache';
 import {VERSIONS as metastoreVersions, metastore} from './metastore';
 import {
@@ -862,6 +866,7 @@ export const APIS: APIList = {
   looker: lookerVersions,
   managedidentities: managedidentitiesVersions,
   manufacturers: manufacturersVersions,
+  marketingplatformadmin: marketingplatformadminVersions,
   memcache: memcacheVersions,
   metastore: metastoreVersions,
   migrationcenter: migrationcenterVersions,
@@ -1151,6 +1156,7 @@ export class GeneratedAPIs {
   looker = looker;
   managedidentities = managedidentities;
   manufacturers = manufacturers;
+  marketingplatformadmin = marketingplatformadmin;
   memcache = memcache;
   metastore = metastore;
   migrationcenter = migrationcenter;
