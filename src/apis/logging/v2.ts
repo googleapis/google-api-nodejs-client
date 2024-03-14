@@ -255,7 +255,7 @@ export namespace logging_v2 {
      */
     progress?: number | null;
     /**
-     * CopyLogEntries RPC request.
+     * CopyLogEntries RPC request. This field is deprecated and not used.
      */
     request?: Schema$CopyLogEntriesRequest;
     /**
@@ -314,7 +314,7 @@ export namespace logging_v2 {
      */
     bucket?: Schema$LogBucket;
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string | null;
     /**
@@ -806,7 +806,7 @@ export namespace logging_v2 {
    */
   export interface Schema$LogBucket {
     /**
-     * Optional. Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.
+     * Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.
      */
     analyticsEnabled?: boolean | null;
     /**
@@ -1527,7 +1527,7 @@ export namespace logging_v2 {
      */
     description?: string | null;
     /**
-     * Optional. The user specified title for the SavedQuery.
+     * Required. The user specified title for the SavedQuery.
      */
     displayName?: string | null;
     /**
@@ -1546,15 +1546,15 @@ export namespace logging_v2 {
      * Output only. The timestamp when the saved query was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Required. The visibility status of this query, which determines its ownership.
+     */
+    visibility?: string | null;
   }
   /**
    * Describes the settings associated with a project, folder, organization, or billing account.
    */
   export interface Schema$Settings {
-    /**
-     * Optional. The default analytics mode of an org or folder which is inherited by all newly created child project buckets.
-     */
-    analyticsMode?: string | null;
     /**
      * Optional. Overrides the built-in configuration for _Default sink.
      */
@@ -3375,7 +3375,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Locations$Buckets$Create
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
@@ -3391,7 +3391,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
@@ -8655,7 +8655,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Locations$Buckets$Create
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
@@ -8671,7 +8671,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
@@ -12236,7 +12236,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Locations$Buckets$Create
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
@@ -12252,7 +12252,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
@@ -15696,7 +15696,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Locations$Buckets$Create
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
@@ -15712,7 +15712,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
@@ -20007,7 +20007,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Locations$Buckets$Create
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
@@ -20023,7 +20023,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
-     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
     bucketId?: string;
     /**
