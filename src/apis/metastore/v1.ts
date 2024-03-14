@@ -476,6 +476,27 @@ export namespace metastore_v1 {
     principal?: string | null;
   }
   /**
+   * The details of the latest scheduled backup.
+   */
+  export interface Schema$LatestBackup {
+    /**
+     * Output only. The ID of an in-progress scheduled backup. Empty if no backup is in progress.
+     */
+    backupId?: string | null;
+    /**
+     * Output only. The duration of the backup completion.
+     */
+    duration?: string | null;
+    /**
+     * Output only. The time when the backup was started.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The current state of the backup.
+     */
+    state?: string | null;
+  }
+  /**
    * Response message for DataprocMetastore.ListBackups.
    */
   export interface Schema$ListBackupsResponse {
@@ -845,6 +866,10 @@ export namespace metastore_v1 {
      */
     backup?: string | null;
     /**
+     * Optional. A Cloud Storage URI specifying where the backup artifacts are stored, in the format gs:///.
+     */
+    backupLocation?: string | null;
+    /**
      * Output only. The restore details containing the revision of the service to be restored to, in format of JSON.
      */
     details?: string | null;
@@ -874,6 +899,10 @@ export namespace metastore_v1 {
      */
     backup?: string | null;
     /**
+     * Optional. A Cloud Storage URI specifying the location of the backup artifacts, namely - backup avro files under "avro/", backup_metastore.json and service.json, in the following form:gs://. Mutually exclusive with backup, and exactly one of the two must be set.
+     */
+    backupLocation?: string | null;
+    /**
      * Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format). A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      */
     requestId?: string | null;
@@ -894,6 +923,35 @@ export namespace metastore_v1 {
      * Scaling factor, increments of 0.1 for values less than 1.0, and increments of 1.0 for values greater than 1.0.
      */
     scalingFactor?: number | null;
+  }
+  /**
+   * This specifies the configuration of scheduled backup.
+   */
+  export interface Schema$ScheduledBackup {
+    /**
+     * Optional. A Cloud Storage URI of a folder, in the format gs:///. A sub-folder containing backup files will be stored below it.
+     */
+    backupLocation?: string | null;
+    /**
+     * Optional. The scheduled interval in Cron format, see https://en.wikipedia.org/wiki/Cron The default is empty: scheduled backup is not enabled. Must be specified to enable scheduled backups.
+     */
+    cronSchedule?: string | null;
+    /**
+     * Optional. Defines whether the scheduled backup is enabled. The default value is false.
+     */
+    enabled?: boolean | null;
+    /**
+     * Output only. The details of the latest scheduled backup.
+     */
+    latestBackup?: Schema$LatestBackup;
+    /**
+     * Output only. The time when the next backups execution is scheduled to start.
+     */
+    nextScheduledTime?: string | null;
+    /**
+     * Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g. America/Los_Angeles or Africa/Abidjan. If left unspecified, the default is UTC.
+     */
+    timeZone?: string | null;
   }
   /**
    * A securely stored value.
@@ -972,6 +1030,10 @@ export namespace metastore_v1 {
      * Scaling configuration of the metastore service.
      */
     scalingConfig?: Schema$ScalingConfig;
+    /**
+     * Optional. The configuration of scheduled backup for the metastore service.
+     */
+    scheduledBackup?: Schema$ScheduledBackup;
     /**
      * Output only. The current state of the metastore service.
      */

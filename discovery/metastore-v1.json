@@ -1401,7 +1401,7 @@
       }
     }
   },
-  "revision": "20240218",
+  "revision": "20240305",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -1940,6 +1940,47 @@
         },
         "principal": {
           "description": "A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form primary/instance@REALM, but there is no exact format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LatestBackup": {
+      "description": "The details of the latest scheduled backup.",
+      "id": "LatestBackup",
+      "properties": {
+        "backupId": {
+          "description": "Output only. The ID of an in-progress scheduled backup. Empty if no backup is in progress.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "duration": {
+          "description": "Output only. The duration of the backup completion.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The time when the backup was started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the backup.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state of the backup is unknown.",
+            "The backup is in progress.",
+            "The backup completed.",
+            "The backup failed."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2511,6 +2552,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "backupLocation": {
+          "description": "Optional. A Cloud Storage URI specifying where the backup artifacts are stored, in the format gs:///.",
+          "type": "string"
+        },
         "details": {
           "description": "Output only. The restore details containing the revision of the service to be restored to, in format of JSON.",
           "readOnly": true,
@@ -2573,6 +2618,10 @@
           "description": "Optional. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}. Mutually exclusive with backup_location, and exactly one of the two must be set.",
           "type": "string"
         },
+        "backupLocation": {
+          "description": "Optional. A Cloud Storage URI specifying the location of the backup artifacts, namely - backup avro files under \"avro/\", backup_metastore.json and service.json, in the following form:gs://. Mutually exclusive with backup, and exactly one of the two must be set.",
+          "type": "string"
+        },
         "requestId": {
           "description": "Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format). A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.",
           "type": "string"
@@ -2622,6 +2671,40 @@
           "description": "Scaling factor, increments of 0.1 for values less than 1.0, and increments of 1.0 for values greater than 1.0.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ScheduledBackup": {
+      "description": "This specifies the configuration of scheduled backup.",
+      "id": "ScheduledBackup",
+      "properties": {
+        "backupLocation": {
+          "description": "Optional. A Cloud Storage URI of a folder, in the format gs:///. A sub-folder containing backup files will be stored below it.",
+          "type": "string"
+        },
+        "cronSchedule": {
+          "description": "Optional. The scheduled interval in Cron format, see https://en.wikipedia.org/wiki/Cron The default is empty: scheduled backup is not enabled. Must be specified to enable scheduled backups.",
+          "type": "string"
+        },
+        "enabled": {
+          "description": "Optional. Defines whether the scheduled backup is enabled. The default value is false.",
+          "type": "boolean"
+        },
+        "latestBackup": {
+          "$ref": "LatestBackup",
+          "description": "Output only. The details of the latest scheduled backup.",
+          "readOnly": true
+        },
+        "nextScheduledTime": {
+          "description": "Output only. The time when the next backups execution is scheduled to start.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g. America/Los_Angeles or Africa/Abidjan. If left unspecified, the default is UTC.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2733,6 +2816,10 @@
         "scalingConfig": {
           "$ref": "ScalingConfig",
           "description": "Scaling configuration of the metastore service."
+        },
+        "scheduledBackup": {
+          "$ref": "ScheduledBackup",
+          "description": "Optional. The configuration of scheduled backup for the metastore service."
         },
         "state": {
           "description": "Output only. The current state of the metastore service.",
