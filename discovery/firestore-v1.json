@@ -1672,7 +1672,7 @@
       }
     }
   },
-  "revision": "20240215",
+  "revision": "20240307",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3092,7 +3092,7 @@
       "id": "GoogleFirestoreAdminV1ListBackupsResponse",
       "properties": {
         "backups": {
-          "description": "List of all backups for the project. Ordered by `location ASC, create_time DESC, name ASC`.",
+          "description": "List of all backups for the project.",
           "items": {
             "$ref": "GoogleFirestoreAdminV1Backup"
           },
