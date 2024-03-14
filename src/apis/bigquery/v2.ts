@@ -944,6 +944,10 @@ export namespace bigquery_v2 {
      */
     lastModifiedTime?: string | null;
     /**
+     * Output only. Metadata about the LinkedDataset. Filled out when the dataset type is LINKED.
+     */
+    linkedDatasetMetadata?: Schema$LinkedDatasetMetadata;
+    /**
      * Optional. The source dataset reference when the dataset is of type LINKED. For all other dataset types it is not set. This field cannot be updated once it is set. Any attempt to update this field using Update and Patch API Operations will be ignored.
      */
     linkedDatasetSource?: Schema$LinkedDatasetSource;
@@ -2804,6 +2808,15 @@ export namespace bigquery_v2 {
   }
   export interface Schema$JsonValue {}
   /**
+   * Metadata about the Linked Dataset.
+   */
+  export interface Schema$LinkedDatasetMetadata {
+    /**
+     * Output only. Specifies whether Linked Dataset is currently in a linked state or not.
+     */
+    linkState?: string | null;
+  }
+  /**
    * A dataset source type which refers to another BigQuery dataset.
    */
   export interface Schema$LinkedDatasetSource {
@@ -3146,6 +3159,24 @@ export namespace bigquery_v2 {
      * Optional. Indicates whether to infer Parquet ENUM logical type as STRING instead of BYTES by default.
      */
     enumAsString?: boolean | null;
+  }
+  /**
+   * The partitioning column information.
+   */
+  export interface Schema$PartitionedColumn {
+    /**
+     * Output only. The name of the partition column.
+     */
+    field?: string | null;
+  }
+  /**
+   * The partitioning information, which includes managed table and external table partition information.
+   */
+  export interface Schema$PartitioningDefinition {
+    /**
+     * Output only. Details about each partitioning column. BigQuery native tables only support 1 partitioning column. Other table types may support 0, 1 or more partitioning columns.
+     */
+    partitionedColumn?: Schema$PartitionedColumn[];
   }
   /**
    * Performance insights for the job.
@@ -3958,11 +3989,11 @@ export namespace bigquery_v2 {
      */
     endpoints?: {[key: string]: string} | null;
     /**
-     * Output only. The Google Cloud Storage bucket that is used as the default filesystem by the Spark application. This fields is only filled when the Spark procedure uses the INVOKER security mode. It is inferred from the system variable @@spark_proc_properties.staging_bucket if it is provided. Otherwise, BigQuery creates a default staging bucket for the job and returns the bucket name in this field. Example: * `gs://[bucket_name]`
+     * Output only. The Google Cloud Storage bucket that is used as the default file system by the Spark application. This field is only filled when the Spark procedure uses the invoker security mode. The `gcsStagingBucket` bucket is inferred from the `@@spark_proc_properties.staging_bucket` system variable (if it is provided). Otherwise, BigQuery creates a default staging bucket for the job and returns the bucket name in this field. Example: * `gs://[bucket_name]`
      */
     gcsStagingBucket?: string | null;
     /**
-     * Output only. The Cloud KMS encryption key that is used to protect the resources created by the Spark job. If the Spark procedure uses DEFINER security mode, the Cloud KMS key is inferred from the Spark connection associated with the procedure if it is provided. Otherwise the key is inferred from the default key of the Spark connection's project if the CMEK organization policy is enforced. If the Spark procedure uses INVOKER security mode, the Cloud KMS encryption key is inferred from the system variable @@spark_proc_properties.kms_key_name if it is provided. Otherwise, the key is inferred fromt he default key of the BigQuery job's project if the CMEK organization policy is enforced. Example: * `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
+     * Output only. The Cloud KMS encryption key that is used to protect the resources created by the Spark job. If the Spark procedure uses the invoker security mode, the Cloud KMS encryption key is either inferred from the provided system variable, `@@spark_proc_properties.kms_key_name`, or the default key of the BigQuery job's project (if the CMEK organization policy is enforced). Otherwise, the Cloud KMS key is either inferred from the Spark connection associated with the procedure (if it is provided), or from the default key of the Spark connection's project if the CMEK organization policy is enforced. Example: * `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
      */
     kmsKeyName?: string | null;
     /**
@@ -4238,6 +4269,10 @@ export namespace bigquery_v2 {
      */
     numTotalPhysicalBytes?: string | null;
     /**
+     * Output only. The partition information for all table formats, including managed partitioned tables, hive partitioned tables, and iceberg partitioned tables.
+     */
+    partitionDefinition?: Schema$PartitioningDefinition;
+    /**
      * If specified, configures range partitioning for this table.
      */
     rangePartitioning?: Schema$RangePartitioning;
@@ -4439,7 +4474,7 @@ export namespace bigquery_v2 {
      */
     scale?: string | null;
     /**
-     * Required. The field data type. Possible values include: * STRING * BYTES * INTEGER (or INT64) * FLOAT (or FLOAT64) * BOOLEAN (or BOOL) * TIMESTAMP * DATE * TIME * DATETIME * GEOGRAPHY * NUMERIC * BIGNUMERIC * JSON * RECORD (or STRUCT) Use of RECORD/STRUCT indicates that the field contains a nested schema.
+     * Required. The field data type. Possible values include: * STRING * BYTES * INTEGER (or INT64) * FLOAT (or FLOAT64) * BOOLEAN (or BOOL) * TIMESTAMP * DATE * TIME * DATETIME * GEOGRAPHY * NUMERIC * BIGNUMERIC * JSON * RECORD (or STRUCT) * RANGE ([Preview](/products/#product-launch-stages)) Use of RECORD/STRUCT indicates that the field contains a nested schema.
      */
     type?: string | null;
   }
