@@ -2565,7 +2565,7 @@
       }
     }
   },
-  "revision": "20240206",
+  "revision": "20240229",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3479,6 +3479,10 @@
           "$ref": "ResourceUsageExportConfig",
           "description": "Configuration for exporting resource usages. Resource usage export is disabled when this config unspecified."
         },
+        "secretManagerConfig": {
+          "$ref": "SecretManagerConfig",
+          "description": "Secret CSI driver configuration."
+        },
         "securityPostureConfig": {
           "$ref": "SecurityPostureConfig",
           "description": "Enable/Disable Security Posture API features for the cluster."
@@ -3705,8 +3709,16 @@
           "$ref": "DNSConfig",
           "description": "DNSConfig contains clusterDNS config for this cluster."
         },
+        "desiredEnableCiliumClusterwideNetworkPolicy": {
+          "description": "Enable/Disable Cilium Clusterwide Network Policy for the cluster.",
+          "type": "boolean"
+        },
         "desiredEnableFqdnNetworkPolicy": {
           "description": "Enable/Disable FQDN Network Policy for the cluster.",
+          "type": "boolean"
+        },
+        "desiredEnableMultiNetworking": {
+          "description": "Enable/Disable Multi-Networking for the cluster",
           "type": "boolean"
         },
         "desiredEnablePrivateEndpoint": {
@@ -3874,6 +3886,10 @@
         "desiredResourceUsageExportConfig": {
           "$ref": "ResourceUsageExportConfig",
           "description": "The desired configuration for exporting resource usage."
+        },
+        "desiredSecretManagerConfig": {
+          "$ref": "SecretManagerConfig",
+          "description": "Enable/Disable Secret Manager Config."
         },
         "desiredSecurityPostureConfig": {
           "$ref": "SecurityPostureConfig",
@@ -5333,6 +5349,10 @@
           "$ref": "DNSConfig",
           "description": "DNSConfig contains clusterDNS config for this cluster."
         },
+        "enableCiliumClusterwideNetworkPolicy": {
+          "description": "Whether CiliumClusterWideNetworkPolicy is enabled on this cluster.",
+          "type": "boolean"
+        },
         "enableFqdnNetworkPolicy": {
           "description": "Whether FQDN Network Policy is enabled on this cluster.",
           "type": "boolean"
@@ -5653,6 +5673,17 @@
         "sandboxConfig": {
           "$ref": "SandboxConfig",
           "description": "Sandbox configuration for this node."
+        },
+        "secondaryBootDiskUpdateStrategy": {
+          "$ref": "SecondaryBootDiskUpdateStrategy",
+          "description": "Secondary boot disk update strategy."
+        },
+        "secondaryBootDisks": {
+          "description": "List of secondary boot disks attached to the nodes.",
+          "items": {
+            "$ref": "SecondaryBootDisk"
+          },
+          "type": "array"
         },
         "serviceAccount": {
           "description": "The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the \"default\" service account is used.",
@@ -6749,6 +6780,46 @@
             "Run sandbox using gvisor."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecondaryBootDisk": {
+      "description": "SecondaryBootDisk represents a persistent disk attached to a node with special configurations based on its mode.",
+      "id": "SecondaryBootDisk",
+      "properties": {
+        "diskImage": {
+          "description": "Fully-qualified resource ID for an existing disk image.",
+          "type": "string"
+        },
+        "mode": {
+          "description": "Disk mode (container image cache, etc.)",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "CONTAINER_IMAGE_CACHE"
+          ],
+          "enumDescriptions": [
+            "MODE_UNSPECIFIED is when mode is not set.",
+            "CONTAINER_IMAGE_CACHE is for using the secondary boot disk as a container image cache."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecondaryBootDiskUpdateStrategy": {
+      "description": "SecondaryBootDiskUpdateStrategy is a placeholder which will be extended in the future to define different options for updating secondary boot disks.",
+      "id": "SecondaryBootDiskUpdateStrategy",
+      "properties": {},
+      "type": "object"
+    },
+    "SecretManagerConfig": {
+      "description": "SecretManagerConfig is config for secret manager enablement.",
+      "id": "SecretManagerConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the cluster is configured to use secret manager CSI component.",
+          "type": "boolean"
         }
       },
       "type": "object"

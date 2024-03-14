@@ -890,6 +890,10 @@ export namespace container_v1 {
      */
     desiredDnsConfig?: Schema$DNSConfig;
     /**
+     * Enable/Disable Cilium Clusterwide Network Policy for the cluster.
+     */
+    desiredEnableCiliumClusterwideNetworkPolicy?: boolean | null;
+    /**
      * Enable/Disable FQDN Network Policy for the cluster.
      */
     desiredEnableFqdnNetworkPolicy?: boolean | null;
@@ -1892,6 +1896,10 @@ export namespace container_v1 {
      * DNSConfig contains clusterDNS config for this cluster.
      */
     dnsConfig?: Schema$DNSConfig;
+    /**
+     * Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.
+     */
+    enableCiliumClusterwideNetworkPolicy?: boolean | null;
     /**
      * Whether FQDN Network Policy is enabled on this cluster.
      */
