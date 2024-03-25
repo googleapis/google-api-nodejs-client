@@ -174,11 +174,215 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "lookupEntry": {
+              "description": "Looks up a single entry.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:lookupEntry",
+              "httpMethod": "GET",
+              "id": "dataplex.projects.locations.lookupEntry",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "aspectTypes": {
+                  "description": "Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "entry": {
+                  "description": "Required. The resource name of the Entry: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The project to which the request should be attributed in the following form: projects/{project}/locations/{location}.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "paths": {
+                  "description": "Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "view": {
+                  "description": "Optional. View for controlling which parts of an entry are to be returned.",
+                  "enum": [
+                    "ENTRY_VIEW_UNSPECIFIED",
+                    "BASIC",
+                    "FULL",
+                    "CUSTOM",
+                    "ALL"
+                  ],
+                  "enumDescriptions": [
+                    "Unspecified EntryView. Defaults to FULL.",
+                    "Returns entry only, without aspects.",
+                    "Returns all required aspects as well as the keys of all non-required aspects.",
+                    "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects would exceed 100, the first 100 will be returned.",
+                    "Returns all aspects. If the number of aspects would exceed 100, the first 100 will be returned."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:lookupEntry",
+              "response": {
+                "$ref": "GoogleCloudDataplexV1Entry"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "searchEntries": {
+              "description": "Searches for entries matching given query and scope.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:searchEntries",
+              "httpMethod": "POST",
+              "id": "dataplex.projects.locations.searchEntries",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The project to which the request should be attributed in the following form: projects/{project}/locations/{location}.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. Ordering of the results. Supported options to be added later.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Pagination.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "location": "query",
+                  "type": "string"
+                },
+                "query": {
+                  "description": "Required. The query against which entries in scope should be matched.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "scope": {
+                  "description": "Optional. The scope under which the search should be operating. Should either be organizations/ or projects/. If left unspecified, it will default to the organization where the project provided in name is located.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:searchEntries",
+              "response": {
+                "$ref": "GoogleCloudDataplexV1SearchEntriesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
           "resources": {
             "aspectTypes": {
               "methods": {
+                "create": {
+                  "description": "Creates an AspectType",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.aspectTypes.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "aspectTypeId": {
+                      "description": "Required. AspectType identifier.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the AspectType, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/aspectTypes",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1AspectType"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a AspectType resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes/{aspectTypesId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.projects.locations.aspectTypes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the AspectType: projects/{project_number}/locations/{location_id}/aspectTypes/{aspect_type_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/aspectTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a AspectType resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes/{aspectTypesId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.aspectTypes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the AspectType: projects/{project_number}/locations/{location_id}/aspectTypes/{aspect_type_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/aspectTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1AspectType"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes/{aspectTypesId}:getIamPolicy",
@@ -205,6 +409,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists AspectType resources in a project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.aspectTypes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = \"value1\" labels:key1 name = \"value\" These restrictions can be coinjoined with AND, OR and NOT conjunctions.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of AspectTypes to return. The service may return fewer than this value. If unspecified, at most 10 AspectTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous ListAspectTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAspectTypes must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the AspectType location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/aspectTypes",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListAspectTypesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a AspectType resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes/{aspectTypesId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.projects.locations.aspectTypes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The relative resource name of the AspectType, of the form: projects/{project_number}/locations/{location_id}/aspectTypes/{aspect_type_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/aspectTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1AspectType"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -602,6 +891,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "generateDataQualityRules": {
+                  "description": "Generates recommended DataQualityRule from a data profiling DataScan.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}:generateDataQualityRules",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataScans.generateDataQualityRules",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:generateDataQualityRules",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1GenerateDataQualityRulesRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1GenerateDataQualityRulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets a DataScan resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}",
@@ -846,6 +1163,34 @@
               "resources": {
                 "jobs": {
                   "methods": {
+                    "generateDataQualityRules": {
+                      "description": "Generates recommended DataQualityRule from a data profiling DataScan.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}/jobs/{jobsId}:generateDataQualityRules",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.dataScans.jobs.generateDataQualityRules",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+/jobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:generateDataQualityRules",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1GenerateDataQualityRulesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1GenerateDataQualityRulesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets a DataScanJob resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}/jobs/{jobsId}",
@@ -1473,6 +1818,99 @@
             },
             "entryGroups": {
               "methods": {
+                "create": {
+                  "description": "Creates an EntryGroup",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.entryGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "entryGroupId": {
+                      "description": "Required. EntryGroup identifier.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the entryGroup, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/entryGroups",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1EntryGroup"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a EntryGroup resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.projects.locations.entryGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the EntryGroup: projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a EntryGroup resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.entryGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the EntryGroup: projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1EntryGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}:getIamPolicy",
@@ -1499,6 +1937,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists EntryGroup resources in a project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.entryGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Order by fields for the result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of EntryGroups to return. The service may return fewer than this value. If unspecified, at most 10 EntryGroups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous ListEntryGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryGroups must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the entryGroup location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/entryGroups",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListEntryGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a EntryGroup resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.projects.locations.entryGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The relative resource name of the EntryGroup, of the form: projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1EntryGroup"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1560,10 +2083,313 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "entries": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates an Entry.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.entryGroups.entries.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "entryId": {
+                          "description": "Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use Entry ID format based on Full Resource Names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a Full Resource Name of the resource without the prefix double slashes in the API Service Name part of Full Resource Name. This allows retrieval of entries using their associated resource name.For example if the Full Resource Name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from other providers or systems than Google Cloud.The maximum size of the field is 4000 characters.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the parent Entry Group: projects/{project}/locations/{location}/entryGroups/{entry_group}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/entries",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1Entry"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1Entry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes an Entry.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
+                      "httpMethod": "DELETE",
+                      "id": "dataplex.projects.locations.entryGroups.entries.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Entry: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1Entry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a single entry.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.entryGroups.entries.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "aspectTypes": {
+                          "description": "Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The resource name of the Entry: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/.*$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "paths": {
+                          "description": "Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. View for controlling which parts of an entry are to be returned.",
+                          "enum": [
+                            "ENTRY_VIEW_UNSPECIFIED",
+                            "BASIC",
+                            "FULL",
+                            "CUSTOM",
+                            "ALL"
+                          ],
+                          "enumDescriptions": [
+                            "Unspecified EntryView. Defaults to FULL.",
+                            "Returns entry only, without aspects.",
+                            "Returns all required aspects as well as the keys of all non-required aspects.",
+                            "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects would exceed 100, the first 100 will be returned.",
+                            "Returns all aspects. If the number of aspects would exceed 100, the first 100 will be returned."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1Entry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists entries within an entry group.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.entryGroups.entries.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. A filter on the entries to return. Filters are case-sensitive. The request can be filtered by the following fields: entry_type, display_name. The comparison operators are =, !=, <, >, <=, >= (strings are compared according to lexical order) The logical operators AND, OR, NOT can be used in the filter. Example filter expressions: \"display_name=AnExampleDisplayName\" \"entry_type=projects/example-project/locations/global/entryTypes/example-entry_type\" \"entry_type=projects/a* OR \"entry_type=projects/k*\" \"NOT display_name=AnotherExampleDisplayName\"",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The pagination token returned by a previous request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the parent Entry Group: projects/{project}/locations/{location}/entryGroups/{entry_group}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/entries",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1ListEntriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates an Entry.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
+                      "httpMethod": "PATCH",
+                      "id": "dataplex.projects.locations.entryGroups.entries.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "allowMissing": {
+                          "description": "Optional. If set to true and the entry does not exist, it will be created.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "aspectKeys": {
+                          "description": "Optional. The map keys of the Aspects which should be modified. Supports the following syntaxes: * - matches aspect on given type and empty path * @path - matches aspect on given type and specified path * * - matches aspects on given type for all paths * *@path - matches aspects of all types on the given pathExisting aspects matching the syntax will not be removed unless delete_missing_aspects is set to true.If this field is left empty, it will be treated as specifying exactly those Aspects present in the request.",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "deleteMissingAspects": {
+                          "description": "Optional. If set to true and the aspect_keys specify aspect ranges, any existing aspects from that range not provided in the request will be deleted.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Identifier. The relative resource name of the Entry, of the form: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/.*$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value \"aspects\".If the update_mask is empty, all modifiable fields present in the request will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1Entry"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1Entry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "entryTypes": {
               "methods": {
+                "create": {
+                  "description": "Creates an EntryType",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.entryTypes.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "entryTypeId": {
+                      "description": "Required. EntryType identifier.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the EntryType, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/entryTypes",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1EntryType"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a EntryType resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes/{entryTypesId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.projects.locations.entryTypes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the EntryType: projects/{project_number}/locations/{location_id}/entryTypes/{entry_type_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a EntryType resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes/{entryTypesId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.entryTypes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the EntryType: projects/{project_number}/locations/{location_id}/entryTypes/{entry_type_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1EntryType"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes/{entryTypesId}:getIamPolicy",
@@ -1590,6 +2416,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists EntryType resources in a project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.entryTypes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = \"value1\" labels:key1 name = \"value\" These restrictions can be coinjoined with AND, OR and NOT conjunctions.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of EntryTypes to return. The service may return fewer than this value. If unspecified, at most 10 EntryTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous ListEntryTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryTypes must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the EntryType location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/entryTypes",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListEntryTypesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a EntryType resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes/{entryTypesId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.projects.locations.entryTypes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The relative resource name of the EntryType, of the form: projects/{project_number}/locations/{location_id}/entryTypes/{entry_type_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1EntryType"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -4360,7 +5271,7 @@
       }
     }
   },
-  "revision": "20240304",
+  "revision": "20240317",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -4576,6 +5487,269 @@
       "description": "Action details for unauthorized resource issues raised to indicate that the service account associated with the lake instance is not authorized to access or manage the resource associated with an asset.",
       "id": "GoogleCloudDataplexV1ActionUnauthorizedResource",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1Aspect": {
+      "description": "An aspect is a single piece of metadata describing an entry.",
+      "id": "GoogleCloudDataplexV1Aspect",
+      "properties": {
+        "aspectSource": {
+          "$ref": "GoogleCloudDataplexV1AspectSource"
+        },
+        "aspectType": {
+          "description": "Output only. The resource name of the type used to create this Aspect.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time when the Aspect was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "data": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. The content of the aspect, according to its aspect type schema. This will replace content. The maximum size of the field is 120KB (encoded as UTF-8).",
+          "type": "object"
+        },
+        "path": {
+          "description": "Output only. The path in the entry under which the aspect is attached.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the Aspect was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1AspectSource": {
+      "description": "AspectSource contains source system related information for the aspect.",
+      "id": "GoogleCloudDataplexV1AspectSource",
+      "properties": {
+        "createTime": {
+          "description": "The create time of the aspect in the source system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The update time of the aspect in the source system.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1AspectType": {
+      "description": "Aspect Type is a template for creating Aspects, and represents the JSON-schema for a given Entry, e.g., BigQuery Table Schema.",
+      "id": "GoogleCloudDataplexV1AspectType",
+      "properties": {
+        "authorization": {
+          "$ref": "GoogleCloudDataplexV1AspectTypeAuthorization",
+          "description": "Immutable. Authorization defined for this type."
+        },
+        "createTime": {
+          "description": "Output only. The time when the AspectType was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the AspectType.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the AspectType.",
+          "type": "object"
+        },
+        "metadataTemplate": {
+          "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplate",
+          "description": "Required. MetadataTemplate of the aspect."
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the AspectType, of the form: projects/{project_number}/locations/{location_id}/aspectTypes/{aspect_type_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "transferStatus": {
+          "description": "Output only. Denotes the transfer status of the Aspect Type. It is unspecified for Aspect Types created from Dataplex API.",
+          "enum": [
+            "TRANSFER_STATUS_UNSPECIFIED",
+            "TRANSFER_STATUS_MIGRATED",
+            "TRANSFER_STATUS_TRANSFERRED"
+          ],
+          "enumDescriptions": [
+            "The default value. It is set for resources that were not subject for migration from Data Catalog service.",
+            "Indicates that a resource was migrated from Data Catalog service but it hasn't been transferred yet. In particular the resource cannot be updated from Dataplex API.",
+            "Indicates that a resource was transferred from Data Catalog service. The resource can only be updated from Dataplex API."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System generated globally unique ID for the AspectType. This ID will be different if the AspectType is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the AspectType was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1AspectTypeAuthorization": {
+      "description": "Autorization for an Aspect Type.",
+      "id": "GoogleCloudDataplexV1AspectTypeAuthorization",
+      "properties": {
+        "alternateUsePermission": {
+          "description": "Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Aspects of Dataplex owned Aspect Types, only settable for Dataplex owned Types.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1AspectTypeMetadataTemplate": {
+      "description": "MetadataTemplate definition for AspectType",
+      "id": "GoogleCloudDataplexV1AspectTypeMetadataTemplate",
+      "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations",
+          "description": "Optional. Specifies annotations on this field."
+        },
+        "arrayItems": {
+          "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplate",
+          "description": "Optional. array_items needs to be set if the type is array. array_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload."
+        },
+        "constraints": {
+          "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints",
+          "description": "Optional. Specifies the constraints on this field."
+        },
+        "enumValues": {
+          "description": "Optional. The list of values for an enum type. Needs to be defined if the type is enum.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue"
+          },
+          "type": "array"
+        },
+        "index": {
+          "description": "Optional. Index is used to encode Template messages. The value of index can range between 1 and 2,147,483,647. Index must be unique within all fields in a Template. (Nested Templates can reuse indexes). Once a Template is defined, the index cannot be changed, because it identifies the field in the actual storage format. Index is a mandatory field, but it is optional for top level fields, and map/array \"values\" definitions.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "mapItems": {
+          "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplate",
+          "description": "Optional. map_items needs to be set if the type is map. map_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload."
+        },
+        "name": {
+          "description": "Required. The name of the field.",
+          "type": "string"
+        },
+        "recordFields": {
+          "description": "Optional. Field definition, needs to be specified if the type is record. Defines the nested fields.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplate"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Required. The datatype of this field. The following values are supported: Primitive types (string, integer, boolean, double, datetime); datetime must be of the format RFC3339 UTC \"Zulu\" (Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\"). Complex types (enum, array, map, record).",
+          "type": "string"
+        },
+        "typeId": {
+          "description": "Optional. Id can be used if this definition of the field needs to be reused later. Id needs to be unique across the entire template. Id can only be specified if the field type is record.",
+          "type": "string"
+        },
+        "typeRef": {
+          "description": "Optional. A reference to another field definition (instead of an inline definition). The value must be equal to the value of an id field defined elsewhere in the MetadataTemplate. Only fields with type as record can refer to other fields.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations": {
+      "description": "Definition of the annotations of a field",
+      "id": "GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations",
+      "properties": {
+        "deprecated": {
+          "description": "Optional. Marks a field as deprecated, a deprecation message can be included.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Specify a description for a field",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Specify a displayname for a field.",
+          "type": "string"
+        },
+        "displayOrder": {
+          "description": "Optional. Specify a display order for a field. Display order can be used to reorder where a field is rendered",
+          "format": "int32",
+          "type": "integer"
+        },
+        "stringType": {
+          "description": "Optional. String Type annotations can be used to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified url link. resource: A service qualified resource reference.",
+          "type": "string"
+        },
+        "stringValues": {
+          "description": "Optional. Suggested hints for string fields. These can be used to suggest values to users, through an UI for example.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints": {
+      "description": "Definition of the constraints of a field",
+      "id": "GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints",
+      "properties": {
+        "required": {
+          "description": "Optional. Marks this as an optional/required field.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue": {
+      "description": "Definition of Enumvalue (to be used by enum fields)",
+      "id": "GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue",
+      "properties": {
+        "deprecated": {
+          "description": "Optional. Optional deprecation message to be set if an enum value needs to be deprecated.",
+          "type": "string"
+        },
+        "index": {
+          "description": "Required. Index for the enum. Cannot be modified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Required. Name of the enumvalue. This is the actual value that the aspect will contain.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDataplexV1Asset": {
@@ -6960,6 +8134,276 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1Entry": {
+      "description": "An entry is a representation of a data asset which can be described by various metadata.",
+      "id": "GoogleCloudDataplexV1Entry",
+      "properties": {
+        "aspects": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDataplexV1Aspect"
+          },
+          "description": "Optional. The Aspects attached to the Entry. The key is either the resource name of the aspect type (if the aspect is attached directly to the entry) or \"aspectType@path\" if the aspect is attached to an entry's path.",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The time when the Entry was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "entrySource": {
+          "$ref": "GoogleCloudDataplexV1EntrySource",
+          "description": "Optional. Source system related information for an entry."
+        },
+        "entryType": {
+          "description": "Required. Immutable. The resource name of the EntryType used to create this Entry.",
+          "type": "string"
+        },
+        "fullyQualifiedName": {
+          "description": "Optional. A name for the entry that can reference it in an external system. The maximum size of the field is 4000 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The relative resource name of the Entry, of the form: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}.",
+          "type": "string"
+        },
+        "parentEntry": {
+          "description": "Optional. Immutable. The resource name of the parent entry.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the Entry was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntryGroup": {
+      "description": "An Entry Group represents a logical grouping of one or more Entries.",
+      "id": "GoogleCloudDataplexV1EntryGroup",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the EntryGroup was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the EntryGroup.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the EntryGroup.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the EntryGroup, of the form: projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "transferStatus": {
+          "description": "Output only. Denotes the transfer status of the Entry Group. It is unspecified for Entry Group created from Dataplex API.",
+          "enum": [
+            "TRANSFER_STATUS_UNSPECIFIED",
+            "TRANSFER_STATUS_MIGRATED",
+            "TRANSFER_STATUS_TRANSFERRED"
+          ],
+          "enumDescriptions": [
+            "The default value. It is set for resources that were not subject for migration from Data Catalog service.",
+            "Indicates that a resource was migrated from Data Catalog service but it hasn't been transferred yet. In particular the resource cannot be updated from Dataplex API.",
+            "Indicates that a resource was transferred from Data Catalog service. The resource can only be updated from Dataplex API."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System generated globally unique ID for the EntryGroup. This ID will be different if the EntryGroup is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the EntryGroup was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntrySource": {
+      "description": "EntrySource contains source system related information for the entry.",
+      "id": "GoogleCloudDataplexV1EntrySource",
+      "properties": {
+        "ancestors": {
+          "description": "Immutable. The ancestors of the Entry in the source system.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1EntrySourceAncestor"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "The create time of the resource in the source system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the Entry. The maximum size of the field is 2000 characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User friendly display name. The maximum size of the field is 500 characters.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-defined labels. The maximum size of keys and values is 128 characters each.",
+          "type": "object"
+        },
+        "platform": {
+          "description": "The platform containing the source system. The maximum size of the field is 64 characters.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "The name of the resource in the source system. The maximum size of the field is 4000 characters.",
+          "type": "string"
+        },
+        "system": {
+          "description": "The name of the source system. The maximum size of the field is 64 characters.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The update time of the resource in the source system.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntrySourceAncestor": {
+      "description": "Ancestor contains information about individual items in the hierarchy of an Entry.",
+      "id": "GoogleCloudDataplexV1EntrySourceAncestor",
+      "properties": {
+        "name": {
+          "description": "Optional. The name of the ancestor resource.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. The type of the ancestor resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntryType": {
+      "description": "Entry Type is a template for creating Entries.",
+      "id": "GoogleCloudDataplexV1EntryType",
+      "properties": {
+        "authorization": {
+          "$ref": "GoogleCloudDataplexV1EntryTypeAuthorization",
+          "description": "Immutable. Authorization defined for this type."
+        },
+        "createTime": {
+          "description": "Output only. The time when the EntryType was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the EntryType.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the EntryType.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the EntryType, of the form: projects/{project_number}/locations/{location_id}/entryTypes/{entry_type_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "platform": {
+          "description": "Optional. The platform that Entries of this type belongs to.",
+          "type": "string"
+        },
+        "requiredAspects": {
+          "description": "AspectInfo for the entry type.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1EntryTypeAspectInfo"
+          },
+          "type": "array"
+        },
+        "system": {
+          "description": "Optional. The system that Entries of this type belongs to. Examples include CloudSQL, MariaDB etc",
+          "type": "string"
+        },
+        "typeAliases": {
+          "description": "Optional. Indicates the class this Entry Type belongs to, for example, TABLE, DATABASE, MODEL.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uid": {
+          "description": "Output only. System generated globally unique ID for the EntryType. This ID will be different if the EntryType is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the EntryType was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntryTypeAspectInfo": {
+      "id": "GoogleCloudDataplexV1EntryTypeAspectInfo",
+      "properties": {
+        "type": {
+          "description": "Required aspect type for the entry type.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntryTypeAuthorization": {
+      "description": "Authorization for an Entry Type.",
+      "id": "GoogleCloudDataplexV1EntryTypeAuthorization",
+      "properties": {
+        "alternateUsePermission": {
+          "description": "Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Entries of Dataplex owned Entry Types, only settable for Dataplex owned Types.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1Environment": {
       "description": "Environment represents a user-visible compute infrastructure for analytics within a lake.",
       "id": "GoogleCloudDataplexV1Environment",
@@ -7151,6 +8595,26 @@
           "description": "Output only. Queries over sessions to mark whether the environment is currently active or not",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GenerateDataQualityRulesRequest": {
+      "description": "Generate recommended DataQualityRules request.",
+      "id": "GoogleCloudDataplexV1GenerateDataQualityRulesRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GenerateDataQualityRulesResponse": {
+      "description": "Generate recommended DataQualityRules response.",
+      "id": "GoogleCloudDataplexV1GenerateDataQualityRulesResponse",
+      "properties": {
+        "rule": {
+          "description": "Generated recommended {@link DataQualityRule}s.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityRule"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7587,6 +9051,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1ListAspectTypesResponse": {
+      "description": "List AspectTypes response",
+      "id": "GoogleCloudDataplexV1ListAspectTypesResponse",
+      "properties": {
+        "aspectTypes": {
+          "description": "ListAspectTypes under the given parent location.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1AspectType"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachableLocations": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1ListAssetsResponse": {
       "description": "List assets response.",
       "id": "GoogleCloudDataplexV1ListAssetsResponse",
@@ -7755,6 +9244,73 @@
         "nextPageToken": {
           "description": "Token to retrieve the next page of results, or empty if there are no remaining results in the list.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListEntriesResponse": {
+      "id": "GoogleCloudDataplexV1ListEntriesResponse",
+      "properties": {
+        "entries": {
+          "description": "The list of entries.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1Entry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Pagination token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListEntryGroupsResponse": {
+      "description": "List ListEntryGroups response.",
+      "id": "GoogleCloudDataplexV1ListEntryGroupsResponse",
+      "properties": {
+        "entryGroups": {
+          "description": "ListEntryGroups under the given parent location.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1EntryGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachableLocations": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListEntryTypesResponse": {
+      "description": "List EntryTypes response",
+      "id": "GoogleCloudDataplexV1ListEntryTypesResponse",
+      "properties": {
+        "entryTypes": {
+          "description": "ListEntryTypes under the given parent location.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1EntryType"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachableLocations": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8238,6 +9794,101 @@
             "Null field that does not have values."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1SearchEntriesResponse": {
+      "id": "GoogleCloudDataplexV1SearchEntriesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pagination token.",
+          "type": "string"
+        },
+        "results": {
+          "description": "The results matching the search query.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1SearchEntriesResult"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The estimated total number of matching entries. Not guaranteed to be accurate.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "unreachable": {
+          "description": "Unreachable locations. Search results don't include data from those locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1SearchEntriesResult": {
+      "description": "A single result of a SearchEntries request.",
+      "id": "GoogleCloudDataplexV1SearchEntriesResult",
+      "properties": {
+        "dataplexEntry": {
+          "$ref": "GoogleCloudDataplexV1Entry",
+          "description": "Entry format of the result."
+        },
+        "description": {
+          "deprecated": true,
+          "description": "Entry description.",
+          "type": "string"
+        },
+        "displayName": {
+          "deprecated": true,
+          "description": "Display name.",
+          "type": "string"
+        },
+        "entry": {
+          "deprecated": true,
+          "description": "Resource name of the entry.",
+          "type": "string"
+        },
+        "entryType": {
+          "deprecated": true,
+          "description": "The entry type.",
+          "type": "string"
+        },
+        "fullyQualifiedName": {
+          "deprecated": true,
+          "description": "Fully qualified name.",
+          "type": "string"
+        },
+        "linkedResource": {
+          "description": "Linked resource name.",
+          "type": "string"
+        },
+        "modifyTime": {
+          "deprecated": true,
+          "description": "The last modification timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "relativeResource": {
+          "deprecated": true,
+          "description": "Relative resource name.",
+          "type": "string"
+        },
+        "snippets": {
+          "$ref": "GoogleCloudDataplexV1SearchEntriesResultSnippets",
+          "description": "Snippets."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1SearchEntriesResultSnippets": {
+      "description": "Snippets for the entry, contains HTML-style highlighting for matched tokens, will be used in UI.",
+      "id": "GoogleCloudDataplexV1SearchEntriesResultSnippets",
+      "properties": {
+        "dataplexEntry": {
+          "$ref": "GoogleCloudDataplexV1Entry",
+          "description": "Entry"
         }
       },
       "type": "object"

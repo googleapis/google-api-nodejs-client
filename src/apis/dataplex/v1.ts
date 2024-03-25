@@ -274,6 +274,207 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ActionUnauthorizedResource {}
   /**
+   * An aspect is a single piece of metadata describing an entry.
+   */
+  export interface Schema$GoogleCloudDataplexV1Aspect {
+    aspectSource?: Schema$GoogleCloudDataplexV1AspectSource;
+    /**
+     * Output only. The resource name of the type used to create this Aspect.
+     */
+    aspectType?: string | null;
+    /**
+     * Output only. The time when the Aspect was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The content of the aspect, according to its aspect type schema. This will replace content. The maximum size of the field is 120KB (encoded as UTF-8).
+     */
+    data?: {[key: string]: any} | null;
+    /**
+     * Output only. The path in the entry under which the aspect is attached.
+     */
+    path?: string | null;
+    /**
+     * Output only. The time when the Aspect was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * AspectSource contains source system related information for the aspect.
+   */
+  export interface Schema$GoogleCloudDataplexV1AspectSource {
+    /**
+     * The create time of the aspect in the source system.
+     */
+    createTime?: string | null;
+    /**
+     * The update time of the aspect in the source system.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Aspect Type is a template for creating Aspects, and represents the JSON-schema for a given Entry, e.g., BigQuery Table Schema.
+   */
+  export interface Schema$GoogleCloudDataplexV1AspectType {
+    /**
+     * Immutable. Authorization defined for this type.
+     */
+    authorization?: Schema$GoogleCloudDataplexV1AspectTypeAuthorization;
+    /**
+     * Output only. The time when the AspectType was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the AspectType.
+     */
+    description?: string | null;
+    /**
+     * Optional. User friendly display name.
+     */
+    displayName?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. User-defined labels for the AspectType.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. MetadataTemplate of the aspect.
+     */
+    metadataTemplate?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate;
+    /**
+     * Output only. The relative resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. Denotes the transfer status of the Aspect Type. It is unspecified for Aspect Types created from Dataplex API.
+     */
+    transferStatus?: string | null;
+    /**
+     * Output only. System generated globally unique ID for the AspectType. This ID will be different if the AspectType is deleted and re-created with the same name.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time when the AspectType was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Autorization for an Aspect Type.
+   */
+  export interface Schema$GoogleCloudDataplexV1AspectTypeAuthorization {
+    /**
+     * Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Aspects of Dataplex owned Aspect Types, only settable for Dataplex owned Types.
+     */
+    alternateUsePermission?: string | null;
+  }
+  /**
+   * MetadataTemplate definition for AspectType
+   */
+  export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate {
+    /**
+     * Optional. Specifies annotations on this field.
+     */
+    annotations?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations;
+    /**
+     * Optional. array_items needs to be set if the type is array. array_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload.
+     */
+    arrayItems?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate;
+    /**
+     * Optional. Specifies the constraints on this field.
+     */
+    constraints?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints;
+    /**
+     * Optional. The list of values for an enum type. Needs to be defined if the type is enum.
+     */
+    enumValues?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue[];
+    /**
+     * Optional. Index is used to encode Template messages. The value of index can range between 1 and 2,147,483,647. Index must be unique within all fields in a Template. (Nested Templates can reuse indexes). Once a Template is defined, the index cannot be changed, because it identifies the field in the actual storage format. Index is a mandatory field, but it is optional for top level fields, and map/array "values" definitions.
+     */
+    index?: number | null;
+    /**
+     * Optional. map_items needs to be set if the type is map. map_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload.
+     */
+    mapItems?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate;
+    /**
+     * Required. The name of the field.
+     */
+    name?: string | null;
+    /**
+     * Optional. Field definition, needs to be specified if the type is record. Defines the nested fields.
+     */
+    recordFields?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate[];
+    /**
+     * Required. The datatype of this field. The following values are supported: Primitive types (string, integer, boolean, double, datetime); datetime must be of the format RFC3339 UTC "Zulu" (Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z"). Complex types (enum, array, map, record).
+     */
+    type?: string | null;
+    /**
+     * Optional. Id can be used if this definition of the field needs to be reused later. Id needs to be unique across the entire template. Id can only be specified if the field type is record.
+     */
+    typeId?: string | null;
+    /**
+     * Optional. A reference to another field definition (instead of an inline definition). The value must be equal to the value of an id field defined elsewhere in the MetadataTemplate. Only fields with type as record can refer to other fields.
+     */
+    typeRef?: string | null;
+  }
+  /**
+   * Definition of the annotations of a field
+   */
+  export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations {
+    /**
+     * Optional. Marks a field as deprecated, a deprecation message can be included.
+     */
+    deprecated?: string | null;
+    /**
+     * Optional. Specify a description for a field
+     */
+    description?: string | null;
+    /**
+     * Optional. Specify a displayname for a field.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Specify a display order for a field. Display order can be used to reorder where a field is rendered
+     */
+    displayOrder?: number | null;
+    /**
+     * Optional. String Type annotations can be used to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified url link. resource: A service qualified resource reference.
+     */
+    stringType?: string | null;
+    /**
+     * Optional. Suggested hints for string fields. These can be used to suggest values to users, through an UI for example.
+     */
+    stringValues?: string[] | null;
+  }
+  /**
+   * Definition of the constraints of a field
+   */
+  export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints {
+    /**
+     * Optional. Marks this as an optional/required field.
+     */
+    required?: boolean | null;
+  }
+  /**
+   * Definition of Enumvalue (to be used by enum fields)
+   */
+  export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue {
+    /**
+     * Optional. Optional deprecation message to be set if an enum value needs to be deprecated.
+     */
+    deprecated?: string | null;
+    /**
+     * Required. Index for the enum. Cannot be modified.
+     */
+    index?: number | null;
+    /**
+     * Required. Name of the enumvalue. This is the actual value that the aspect will contain.
+     */
+    name?: string | null;
+  }
+  /**
    * An asset represents a cloud resource that is being managed within a lake as a member of a zone.
    */
   export interface Schema$GoogleCloudDataplexV1Asset {
@@ -1931,6 +2132,210 @@ export namespace dataplex_v1 {
     reason?: string | null;
   }
   /**
+   * An entry is a representation of a data asset which can be described by various metadata.
+   */
+  export interface Schema$GoogleCloudDataplexV1Entry {
+    /**
+     * Optional. The Aspects attached to the Entry. The key is either the resource name of the aspect type (if the aspect is attached directly to the entry) or "aspectType@path" if the aspect is attached to an entry's path.
+     */
+    aspects?: {[key: string]: Schema$GoogleCloudDataplexV1Aspect} | null;
+    /**
+     * Output only. The time when the Entry was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Source system related information for an entry.
+     */
+    entrySource?: Schema$GoogleCloudDataplexV1EntrySource;
+    /**
+     * Required. Immutable. The resource name of the EntryType used to create this Entry.
+     */
+    entryType?: string | null;
+    /**
+     * Optional. A name for the entry that can reference it in an external system. The maximum size of the field is 4000 characters.
+     */
+    fullyQualifiedName?: string | null;
+    /**
+     * Identifier. The relative resource name of the Entry, of the form: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     */
+    name?: string | null;
+    /**
+     * Optional. Immutable. The resource name of the parent entry.
+     */
+    parentEntry?: string | null;
+    /**
+     * Output only. The time when the Entry was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * An Entry Group represents a logical grouping of one or more Entries.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryGroup {
+    /**
+     * Output only. The time when the EntryGroup was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the EntryGroup.
+     */
+    description?: string | null;
+    /**
+     * Optional. User friendly display name.
+     */
+    displayName?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. User-defined labels for the EntryGroup.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The relative resource name of the EntryGroup, of the form: projects/{project_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. Denotes the transfer status of the Entry Group. It is unspecified for Entry Group created from Dataplex API.
+     */
+    transferStatus?: string | null;
+    /**
+     * Output only. System generated globally unique ID for the EntryGroup. This ID will be different if the EntryGroup is deleted and re-created with the same name.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time when the EntryGroup was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * EntrySource contains source system related information for the entry.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntrySource {
+    /**
+     * Immutable. The ancestors of the Entry in the source system.
+     */
+    ancestors?: Schema$GoogleCloudDataplexV1EntrySourceAncestor[];
+    /**
+     * The create time of the resource in the source system.
+     */
+    createTime?: string | null;
+    /**
+     * Description of the Entry. The maximum size of the field is 2000 characters.
+     */
+    description?: string | null;
+    /**
+     * User friendly display name. The maximum size of the field is 500 characters.
+     */
+    displayName?: string | null;
+    /**
+     * User-defined labels. The maximum size of keys and values is 128 characters each.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The platform containing the source system. The maximum size of the field is 64 characters.
+     */
+    platform?: string | null;
+    /**
+     * The name of the resource in the source system. The maximum size of the field is 4000 characters.
+     */
+    resource?: string | null;
+    /**
+     * The name of the source system. The maximum size of the field is 64 characters.
+     */
+    system?: string | null;
+    /**
+     * The update time of the resource in the source system.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Ancestor contains information about individual items in the hierarchy of an Entry.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntrySourceAncestor {
+    /**
+     * Optional. The name of the ancestor resource.
+     */
+    name?: string | null;
+    /**
+     * Optional. The type of the ancestor resource.
+     */
+    type?: string | null;
+  }
+  /**
+   * Entry Type is a template for creating Entries.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryType {
+    /**
+     * Immutable. Authorization defined for this type.
+     */
+    authorization?: Schema$GoogleCloudDataplexV1EntryTypeAuthorization;
+    /**
+     * Output only. The time when the EntryType was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the EntryType.
+     */
+    description?: string | null;
+    /**
+     * Optional. User friendly display name.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. User-defined labels for the EntryType.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The relative resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
+     */
+    name?: string | null;
+    /**
+     * Optional. The platform that Entries of this type belongs to.
+     */
+    platform?: string | null;
+    /**
+     * AspectInfo for the entry type.
+     */
+    requiredAspects?: Schema$GoogleCloudDataplexV1EntryTypeAspectInfo[];
+    /**
+     * Optional. The system that Entries of this type belongs to. Examples include CloudSQL, MariaDB etc
+     */
+    system?: string | null;
+    /**
+     * Optional. Indicates the class this Entry Type belongs to, for example, TABLE, DATABASE, MODEL.
+     */
+    typeAliases?: string[] | null;
+    /**
+     * Output only. System generated globally unique ID for the EntryType. This ID will be different if the EntryType is deleted and re-created with the same name.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time when the EntryType was last updated.
+     */
+    updateTime?: string | null;
+  }
+  export interface Schema$GoogleCloudDataplexV1EntryTypeAspectInfo {
+    /**
+     * Required aspect type for the entry type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Authorization for an Entry Type.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryTypeAuthorization {
+    /**
+     * Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Entries of Dataplex owned Entry Types, only settable for Dataplex owned Types.
+     */
+    alternateUsePermission?: string | null;
+  }
+  /**
    * Environment represents a user-visible compute infrastructure for analytics within a lake.
    */
   export interface Schema$GoogleCloudDataplexV1Environment {
@@ -2068,6 +2473,19 @@ export namespace dataplex_v1 {
      * Output only. Queries over sessions to mark whether the environment is currently active or not
      */
     active?: boolean | null;
+  }
+  /**
+   * Generate recommended DataQualityRules request.
+   */
+  export interface Schema$GoogleCloudDataplexV1GenerateDataQualityRulesRequest {}
+  /**
+   * Generate recommended DataQualityRules response.
+   */
+  export interface Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse {
+    /**
+     * Generated recommended {@link DataQualityRule\}s.
+     */
+    rule?: Schema$GoogleCloudDataplexV1DataQualityRule[];
   }
   /**
    * Payload associated with Governance related log events.
@@ -2294,6 +2712,23 @@ export namespace dataplex_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * List AspectTypes response
+   */
+  export interface Schema$GoogleCloudDataplexV1ListAspectTypesResponse {
+    /**
+     * ListAspectTypes under the given parent location.
+     */
+    aspectTypes?: Schema$GoogleCloudDataplexV1AspectType[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachableLocations?: string[] | null;
+  }
+  /**
    * List assets response.
    */
   export interface Schema$GoogleCloudDataplexV1ListAssetsResponse {
@@ -2412,6 +2847,50 @@ export namespace dataplex_v1 {
      * Token to retrieve the next page of results, or empty if there are no remaining results in the list.
      */
     nextPageToken?: string | null;
+  }
+  export interface Schema$GoogleCloudDataplexV1ListEntriesResponse {
+    /**
+     * The list of entries.
+     */
+    entries?: Schema$GoogleCloudDataplexV1Entry[];
+    /**
+     * Pagination token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * List ListEntryGroups response.
+   */
+  export interface Schema$GoogleCloudDataplexV1ListEntryGroupsResponse {
+    /**
+     * ListEntryGroups under the given parent location.
+     */
+    entryGroups?: Schema$GoogleCloudDataplexV1EntryGroup[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachableLocations?: string[] | null;
+  }
+  /**
+   * List EntryTypes response
+   */
+  export interface Schema$GoogleCloudDataplexV1ListEntryTypesResponse {
+    /**
+     * ListEntryTypes under the given parent location.
+     */
+    entryTypes?: Schema$GoogleCloudDataplexV1EntryType[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachableLocations?: string[] | null;
   }
   /**
    * List environments response.
@@ -2696,6 +3175,78 @@ export namespace dataplex_v1 {
      * Required. The type of field.
      */
     type?: string | null;
+  }
+  export interface Schema$GoogleCloudDataplexV1SearchEntriesResponse {
+    /**
+     * Pagination token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The results matching the search query.
+     */
+    results?: Schema$GoogleCloudDataplexV1SearchEntriesResult[];
+    /**
+     * The estimated total number of matching entries. Not guaranteed to be accurate.
+     */
+    totalSize?: number | null;
+    /**
+     * Unreachable locations. Search results don't include data from those locations.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * A single result of a SearchEntries request.
+   */
+  export interface Schema$GoogleCloudDataplexV1SearchEntriesResult {
+    /**
+     * Entry format of the result.
+     */
+    dataplexEntry?: Schema$GoogleCloudDataplexV1Entry;
+    /**
+     * Entry description.
+     */
+    description?: string | null;
+    /**
+     * Display name.
+     */
+    displayName?: string | null;
+    /**
+     * Resource name of the entry.
+     */
+    entry?: string | null;
+    /**
+     * The entry type.
+     */
+    entryType?: string | null;
+    /**
+     * Fully qualified name.
+     */
+    fullyQualifiedName?: string | null;
+    /**
+     * Linked resource name.
+     */
+    linkedResource?: string | null;
+    /**
+     * The last modification timestamp.
+     */
+    modifyTime?: string | null;
+    /**
+     * Relative resource name.
+     */
+    relativeResource?: string | null;
+    /**
+     * Snippets.
+     */
+    snippets?: Schema$GoogleCloudDataplexV1SearchEntriesResultSnippets;
+  }
+  /**
+   * Snippets for the entry, contains HTML-style highlighting for matched tokens, will be used in UI.
+   */
+  export interface Schema$GoogleCloudDataplexV1SearchEntriesResultSnippets {
+    /**
+     * Entry
+     */
+    dataplexEntry?: Schema$GoogleCloudDataplexV1Entry;
   }
   /**
    * Represents an active analyze session running for a user.
@@ -3704,6 +4255,196 @@ export namespace dataplex_v1 {
         );
       }
     }
+
+    /**
+     * Looks up a single entry.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookupEntry(
+      params: Params$Resource$Projects$Locations$Lookupentry,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookupEntry(
+      params?: Params$Resource$Projects$Locations$Lookupentry,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    lookupEntry(
+      params: Params$Resource$Projects$Locations$Lookupentry,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookupEntry(
+      params: Params$Resource$Projects$Locations$Lookupentry,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    lookupEntry(
+      params: Params$Resource$Projects$Locations$Lookupentry,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    lookupEntry(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    lookupEntry(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lookupentry
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lookupentry;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Lookupentry;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:lookupEntry').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(parameters);
+      }
+    }
+
+    /**
+     * Searches for entries matching given query and scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchEntries(
+      params: Params$Resource$Projects$Locations$Searchentries,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchEntries(
+      params?: Params$Resource$Projects$Locations$Searchentries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1SearchEntriesResponse>;
+    searchEntries(
+      params: Params$Resource$Projects$Locations$Searchentries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchEntries(
+      params: Params$Resource$Projects$Locations$Searchentries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1SearchEntriesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
+    ): void;
+    searchEntries(
+      params: Params$Resource$Projects$Locations$Searchentries,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
+    ): void;
+    searchEntries(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
+    ): void;
+    searchEntries(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Searchentries
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1SearchEntriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Searchentries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Searchentries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchEntries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1SearchEntriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1SearchEntriesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
@@ -3732,11 +4473,339 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Projects$Locations$Lookupentry
+    extends StandardParameters {
+    /**
+     * Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.
+     */
+    aspectTypes?: string[];
+    /**
+     * Required. The resource name of the Entry: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     */
+    entry?: string;
+    /**
+     * Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/{location\}.
+     */
+    name?: string;
+    /**
+     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.
+     */
+    paths?: string[];
+    /**
+     * Optional. View for controlling which parts of an entry are to be returned.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Searchentries
+    extends StandardParameters {
+    /**
+     * Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/{location\}.
+     */
+    name?: string;
+    /**
+     * Optional. Ordering of the results. Supported options to be added later.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Pagination.
+     */
+    pageSize?: number;
+    /**
+     *
+     */
+    pageToken?: string;
+    /**
+     * Required. The query against which entries in scope should be matched.
+     */
+    query?: string;
+    /**
+     * Optional. The scope under which the search should be operating. Should either be organizations/ or projects/. If left unspecified, it will default to the organization where the project provided in name is located.
+     */
+    scope?: string;
+  }
 
   export class Resource$Projects$Locations$Aspecttypes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Creates an AspectType
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Aspecttypes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aspecttypes$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aspecttypes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aspecttypes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/aspectTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a AspectType resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Aspecttypes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aspecttypes$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aspecttypes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aspecttypes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a AspectType resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Aspecttypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1AspectType>;
+    get(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1AspectType>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1AspectType>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1AspectType>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1AspectType>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aspecttypes$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1AspectType>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1AspectType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1AspectType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1AspectType>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aspecttypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aspecttypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1AspectType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1AspectType>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -3829,6 +4898,193 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists AspectType resources in a project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Aspecttypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Aspecttypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Aspecttypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aspecttypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aspecttypes$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aspecttypes$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aspecttypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aspecttypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/aspectTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListAspectTypesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a AspectType resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Aspecttypes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Aspecttypes$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aspecttypes$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aspecttypes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aspecttypes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -4023,6 +5279,44 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Create
+    extends StandardParameters {
+    /**
+     * Required. AspectType identifier.
+     */
+    aspectTypeId?: string;
+    /**
+     * Required. The resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     */
+    parent?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1AspectType;
+  }
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the AspectType: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the AspectType: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Aspecttypes$Getiampolicy
     extends StandardParameters {
     /**
@@ -4033,6 +5327,49 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aspecttypes$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 name = "value" These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of AspectTypes to return. The service may return fewer than this value. If unspecified, at most 10 AspectTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListAspectTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAspectTypes must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the AspectType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aspecttypes$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The relative resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1AspectType;
   }
   export interface Params$Resource$Projects$Locations$Aspecttypes$Setiampolicy
     extends StandardParameters {
@@ -5130,6 +6467,103 @@ export namespace dataplex_v1 {
     }
 
     /**
+     * Generates recommended DataQualityRule from a data profiling DataScan.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateDataQualityRules(
+      params: Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateDataQualityRules(
+      params?: Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>;
+    generateDataQualityRules(
+      params: Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateDataQualityRules(
+      params: Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+    ): void;
+    generateDataQualityRules(
+      params: Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+    ): void;
+    generateDataQualityRules(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+    ): void;
+    generateDataQualityRules(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generateDataQualityRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets a DataScan resource.
      *
      * @param params - Parameters for request
@@ -5813,6 +7247,18 @@ export namespace dataplex_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules
+    extends StandardParameters {
+    /**
+     * Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1GenerateDataQualityRulesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datascans$Get
     extends StandardParameters {
     /**
@@ -5919,6 +7365,103 @@ export namespace dataplex_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Generates recommended DataQualityRule from a data profiling DataScan.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateDataQualityRules(
+      params: Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateDataQualityRules(
+      params?: Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>;
+    generateDataQualityRules(
+      params: Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateDataQualityRules(
+      params: Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+    ): void;
+    generateDataQualityRules(
+      params: Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+    ): void;
+    generateDataQualityRules(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+    ): void;
+    generateDataQualityRules(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generateDataQualityRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -6108,6 +7651,18 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules
+    extends StandardParameters {
+    /**
+     * Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1GenerateDataQualityRulesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datascans$Jobs$Get
     extends StandardParameters {
     /**
@@ -7893,8 +9448,290 @@ export namespace dataplex_v1 {
 
   export class Resource$Projects$Locations$Entrygroups {
     context: APIRequestContext;
+    entries: Resource$Projects$Locations$Entrygroups$Entries;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.entries = new Resource$Projects$Locations$Entrygroups$Entries(
+        this.context
+      );
+    }
+
+    /**
+     * Creates an EntryGroup
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrygroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/entryGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a EntryGroup resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrygroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a EntryGroup resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryGroup>;
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryGroup>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryGroup>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryGroup>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrygroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1EntryGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1EntryGroup>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -7987,6 +9824,193 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists EntryGroup resources in a project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Entrygroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrygroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/entryGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListEntryGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a EntryGroup resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrygroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -8181,6 +10205,44 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Entrygroups$Create
+    extends StandardParameters {
+    /**
+     * Required. EntryGroup identifier.
+     */
+    entryGroupId?: string;
+    /**
+     * Required. The resource name of the entryGroup, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     */
+    parent?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1EntryGroup;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the EntryGroup: projects/{project_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the EntryGroup: projects/{project_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Entrygroups$Getiampolicy
     extends StandardParameters {
     /**
@@ -8191,6 +10253,49 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter request.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of EntryGroups to return. The service may return fewer than this value. If unspecified, at most 10 EntryGroups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListEntryGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryGroups must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the entryGroup location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The relative resource name of the EntryGroup, of the form: projects/{project_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1EntryGroup;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Setiampolicy
     extends StandardParameters {
@@ -8217,10 +10322,853 @@ export namespace dataplex_v1 {
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
   }
 
+  export class Resource$Projects$Locations$Entrygroups$Entries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an Entry.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Create
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/entries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an Entry.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Delete,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Delete
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(parameters);
+      }
+    }
+
+    /**
+     * Gets a single entry.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(parameters);
+      }
+    }
+
+    /**
+     * Lists entries within an entry group.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntriesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/entries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListEntriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListEntriesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an Entry.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Entry>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1Entry>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1Entry>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Create
+    extends StandardParameters {
+    /**
+     * Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use Entry ID format based on Full Resource Names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a Full Resource Name of the resource without the prefix double slashes in the API Service Name part of Full Resource Name. This allows retrieval of entries using their associated resource name.For example if the Full Resource Name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from other providers or systems than Google Cloud.The maximum size of the field is 4000 characters.
+     */
+    entryId?: string;
+    /**
+     * Required. The resource name of the parent Entry Group: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1Entry;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Entry: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Get
+    extends StandardParameters {
+    /**
+     * Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.
+     */
+    aspectTypes?: string[];
+    /**
+     * Required. The resource name of the Entry: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     */
+    name?: string;
+    /**
+     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.
+     */
+    paths?: string[];
+    /**
+     * Optional. View for controlling which parts of an entry are to be returned.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List
+    extends StandardParameters {
+    /**
+     * Optional. A filter on the entries to return. Filters are case-sensitive. The request can be filtered by the following fields: entry_type, display_name. The comparison operators are =, !=, <, \>, <=, \>= (strings are compared according to lexical order) The logical operators AND, OR, NOT can be used in the filter. Example filter expressions: "display_name=AnExampleDisplayName" "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type" "entry_type=projects/a* OR "entry_type=projects/k*" "NOT display_name=AnotherExampleDisplayName"
+     */
+    filter?: string;
+    /**
+     *
+     */
+    pageSize?: number;
+    /**
+     * Optional. The pagination token returned by a previous request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the parent Entry Group: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
+    extends StandardParameters {
+    /**
+     * Optional. If set to true and the entry does not exist, it will be created.
+     */
+    allowMissing?: boolean;
+    /**
+     * Optional. The map keys of the Aspects which should be modified. Supports the following syntaxes: * - matches aspect on given type and empty path * @path - matches aspect on given type and specified path * * - matches aspects on given type for all paths * *@path - matches aspects of all types on the given pathExisting aspects matching the syntax will not be removed unless delete_missing_aspects is set to true.If this field is left empty, it will be treated as specifying exactly those Aspects present in the request.
+     */
+    aspectKeys?: string[];
+    /**
+     * Optional. If set to true and the aspect_keys specify aspect ranges, any existing aspects from that range not provided in the request will be deleted.
+     */
+    deleteMissingAspects?: boolean;
+    /**
+     * Identifier. The relative resource name of the Entry, of the form: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     */
+    name?: string;
+    /**
+     * Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value "aspects".If the update_mask is empty, all modifiable fields present in the request will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1Entry;
+  }
+
   export class Resource$Projects$Locations$Entrytypes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Creates an EntryType
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Entrytypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Entrytypes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Entrytypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Entrytypes$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Entrytypes$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrytypes$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrytypes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrytypes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/entryTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a EntryType resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Entrytypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Entrytypes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrytypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrytypes$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrytypes$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrytypes$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrytypes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrytypes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a EntryType resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Entrytypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Entrytypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryType>;
+    get(
+      params: Params$Resource$Projects$Locations$Entrytypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Entrytypes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryType>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryType>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Entrytypes$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryType>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryType>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrytypes$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryType>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryType>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrytypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrytypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1EntryType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1EntryType>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -8313,6 +11261,193 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists EntryType resources in a project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Entrytypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Entrytypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Entrytypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Entrytypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Entrytypes$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrytypes$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrytypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrytypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/entryTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListEntryTypesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a EntryType resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Entrytypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Entrytypes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrytypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrytypes$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrytypes$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrytypes$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrytypes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrytypes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -8507,6 +11642,44 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Entrytypes$Create
+    extends StandardParameters {
+    /**
+     * Required. EntryType identifier.
+     */
+    entryTypeId?: string;
+    /**
+     * Required. The resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     */
+    parent?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1EntryType;
+  }
+  export interface Params$Resource$Projects$Locations$Entrytypes$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the EntryType: projects/{project_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrytypes$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the EntryType: projects/{project_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Entrytypes$Getiampolicy
     extends StandardParameters {
     /**
@@ -8517,6 +11690,49 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrytypes$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 name = "value" These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of EntryTypes to return. The service may return fewer than this value. If unspecified, at most 10 EntryTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListEntryTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryTypes must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the EntryType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrytypes$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The relative resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1EntryType;
   }
   export interface Params$Resource$Projects$Locations$Entrytypes$Setiampolicy
     extends StandardParameters {
