@@ -2260,6 +2260,10 @@ export namespace androidpublisher_v3 {
      */
     quantity?: number | null;
     /**
+     * The quantity eligible for refund, i.e. quantity that hasn't been refunded. The value reflects quantity-based partial refunds and full refunds.
+     */
+    refundableQuantity?: number | null;
+    /**
      * ISO 3166-1 alpha-2 billing region code of the user at the time the product was granted.
      */
     regionCode?: string | null;
@@ -3671,6 +3675,10 @@ export namespace androidpublisher_v3 {
      * The token which uniquely identifies a one-time purchase or subscription. To uniquely identify subscription renewals use order_id (available starting from version 3 of the API).
      */
     purchaseToken?: string | null;
+    /**
+     * The voided quantity as the result of a quantity-based partial refund. Voided purchases of quantity-based partial refunds may only be returned when includeQuantityBasedPartialRefund is set to true.
+     */
+    voidedQuantity?: number | null;
     /**
      * The reason why the purchase was voided, possible values are: 0. Other 1. Remorse 2. Not_received 3. Defective 4. Accidental_purchase 5. Fraud 6. Friendly_fraud 7. Chargeback
      */
@@ -9167,7 +9175,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Externaltransactions$Createexternaltransaction
     extends StandardParameters {
     /**
-     * Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.
+     * Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-zA-Z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.
      */
     externalTransactionId?: string;
     /**
@@ -15214,6 +15222,10 @@ export namespace androidpublisher_v3 {
      * The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      */
     endTime?: string;
+    /**
+     * Optional. Whether to include voided purchases of quantity-based partial refunds, which are applicable only to multi-quantity purchases. If true, additional voided purchases may be returned with voidedQuantity that indicates the refund quantity of a quantity-based partial refund. The default value is false.
+     */
+    includeQuantityBasedPartialRefund?: boolean;
     /**
      * Defines how many results the list operation should return. The default number depends on the resource collection.
      */
