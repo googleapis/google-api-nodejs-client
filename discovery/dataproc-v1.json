@@ -17,11 +17,6 @@
   "documentationLink": "https://cloud.google.com/dataproc/",
   "endpoints": [
     {
-      "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
-    },
-    {
       "endpointUrl": "https://dataproc.europe-west3.rep.googleapis.com/",
       "location": "europe-west3",
       "description": "Regional Endpoint"
@@ -29,6 +24,11 @@
     {
       "endpointUrl": "https://dataproc.europe-west9.rep.googleapis.com/",
       "location": "europe-west9",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
       "description": "Regional Endpoint"
     }
   ],
@@ -358,6 +358,34 @@
             },
             "batches": {
               "methods": {
+                "analyze": {
+                  "description": "Analyze a Batch for possible recommendations and insights.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/batches/{batchesId}:analyze",
+                  "httpMethod": "POST",
+                  "id": "dataproc.projects.locations.batches.analyze",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The fully qualified name of the batch to analyze in the format \"projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/batches/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:analyze",
+                  "request": {
+                    "$ref": "AnalyzeBatchRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a batch workload that executes asynchronously.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/batches",
@@ -3044,7 +3072,7 @@
       }
     }
   },
-  "revision": "20240309",
+  "revision": "20240320",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3058,6 +3086,17 @@
         },
         "acceleratorTypeUri": {
           "description": "Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes (https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-k80.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AnalyzeBatchRequest": {
+      "description": "A request to analyze a batch workload.",
+      "id": "AnalyzeBatchRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. A unique ID used to identify the request. If the service receives two AnalyzeBatchRequest (http://cloud/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.AnalyzeBatchRequest)s with the same request_id, the second request is ignored and the Operation that corresponds to the first request created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The value must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
           "type": "string"
         }
       },

@@ -138,6 +138,15 @@ export namespace dataproc_v1 {
     acceleratorTypeUri?: string | null;
   }
   /**
+   * A request to analyze a batch workload.
+   */
+  export interface Schema$AnalyzeBatchRequest {
+    /**
+     * Optional. A unique ID used to identify the request. If the service receives two AnalyzeBatchRequest (http://cloud/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.AnalyzeBatchRequest)s with the same request_id, the second request is ignored and the Operation that corresponds to the first request created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The value must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string | null;
+  }
+  /**
    * Metadata describing the Analyze operation.
    */
   export interface Schema$AnalyzeOperationMetadata {
@@ -4047,6 +4056,93 @@ export namespace dataproc_v1 {
     }
 
     /**
+     * Analyze a Batch for possible recommendations and insights.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyze(
+      params: Params$Resource$Projects$Locations$Batches$Analyze,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyze(
+      params?: Params$Resource$Projects$Locations$Batches$Analyze,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    analyze(
+      params: Params$Resource$Projects$Locations$Batches$Analyze,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyze(
+      params: Params$Resource$Projects$Locations$Batches$Analyze,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    analyze(
+      params: Params$Resource$Projects$Locations$Batches$Analyze,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    analyze(callback: BodyResponseCallback<Schema$Operation>): void;
+    analyze(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Analyze
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Analyze;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Batches$Analyze;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:analyze').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a batch workload that executes asynchronously.
      *
      * @param params - Parameters for request
@@ -4392,6 +4488,18 @@ export namespace dataproc_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Batches$Analyze
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to analyze in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AnalyzeBatchRequest;
+  }
   export interface Params$Resource$Projects$Locations$Batches$Create
     extends StandardParameters {
     /**
