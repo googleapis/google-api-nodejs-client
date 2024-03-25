@@ -7534,7 +7534,7 @@ export namespace content_v2_1 {
      */
     segments?: Schema$Segments;
     /**
-     * Topic trends fields requested by the merchant in the query. Field values are only set if the merchant queries `TopicTrendsView`. https://support.google.com/merchants/answer/13542370.
+     * [Topic trends](https://support.google.com/merchants/answer/13542370) fields requested by the merchant in the query. Field values are only set if the merchant queries `TopicTrendsView`.
      */
     topicTrends?: Schema$TopicTrends;
   }
@@ -8869,7 +8869,7 @@ export namespace content_v2_1 {
     version?: string | null;
   }
   /**
-   * Topic trends fields requested by the merchant in the query. Field values are only set if the merchant queries `TopicTrendsView`.
+   * Topic trends fields requested by the merchant in the query. Field values are only set if the merchant queries `TopicTrendsView`. Forecast data can be queried up to 13 weeks by passing a future date in the `date` field. Historical data is measured daily, and forecasted data is projected weekly. All data points are normalized based on the highest data points returned in the response. If you make separate queries with different date ranges, you might see different values for the same date in each response. The recommended way to get a trend score of a topic is `last7_days_search_interest / last{$day\}_days_search_interest - 1`. You can view trends for up to eight topics at a time.
    */
   export interface Schema$TopicTrends {
     /**
