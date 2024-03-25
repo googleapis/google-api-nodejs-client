@@ -772,7 +772,7 @@
       "name": "batch",
       "version": "v1",
       "title": "Batch API",
-      "description": "An API to manage the running of batch resources on Google Cloud Platform.",
+      "description": "An API to manage the running of Batch resources on Google Cloud Platform.",
       "discoveryRestUrl": "https://batch.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3278,21 +3278,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "gkehub:v1alpha2",
-      "name": "gkehub",
-      "version": "v1alpha2",
-      "title": "GKE Hub API",
-      "description": "",
-      "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1alpha2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "gkehub:v2alpha",
       "name": "gkehub",
       "version": "v2alpha",
@@ -3957,7 +3942,7 @@
       "name": "marketingplatformadmin",
       "version": "v1alpha",
       "title": "Google Marketing Platform Admin API",
-      "description": "marketingplatformadmin.googleapis.com API.",
+      "description": "The Google Marketing Platform Admin API allows for programmatic access to the Google Marketing Platform configuration data. You can use the Google Marketing Platform Admin API to manage links between your Google Marketing Platform organization and Google Analytics accounts, set the service level of your GA4 properties.",
       "discoveryRestUrl": "https://marketingplatformadmin.googleapis.com/$discovery/rest?version=v1alpha",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -5839,7 +5824,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/cloud-test-lab/",
+      "documentationLink": "https://firebase.google.com/docs/test-lab/",
       "preferred": true
     },
     {

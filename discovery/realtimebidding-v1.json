@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20231115",
+  "revision": "20240321",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -2897,13 +2897,15 @@
               "USER_ID_TYPE_UNSPECIFIED",
               "HOSTED_MATCH_DATA",
               "GOOGLE_COOKIE",
-              "DEVICE_ID"
+              "DEVICE_ID",
+              "PUBLISHER_PROVIDED_ID"
             ],
             "enumDescriptions": [
               "Placeholder for unspecified user identifier.",
               "Hosted match data, referring to hosted_match_data in the bid request.",
               "Google cookie, referring to google_user_id in the bid request.",
-              "Mobile device advertising ID."
+              "Mobile device advertising ID.",
+              "The request has a publisher-provided ID available to the bidder."
             ],
             "type": "string"
           },
