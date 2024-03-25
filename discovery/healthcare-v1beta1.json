@@ -2650,7 +2650,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}`, `projects/{projectID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/`, or `projects/{projectID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID}/datasets/{datasetID}/dicomStores/{dicomStoreID}`.",
+                          "description": "Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}`, `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/`, or `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/dicomStores/[^/]+$",
                           "required": true,
@@ -2806,7 +2806,7 @@
                               ],
                               "parameters": {
                                 "resource": {
-                                  "description": "Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}`, `projects/{projectID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/`, or `projects/{projectID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID}/datasets/{datasetID}/dicomStores/{dicomStoreID}`.",
+                                  "description": "Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}`, `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/`, or `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}`.",
                                   "location": "path",
                                   "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/dicomStores/[^/]+/dicomWeb/studies/.*$",
                                   "required": true,
@@ -2869,7 +2869,7 @@
                                       ],
                                       "parameters": {
                                         "resource": {
-                                          "description": "Required. The path of the resource for which the storage info is requested (for exaxmple for a DICOM Instance: `projects/{projectid}/datasets/{datasetid}/dicomStores/{dicomStoreId}/dicomWeb/studies/{study_uid}/series/{series_uid}/instances/{instance_uid}`)",
+                                          "description": "Required. The path of the resource for which the storage info is requested (for exaxmple for a DICOM Instance: `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreId}/dicomWeb/studies/{study_uid}/series/{series_uid}/instances/{instance_uid}`)",
                                           "location": "path",
                                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/dicomStores/[^/]+/dicomWeb/studies/[^/]+/series/[^/]+/instances/[^/]+$",
                                           "required": true,
@@ -5614,7 +5614,7 @@
       }
     }
   },
-  "revision": "20240220",
+  "revision": "20240312",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -5632,7 +5632,7 @@
           "enumDescriptions": [
             "No log level specified. This value is unused.",
             "No additional consent-related logging is added to audit logs.",
-            "The following information is included: * One of the following [`consentMode`](https://cloud.google.com/healthcare-api/docs/fhir-consent#audit_logs) fields: (`off`|`emptyScope`|`enforced`|`btg`|`bypass`). * The accessor's request headers * The `log_level` of the [AccessDeterminationLogConfig](https://cloud.google.com/healthcare-api/docs/reference/rest/v1beta1/projects.locations.datasets.fhirStores#AccessDeterminationLogConfig) * The final consent evaluation (`PERMIT`, `DENY`, or `NO_CONSENT`) * A human-readable summary of the evaluation",
+            "The following information is included: * One of the following [`consentMode`](https://cloud.google.com/healthcare-api/docs/fhir-consent#audit_logs) fields: (`off`|`emptyScope`|`enforced`|`btg`|`bypass`). * The accessor's request headers * The `log_level` of the AccessDeterminationLogConfig * The final consent evaluation (`PERMIT`, `DENY`, or `NO_CONSENT`) * A human-readable summary of the evaluation",
             "Includes `MINIMUM` and, for each resource owner, returns: * The resource owner's name * Most specific part of the `X-Consent-Scope` resulting in consensual determination * Timestamp of the applied enforcement leading to the decision * Enforcement version at the time the applicable consents were applied * The Consent resource name * The timestamp of the Consent resource used for enforcement * Policy type (`PATIENT` or `ADMIN`) Note that this mode adds some overhead to CRUD operations."
           ],
           "type": "string"
@@ -6400,11 +6400,11 @@
           "type": "string"
         },
         "environment": {
-          "description": "An abstract identifier that describes the environment or conditions under which the accessor is acting. Can be “*” if it applies to all environments.",
+          "description": "An abstract identifier that describes the environment or conditions under which the accessor is acting. Can be \"*\" if it applies to all environments.",
           "type": "string"
         },
         "purpose": {
-          "description": "The intent of data use. Can be “*” if it applies to all purposes.",
+          "description": "The intent of data use. Can be \"*\" if it applies to all purposes.",
           "type": "string"
         }
       },
@@ -7188,7 +7188,7 @@
           "type": "array"
         },
         "consentResource": {
-          "description": "The resource name of this consent resource. Format: `projects/{projectId}/datasets/{datasetId}/fhirStores/{fhirStoreId}/fhir/{resourceType}/{id}`.",
+          "description": "The resource name of this consent resource. Format: `projects/{projectId}/locations/{locationId}/datasets/{datasetId}/fhirStores/{fhirStoreId}/fhir/{resourceType}/{id}`.",
           "type": "string"
         },
         "enforcementTime": {
@@ -7225,9 +7225,9 @@
           "description": "The consent's variant combinations. A single consent may have multiple variants.",
           "items": {
             "enum": [
-              "VARIANT_UNSPECIFIED",
-              "VARIANT_STANDARD",
-              "VARIANT_CASCADE"
+              "CONSENT_VARIANT_UNSPECIFIED",
+              "CONSENT_VARIANT_STANDARD",
+              "CONSENT_VARIANT_CASCADE"
             ],
             "enumDescriptions": [
               "Consent variant unspecified.",
@@ -9709,7 +9709,7 @@
         },
         "filterConfig": {
           "$ref": "DicomFilterConfig",
-          "description": "Optional. A filter configuration. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID}/datasets/{datasetID}/dicomStores/{dicomStoreID}`."
+          "description": "Optional. A filter configuration. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}`."
         }
       },
       "type": "object"
@@ -9799,7 +9799,7 @@
           "description": "Info about the data stored in blob storage for the resource."
         },
         "referencedResource": {
-          "description": "The resource whose storage info is returned. For example, to specify the resource path of a DICOM Instance: `projects/{projectid}/datasets/{datasetid}/dicomStores/{dicom_store_id}/dicomWeb/studi/{study_uid}/series/{series_uid}/instances/{instance_uid}`",
+          "description": "The resource whose storage info is returned. For example, to specify the resource path of a DICOM Instance: `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicom_store_id}/dicomWeb/studi/{study_uid}/series/{series_uid}/instances/{instance_uid}`",
           "type": "string"
         },
         "structuredStorageInfo": {

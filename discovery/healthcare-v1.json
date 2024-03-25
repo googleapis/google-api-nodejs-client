@@ -4554,7 +4554,7 @@
       }
     }
   },
-  "revision": "20240220",
+  "revision": "20240312",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -7135,7 +7135,7 @@
           "type": "boolean"
         },
         "inputGcsObject": {
-          "description": "Optional. GCS object containing list of {resourceType}/{resourceId} lines, identifying resources to be reverted",
+          "description": "Optional. Cloud Storage object containing list of {resourceType}/{resourceId} lines, identifying resources to be reverted",
           "type": "string"
         },
         "resultGcsBucket": {
