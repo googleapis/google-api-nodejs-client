@@ -2267,7 +2267,7 @@
       }
     }
   },
-  "revision": "20240304",
+  "revision": "20240317",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2403,6 +2403,25 @@
           "description": "The number of days of transaction logs we retain for point in time restore, from 1-7.",
           "format": "int32",
           "type": "integer"
+        },
+        "transactionalLogStorageState": {
+          "description": "Output only. This value contains the storage location of transactional logs for the database for point-in-time recovery.",
+          "enum": [
+            "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED",
+            "DISK",
+            "SWITCHING_TO_CLOUD_STORAGE",
+            "SWITCHED_TO_CLOUD_STORAGE",
+            "CLOUD_STORAGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "The transaction logs for the instance are stored on a data disk.",
+            "The transaction logs for the instance are switching from being stored on a data disk to being stored in Cloud Storage.",
+            "The transaction logs for the instance are now stored in Cloud Storage. Previously, they were stored on a data disk.",
+            "The transaction logs for the instance are stored in Cloud Storage."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3163,6 +3182,10 @@
           "description": "The Compute Engine zone that the instance is currently serving from. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary zone. WARNING: Changing this might restart the instance.",
           "type": "string"
         },
+        "geminiConfig": {
+          "$ref": "GeminiInstanceConfig",
+          "description": "Gemini instance configuration."
+        },
         "instanceType": {
           "description": "The instance type.",
           "enum": [
@@ -3250,6 +3273,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "replicationCluster": {
+          "$ref": "ReplicationCluster",
+          "description": "The pair of a primary instance and disaster recovery (DR) replica. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance has regional failure."
         },
         "rootPassword": {
           "description": "Initial root password. Use only on creation. You must set root passwords before you can connect to PostgreSQL instances.",
@@ -3904,6 +3931,43 @@
         "kind": {
           "description": "This is always `sql#flagsList`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GeminiInstanceConfig": {
+      "description": "Gemini configuration.",
+      "id": "GeminiInstanceConfig",
+      "properties": {
+        "activeQueryEnabled": {
+          "description": "Output only. Whether active query is enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "entitled": {
+          "description": "Output only. Whether Gemini is enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "flagRecommenderEnabled": {
+          "description": "Output only. Whether flag recommender is enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "googleVacuumMgmtEnabled": {
+          "description": "Output only. Whether vacuum management is enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "indexAdvisorEnabled": {
+          "description": "Output only. Whether index advisor is enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "oomSessionCancelEnabled": {
+          "description": "Output only. Whether oom session cancel is enabled.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4643,7 +4707,8 @@
             "REENCRYPT",
             "SWITCHOVER",
             "ACQUIRE_SSRS_LEASE",
-            "RELEASE_SSRS_LEASE"
+            "RELEASE_SSRS_LEASE",
+            "RECONFIGURE_OLD_PRIMARY"
           ],
           "enumDeprecated": [
             false,
@@ -4679,6 +4744,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -4729,7 +4795,8 @@
             "Re-encrypts CMEK instances with latest key version.",
             "Switches over to replica instance from primary.",
             "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
-            "Release a lease for the setup of SQL Server Reporting Services (SSRS)."
+            "Release a lease for the setup of SQL Server Reporting Services (SSRS).",
+            "Reconfigures old primary after a promote replica operation. Effect of a promote operation to the old primary is executed in this operation, asynchronously from the promote replica operation executed to the replica."
           ],
           "type": "string"
         },
@@ -4995,6 +5062,22 @@
       },
       "type": "object"
     },
+    "ReplicationCluster": {
+      "description": "Primary-DR replica pair",
+      "id": "ReplicationCluster",
+      "properties": {
+        "drReplica": {
+          "description": "Output only. read-only field that indicates if the replica is a dr_replica; not set for a primary.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "failoverDrReplicaName": {
+          "description": "Optional. If the instance is a primary instance, then this field identifies the disaster recovery (DR) replica. A DR replica is an optional configuration for Enterprise Plus edition instances. If the instance is a read replica, then the field is not set. Users can set this field to set a designated DR replica for a primary. Removing this field removes the DR replica.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Reschedule": {
       "id": "Reschedule",
       "properties": {
@@ -5212,7 +5295,7 @@
           "type": "string"
         },
         "enableGoogleMlIntegration": {
-          "description": "Optional. Configuration to enable Cloud SQL Vertex AI Integration",
+          "description": "Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.",
           "type": "boolean"
         },
         "insightsConfig": {
@@ -5510,6 +5593,20 @@
     "SqlInstancesStartExternalSyncRequest": {
       "id": "SqlInstancesStartExternalSyncRequest",
       "properties": {
+        "migrationType": {
+          "description": "Optional. MigrationType decides if the migration is a physical file based migration or logical migration.",
+          "enum": [
+            "MIGRATION_TYPE_UNSPECIFIED",
+            "LOGICAL",
+            "PHYSICAL"
+          ],
+          "enumDescriptions": [
+            "If no migration type is specified it will be defaulted to LOGICAL.",
+            "Logical Migrations",
+            "Physical file based Migrations"
+          ],
+          "type": "string"
+        },
         "mysqlSyncConfig": {
           "$ref": "MySqlSyncConfig",
           "description": "MySQL-specific settings for start external sync."
@@ -5554,6 +5651,20 @@
     "SqlInstancesVerifyExternalSyncSettingsRequest": {
       "id": "SqlInstancesVerifyExternalSyncSettingsRequest",
       "properties": {
+        "migrationType": {
+          "description": "Optional. MigrationType field decides if the migration is a physical file based migration or logical migration",
+          "enum": [
+            "MIGRATION_TYPE_UNSPECIFIED",
+            "LOGICAL",
+            "PHYSICAL"
+          ],
+          "enumDescriptions": [
+            "If no migration type is specified it will be defaulted to LOGICAL.",
+            "Logical Migrations",
+            "Physical file based Migrations"
+          ],
+          "type": "string"
+        },
         "mysqlSyncConfig": {
           "$ref": "MySqlSyncConfig",
           "description": "Optional. MySQL-specific settings for start external sync."

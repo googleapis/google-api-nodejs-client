@@ -562,7 +562,7 @@ export namespace connectors_v2 {
     unsupportedTypeNames?: string[] | null;
   }
   /**
-   * LINT.IfChange Defines policies to service maintenance events.
+   * Defines policies to service maintenance events.
    */
   export interface Schema$MaintenancePolicy {
     /**

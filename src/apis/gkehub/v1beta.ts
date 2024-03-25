@@ -1441,6 +1441,10 @@ export namespace gkehub_v1beta {
      */
     googleConfig?: Schema$IdentityServiceGoogleConfig;
     /**
+     * LDAP specific configuration.
+     */
+    ldapConfig?: Schema$IdentityServiceLdapConfig;
+    /**
      * Identifier for auth config.
      */
     name?: string | null;
@@ -1498,6 +1502,44 @@ export namespace gkehub_v1beta {
      * Disable automatic configuration of Google Plugin on supported platforms.
      */
     disable?: boolean | null;
+  }
+  /**
+   * Contains the properties for locating and authenticating groups in the directory.
+   */
+  export interface Schema$IdentityServiceGroupConfig {
+    /**
+     * Required. The location of the subtree in the LDAP directory to search for group entries.
+     */
+    baseDn?: string | null;
+    /**
+     * Optional. Optional filter to be used when searching for groups a user belongs to. This can be used to explicitly match only certain groups in order to reduce the amount of groups returned for each user. This defaults to "(objectClass=Group)".
+     */
+    filter?: string | null;
+    /**
+     * Optional. The identifying name of each group a user belongs to. For example, if this is set to "distinguishedName" then RBACs and other group expectations should be written as full DNs. This defaults to "distinguishedName".
+     */
+    idAttribute?: string | null;
+  }
+  /**
+   * Configuration for the LDAP Auth flow.
+   */
+  export interface Schema$IdentityServiceLdapConfig {
+    /**
+     * Optional. Contains the properties for locating and authenticating groups in the directory.
+     */
+    group?: Schema$IdentityServiceGroupConfig;
+    /**
+     * Required. Server settings for the external LDAP server.
+     */
+    server?: Schema$IdentityServiceServerConfig;
+    /**
+     * Required. Contains the credentials of the service account which is authorized to perform the LDAP search in the directory. The credentials can be supplied by the combination of the DN and password or the client certificate.
+     */
+    serviceAccount?: Schema$IdentityServiceServiceAccountConfig;
+    /**
+     * Required. Defines where users exist in the LDAP directory.
+     */
+    user?: Schema$IdentityServiceUserConfig;
   }
   /**
    * **Anthos Identity Service**: Configuration for a single Membership.
@@ -1628,6 +1670,70 @@ export namespace gkehub_v1beta {
     userPrefix?: string | null;
   }
   /**
+   * Server settings for the external LDAP server.
+   */
+  export interface Schema$IdentityServiceServerConfig {
+    /**
+     * Optional. Contains a Base64 encoded, PEM formatted certificate authority certificate for the LDAP server. This must be provided for the "ldaps" and "startTLS" connections.
+     */
+    certificateAuthorityData?: string | null;
+    /**
+     * Optional. Defines the connection type to communicate with the LDAP server. If `starttls` or `ldaps` is specified, the certificate_authority_data should not be empty.
+     */
+    connectionType?: string | null;
+    /**
+     * Required. Defines the hostname or IP of the LDAP server. Port is optional and will default to 389, if unspecified. For example, "ldap.server.example" or "10.10.10.10:389".
+     */
+    host?: string | null;
+  }
+  /**
+   * Contains the credentials of the service account which is authorized to perform the LDAP search in the directory. The credentials can be supplied by the combination of the DN and password or the client certificate.
+   */
+  export interface Schema$IdentityServiceServiceAccountConfig {
+    /**
+     * Credentials for basic auth.
+     */
+    simpleBindCredentials?: Schema$IdentityServiceSimpleBindCredentials;
+  }
+  /**
+   * The structure holds the LDAP simple binding credential.
+   */
+  export interface Schema$IdentityServiceSimpleBindCredentials {
+    /**
+     * Required. The distinguished name(DN) of the service account object/user.
+     */
+    dn?: string | null;
+    /**
+     * Output only. The encrypted password of the service account object/user.
+     */
+    encryptedPassword?: string | null;
+    /**
+     * Required. Input only. The password of the service account object/user.
+     */
+    password?: string | null;
+  }
+  /**
+   * Defines where users exist in the LDAP directory.
+   */
+  export interface Schema$IdentityServiceUserConfig {
+    /**
+     * Required. The location of the subtree in the LDAP directory to search for user entries.
+     */
+    baseDn?: string | null;
+    /**
+     * Optional. Filter to apply when searching for the user. This can be used to further restrict the user accounts which are allowed to login. This defaults to "(objectClass=User)".
+     */
+    filter?: string | null;
+    /**
+     * Optional. Determines which attribute to use as the user's identity after they are authenticated. This is distinct from the loginAttribute field to allow users to login with a username, but then have their actual identifier be an email address or full Distinguished Name (DN). For example, setting loginAttribute to "sAMAccountName" and identifierAttribute to "userPrincipalName" would allow a user to login as "bsmith", but actual RBAC policies for the user would be written as "bsmith@example.com". Using "userPrincipalName" is recommended since this will be unique for each user. This defaults to "userPrincipalName".
+     */
+    idAttribute?: string | null;
+    /**
+     * Optional. The name of the attribute which matches against the input username. This is used to find the user in the LDAP database e.g. "(=)" and is combined with the optional filter field. This defaults to "userPrincipalName".
+     */
+    loginAttribute?: string | null;
+  }
+  /**
    * KubernetesMetadata provides informational metadata for Memberships representing Kubernetes clusters.
    */
   export interface Schema$KubernetesMetadata {
@@ -1676,6 +1782,23 @@ export namespace gkehub_v1beta {
      * Optional. Options for Kubernetes resource generation.
      */
     resourceOptions?: Schema$ResourceOptions;
+  }
+  /**
+   * List of Memberships bound to a Scope.
+   */
+  export interface Schema$ListBoundMembershipsResponse {
+    /**
+     * The list of Memberships bound to the given Scope.
+     */
+    memberships?: Schema$Membership[];
+    /**
+     * A token to request the next page of resources from the `ListBoundMemberships` method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of locations that could not be reached while fetching this list.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for the `GkeHub.ListFeatures` method.
@@ -1771,6 +1894,19 @@ export namespace gkehub_v1beta {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * List of permitted Scopes.
+   */
+  export interface Schema$ListPermittedScopesResponse {
+    /**
+     * A token to request the next page of resources from the `ListPermittedScopes` method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of permitted Scopes
+     */
+    scopes?: Schema$Scope[];
   }
   /**
    * List of fleet namespaces.
@@ -7456,6 +7592,197 @@ export namespace gkehub_v1beta {
     }
 
     /**
+     * Lists Memberships bound to a Scope. The response includes relevant Memberships from all regions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listMemberships(
+      params: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listMemberships(
+      params?: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBoundMembershipsResponse>;
+    listMemberships(
+      params: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listMemberships(
+      params: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBoundMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+    ): void;
+    listMemberships(
+      params: Params$Resource$Projects$Locations$Scopes$Listmemberships,
+      callback: BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+    ): void;
+    listMemberships(
+      callback: BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+    ): void;
+    listMemberships(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Scopes$Listmemberships
+        | BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBoundMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBoundMembershipsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Scopes$Listmemberships;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Scopes$Listmemberships;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+scopeName}:listMemberships').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scopeName'],
+        pathParams: ['scopeName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBoundMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBoundMembershipsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists permitted Scopes.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listPermitted(
+      params: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listPermitted(
+      params?: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPermittedScopesResponse>;
+    listPermitted(
+      params: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listPermitted(
+      params: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPermittedScopesResponse>,
+      callback: BodyResponseCallback<Schema$ListPermittedScopesResponse>
+    ): void;
+    listPermitted(
+      params: Params$Resource$Projects$Locations$Scopes$Listpermitted,
+      callback: BodyResponseCallback<Schema$ListPermittedScopesResponse>
+    ): void;
+    listPermitted(
+      callback: BodyResponseCallback<Schema$ListPermittedScopesResponse>
+    ): void;
+    listPermitted(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Scopes$Listpermitted
+        | BodyResponseCallback<Schema$ListPermittedScopesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPermittedScopesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPermittedScopesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPermittedScopesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Scopes$Listpermitted;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Scopes$Listpermitted;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/scopes:listPermitted').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPermittedScopesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPermittedScopesResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates a scopes.
      *
      * @param params - Parameters for request
@@ -7771,6 +8098,40 @@ export namespace gkehub_v1beta {
     pageSize?: number;
     /**
      * Optional. Token returned by previous call to `ListScopes` which specifies the position in the list from where to continue listing the resources.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent (project and location) where the Scope will be listed. Specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Scopes$Listmemberships
+    extends StandardParameters {
+    /**
+     * Optional. Lists Memberships that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Currently, filtering can be done only based on Memberships's `name`, `labels`, `create_time`, `update_time`, and `unique_id`.
+     */
+    filter?: string;
+    /**
+     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned. Pagination is currently not supported; therefore, setting this field does not have any impact for now.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token returned by previous call to `ListBoundMemberships` which specifies the position in the list from where to continue listing the resources.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the Scope, in the format `projects/x/locations/global/scopes/x`, to which the Memberships are bound.
+     */
+    scopeName?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Scopes$Listpermitted
+    extends StandardParameters {
+    /**
+     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token returned by previous call to `ListPermittedScopes` which specifies the position in the list from where to continue listing the resources.
      */
     pageToken?: string;
     /**

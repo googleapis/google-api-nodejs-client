@@ -470,6 +470,27 @@ export namespace firestore_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Execution statistics for the query.
+   */
+  export interface Schema$ExecutionStats {
+    /**
+     * Debugging statistics from the execution of the query. Note that the debugging stats are subject to change as Firestore evolves. It could include: { "indexes_entries_scanned": "1000", "documents_scanned": "20", "billing_details" : { "documents_billable": "20", "index_entries_billable": "1000", "min_query_cost": "0" \} \}
+     */
+    debugStats?: {[key: string]: any} | null;
+    /**
+     * Total time to execute the query in the backend.
+     */
+    executionDuration?: string | null;
+    /**
+     * Total billable read operations.
+     */
+    readOperations?: string | null;
+    /**
+     * Total number of results returned, including documents, projections, aggregation results, keys.
+     */
+    resultsReturned?: string | null;
+  }
+  /**
    * A digest of all the documents that match a given target.
    */
   export interface Schema$ExistenceFilter {
@@ -485,6 +506,28 @@ export namespace firestore_v1 {
      * A bloom filter that, despite its name, contains the UTF-8 byte encodings of the resource names of ALL the documents that match target_id, in the form `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. This bloom filter may be omitted at the server's discretion, such as if it is deemed that the client will not make use of it or if it is too computationally expensive to calculate or transmit. Clients must gracefully handle this field being absent by falling back to the logic used before this field existed; that is, re-add the target without a resume token to figure out which documents in the client's cache are out of sync.
      */
     unchangedNames?: Schema$BloomFilter;
+  }
+  /**
+   * Explain metrics for the query.
+   */
+  export interface Schema$ExplainMetrics {
+    /**
+     * Aggregated stats from the execution of the query. Only present when ExplainOptions.analyze is set to true.
+     */
+    executionStats?: Schema$ExecutionStats;
+    /**
+     * Planning phase information for the query.
+     */
+    planSummary?: Schema$PlanSummary;
+  }
+  /**
+   * Explain options for the query.
+   */
+  export interface Schema$ExplainOptions {
+    /**
+     * Optional. Whether to execute this query. When false (the default), the query will be planned, returning only metrics from the planning stages. When true, the query will be planned and executed, returning the full query results along with both planning and execution stage metrics.
+     */
+    analyze?: boolean | null;
   }
   /**
    * A filter on a specific field.
@@ -642,7 +685,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1CreateDatabaseMetadata {}
   /**
-   * Represent a recurring schedule that runs at a specific time every day. The time zone is UTC.
+   * Represents a recurring schedule that runs at a specific time every day. The time zone is UTC.
    */
   export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {}
   /**
@@ -1443,6 +1486,15 @@ export namespace firestore_v1 {
     partitions?: Schema$Cursor[];
   }
   /**
+   * Planning phase information for the query.
+   */
+  export interface Schema$PlanSummary {
+    /**
+     * The indexes selected for the query. For example: [ {"query_scope": "Collection", "properties": "(foo ASC, __name__ ASC)"\}, {"query_scope": "Collection", "properties": "(bar ASC, __name__ ASC)"\} ]
+     */
+    indexesUsed?: Array<{[key: string]: any}> | null;
+  }
+  /**
    * A precondition on a document, used for conditional operations.
    */
   export interface Schema$Precondition {
@@ -1509,6 +1561,10 @@ export namespace firestore_v1 {
    */
   export interface Schema$RunAggregationQueryRequest {
     /**
+     * Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned.
+     */
+    explainOptions?: Schema$ExplainOptions;
+    /**
      * Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream.
      */
     newTransaction?: Schema$TransactionOptions;
@@ -1530,6 +1586,10 @@ export namespace firestore_v1 {
    */
   export interface Schema$RunAggregationQueryResponse {
     /**
+     * Query explain metrics. This is only present when the RunAggregationQueryRequest.explain_options is provided, and it is sent only once with the last response in the stream.
+     */
+    explainMetrics?: Schema$ExplainMetrics;
+    /**
      * The time at which the aggregate result was computed. This is always monotonically increasing; in this case, the previous AggregationResult in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `result` will be sent, and this represents the time at which the query was run.
      */
     readTime?: string | null;
@@ -1546,6 +1606,10 @@ export namespace firestore_v1 {
    * The request for Firestore.RunQuery.
    */
   export interface Schema$RunQueryRequest {
+    /**
+     * Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned.
+     */
+    explainOptions?: Schema$ExplainOptions;
     /**
      * Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream.
      */
@@ -1575,6 +1639,10 @@ export namespace firestore_v1 {
      * If present, Firestore has completely finished the request and no more documents will be returned.
      */
     done?: boolean | null;
+    /**
+     * Query explain metrics. This is only present when the RunQueryRequest.explain_options is provided, and it is sent only once with the last response in the stream.
+     */
+    explainMetrics?: Schema$ExplainMetrics;
     /**
      * The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.
      */
@@ -3241,7 +3309,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Backupschedules$Delete
     extends StandardParameters {
     /**
-     * Required. The name of backup schedule. Format `projects/{project\}/databases/{database\}/backupSchedules/{backup_schedule\}`
+     * Required. The name of the backup schedule. Format `projects/{project\}/databases/{database\}/backupSchedules/{backup_schedule\}`
      */
     name?: string;
   }

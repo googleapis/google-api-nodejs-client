@@ -309,7 +309,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$ExtensionChainMatchCondition {
     /**
-     * Required. A Common Expression Language (CEL) expression that is used to match requests for which the extension chain is executed. For more information, see [CEL matcher language reference](/service-extensions/docs/cel-matcher-language-reference).
+     * Required. A Common Expression Language (CEL) expression that is used to match requests for which the extension chain is executed. For more information, see [CEL matcher language reference](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference).
      */
     celExpression?: string | null;
   }
@@ -1050,7 +1050,7 @@ export namespace networkservices_v1beta1 {
      */
     forwardingRules?: string[] | null;
     /**
-     * Optional. Set of labels associated with the `LbRouteExtension` resource. The format must comply with [the requirements for labels](/compute/docs/labeling-resources#requirements) for Google Cloud resources.
+     * Optional. Set of labels associated with the `LbRouteExtension` resource. The format must comply with [the requirements for labels](https://cloud.google.com/compute/docs/labeling-resources#requirements) for Google Cloud resources.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1087,7 +1087,7 @@ export namespace networkservices_v1beta1 {
      */
     forwardingRules?: string[] | null;
     /**
-     * Optional. Set of labels associated with the `LbTrafficExtension` resource. The format must comply with [the requirements for labels](/compute/docs/labeling-resources#requirements) for Google Cloud resources.
+     * Optional. Set of labels associated with the `LbTrafficExtension` resource. The format must comply with [the requirements for labels](https://cloud.google.com/compute/docs/labeling-resources#requirements) for Google Cloud resources.
      */
     labels?: {[key: string]: string} | null;
     /**

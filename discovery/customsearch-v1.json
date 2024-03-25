@@ -372,6 +372,12 @@
               "location": "query",
               "type": "string"
             },
+            "snippetLength": {
+              "description": "Optional. Maximum length of snippet text, in characters, to be returned with results. * Valid values are integers between 1 and 160, inclusive.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
             "sort": {
               "description": "The sort expression to apply to the results. The sort parameter specifies that the results be sorted according to the specified expression i.e. sort by date. [Example: sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).",
               "location": "query",
@@ -668,6 +674,12 @@
                   "location": "query",
                   "type": "string"
                 },
+                "snippetLength": {
+                  "description": "Optional. Maximum length of snippet text, in characters, to be returned with results. * Valid values are integers between 1 and 160, inclusive.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
                 "sort": {
                   "description": "The sort expression to apply to the results. The sort parameter specifies that the results be sorted according to the specified expression i.e. sort by date. [Example: sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).",
                   "location": "query",
@@ -690,7 +702,7 @@
       }
     }
   },
-  "revision": "20240103",
+  "revision": "20240320",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {

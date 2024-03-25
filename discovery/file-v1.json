@@ -874,7 +874,7 @@
       }
     }
   },
-  "revision": "20240304",
+  "revision": "20240307",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1643,7 +1643,7 @@
       "type": "object"
     },
     "MaintenancePolicy": {
-      "description": "LINT.IfChange Defines policies to service maintenance events.",
+      "description": "Defines policies to service maintenance events.",
       "id": "MaintenancePolicy",
       "properties": {
         "createTime": {

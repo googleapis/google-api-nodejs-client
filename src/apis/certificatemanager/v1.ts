@@ -125,6 +125,15 @@ export namespace certificatemanager_v1 {
   }
 
   /**
+   * Defines an allowlisted certificate.
+   */
+  export interface Schema$AllowlistedCertificate {
+    /**
+     * Required. PEM certificate that is allowlisted. The certificate can be up to 5k bytes, and must be a parseable X.509 certificate.
+     */
+    pemCertificate?: string | null;
+  }
+  /**
    * State of the latest attempt to authorize a domain for certificate issuance.
    */
   export interface Schema$AuthorizationAttemptInfo {
@@ -720,6 +729,10 @@ export namespace certificatemanager_v1 {
    * Defines a trust config.
    */
   export interface Schema$TrustConfig {
+    /**
+     * Optional. A certificate matching an allowlisted certificate is always considered valid as long as the certificate is parseable, proof of private key possession is established, and constraints on the certificate’s SAN field are met.
+     */
+    allowlistedCertificates?: Schema$AllowlistedCertificate[];
     /**
      * Output only. The creation timestamp of a TrustConfig.
      */

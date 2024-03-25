@@ -1605,7 +1605,7 @@
       }
     }
   },
-  "revision": "20240221",
+  "revision": "20240313",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -2059,7 +2059,7 @@
       "id": "CertificateConfigKeyId",
       "properties": {
         "keyId": {
-          "description": "Optional. The value of this KeyId encoded in lowercase hexadecimal. This is most likely the 160 bit SHA-1 hash of the public key.",
+          "description": "Required. The value of this KeyId encoded in lowercase hexadecimal. This is most likely the 160 bit SHA-1 hash of the public key.",
           "type": "string"
         }
       },

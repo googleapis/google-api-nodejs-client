@@ -563,7 +563,7 @@
       }
     }
   },
-  "revision": "20231219",
+  "revision": "20240314",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -667,7 +667,8 @@
             "CA_PROTECTED_B",
             "IL5",
             "IL2",
-            "JP_REGIONS_AND_SUPPORT"
+            "JP_REGIONS_AND_SUPPORT",
+            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -688,7 +689,8 @@
             "Assured Workloads for Canada Protected B regime",
             "Information protection as per DoD IL5 requirements.",
             "Information protection as per DoD IL2 requirements.",
-            "Assured Workloads for Japan Regions"
+            "Assured Workloads for Japan Regions",
+            "KSA R5 Controls."
           ],
           "type": "string"
         },
@@ -1136,7 +1138,8 @@
             "CA_PROTECTED_B",
             "IL5",
             "IL2",
-            "JP_REGIONS_AND_SUPPORT"
+            "JP_REGIONS_AND_SUPPORT",
+            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1157,7 +1160,8 @@
             "Assured Workloads for Canada Protected B regime",
             "Information protection as per DoD IL5 requirements.",
             "Information protection as per DoD IL2 requirements.",
-            "Assured Workloads for Japan Regions"
+            "Assured Workloads for Japan Regions",
+            "KSA R5 Controls."
           ],
           "type": "string"
         },

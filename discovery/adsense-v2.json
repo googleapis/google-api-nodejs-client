@@ -324,7 +324,7 @@
             "adunits": {
               "methods": {
                 "create": {
-                  "description": "Creates an ad unit. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product. Note that ad units can only be created for ad clients with an \"AFC\" product code. For more info see the [AdClient resource](/adsense/management/reference/rest/v2/accounts.adclients). For now, this method can only be used to create `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566",
+                  "description": "Creates an ad unit. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method. Note that ad units can only be created for ad clients with an \"AFC\" product code. For more info see the [AdClient resource](/adsense/management/reference/rest/v2/accounts.adclients). For now, this method can only be used to create `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566",
                   "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/adunits",
                   "httpMethod": "POST",
                   "id": "adsense.accounts.adclients.adunits.create",
@@ -478,7 +478,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates an ad unit. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product. For now, this method can only be used to update `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566",
+                  "description": "Updates an ad unit. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method. For now, this method can only be used to update `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566",
                   "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/adunits/{adunitsId}",
                   "httpMethod": "PATCH",
                   "id": "adsense.accounts.adclients.adunits.patch",
@@ -516,7 +516,7 @@
             "customchannels": {
               "methods": {
                 "create": {
-                  "description": "Creates a custom channel. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product.",
+                  "description": "Creates a custom channel. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method.",
                   "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/customchannels",
                   "httpMethod": "POST",
                   "id": "adsense.accounts.adclients.customchannels.create",
@@ -544,7 +544,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a custom channel. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product.",
+                  "description": "Deletes a custom channel. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method.",
                   "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/customchannels/{customchannelsId}",
                   "httpMethod": "DELETE",
                   "id": "adsense.accounts.adclients.customchannels.delete",
@@ -669,7 +669,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a custom channel. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product.",
+                  "description": "Updates a custom channel. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method.",
                   "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/customchannels/{customchannelsId}",
                   "httpMethod": "PATCH",
                   "id": "adsense.accounts.adclients.customchannels.patch",
@@ -1845,7 +1845,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240321",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {

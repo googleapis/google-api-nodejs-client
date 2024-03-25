@@ -367,6 +367,10 @@ export namespace alloydb_v1alpha {
      */
     etag?: string | null;
     /**
+     * Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.
+     */
+    geminiConfig?: Schema$GeminiClusterConfig;
+    /**
      * Input only. Initial user to setup during cluster creation. Required. If used in `RestoreCluster` this is ignored.
      */
     initialUser?: Schema$UserPassword;
@@ -374,6 +378,10 @@ export namespace alloydb_v1alpha {
      * Labels as key value pairs
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The maintenance update policy determines when to allow or deny updates.
+     */
+    maintenanceUpdatePolicy?: Schema$MaintenanceUpdatePolicy;
     /**
      * Output only. Cluster created via DMS migration.
      */
@@ -509,6 +517,23 @@ export namespace alloydb_v1alpha {
     pointInTime?: string | null;
   }
   /**
+   * DenyMaintenancePeriod definition. Excepting emergencies, maintenance will not be scheduled to start within this deny period. The start_date must be less than the end_date.
+   */
+  export interface Schema$DenyMaintenancePeriod {
+    /**
+     * Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be before the end.
+     */
+    endDate?: Schema$GoogleTypeDate;
+    /**
+     * Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be the same or after the start.
+     */
+    startDate?: Schema$GoogleTypeDate;
+    /**
+     * Time in UTC when the deny period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC
+     */
+    time?: Schema$GoogleTypeTimeOfDay;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -548,46 +573,22 @@ export namespace alloydb_v1alpha {
     validateOnly?: boolean | null;
   }
   /**
-   * Message for requests to generate a client certificate signed by the Cluster CA.
+   * Cluster level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.
    */
-  export interface Schema$GenerateClientCertificateRequest {
+  export interface Schema$GeminiClusterConfig {
     /**
-     * Optional. An optional hint to the endpoint to generate the client certificate with the requested duration. The duration can be from 1 hour to 24 hours. The endpoint may or may not honor the hint. If the hint is left unspecified or is not honored, then the endpoint will pick an appropriate default duration.
+     * Output only. Whether the Gemini in Databases add-on is enabled for the cluster. It will be true only if the add-on has been enabled for the billing account corresponding to the cluster. Its status is toggled from the Admin Control Center (ACC) and cannot be toggled using AlloyDB's APIs.
      */
-    certDuration?: string | null;
-    /**
-     * Optional. A pem-encoded X.509 certificate signing request (CSR). It is recommended to use public_key instead.
-     */
-    pemCsr?: string | null;
-    /**
-     * Optional. The public key from the client.
-     */
-    publicKey?: string | null;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string | null;
-    /**
-     * Optional. An optional hint to the endpoint to generate a client ceritificate that can be used by AlloyDB connectors to exchange additional metadata with the server after TLS handshake.
-     */
-    useMetadataExchange?: boolean | null;
+    entitled?: boolean | null;
   }
   /**
-   * Message returned by a GenerateClientCertificate operation.
+   * Instance level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.
    */
-  export interface Schema$GenerateClientCertificateResponse {
+  export interface Schema$GeminiInstanceConfig {
     /**
-     * Optional. The pem-encoded cluster ca X.509 certificate.
+     * Output only. Whether the Gemini in Databases add-on is enabled for the instance. It will be true only if the add-on has been enabled for the billing account corresponding to the instance. Its status is toggled from the Admin Control Center (ACC) and cannot be toggled using AlloyDB's APIs.
      */
-    caCert?: string | null;
-    /**
-     * Output only. The pem-encoded, signed X.509 certificate.
-     */
-    pemCertificate?: string | null;
-    /**
-     * Output only. The pem-encoded chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.
-     */
-    pemCertificateChain?: string[] | null;
+    entitled?: boolean | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -626,6 +627,23 @@ export namespace alloydb_v1alpha {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$GoogleTypeDate {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -706,6 +724,10 @@ export namespace alloydb_v1alpha {
      */
     gceZone?: string | null;
     /**
+     * Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.
+     */
+    geminiConfig?: Schema$GeminiInstanceConfig;
+    /**
      * Required. The type of the instance. Specified at creation time.
      */
     instanceType?: string | null;
@@ -733,6 +755,10 @@ export namespace alloydb_v1alpha {
      * Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.
      */
     nodes?: Schema$Node[];
+    /**
+     * Configuration for observability.
+     */
+    observabilityConfig?: Schema$ObservabilityInstanceConfig;
     /**
      * Optional. The configuration for Private Service Connect (PSC) for the instance.
      */
@@ -912,6 +938,32 @@ export namespace alloydb_v1alpha {
     cpuCount?: number | null;
   }
   /**
+   * MaintenanceUpdatePolicy defines the policy for system updates.
+   */
+  export interface Schema$MaintenanceUpdatePolicy {
+    /**
+     * Periods to deny maintenance. Currently limited to 1.
+     */
+    denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
+    /**
+     * Preferred windows to perform maintenance. Currently limited to 1.
+     */
+    maintenanceWindows?: Schema$MaintenanceWindow[];
+  }
+  /**
+   * MaintenanceWindow specifies a preferred day and time for maintenance.
+   */
+  export interface Schema$MaintenanceWindow {
+    /**
+     * Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.
+     */
+    day?: string | null;
+    /**
+     * Preferred time to start the maintenance operation on the specified day. Maintenance will start within 1 hour of this time.
+     */
+    startTime?: Schema$GoogleTypeTimeOfDay;
+  }
+  /**
    * Subset of the source instance configuration that is available when reading the cluster resource.
    */
   export interface Schema$MigrationSource {
@@ -961,6 +1013,43 @@ export namespace alloydb_v1alpha {
      * The Compute Engine zone of the VM e.g. "us-central1-b".
      */
     zoneId?: string | null;
+  }
+  /**
+   * Observability Instance specific configuration.
+   */
+  export interface Schema$ObservabilityInstanceConfig {
+    /**
+     * Observability feature status for an instance. This is a read-only flag and modifiable only by producer API. This flag is turned "off" by default.
+     */
+    enabled?: boolean | null;
+    /**
+     * Query string length. The default value is 10k.
+     */
+    maxQueryStringLength?: number | null;
+    /**
+     * Preserve comments in query string for an instance. This flag is turned "off" by default.
+     */
+    preserveComments?: boolean | null;
+    /**
+     * Number of query execution plans captured by Insights per minute for all queries combined. The default value is 5. Any integer between 0 to 20 is considered valid.
+     */
+    queryPlansPerMinute?: number | null;
+    /**
+     * Record application tags for an instance. This flag is turned "off" by default.
+     */
+    recordApplicationTags?: boolean | null;
+    /**
+     * Track actively running queries on the instance. If not set, this flag is "off" by default.
+     */
+    trackActiveQueries?: boolean | null;
+    /**
+     * Track wait events during query execution for an instance. This flag is turned "on" by default but tracking is enabled only after observability enabled flag is also turned on.
+     */
+    trackWaitEvents?: boolean | null;
+    /**
+     * Output only. Track wait event types during query execution for an instance. This flag is turned "on" by default but tracking is enabled only after observability enabled flag is also turned on. This is read-only flag and only modifiable by producer API.
+     */
+    trackWaitEventTypes?: boolean | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1488,6 +1577,10 @@ export namespace alloydb_v1alpha {
      * User-provided labels, represented as a dictionary where each label is a single key value pair.
      */
     userLabels?: {[key: string]: string} | null;
+    /**
+     * User-provided labels associated with the resource
+     */
+    userLabelSet?: Schema$StorageDatabasecenterPartnerapiV1mainUserLabels;
   }
   /**
    * Common model for database resource recommendation signal data.
@@ -1560,6 +1653,12 @@ export namespace alloydb_v1alpha {
      */
     retentionUnit?: string | null;
     timeBasedRetention?: string | null;
+  }
+  /**
+   * Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainUserLabels {
+    labels?: {[key: string]: string} | null;
   }
   /**
    * Product specification for Condor resources.
@@ -2737,102 +2836,6 @@ export namespace alloydb_v1alpha {
     }
 
     /**
-     * Generate a client certificate signed by a Cluster CA. The sole purpose of this endpoint is to support AlloyDB connectors and the Auth Proxy client. The endpoint's behavior is subject to change without notice, so do not rely on its behavior remaining constant. Future changes will not break AlloyDB connectors or the Auth Proxy client.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    generateClientCertificate(
-      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    generateClientCertificate(
-      params?: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateClientCertificateResponse>;
-    generateClientCertificate(
-      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    generateClientCertificate(
-      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>,
-      callback: BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-    ): void;
-    generateClientCertificate(
-      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      callback: BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-    ): void;
-    generateClientCertificate(
-      callback: BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-    ): void;
-    generateClientCertificate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Clusters$Generateclientcertificate
-        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GenerateClientCertificateResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Clusters$Generateclientcertificate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Clusters$Generateclientcertificate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://alloydb.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}:generateClientCertificate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GenerateClientCertificateResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GenerateClientCertificateResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Gets details of a single Cluster.
      *
      * @param params - Parameters for request
@@ -3337,18 +3340,6 @@ export namespace alloydb_v1alpha {
      * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
      */
     validateOnly?: boolean;
-  }
-  export interface Params$Resource$Projects$Locations$Clusters$Generateclientcertificate
-    extends StandardParameters {
-    /**
-     * Required. The name of the parent resource. The required format is: * projects/{project\}/locations/{location\}/clusters/{cluster\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GenerateClientCertificateRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Get
     extends StandardParameters {

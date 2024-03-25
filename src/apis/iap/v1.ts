@@ -2372,7 +2372,7 @@ export namespace iap_v1 {
     }
 
     /**
-     * Validates a given CEL expression conforms to IAP restrictions.
+     * Validates that a given CEL expression conforms to IAP restrictions.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2528,7 +2528,7 @@ export namespace iap_v1 {
   export interface Params$Resource$V1$Validateattributeexpression
     extends StandardParameters {
     /**
-     * Required. User input string expression. Should be of the form 'attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name\}', '{attribute_name\}'])'
+     * Required. User input string expression. Should be of the form `attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name\}', '{attribute_name\}'])`
      */
     expression?: string;
     /**
