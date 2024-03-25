@@ -5415,6 +5415,10 @@ export namespace run_v2 {
      */
     name?: string;
     /**
+     * Optional. The list of fields to be updated.
+     */
+    updateMask?: string;
+    /**
      * Indicates that the request should be validated and default values populated, without persisting the request or updating any resources.
      */
     validateOnly?: boolean;
