@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20240318",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -6829,6 +6829,10 @@
         "defaultFormat": {
           "$ref": "CellFormat",
           "description": "The default format of all cells in the spreadsheet. CellData.effectiveFormat will not be set if the cell's format is equal to this default format. This field is read-only."
+        },
+        "importFunctionsExternalUrlAccessAllowed": {
+          "description": "Whether to allow external url access for image and import functions. Read only when true. When false, you can set to true.",
+          "type": "boolean"
         },
         "iterativeCalculationSettings": {
           "$ref": "IterativeCalculationSettings",
